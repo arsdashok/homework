@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,18 +18,18 @@ header{padding:46px 0 28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-tra
 </head>
 <body>
 <main class="wrap">
-  <nav class="top" aria-label="Хабы">
+  <nav class="top" aria-label="Study hubs">
     <span class="brand"><span class="mark" aria-hidden="true">↗</span>DASHA · TEACHING</span>
     <a id="vocab" rel="noreferrer" target="_blank">Vocabulary Hub ↗</a>
   </nav>
-  <header><p class="eyebrow">Всё под рукой</p><h1>Homework Hub</h1><p class="intro">Домашки учеников в одном месте.<br>Открывай задания или копируй ссылку для отправки.</p></header>
+  <header><p class="eyebrow">Everything in one place</p><h1>Homework Hub</h1><p class="intro">All your students’ homework.<br>Open an assignment or copy a link to share.</p></header>
   <div class="tools">
-    <label class="search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search" type="search" aria-label="Найти ученика" placeholder="Найти ученика…" autocomplete="off"></label>
+    <label class="search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search" type="search" aria-label="Find a student" placeholder="Find a student…" autocomplete="off"></label>
     <div class="count" id="count" aria-live="polite"></div>
   </div>
   <div class="grid" id="students"></div>
-  <p class="empty" id="empty" hidden>Никого не нашлось. Попробуй другое имя.</p>
-  <p class="foot"><strong>Эта ссылка — для тебя.</strong> Родителям отправляй ссылку из карточки ученика. Здесь появляются опубликованные онлайн-домашки; новые добавляются автоматически.</p>
+  <p class="empty" id="empty" hidden>No students found. Try another name.</p>
+  <p class="foot"><strong>Keep this hub link for yourself.</strong> Share the link from a student’s card with their parent. Newly published homework appears here automatically.</p>
 </main>
 <div class="status" id="status" role="status" aria-live="polite"></div>
 <script type="application/json" id="hub-data">__HUB_DATA__</script>
@@ -43,26 +43,26 @@ async function copyLink(url,button){
   try{await navigator.clipboard.writeText(url)}catch(error){
     const field=el('textarea');field.value=url;field.style.position='fixed';field.style.opacity='0';document.body.append(field);field.select();
     let ok=false;try{ok=document.execCommand('copy')}catch(e){}field.remove();
-    if(!ok){window.prompt('Скопируй ссылку на домашку:',url);return}
+    if(!ok){window.prompt('Copy the homework link:',url);return}
   }
-  button.textContent='Скопировано ✓';button.setAttribute('data-done','');
-  const status=document.getElementById('status');status.textContent='Ссылка на домашку скопирована';clearTimeout(feedbackTimer);
+  button.textContent='Copied ✓';button.setAttribute('data-done','');
+  const status=document.getElementById('status');status.textContent='Homework link copied';clearTimeout(feedbackTimer);
   feedbackTimer=setTimeout(()=>status.textContent='',2400);
-  setTimeout(()=>{button.textContent='Копировать ссылку';button.removeAttribute('data-done')},2000);
+  setTimeout(()=>{button.textContent='Copy link';button.removeAttribute('data-done')},2000);
 }
-function copyButton(page,name){const b=el('button','btn copy','Копировать ссылку');b.type='button';b.setAttribute('aria-label','Копировать ссылку: '+name+' — '+page.title);b.addEventListener('click',()=>copyLink(page.url,b));return b}
-function formatDate(date){return date?new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(date+'T12:00:00Z')):''}
+function copyButton(page,name){const b=el('button','btn copy','Copy link');b.type='button';b.setAttribute('aria-label','Copy link: '+name+' — '+page.title);b.addEventListener('click',()=>copyLink(page.url,b));return b}
+function formatDate(date){return date?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(date+'T12:00:00Z')):''}
 function titleFor(page){return page.title.replace(/\d{4}-\d{2}-\d{2}|\d{1,2} [A-Za-z]+ \d{4}|\(test\)/gi,'').replace(/[·|]\s*$/,'').trim()||'Homework'}
 for(const student of data.students){
   const latest=student.pages[0],card=el('article','card');card.dataset.name=student.name.toLocaleLowerCase();
   const person=el('div','person'),avatar=el('div','avatar',student.name[0]);avatar.setAttribute('aria-hidden','true');person.append(avatar);
-  const heading=el('div');heading.append(el('h2','',student.name));if(latest.test)heading.append(el('span','badge','Тестовая страница'));person.append(heading);card.append(person);
-  card.append(el('p','label',latest.test?'ДЛЯ ПРОВЕРКИ ФОРМАТА':'ПОСЛЕДНЯЯ ДОМАШКА'),el('h3','',titleFor(latest)),el('p','date',formatDate(latest.date)||'Без даты'));
-  const actions=el('div','actions'),open=el('a','btn primary','Открыть домашку ↗');open.href=latest.url;open.target='_blank';open.rel='noreferrer';open.setAttribute('aria-label','Открыть домашку: '+student.name);actions.append(open,copyButton(latest,student.name));card.append(actions);
-  if(student.pages.length>1){const details=el('details');details.append(el('summary','',`Все домашки (${student.pages.length})`));for(const page of student.pages){const row=el('div','older'),a=el('a','',page.title);a.href=page.url;a.target='_blank';a.rel='noreferrer';row.append(a,copyButton(page,student.name));details.append(row)}card.append(details)}
+  const heading=el('div');heading.append(el('h2','',student.name));if(latest.test)heading.append(el('span','badge','Test page'));person.append(heading);card.append(person);
+  card.append(el('p','label',latest.test?'FORMAT PREVIEW':'LATEST HOMEWORK'),el('h3','',titleFor(latest)),el('p','date',formatDate(latest.date)||'No date'));
+  const actions=el('div','actions'),open=el('a','btn primary','Open homework ↗');open.href=latest.url;open.target='_blank';open.rel='noreferrer';open.setAttribute('aria-label','Open homework: '+student.name);actions.append(open,copyButton(latest,student.name));card.append(actions);
+  if(student.pages.length>1){const details=el('details');details.append(el('summary','',`All homework (${student.pages.length})`));for(const page of student.pages){const row=el('div','older'),a=el('a','',page.title);a.href=page.url;a.target='_blank';a.rel='noreferrer';row.append(a,copyButton(page,student.name));details.append(row)}card.append(details)}
   grid.append(card);
 }
-function filter(){const q=search.value.trim().toLocaleLowerCase();let visible=0;for(const card of grid.children){card.hidden=!card.dataset.name.includes(q);if(!card.hidden)visible++}document.getElementById('count').textContent=q?`Найдено: ${visible}`:`Учеников: ${data.students.length} · Домашек: ${data.students.reduce((n,s)=>n+s.pages.length,0)}`;document.getElementById('empty').hidden=visible!==0}
+function filter(){const q=search.value.trim().toLocaleLowerCase();let visible=0;for(const card of grid.children){card.hidden=!card.dataset.name.includes(q);if(!card.hidden)visible++}document.getElementById('count').textContent=q?`Found: ${visible}`:`Students: ${data.students.length} · Assignments: ${data.students.reduce((n,s)=>n+s.pages.length,0)}`;document.getElementById('empty').hidden=visible!==0}
 search.addEventListener('input',filter);filter();
 </script>
 </body>

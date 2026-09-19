@@ -11,7 +11,7 @@ Older pages may use `<title>Student · Subject · Date</title>` instead.
 
 Every push to main builds the hub and deploys the complete site through GitHub
 Actions. The latest dated homework is the primary link for each student; earlier
-assignments appear under “Все домашки”. Titles containing “test” are labelled as
+assignments appear under “All homework”. Titles containing “test” are labelled as
 test pages and come after normal assignments. Only pupils with published pages
 are listed. No answer fields, submissions, answer keys or completion status are
 read by this index.

@@ -91,6 +91,9 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
 .save-btn:hover {background:#268562;}
 .pdf-btn {font:inherit; font-size:12.5px; color:#3F5F52; background:none; border:0; text-decoration:underline; cursor:pointer; margin-top:10px;}
 .save-btn:disabled {background:#9CC9B5; cursor:default;}
+body.pdf-mode #sheet {width:680px; background:white;}
+body.pdf-mode .english {margin-top:0 !important;}
+body.pdf-mode .write:empty::before {content:"";}
 .save-hint {font-size:12px; color:#3F5F52; margin-top:8px;}
 @media print {
   .save-bar {display:none;}
@@ -100,8 +103,10 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
   .write:empty::before {content:"";}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
+<div id="sheet">
 
 <div class="sheet-head">
   <div class="eyebrow">Test homework</div><h1>Timmy · Homework</h1>
@@ -213,6 +218,8 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
 
 <div class="foot"><span>When you finish, press Send to Dasha. We’ll go through it together.</span><span>2 / 2</span></div>
 
+</div><!-- /sheet -->
+
 <div class="save-bar">
   <button class="save-btn" id="sendBtn" onclick="sendHW()">Send to Dasha</button>
   <div class="save-hint" id="sendMsg">Check your answers, then press the button.</div>
@@ -222,6 +229,19 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
 <script>
 var SEND_URL = "https://script.google.com/macros/s/AKfycbwtEVGXzip6vzoLC7oY_wzfmHGe31Vm2uFB9FMwHsSyVHdbyMOKpu16z-a6SdQXXVg/exec";
 var SEND_KEY = "89949615279890a2";
+
+function makePDF(){
+  if (!window.html2pdf) return Promise.resolve('');
+  var bar=document.querySelector('.save-bar');
+  document.querySelectorAll('.write:empty').forEach(function(d){ d.classList.add('pdf-empty'); });
+  document.body.classList.add('pdf-mode'); bar.style.display='none';
+  var opt={margin:[10,10,10,10], image:{type:'jpeg',quality:0.85}, html2canvas:{scale:1.6, useCORS:true, scrollX:0, scrollY:0},
+           jsPDF:{unit:'mm', format:'a4', orientation:'portrait'}, pagebreak:{mode:['css','legacy'], avoid:['.q:not(.q4)','.evi-item']}};
+  return html2pdf().set(opt).from(document.getElementById('sheet')).outputPdf('datauristring').then(function(uri){
+    bar.style.display=''; document.body.classList.remove('pdf-mode');
+    return uri.split(',')[1] || '';
+  }).catch(function(){ bar.style.display=''; document.body.classList.remove('pdf-mode'); return ''; });
+}
 function sendHW(){
   var btn=document.getElementById('sendBtn'), msg=document.getElementById('sendMsg');
   var answers=[];
@@ -233,9 +253,11 @@ function sendHW(){
   answers.splice(9,0,{k:"3", q:"3  Modal verbs circled", a:circled.join(', ')});
   var empty=answers.filter(function(x){return !x.a;}).length;
   if(empty && !confirm(empty+' answer(s) are still empty. Send anyway?')) return;
-  btn.disabled=true; msg.textContent='Sending…';
-  fetch(SEND_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body:JSON.stringify({key:SEND_KEY, student:'Timmy', sheet:'Test homework', sheetId:'test-clara-0912', answers:answers})})
+  btn.disabled=true; msg.textContent='Sending… (this takes a few seconds)';
+  makePDF().then(function(pdf){
+    return fetch(SEND_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({key:SEND_KEY, student:'Timmy', sheet:'Test homework', sheetId:'test-clara-0912', answers:answers, pdf:pdf})});
+  })
   .then(function(){ msg.textContent='Sent! Dasha will check it. ✓'; btn.textContent='Sent ✓'; })
   .catch(function(){ btn.disabled=false; msg.textContent='It did not send. Check the internet and try again, or save it as a PDF.'; });
 }

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiyan · Maths homework · 16 September 2026</title>
+<style>
+@page { size: A4; margin: 12mm 14mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
+  font-size: 15px; line-height: 1.45; color: #1f2937; background: #fff;
+  max-width: 780px; margin: 0 auto;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 2px solid #8072b2; padding-bottom: 8px; margin-bottom: 18px;
+}
+header h1 { font-size: 23px; font-weight: 700; }
+header span { font-size: 13px; color: #4b5563; }
+
+section.task {
+  margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #9ca3af;
+  page-break-inside: avoid; break-inside: avoid;
+}
+section.task:last-of-type { border-bottom: 0; }
+h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #111827; }
+h2 .n { color: #64518e; margin-right: 8px; }
+.instruction { font-size: 17px; font-weight: 600; color: #111827; margin: 6px 0 14px; }
+
+.example {
+  border-left: 3px solid #4b5563; padding: 3px 0 3px 13px; margin: 4px 0 12px;
+  font-size: 18px; color: #111827;
+}
+.example .label { font-size: 12.5px; font-weight: 700; color: #4b5563; margin-bottom: 2px; }
+.arrow { color: #4b5563; font-weight: 700; margin: 0 9px; }
+.split { color: #4b5563; font-weight: 400; margin: 0 7px; }
+
+.q { page-break-inside: avoid; break-inside: avoid; }
+
+/* Block A */
+.div-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.div-row { display: flex; align-items: center; gap: 8px; font-size: 22px; font-weight: 600; white-space: nowrap; }
+.num { display: inline-block; min-width: 24px; font-size: 17px; font-weight: 700; color: #64518e; }
+.ansbox {
+  display: inline-block; width: 68px; height: 40px;
+  border: 2px solid #1f2937; border-radius: 3px; background: #fff;
+}
+.gridwork {
+  height: 72px; margin-top: 8px;
+  border: 1.5px solid #6b7280; border-radius: 4px;
+  background-color: #fff;
+  background-image: linear-gradient(#9ca3af 1px, transparent 1px), linear-gradient(90deg, #9ca3af 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.gridnote { font-size: 14px; color: #374151; margin-top: 10px; }
+.challenge-tag {
+  display: inline-block; font-size: 12px; font-weight: 700; color: #111827;
+  background: #fef3c7; border: 1.5px solid #b45309; border-radius: 100px;
+  padding: 0 9px; margin: 0 0 4px 32px;
+}
+
+/* Block B */
+.word-q { margin: 0 0 16px; }
+.word-q .top { display: flex; align-items: baseline; gap: 10px; }
+.bignum { font-size: 26px; font-weight: 700; letter-spacing: 2.5px; color: #111827; }
+.line { height: 38px; border-bottom: 2px solid #1f2937; margin-left: 34px; }
+
+input.ansbox { font:inherit; font-size:20px; font-weight:700; text-align:center; color:#111827; }
+input.ansbox:focus, .gridwork:focus, .line:focus { outline:none; box-shadow:0 0 0 3px #ddd6fe; }
+.gridwork { font-size:16px; line-height:24px; padding:0 4px; outline:none; white-space:pre-wrap; overflow:hidden; }
+.line { height:auto; min-height:38px; font-size:19px; line-height:1.5; padding:6px 2px 2px; outline:none; white-space:pre-wrap; word-wrap:break-word; }
+.save-bar { margin:26px 0 8px; padding:16px; border:2px solid #1f2937; border-radius:10px; text-align:center; }
+.save-btn { font:inherit; font-size:18px; font-weight:700; color:#111827; background:#a3e635; border:2px solid #111827; border-radius:100px; padding:10px 28px; cursor:pointer; }
+.save-hint { font-size:15px; color:#111827; margin-top:8px; }
+@media screen { body { padding:28px 16px; } }
+@media print { .save-bar { display:none; } input.ansbox:focus, .gridwork:focus, .line:focus { box-shadow:none; } }
+.line.tall { min-height:76px; }
+.line:empty::before { content:"Type here"; color:#9ca3af; font-size:16px; }
+input.ansbox, .line, .gridwork { color:#1d4ed8 !important; }
+body.pdf-mode #sheet { width:680px; background:white; }
+body.pdf-mode .line:empty::before { content:""; }
+.save-btn:disabled { opacity:.6; cursor:default; }
+.pdf-btn { display:block; margin:10px auto 0; font:inherit; font-size:14px; color:#111827; background:none; border:0; text-decoration:underline; cursor:pointer; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+<div id="sheet">
+
+<header>
+  <h1>Kiyan · Maths</h1>
+  <span>16 September 2026</span>
+</header>
+
+<section class="task">
+  <h2><span class="n">A</span>Find the fact</h2>
+  <div class="example">
+    <div class="label">Example</div>
+    280 ÷ 7<span class="arrow">→</span>I know 7 × 4 = 28<span class="arrow">→</span>280 ÷ 7 = 40
+  </div>
+  <p class="instruction">Find the fact in your head. Write the answer.</p>
+
+  <div class="div-grid">
+    <div class="q">
+      <div class="challenge-tag" style="visibility:hidden">challenge</div>
+      <div class="div-row"><span class="num">1</span>720 ÷ 9 = <input class="ansbox" inputmode="numeric" data-k="a1" data-label="1  720 ÷ 9"></div>
+      <div class="gridwork" contenteditable="true" data-k="g1" data-label="1  working"></div>
+    </div>
+    <div class="q">
+      <div class="challenge-tag" style="visibility:hidden">challenge</div>
+      <div class="div-row"><span class="num">2</span>480 ÷ 8 = <input class="ansbox" inputmode="numeric" data-k="a2" data-label="2  480 ÷ 8"></div>
+      <div class="gridwork" contenteditable="true" data-k="g2" data-label="2  working"></div>
+    </div>
+    <div class="q">
+      <div class="challenge-tag">challenge</div>
+      <div class="div-row"><span class="num">3</span>3600 ÷ 4 = <input class="ansbox" inputmode="numeric" data-k="a3" data-label="3  3600 ÷ 4 (challenge)"></div>
+      <div class="gridwork" contenteditable="true" data-k="g3" data-label="3  working"></div>
+    </div>
+  </div>
+  <p class="gridnote">Use the squares only if you need them.</p>
+</section>
+
+<section class="task">
+  <h2><span class="n">B</span>Write the number in words</h2>
+  <div class="example">
+    <div class="label">Example</div>
+    <b>73</b><span class="split">|</span><b>071</b><span class="arrow">→</span>seven<b>ty</b><b>-</b>three thousand<span class="split">|</span><b>and</b> seven<b>ty</b><b>-</b>one
+  </div>
+  <p class="instruction">Write each number in words.</p>
+
+  <div class="q word-q">
+    <div class="top"><span class="num">4</span><span class="bignum">7,090,061</span></div>
+    <div class="line tall" contenteditable="true" data-k="w4" data-label="4  7,090,061 in words"></div>
+  </div>
+
+  <div class="q word-q">
+    <div class="top"><span class="num">5</span><span class="bignum">69,000</span></div>
+    <div class="line" contenteditable="true" data-k="w5" data-label="5  69,000 in words"></div>
+  </div>
+
+  <div class="q word-q">
+    <div class="top"><span class="num">6</span><span class="bignum">9,060,007</span></div>
+    <div class="line tall" contenteditable="true" data-k="w6" data-label="6  9,060,007 in words"></div>
+  </div>
+</section>
+
+
+</div><!-- /sheet -->
+
+<div class="save-bar">
+  <button class="save-btn" id="sendBtn" onclick="sendHW()">Send to Dasha</button>
+  <div class="save-hint" id="sendMsg">Check your answers, then press the button.</div>
+  <button class="pdf-btn" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+
+<script>
+var SEND_URL="https://script.google.com/macros/s/AKfycbwtEVGXzip6vzoLC7oY_wzfmHGe31Vm2uFB9FMwHsSyVHdbyMOKpu16z-a6SdQXXVg/exec", SEND_KEY="89949615279890a2";
+function makePDF(){
+  if (!window.html2pdf) return Promise.resolve('');
+  var bar=document.querySelector('.save-bar');
+  document.body.classList.add('pdf-mode'); bar.style.display='none';
+  var opt={margin:[10,10,10,10], image:{type:'jpeg',quality:0.85}, html2canvas:{scale:1.6, useCORS:true, scrollX:0, scrollY:0},
+           jsPDF:{unit:'mm', format:'a4', orientation:'portrait'}, pagebreak:{mode:['css','legacy'], avoid:['.q','section.task']}};
+  function done(){ bar.style.display=''; document.body.classList.remove('pdf-mode'); }
+  return html2pdf().set(opt).from(document.getElementById('sheet')).outputPdf('datauristring')
+    .then(function(u){ done(); return u.split(',')[1]||''; }).catch(function(){ done(); return ''; });
+}
+function sendHW(){
+  var btn=document.getElementById('sendBtn'), msg=document.getElementById('sendMsg');
+  var answers=[];
+  document.querySelectorAll('[data-label]').forEach(function(el){
+    var v=(el.tagName==='INPUT'?el.value:el.innerText).trim();
+    answers.push({k:el.dataset.k, q:el.dataset.label, a:v});
+  });
+  var empty=answers.filter(function(x){ return !x.a && !/working/.test(x.q); }).length;
+  if (empty && !confirm(empty+' answer(s) are still empty. Send anyway?')) return;
+  btn.disabled=true; msg.textContent='Sending… (this takes a few seconds)';
+  Promise.race([makePDF(), new Promise(function(r){ setTimeout(function(){ r(''); }, 20000); })]).then(function(pdf){
+    return fetch(SEND_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({key:SEND_KEY, student:'Kiyan', sheet:'Maths 16 September', sheetId:'kiyan-2026-09-16-maths', answers:answers, pdf:pdf})});
+  }).then(function(){ msg.textContent='Sent! Dasha will check it. ✓'; btn.textContent='Sent ✓'; })
+    .catch(function(){ btn.disabled=false; msg.textContent='It did not send. Check the internet and try again, or save a copy as a PDF.'; });
+}
+</script>
+<script>
+(function(){
+  var KEY="kiyan-online-2026-09-16", state={};
+  try { state=JSON.parse(localStorage.getItem(KEY)||"{}"); } catch(e) { state={}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+  document.querySelectorAll('input.ansbox').forEach(function(i){
+    if (state[i.dataset.k]) i.value=state[i.dataset.k];
+    i.addEventListener('input', function(){ state[i.dataset.k]=i.value; save(); });
+  });
+  document.querySelectorAll('[contenteditable]').forEach(function(d){
+    if (state[d.dataset.k]) d.textContent=state[d.dataset.k];
+    d.addEventListener('input', function(){ state[d.dataset.k]=d.innerText; save(); });
+  });
+})();
+</script>
+</body>
+</html>

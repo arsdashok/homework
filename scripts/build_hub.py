@@ -76,6 +76,8 @@ def build(root=ROOT, site=None):
         if page['sheetId']:
             page['submissionsUrl'] = config.get('submissionFolders', {}).get(page['sheetId']) or (
                 'https://drive.google.com/drive/u/0/search?q=' + quote('hw-submissions-' + page['sheetId']))
+        if page['sheetId'] and config.get('reviewApp'):
+            page['reviewUrl'] = config['reviewApp'] + '?sheet=' + quote(page['sheetId'])
         pages.append(page)
         sources.append(path.parent)
     groups = {}

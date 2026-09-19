@@ -30,7 +30,7 @@ header{padding:46px 0 28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-tra
   </div>
   <div class="grid" id="students"></div>
   <p class="empty" id="empty" hidden>No students found. Try another name.</p>
-  <p class="foot"><strong>Keep this hub link for yourself.</strong> Share the homework link with parents. Submitted work is saved automatically after sending and opens in your Google Drive. Each new submission keeps its own date and time.</p>
+  <p class="foot"><strong>Keep this hub link for yourself.</strong> Share the homework link with parents. Open Review work to read submitted answers, check them against your private key and save your notes. Sign in with your teacher Google account. Each submission keeps its own date and time.</p>
 </main>
 <div class="status" id="status" role="status" aria-live="polite"></div>
 <script type="application/json" id="hub-data">__HUB_DATA__</script>
@@ -52,7 +52,7 @@ async function copyLink(url,button){
   setTimeout(()=>{button.textContent='Copy link';button.removeAttribute('data-done')},2000);
 }
 function copyButton(page,name){const b=el('button','btn copy','Copy link');b.type='button';b.setAttribute('aria-label','Copy link: '+name+' — '+page.title);b.addEventListener('click',()=>copyLink(page.url,b));return b}
-function submittedLink(page,name){if(!page.submissionsUrl)return null;const a=el('a','btn submitted','Submitted work ↗');a.href=page.submissionsUrl;a.target='_blank';a.rel='noreferrer';a.setAttribute('aria-label','Submitted work: '+name+' — '+page.title);return a}
+function submittedLink(page,name){if(!page.reviewUrl)return null;const a=el('a','btn submitted','Review work ↗');a.href=page.reviewUrl;a.target='_blank';a.rel='noreferrer';a.setAttribute('aria-label','Review work: '+name+' — '+page.title);return a}
 function formatDate(date){return date?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(date+'T12:00:00Z')):''}
 function titleFor(page){return page.title.replace(/\d{4}-\d{2}-\d{2}|\d{1,2} [A-Za-z]+ \d{4}|\(test\)/gi,'').replace(/[·|]\s*$/,'').trim()||'Homework'}
 for(const student of data.students){
@@ -61,7 +61,7 @@ for(const student of data.students){
   const heading=el('div');heading.append(el('h2','',student.name));if(latest.test)heading.append(el('span','badge','Test page'));person.append(heading);card.append(person);
   card.append(el('p','label',latest.test?'FORMAT PREVIEW':'LATEST HOMEWORK'),el('h3','',titleFor(latest)),el('p','date',formatDate(latest.date)||'No date'));
   const actions=el('div','actions'),open=el('a','btn primary','Open homework ↗');open.href=latest.url;open.target='_blank';open.rel='noreferrer';open.setAttribute('aria-label','Open homework: '+student.name);actions.append(open,copyButton(latest,student.name));card.append(actions);
-  const submitted=submittedLink(latest,student.name);if(submitted){card.append(submitted);card.append(el('p','submission-note','Sent work appears here automatically. Sign in to your Google account to view it.'))}
+  const submitted=submittedLink(latest,student.name);if(submitted){card.append(submitted);card.append(el('p','submission-note','Submitted answers, private answer keys and your notes. Only your teacher account can open this.'))}
   if(student.pages.length>1){
     const details=el('details');details.append(el('summary','',`All homework (${student.pages.length})`));
     if(location.hash==='#'+card.id)details.open=true;

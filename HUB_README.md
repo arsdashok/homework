@@ -36,7 +36,7 @@ original filled PDF; if no PDF arrives it attempts to create a PDF answer report
 PDF failures still leave the answers text file intact. New submissions get unique
 timestamped names and never overwrite older work.
 
-Each hub assignment has a `Submitted work` link. Existing assignment folder URLs
+The original private Drive archive remains available as a backup. Existing assignment folder URLs
 are in `hub-config.json`; future assignments use a Drive search for the exact
 `hw-submissions-<sheetId>` folder, created automatically on first submission.
 The generator reads `data-sheet-id` or a legacy inline `sheetId` from each page.
@@ -47,3 +47,27 @@ Backend source and pre-change backup live locally in `Admin/Homework backend/`,
 outside this public repository. The deployed Apps Script URL is unchanged.
 `node check_storage.cjs` in that folder tests storage order and failure handling.
 Timmy's English demo folder contains a clearly labelled storage test, not pupil work.
+
+## Private web review
+
+`Review work` now opens the HTML teacher workspace instead of a Drive PDF folder.
+`reviewApp` in `hub-config.json` is a separate Apps Script deployment restricted
+by Google to **Only myself**. Its doGet and every teacher RPC also require the
+actual active user to equal the teacher account; effective-user identity is never
+used as an authorization check. The public pupil send endpoint remains separate.
+
+The workspace displays submission history, question text, pupil answers, private
+keys/guidance, automatic exact-answer comparisons, manual marks and private notes.
+Keys can be edited on the page and are stored only in private Drive storage.
+Saving a review does not notify or disclose it to pupils. Review revision checks
+prevent accidentally overwriting a review changed in another tab.
+
+New submissions additionally save structured JSON. Existing answers.txt submissions
+remain readable; known original question labels map to field IDs for answer keys.
+Unmatched old questions show no key until one is added; no IDs are guessed.
+Private source, HTML, local question catalogue and tests are in
+`Admin/Homework backend/`. Never copy them into this public repository.
+
+When adding or changing teacher code, update both deployments to the same tested
+version, keeping the teacher deployment restricted and the pupil deployment open.
+Run `node check_teacher.cjs` and `node check_storage.cjs` in the backend folder.

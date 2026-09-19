@@ -27,3 +27,23 @@ To prepare the deployable artifact:
 The artifact contains only the root page, student page folders, public assets and
 the generated hub. `_keys`, dot directories and build scripts are excluded.
 Keep the hub token in `hub-config.json` stable so bookmarks keep working.
+
+## Submitted work
+
+The existing Homework mailer Apps Script now saves each submission to the owner's
+private Google Drive before emailing it. It stores an answers text file and the
+original filled PDF; if no PDF arrives it attempts to create a PDF answer report.
+PDF failures still leave the answers text file intact. New submissions get unique
+timestamped names and never overwrite older work.
+
+Each hub assignment has a `Submitted work` link. Existing assignment folder URLs
+are in `hub-config.json`; future assignments use a Drive search for the exact
+`hw-submissions-<sheetId>` folder, created automatically on first submission.
+The generator reads `data-sheet-id` or a legacy inline `sheetId` from each page.
+Folders and files are not shared publicly, and pupil pages have no submitted-work
+links. The hub does not imply that an empty folder contains a submission.
+
+Backend source and pre-change backup live locally in `Admin/Homework backend/`,
+outside this public repository. The deployed Apps Script URL is unchanged.
+`node check_storage.cjs` in that folder tests storage order and failure handling.
+Timmy's English demo folder contains a clearly labelled storage test, not pupil work.

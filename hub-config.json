@@ -1,4 +1,11 @@
 {
   "hub": "67f5f7644ece6050",
-  "vocabHub": "https://arsdashok.github.io/vocab/4ebe51b3342f6206/"
+  "vocabHub": "https://arsdashok.github.io/vocab/4ebe51b3342f6206/",
+  "submissionsRoot": "https://drive.google.com/drive/folders/1pyzhHYZb29s8wA2eVBLGK_fYa607iq2j",
+  "submissionFolders": {
+    "kiyan-2026-09-16-maths": "https://drive.google.com/drive/folders/1fXbPmGba1E1iA4YJJ9RBmTBY9M-1kaOS",
+    "test-clara-0912": "https://drive.google.com/drive/folders/1xhFiW8jdc6-8O8Bn_5Z0Lj7RTceQDu9A",
+    "timmy-demo-english-19-september": "https://drive.google.com/drive/folders/14jDUThHNCGRI2ONRkbGTFTkJQLGZ-hYG",
+    "timmy-demo-maths-12-september": "https://drive.google.com/drive/folders/1ci3JzPMHKp8mb3Yv0rfHUB6vlt5CmunY"
+  }
 }

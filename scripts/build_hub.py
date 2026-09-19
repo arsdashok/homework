@@ -8,6 +8,7 @@ import shutil
 from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -36,7 +37,8 @@ class PageInfo(HTMLParser):
 
 def read_page(path):
     info = PageInfo()
-    info.feed(path.read_text(encoding='utf-8'))
+    source = path.read_text(encoding='utf-8')
+    info.feed(source)
     # Existing pages identify their pupil in the title; new publisher pages
     # supply explicit metadata. Never infer names from exercises or scripts.
     name = info.body.get('data-student') or re.split(r'\s*[·|]\s*', info.title)[0]
@@ -50,7 +52,11 @@ def read_page(path):
         if match:
             date = datetime.strptime(match[0], fmt).date().isoformat()
             break
-    return {'name': name.strip(), 'title': title, 'date': date,
+    sheet_id = info.body.get('data-sheet-id')
+    if not sheet_id:
+        legacy = re.search(r'''\bsheetId:\s*['"]([a-z0-9-]+)['"]''', source)
+        sheet_id = legacy[1] if legacy else None
+    return {'name': name.strip(), 'title': title, 'date': date, 'sheetId': sheet_id,
             'test': bool(re.search(r'\btest\b|тест', title, re.I)),
             'url': f'https://arsdashok.github.io/homework/{path.parent.name}/'}
 
@@ -66,7 +72,11 @@ def build(root=ROOT, site=None):
             continue
         if path.parent.name in ('scripts', 'assets'):
             continue
-        pages.append(read_page(path))
+        page = read_page(path)
+        if page['sheetId']:
+            page['submissionsUrl'] = config.get('submissionFolders', {}).get(page['sheetId']) or (
+                'https://drive.google.com/drive/u/0/search?q=' + quote('hw-submissions-' + page['sheetId']))
+        pages.append(page)
         sources.append(path.parent)
     groups = {}
     for page in pages:

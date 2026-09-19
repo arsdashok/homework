@@ -84,6 +84,19 @@ body.pdf-mode #sheet { width:680px; background:white; }
 body.pdf-mode .line:empty::before { content:""; }
 .save-btn:disabled { opacity:.6; cursor:default; }
 .pdf-btn { display:block; margin:10px auto 0; font:inherit; font-size:14px; color:#111827; background:none; border:0; text-decoration:underline; cursor:pointer; }
+
+/* clearly visible answer boxes (Dasha, 19 Sept) */
+.line { height:auto !important; min-height:48px; margin:8px 0 0 34px; border:2px solid #8072b2 !important; border-radius:8px; background:#f7f5ff;
+        font-size:19px; line-height:1.45; padding:8px 12px !important; }
+.line.tall { min-height:84px; }
+.line:empty::before { content:"Type your answer here" !important; color:#a09bb8; font-size:16px; }
+.line:focus { background:white; box-shadow:0 0 0 3px #ddd6fe; }
+input.ansbox { border:2px solid #8072b2 !important; border-radius:8px !important; background:#f7f5ff; width:76px !important; height:44px !important; }
+input.ansbox:focus { background:white; }
+.gridwork:empty::before { content:"working (if you need it)"; color:#9ca3af; font-size:12px; }
+body.pdf-mode .gridwork:empty::before { content:""; }
+body.pdf-mode .line:empty::before { content:"" !important; }
+@media print { .line:empty::before, .gridwork:empty::before { content:"" !important; } }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>

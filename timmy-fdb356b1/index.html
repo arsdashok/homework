@@ -227,15 +227,15 @@ function sendHW(){
   var answers=[];
   document.querySelectorAll('[data-label]').forEach(function(el){
     var v=(el.tagName==='INPUT'?el.value:el.innerText).trim();
-    answers.push({q:el.dataset.label, a:v});
+    answers.push({k:el.dataset.k, q:el.dataset.label, a:v});
   });
   var circled=[].map.call(document.querySelectorAll('.w.circled'),function(w){return w.textContent;});
-  answers.splice(9,0,{q:"3  Modal verbs circled", a:circled.join(', ')});
+  answers.splice(9,0,{k:"3", q:"3  Modal verbs circled", a:circled.join(', ')});
   var empty=answers.filter(function(x){return !x.a;}).length;
   if(empty && !confirm(empty+' answer(s) are still empty. Send anyway?')) return;
   btn.disabled=true; msg.textContent='Sending…';
   fetch(SEND_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body:JSON.stringify({key:SEND_KEY, student:'Timmy', sheet:'Test homework', answers:answers})})
+    body:JSON.stringify({key:SEND_KEY, student:'Timmy', sheet:'Test homework', sheetId:'test-clara-0912', answers:answers})})
   .then(function(){ msg.textContent='Sent! Dasha will check it. ✓'; btn.textContent='Sent ✓'; })
   .catch(function(){ btn.disabled=false; msg.textContent='It did not send. Check the internet and try again, or save it as a PDF.'; });
 }

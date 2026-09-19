@@ -1,0 +1,22 @@
+/* Shared styles for online homework pages (injected by Tools/publish_online_hw.py) */
+.hw-field { font: inherit; color: #1d4ed8 !important; font-weight: 600; background: #f6f5ff !important;
+  border: 2px solid #8072b2 !important; border-radius: 8px !important; outline: none; box-sizing: border-box; }
+input.hw-field { text-align: center; min-height: 40px; min-width: 80px; padding: 4px 8px; }
+div.hw-field, span.hw-field { display: block; min-height: 46px; height: auto !important; padding: 8px 12px !important;
+  white-space: pre-wrap; word-wrap: break-word; cursor: text; }
+.hw-field:focus { background: #fff !important; box-shadow: 0 0 0 3px #ddd6fe; }
+div.hw-field:empty::before, span.hw-field:empty::before { content: "Type your answer here"; color: #a09bb8; font-weight: 400; }
+.hw-w { cursor: pointer; border: 2px solid transparent; border-radius: 999px; padding: 0 1px; margin: 0 -3px; }
+.hw-w:hover { background: #f1eefc; }
+.hw-w.hw-circled { border-color: #2e9a72; }
+.hw-bar { margin: 32px auto 12px; max-width: 720px; padding: 18px; border: 2px solid #111827; border-radius: 14px; text-align: center; background: #fff; font-family: 'Rubik','Segoe UI',Arial,sans-serif; }
+.hw-send { font: inherit; font-size: 19px; font-weight: 700; color: #111827; background: #a3e635; border: 2px solid #111827;
+  border-radius: 100px; padding: 12px 34px; cursor: pointer; box-shadow: 3px 3px 0 #111827; }
+.hw-send:disabled { opacity: .6; cursor: default; }
+.hw-msg { margin-top: 10px; font-size: 15px; color: #374151; }
+.hw-pdf { display: block; margin: 10px auto 0; font: inherit; font-size: 14px; color: #374151; background: none; border: 0; text-decoration: underline; cursor: pointer; }
+body.hw-pdf-mode #sheet { background: #fff; }
+body.hw-pdf-mode .hw-field:empty::before { display: none; }
+body.hw-pdf-mode .hw-bar { display: none; }
+@media print { .hw-bar { display: none !important; } .hw-field:empty::before { display: none !important; } .hw-field:focus { box-shadow: none; } }
+/* never use content:"" here: html2canvas throws "Error parsing CSS component value" on it and the PDF silently comes out empty */

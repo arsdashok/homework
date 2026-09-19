@@ -47,15 +47,6 @@ h2 .n { color: #64518e; margin-right: 8px; }
   display: inline-block; width: 68px; height: 40px;
   border: 2px solid #1f2937; border-radius: 3px; background: #fff;
 }
-.gridwork {
-  height: 72px; margin-top: 8px;
-  border: 1.5px solid #6b7280; border-radius: 4px;
-  background-color: #fff;
-  background-image: linear-gradient(#9ca3af 1px, transparent 1px), linear-gradient(90deg, #9ca3af 1px, transparent 1px);
-  background-size: 24px 24px;
-  -webkit-print-color-adjust: exact; print-color-adjust: exact;
-}
-.gridnote { font-size: 14px; color: #374151; margin-top: 10px; }
 .challenge-tag {
   display: inline-block; font-size: 12px; font-weight: 700; color: #111827;
   background: #fef3c7; border: 1.5px solid #b45309; border-radius: 100px;
@@ -69,19 +60,18 @@ h2 .n { color: #64518e; margin-right: 8px; }
 .line { height: 38px; border-bottom: 2px solid #1f2937; margin-left: 34px; }
 
 input.ansbox { font:inherit; font-size:20px; font-weight:700; text-align:center; color:#111827; }
-input.ansbox:focus, .gridwork:focus, .line:focus { outline:none; box-shadow:0 0 0 3px #ddd6fe; }
-.gridwork { font-size:16px; line-height:24px; padding:0 4px; outline:none; white-space:pre-wrap; overflow:hidden; }
+input.ansbox:focus, .line:focus { outline:none; box-shadow:0 0 0 3px #ddd6fe; }
 .line { height:auto; min-height:38px; font-size:19px; line-height:1.5; padding:6px 2px 2px; outline:none; white-space:pre-wrap; word-wrap:break-word; }
 .save-bar { margin:26px 0 8px; padding:16px; border:2px solid #1f2937; border-radius:10px; text-align:center; }
 .save-btn { font:inherit; font-size:18px; font-weight:700; color:#111827; background:#a3e635; border:2px solid #111827; border-radius:100px; padding:10px 28px; cursor:pointer; }
 .save-hint { font-size:15px; color:#111827; margin-top:8px; }
 @media screen { body { padding:28px 16px; } }
-@media print { .save-bar { display:none; } input.ansbox:focus, .gridwork:focus, .line:focus { box-shadow:none; } }
+@media print { .save-bar { display:none; } input.ansbox:focus, .line:focus { box-shadow:none; } }
 .line.tall { min-height:76px; }
 .line:empty::before { content:"Type here"; color:#9ca3af; font-size:16px; }
-input.ansbox, .line, .gridwork { color:#1d4ed8 !important; }
+input.ansbox, .line { color:#1d4ed8 !important; }
 body.pdf-mode #sheet { width:680px; background:white; }
-body.pdf-mode .line:empty::before { content:""; }
+body.pdf-mode .line:empty::before { display:none; }
 .save-btn:disabled { opacity:.6; cursor:default; }
 .pdf-btn { display:block; margin:10px auto 0; font:inherit; font-size:14px; color:#111827; background:none; border:0; text-decoration:underline; cursor:pointer; }
 
@@ -93,10 +83,9 @@ body.pdf-mode .line:empty::before { content:""; }
 .line:focus { background:white; box-shadow:0 0 0 3px #ddd6fe; }
 input.ansbox { border:2px solid #8072b2 !important; border-radius:8px !important; background:#f7f5ff; width:76px !important; height:44px !important; }
 input.ansbox:focus { background:white; }
-.gridwork:empty::before { content:"working (if you need it)"; color:#9ca3af; font-size:12px; }
-body.pdf-mode .gridwork:empty::before { content:""; }
-body.pdf-mode .line:empty::before { content:"" !important; }
-@media print { .line:empty::before, .gridwork:empty::before { content:"" !important; } }
+body.pdf-mode .line:empty::before { display:none !important; }
+@media print { .line:empty::before { display:none !important; } }
+@media(max-width:650px){.div-grid{grid-template-columns:1fr;gap:24px}.div-row{font-size:22px}header{flex-wrap:wrap;gap:6px}.example{font-size:16px;line-height:1.65}.challenge-tag{margin-left:32px}.bignum{font-size:24px}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
@@ -119,21 +108,17 @@ body.pdf-mode .line:empty::before { content:"" !important; }
   <div class="div-grid">
     <div class="q">
       <div class="challenge-tag" style="visibility:hidden">challenge</div>
-      <div class="div-row"><span class="num">1</span>720 ÷ 9 = <input class="ansbox" inputmode="numeric" data-k="a1" data-label="1  720 ÷ 9"></div>
-      <div class="gridwork" contenteditable="true" data-k="g1" data-label="1  working"></div>
+      <div class="div-row"><span class="num">1</span>720 ÷ 9 = <input class="ansbox" inputmode="numeric" data-k="a1" data-label="1  720 ÷ 9" aria-label="1  720 ÷ 9"></div>
     </div>
     <div class="q">
       <div class="challenge-tag" style="visibility:hidden">challenge</div>
-      <div class="div-row"><span class="num">2</span>480 ÷ 8 = <input class="ansbox" inputmode="numeric" data-k="a2" data-label="2  480 ÷ 8"></div>
-      <div class="gridwork" contenteditable="true" data-k="g2" data-label="2  working"></div>
+      <div class="div-row"><span class="num">2</span>480 ÷ 8 = <input class="ansbox" inputmode="numeric" data-k="a2" data-label="2  480 ÷ 8" aria-label="2  480 ÷ 8"></div>
     </div>
     <div class="q">
       <div class="challenge-tag">challenge</div>
-      <div class="div-row"><span class="num">3</span>3600 ÷ 4 = <input class="ansbox" inputmode="numeric" data-k="a3" data-label="3  3600 ÷ 4 (challenge)"></div>
-      <div class="gridwork" contenteditable="true" data-k="g3" data-label="3  working"></div>
+      <div class="div-row"><span class="num">3</span>3600 ÷ 4 = <input class="ansbox" inputmode="numeric" data-k="a3" data-label="3  3600 ÷ 4 (challenge)" aria-label="3  3600 ÷ 4 (challenge)"></div>
     </div>
   </div>
-  <p class="gridnote">Use the squares only if you need them.</p>
 </section>
 
 <section class="task">
@@ -146,17 +131,17 @@ body.pdf-mode .line:empty::before { content:"" !important; }
 
   <div class="q word-q">
     <div class="top"><span class="num">4</span><span class="bignum">7,090,061</span></div>
-    <div class="line tall" contenteditable="true" data-k="w4" data-label="4  7,090,061 in words"></div>
+    <div class="line tall" contenteditable="true" data-k="w4" data-label="4  7,090,061 in words" role="textbox" aria-label="4  7,090,061 in words"></div>
   </div>
 
   <div class="q word-q">
     <div class="top"><span class="num">5</span><span class="bignum">69,000</span></div>
-    <div class="line" contenteditable="true" data-k="w5" data-label="5  69,000 in words"></div>
+    <div class="line" contenteditable="true" data-k="w5" data-label="5  69,000 in words" role="textbox" aria-label="5  69,000 in words"></div>
   </div>
 
   <div class="q word-q">
     <div class="top"><span class="num">6</span><span class="bignum">9,060,007</span></div>
-    <div class="line tall" contenteditable="true" data-k="w6" data-label="6  9,060,007 in words"></div>
+    <div class="line tall" contenteditable="true" data-k="w6" data-label="6  9,060,007 in words" role="textbox" aria-label="6  9,060,007 in words"></div>
   </div>
 </section>
 

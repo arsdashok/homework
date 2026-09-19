@@ -20,3 +20,8 @@ body.hw-pdf-mode .hw-field:empty::before { display: none; }
 body.hw-pdf-mode .hw-bar { display: none; }
 @media print { .hw-bar { display: none !important; } .hw-field:empty::before { display: none !important; } .hw-field:focus { box-shadow: none; } }
 /* never use content:"" here: html2canvas throws "Error parsing CSS component value" on it and the PDF silently comes out empty */
+
+textarea.hw-field { display:block; width:100%; min-height:88px; padding:10px 12px; line-height:1.55; resize:vertical; }
+textarea.hw-field::placeholder { color:#a09bb8; font-weight:400; }
+body.hw-pdf-mode textarea.hw-field::placeholder { color:transparent; }
+@media print { textarea.hw-field::placeholder { color:transparent; } }

@@ -19,7 +19,7 @@
     w1: { answers: ['want'], display: 'want' },
     w3: { answers: ["won't"], display: 'won’t' },
     w4: { answers: ["won't"], display: 'won’t' },
-    s1: { answers: ["I'm afraid you won't get the job.", "I'm afraid you will not get the job.", "I am afraid you won't get the job.", "I am afraid you will not get the job."], display: 'I’m afraid you won’t get the job.', compare: true }
+    s1: { answers: ["I'm afraid you won't get the job.", "I'm afraid you will not get the job.", "I am afraid you won't get the job.", "I am afraid you will not get the job.", "You might not get the job.", "I think you might not get the job.", "I think you won't get the job."], display: 'I’m afraid you won’t get the job. / You might not get the job.', compare: true }
   };
   function normalize(text) {
     return text.toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?]/g, '').replace(/\s+/g, ' ').trim();
@@ -30,7 +30,7 @@
     feedback.hidden = false;
     if (!key) {
       feedback.dataset.result = 'manual';
-      feedback.textContent = 'Проверим с учителем на уроке.';
+      feedback.textContent = 'We’ll check this together in our next lesson.';
     } else if (key.answers.some(function (accepted) { return normalize(accepted) === answer; })) {
       feedback.dataset.result = 'correct';
       feedback.textContent = '✓ Correct. ' + (key.compare ? 'Possible answers: ' : 'Answer: ') + key.display;
@@ -57,15 +57,4 @@
   });
   document.getElementById('hwSend').addEventListener('click', function () { check(document.getElementById('sheet')); window.hwSend(); });
   document.getElementById('printCopy').addEventListener('click', function () { window.print(); });
-  document.querySelectorAll('[data-say]').forEach(function (button) {
-    if (!window.speechSynthesis) { button.hidden = true; return; }
-    button.addEventListener('click', function () {
-      speechSynthesis.cancel();
-      var speech = new SpeechSynthesisUtterance(button.dataset.say);
-      speech.lang = 'en-GB'; speech.rate = 0.85;
-      var voice = speechSynthesis.getVoices().find(function (v) { return v.lang === 'en-GB'; });
-      if (voice) speech.voice = voice;
-      speechSynthesis.speak(speech);
-    });
-  });
 })();

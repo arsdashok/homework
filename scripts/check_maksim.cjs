@@ -8,6 +8,9 @@ const html = fs.readFileSync(path.join(root, 'maksim-2026-09-20-490f07/index.htm
 const ids = [...html.matchAll(/data-k="([^"]+)"/g)].map(m => m[1]);
 assert.equal((html.match(/class="exercise"/g) || []).length, 3);
 assert.equal(ids.length, 10);
+assert.ok(!/data-say|speechSynthesis|SpeechSynthesisUtterance/.test(html));
+const block3 = html.split('aria-labelledby="title-3"')[1].split('</section>')[0];
+assert.ok(!/I’m afraid|I think|might|language-note/.test(block3));
 assert.equal(new Set(ids).size, ids.length);
 function element(id) {
   return { id, dataset: {}, value: '', hidden: true, textContent: '', events: {},
@@ -46,7 +49,7 @@ assert.equal(nodes['feedback-w3'].dataset.result, 'correct');
 assert.equal(nodes['feedback-s1'].dataset.result, 'correct');
 for (const id of ['s4','p2']) {
   assert.equal(nodes['feedback-' + id].dataset.result, 'manual');
-  assert.equal(nodes['feedback-' + id].textContent, 'Проверим с учителем на уроке.');
+  assert.equal(nodes['feedback-' + id].textContent, 'We’ll check this together in our next lesson.');
 }
 nodes.s1.value = 'Another valid wording for the teacher to consider.';
 nodes.checkAll.events.click();

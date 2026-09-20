@@ -83,7 +83,8 @@ student's local Homework folder; previous submissions are not deleted.
 The page intentionally exposes its selected practice answers after a pupil
 clicks Check; these are not exam secrets. `assets/maksim-homework.js` contains only
 the pupil-facing answers, not the private teacher guidance in `_keys`. Open
-responses receive a teacher-review message, not an automatic wrong mark.
+responses receive “We’ll check this together in our next lesson.”, not an automatic
+wrong mark. There is no audio; exercise 3 has no supplied softeners or sentence starters.
 Styles and checking are scoped to this page; other pupils retain their behavior.
 The original 20 September sheet ID and retained field IDs remain unchanged.
 Vocabulary answers d1–d3 are copied from the old browser draft only if missing;

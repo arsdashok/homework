@@ -57,4 +57,36 @@
   });
   document.getElementById('hwSend').addEventListener('click', function () { check(document.getElementById('sheet')); window.hwSend(); });
   document.getElementById('printCopy').addEventListener('click', function () { window.print(); });
+  var audioButtons = Array.from(document.querySelectorAll('[data-say]'));
+  if (!audioButtons.length) return;
+  var audioStatus = document.getElementById('audioStatus');
+  var speech = window.speechSynthesis;
+  var approvedVoice = null;
+  function loadVoice() {
+    approvedVoice = speech && window.SpeechSynthesisUtterance
+      ? speech.getVoices().find(function (voice) { return voice.name === 'Google UK English Female'; }) || null
+      : null;
+    audioButtons.forEach(function (button) { button.disabled = !approvedVoice; });
+    audioStatus.hidden = !!approvedVoice;
+    audioStatus.textContent = approvedVoice ? '' : 'The selected voice is unavailable in this browser.';
+  }
+  audioButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      loadVoice();
+      if (!approvedVoice) return; // Never let the browser choose a fallback voice.
+      speech.cancel();
+      var utterance = new window.SpeechSynthesisUtterance(button.dataset.say);
+      utterance.voice = approvedVoice;
+      utterance.lang = approvedVoice.lang;
+      utterance.rate = 0.9;
+      utterance.onerror = function (event) {
+        if (event.error === 'canceled' || event.error === 'interrupted') return;
+        audioStatus.hidden = false;
+        audioStatus.textContent = 'Audio could not play. Please try again.';
+      };
+      speech.speak(utterance);
+    });
+  });
+  if (speech) speech.addEventListener('voiceschanged', loadVoice);
+  loadVoice();
 })();

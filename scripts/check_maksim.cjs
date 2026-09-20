@@ -8,7 +8,7 @@ const html = fs.readFileSync(path.join(root, 'maksim-2026-09-20-490f07/index.htm
 const ids = [...html.matchAll(/data-k="([^"]+)"/g)].map(m => m[1]);
 assert.equal((html.match(/class="exercise"/g) || []).length, 3);
 assert.equal(ids.length, 10);
-assert.ok(!/data-say|speechSynthesis|SpeechSynthesisUtterance/.test(html));
+assert.equal((html.match(/data-say=/g) || []).length, 2);
 const block3 = html.split('aria-labelledby="title-3"')[1].split('</section>')[0];
 assert.ok(!/I’m afraid|I think|might|language-note/.test(block3));
 assert.equal(new Set(ids).size, ids.length);
@@ -59,3 +59,28 @@ assert.equal(nodes['feedback-d1'].hidden, true);
 nodes.hwSend.events.click();
 assert.equal(sends, 1);
 console.log('PASS: 3 exercises, 10 fields, immediate keys, alternatives, manual review, draft migration, scoped checking and send hook.');
+
+// Audio must fail closed: never use the first en-GB or system/default voice.
+const audioButtons = [element('want-audio'), element('wont-audio')];
+audioButtons[0].dataset.say = 'I want to go.';
+audioButtons[1].dataset.say = "I won't go.";
+nodes.audioStatus = element('audioStatus');
+let voices = [{name:'Daniel',lang:'en-GB',default:true}], spoken = [], onVoicesChanged;
+const approved = {name:'Google UK English Female',lang:'en-GB'};
+const synth = { getVoices:()=>voices, cancel(){}, speak:u=>spoken.push(u), addEventListener(event,fn){assert.equal(event,'voiceschanged');onVoicesChanged=fn;} };
+vm.runInNewContext(fs.readFileSync(path.join(root, 'assets/maksim-homework.js'), 'utf8'), {
+  document: { getElementById:id=>nodes[id], querySelectorAll:sel=>sel==='[data-say]'?audioButtons:sel==='[data-check]'?buttons:sel==='[data-k]'?fields:[] },
+  localStorage: { getItem:key=>drafts[key], setItem:(key,value)=>drafts[key]=value },
+  window: { speechSynthesis:synth, SpeechSynthesisUtterance:function(text){this.text=text;}, hwSend(){}, print(){} }
+});
+assert.equal(audioButtons[0].disabled,true);
+audioButtons[0].events.click();assert.equal(spoken.length,0);
+voices.push(approved);onVoicesChanged();
+assert.equal(audioButtons[0].disabled,false);assert.equal(spoken.length,0); // no autoplay
+audioButtons[1].events.click();
+assert.equal(spoken.length,1);assert.equal(spoken[0].voice,approved);
+assert.equal(spoken[0].rate,0.9);assert.equal(spoken[0].text,"I won't go.");
+voices=[];onVoicesChanged();audioButtons[1].events.click();
+assert.equal(audioButtons[1].disabled,true);assert.equal(spoken.length,1);
+assert.equal(nodes.audioStatus.hidden,false);
+console.log('PASS: exact approved voice only, async voice loading, no autoplay, no fallback when unavailable.');

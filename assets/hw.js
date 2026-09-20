@@ -16,11 +16,13 @@
     if (state[w.dataset.w]) w.classList.add("hw-circled");
     w.addEventListener("click", function () { w.classList.toggle("hw-circled"); state[w.dataset.w] = w.classList.contains("hw-circled"); save(); });
   });
-  function val(el) { return (el.tagName === "INPUT" || el.tagName === "TEXTAREA") ? el.value : el.innerText; }
+  function isCtl(el) { return /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName); }
+  function val(el) { return isCtl(el) ? el.value : el.innerText; }
   document.querySelectorAll("[data-k]").forEach(function (el) {
     if (el.classList.contains("circle-words")) return;
-    if (state[el.dataset.k]) { if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") el.value = state[el.dataset.k]; else el.textContent = state[el.dataset.k]; }
-    el.addEventListener("input", function () { state[el.dataset.k] = val(el); save(); });
+    if (state[el.dataset.k]) { if (isCtl(el)) el.value = state[el.dataset.k]; else el.textContent = state[el.dataset.k]; }
+    function keep() { state[el.dataset.k] = val(el); save(); }
+    el.addEventListener("input", keep); el.addEventListener("change", keep);
   });
 
   function makePDF() {

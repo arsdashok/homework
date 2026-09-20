@@ -25,3 +25,7 @@ textarea.hw-field { display:block; width:100%; min-height:88px; padding:10px 12p
 textarea.hw-field::placeholder { color:#a09bb8; font-weight:400; }
 body.hw-pdf-mode textarea.hw-field::placeholder { color:transparent; }
 @media print { textarea.hw-field::placeholder { color:transparent; } }
+
+/* in-word letter gap (missing letters typed inside the word) and choose-from-a-list answers */
+input.hw-field.hw-gap { display:inline-block; width:2.7em; min-width:0; min-height:0; height:1.55em; padding:0 3px; margin:0 2px; letter-spacing:.06em; vertical-align:baseline; font-size:inherit; }
+select.hw-field { display:inline-block; min-height:40px; min-width:210px; padding:4px 10px; cursor:pointer; }

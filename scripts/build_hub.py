@@ -39,6 +39,8 @@ def read_page(path):
     info = PageInfo()
     source = path.read_text(encoding='utf-8')
     info.feed(source)
+    if info.body.get('data-homework-redirect') == 'true':
+        return None
     # Existing pages identify their pupil in the title; new publisher pages
     # supply explicit metadata. Never infer names from exercises or scripts.
     name = info.body.get('data-student') or re.split(r'\s*[·|]\s*', info.title)[0]
@@ -73,13 +75,15 @@ def build(root=ROOT, site=None):
         if path.parent.name in ('scripts', 'assets'):
             continue
         page = read_page(path)
+        sources.append(path.parent)
+        if page is None:
+            continue
         if page['sheetId']:
             page['submissionsUrl'] = config.get('submissionFolders', {}).get(page['sheetId']) or (
                 'https://drive.google.com/drive/u/0/search?q=' + quote('hw-submissions-' + page['sheetId']))
         if page['sheetId'] and config.get('reviewApp'):
             page['reviewUrl'] = config['reviewApp'] + '?sheet=' + quote(page['sheetId'])
         pages.append(page)
-        sources.append(path.parent)
     groups = {}
     for page in pages:
         groups.setdefault(page['name'].casefold(), {'name': page['name'], 'pages': []})['pages'].append(page)

@@ -1,0 +1,71 @@
+(function () {
+  'use strict';
+  // Retain answers from both original sheets; never replace an existing answer.
+  try {
+    var currentKey = 'hw-maksim-2026-09-20-english';
+    var current = JSON.parse(localStorage.getItem(currentKey) || '{}');
+    var previous = JSON.parse(localStorage.getItem('hw-maksim-2026-09-19-english') || '{}');
+    ['d1', 'd2', 'd3'].forEach(function (key) {
+      if (!current[key] && previous[key]) current[key] = previous[key];
+    });
+    localStorage.setItem(currentKey, JSON.stringify(current));
+  } catch (_) { /* Practice still works when browser storage is unavailable. */ }
+
+  var keys = {
+    d1: { answers: ['prescription'], display: 'prescription' },
+    d2: { answers: ['receipt'], display: 'receipt' },
+    d3: { answers: ['take'], display: 'take' },
+    r1: { answers: ['I sent a few songs to my teacher.', 'I sent my teacher a few songs.'], display: 'I sent a few songs to my teacher. / I sent my teacher a few songs.', compare: true },
+    w1: { answers: ['want'], display: 'want' },
+    w3: { answers: ["won't"], display: 'won’t' },
+    w4: { answers: ["won't"], display: 'won’t' },
+    s1: { answers: ["I'm afraid you won't get the job.", "I'm afraid you will not get the job.", "I am afraid you won't get the job.", "I am afraid you will not get the job."], display: 'I’m afraid you won’t get the job.', compare: true }
+  };
+  function normalize(text) {
+    return text.toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?]/g, '').replace(/\s+/g, ' ').trim();
+  }
+  function checkField(field) {
+    var feedback = document.getElementById('feedback-' + field.dataset.k);
+    var key = keys[field.dataset.k], answer = normalize(field.value);
+    feedback.hidden = false;
+    if (!key) {
+      feedback.dataset.result = 'manual';
+      feedback.textContent = 'Проверим с учителем на уроке.';
+    } else if (key.answers.some(function (accepted) { return normalize(accepted) === answer; })) {
+      feedback.dataset.result = 'correct';
+      feedback.textContent = '✓ Correct. ' + (key.compare ? 'Possible answers: ' : 'Answer: ') + key.display;
+    } else {
+      feedback.dataset.result = key.compare ? 'compare' : 'retry';
+      feedback.textContent = (key.compare ? 'Compare your sentence. Possible answer: ' : 'Correct answer: ') + key.display;
+    }
+    field.setAttribute('aria-describedby', feedback.id);
+  }
+  function check(container) {
+    container.querySelectorAll('[data-k]').forEach(checkField);
+    document.getElementById('checkStatus').textContent = 'Answers are shown below each question. Open answers will be checked with your teacher.';
+  }
+  document.querySelectorAll('[data-check]').forEach(function (button) {
+    button.addEventListener('click', function () { check(button.closest('.exercise')); });
+  });
+  document.getElementById('checkAll').addEventListener('click', function () { check(document.getElementById('sheet')); });
+  document.querySelectorAll('[data-k]').forEach(function (field) {
+    field.addEventListener('input', function () {
+      var feedback = document.getElementById('feedback-' + field.dataset.k);
+      feedback.hidden = true;
+      field.removeAttribute('aria-describedby');
+    });
+  });
+  document.getElementById('hwSend').addEventListener('click', function () { check(document.getElementById('sheet')); window.hwSend(); });
+  document.getElementById('printCopy').addEventListener('click', function () { window.print(); });
+  document.querySelectorAll('[data-say]').forEach(function (button) {
+    if (!window.speechSynthesis) { button.hidden = true; return; }
+    button.addEventListener('click', function () {
+      speechSynthesis.cancel();
+      var speech = new SpeechSynthesisUtterance(button.dataset.say);
+      speech.lang = 'en-GB'; speech.rate = 0.85;
+      var voice = speechSynthesis.getVoices().find(function (v) { return v.lang === 'en-GB'; });
+      if (voice) speech.voice = voice;
+      speechSynthesis.speak(speech);
+    });
+  });
+})();

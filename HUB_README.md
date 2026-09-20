@@ -71,3 +71,21 @@ Private source, HTML, local question catalogue and tests are in
 When adding or changing teacher code, update both deployments to the same tested
 version, keeping the teacher deployment restricted and the pupil deployment open.
 Run `node check_teacher.cjs` and `node check_storage.cjs` in the backend folder.
+
+## Maksim: merged homework, 19–20 September
+
+The canonical pupil page is `maksim-2026-09-20-490f07/`. It combines the two
+assignments into three exercises (10 answer fields). The 19 September URL is a
+redirect, copied into the deployed artifact but omitted from the hub index via
+`data-homework-redirect="true"`. Original files remain in Git history and the
+student's local Homework folder; previous submissions are not deleted.
+
+The page intentionally exposes its selected practice answers after a pupil
+clicks Check; these are not exam secrets. `assets/maksim-homework.js` contains only
+the pupil-facing answers, not the private teacher guidance in `_keys`. Open
+responses receive a teacher-review message, not an automatic wrong mark.
+Styles and checking are scoped to this page; other pupils retain their behavior.
+The original 20 September sheet ID and retained field IDs remain unchanged.
+Vocabulary answers d1–d3 are copied from the old browser draft only if missing;
+the old draft and archived submissions are preserved. The local private key
+file includes d1–d3 for the existing private-key upload workflow.

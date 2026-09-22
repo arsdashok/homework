@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aahan &middot; Maths homework &middot; 22 September 2026</title>
+<!-- Built from Materials/Maths/Year 5/Lessons/2026-W39 Columnar Addition & Subtraction/Whiteboard_Cards_2026_W39_Columnar_Add_Subtract.html (taught 2026-09-22).
+     Block 1 is the sheet: the answer is printed, so the only thing handed in is the estimate and the verdict. Nothing to read off, no arithmetic worth doing.
+     The reminder rounds two loose numbers only; it never estimates a calculation and never states how to judge an answer.
+     Block 2: the three families from the lesson plus their inverses, and one written bridging item (16 - 7,
+     chosen because its answer does not appear anywhere in the fact grid, so the method cannot be lifted).
+     Block 3: token, two column items, with the estimate carried into his book.
+     NOTE: the estimate key marks on Dasha's landed rule, "four to the floor, five to the sky", NOT on the
+     deck's "keep the first two digits" wording, which she taught over live on 22 Sept. -->
+<style>
+@page { size: A4; margin: 12mm 15mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 16px/1.5 'Segoe UI', Arial, sans-serif; color: #302b45; background: white; max-width: 790px; margin: 0 auto; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 18px; background: linear-gradient(135deg, #6c63ff, #a78bfa); color: white; border-radius: 10px; margin-bottom: 18px; }
+h1 { font-size: 23px; line-height: 1.2; font-weight: 700; }
+header .meta { font-size: 13px; text-align: right; }
+section { margin-bottom: 20px; break-inside: avoid; page-break-inside: avoid; }
+h2 { display: flex; align-items: center; gap: 11px; font-size: 20px; line-height: 1.3; color: #5b43be; margin-bottom: 9px; break-after: avoid; page-break-after: avoid; }
+.badge { display: inline-flex; align-items: center; justify-content: center; width: 27px; height: 27px; border-radius: 50%; background: #6c63ff; color: white; font-size: 16px; font-weight: 700; flex: 0 0 auto; }
+.instruction { font-size: 17px; font-weight: 700; color: #241f3d; margin-bottom: 10px; text-wrap: pretty; }
+.reminder { font-size: 13px; color: #5c5473; border-left: 3px solid #c4b5fd; padding: 5px 0 5px 12px; margin-bottom: 12px; text-wrap: pretty; }
+.reminder b { color: #3b2f6b; }
+.q { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 11px; padding: 9px 0; border-bottom: 1px solid #e5def6; break-inside: avoid; page-break-inside: avoid; }
+.q:last-child { border-bottom: 0; }
+.qnum { font-size: 16px; font-weight: 700; color: #6c63ff; }
+.rowq { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+.prompt { font-size: 18px; font-weight: 600; line-height: 1.4; text-wrap: pretty; }
+.rowq .prompt { margin-bottom: 0; white-space: nowrap; }
+.controls { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
+.answer-label { font-size: 12.5px; color: #6b6280; margin-right: 5px; }
+.controls .printchoice { display: none; }
+.est { width: 108px; font: inherit; font-size: 17px; }
+.fin { width: 150px; max-width: 100%; font: inherit; font-size: 17px; }
+.response { width: 100%; min-height: 78px; font: inherit; font-size: 16px; resize: vertical; border: 1.2px solid #c4b5fd; border-radius: 6px; background: #faf8ff; padding: 7px 9px; box-sizing: border-box; }
+select { font: inherit; font-size: 15px; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 26px; padding: 4px 0 10px; }
+.fact { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 600; break-inside: avoid; page-break-inside: avoid; }
+.fact input { width: 62px; font: inherit; font-size: 17px; }
+.stack { padding: 9px 0; border-top: 1px solid #e5def6; break-inside: avoid; page-break-inside: avoid; }
+.stack .rowq { margin-bottom: 0; }
+.say { margin-top: 10px; break-inside: avoid; page-break-inside: avoid; }
+.say .prompt { margin-bottom: 6px; }
+@media screen { body { padding: 30px 22px 44px; } }
+@media (max-width: 620px) {
+  header { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .rowq { flex-wrap: wrap; gap: 10px; }
+  .rowq .prompt { white-space: normal; }
+}
+@media print {
+  body { font-size: 12px; line-height: 1.32; }
+  header { margin-bottom: 10px; padding: 9px 13px; }
+  h1 { font-size: 18px; }
+  header .meta { font-size: 11px; }
+  section { margin-bottom: 10px; }
+  h2 { font-size: 15px; margin-bottom: 5px; }
+  .badge { width: 21px; height: 21px; font-size: 13px; }
+  .instruction { font-size: 13.5px; margin-bottom: 5px; }
+  .reminder { font-size: 10.5px; margin-bottom: 6px; padding: 3px 0 3px 9px; }
+  .q { padding: 4px 0; gap: 8px; }
+  .qnum { font-size: 12px; }
+  .prompt { font-size: 13px; }
+  .answer-label { font-size: 9.5px; }
+  .est, .fin, select { font-size: 12.5px; }
+  .response { border: 1.2px solid #b7a9e8; background: #fff; padding: 5px 7px; }
+  select { display: none; }
+  .controls .printchoice { display: inline; font-size: 11px; color: #4b4363; margin-left: 6px; white-space: nowrap; }
+  .fact { font-size: 13px; }
+  .fact input { font-size: 12.5px; }
+  .response { min-height: 40px; font-size: 12px; }
+  .facts { gap: 7px 20px; padding-bottom: 6px; }
+  .stack { padding: 4px 0; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Aahan" data-sheet="Maths 2026-09-22" data-sheet-id="aahan-2026-09-22-maths">
+<div id="sheet">
+
+<header>
+  <h1>Aahan &middot; Maths</h1>
+  <div class="meta">22 September 2026<br>Homework</div>
+</header>
+
+<section id="estimate-check">
+  <h2><span class="badge">1</span> Estimates</h2>
+  <p class="instruction">The answer is already written for you. Write your estimate, then choose what you think of that answer.</p>
+  <div class="reminder">Rounding for an estimate: look at the NEXT digit along. Four to the floor, five to the sky. <b>83,472</b> becomes <b>83,000</b>. <b>47,681</b> becomes <b>48,000</b>.</div>
+
+  <div class="q"><span class="qnum">1.</span><div class="rowq">
+    <p class="prompt">46,318 + 27,455 = 63,773</p>
+    <div class="controls">
+      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e1" data-label="1. 46,318 + 27,455 = 63,773: estimate" aria-label="Question 1, estimate"></label>
+      <select data-k="j1" data-label="1. 46,318 + 27,455 = 63,773: verdict" aria-label="Question 1, verdict" class="hw-field"><option value="">Choose</option><option value="can be right">can be right</option><option value="cannot be right">cannot be right</option></select><span class="printchoice">can / cannot be right</span>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="qnum">2.</span><div class="rowq">
+    <p class="prompt">84,206 &minus; 51,974 = 32,232</p>
+    <div class="controls">
+      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e2" data-label="2. 84,206 minus 51,974 = 32,232: estimate" aria-label="Question 2, estimate"></label>
+      <select data-k="j2" data-label="2. 84,206 minus 51,974 = 32,232: verdict" aria-label="Question 2, verdict" class="hw-field"><option value="">Choose</option><option value="can be right">can be right</option><option value="cannot be right">cannot be right</option></select><span class="printchoice">can / cannot be right</span>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="qnum">3.</span><div class="rowq">
+    <p class="prompt">63,180 + 24,709 = 87,889</p>
+    <div class="controls">
+      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e3" data-label="3. 63,180 + 24,709 = 87,889: estimate" aria-label="Question 3, estimate"></label>
+      <select data-k="j3" data-label="3. 63,180 + 24,709 = 87,889: verdict" aria-label="Question 3, verdict" class="hw-field"><option value="">Choose</option><option value="can be right">can be right</option><option value="cannot be right">cannot be right</option></select><span class="printchoice">can / cannot be right</span>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="qnum">4.</span><div class="rowq">
+    <p class="prompt">52,644 + 39,378 = 920,220</p>
+    <div class="controls">
+      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e4" data-label="4. 52,644 + 39,378 = 920,220: estimate" aria-label="Question 4, estimate"></label>
+      <select data-k="j4" data-label="4. 52,644 + 39,378 = 920,220: verdict" aria-label="Question 4, verdict" class="hw-field"><option value="">Choose</option><option value="can be right">can be right</option><option value="cannot be right">cannot be right</option></select><span class="printchoice">can / cannot be right</span>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="qnum">5.</span><div class="rowq">
+    <p class="prompt">70,000 &minus; 45,283 = 34,717</p>
+    <div class="controls">
+      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e5" data-label="5. 70,000 minus 45,283 = 34,717: estimate" aria-label="Question 5, estimate"></label>
+      <select data-k="j5" data-label="5. 70,000 minus 45,283 = 34,717: verdict" aria-label="Question 5, verdict" class="hw-field"><option value="">Choose</option><option value="can be right">can be right</option><option value="cannot be right">cannot be right</option></select><span class="printchoice">can / cannot be right</span>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="qnum">6.</span><div class="rowq">
+    <p class="prompt">91,507 &minus; 38,642 = 52,865</p>
+    <div class="controls">
+      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e6" data-label="6. 91,507 minus 38,642 = 52,865: estimate" aria-label="Question 6, estimate"></label>
+      <select data-k="j6" data-label="6. 91,507 minus 38,642 = 52,865: verdict" aria-label="Question 6, verdict" class="hw-field"><option value="">Choose</option><option value="can be right">can be right</option><option value="cannot be right">cannot be right</option></select><span class="printchoice">can / cannot be right</span>
+    </div>
+  </div></div>
+</section>
+
+<section id="number-facts">
+  <h2><span class="badge">2</span> Quick facts</h2>
+  <p class="instruction">Answer these as fast as you can.</p>
+  <div class="reminder">The burritos, the pizzas and the lasagnas are yours from the lesson. Use them if they help.</div>
+
+  <div class="facts">
+    <span class="fact">8 + 6 =<input inputmode="numeric" autocomplete="off" data-k="n1" data-label="8 + 6" aria-label="8 plus 6" class="hw-field"></span>
+    <span class="fact">13 &minus; 5 =<input inputmode="numeric" autocomplete="off" data-k="n2" data-label="13 minus 5" aria-label="13 minus 5" class="hw-field"></span>
+    <span class="fact">7 + 5 =<input inputmode="numeric" autocomplete="off" data-k="n3" data-label="7 + 5" aria-label="7 plus 5" class="hw-field"></span>
+    <span class="fact">12 &minus; 7 =<input inputmode="numeric" autocomplete="off" data-k="n4" data-label="12 minus 7" aria-label="12 minus 7" class="hw-field"></span>
+    <span class="fact">8 + 5 =<input inputmode="numeric" autocomplete="off" data-k="n5" data-label="8 + 5" aria-label="8 plus 5" class="hw-field"></span>
+    <span class="fact">7 + 8 =<input inputmode="numeric" autocomplete="off" data-k="n6" data-label="7 + 8" aria-label="7 plus 8" class="hw-field"></span>
+    <span class="fact">12 &minus; 5 =<input inputmode="numeric" autocomplete="off" data-k="n7" data-label="12 minus 5" aria-label="12 minus 5" class="hw-field"></span>
+    <span class="fact">15 &minus; 8 =<input inputmode="numeric" autocomplete="off" data-k="n8" data-label="15 minus 8" aria-label="15 minus 8" class="hw-field"></span>
+    <span class="fact">15 &minus; 7 =<input inputmode="numeric" autocomplete="off" data-k="n9" data-label="15 minus 7" aria-label="15 minus 7" class="hw-field"></span>
+  </div>
+
+  <div class="say">
+    <p class="prompt">16 &minus; 7. Write the answer, and write how you got from 16 to it.</p>
+    <div contenteditable="true" class="hw-field response" data-k="b1" data-label="16 minus 7: the answer and how you got from 16 to it" aria-label="16 minus 7: the answer and how you got from 16 to it"></div>
+  </div>
+</section>
+
+<section id="columns">
+  <h2><span class="badge">3</span> Columns</h2>
+  <p class="instruction">Write your estimate first, then work it out in your book and type the answer.</p>
+  <div class="stack"><div class="rowq">
+    <p class="prompt">45,826 + 38,479</p>
+    <div class="controls"><label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="ce1" data-label="45,826 + 38,479: estimate" aria-label="45,826 plus 38,479, estimate"></label><label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c1" data-label="45,826 + 38,479" aria-label="45,826 plus 38,479"></label></div>
+  </div></div>
+  <div class="stack"><div class="rowq">
+    <p class="prompt">300,000 &minus; 146,258</p>
+    <div class="controls"><label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="ce2" data-label="300,000 minus 146,258: estimate" aria-label="300,000 minus 146,258, estimate"></label><label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c2" data-label="300,000 minus 146,258" aria-label="300,000 minus 146,258"></label></div>
+  </div></div>
+</section>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script src="../assets/hw.js"></script>
+</body>
+</html>

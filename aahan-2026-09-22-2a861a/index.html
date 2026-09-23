@@ -11,67 +11,105 @@
      Block 3: token, two column items, with the estimate carried into his book.
      NOTE: the estimate key marks on Dasha's landed rule, "four to the floor, five to the sky", NOT on the
      deck's "keep the first two digits" wording, which she taught over live on 22 Sept. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-@page { size: A4; margin: 12mm 15mm; }
+/* Same design family as his English sheets (thick black line, hard shadows, Luckiest Guy), maths palette. */
+:root {
+  --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --lime: #a3e635; --muted: #6b5f4e;
+}
+@page { size: A4; margin: 10mm 12mm; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font: 16px/1.5 'Segoe UI', Arial, sans-serif; color: #302b45; background: white; max-width: 790px; margin: 0 auto; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 18px; background: linear-gradient(135deg, #6c63ff, #a78bfa); color: white; border-radius: 10px; margin-bottom: 18px; }
-h1 { font-size: 23px; line-height: 1.2; font-weight: 700; }
-header .meta { font-size: 13px; text-align: right; }
-section { margin-bottom: 20px; break-inside: avoid; page-break-inside: avoid; }
-h2 { display: flex; align-items: center; gap: 11px; font-size: 20px; line-height: 1.3; color: #5b43be; margin-bottom: 9px; break-after: avoid; page-break-after: avoid; }
-.badge { display: inline-flex; align-items: center; justify-content: center; width: 27px; height: 27px; border-radius: 50%; background: #6c63ff; color: white; font-size: 16px; font-weight: 700; flex: 0 0 auto; }
-.instruction { font-size: 17px; font-weight: 700; color: #241f3d; margin-bottom: 10px; text-wrap: pretty; }
-.reminder { font-size: 13px; color: #5c5473; border-left: 3px solid #c4b5fd; padding: 5px 0 5px 12px; margin-bottom: 12px; text-wrap: pretty; }
-.reminder b { color: #3b2f6b; }
-.q { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 11px; padding: 9px 0; border-bottom: 1px solid #e5def6; break-inside: avoid; page-break-inside: avoid; }
+body {
+  font: 17px/1.5 'Rubik', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--cream);
+  max-width: 820px; margin: 0 auto; padding: 22px 16px 40px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.display { font-family: 'Luckiest Guy', 'Arial Black', 'Rubik', sans-serif; font-weight: 400; letter-spacing: .02em; }
+.nw { white-space: nowrap; }
+/* banner: big faint digits behind a label */
+.banner { position: relative; height: 150px; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px; background: var(--teal); }
+.banner .digits { position: absolute; inset: -14px -10px auto -10px; font-size: 118px; line-height: .9; color: rgba(255,255,255,.17); white-space: nowrap; letter-spacing: .04em; }
+.banner .digits.two { top: 76px; left: -60px; color: rgba(27,23,18,.12); }
+.banner .label { position: absolute; left: 18px; bottom: 16px; background: var(--paper); border: 3px solid var(--ink); border-radius: 12px; padding: 8px 16px 6px; box-shadow: 4px 4px 0 var(--ink); }
+.banner .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.banner h1 { font-size: 34px; line-height: 1.05; }
+.banner .date { position: absolute; right: 16px; top: 14px; background: var(--ink); color: var(--gold); font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+/* cards */
+section { background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 20px; margin-bottom: 28px; break-inside: avoid; page-break-inside: avoid; }
+h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 27px; line-height: 1.1; margin-bottom: 12px; break-after: avoid; page-break-after: avoid; }
+.badge { flex: none; width: 42px; height: 42px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; padding-top: 3px; }
+/* three registers: items regular, instruction bold, notes small */
+.instruction { font-size: 20px; line-height: 1.35; font-weight: 700; margin-bottom: 6px; text-wrap: pretty; }
+.reminder { font-size: 15px; line-height: 1.4; font-weight: 500; color: var(--muted); background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 12px; padding: 7px 12px; margin: 8px 0 12px; text-wrap: pretty; }
+.reminder b { color: var(--ink); font-weight: 800; }
+.q { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; padding: 9px 0; border-bottom: 2px dashed #e6d6b4; break-inside: avoid; page-break-inside: avoid; }
 .q:last-child { border-bottom: 0; }
-.qnum { font-size: 16px; font-weight: 700; color: #6c63ff; }
+.qnum { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
 .rowq { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-.prompt { font-size: 18px; font-weight: 600; line-height: 1.4; text-wrap: pretty; }
+.prompt { font-size: 20px; font-weight: 500; line-height: 1.4; font-variant-numeric: tabular-nums; text-wrap: pretty; }
 .rowq .prompt { margin-bottom: 0; white-space: nowrap; }
 .controls { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
-.answer-label { font-size: 12.5px; color: #6b6280; margin-right: 5px; }
+.answer-label { font-size: 13px; font-weight: 500; color: var(--muted); margin-right: 6px; }
 .controls .printchoice { display: none; }
-.est { width: 108px; font: inherit; font-size: 17px; }
+.est { width: 112px; font: inherit; font-size: 17px; }
 .fin { width: 150px; max-width: 100%; font: inherit; font-size: 17px; }
-.response { width: 100%; min-height: 78px; font: inherit; font-size: 16px; resize: vertical; border: 1.2px solid #c4b5fd; border-radius: 6px; background: #faf8ff; padding: 7px 9px; box-sizing: border-box; }
+.response { width: 100%; min-height: 78px; font: inherit; font-size: 16px; resize: vertical; border: 1.5px solid #b7a9e8; border-radius: 8px; background: #faf8ff; padding: 8px 11px; }
 select { font: inherit; font-size: 15px; }
-.facts { display: flex; flex-wrap: wrap; gap: 10px 26px; padding: 4px 0 10px; }
-.fact { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 600; break-inside: avoid; page-break-inside: avoid; }
-.fact input { width: 62px; font: inherit; font-size: 17px; }
-.stack { padding: 9px 0; border-top: 1px solid #e5def6; break-inside: avoid; page-break-inside: avoid; }
+/* quick facts: night card, facts as tiles */
+section.night { background: var(--night); color: var(--cream); }
+section.night h2 { color: var(--gold); }
+section.night .badge { background: var(--gold); color: var(--night); }
+section.night .reminder { background: #2c3450; color: #e7dcc4; border-color: var(--gold); }
+section.night .reminder b { color: var(--gold); }
+.food { font-size: 24px; margin-left: 4px; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 14px; padding: 4px 0 12px; }
+.fact { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; background: var(--paper); color: var(--ink); border: 2px solid var(--ink); border-radius: 12px; padding: 6px 10px; box-shadow: 3px 3px 0 var(--gold); break-inside: avoid; page-break-inside: avoid; }
+.fact input { width: 64px; font: inherit; font-size: 17px; }
+.say { margin-top: 6px; break-inside: avoid; page-break-inside: avoid; }
+.say .prompt { margin-bottom: 8px; font-size: 18px; }
+section.night .say .prompt b { color: var(--gold); }
+/* columns */
+.stack { padding: 10px 0; border-top: 2px dashed #e6d6b4; break-inside: avoid; page-break-inside: avoid; }
 .stack .rowq { margin-bottom: 0; }
-.say { margin-top: 10px; break-inside: avoid; page-break-inside: avoid; }
-.say .prompt { margin-bottom: 6px; }
-@media screen { body { padding: 30px 22px 44px; } }
+@media screen { .say div.response { min-height: 90px !important; } }
 @media (max-width: 620px) {
-  header { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .banner { height: 130px; }
+  .banner h1 { font-size: 26px; }
   .rowq { flex-wrap: wrap; gap: 10px; }
   .rowq .prompt { white-space: normal; }
+  .controls { flex-wrap: wrap; }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .instruction { font-size: 18px; }
 }
 @media print {
-  body { font-size: 12px; line-height: 1.32; }
-  header { margin-bottom: 10px; padding: 9px 13px; }
-  h1 { font-size: 18px; }
-  header .meta { font-size: 11px; }
-  section { margin-bottom: 10px; }
-  h2 { font-size: 15px; margin-bottom: 5px; }
-  .badge { width: 21px; height: 21px; font-size: 13px; }
-  .instruction { font-size: 13.5px; margin-bottom: 5px; }
-  .reminder { font-size: 10.5px; margin-bottom: 6px; padding: 3px 0 3px 9px; }
-  .q { padding: 4px 0; gap: 8px; }
-  .qnum { font-size: 12px; }
-  .prompt { font-size: 13px; }
+  body { padding: 0; font-size: 12.5px; line-height: 1.32; background: var(--cream); }
+  .banner { height: 82px; margin-bottom: 12px; box-shadow: 4px 4px 0 var(--ink); }
+  .banner .digits { font-size: 70px; }
+  .banner .digits.two { top: 44px; }
+  .banner .label { bottom: 9px; padding: 4px 12px 3px; }
+  .banner .kicker { font-size: 10px; }
+  .banner h1 { font-size: 22px; }
+  .banner .date { font-size: 11px; top: 9px; }
+  section { padding: 9px 14px 10px; margin-bottom: 11px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 19px; margin-bottom: 5px; }
+  .badge { width: 28px; height: 28px; font-size: 16px; }
+  .instruction { font-size: 14.5px; margin-bottom: 3px; }
+  .reminder { font-size: 11px; margin: 4px 0 5px; padding: 3px 9px; }
+  .q { padding: 3px 0; gap: 8px; grid-template-columns: 24px minmax(0,1fr); }
+  .qnum { width: 21px; height: 21px; font-size: 11px; }
+  .prompt { font-size: 14px; }
   .answer-label { font-size: 9.5px; }
   .est, .fin, select { font-size: 12.5px; }
-  .response { border: 1.2px solid #b7a9e8; background: #fff; padding: 5px 7px; }
+  .response { border: 1.2px solid #b7a9e8; background: #fff; padding: 5px 7px; min-height: 40px; font-size: 12px; }
   select { display: none; }
-  .controls .printchoice { display: inline; font-size: 11px; color: #4b4363; margin-left: 6px; white-space: nowrap; }
-  .fact { font-size: 13px; }
+  .controls .printchoice { display: inline; font-size: 11px; color: var(--muted); margin-left: 6px; white-space: nowrap; }
+  .facts { gap: 6px 10px; padding-bottom: 6px; }
+  .fact { font-size: 14px; padding: 3px 8px; }
   .fact input { font-size: 12.5px; }
-  .response { min-height: 40px; font-size: 12px; }
-  .facts { gap: 7px 20px; padding-bottom: 6px; }
+  .food { font-size: 17px; }
+  .say .prompt { font-size: 13.5px; margin-bottom: 4px; }
   .stack { padding: 4px 0; }
 }
 </style>
@@ -82,10 +120,15 @@ select { font: inherit; font-size: 15px; }
 <body data-student="Aahan" data-sheet="Maths 2026-09-22" data-sheet-id="aahan-2026-09-22-maths">
 <div id="sheet">
 
-<header>
-  <h1>Aahan &middot; Maths</h1>
-  <div class="meta">22 September 2026<br>Homework</div>
-</header>
+<div class="banner">
+  <div class="digits display" aria-hidden="true">72,905 + 18,364</div>
+  <div class="digits two display" aria-hidden="true">59,210 &minus; 36,847</div>
+  <span class="date">22 September</span>
+  <div class="label">
+    <div class="kicker">Adding and subtracting big numbers</div>
+    <h1 class="display">Aahan's maths</h1>
+  </div>
+</div>
 
 <section id="estimate-check">
   <h2><span class="badge">1</span> Estimates</h2>
@@ -141,8 +184,8 @@ select { font: inherit; font-size: 15px; }
   </div></div>
 </section>
 
-<section id="number-facts">
-  <h2><span class="badge">2</span> Quick facts</h2>
+<section id="number-facts" class="night">
+  <h2><span class="badge">2</span> Quick facts <span class="food" aria-hidden="true">&#127791;&#127829;</span></h2>
   <p class="instruction">Answer these as fast as you can.</p>
   <div class="reminder">The burritos, the pizzas and the lasagnas are yours from the lesson. Use them if they help.</div>
 
@@ -159,7 +202,7 @@ select { font: inherit; font-size: 15px; }
   </div>
 
   <div class="say">
-    <p class="prompt">16 &minus; 7. Write the answer, and write how you got from 16 to it.</p>
+    <p class="prompt"><b>16 &minus; 7.</b> Write the answer, and write how you got from 16 <span class="nw">to it.</span></p>
     <div contenteditable="true" class="hw-field response" data-k="b1" data-label="16 minus 7: the answer and how you got from 16 to it" aria-label="16 minus 7: the answer and how you got from 16 to it"></div>
   </div>
 </section>

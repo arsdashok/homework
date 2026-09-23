@@ -94,6 +94,7 @@
     resize: vertical;
   }
   .resp.two { min-height: 64px; }
+  textarea[data-k="p1"] { min-height: 90px; }
   .resp.long { min-height: 170px; }
 
   .checks {
@@ -130,7 +131,8 @@
     .pick { font-size: 12px; min-width: 130px; padding: 3px 8px; }
     .resp { font-size: 12.5px; padding: 4px 9px; }
     .resp.two { min-height: 44px; height: 44px; }
-    .resp.two.own, textarea[data-k="p1"] { min-height: 58px; height: 58px; }
+    .resp.two.own { min-height: 58px; height: 58px; }
+    .resp.two[data-k="p1"] { min-height: 72px; height: 72px; }
     .resp.long { min-height: 108px; height: 108px; }
     .resp { resize: none; }
     .resp::placeholder { color: transparent; }
@@ -180,8 +182,8 @@
     </div></div>
 
     <div class="q"><span class="qnum">5.</span><div class="stack">
-      <p class="prompt">Write one sentence of your own with <b>I found myself</b> or <b>we found&nbsp;ourselves</b>.</p>
-      <textarea class="hw-field resp two" rows="2" data-k="p1" data-label="5. Your own sentence with I found myself / we found ourselves" aria-label="Your own sentence with I found myself or we found ourselves" placeholder="Type your answer here"></textarea>
+      <p class="prompt">Write 2-3 sentences about something that happened to you. Use <b>I found myself</b> or <b>we found ourselves</b> at least&nbsp;once.</p>
+      <textarea class="hw-field resp two" rows="3" data-k="p1" data-label="5. Write 2-3 sentences; use I found myself / we found ourselves at least once" aria-label="Your 2-3 sentences using I found myself or we found ourselves at least once" placeholder="Type your answer here"></textarea>
     </div></div>
   </div>
 

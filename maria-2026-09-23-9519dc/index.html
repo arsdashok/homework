@@ -317,7 +317,7 @@
         e.preventDefault();
         var r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, sx = e.clientX, sy = e.clientY, moved = false, over = null;
         var home = chip.parentNode, next = chip.nextSibling, ph = null;
-        chip.setPointerCapture(e.pointerId);
+        try { chip.setPointerCapture(e.pointerId); } catch (err) {}
         function move(ev) {
           if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
           if (!moved) {
@@ -331,7 +331,7 @@
           if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
         }
         function up(ev) {
-          chip.removeEventListener("pointermove", move); chip.removeEventListener("pointerup", up); chip.removeEventListener("pointercancel", up);
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
           if (over) over.classList.remove("over");
           if (!moved) {
             if (home.classList.contains("slot")) { toBank(chip); unpick(); return; }
@@ -345,7 +345,7 @@
           else if (home.classList.contains("slot") && ev.type === "pointerup" && !stage.contains(document.elementFromPoint(ev.clientX, ev.clientY))) toBank(chip);
           else if (home.classList.contains("slot")) home.appendChild(chip);
         }
-        chip.addEventListener("pointermove", move); chip.addEventListener("pointerup", up); chip.addEventListener("pointercancel", up);
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
       });
     });
     zones.forEach(function (z) {

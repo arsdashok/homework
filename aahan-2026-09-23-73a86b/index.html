@@ -52,6 +52,8 @@ h2 { font-size: 21px; line-height: 1.3; color: #5b43be; margin-bottom: 9px; brea
   .word { flex-basis: 86px; font-size: 15.5px; }
   .sent { min-height: 60px; font-size: 14px; padding: 6px 9px; background: #fff; }
 }
+.big { min-height: 260px; }
+@media print { .big { min-height: 150px; } #freewrite { margin-top: 14px; } #freewrite h2 { break-after: avoid; } }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -66,7 +68,7 @@ h2 { font-size: 21px; line-height: 1.3; color: #5b43be; margin-bottom: 9px; brea
 </header>
 
 <section id="possibility">
-  <h2>Words of possibility</h2>
+  <h2>1 &middot; Words of possibility</h2>
   <p class="instruction">Write one sentence with <span class="nw">each word.</span></p>
   <p class="free">Short sentences are fine. Your ideas matter, not <span class="nw">the length.</span></p>
   <div class="reminder"><b>perhaps, maybe, possibly:</b> not sure, or saying it gently &nbsp;&middot;&nbsp; <b>surely, certainly:</b> you <span class="nw">are sure</span><br>
@@ -84,6 +86,13 @@ h2 { font-size: 21px; line-height: 1.3; color: #5b43be; margin-bottom: 9px; brea
     <div class="wrow"><span class="word">surely</span><div contenteditable="true" class="hw-field sent" data-k="w4" data-label="Sure about, from the story: surely" aria-label="Your sentence with surely"></div></div>
     <div class="wrow"><span class="word">certainly</span><div contenteditable="true" class="hw-field sent" data-k="w5" data-label="Sure about, from the story: certainly" aria-label="Your sentence with certainly"></div></div>
   </div>
+</section>
+<section id="freewrite" class="group">
+  <h2>2 &middot; Three minutes, no stopping</h2>
+  <p class="purpose">In the lesson your best line was: &ldquo;We stand a chance against mean people.&rdquo; Leonard and Marianne could use it in <span class="nw">their poem.</span></p>
+  <p class="instruction">Set a timer for 3 minutes, like in the lesson. Write everything that comes into your head about <span class="nw">this line.</span></p>
+  <p class="free">Don't stop. Spelling and full stops don't <span class="nw">matter here.</span></p>
+  <div contenteditable="true" class="hw-field sent big" data-k="f1" data-label="3-minute freewrite: we stand a chance against mean people" aria-label="Your three minutes of writing"></div>
 </section>
 </div><!-- /sheet -->
 <div class="hw-bar">

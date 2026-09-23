@@ -25,21 +25,95 @@
     el.addEventListener("input", keep); el.addEventListener("change", keep);
   });
 
+  var pdfPending = null;
   function makePDF() {
-    if (!window.html2pdf) return Promise.resolve("");
-    var el = document.getElementById("sheet");
-    B.classList.add("hw-pdf-mode");
-    // Size the PDF page to the sheet, not the sheet to A4: a wide row is never clipped, and page
-    // breaks are computed on the real layout. Same proportions as A4, so it prints to A4 unchanged.
-    var W = Math.max(el.scrollWidth, el.getBoundingClientRect().width, 700);
-    el.style.width = W + "px";
-    var innerMm = (W + 40) * 25.4 / 96, pageW = innerMm + 20, pageH = pageW * 297 / 210;   // +40px: html2pdf rounds its container down
-    var opt = { margin: [10, 10, 10, 10], image: { type: "jpeg", quality: 0.85 },
-      html2canvas: { scale: 1.6, useCORS: true, scrollX: 0, scrollY: 0 },
-      jsPDF: { unit: "mm", format: [pageW, pageH], orientation: "portrait" }, pagebreak: { mode: ["css", "legacy"] } };
-    function done() { B.classList.remove("hw-pdf-mode"); el.style.width = ""; }
-    return html2pdf().set(opt).from(el).outputPdf("datauristring")
-      .then(function (u) { done(); return u.split(",")[1] || ""; }).catch(function () { done(); return ""; });
+    if (pdfPending) return pdfPending;
+    // html2pdf measures page breaks with getBoundingClientRect. Rendering the live,
+    // scrolled document mixed viewport coordinates with PDF coordinates, adding huge
+    // blank areas and losing the tail. A separate, unscrolled document has one origin.
+    var frame = document.createElement("iframe"), timer;
+    frame.title = "Preparing homework PDF";
+    frame.setAttribute("aria-hidden", "true");
+    frame.tabIndex = -1;
+    frame.style.cssText = "position:fixed;left:-10000px;top:0;width:800px;height:1100px;border:0;pointer-events:none;";
+    var job = new Promise(function (resolve, reject) {
+      timer = setTimeout(function () { reject(new Error("PDF export timed out. Please try again.")); }, 60000);
+      B.appendChild(frame);
+      var doc = frame.contentDocument;
+      doc.open(); doc.write("<!doctype html><html><head></head><body></body></html>"); doc.close();
+      var base = doc.createElement("base"); base.href = document.baseURI; doc.head.appendChild(base);
+      var styles = [];
+      document.querySelectorAll('style, link[rel="stylesheet"]').forEach(function (node) {
+        var copy = doc.importNode(node, true);
+        if (node.tagName === "LINK") {
+          copy.href = node.href;
+          styles.push(new Promise(function (ok, fail) { copy.onload = ok; copy.onerror = function () { fail(new Error("PDF stylesheet failed to load")); }; }));
+        }
+        doc.head.appendChild(copy);
+      });
+      var sheet = doc.importNode(document.getElementById("sheet"), true);
+      sheet.querySelectorAll("script, .hw-bar, .save-bar").forEach(function (node) { node.remove(); });
+      // Read current field properties, not HTML attributes or only the visible portion
+      // of a textarea. Plain wrapping blocks preserve every line, including long words.
+      var originals = document.getElementById("sheet").querySelectorAll("[data-k]");
+      sheet.querySelectorAll("[data-k]").forEach(function (copy, i) {
+        var original = originals[i];
+        if (copy.classList.contains("circle-words")) return;
+        var answer = doc.createElement("span");
+        answer.className = copy.className + " hw-pdf-answer";
+        answer.dataset.k = original.dataset.k;
+        if (original.tagName === "INPUT" || original.tagName === "SELECT") answer.classList.add("hw-pdf-inline");
+        if (original.classList.contains("hw-gap")) answer.classList.add("hw-pdf-gap");
+        answer.textContent = val(original) || "\u00a0";
+        copy.replaceWith(answer);
+      });
+      doc.body.className = "hw-pdf-mode";
+      doc.body.appendChild(sheet);
+      var fixes = doc.createElement("style");
+      fixes.textContent = [
+        // Leave a small horizontal safety gutter inside html2pdf's rounded A4 container.
+        "html,body{margin:0!important;padding:0!important;max-width:none!important;width:680px!important;height:auto!important;min-height:0!important;overflow:visible!important;background:white!important;}",
+        "#sheet{margin:0!important;padding:0!important;width:680px!important;max-width:none!important;transform:none!important;}",
+        "#sheet .sheet{margin:0!important;max-width:none!important;}",
+        // Avoid moving whole sections to a new page; keep individual questions intact.
+        "#sheet *{break-before:auto!important;break-after:auto!important;break-inside:auto!important;page-break-before:auto!important;page-break-after:auto!important;page-break-inside:auto!important;}",
+        "#sheet .hw-pdf-answer{display:block!important;height:auto!important;max-height:none!important;min-height:38px!important;overflow:visible!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:break-word!important;text-wrap:wrap!important;padding:8px 10px!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-inline{display:inline-block!important;vertical-align:middle;min-width:80px;max-width:100%!important;}",
+        "#sheet .hw-pdf-gap{min-width:0!important;min-height:0!important;padding:0 3px!important;}",
+        "#sheet img,#sheet svg{max-width:100%;}"
+      ].join("\n");
+      doc.head.appendChild(fixes);
+      var script = doc.createElement("script");
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+      script.onerror = function () { reject(new Error("PDF library failed to load")); };
+      script.onload = function () {
+        Promise.all(styles).then(function () { return doc.fonts ? doc.fonts.ready : null; })
+          .then(function () { return Promise.all([].map.call(sheet.querySelectorAll("img"), function (img) {
+            if (img.complete) return img.naturalWidth ? Promise.resolve() : Promise.reject(new Error("PDF image failed to load"));
+            return new Promise(function (ok, fail) { img.onload = ok; img.onerror = function () { fail(new Error("PDF image failed to load")); }; });
+          })); })
+          .then(function () {
+            frame.contentWindow.scrollTo(0, 0);
+            var options = {
+              margin: [10, 10, 10, 10], image: {type:"jpeg",quality:0.94},
+              html2canvas: {scale:1.5,useCORS:true,scrollX:0,scrollY:0,windowWidth:800,windowHeight:1100},
+              jsPDF: {unit:"mm",format:"a4",orientation:"portrait"},
+              pagebreak: {mode:[],avoid:[".q", ".question", ".word-q", ".div-item", "tr", "header", ".model", ".task", ".instr", ".instruction", ".checks", "p", "h1", "h2", "h3", ".hw-pdf-answer"]}
+            };
+            // html2pdf uses instanceof Array, so option arrays must belong to its realm.
+            options = frame.contentWindow.JSON.parse(JSON.stringify(options));
+            return frame.contentWindow.html2pdf().set(options).from(sheet).outputPdf("datauristring");
+          }).then(function (uri) {
+            var result = uri.split(",")[1];
+            if (!result) throw new Error("PDF export produced no attachment");
+            resolve(result);
+          }).catch(reject);
+      };
+      doc.head.appendChild(script);
+    });
+    function cleanup() { clearTimeout(timer); frame.remove(); pdfPending = null; }
+    pdfPending = job.then(function (result) { cleanup(); return result; }, function (error) { cleanup(); throw error; });
+    return pdfPending;
   }
 
   window.hwMakePDF = makePDF;
@@ -54,7 +128,7 @@
     var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q); }).length;
     if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return;
     btn.disabled = true; msg.textContent = "Sending… (this takes a few seconds)";
-    Promise.race([makePDF(), new Promise(function (r) { setTimeout(function () { r(""); }, 20000); })])
+    makePDF()
       .then(function (pdf) {
         return fetch(SEND_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({ key: SEND_KEY, student: META.student, sheet: META.sheet, sheetId: META.sheetId, answers: answers, pdf: pdf }) });

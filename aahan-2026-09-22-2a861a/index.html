@@ -65,7 +65,7 @@ section.night .reminder { background: #2c3450; color: #e7dcc4; border-color: var
 section.night .reminder b { color: var(--gold); }
 .food { font-size: 24px; margin-left: 4px; }
 .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 14px; padding: 4px 0 12px; }
-.fact { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; background: var(--paper); color: var(--ink); border: 2px solid var(--ink); border-radius: 12px; padding: 6px 10px; box-shadow: 3px 3px 0 var(--gold); break-inside: avoid; page-break-inside: avoid; }
+.fact { display: flex; align-items: center; justify-content: space-between; gap: 8px; white-space: nowrap; font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; background: var(--paper); color: var(--ink); border: 2px solid var(--ink); border-radius: 12px; padding: 6px 10px; box-shadow: 3px 3px 0 var(--gold); break-inside: avoid; page-break-inside: avoid; }
 .fact input { width: 64px; font: inherit; font-size: 17px; }
 .say { margin-top: 6px; break-inside: avoid; page-break-inside: avoid; }
 .say .prompt { margin-bottom: 8px; font-size: 18px; }
@@ -75,12 +75,25 @@ section.night .say .prompt b { color: var(--gold); }
 .stack .rowq { margin-bottom: 0; }
 @media screen { .say div.response { min-height: 90px !important; } }
 @media (max-width: 620px) {
-  .banner { height: 130px; }
+  body { padding: 16px 12px 36px; }
+  .banner { height: 168px; }
+  .banner .label { right: 16px; bottom: 14px; }
+  .banner .kicker { font-size: 11px; }
   .banner h1 { font-size: 26px; }
-  .rowq { flex-wrap: wrap; gap: 10px; }
-  .rowq .prompt { white-space: normal; }
-  .controls { flex-wrap: wrap; }
-  .facts { grid-template-columns: 1fr 1fr; }
+  .banner .date { top: 10px; font-size: 12px; }
+  section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 24px; }
+  .q { grid-template-columns: 30px minmax(0, 1fr); }
+  .rowq { flex-wrap: wrap; gap: 8px; }
+  .rowq .prompt { white-space: normal; font-size: 18px; }
+  .controls { flex-wrap: wrap; gap: 8px; min-width: 0; max-width: 100%; }
+  .controls label { display: flex; align-items: center; }
+  .controls select, .controls input { max-width: 100%; min-width: 0 !important; }
+  .est { width: 104px !important; }
+  .fin { width: 130px !important; }
+  .facts { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .fact { font-size: 17px; padding: 5px 7px; gap: 6px; }
+  .fact input { width: 50px !important; min-width: 0 !important; }
   .instruction { font-size: 18px; }
 }
 @media print {

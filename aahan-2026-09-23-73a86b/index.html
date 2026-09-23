@@ -204,7 +204,7 @@ body {
     if (tick) { stop(); start.textContent = 'Resume'; return; }
     if (left <= 0) { left = total; done.hidden = true; disp.classList.remove('finished'); }
     disp.classList.add('running'); start.textContent = 'Pause';
-    var box = document.querySelector('[data-k="f1"]'); if (box && document.activeElement !== box) box.focus();
+    var box = document.querySelector('.sent.big'); if (box && document.activeElement !== box) box.focus();
     tick = setInterval(function () {
       left -= 1; show();
       if (left <= 0) { stop(); start.textContent = 'Start'; done.hidden = false; disp.classList.add('finished'); }

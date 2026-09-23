@@ -16,13 +16,13 @@ header .meta { font-size: 13px; text-align: right; }
 section { margin-bottom: 26px; }
 h2 { font-size: 21px; line-height: 1.3; color: #5b43be; margin-bottom: 9px; break-after: avoid; page-break-after: avoid; }
 .instruction { font-size: 20px; line-height: 1.35; font-weight: 700; color: #241f3d; margin-bottom: 6px; text-wrap: pretty; }
-.free { font-size: 19px; line-height: 1.35; font-weight: 700; color: #5b43be; margin-bottom: 8px; text-wrap: pretty; }
+.free { font-size: 16px; line-height: 1.35; font-weight: 600; color: #5b43be; margin-bottom: 8px; text-wrap: pretty; }
 .reminder { font-size: 13px; line-height: 1.45; color: #5c5473; border-left: 3px solid #c4b5fd; padding: 4px 0 4px 12px; margin: 6px 0 4px; text-wrap: pretty; }
 .reminder b { color: #3b2f6b; }
 .reminder i { color: #3b2f6b; }
 .nw { white-space: nowrap; }
 .group { margin-top: 20px; break-inside: avoid; page-break-inside: avoid; }
-.purpose { font-size: 19px; line-height: 1.4; font-weight: 700; color: #241f3d; margin-bottom: 6px; text-wrap: pretty; break-after: avoid; page-break-after: avoid; }
+.purpose { font-size: 18px; line-height: 1.4; font-weight: 700; color: #241f3d; margin-bottom: 6px; text-wrap: pretty; break-after: avoid; page-break-after: avoid; }
 .wrow { display: flex; align-items: center; gap: 16px; padding: 8px 0; border-bottom: 1px solid #ece7f8; break-inside: avoid; page-break-inside: avoid; }
 .wrow:last-child { border-bottom: 0; }
 .word { flex: 0 0 100px; font-size: 18px; font-weight: 700; color: #5b43be; }
@@ -54,6 +54,10 @@ h2 { font-size: 21px; line-height: 1.3; color: #5b43be; margin-bottom: 9px; brea
 }
 .big { min-height: 260px; }
 @media print { .big { min-height: 150px; } #freewrite { margin-top: 14px; } #freewrite h2 { break-after: avoid; } }
+.context { font-size: 18px; line-height: 1.45; font-weight: 400; color: #241f3d; margin-bottom: 8px; text-wrap: pretty; }
+.context b { font-weight: 700; color: #5b43be; }
+@media screen { section div.sent { min-height: 78px !important; } section div.sent.big { min-height: 260px !important; } }
+@media print { .context { font-size: 15px; } .free { font-size: 14px; } }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -89,7 +93,7 @@ h2 { font-size: 21px; line-height: 1.3; color: #5b43be; margin-bottom: 9px; brea
 </section>
 <section id="freewrite" class="group">
   <h2>2 &middot; Three minutes, no stopping</h2>
-  <p class="purpose">In the lesson your best line was: &ldquo;We stand a chance against mean people.&rdquo; Leonard and Marianne could use it in <span class="nw">their poem.</span></p>
+  <p class="context">In the lesson your best line was <b>&ldquo;We stand a chance against mean people.&rdquo;</b> Leonard and Marianne could use it in <span class="nw">their poem.</span></p>
   <p class="instruction">Set a timer for 3 minutes, like in the lesson. Write everything that comes into your head about <span class="nw">this line.</span></p>
   <p class="free">Don't stop. Spelling and full stops don't <span class="nw">matter here.</span></p>
   <div contenteditable="true" class="hw-field sent big" data-k="f1" data-label="3-minute freewrite: we stand a chance against mean people" aria-label="Your three minutes of writing"></div>

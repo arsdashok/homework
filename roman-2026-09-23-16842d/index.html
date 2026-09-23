@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 23 September 2026</title>
+<style>
+  @page { size: A4; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 760px; margin: auto; }
+  .keep { white-space: nowrap; }
+  p, .instr, .lede, .prompt { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+  .lede a { color: #31594b; text-decoration: none; border-bottom: 1px solid #c3cdc2; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 16px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .instr { font-size: 14.5px; color: #626a62; margin-bottom: 10px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .rowq { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+  .rowq .prompt { flex: 1 1 auto; }
+  .rowq select { flex: 0 0 auto; }
+  .prompt { font-size: 16px; }
+  .prompt b { font-weight: 600; color: #31594b; white-space: nowrap; }
+  .stack .prompt { margin-bottom: 7px; }
+
+  .pick {
+    font: inherit; font-size: 15px;
+    min-width: 170px; padding: 5px 10px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+    resize: vertical;
+  }
+  .resp.two { min-height: 64px; }
+  .resp.long { min-height: 170px; }
+
+  .checks {
+    display: flex; flex-direction: column; gap: 3px;
+    font-size: 14.5px; margin-bottom: 10px;
+  }
+  .checks span { white-space: normal; text-wrap: pretty; }
+  .sq {
+    display: inline-block; width: 6px; height: 6px;
+    background: #31594b; border-radius: 50%;
+    margin-right: 6px; vertical-align: -1px;
+  }
+
+  @media (max-width: 620px) {
+    .rowq { flex-wrap: wrap; gap: 8px; }
+    .checks span { white-space: normal; }
+  }
+
+  @media print {
+    body { font-size: 12.5px; line-height: 1.35; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 9px 0 7px; margin-bottom: 10px; }
+    .masthead { font-size: 10px; }
+    h1 { font-size: 21px; margin: 5px 0 2px; }
+    .lede { font-size: 12px; }
+    .task { padding: 9px 18px 10px; margin-bottom: 9px; }
+    h2 { font-size: 17px; margin-bottom: 3px; }
+    .instr { font-size: 12px; margin-bottom: 6px; }
+    .model { font-size: 13.5px; padding: 5px 12px; margin-bottom: 5px; }
+    .q { padding: 5px 0; gap: 8px; grid-template-columns: 20px minmax(0, 1fr); }
+    .qnum { font-size: 11px; padding-top: 1px; }
+    .prompt { font-size: 12.5px; }
+    .stack .prompt { margin-bottom: 4px; }
+    .pick { font-size: 12px; min-width: 130px; padding: 3px 8px; }
+    .resp { font-size: 12.5px; padding: 4px 9px; }
+    .resp.two { min-height: 44px; height: 44px; }
+    .resp.two.own, textarea[data-k="p1"] { min-height: 58px; height: 58px; }
+    .resp.long { min-height: 108px; height: 108px; }
+    .resp { resize: none; }
+    .resp::placeholder { color: transparent; }
+    .checks { font-size: 12px; margin-bottom: 5px; flex-direction: row; flex-wrap: wrap; gap: 2px 18px; }
+    .sq { width: 5px; height: 5px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-09-23" data-sheet-id="roman-2026-09-23-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>23 September 2026</span></div>
+    <h1>Two phrases and a short recommendation</h1>
+    <div class="lede">About 15 minutes. You can use
+      <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/">your vocabulary page</a> for&nbsp;help.</div>
+  </header>
+
+  <div class="task">
+    <h2>1. I found myself&hellip;</h2>
+    <div class="model"><b>I found myself</b> somewhere, or doing something = it happened, but I didn't plan&nbsp;it.</div>
+    <div class="instr">Does the phrase fit each situation? Choose <i>fits</i> or <i>does not&nbsp;fit</i>.</div>
+
+    <div class="q"><span class="qnum">1.</span><div class="rowq">
+      <p class="prompt">I went out to buy bread and met a neighbour on the way. An hour later <b>I found myself</b> at a street&nbsp;festival.</p>
+      <select class="hw-field pick" data-k="b1" data-label="1. Went out for bread, an hour later I found myself at a street festival" aria-label="Situation 1: fits or does not fit"><option value="">Choose</option><option value="fits">fits</option><option value="does not fit">does not fit</option></select>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div class="rowq">
+      <p class="prompt">I booked a table for nine o'clock. At nine <b>I found myself</b> at the&nbsp;restaurant.</p>
+      <select class="hw-field pick" data-k="b2" data-label="2. Booked a table for nine, at nine I found myself at the restaurant" aria-label="Situation 2: fits or does not fit"><option value="">Choose</option><option value="fits">fits</option><option value="does not fit">does not fit</option></select>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div class="rowq">
+      <p class="prompt">I wanted to see the new exhibition at the Prado, so I went there on Sunday morning. <b>I found myself</b> at the&nbsp;Prado.</p>
+      <select class="hw-field pick" data-k="b3" data-label="3. Wanted to see the Prado exhibition, went there, I found myself at the Prado" aria-label="Situation 3: fits or does not fit"><option value="">Choose</option><option value="fits">fits</option><option value="does not fit">does not fit</option></select>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div class="rowq">
+      <p class="prompt">After work we went for one quick coffee and kept talking. At midnight <b>we found ourselves</b> in a tapas bar on the other side of the&nbsp;city.</p>
+      <select class="hw-field pick" data-k="b4" data-label="4. One quick coffee, at midnight we found ourselves in a tapas bar across the city" aria-label="Situation 4: fits or does not fit"><option value="">Choose</option><option value="fits">fits</option><option value="does not fit">does not fit</option></select>
+    </div></div>
+
+    <div class="q"><span class="qnum">5.</span><div class="stack">
+      <p class="prompt">Write one sentence of your own with <b>I found myself</b> or <b>we found&nbsp;ourselves</b>.</p>
+      <textarea class="hw-field resp two" rows="2" data-k="p1" data-label="5. Your own sentence with I found myself / we found ourselves" aria-label="Your own sentence with I found myself or we found ourselves" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>2. Take part in</h2>
+    <div class="instr">Check sentences 1 and 2. Write the corrected sentence, or write <i>correct</i> if there is no&nbsp;mistake.</div>
+
+    <div class="q"><span class="qnum">1.</span><div class="stack">
+      <p class="prompt">Last year our company took part in a big insurance conference in&nbsp;Barcelona.</p>
+      <textarea class="hw-field resp two" rows="2" data-k="t1" data-label="1. Last year our company took part in a big insurance conference in Barcelona." aria-label="Sentence 1: corrected sentence or correct" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div class="stack">
+      <p class="prompt">Next month I'd like to take part in in a Spanish cooking&nbsp;class.</p>
+      <textarea class="hw-field resp two" rows="2" data-k="t2" data-label="2. Next month I'd like to take part in in a Spanish cooking class." aria-label="Sentence 2: corrected sentence or correct" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div class="stack">
+      <p class="prompt">Now write one sentence of your own with <b>take part in</b>: something you have done, or would like to&nbsp;do.</p>
+      <textarea class="hw-field resp two own" rows="2" data-k="t3" data-label="3. Your own sentence with take part in" aria-label="Your own sentence with take part in" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>3. A short recommendation</h2>
+    <div class="instr">Write 3 sentences, one for each point below, to an English-speaking acquaintance who is coming to Spain. Recommend a food experience you know, in Madrid or anywhere in Spain. It can be a dish, a place or a kind of&nbsp;meal.</div>
+    <div class="checks">
+      <span><i class="sq"></i>What to try, with one practical detail: where, when, what to order or the&nbsp;price</span>
+      <span><i class="sq"></i>Why you recommend it</span>
+      <span><i class="sq"></i>A question for your reader</span>
+    </div>
+    <textarea class="hw-field resp long" rows="6" data-k="w1" data-label="3. A short food recommendation for an English-speaking acquaintance (3 sentences)" aria-label="Your recommendation, 3 sentences" placeholder="Type your answer here"></textarea>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script src="../assets/hw.js"></script>
+</body>
+</html>

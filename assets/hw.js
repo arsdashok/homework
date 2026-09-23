@@ -117,6 +117,26 @@
   }
 
   window.hwMakePDF = makePDF;
+  // Use the same complete-answer export for downloads, not the browser's print
+  // view, which can clip the contents of scrolling textareas again.
+  document.querySelectorAll(".hw-pdf").forEach(function (button) {
+    button.onclick = function () {
+      var label = button.textContent;
+      button.disabled = true; button.textContent = "Preparing PDF…";
+      makePDF().then(function (data) {
+        var bytes = Uint8Array.from(atob(data), function (c) { return c.charCodeAt(0); });
+        var url = URL.createObjectURL(new Blob([bytes], {type:"application/pdf"}));
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = (META.student + " - " + META.sheet).replace(/[\\/:*?"<>|]/g, "-") + ".pdf";
+        B.appendChild(link); link.click(); link.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      }).catch(function () {
+        var msg = document.getElementById("hwMsg");
+        if (msg) msg.textContent = "The PDF could not be created. Your answers are still here. Please try again.";
+      }).then(function () { button.disabled = false; button.textContent = label; });
+    };
+  });
   window.hwSend = function () {
     var btn = document.getElementById("hwSend"), msg = document.getElementById("hwMsg"), answers = [];
     document.querySelectorAll("[data-k]").forEach(function (el) {

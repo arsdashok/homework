@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 24 September 2026</title>
+<style>
+  @page { size: A4; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 760px; margin: auto; }
+  .keep { white-space: nowrap; }
+  p, .instr, .lede, .prompt { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+  .lede a { color: #31594b; text-decoration: none; border-bottom: 1px solid #c3cdc2; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 16px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .instr { font-size: 14.5px; color: #626a62; margin-bottom: 10px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .rowq { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+  .rowq .prompt { flex: 1 1 auto; }
+  .rowq select { flex: 0 0 auto; }
+  .prompt { font-size: 16px; }
+  .prompt b { font-weight: 600; color: #31594b; white-space: nowrap; }
+  .stack .prompt { margin-bottom: 7px; }
+
+  .pick {
+    font: inherit; font-size: 15px;
+    min-width: 170px; padding: 5px 10px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+    resize: vertical;
+  }
+  .resp.two { min-height: 64px; }
+  textarea[data-k="p1"] { min-height: 90px; }
+  .resp.long { min-height: 170px; }
+
+  .checks {
+    display: flex; flex-direction: column; gap: 3px;
+    font-size: 14.5px; margin-bottom: 10px;
+  }
+  .checks span { white-space: normal; text-wrap: pretty; }
+  .sq {
+    display: inline-block; width: 6px; height: 6px;
+    background: #31594b; border-radius: 50%;
+    margin-right: 6px; vertical-align: -1px;
+  }
+
+  @media (max-width: 620px) {
+    .rowq { flex-wrap: wrap; gap: 8px; }
+    .checks span { white-space: normal; }
+  }
+
+  @media print {
+    body { font-size: 12.5px; line-height: 1.35; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 9px 0 7px; margin-bottom: 10px; }
+    .masthead { font-size: 10px; }
+    h1 { font-size: 21px; margin: 5px 0 2px; }
+    .lede { font-size: 12px; }
+    .task { padding: 9px 18px 10px; margin-bottom: 9px; }
+    h2 { font-size: 17px; margin-bottom: 3px; }
+    .instr { font-size: 12px; margin-bottom: 6px; }
+    .model { font-size: 13.5px; padding: 5px 12px; margin-bottom: 5px; }
+    .q { padding: 5px 0; gap: 8px; grid-template-columns: 20px minmax(0, 1fr); }
+    .qnum { font-size: 11px; padding-top: 1px; }
+    .prompt { font-size: 12.5px; }
+    .stack .prompt { margin-bottom: 4px; }
+    .pick { font-size: 12px; min-width: 130px; padding: 3px 8px; }
+    .resp { font-size: 12.5px; padding: 4px 9px; }
+    .resp.two { min-height: 44px; height: 44px; }
+    .resp.two.own { min-height: 58px; height: 58px; }
+    .resp.two[data-k="p1"] { min-height: 72px; height: 72px; }
+    .resp.long { min-height: 108px; height: 108px; }
+    .resp { resize: none; }
+    .resp::placeholder { color: transparent; }
+    .checks { font-size: 12px; margin-bottom: 5px; flex-direction: row; flex-wrap: wrap; gap: 2px 18px; }
+    .sq { width: 5px; height: 5px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-09-24" data-sheet-id="roman-2026-09-24-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>24 September 2026</span></div>
+    <h1>How long does it take?</h1>
+    <div class="lede">About 8 minutes. You can use
+      <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/">your vocabulary page</a> for&nbsp;help.</div>
+  </header>
+
+  <div class="task">
+    <h2>It takes&hellip;</h2>
+    <div class="model">It takes Dasha ten minutes to choose a&nbsp;tea.<br>Question: <b>How long does it take</b> + person + <b>to</b> + verb?</div>
+    <div class="instr">In 1-3, make a question from the notes. In 4 and 5, write about&nbsp;yourself.</div>
+
+    <div class="q"><span class="qnum">1.</span><div class="stack">
+      <p class="prompt">(you / get to the&nbsp;airport)</p>
+      <textarea class="hw-field resp two" rows="2" data-k="q1" data-label="1. Question: you / get to the airport" aria-label="Question 1" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div class="stack">
+      <p class="prompt">(we / drive to&nbsp;Santander)</p>
+      <textarea class="hw-field resp two" rows="2" data-k="q2" data-label="2. Question: we / drive to Santander" aria-label="Question 2" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div class="stack">
+      <p class="prompt">(your colleague / answer a client's&nbsp;email)</p>
+      <textarea class="hw-field resp two" rows="2" data-k="q3" data-label="3. Question: your colleague / answer a client's email" aria-label="Question 3" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div class="stack">
+      <p class="prompt">Answer question 1 about you. Start with <b>It takes&nbsp;me&hellip;</b></p>
+      <textarea class="hw-field resp two own" rows="2" data-k="a1" data-label="4. It takes me ... (answer to question 1)" aria-label="Your answer starting It takes me" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">5.</span><div class="stack">
+      <p class="prompt">What does it take to run a company? Use <b>patience</b>, <b>effort</b>, <b>willpower</b> or your own&nbsp;word.</p>
+      <textarea class="hw-field resp two own" rows="2" data-k="a2" data-label="5. What does it take to run a company?" aria-label="Your sentence: it takes ... to run a company" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script src="../assets/hw.js?v=20260923-export2"></script>
+</body>
+</html>

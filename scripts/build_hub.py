@@ -91,6 +91,9 @@ def build(root=ROOT, site=None):
     for student in students:
         student['pages'].sort(key=lambda p: p['date'], reverse=True)
         student['pages'].sort(key=lambda p: p['test'])
+    # Latest homework first; keep alphabetical ties and undated/demo-only pupils last.
+    students.sort(key=lambda s: max((p['date'] for p in s['pages'] if not p['test']), default=''),
+                  reverse=True)
     payload = json.dumps({'students': students, 'vocabHub': config['vocabHub']}, ensure_ascii=False).replace('<', '\\u003c')
     html = (root / 'scripts/hub-template.html').read_text().replace('__HUB_DATA__', payload)
     hub = root / config['hub']

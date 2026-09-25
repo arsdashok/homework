@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 25 September 2026</title>
+<style>
+  @page { size: A4; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 760px; margin: auto; }
+  .keep { white-space: nowrap; }
+  p, .instr, .lede, .prompt { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+  .lede a { color: #31594b; text-decoration: none; border-bottom: 1px solid #c3cdc2; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 16px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .instr { font-size: 14.5px; color: #626a62; margin-bottom: 10px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .slot {
+    display: inline-block;
+    border-bottom: 2px solid #31594b;
+    padding: 0 3px;
+    color: #31594b; font-weight: 600;
+  }
+  .model .note {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; color: #626a62; margin-top: 3px;
+  }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .prompt { font-size: 16px; }
+  .prompt b { font-weight: 600; color: #31594b; white-space: nowrap; }
+  .stack .prompt { margin-bottom: 7px; }
+
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+    resize: vertical;
+  }
+  .resp.two { min-height: 64px; }
+
+  @media print {
+    body { font-size: 12.5px; line-height: 1.35; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 9px 0 7px; margin-bottom: 10px; }
+    .masthead { font-size: 10px; }
+    h1 { font-size: 21px; margin: 5px 0 2px; }
+    .lede { font-size: 12px; }
+    .task { padding: 9px 18px 10px; margin-bottom: 9px; }
+    h2 { font-size: 17px; margin-bottom: 3px; }
+    .instr { font-size: 12px; margin-bottom: 6px; }
+    .model { font-size: 13.5px; padding: 5px 12px; margin-bottom: 5px; }
+    .model .note { font-size: 12px; margin-top: 2px; }
+    .q { padding: 5px 0; gap: 8px; grid-template-columns: 20px minmax(0, 1fr); }
+    .qnum { font-size: 11px; padding-top: 1px; }
+    .prompt { font-size: 12.5px; }
+    .stack .prompt { margin-bottom: 4px; }
+    .resp { font-size: 12.5px; padding: 4px 9px; }
+    .resp.two { min-height: 44px; height: 44px; }
+    .resp.two.own { min-height: 58px; height: 58px; }
+    .resp { resize: none; }
+    .resp::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-09-25" data-sheet-id="roman-2026-09-25-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>25 September 2026</span></div>
+    <h1>I&rsquo;d rather&hellip;</h1>
+    <div class="lede">About 8 minutes. You can use
+      <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/">your vocabulary page</a> for&nbsp;help.</div>
+  </header>
+
+  <div class="task">
+    <h2>A friend&rsquo;s&nbsp;plan</h2>
+    <div class="model">&laquo;Let&rsquo;s go to the cinema tonight.&raquo;<br>
+      <b>I&rsquo;d rather</b> <span class="slot">watch</span> a film at home. I&rsquo;m a bit&nbsp;tired.
+      <div class="note">After <b>I&rsquo;d rather</b>, use a verb, without <b>to</b>: <i>I&rsquo;d rather go</i>, not <i>I&rsquo;d rather to go</i> or <i>I&rsquo;d rather&nbsp;quiet</i>.</div>
+    </div>
+    <div class="instr">In 1-3, reply for yourself with <b>I&rsquo;d rather</b> and a short reason. In 4 and 5, ask a friend with <b>Would you rather &hellip; or&nbsp;&hellip;?</b></div>
+
+    <div class="q"><span class="qnum">1.</span><div class="stack">
+      <p class="prompt">&laquo;Let&rsquo;s order pizza&nbsp;tonight.&raquo;</p>
+      <textarea class="hw-field resp two own" rows="2" data-k="r1" data-label="1. Reply: Let's order pizza tonight." aria-label="Reply 1" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div class="stack">
+      <p class="prompt">&laquo;Let&rsquo;s have lunch at the office&nbsp;today.&raquo;</p>
+      <textarea class="hw-field resp two own" rows="2" data-k="r2" data-label="2. Reply: Let's have lunch at the office today." aria-label="Reply 2" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div class="stack">
+      <p class="prompt">&laquo;Let&rsquo;s meet for dinner at six on&nbsp;Thursday.&raquo;</p>
+      <textarea class="hw-field resp two own" rows="2" data-k="r3" data-label="3. Reply: Let's meet for dinner at six on Thursday." aria-label="Reply 3" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div class="stack">
+      <p class="prompt">Your next business trip: (take the train /&nbsp;fly)</p>
+      <textarea class="hw-field resp two" rows="2" data-k="w1" data-label="4. Would you rather question: take the train / fly" aria-label="Question 4" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">5.</span><div class="stack">
+      <p class="prompt">Sunday lunch: (an expensive restaurant / an affordable&nbsp;caf&eacute;)</p>
+      <textarea class="hw-field resp two" rows="2" data-k="w2" data-label="5. Would you rather question: an expensive restaurant / an affordable cafe" aria-label="Question 5" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script src="../assets/hw.js?v=20260923-export2"></script>
+</body>
+</html>

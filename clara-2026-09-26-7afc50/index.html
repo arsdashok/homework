@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Clara Homework 26 September 2026</title>
+<style>
+@page { size:A4; margin:15mm 16mm; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:white; -webkit-print-color-adjust:exact; print-color-adjust:exact; font-size:14px; line-height:1.5; }
+.sheet-head { padding:14px 22px; background:#DDF5EB; border-radius:14px; margin-bottom:18px; border-top:5px solid #91D9BC; }
+.eyebrow { font-size:10px; letter-spacing:2px; font-weight:700; text-transform:uppercase; color:#376E59; margin-bottom:3px; }
+.sheet-head h1 { font-size:27px; line-height:1.2; font-weight:700; letter-spacing:-.8px; }
+.sec-head { display:flex; align-items:baseline; gap:14px; padding-bottom:9px; border-bottom:2px solid #A5DDC7; margin-bottom:12px; break-after:avoid; page-break-after:avoid; }
+.sec-head .name { font-size:23px; font-weight:700; letter-spacing:-.4px; }
+.sec-head .note { font-size:12px; color:#587369; }
+.block { break-inside:avoid; page-break-inside:avoid; margin-bottom:14px; }
+.lead { font-size:14.5px; font-weight:700; margin:6px 0 6px; text-wrap:pretty; }
+.small { font-size:12px; color:#587369; font-weight:400; }
+.q { padding:8px 0 9px; border-bottom:1px solid #D9E8E1; break-inside:avoid; page-break-inside:avoid; }
+.q:last-child { border-bottom:0; }
+.q-top { display:flex; gap:12px; align-items:center; }
+.q-num { flex:0 0 27px; height:27px; border-radius:8px; background:#DDF5EB; color:#285E49; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; }
+.rowq { display:flex; align-items:center; justify-content:space-between; gap:24px; flex:1; }
+.rowq .prompt { font-size:15px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.roman { font-weight:700; letter-spacing:1.5px; color:#285E49; }
+.nb { width:150px; height:36px; border:1.5px solid #9CB9AC; border-radius:7px; background:white; font:inherit; font-size:15px; text-align:center; font-variant-numeric:tabular-nums; }
+.foot { display:flex; justify-content:space-between; font-size:10px; color:#70867C; border-top:1px solid #D9E8E1; padding-top:10px; margin-top:14px; }
+.page-label { font-size:11px; color:#597B6C; margin-bottom:13px; letter-spacing:.5px; }
+.english { break-before:page; page-break-before:always; }
+
+/* reference strip + model */
+.chart { display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 8px; font-size:13px; }
+.chart span { display:inline-block; padding:2px 10px; border:1.5px solid #A5DDC7; border-radius:20px; background:#F3FAF6; color:#285E49; }
+.chart b { letter-spacing:1px; }
+.example { margin:0 0 6px; padding:8px 14px; background:#EFF9F4; border-left:3px solid #A5DDC7; border-radius:0 6px 6px 0; font-size:13px; line-height:1.6; break-inside:avoid; page-break-inside:avoid; }
+.example strong { color:#32694F; }
+
+/* rounding row */
+.four { display:flex; justify-content:space-between; gap:12px; margin:8px 0 0 39px; flex-wrap:wrap; }
+.four .slot { display:flex; flex-direction:column; align-items:flex-start; }
+.four .cap { font-size:11.5px; color:#688176; margin-bottom:3px; }
+.four .nb { width:140px; }
+
+/* count back row */
+.chain { display:flex; align-items:center; gap:8px; margin:8px 0 0 39px; flex-wrap:wrap; font-size:15px; font-variant-numeric:tabular-nums; }
+.chain .given { font-weight:700; }
+.chain .ar { color:#6f9c88; }
+.chain .nb { width:84px; }
+.chain { gap:6px; }
+
+/* English */
+.chips { display:flex; gap:10px; margin:8px 0 10px; }
+.chip { padding:6px 16px; border-radius:22px; background:#6ee7b7; color:#123B2E; font-weight:700; font-size:15px; }
+.chip span { font-weight:400; font-size:13px; }
+.base { font-size:15px; margin:2px 0 6px 39px; }
+.sent { min-height:62px; border:1.5px solid #9CB9AC; border-radius:7px; background:white; padding:8px 10px; font-size:14.5px; margin-left:39px; }
+
+@media screen {
+ body{max-width:1000px;margin:auto;padding:40px 40px 64px;font-size:17px;line-height:1.65}
+ .sheet-head{padding:24px 28px;margin-bottom:36px}.sheet-head h1{font-size:32px}.eyebrow{font-size:12px;margin-bottom:8px}
+ .sec-head{margin-bottom:24px;padding-bottom:14px;gap:18px}.sec-head .name{font-size:27px}.sec-head .note{font-size:14px}
+ .block{margin-bottom:34px}.lead{font-size:18px;margin:0 0 12px}.small{font-size:14px}
+ .example{padding:16px 22px;font-size:15.5px;margin-bottom:16px}.chart{font-size:15px;gap:9px;margin-bottom:16px}
+ .q{padding:18px 0 20px}.q-top{gap:16px}.q-num{flex-basis:34px;height:34px;font-size:16px}.rowq .prompt{font-size:19px}
+ .nb{height:46px;font-size:18px;width:170px}.four{margin:16px 0 0 50px}.four .nb{width:160px}.four .cap{font-size:13px}
+ .chain{margin:16px 0 0 50px;font-size:19px}.chain .nb{width:130px}
+ .english{margin-top:90px}.page-label{font-size:12px;margin-bottom:22px}
+ .chip{font-size:18px;padding:8px 20px}.chip span{font-size:15px}.base{font-size:19px;margin-left:50px}
+ section div.sent, div.sent{min-height:92px !important;margin-left:50px;font-size:17px}
+ .foot{font-size:12px;padding-top:20px;margin-top:30px}.foot>span:last-child{display:none}
+}
+@media screen and (max-width:620px){
+ body{padding:24px 18px 48px}.rowq{flex-wrap:wrap}.rowq .prompt{white-space:normal}
+ .four,.chain,.base{margin-left:0}section div.sent, div.sent{margin-left:0}.four .nb{width:130px}
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Clara" data-sheet="Maths + English 2026-09-26" data-sheet-id="clara-2026-09-26-maths-english">
+<div id="sheet">
+
+
+<div class="sheet-head">
+  <div class="eyebrow">Saturday 26 September 2026</div><h1>Clara · Homework</h1>
+</div>
+
+<!-- ============ MATHS ============ -->
+<div class="section maths">
+  <div class="sec-head">
+    <span class="name">Maths</span>
+    <span class="note">Roman numerals and place value</span>
+  </div>
+
+  <div class="chart">
+    <span><b>I</b> 1</span><span><b>V</b> 5</span><span><b>X</b> 10</span><span><b>L</b> 50</span><span><b>C</b> 100</span><span><b>D</b> 500</span><span><b>M</b> 1,000</span>
+  </div>
+  <div class="chart">
+    <span>Pairs:</span><span><b>IV</b> 4</span><span><b>IX</b> 9</span><span><b>XL</b> 40</span><span><b>XC</b> 90</span><span><b>CD</b> 400</span><span><b>CM</b> 900</span>
+  </div>
+
+  <div class="block">
+    <div class="example"><strong>Like this:</strong> DCCXC &nbsp;→&nbsp; DCC | XC &nbsp;→&nbsp; 700 + 90 = <strong>790</strong></div>
+    <div class="lead">Read each number in chunks. Write its&nbsp;value.</div>
+    <div class="q"><div class="q-top"><div class="q-num">1</div><div class="rowq"><p class="prompt"><span class="roman">CCXLVIII</span></p><input class="hw-field nb" data-k="r1" data-label="1. CCXLVIII"></div></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">2</div><div class="rowq"><p class="prompt"><span class="roman">DCLXXIV</span></p><input class="hw-field nb" data-k="r2" data-label="2. DCLXXIV"></div></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">3</div><div class="rowq"><p class="prompt"><span class="roman">CDLIX</span></p><input class="hw-field nb" data-k="r3" data-label="3. CDLIX"></div></div></div>
+  </div>
+
+  <div class="block">
+    <div class="example"><strong>Like this:</strong> 713 = 700 + 10 + 3 &nbsp;→&nbsp; DCC | X | III &nbsp;→&nbsp; <strong>DCCXIII</strong></div>
+    <div class="lead">Split each number first. Then write it in Roman&nbsp;numerals.</div>
+    <div class="q"><div class="q-top"><div class="q-num">4</div><div class="rowq"><p class="prompt">449</p><input class="hw-field nb" data-k="w1" data-label="4. Write 449 in Roman numerals"></div></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">5</div><div class="rowq"><p class="prompt">294</p><input class="hw-field nb" data-k="w2" data-label="5. Write 294 in Roman numerals"></div></div></div>
+  </div>
+
+  <div class="block">
+    <div class="q">
+      <div class="q-top"><div class="q-num">6</div><div class="lead" style="margin:0">Round <b>239,640</b> to the nearest&nbsp;1,000.</div></div>
+      <div class="four">
+        <div class="slot"><span class="cap">smaller neighbour</span><input class="hw-field nb" data-k="n1" data-label="6. 239,640: smaller neighbour"></div>
+        <div class="slot"><span class="cap">bigger neighbour</span><input class="hw-field nb" data-k="n2" data-label="6. 239,640: bigger neighbour"></div>
+        <div class="slot"><span class="cap">halfway</span><input class="hw-field nb" data-k="h" data-label="6. 239,640: halfway"></div>
+        <div class="slot"><span class="cap">rounds to</span><input class="hw-field nb" data-k="a" data-label="6. 239,640 to the nearest 1,000"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="q">
+      <div class="q-top"><div class="q-num">7</div><div class="lead" style="margin:0">Count back in&nbsp;10,000s.</div></div>
+      <div class="chain">
+        <span class="given">730,000</span><span class="ar">→</span><span class="given">720,000</span><span class="ar">→</span>
+        <input class="hw-field nb" data-k="c1" data-label="7. Count back: after 720,000"><span class="ar">→</span>
+        <input class="hw-field nb" data-k="c2" data-label="7. Count back: next"><span class="ar">→</span>
+        <input class="hw-field nb" data-k="c3" data-label="7. Count back: next"><span class="ar">→</span>
+        <input class="hw-field nb" data-k="c4" data-label="7. Count back: next">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><span>Take your time. You can do the tasks in any order.</span><span>1 / 2</span></div>
+
+<!-- ============ ENGLISH ============ -->
+<div class="section english">
+  <div class="page-label">CLARA’S HOMEWORK · 26 SEPTEMBER 2026</div>
+  <div class="sec-head"><span class="name">English</span><span class="note">relative clauses: saying two things at once</span></div>
+
+  <div class="block">
+    <p style="font-size:14.5px">You can add extra information about someone or something in the middle of a sentence with <b>who</b> or <b>which</b>. Put a comma on each&nbsp;side.</p>
+    <div class="example"><strong>Like this:</strong> Our teacher<strong>, who loves puzzles,</strong> gave us a riddle.</div>
+    <div class="chips"><div class="chip">who <span>for a person (or a pet with a name)</span></div><div class="chip">which <span>for a thing</span></div></div>
+  </div>
+
+  <div class="block">
+    <div class="lead">Write each sentence again. Add a <b>who</b> or <b>which</b> part in the middle, with a comma on each&nbsp;side.</div>
+    <div class="q">
+      <div class="q-top"><div class="q-num">1</div><p class="base" style="margin:0">The bakery sells the best cakes.</p></div>
+      <div class="hw-field sent" contenteditable="true" data-k="e1" data-label="1. The bakery sells the best cakes. (add who or which)" style="margin-top:8px"></div>
+    </div>
+    <div class="q">
+      <div class="q-top"><div class="q-num">2</div><p class="base" style="margin:0">My cousin lives in Dublin.</p></div>
+      <div class="hw-field sent" contenteditable="true" data-k="e2" data-label="2. My cousin lives in Dublin. (add who or which)" style="margin-top:8px"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="q">
+      <div class="q-top"><div class="q-num">3</div><div class="lead" style="margin:0">Now write one of your own about someone or something you&nbsp;like.</div></div>
+      <p class="small" style="margin:4px 0 6px 39px">It could be Poppy, a friend, a place or a&nbsp;game.</p>
+      <div class="hw-field sent" contenteditable="true" data-k="e3" data-label="3. My own sentence with who or which"></div>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><span>We’ll look at it together next lesson.</span><span>2 / 2</span></div>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script src="../assets/hw.js?v=20260923-export2"></script>
+</body>
+</html>

@@ -109,6 +109,13 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
  .photo-card img { height:auto; max-height:none; }
 }
 
+
+.worked-example { margin:14px 0 8px; }
+.model-answer { min-height:0; padding:12px 14px; color:#285E49; background:#F3FAF6; }
+@media screen {
+ .worked-example { margin:24px 0 12px; }
+ div.sent.model-answer { min-height:0 !important; padding:18px 20px; }
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -202,12 +209,16 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
 
   <div class="block">
     <p style="font-size:14.5px">You can add extra information about someone or something in the middle of a sentence with <b>who</b> or <b>which</b>. Put a comma on each&nbsp;side.</p>
-    <div class="example"><strong>Like this:</strong> Our teacher<strong>, who loves puzzles,</strong> gave us a riddle.</div>
     <div class="chips"><div class="chip">who <span>for a person (or a pet with a name)</span></div><div class="chip">which <span>for a thing</span></div></div>
   </div>
 
   <div class="block">
     <div class="lead">Write each sentence again. Add a <b>who</b> or <b>which</b> part in the middle, with a comma on each&nbsp;side.</div>
+    <div class="q worked-example">
+      <p class="small" style="font-weight:700;margin-bottom:6px">Example</p>
+      <p class="base">Our teacher gave us a riddle.</p>
+      <div class="sent model-answer">Our teacher<b>, who loves puzzles,</b> gave us a riddle.</div>
+    </div>
     <div class="q">
       <div class="q-top"><div class="q-num">1</div><p class="base" style="margin:0">The bakery sells the best cakes.</p></div>
       <div class="hw-field sent" contenteditable="true" data-k="e1" data-label="1. The bakery sells the best cakes. (add who or which)" style="margin-top:8px"></div>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 29 September 2026</title>
+<style>
+  @page { size: A4; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 760px; margin: auto; }
+  .keep { white-space: nowrap; }
+  p, .instr, .lede, .prompt { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 16px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .instr { font-size: 14.5px; color: #626a62; margin-bottom: 10px; }
+  .ctx { font-size: 16px; margin: 0 0 4px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .slot {
+    display: inline-block;
+    border-bottom: 2px solid #31594b;
+    padding: 0 3px;
+    color: #31594b; font-weight: 600;
+  }
+  .model .note {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; color: #626a62; margin-top: 3px;
+  }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .prompt { font-size: 16px; }
+  .prompt b { font-weight: 600; color: #31594b; white-space: nowrap; }
+  .stack .prompt { margin-bottom: 7px; }
+  .frame { font-family: Georgia, 'Times New Roman', serif; color: #31594b; font-weight: 600; }
+
+  .points { margin: 2px 0 8px 20px; font-size: 16px; }
+  .points li { margin-bottom: 2px; }
+  .check { font-size: 14px; color: #626a62; margin: 8px 0 0; }
+  .check b { color: #31594b; font-weight: 600; }
+
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+    resize: vertical;
+  }
+  .resp.two { min-height: 64px; }
+  section textarea.resp.long, .task textarea.resp.long { min-height: 170px !important; }
+
+  @media print {
+    body { font-size: 12.5px; line-height: 1.35; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 9px 0 7px; margin-bottom: 10px; }
+    .masthead { font-size: 10px; }
+    h1 { font-size: 21px; margin: 5px 0 2px; }
+    .lede { font-size: 12px; }
+    .task { padding: 9px 18px 10px; margin-bottom: 9px; }
+    h2 { font-size: 17px; margin-bottom: 3px; }
+    .instr { font-size: 12px; margin-bottom: 6px; }
+    .ctx, .points { font-size: 12.5px; }
+    .check { font-size: 11.5px; margin-top: 5px; }
+    .model { font-size: 13.5px; padding: 5px 12px; margin-bottom: 5px; }
+    .model .note { font-size: 12px; margin-top: 2px; }
+    .q { padding: 5px 0; gap: 8px; grid-template-columns: 20px minmax(0, 1fr); }
+    .qnum { font-size: 11px; padding-top: 1px; }
+    .prompt { font-size: 12.5px; }
+    .stack .prompt { margin-bottom: 4px; }
+    .resp { font-size: 12.5px; padding: 4px 9px; }
+    .resp.two { min-height: 44px; height: 44px; }
+    .resp.two.own { min-height: 58px; height: 58px; }
+    .task textarea.resp.long { min-height: 150px !important; height: 150px; }
+    .resp { resize: none; }
+    .resp::placeholder { color: transparent; }
+  }
+  .gap { display: inline-block; min-height: 0; height: 30px; padding: 3px 8px; margin: 0 3px; vertical-align: baseline; font-size: 15px; }
+  .cue { color: #626a62; font-size: 14px; white-space: nowrap; }
+  .vline { line-height: 2.1; }
+  @media print { .gap { height: 24px; font-size: 12px; } .vline { line-height: 1.9; } .cue { font-size: 11.5px; } }
+  .do { font-size: 17px; font-weight: 600; color: #1f2a24; margin: 2px 0 10px; }
+  .do b { color: #31594b; }
+  @media print { .do { font-size: 13.5px; margin-bottom: 6px; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-09-29" data-sheet-id="roman-2026-09-29-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>29 September 2026</span></div>
+    <h1>I prefer&hellip; It&rsquo;s worth&hellip;</h1>
+    <div class="lede">About 20&nbsp;minutes.</div>
+  </header>
+
+  <div class="task">
+    <h2>1. Answer the&nbsp;question</h2>
+    <div class="do">Answer with <b>I prefer + -ing</b>, and add a short&nbsp;reason.</div>
+    <div class="model">&laquo;What do you prefer doing on holiday?&raquo; &rarr; <b>I prefer</b> <span class="slot">visiting</span> small towns. They&rsquo;re quieter than big&nbsp;cities.
+      <div class="note">After <b>prefer</b>: -ing (or <b>to</b> + verb). Not the plain&nbsp;verb.</div>
+    </div>
+    <div class="q"><span class="qnum">1.</span><div class="stack">
+      <p class="prompt">&laquo;What do you prefer doing on a free Sunday in&nbsp;Madrid?&raquo;</p>
+      <textarea class="hw-field resp two own" rows="2" data-k="p1" data-label="1. What do you prefer doing on a free Sunday in Madrid?" aria-label="Answer 1" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>2. Ask your&nbsp;friend</h2>
+    <div class="do">Write each question. Use the frame in the&nbsp;item.</div>
+    <div class="model">(walk / take the bus to work) &rarr; <b>Do you prefer</b> <span class="slot">walking</span> or <span class="slot">taking</span> the bus to&nbsp;work?</div>
+    <div class="q"><span class="qnum">2.</span><div class="stack">
+      <p class="prompt">(cook at home / eat out on a Friday evening) &rarr; <span class="frame">Do you prefer &hellip;ing &hellip; or &hellip;ing &hellip;?</span></p>
+      <textarea class="hw-field resp two" rows="2" data-k="p2" data-label="2. Do you prefer question: cook at home / eat out on a Friday evening" aria-label="Answer 2" placeholder="Type your answer here"></textarea>
+    </div></div>
+    <div class="q"><span class="qnum">3.</span><div class="stack">
+      <p class="prompt">(take a taxi to the airport) &rarr; <span class="frame">Is it worth &hellip;ing &hellip;?</span></p>
+      <textarea class="hw-field resp two" rows="2" data-k="p3" data-label="3. Is it worth question: take a taxi to the airport" aria-label="Answer 3" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>3. Give your friend a&nbsp;tip</h2>
+    <p class="ctx">A friend from Moscow is coming to Madrid for a&nbsp;weekend.</p>
+    <div class="do">Write one sentence with <b>It&rsquo;s worth / It isn&rsquo;t worth + -ing</b>, and say&nbsp;why.</div>
+    <div class="model">A friend is going to Valencia. &rarr; <b>It&rsquo;s worth</b> <span class="slot">trying</span> the paella there. It&rsquo;s much better than in&nbsp;Madrid.
+      <div class="note">After <b>worth</b>: only&nbsp;-ing.</div>
+    </div>
+    <div class="q"><span class="qnum">4.</span><div class="stack">
+      <p class="prompt">Something your friend should do: <span class="frame">It&rsquo;s worth &hellip;ing &hellip;</span></p>
+      <textarea class="hw-field resp two own" rows="2" data-k="t1" data-label="4. Tip for Madrid: It's worth + -ing, and why" aria-label="Answer 4" placeholder="Type your answer here"></textarea>
+    </div></div>
+    <div class="q"><span class="qnum">5.</span><div class="stack">
+      <p class="prompt">Something that is not a good idea on a short visit: <span class="frame">It isn&rsquo;t worth &hellip;ing &hellip;</span></p>
+      <textarea class="hw-field resp two own" rows="2" data-k="t2" data-label="5. Tip for Madrid: It isn't worth + -ing, and why" aria-label="Answer 5" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>4. A message to a new&nbsp;colleague</h2>
+    <p class="ctx">You are starting a project with a new colleague in&nbsp;Spain.</p>
+    <div class="do">Write 3-4 sentences to your&nbsp;colleague.</div>
+    <ul class="points">
+      <li>how you usually prefer working (call or write? start early or&nbsp;late?)</li>
+      <li>one tip about working with Spanish&nbsp;clients</li>
+      <li>one question for your&nbsp;colleague</li>
+    </ul>
+    <textarea class="hw-field resp long" rows="7" data-k="m1" data-label="6. Message to a new colleague (3-4 sentences)" aria-label="Your message" placeholder="Type your answer here"></textarea>
+    <p class="check">Check: <b>I prefer + -ing</b> &middot; <b>It&rsquo;s worth + -ing</b> &middot; <b>a&nbsp;question</b></p>
+  </div>
+
+  <div class="task">
+    <h2>5. Words from&nbsp;today</h2>
+    <div class="do">Write the English phrase. The Russian in brackets is a&nbsp;hint.</div>
+    <p class="instr">Change the form to fit the&nbsp;sentence.</p>
+    <div class="q"><span class="qnum">1.</span><p class="prompt vline">My neighbour <input class="hw-field resp gap" style="width:270px" data-k="v1" data-label="1. My neighbour ___ (отвозит детей в школу) at half past eight and then goes to the gym." aria-label="Gap 1" autocomplete="off"> <span class="cue">(отвозит детей в школу)</span> at half past eight and then goes to the&nbsp;gym.</p></div>
+    <div class="q"><span class="qnum">2.</span><p class="prompt vline">Pistachio is the <input class="hw-field resp gap" style="width:170px" data-k="v2" data-label="2. Pistachio is the ___ (фирменный вкус) of the new ice-cream shop in our street." aria-label="Gap 2" autocomplete="off"> <span class="cue">(фирменный вкус)</span> of the new ice-cream shop in our&nbsp;street.</p></div>
+    <div class="q"><span class="qnum">3.</span><p class="prompt vline">After twenty business dinners this month, I feel a bit <input class="hw-field resp gap" style="width:110px" data-k="v3" data-label="3. After twenty business dinners this month, I feel a bit ___ (пресытившийся): I just want soup at home." aria-label="Gap 3" autocomplete="off"> <span class="cue">(пресытившийся):</span> I just want soup at&nbsp;home.</p></div>
+    <div class="q"><span class="qnum">4.</span><p class="prompt vline">Every break the boys play on <input class="hw-field resp gap" style="width:190px" data-k="v4" data-label="4. Every break the boys play on ___ (футбольное поле) behind the school." aria-label="Gap 4" autocomplete="off"> <span class="cue">(футбольное поле)</span> behind the&nbsp;school.</p></div>
+    <div class="q"><span class="qnum">5.</span><p class="prompt vline">Sorry, these discount coupons <input class="hw-field resp gap" style="width:140px" data-k="v5" data-label="5. Sorry, these discount coupons ___ (недействительны) on Sundays." aria-label="Gap 5" autocomplete="off"> <span class="cue">(недействительны)</span> on&nbsp;Sundays.</p></div>
+    <div class="q"><span class="qnum">6.</span><p class="prompt vline">My colleague <input class="hw-field resp gap" style="width:150px" data-k="v6" data-label="6. My colleague ___ (раньше играл) football for a small club in Valencia." aria-label="Gap 6" autocomplete="off"> <span class="cue">(раньше играл)</span> football for a small club in&nbsp;Valencia.</p></div>
+    <div class="q"><span class="qnum">7.</span><p class="prompt vline">The new office is nice, but <input class="hw-field resp gap" style="width:150px" data-k="v7" data-label="7. The new office is nice, but ___ (если честно), it's too far from my house." aria-label="Gap 7" autocomplete="off"> <span class="cue">(если честно),</span> it&rsquo;s too far from my&nbsp;house.</p></div>
+    <div class="q"><span class="qnum">8.</span><p class="prompt vline">Every morning I <input class="hw-field resp gap" style="width:120px" data-k="v8" data-label="8. Every morning I ___ (прохожу мимо) a small bakery on my way to the station." aria-label="Gap 8" autocomplete="off"> <span class="cue">(прохожу мимо)</span> a small bakery on my way to the&nbsp;station.</p></div>
+    <div class="q"><span class="qnum">9.</span><p class="prompt vline">Flats in the <input class="hw-field resp gap" style="width:200px" data-k="v9" data-label="9. Flats in the ___ (соседних районах) are much cheaper than in the centre." aria-label="Gap 9" autocomplete="off"> <span class="cue">(соседних районах)</span> are much cheaper than in the&nbsp;centre.</p></div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script src="../assets/hw.js?v=20260923-export2"></script>
+</body>
+</html>

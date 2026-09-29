@@ -17,27 +17,27 @@ body {
 }
 p { text-wrap: pretty; }
 header {
-  background: linear-gradient(135deg, #6c63ff, #a78bfa);
-  color: white; border-radius: 10px;
+  background: linear-gradient(135deg, #bfeae4, #e3f6f3);
+  color: #1d4f4a; border-radius: 14px;
   padding: 12px 20px; margin-bottom: 16px;
 }
 header h1 { font-size: 24px; }
-header .sub { font-size: 14px; opacity: 0.92; margin-top: 2px; }
+header .sub { font-size: 14px; opacity: 0.85; margin-top: 2px; }
 
-.ex-card { border: 2px solid #ede9fe; border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+.ex-card { border: 1.5px solid #d6f1ed; border-radius: 16px; overflow: hidden; margin-bottom: 16px; }
 .ex-header {
-  background: #6c63ff; color: white; padding: 6px 18px;
+  background: #4fb3a9; color: white; padding: 6px 18px;
   font-weight: 700; font-size: 12.5px; letter-spacing: 0.6px; text-transform: uppercase;
   break-after: avoid; page-break-after: avoid;
 }
 .ex-body { padding: 14px 20px 18px; }
 
-.instruction { font-size: 20px; font-weight: 700; color: #1f1147; margin-bottom: 2px; }
+.instruction { font-size: 20px; font-weight: 700; color: #1d4f4a; margin-bottom: 2px; }
 .note { font-size: 13.5px; color: #777; margin-bottom: 14px; }
 
 .q { page-break-inside: avoid; break-inside: avoid; }
 .num {
-  flex: none; background: #6c63ff; color: white; border-radius: 50%;
+  flex: none; background: #4fb3a9; color: white; border-radius: 50%;
   width: 26px; height: 26px; text-align: center; line-height: 26px;
   font-size: 13px; font-weight: 700; text-indent: 0; letter-spacing: 0;
 }
@@ -45,22 +45,22 @@ header .sub { font-size: 14px; opacity: 0.92; margin-top: 2px; }
 /* word tiles */
 .bank {
   display: flex; flex-wrap: wrap; gap: 8px 10px; min-height: 50px;
-  padding: 10px; border-radius: 12px; background: #f3f1ff; margin-bottom: 14px;
+  padding: 10px; border-radius: 12px; background: #eefaf8; margin-bottom: 14px;
 }
 .tile {
-  font: inherit; font-size: 16px; font-weight: 600; color: #2e1065;
-  background: #fff; border: 2px solid #8b7cf6; border-radius: 999px;
+  font: inherit; font-size: 16px; font-weight: 600; color: #1d4f4a;
+  background: #fff; border: 2px solid #7ccdc3; border-radius: 999px;
   padding: 5px 14px; cursor: grab; white-space: nowrap;
   touch-action: none; user-select: none; -webkit-user-select: none;
-  box-shadow: 0 2px 0 #c4b5fd;
+  box-shadow: 0 2px 0 #c3ebe5;
 }
-.tile.picked { outline: 3px solid #f59e0b; outline-offset: 2px; }
+.tile.picked { outline: 3px solid #f2a882; outline-offset: 2px; }
 .tile.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; transform: scale(1.05); }
 .slot {
   display: inline-flex; align-items: center; justify-content: center;
-  min-height: 40px; border: 2px dashed #a5b4fc; border-radius: 999px; background: #fafaff;
+  min-height: 40px; border: 2px dashed #9ad9d0; border-radius: 999px; background: #f8fdfc;
 }
-.slot.over, .slot.ready { border-color: #6c63ff; background: #ede9fe; }
+.slot.over, .slot.ready { border-color: #4fb3a9; background: #d6f1ed; }
 .slot .tile { box-shadow: none; }
 
 /* Part 1: match */
@@ -76,20 +76,20 @@ header .sub { font-size: 14px; opacity: 0.92; margin-top: 2px; }
 .bwrap { flex: 1; min-width: 0; }
 .sline { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 8px; }
 .sline .slot { min-width: 62px; padding: 0 2px; }
-.sline .stop { font-size: 22px; font-weight: 700; color: #2e1065; margin-left: 1px; }
-.bwrap .bank { margin-bottom: 0; min-height: 46px; padding: 7px 8px; background: #f7f6ff; }
+.sline .stop { font-size: 22px; font-weight: 700; color: #1d4f4a; margin-left: 1px; }
+.bwrap .bank { margin-bottom: 0; min-height: 46px; padding: 7px 8px; background: #f3fbfa; }
 
 /* Part 3: choose the form */
 .story { font-size: 17px; line-height: 2.35; margin-bottom: 14px; }
 .story select { font: inherit; font-size: 16px; }
 .story select.hw-field { min-width: 0 !important; min-height: 34px; padding: 1px 6px; vertical-align: baseline; }
-.own-label { font-size: 17px; font-weight: 700; color: #1f1147; margin-bottom: 6px; }
+.own-label { font-size: 17px; font-weight: 700; color: #1d4f4a; margin-bottom: 6px; }
 textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
 
 .store { display: none; }
 
 /* Local PDF preview only (hw.css is not loaded here; online, the shared hw.css styles the fields). */
-.story select, textarea.own { border: 2px solid #8072b2; border-radius: 8px; background: #f6f5ff; padding: 4px 8px; }
+.story select, textarea.own { border: 2px solid #7ccdc3; border-radius: 8px; background: #f1fbf9; padding: 4px 8px; }
 
 @media (max-width: 620px) {
   body { padding: 10px; }
@@ -141,6 +141,22 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
   .sline .slot { min-width: 64px !important; }
   textarea.own { resize: none; }
 }
+
+/* listen button on Part 1 tiles */
+.tile .say { display: inline-block; margin-left: 7px; padding: 0 2px; font-size: 14px; line-height: 1; cursor: pointer; border-radius: 6px; opacity: 0.75; }
+.tile .say:hover, .tile .say:focus { opacity: 1; background: #d6f1ed; outline: none; }
+.tile .say.off { opacity: 0.3; cursor: not-allowed; }
+.saynote { display: none; font-size: 13px; color: #8a6d3b; margin: -8px 0 10px; }
+@media print { .tile .say, .saynote { display: none !important; } }
+
+.vocablink { font-size: 15.5px; margin: -6px 0 14px; padding: 8px 14px; background: #eefaf8; border-radius: 12px; }
+.vocablink a { color: #1d7a71; font-weight: 700; }
+.answers ol { padding-left: 20px; font-size: 15.5px; }
+.answers li { margin-bottom: 4px; }
+.answers .ok { color: #1d7a71; font-weight: 700; }
+.answers .no { color: #c05621; font-weight: 700; }
+.answers .yours { color: #777; font-size: 13.5px; }
+@media print { .vocablink { display: none; } }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -154,21 +170,23 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
   <h1>Homework: Kristina</h1>
   <div class="sub">29 September 2026 &middot; your trip to Milan and&nbsp;Munich</div>
 </header>
+<p class="vocablink">&#128218; Your words from our lessons: <a href="https://arsdashok.github.io/vocab/c7c5a89559e3a09e/" target="_blank" rel="noopener">open your vocabulary&nbsp;page</a></p>
 
 <!-- PART 1: match. Bank positions of the correct tile for targets 1-6: 3,5,1,4,6,2 -->
 <section class="ex-card">
   <div class="ex-header">Part 1 &middot; Words from the lesson</div>
   <div class="ex-body">
     <p class="instruction">Drag each word to the right&nbsp;situation.</p>
-    <p class="note">On a phone: tap a word, then tap a box. Tap a word in a box to send it&nbsp;back.</p>
+    <p class="saynote" id="saynote">Listening needs the Google UK English voice, which is in Chrome. The words still work without it.</p>
+    <p class="note">Tap &#128264; to hear a word. On a phone: tap a word, then tap a box. Tap a word in a box to send it&nbsp;back.</p>
 
     <div class="bank" data-group="m" data-mode="match" aria-label="Words">
-      <button type="button" class="tile" data-word="a plumber" data-i="0">a plumber</button>
-      <button type="button" class="tile" data-word="national costumes" data-i="1">national costumes</button>
-      <button type="button" class="tile" data-word="a guide" data-i="2">a guide</button>
-      <button type="button" class="tile" data-word="deli meat" data-i="3">deli meat</button>
-      <button type="button" class="tile" data-word="a tent" data-i="4">a tent</button>
-      <button type="button" class="tile" data-word="a handyman" data-i="5">a handyman</button>
+      <button type="button" class="tile" data-word="a plumber" data-i="0">a plumber<span class="say" role="button" tabindex="0" aria-label="Listen: a plumber" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="national costumes" data-i="1">national costumes<span class="say" role="button" tabindex="0" aria-label="Listen: national costumes" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="a guide" data-i="2">a guide<span class="say" role="button" tabindex="0" aria-label="Listen: a guide" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="deli meat" data-i="3">deli meat<span class="say" role="button" tabindex="0" aria-label="Listen: deli meat" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="a tent" data-i="4">a tent<span class="say" role="button" tabindex="0" aria-label="Listen: a tent" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="a handyman" data-i="5">a handyman<span class="say" role="button" tabindex="0" aria-label="Listen: a handyman" title="Listen">&#128264;</span></button>
     </div>
 
     <div class="mlist">
@@ -285,6 +303,10 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
   </div>
 </section>
 
+<section class="ex-card answers" id="answers" hidden>
+  <div class="ex-header">Answers</div>
+  <div class="ex-body"><p class="note">Compare with your answers. &#10003; = the same, &#10007; = look again.</p><ol id="anslist"></ol></div>
+</section>
 <!-- Data store for the drag tasks: hw.js saves these, the key marks them, the emailed PDF shows the tiles. -->
 <div class="store" aria-hidden="true">
   <select data-k="m1" data-label="1.1 Castle: showed us round, in German only" class="hw-field"><option value="">Choose</option><option value="a plumber">a plumber</option><option value="national costumes">national costumes</option><option value="a guide">a guide</option><option value="deli meat">deli meat</option><option value="a tent">a tent</option><option value="a handyman">a handyman</option></select>
@@ -356,6 +378,35 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
         if (v) v.split(" ").forEach(function (w, i) { if (w && w !== "___" && g.slots[i]) { var t = take(w); if (t) g.slots[i].appendChild(t); } });
       }
     });
+
+    // listen: Google UK English Female, rate 0.9, on click only; no other voice is substituted
+    var ukVoice = null;
+    function findVoice() {
+      if (!("speechSynthesis" in window)) return null;
+      var vs = window.speechSynthesis.getVoices();
+      for (var i = 0; i < vs.length; i++) if (vs[i].name === "Google UK English Female") return vs[i];
+      return null;
+    }
+    function updateSay() {
+      ukVoice = findVoice();
+      var tried = "speechSynthesis" in window && window.speechSynthesis.getVoices().length > 0;
+      document.querySelectorAll(".tile .say").forEach(function (b) { b.classList.toggle("off", !ukVoice && tried); });
+      var n = document.getElementById("saynote"); if (n) n.style.display = (!ukVoice && tried) || !("speechSynthesis" in window) ? "block" : "none";
+    }
+    if ("speechSynthesis" in window) { updateSay(); window.speechSynthesis.onvoiceschanged = updateSay; } else updateSay();
+    function speak(word) {
+      if (!ukVoice) ukVoice = findVoice();
+      if (!ukVoice) { updateSay(); return; }
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(word); u.voice = ukVoice; u.lang = ukVoice.lang; u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }
+    document.querySelectorAll(".tile .say").forEach(function (b) {
+      function go(e) { e.preventDefault(); e.stopPropagation(); speak(b.closest(".tile").dataset.word); }
+      b.addEventListener("pointerdown", function (e) { e.stopPropagation(); });
+      b.addEventListener("click", go);
+      b.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") go(e); });
+    });
     document.querySelectorAll(".tile").forEach(function (tile) {
       tile.addEventListener("click", function (e) { e.stopPropagation(); });
       tile.addEventListener("pointerdown", function (e) {
@@ -410,6 +461,37 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
     });
   }
   if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+
+<script>
+/* Answers appear only AFTER she sends the sheet (Dasha, 29 Sept 2026: «правильные ответы пусть ей показывает после выполнения»). */
+(function () {
+  var A = JSON.parse(decodeURIComponent(escape(atob("W1sibTEiLCAiMS4xIFdhbGtlZCB3aXRoIHVzIGFuZCBzaG93ZWQgdXMgdGhlIGJ1aWxkaW5ncyIsICJhIGd1aWRlIl0sIFsibTIiLCAiMS4yIFBlb3BsZSBzaXQgaW4gaXQgYXQgT2t0b2JlcmZlc3QiLCAiYSB0ZW50Il0sIFsibTMiLCAiMS4zIE5vIHdhdGVyIGluIHRoZSB3YXNoaW5nIG1hY2hpbmUiLCAiYSBwbHVtYmVyIl0sIFsibTQiLCAiMS40IFRoaW4gc2xpY2VzIG9mIGhhbSBhbmQgc2FsYW1pIiwgImRlbGkgbWVhdCJdLCBbIm01IiwgIjEuNSBTbWFsbCBqb2JzIGluIGEgaG91c2UiLCAiYSBoYW5keW1hbiJdLCBbIm02IiwgIjEuNiBUcmFkaXRpb25hbCBjbG90aGVzIiwgIm5hdGlvbmFsIGNvc3R1bWVzIl0sIFsiYjEiLCAiMi4xIiwgIkluIE1pbGFuIHRoZSBjZW50cmUgd2FzIGNsb3NlZCJdLCBbImIyIiwgIjIuMiIsICJXZSB3b3JlIG5hdGlvbmFsIGNvc3R1bWVzIGF0IE9rdG9iZXJmZXN0Il0sIFsiYjMiLCAiMi4zIiwgIkF0IHRoZSBjYXN0bGUgdGhlIGd1aWRlIHNwb2tlIEdlcm1hbiJdLCBbImI0IiwgIjIuNCIsICJJIGRpZCB0aGUgd2FzaGluZyB1cCJdLCBbImMxIiwgIjMuMSBBZnRlciBMb25kb24gd2Ug4oCmIiwgIndlbnQiXSwgWyJjMyIsICIzLjIgSW4gTWlsYW4gdGhlIHdhaXRlciDigKYiLCAiYnJvdWdodCJdLCBbImMyIiwgIjMuMyBJdCDigKYgMjggZGVncmVlcyB0aGVyZSIsICJ3YXMiXSwgWyJjNCIsICIzLjQgRXZlcnlib2R5IOKApiBiZWVyIiwgImRyYW5rIl0sIFsiYzUiLCAiMy41IFRoZSBkaXNjb3VudHMg4oCmIiwgIndlcmUiXSwgWyJjNiIsICIzLjYgYWJvdXQg4oCmIHBlcmNlbnQiLCAiZmlmdHkiXV0="))));
+  function norm(s) { return (s || "").toLowerCase().replace(/[.,!?]/g, "").replace(/\s+/g, " ").trim(); }
+  function val(k) { var els = document.querySelectorAll("[data-k]"); for (var i = 0; i < els.length; i++) if (els[i].dataset.k === k) return els[i].value || ""; return ""; }
+  function show() {
+    var box = document.getElementById("answers"), ol = document.getElementById("anslist");
+    if (!box || !ol || !box.hidden) return;
+    ol.innerHTML = "";
+    A.forEach(function (r) {
+      var mine = val(r[0]).replace(/___/g, "").trim(), ok = norm(mine) === norm(r[2]);
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="' + (ok ? "ok" : "no") + '">' + (ok ? "&#10003;" : "&#10007;") + "</span> " + r[1] + ": <b></b>" + (ok ? "" : ' <span class="yours"></span>');
+      li.querySelector("b").textContent = r[2];
+      if (!ok) li.querySelector(".yours").textContent = "(yours: " + (mine || "empty") + ")";
+      ol.appendChild(li);
+    });
+    box.hidden = false;
+    try { localStorage.setItem("kristina-2026-09-29-shown", "1"); } catch (e) {}
+  }
+  function watch() {
+    var msg = document.getElementById("hwMsg");
+    try { if (localStorage.getItem("kristina-2026-09-29-shown") === "1") setTimeout(show, 300); } catch (e) {}
+    if (!msg) return;
+    new MutationObserver(function () { if (/^Sent!/.test(msg.textContent)) setTimeout(show, 200); }).observe(msg, { childList: true, characterData: true, subtree: true });
+  }
+  if (document.readyState === "complete") setTimeout(watch, 500); else window.addEventListener("load", function () { setTimeout(watch, 500); });
 })();
 </script>
 </div><!-- /sheet -->

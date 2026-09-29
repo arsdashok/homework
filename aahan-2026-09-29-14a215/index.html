@@ -2,23 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aahan &middot; Maths homework &middot; 29 September 2026</title>
-<!-- Built from Materials/Maths/Year 5/Lessons/2026-W40 Mental Methods & Checking/Whiteboard_Cards_2026_W40_Mental_Methods.html
-     (cards 01-06 taught 2026-09-29; card 07 exit ticket skipped, none of its numbers are reused here).
-     Block 1 = choosing the tool, aimed at the "any digits that add to 9 make a bond" confusion: bond items AND
-     known-fact items both carry a digit pair that adds to 9, so only the next parts decide. One compensate item
-     brings back the name he forgot. No reminder: the rule for choosing would answer the block (see his 4c).
-     Block 2 = subtraction across a nearly round number (the 60,000 - 24,998 moment), model is a number line on
-     80,000 - 37,995, which is in no item.
-     Block 3 = lie detector, estimate + verdict. Estimate key uses Dasha's nearest-thousand rule
-     ("four to the floor, five to the sky"), never truncation. Every "believable" printed answer is really correct.
-     Verdict order B R R B B R. Tool order B K K C B K. -->
+<!-- v3, 29 Sept 2026. v2 rebuilt the sheet after Dasha rejected the lie-detector block (it repeated the 22 Sept
+     sheet and lesson card 06); v3 is the one gate fix round. No printed claim + verdict anywhere. Built from
+     Materials/Maths/Year 5/Lessons/2026-W40 Mental Methods & Checking/Whiteboard_Cards_2026_W40_Mental_Methods.html
+     (cards 01-06 taught). No lesson-card numbers reused.
+     Block 1 = sort into the four tools, split 3/2/2/1 (known facts 3, bonds 2, compensate 2, count up 1) so the
+       last box cannot be filled by elimination. Every bonds and known-facts tile carries a digit pair adding to 9.
+       Tile order by bin: B K K C U B C K.
+     Block 2 = code breaker, signs - + - - + - +, secret word PENALTY. The first four items are the ones whose
+       decoys are close in size (18/13/12, 72,298/72,302, 16/12, 30,003/30,000/29,997), so the word is not
+       guessable before real calculation. Each of the seven word letters appears on exactly three entries, and
+       the last three letters each carry a same-size entry from another item (L: 109,997; T: 1,982; Y: 19,984),
+       while each of the last three items has its own same-size error on another letter (880,000 T, 2,600 P,
+       19,000 O). Reading an answer back from a guessed word is therefore hard, not impossible: it still needs a
+       rough calculation. Every decoy is a real error: sign misread, dropped count-up jump, compensating the
+       wrong way, smaller-from-larger in each column, a known-fact slip, the lost thousand from a bond.
+       Model 80,000 - 37,995 answers no item.
+     Block 3 = drag each calculation onto its nearest-thousand estimate. Item 1 exercises "five to the sky"
+       (38,520 -> 39,000). Decoy targets = truncation and one sign misread. Every exact answer rounds to its keyed
+       target. Correct board positions 6,2,7,9,5. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
-  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --muted: #6b5f4e;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --teal-soft: #e3f5f4; --muted: #6b5f4e;
 }
 @page { size: A4; margin: 10mm 12mm; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,28 +52,64 @@ section { background: var(--paper); border: 3px solid var(--ink); border-radius:
 h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 27px; line-height: 1.1; margin-bottom: 12px; break-after: avoid; page-break-after: avoid; }
 .badge { flex: none; width: 42px; height: 42px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; padding-top: 3px; }
 /* three registers: items regular, instruction bold, notes small */
-.instruction { font-size: 20px; line-height: 1.35; font-weight: 700; margin-bottom: 6px; text-wrap: pretty; }
-.reminder { font-size: 15px; line-height: 1.4; font-weight: 500; color: var(--muted); background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 12px; padding: 7px 12px; margin: 8px 0 12px; text-wrap: pretty; }
-.reminder b { color: var(--ink); font-weight: 800; }
-.q { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; padding: 9px 0; border-bottom: 2px dashed #e6d6b4; break-inside: avoid; page-break-inside: avoid; }
+.instruction { font-size: 20px; line-height: 1.35; font-weight: 700; margin-bottom: 4px; text-wrap: pretty; }
+.note { font-size: 14px; line-height: 1.4; color: var(--muted); margin-bottom: 10px; text-wrap: pretty; }
+.note b { color: var(--ink); }
+.q { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; padding: 7px 0; border-bottom: 2px dashed #e6d6b4; break-inside: avoid; page-break-inside: avoid; }
 .q:last-child { border-bottom: 0; }
 .qnum { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
 .rowq { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-.prompt { font-size: 20px; font-weight: 500; line-height: 1.4; font-variant-numeric: tabular-nums; text-wrap: pretty; }
-.rowq .prompt { margin-bottom: 0; white-space: nowrap; }
-.controls { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
-.answer-label { font-size: 13px; font-weight: 500; color: var(--muted); margin-right: 6px; }
-.controls .printchoice { display: none; }
-.est { width: 112px; font: inherit; font-size: 17px; }
+.prompt { font-size: 20px; font-weight: 500; line-height: 1.4; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .fin { width: 130px; max-width: 100%; font: inherit; font-size: 17px; }
-select { font: inherit; font-size: 15px; }
-/* block 2: items beside a worked model */
+.picks { display: none; }
+.prt { display: none; }
+.codebook.shut .codes { display: none; }
+.cbopen { font: inherit; font-size: 15px; font-weight: 800; color: var(--ink); background: var(--gold); border: 2px solid var(--ink); border-radius: 999px; padding: 5px 16px; box-shadow: 3px 3px 0 #000; cursor: pointer; }
+.codebook:not(.shut) .cbopen { display: none; }
+
+/* drag and drop (blocks 1 and 3) */
+.bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; min-height: 58px; padding: 10px; border: 2px dashed #c9b891; border-radius: 14px; background: #fff; }
+.tile { font: inherit; font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink); background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 10px; padding: 6px 12px; box-shadow: 3px 3px 0 var(--ink); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 7px; }
+.tile .tn { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--gold); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.tile.picked { outline: 3px solid var(--orange); outline-offset: 2px; }
+.tile.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; transform: scale(1.05); }
+.zone.over .drop, .zone.ready .drop { background: var(--teal-soft); }
+.bins { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.bin { border: 3px solid var(--ink); border-radius: 14px; background: #fff; display: flex; flex-direction: column; min-width: 0; }
+.bin .bname { background: var(--teal); color: #fff; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 18px; letter-spacing: .03em; text-align: center; padding: 6px 4px 3px; border-bottom: 3px solid var(--ink); border-radius: 11px 11px 0 0; }
+.bin .drop { flex: 1; min-height: 110px; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 9px 6px; border-radius: 0 0 11px 11px; }
+.bin .drop .tile { font-size: 15px; padding: 4px 8px; box-shadow: 2px 2px 0 var(--ink); white-space: normal; text-align: center; max-width: 100%; }
+
+/* block 2: code breaker */
 .split { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 22px; align-items: start; }
 .model { border-left: 3px solid var(--teal); padding: 2px 0 2px 12px; font-size: 14px; line-height: 1.4; color: var(--muted); break-inside: avoid; page-break-inside: avoid; }
 .model .tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
 .model .sum { font-size: 17px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; margin: 2px 0 4px; }
 .model svg { display: block; width: 100%; height: auto; margin: 2px 0 4px; }
 .model b { color: var(--ink); }
+.codebook { margin-top: 12px; border: 3px solid var(--ink); border-radius: 14px; background: var(--night); padding: 10px 12px 12px; break-inside: avoid; page-break-inside: avoid; }
+.codebook .cbtitle { font-family: 'Luckiest Guy', 'Arial Black', sans-serif; color: var(--gold); font-size: 18px; letter-spacing: .04em; margin-bottom: 6px; }
+.codes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px 8px; }
+.code { display: flex; align-items: center; justify-content: space-between; gap: 6px; background: var(--cream); border-radius: 8px; padding: 3px 5px 3px 9px; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.code .ltr { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--gold); border: 2px solid var(--ink); font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 14px; display: flex; align-items: center; justify-content: center; padding-top: 2px; }
+.cbhead { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.cbhead .cbtitle { margin-bottom: 0; }
+.secret { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.secret .slabel { font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 18px; letter-spacing: .04em; color: var(--gold); }
+.secret input { width: 200px; font: inherit; font-size: 20px; letter-spacing: .3em; text-transform: uppercase; background: #fff; }
+
+/* block 3: target board */
+.board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+.target { border: 3px solid var(--ink); border-radius: 14px; background: #fff; display: flex; flex-direction: column; min-width: 0; }
+.target .val { font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 19px; letter-spacing: .03em; text-align: center; padding: 6px 2px 2px; border-bottom: 2px dashed #c9b891; }
+.target .drop { min-height: 46px; display: flex; align-items: center; justify-content: center; padding: 5px 4px; border-radius: 0 0 11px 11px; }
+.target .drop .tile { font-size: 13px; padding: 3px 6px; gap: 4px; box-shadow: 2px 2px 0 var(--ink); white-space: normal; text-align: center; max-width: 100%; line-height: 1.2; }
+.target .drop .tile .tn { width: 18px; height: 18px; font-size: 10px; }
+
+@media (max-width: 820px) {
+  .split { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .model { max-width: 320px; }
+}
 @media (max-width: 620px) {
   body { padding: 16px 12px 36px; }
   .banner { height: 168px; }
@@ -73,43 +119,68 @@ select { font: inherit; font-size: 15px; }
   .banner .date { top: 10px; font-size: 12px; }
   section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
   h2 { font-size: 24px; }
+  .instruction { font-size: 18px; }
   .q { grid-template-columns: 30px minmax(0, 1fr); }
   .rowq { flex-wrap: wrap; gap: 8px; }
-  .rowq .prompt { white-space: normal; font-size: 18px; }
-  .controls { flex-wrap: wrap; gap: 8px; min-width: 0; max-width: 100%; }
-  .controls label { display: flex; align-items: center; }
-  .controls select, .controls input { max-width: 100%; min-width: 0 !important; }
-  .est { width: 104px !important; }
-  .fin { width: 124px !important; }
-  .instruction { font-size: 18px; }
-  .split { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .model { max-width: 320px; }
+  .prompt { font-size: 18px; }
+  .fin { width: 96px !important; min-width: 0 !important; }
+  .tile { font-size: 16px; padding: 6px 10px; }
+  .bins { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .bin .drop { min-height: 90px; }
+  .codes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .target .drop .tile { font-size: 14px; }
 }
 @media print {
-  body { padding: 0; font-size: 12.5px; line-height: 1.32; background: var(--cream); }
-  .banner { height: 82px; margin-bottom: 12px; box-shadow: 4px 4px 0 var(--ink); }
+  html, body { background: #fff; }
+  body { padding: 0; font-size: 12.5px; line-height: 1.32; }
+  .scr, .tapnote, .cbopen { display: none !important; }
+  .prt { display: inline; }
+  .codebook .codes { display: grid !important; }
+  .banner { height: 70px; margin-bottom: 10px; box-shadow: 4px 4px 0 var(--ink); }
   .banner .digits { font-size: 70px; }
-  .banner .digits.two { top: 44px; }
+  .banner .digits.two { top: 38px; }
   .banner .label { bottom: 9px; padding: 4px 12px 3px; }
   .banner .kicker { font-size: 10px; }
   .banner h1 { font-size: 22px; }
   .banner .date { font-size: 11px; top: 9px; }
-  section { padding: 9px 14px 10px; margin-bottom: 11px; box-shadow: 4px 4px 0 var(--ink); }
-  h2 { font-size: 19px; margin-bottom: 5px; }
+  section { padding: 8px 14px 10px; margin-bottom: 10px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 19px; margin-bottom: 4px; }
   .badge { width: 28px; height: 28px; font-size: 16px; }
-  .instruction { font-size: 14.5px; margin-bottom: 3px; }
-  .reminder { font-size: 11px; margin: 4px 0 5px; padding: 3px 9px; }
+  .instruction { font-size: 14.5px; margin-bottom: 2px; }
+  .note { font-size: 10.5px; margin-bottom: 5px; }
   .q { padding: 3px 0; gap: 8px; grid-template-columns: 24px minmax(0,1fr); }
   .qnum { width: 21px; height: 21px; font-size: 11px; }
   .prompt { font-size: 14px; }
-  .answer-label { font-size: 9.5px; }
-  .est, .fin, select { font-size: 12.5px; }
-  select { display: none; }
-  .controls .printchoice { display: inline; font-size: 11px; color: var(--muted); margin-left: 6px; white-space: nowrap; }
-  .split { grid-template-columns: minmax(0, 1fr) 205px; gap: 16px; }
-  .model { font-size: 10.5px; }
+  .fin { font-size: 12.5px; }
+  .bank { min-height: 0; padding: 6px; gap: 6px 8px; }
+  .tile { font-size: 11px; padding: 2px 7px; box-shadow: 2px 2px 0 var(--ink); gap: 5px; }
+  .tile .tn { width: 16px; height: 16px; font-size: 9px; }
+  .bins { gap: 8px; margin-top: 8px; }
+  .bin .bname { font-size: 13px; padding: 3px 2px 1px; }
+  .bin .drop { min-height: 56px; padding: 4px; gap: 3px; }
+  .bin .drop .tile { font-size: 11px; padding: 2px 5px; }
+  .split { grid-template-columns: minmax(0, 1fr) 185px; gap: 14px; }
+  .model { font-size: 10.5px; max-width: none; }
   .model .tag { font-size: 9px; }
   .model .sum { font-size: 12.5px; }
+  .codebook { margin-top: 6px; padding: 5px 8px 7px; }
+  .cbhead { margin-bottom: 4px; }
+  .codes { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column; column-gap: 16px; }
+  .items .rowq { gap: 6px; }
+  .items .fin { width: 78px; min-width: 0; }
+  .items .q:nth-child(4) { border-bottom: 0; }
+  .codebook .cbtitle { font-size: 13px; margin-bottom: 4px; }
+  .codes { gap: 4px 6px; }
+  .code { font-size: 11px; padding: 1px 3px 1px 6px; }
+  .code .ltr { width: 17px; height: 17px; font-size: 10px; border-width: 1.5px; }
+  .secret .slabel { font-size: 12px; }
+  .secret input { font-size: 12px; width: 140px; height: 20px; }
+  .board { gap: 7px; margin-top: 8px; }
+  .target .val { font-size: 13px; padding: 3px 2px 1px; }
+  .target .drop { min-height: 26px; padding: 3px; }
+  .target .drop .tile { font-size: 10px; }
 }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -130,82 +201,76 @@ select { font: inherit; font-size: 15px; }
 </div>
 
 <section id="tools">
-  <h2><span class="badge">1</span> Which tool?</h2>
-  <p class="instruction">Choose the tool for each sum. Then do it in your head and type <span class="nw">the answer.</span></p>
-
-  <div class="q"><span class="qnum">1.</span><div class="rowq">
-    <p class="prompt">3,450 + 6,550</p>
-    <div class="controls">
-      <select data-k="t1" data-label="1. 3,450 + 6,550: tool" aria-label="Question 1, tool" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select><span class="printchoice">compensate / bonds / count up / known facts</span>
-      <label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a1" data-label="1. 3,450 + 6,550: answer" aria-label="Question 1, answer"></label>
+  <h2><span class="badge">1</span> Sort the tools</h2>
+  <p class="instruction"><span class="scr">Drag each calculation into the tool you would <span class="nw">use for it.</span></span><span class="prt">Write each calculation's number in the tool you would <span class="nw">use for it.</span></span></p>
+  <p class="note tapnote">Tap a tile, then tap a box, if dragging is tricky. Tap a tile in a box to send <span class="nw">it back.</span></p>
+  <div class="dnd" data-group="tools">
+    <div class="bank" aria-label="Calculations to sort">
+      <button type="button" class="tile" data-sel="t1"><span class="tn">1</span>2,350 + 7,650</button>
+      <button type="button" class="tile" data-sel="t2"><span class="tn">2</span>360,000 + 530,000</button>
+      <button type="button" class="tile" data-sel="t3"><span class="tn">3</span>680,000 &minus; 310,000</button>
+      <button type="button" class="tile" data-sel="t4"><span class="tn">4</span>27,999 + 14,600</button>
+      <button type="button" class="tile" data-sel="t5"><span class="tn">5</span>7,002 &minus; 6,989</button>
+      <button type="button" class="tile" data-sel="t6"><span class="tn">6</span>45,800 + 4,200</button>
+      <button type="button" class="tile" data-sel="t7"><span class="tn">7</span>15,300 + 52,998</button>
+      <button type="button" class="tile" data-sel="t8"><span class="tn">8</span>27,000 + 62,000</button>
     </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">2.</span><div class="rowq">
-    <p class="prompt">460,000 + 230,000</p>
-    <div class="controls">
-      <select data-k="t2" data-label="2. 460,000 + 230,000: tool" aria-label="Question 2, tool" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select><span class="printchoice">compensate / bonds / count up / known facts</span>
-      <label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a2" data-label="2. 460,000 + 230,000: answer" aria-label="Question 2, answer"></label>
+    <div class="bins">
+      <div class="bin zone" data-val="compensate"><div class="bname">Compensate</div><div class="drop" aria-label="Compensate box"></div></div>
+      <div class="bin zone" data-val="bonds"><div class="bname">Bonds</div><div class="drop" aria-label="Bonds box"></div></div>
+      <div class="bin zone" data-val="count up"><div class="bname">Count up</div><div class="drop" aria-label="Count up box"></div></div>
+      <div class="bin zone" data-val="known facts"><div class="bname">Known facts</div><div class="drop" aria-label="Known facts box"></div></div>
     </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">3.</span><div class="rowq">
-    <p class="prompt">52,000 + 37,000</p>
-    <div class="controls">
-      <select data-k="t3" data-label="3. 52,000 + 37,000: tool" aria-label="Question 3, tool" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select><span class="printchoice">compensate / bonds / count up / known facts</span>
-      <label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a3" data-label="3. 52,000 + 37,000: answer" aria-label="Question 3, answer"></label>
+    <div class="picks">
+      <select data-k="t1" data-label="1.1 Tool for 2,350 + 7,650" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select>
+      <select data-k="t2" data-label="1.2 Tool for 360,000 + 530,000" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select>
+      <select data-k="t3" data-label="1.3 Tool for 680,000 minus 310,000" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select>
+      <select data-k="t4" data-label="1.4 Tool for 27,999 + 14,600" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select>
+      <select data-k="t5" data-label="1.5 Tool for 7,002 minus 6,989" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select>
+      <select data-k="t6" data-label="1.6 Tool for 45,800 + 4,200" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select>
+      <select data-k="t7" data-label="1.7 Tool for 15,300 + 52,998" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select>
+      <select data-k="t8" data-label="1.8 Tool for 27,000 + 62,000" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select>
     </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">4.</span><div class="rowq">
-    <p class="prompt">26,999 + 41,300</p>
-    <div class="controls">
-      <select data-k="t4" data-label="4. 26,999 + 41,300: tool" aria-label="Question 4, tool" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select><span class="printchoice">compensate / bonds / count up / known facts</span>
-      <label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a4" data-label="4. 26,999 + 41,300: answer" aria-label="Question 4, answer"></label>
-    </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">5.</span><div class="rowq">
-    <p class="prompt">18,350 + 1,650</p>
-    <div class="controls">
-      <select data-k="t5" data-label="5. 18,350 + 1,650: tool" aria-label="Question 5, tool" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select><span class="printchoice">compensate / bonds / count up / known facts</span>
-      <label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a5" data-label="5. 18,350 + 1,650: answer" aria-label="Question 5, answer"></label>
-    </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">6.</span><div class="rowq">
-    <p class="prompt">150,000 + 320,000</p>
-    <div class="controls">
-      <select data-k="t6" data-label="6. 150,000 + 320,000: tool" aria-label="Question 6, tool" class="hw-field"><option value="">Choose</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option></select><span class="printchoice">compensate / bonds / count up / known facts</span>
-      <label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a6" data-label="6. 150,000 + 320,000: answer" aria-label="Question 6, answer"></label>
-    </div>
-  </div></div>
+  </div>
 </section>
 
-<section id="gaps">
-  <h2><span class="badge">2</span> Mind the gap</h2>
-  <p class="instruction">Do these in your head, like the number line. Type <span class="nw">the answer.</span></p>
+<section id="code">
+  <h2><span class="badge">2</span> Code breaker</h2>
+  <p class="instruction">Check the sign first. Type all seven answers, then open the code <span class="nw">book.</span></p>
+  <p class="note">Work each one out in your head. The letters spell a secret word. No letter for your number? Check <span class="nw">it again.</span></p>
   <div class="split">
     <div class="items">
       <div class="q"><span class="qnum">1.</span><div class="rowq">
-        <p class="prompt">50,000 &minus; 18,997</p>
-        <div class="controls"><label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="s1" data-label="1. 50,000 minus 18,997" aria-label="50,000 minus 18,997"></label></div>
+        <p class="prompt">9,005 &minus; 8,987</p>
+        <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c1" data-label="2.1 9,005 minus 8,987" aria-label="9,005 minus 8,987">
       </div></div>
       <div class="q"><span class="qnum">2.</span><div class="rowq">
-        <p class="prompt">7,004 &minus; 6,989</p>
-        <div class="controls"><label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="s2" data-label="2. 7,004 minus 6,989" aria-label="7,004 minus 6,989"></label></div>
+        <p class="prompt">46,998 + 25,300</p>
+        <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c2" data-label="2.2 46,998 + 25,300" aria-label="46,998 + 25,300">
       </div></div>
       <div class="q"><span class="qnum">3.</span><div class="rowq">
-        <p class="prompt">63,000 &minus; 29,999</p>
-        <div class="controls"><label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="s3" data-label="3. 63,000 minus 29,999" aria-label="63,000 minus 29,999"></label></div>
+        <p class="prompt">30,004 &minus; 29,988</p>
+        <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c3" data-label="2.3 30,004 minus 29,988" aria-label="30,004 minus 29,988">
       </div></div>
       <div class="q"><span class="qnum">4.</span><div class="rowq">
-        <p class="prompt">300,000 &minus; 124,998</p>
-        <div class="controls"><label><span class="answer-label">Answer</span><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="s4" data-label="4. 300,000 minus 124,998" aria-label="300,000 minus 124,998"></label></div>
+        <p class="prompt">70,000 &minus; 39,997</p>
+        <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c4" data-label="2.4 70,000 minus 39,997" aria-label="70,000 minus 39,997">
+      </div></div>
+      <div class="q"><span class="qnum">5.</span><div class="rowq">
+        <p class="prompt">520,000 + 370,000</p>
+        <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c5" data-label="2.5 520,000 + 370,000" aria-label="520,000 + 370,000">
+      </div></div>
+      <div class="q"><span class="qnum">6.</span><div class="rowq">
+        <p class="prompt">6,200 &minus; 3,800</p>
+        <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c6" data-label="2.6 6,200 minus 3,800" aria-label="6,200 minus 3,800">
+      </div></div>
+      <div class="q"><span class="qnum">7.</span><div class="rowq">
+        <p class="prompt">18,650 + 1,350</p>
+        <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c7" data-label="2.7 18,650 + 1,350" aria-label="18,650 + 1,350">
       </div></div>
     </div>
     <aside class="model">
-      <div class="tag">Number line</div>
+      <div class="tag">Count up on a number line</div>
       <div class="sum">80,000 &minus; 37,995</div>
       <svg viewBox="0 0 250 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Number line: from 37,995 up 5 to 38,000, then up 42,000 to 80,000">
         <line x1="14" y1="66" x2="240" y2="66" stroke="#1b1712" stroke-width="2"/>
@@ -223,61 +288,166 @@ select { font: inherit; font-size: 15px; }
       <div>5 + 42,000 = <b>42,005</b></div>
     </aside>
   </div>
+  <div class="codebook shut" id="codebook">
+    <div class="cbhead"><div class="cbtitle">Code book</div>
+      <button type="button" class="cbopen" id="cbopen">Open the code book</button>
+      <label class="secret"><span class="slabel">Secret word</span><input autocomplete="off" spellcheck="false" data-k="w" data-label="2. Secret word" aria-label="Secret word" class="hw-field"></label></div>
+    <div class="codes">
+      <div class="code">12<span class="ltr">A</span></div>
+      <div class="code">13<span class="ltr">E</span></div>
+      <div class="code">16<span class="ltr">N</span></div>
+      <div class="code">18<span class="ltr">P</span></div>
+      <div class="code">1,982<span class="ltr">T</span></div>
+      <div class="code">2,400<span class="ltr">T</span></div>
+      <div class="code">2,600<span class="ltr">P</span></div>
+      <div class="code">10,000<span class="ltr">Y</span></div>
+      <div class="code">17,300<span class="ltr">L</span></div>
+      <div class="code">17,992<span class="ltr">E</span></div>
+      <div class="code">19,000<span class="ltr">O</span></div>
+      <div class="code">19,984<span class="ltr">Y</span></div>
+      <div class="code">20,000<span class="ltr">Y</span></div>
+      <div class="code">21,698<span class="ltr">A</span></div>
+      <div class="code">29,997<span class="ltr">R</span></div>
+      <div class="code">30,000<span class="ltr">E</span></div>
+      <div class="code">30,003<span class="ltr">A</span></div>
+      <div class="code">59,992<span class="ltr">S</span></div>
+      <div class="code">72,298<span class="ltr">E</span></div>
+      <div class="code">72,302<span class="ltr">N</span></div>
+      <div class="code">109,997<span class="ltr">L</span></div>
+      <div class="code">150,000<span class="ltr">A</span></div>
+      <div class="code">880,000<span class="ltr">T</span></div>
+      <div class="code">890,000<span class="ltr">L</span></div>
+    </div>
+  </div>
 </section>
 
-<section id="lie-detector">
-  <h2><span class="badge">3</span> Lie detector</h2>
-  <p class="instruction">Do not work these out. Write your estimate, then choose believable <span class="nw">or rejected.</span></p>
-  <div class="reminder">Round each number to the nearest thousand. Four to the floor, five to the sky: <span class="nw"><b>61,480</b> becomes <b>61,000</b></span>, <span class="nw"><b>22,730</b> becomes <b>23,000</b>.</span> Within a thousand or two of your estimate: believable. Further away: <span class="nw">rejected.</span></div>
-
-  <div class="q"><span class="qnum">1.</span><div class="rowq">
-    <p class="prompt">57,380 + 26,750 = 84,130</p>
-    <div class="controls">
-      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e1" data-label="1. 57,380 + 26,750 = 84,130: estimate" aria-label="Question 1, estimate"></label>
-      <select data-k="v1" data-label="1. 57,380 + 26,750 = 84,130: verdict" aria-label="Question 1, verdict" class="hw-field"><option value="">Choose</option><option value="believable">believable</option><option value="rejected">rejected</option></select><span class="printchoice">believable / rejected</span>
+<section id="targets">
+  <h2><span class="badge">3</span> Target practice</h2>
+  <p class="instruction">Round each number to the nearest thousand. <span class="scr">Drag the calculation onto <span class="nw">its estimate.</span></span><span class="prt">Write its number on <span class="nw">its estimate.</span></span></p>
+  <p class="note">Four to the floor, five to the sky. One calculation per target, and some targets <span class="nw">stay empty.</span></p>
+  <p class="note tapnote">Tap a tile, then tap a target, if dragging <span class="nw">is tricky.</span></p>
+  <div class="dnd" data-group="targets">
+    <div class="bank" aria-label="Calculations to place">
+      <button type="button" class="tile" data-sel="d1"><span class="tn">1</span>38,520 + 24,380</button>
+      <button type="button" class="tile" data-sel="d2"><span class="tn">2</span>83,210 &minus; 45,760</button>
+      <button type="button" class="tile" data-sel="d3"><span class="tn">3</span>64,380 &minus; 21,240</button>
+      <button type="button" class="tile" data-sel="d4"><span class="tn">4</span>29,480 + 46,730</button>
+      <button type="button" class="tile" data-sel="d5"><span class="tn">5</span>91,240 &minus; 57,880</button>
     </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">2.</span><div class="rowq">
-    <p class="prompt">81,640 &minus; 36,270 = 117,910</p>
-    <div class="controls">
-      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e2" data-label="2. 81,640 minus 36,270 = 117,910: estimate" aria-label="Question 2, estimate"></label>
-      <select data-k="v2" data-label="2. 81,640 minus 36,270 = 117,910: verdict" aria-label="Question 2, verdict" class="hw-field"><option value="">Choose</option><option value="believable">believable</option><option value="rejected">rejected</option></select><span class="printchoice">believable / rejected</span>
+    <div class="board">
+      <div class="target zone" data-val="75,000" data-cap="1"><div class="val">75,000</div><div class="drop" aria-label="Target 75,000"></div></div>
+      <div class="target zone" data-val="37,000" data-cap="1"><div class="val">37,000</div><div class="drop" aria-label="Target 37,000"></div></div>
+      <div class="target zone" data-val="62,000" data-cap="1"><div class="val">62,000</div><div class="drop" aria-label="Target 62,000"></div></div>
+      <div class="target zone" data-val="85,000" data-cap="1"><div class="val">85,000</div><div class="drop" aria-label="Target 85,000"></div></div>
+      <div class="target zone" data-val="33,000" data-cap="1"><div class="val">33,000</div><div class="drop" aria-label="Target 33,000"></div></div>
+      <div class="target zone" data-val="63,000" data-cap="1"><div class="val">63,000</div><div class="drop" aria-label="Target 63,000"></div></div>
+      <div class="target zone" data-val="43,000" data-cap="1"><div class="val">43,000</div><div class="drop" aria-label="Target 43,000"></div></div>
+      <div class="target zone" data-val="34,000" data-cap="1"><div class="val">34,000</div><div class="drop" aria-label="Target 34,000"></div></div>
+      <div class="target zone" data-val="76,000" data-cap="1"><div class="val">76,000</div><div class="drop" aria-label="Target 76,000"></div></div>
+      <div class="target zone" data-val="38,000" data-cap="1"><div class="val">38,000</div><div class="drop" aria-label="Target 38,000"></div></div>
     </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">3.</span><div class="rowq">
-    <p class="prompt">64,270 + 18,940 = 73,210</p>
-    <div class="controls">
-      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e3" data-label="3. 64,270 + 18,940 = 73,210: estimate" aria-label="Question 3, estimate"></label>
-      <select data-k="v3" data-label="3. 64,270 + 18,940 = 73,210: verdict" aria-label="Question 3, verdict" class="hw-field"><option value="">Choose</option><option value="believable">believable</option><option value="rejected">rejected</option></select><span class="printchoice">believable / rejected</span>
+    <div class="picks">
+      <select data-k="d1" data-label="3.1 Estimate for 38,520 + 24,380" class="hw-field"><option value="">Choose</option><option value="75,000">75,000</option><option value="37,000">37,000</option><option value="62,000">62,000</option><option value="85,000">85,000</option><option value="33,000">33,000</option><option value="63,000">63,000</option><option value="43,000">43,000</option><option value="34,000">34,000</option><option value="76,000">76,000</option><option value="38,000">38,000</option></select>
+      <select data-k="d2" data-label="3.2 Estimate for 83,210 minus 45,760" class="hw-field"><option value="">Choose</option><option value="75,000">75,000</option><option value="37,000">37,000</option><option value="62,000">62,000</option><option value="85,000">85,000</option><option value="33,000">33,000</option><option value="63,000">63,000</option><option value="43,000">43,000</option><option value="34,000">34,000</option><option value="76,000">76,000</option><option value="38,000">38,000</option></select>
+      <select data-k="d3" data-label="3.3 Estimate for 64,380 minus 21,240" class="hw-field"><option value="">Choose</option><option value="75,000">75,000</option><option value="37,000">37,000</option><option value="62,000">62,000</option><option value="85,000">85,000</option><option value="33,000">33,000</option><option value="63,000">63,000</option><option value="43,000">43,000</option><option value="34,000">34,000</option><option value="76,000">76,000</option><option value="38,000">38,000</option></select>
+      <select data-k="d4" data-label="3.4 Estimate for 29,480 + 46,730" class="hw-field"><option value="">Choose</option><option value="75,000">75,000</option><option value="37,000">37,000</option><option value="62,000">62,000</option><option value="85,000">85,000</option><option value="33,000">33,000</option><option value="63,000">63,000</option><option value="43,000">43,000</option><option value="34,000">34,000</option><option value="76,000">76,000</option><option value="38,000">38,000</option></select>
+      <select data-k="d5" data-label="3.5 Estimate for 91,240 minus 57,880" class="hw-field"><option value="">Choose</option><option value="75,000">75,000</option><option value="37,000">37,000</option><option value="62,000">62,000</option><option value="85,000">85,000</option><option value="33,000">33,000</option><option value="63,000">63,000</option><option value="43,000">43,000</option><option value="34,000">34,000</option><option value="76,000">76,000</option><option value="38,000">38,000</option></select>
     </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">4.</span><div class="rowq">
-    <p class="prompt">73,480 &minus; 29,650 = 43,830</p>
-    <div class="controls">
-      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e4" data-label="4. 73,480 minus 29,650 = 43,830: estimate" aria-label="Question 4, estimate"></label>
-      <select data-k="v4" data-label="4. 73,480 minus 29,650 = 43,830: verdict" aria-label="Question 4, verdict" class="hw-field"><option value="">Choose</option><option value="believable">believable</option><option value="rejected">rejected</option></select><span class="printchoice">believable / rejected</span>
-    </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">5.</span><div class="rowq">
-    <p class="prompt">52,860 &minus; 17,420 = 35,440</p>
-    <div class="controls">
-      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e5" data-label="5. 52,860 minus 17,420 = 35,440: estimate" aria-label="Question 5, estimate"></label>
-      <select data-k="v5" data-label="5. 52,860 minus 17,420 = 35,440: verdict" aria-label="Question 5, verdict" class="hw-field"><option value="">Choose</option><option value="believable">believable</option><option value="rejected">rejected</option></select><span class="printchoice">believable / rejected</span>
-    </div>
-  </div></div>
-
-  <div class="q"><span class="qnum">6.</span><div class="rowq">
-    <p class="prompt">45,710 + 29,160 = 748,700</p>
-    <div class="controls">
-      <label><span class="answer-label">Estimate</span><input class="hw-field est" inputmode="numeric" autocomplete="off" data-k="e6" data-label="6. 45,710 + 29,160 = 748,700: estimate" aria-label="Question 6, estimate"></label>
-      <select data-k="v6" data-label="6. 45,710 + 29,160 = 748,700: verdict" aria-label="Question 6, verdict" class="hw-field"><option value="">Choose</option><option value="believable">believable</option><option value="rejected">rejected</option></select><span class="printchoice">believable / rejected</span>
-    </div>
-  </div></div>
+  </div>
 </section>
+
+<script>
+(function () {
+  function init() {
+    document.querySelectorAll(".dnd").forEach(function (group) {
+      var bank = group.querySelector(".bank");
+      var zones = [].slice.call(group.querySelectorAll(".zone"));
+      var tiles = [].slice.call(group.querySelectorAll(".tile"));
+      var picked = null;
+      tiles.forEach(function (t, i) { t.dataset.i = i; });
+      function selOf(t) { return group.querySelector('select[data-k="' + t.dataset.sel + '"]'); }
+      function setVal(t, v) { var s = selOf(t); if (s && s.value !== v) { s.value = v; s.dispatchEvent(new Event("change")); } }
+      function dropOf(z) { return z.querySelector(".drop"); }
+      function place(t, z) {
+        var d = dropOf(z), cap = +(z.dataset.cap || 0);
+        if (cap) {
+          var others = [].slice.call(d.querySelectorAll(".tile")).filter(function (x) { return x !== t; });
+          while (others.length >= cap) { var o = others.shift(); toBank(o); }
+        }
+        d.appendChild(t); setVal(t, z.dataset.val);
+      }
+      function homeBank(t) {
+        var after = [].slice.call(bank.querySelectorAll(".tile")).filter(function (x) { return +x.dataset.i > +t.dataset.i; })[0];
+        bank.insertBefore(t, after || null);
+      }
+      function toBank(t) { homeBank(t); setVal(t, ""); }
+      function unpick() { if (picked) picked.classList.remove("picked"); picked = null; zones.forEach(function (z) { z.classList.remove("ready"); }); }
+      function zoneAt(x, y) {
+        for (var i = 0; i < zones.length; i++) {
+          var r = zones[i].getBoundingClientRect(), pad = 8;
+          if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return zones[i];
+        }
+        return null;
+      }
+      // restore saved answers (hw.js has already put them back into the hidden selects)
+      tiles.forEach(function (t) {
+        var s = selOf(t); if (!s || !s.value) return;
+        var z = zones.filter(function (z) { return z.dataset.val === s.value; })[0];
+        if (z) dropOf(z).appendChild(t);
+      });
+      tiles.forEach(function (chip) {
+        chip.addEventListener("pointerdown", function (e) {
+          if (e.button !== undefined && e.button > 0) return;
+          e.preventDefault();
+          var r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, sx = e.clientX, sy = e.clientY, moved = false, over = null;
+          var home = chip.parentNode, next = chip.nextSibling, ph = null;
+          try { chip.setPointerCapture(e.pointerId); } catch (err) {}
+          function move(ev) {
+            if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+            if (!moved) {
+              moved = true; unpick();
+              ph = document.createElement("span"); ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+              home.insertBefore(ph, next);
+              chip.style.width = r.width + "px"; chip.classList.add("dragging");
+            }
+            chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+            var z = zoneAt(ev.clientX, ev.clientY);
+            if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+          }
+          function up(ev) {
+            window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+            if (over) over.classList.remove("over");
+            var inZone = home.classList.contains("drop");
+            if (!moved) {
+              if (inZone) { toBank(chip); unpick(); return; }
+              if (picked === chip) { unpick(); return; }
+              unpick(); picked = chip; chip.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); return;
+            }
+            chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+            if (ph) ph.remove();
+            var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+            if (z) place(chip, z);
+            else if (inZone && ev.type === "pointerup") toBank(chip);
+            else home.insertBefore(chip, next && next.parentNode === home ? next : null);
+          }
+          window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+        });
+      });
+      zones.forEach(function (z) {
+        z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+      });
+    });
+  }
+  function book() {
+    var cb = document.getElementById("codebook"), btn = document.getElementById("cbopen"), w = document.querySelector('[data-k="w"]');
+    if (!cb || !btn) return;
+    btn.addEventListener("click", function () { cb.classList.remove("shut"); });
+    if (w && w.value) cb.classList.remove("shut");
+  }
+  function start() { init(); book(); }
+  if (document.readyState === "complete") start(); else window.addEventListener("load", start);
+})();
+</script>
 </div><!-- /sheet -->
 <div class="hw-bar">
   <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>

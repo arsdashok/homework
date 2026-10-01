@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!-- hw-mode: online. Private marking key: Kristina_Homework_2026-10-01.key.json -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kristina, Homework, 1 October 2026</title>
+<style>
+@page { size: A4; margin: 10mm 13mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 17px; line-height: 1.5; color: #222; background: #fff;
+  padding: 16px; max-width: 820px; margin: auto;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+p { text-wrap: pretty; }
+header {
+  background: linear-gradient(135deg, #bfeae4, #e3f6f3);
+  color: #1d4f4a; border-radius: 14px;
+  padding: 12px 20px; margin-bottom: 16px;
+}
+header h1 { font-size: 24px; }
+header .sub { font-size: 14px; opacity: 0.85; margin-top: 2px; }
+
+.ex-card { border: 1.5px solid #d6f1ed; border-radius: 16px; overflow: hidden; margin-bottom: 16px; page-break-inside: avoid; break-inside: avoid; }
+.ex-header {
+  background: #4fb3a9; color: white; padding: 6px 18px;
+  font-weight: 700; font-size: 12.5px; letter-spacing: 0.6px; text-transform: uppercase;
+  break-after: avoid; page-break-after: avoid;
+}
+.ex-body { padding: 14px 20px 18px; }
+
+.instruction { font-size: 20px; font-weight: 700; color: #1d4f4a; margin-bottom: 2px; }
+.note { font-size: 13.5px; color: #777; margin-bottom: 14px; }
+
+.q { page-break-inside: avoid; break-inside: avoid; }
+.num {
+  flex: none; background: #4fb3a9; color: white; border-radius: 50%;
+  width: 26px; height: 26px; text-align: center; line-height: 26px;
+  font-size: 13px; font-weight: 700; text-indent: 0; letter-spacing: 0;
+}
+
+/* word tiles */
+.bank {
+  display: flex; flex-wrap: wrap; gap: 8px 10px; min-height: 50px;
+  padding: 10px; border-radius: 12px; background: #eefaf8; margin-bottom: 14px;
+}
+.tile {
+  font: inherit; font-size: 16px; font-weight: 600; color: #1d4f4a;
+  background: #fff; border: 2px solid #7ccdc3; border-radius: 999px;
+  padding: 5px 14px; cursor: grab; white-space: nowrap;
+  touch-action: none; user-select: none; -webkit-user-select: none;
+  box-shadow: 0 2px 0 #c3ebe5;
+}
+.tile.picked { outline: 3px solid #f2a882; outline-offset: 2px; }
+.tile.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; transform: scale(1.05); }
+.slot {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px; border: 2px dashed #9ad9d0; border-radius: 999px; background: #f8fdfc;
+}
+.slot.over, .slot.ready { border-color: #4fb3a9; background: #d6f1ed; }
+.slot .tile { box-shadow: none; }
+
+/* Part 1: phrase into the sentence */
+.glist { display: flex; flex-direction: column; gap: 6px; }
+.grow { display: flex; align-items: flex-start; gap: 12px; }
+.grow .num { margin-top: 9px; }
+.gsent { flex: 1; font-size: 16.5px; line-height: 2.2; }
+.gsent .slot { min-width: 130px; vertical-align: middle; margin: 0 3px; padding: 0 2px; }
+
+/* Part 2: choose the form */
+.flist { display: flex; flex-direction: column; gap: 4px; }
+.frow { display: flex; align-items: flex-start; gap: 12px; }
+.frow .num { margin-top: 8px; }
+.fsent { flex: 1; font-size: 16.5px; line-height: 2.2; }
+.fsent select { font: inherit; font-size: 16px; }
+.fsent select.hw-field { min-width: 0 !important; min-height: 34px; padding: 1px 6px; vertical-align: baseline; }
+
+/* Part 3: build the sentence */
+.build { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.build .num { margin-top: 7px; }
+.bwrap { flex: 1; min-width: 0; }
+.sline { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 8px; }
+.sline .slot { min-width: 62px; padding: 0 2px; }
+.sline .stop { font-size: 22px; font-weight: 700; color: #1d4f4a; margin-left: 1px; }
+.sline .fixed { font-size: 17px; margin-left: 4px; }
+.bwrap .bank { margin-bottom: 0; min-height: 46px; padding: 7px 8px; background: #f3fbfa; }
+
+/* Part 4: about you */
+.wq { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.wq .num { margin-top: 1px; }
+.wbody { flex: 1; min-width: 0; }
+.wprompt { font-size: 17px; margin-bottom: 6px; }
+.wprompt b { color: #1d4f4a; }
+textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
+
+.store { display: none; }
+
+/* Local PDF preview only (hw.css is not loaded here; online, the shared hw.css styles the fields). */
+.fsent select, textarea.own { border: 2px solid #7ccdc3; border-radius: 8px; background: #f1fbf9; padding: 4px 8px; }
+
+@media (max-width: 620px) {
+  body { padding: 10px; }
+  .ex-body { padding: 12px 12px 16px; }
+  .instruction { font-size: 18.5px; }
+  .grow, .frow, .wq { gap: 8px; }
+  .gsent .slot { min-width: 110px; }
+  .build { gap: 8px; }
+  .sline .slot { min-width: 48px; }
+  .tile { font-size: 15px; padding: 5px 11px; }
+}
+@media print {
+  body { padding: 0; font-size: 13.5px; max-width: none; }
+  header { padding: 5px 16px; margin-bottom: 6px; }
+  header h1 { font-size: 19px; line-height: 1.25; }
+  header .sub { line-height: 1.3; }
+  .ex-header, .instruction { line-height: 1.3; }
+  .wprompt { line-height: 1.35; }
+  header .sub { font-size: 12px; }
+  .ex-card { margin-bottom: 6px; }
+  .ex-header { padding: 3px 16px; font-size: 11px; }
+  .ex-body { padding: 6px 16px 7px; }
+  .instruction { font-size: 16px; margin-bottom: 4px; }
+  .note { font-size: 11.5px; margin-bottom: 6px; }
+  .bank { min-height: 0; padding: 5px 6px; gap: 5px 6px; margin-bottom: 7px; }
+  .tile { font-size: 13px; padding: 1px 10px; box-shadow: none; }
+  .slot { min-height: 24px; }
+  .num { width: 21px; height: 21px; line-height: 21px; font-size: 11px; }
+  .glist, .flist { gap: 0; }
+  .grow { margin-bottom: 2px; }
+  .grow .num { margin-top: 2px; }
+  .frow .num { margin-top: 0; }
+  .gsent, .fsent { font-size: 13.5px; line-height: 1.45; }
+  .sline .fixed { font-size: 13.5px; }
+  .flist { display: block; column-count: 2; column-gap: 18px; }
+  .frow { margin-bottom: 4px; }
+  .tile { padding: 1px 8px; }
+  .build { margin-bottom: 4px; }
+  .build .num { margin-top: 3px; }
+  .sline { margin-bottom: 3px; gap: 5px; }
+  .bwrap .bank { min-height: 0; padding: 4px 6px; }
+  .wq { margin-bottom: 4px; }
+  .wprompt { font-size: 13.5px; margin-bottom: 4px; }
+  textarea.own { min-height: 40px; }
+  textarea.own::placeholder { color: transparent; }
+}
+.printchoice { display: none; }
+@media print {
+  .note { display: none !important; }
+  .fsent select { display: none !important; }
+  .printchoice { display: inline; font-size: 12.5px; color: #555; }
+  .gsent .slot { min-width: 120px !important; }
+  .sline .slot { min-width: 50px !important; }
+  textarea.own { resize: none; }
+}
+
+/* listen button on Part 1 tiles */
+.tile .say { display: inline-block; margin-left: 7px; padding: 0 2px; font-size: 14px; line-height: 1; cursor: pointer; border-radius: 6px; opacity: 0.75; }
+.tile .say:hover, .tile .say:focus { opacity: 1; background: #d6f1ed; outline: none; }
+.tile .say.off { opacity: 0.3; cursor: not-allowed; }
+.saynote { display: none; font-size: 13px; color: #8a6d3b; margin: -8px 0 10px; }
+@media print { .tile .say, .saynote { display: none !important; } }
+
+.vocablink { font-size: 15.5px; margin: -6px 0 14px; padding: 8px 14px; background: #eefaf8; border-radius: 12px; }
+.vocablink a { color: #1d7a71; font-weight: 700; }
+.answers ol { padding-left: 20px; font-size: 15.5px; }
+.answers li { margin-bottom: 4px; }
+.answers .ok { color: #1d7a71; font-weight: 700; }
+.answers .no { color: #c05621; font-weight: 700; }
+.answers .yours { color: #777; font-size: 13.5px; }
+@media print { .vocablink { display: none; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Kristina" data-sheet="English 2026-10-01" data-sheet-id="kristina-2026-10-01-english">
+<div id="sheet">
+
+
+<header>
+  <h1>Homework: Kristina</h1>
+  <div class="sub">1 October 2026 &middot; phrases from our&nbsp;lesson</div>
+</header>
+<p class="vocablink">&#128218; Your words from our lessons: <a href="https://arsdashok.github.io/vocab/c7c5a89559e3a09e/" target="_blank" rel="noopener">open your vocabulary&nbsp;page</a></p>
+
+<!-- PART 1: phrase into the sentence. Bank position of the correct tile for sentences 1-5: 4,1,5,2,3 -->
+<section class="ex-card">
+  <div class="ex-header">Part 1 &middot; Phrases from the lesson</div>
+  <div class="ex-body">
+    <p class="instruction">Drag each phrase into the right&nbsp;sentence.</p>
+    <p class="saynote" id="saynote">Listening needs the Google UK English voice, which is in Chrome. The phrases still work without&nbsp;it.</p>
+    <p class="note">Tap &#128264; to hear a phrase. On a phone: tap a phrase, then tap a box. Tap a phrase in a box to send it&nbsp;back.</p>
+
+    <div class="bank" data-group="d" data-mode="match" aria-label="Phrases">
+      <button type="button" class="tile" data-word="degrees" data-i="0">degrees<span class="say" role="button" tabindex="0" aria-label="Listen: degrees" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="boiling" data-i="1">boiling<span class="say" role="button" tabindex="0" aria-label="Listen: boiling" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="hair extensions" data-i="2">hair extensions<span class="say" role="button" tabindex="0" aria-label="Listen: hair extensions" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="a huge amount of" data-i="3">a huge amount of<span class="say" role="button" tabindex="0" aria-label="Listen: a huge amount of" title="Listen">&#128264;</span></button>
+      <button type="button" class="tile" data-word="sore" data-i="4">sore<span class="say" role="button" tabindex="0" aria-label="Listen: sore" title="Listen">&#128264;</span></button>
+    </div>
+
+    <div class="glist">
+      <div class="grow q"><span class="num">1</span>
+        <p class="gsent">This morning I had <span class="slot" data-group="d" data-field="d1" aria-label="Box for sentence 1"></span> work.</p></div>
+      <div class="grow q"><span class="num">2</span>
+        <p class="gsent">She has 3 university <span class="slot" data-group="d" data-field="d2" aria-label="Box for sentence 2"></span>.</p></div>
+      <div class="grow q"><span class="num">3</span>
+        <p class="gsent">I was unpacking boxes, and now I have a <span class="slot" data-group="d" data-field="d3" aria-label="Box for sentence 3"></span> back when I bend&nbsp;down.</p></div>
+      <div class="grow q"><span class="num">4</span>
+        <p class="gsent">In August it's <span class="slot" data-group="d" data-field="d4" aria-label="Box for sentence 4"></span> hot in Abu&nbsp;Dhabi.</p></div>
+      <div class="grow q"><span class="num">5</span>
+        <p class="gsent">She wants <span class="slot" data-group="d" data-field="d5" aria-label="Box for sentence 5"></span> to make her hair&nbsp;longer.</p></div>
+    </div>
+
+    <!-- Data store for Part 1: hw.js saves these, the key marks them, the emailed PDF shows the tiles. -->
+    <div class="store" aria-hidden="true">
+      <select data-k="d1" data-label="1.1 This morning I had ___ work." class="hw-field"><option value="">Choose</option><option value="degrees">degrees</option><option value="boiling">boiling</option><option value="hair extensions">hair extensions</option><option value="a huge amount of">a huge amount of</option><option value="sore">sore</option></select>
+      <select data-k="d2" data-label="1.2 She has 3 university ___." class="hw-field"><option value="">Choose</option><option value="degrees">degrees</option><option value="boiling">boiling</option><option value="hair extensions">hair extensions</option><option value="a huge amount of">a huge amount of</option><option value="sore">sore</option></select>
+      <select data-k="d3" data-label="1.3 I was unpacking boxes, and now I have a ___ back when I bend down." class="hw-field"><option value="">Choose</option><option value="degrees">degrees</option><option value="boiling">boiling</option><option value="hair extensions">hair extensions</option><option value="a huge amount of">a huge amount of</option><option value="sore">sore</option></select>
+      <select data-k="d4" data-label="1.4 In August it's ___ hot in Abu Dhabi." class="hw-field"><option value="">Choose</option><option value="degrees">degrees</option><option value="boiling">boiling</option><option value="hair extensions">hair extensions</option><option value="a huge amount of">a huge amount of</option><option value="sore">sore</option></select>
+      <select data-k="d5" data-label="1.5 She wants ___ to make her hair longer." class="hw-field"><option value="">Choose</option><option value="degrees">degrees</option><option value="boiling">boiling</option><option value="hair extensions">hair extensions</option><option value="a huge amount of">a huge amount of</option><option value="sore">sore</option></select>
+    </div>
+  </div>
+</section>
+
+<!-- PART 2: choose the form. Position of the correct option (after "Choose") for items 1-11: 1,2,2,1,1,3,2,1,1,2,2 -->
+<section class="ex-card">
+  <div class="ex-header">Part 2 &middot; The right form</div>
+  <div class="ex-body">
+    <p class="instruction">Choose the right word for each&nbsp;sentence.</p>
+    <p class="note">Read the whole sentence first, then&nbsp;choose.</p>
+
+    <div class="flist">
+      <div class="frow q"><span class="num">1</span>
+        <p class="fsent">My husband <select data-k="g1" data-label="2.1 My husband ___ onions. (hates / hate)" aria-label="Sentence 1" class="hw-field"><option value="">Choose</option><option value="hates">hates</option><option value="hate">hate</option></select><span class="printchoice">(hates / hate)</span> onions.</p></div>
+      <div class="frow q"><span class="num">2</span>
+        <p class="fsent">Do your friends often <select data-k="g2" data-label="2.2 Do your friends often ___ over at the weekend? (comes / come)" aria-label="Sentence 2" class="hw-field"><option value="">Choose</option><option value="comes">comes</option><option value="come">come</option></select><span class="printchoice">(comes / come)</span> over at the&nbsp;weekend?</p></div>
+      <div class="frow q"><span class="num">3</span>
+        <p class="fsent">Her birthday is <select data-k="g3" data-label="2.3 Her birthday is ___ 2 weeks. (after / in)" aria-label="Sentence 3" class="hw-field"><option value="">Choose</option><option value="after">after</option><option value="in">in</option></select><span class="printchoice">(after / in)</span> 2&nbsp;weeks.</p></div>
+      <div class="frow q"><span class="num">4</span>
+        <p class="fsent">She <select data-k="g4" data-label="2.4 She ___ write. (doesn't / don't)" aria-label="Sentence 4" class="hw-field"><option value="">Choose</option><option value="doesn't">doesn't</option><option value="don't">don't</option></select><span class="printchoice">(doesn't / don't)</span> write.</p></div>
+      <div class="frow q"><span class="num">5</span>
+        <p class="fsent"><select data-k="g5" data-label="2.5 ___ the news? (Have you heard / You have heard)" aria-label="Sentence 5" class="hw-field"><option value="">Choose</option><option value="Have you heard">Have you heard</option><option value="You have heard">You have heard</option></select><span class="printchoice">(Have you heard / You have heard)</span> the&nbsp;news?</p></div>
+      <div class="frow q"><span class="num">6</span>
+        <p class="fsent">Yesterday she <select data-k="g6" data-label="2.6 Yesterday she ___ that she was busy. (says / told / said)" aria-label="Sentence 6" class="hw-field"><option value="">Choose</option><option value="says">says</option><option value="told">told</option><option value="said">said</option></select><span class="printchoice">(says / told / said)</span> that she was&nbsp;busy.</p></div>
+      <div class="frow q"><span class="num">7</span>
+        <p class="fsent">My husband's daughter <select data-k="g7" data-label="2.7 My husband's daughter ___ ... (come / comes)" aria-label="Sentence 7" class="hw-field"><option value="">Choose</option><option value="come">come</option><option value="comes">comes</option></select><span class="printchoice">(come / comes)</span>&nbsp;&hellip;</p></div>
+      <div class="frow q"><span class="num">8</span>
+        <p class="fsent">She <select data-k="g8" data-label="2.8 She ___ store her photos in the cloud. (doesn't / don't)" aria-label="Sentence 8" class="hw-field"><option value="">Choose</option><option value="doesn't">doesn't</option><option value="don't">don't</option></select><span class="printchoice">(doesn't / don't)</span> store her photos in the&nbsp;cloud.</p></div>
+      <div class="frow q"><span class="num">9</span>
+        <p class="fsent">She <select data-k="g9" data-label="2.9 She ___ her friends and her home. (misses / miss)" aria-label="Sentence 9" class="hw-field"><option value="">Choose</option><option value="misses">misses</option><option value="miss">miss</option></select><span class="printchoice">(misses / miss)</span> her friends and her&nbsp;home.</p></div>
+      <div class="frow q"><span class="num">10</span>
+        <p class="fsent">Her birthday is in 2 weeks, so <select data-k="g10" data-label="2.10 Her birthday is in 2 weeks, so ___ go to buy her a present. (we / we'll)" aria-label="Sentence 10" class="hw-field"><option value="">Choose</option><option value="we">we</option><option value="we'll">we'll</option></select><span class="printchoice">(we / we'll)</span> go to buy her a&nbsp;present.</p></div>
+      <div class="frow q"><span class="num">11</span>
+        <p class="fsent">She <select data-k="g11" data-label="2.11 She ___ around. (look / looks)" aria-label="Sentence 11" class="hw-field"><option value="">Choose</option><option value="look">look</option><option value="looks">looks</option></select><span class="printchoice">(look / looks)</span> around.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 3: build the sentence. One extra word per line (I, visit, doesn't). In 2 and 3 the place phrase is printed, so only one word order is possible. -->
+<section class="ex-card">
+  <div class="ex-header">Part 3 &middot; Build the sentence</div>
+  <div class="ex-body">
+    <p class="instruction">Put the words in order. One word in each line is&nbsp;extra.</p>
+    <p class="note">Tap the words in order, or drag them. Tap a word in a box to send it&nbsp;back.</p>
+
+    <div class="build q"><span class="num">1</span><div class="bwrap">
+      <div class="sline"><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="slot" data-group="b1"></span><span class="stop">.</span></div>
+      <div class="bank" data-group="b1" data-mode="order" data-field="b1" aria-label="Words for sentence 1">
+        <button type="button" class="tile" data-word="the" data-i="0">the</button>
+        <button type="button" class="tile" data-word="photos" data-i="1">photos</button>
+        <button type="button" class="tile" data-word="took" data-i="2">took</button>
+        <button type="button" class="tile" data-word="whole" data-i="3">whole</button>
+        <button type="button" class="tile" data-word="I" data-i="4">I</button>
+        <button type="button" class="tile" data-word="select" data-i="5">select</button>
+        <button type="button" class="tile" data-word="me" data-i="6">me</button>
+        <button type="button" class="tile" data-word="day" data-i="7">day</button>
+        <button type="button" class="tile" data-word="best" data-i="8">best</button>
+        <button type="button" class="tile" data-word="It" data-i="9">It</button>
+        <button type="button" class="tile" data-word="to" data-i="10">to</button>
+        <button type="button" class="tile" data-word="the" data-i="11">the</button>
+      </div>
+    </div></div>
+
+    <div class="build q"><span class="num">2</span><div class="bwrap">
+      <div class="sline"><span class="slot" data-group="b2"></span><span class="slot" data-group="b2"></span><span class="slot" data-group="b2"></span><span class="slot" data-group="b2"></span><span class="fixed">at the weekend.</span></div>
+      <div class="bank" data-group="b2" data-mode="order" data-field="b2" aria-label="Words for sentence 2">
+        <button type="button" class="tile" data-word="over" data-i="0">over</button>
+        <button type="button" class="tile" data-word="Our" data-i="1">Our</button>
+        <button type="button" class="tile" data-word="visit" data-i="2">visit</button>
+        <button type="button" class="tile" data-word="come" data-i="3">come</button>
+        <button type="button" class="tile" data-word="friends" data-i="4">friends</button>
+      </div>
+    </div></div>
+
+    <div class="build q"><span class="num">3</span><div class="bwrap">
+      <div class="sline"><span class="slot" data-group="b3"></span><span class="slot" data-group="b3"></span><span class="slot" data-group="b3"></span><span class="slot" data-group="b3"></span><span class="slot" data-group="b3"></span><span class="fixed">in the cloud.</span></div>
+      <div class="bank" data-group="b3" data-mode="order" data-field="b3" aria-label="Words for sentence 3">
+        <button type="button" class="tile" data-word="store" data-i="0">store</button>
+        <button type="button" class="tile" data-word="I" data-i="1">I</button>
+        <button type="button" class="tile" data-word="photos" data-i="2">photos</button>
+        <button type="button" class="tile" data-word="doesn't" data-i="3">doesn't</button>
+        <button type="button" class="tile" data-word="my" data-i="4">my</button>
+        <button type="button" class="tile" data-word="don't" data-i="5">don't</button>
+      </div>
+    </div></div>
+
+    <!-- Data store for Part 3 -->
+    <div class="store" aria-hidden="true">
+      <input type="text" data-k="b1" data-label="3.1 Sentence from: the, photos, took, whole, I, select, me, day, best, It, to, the (one extra)" class="hw-field">
+      <input type="text" data-k="b2" data-label="3.2 ___ at the weekend. Words: over, Our, visit, come, friends (one extra)" class="hw-field">
+      <input type="text" data-k="b3" data-label="3.3 ___ in the cloud. Words: store, I, photos, doesn't, my, don't (one extra)" class="hw-field">
+    </div>
+  </div>
+</section>
+
+<!-- PART 4: about you, typed. Her own content; any true answer that uses the frame is right. -->
+<section class="ex-card">
+  <div class="ex-header">Part 4 &middot; About you</div>
+  <div class="ex-body">
+    <p class="instruction">Write one sentence for each&nbsp;question.</p>
+    <p class="note">Short is&nbsp;fine.</p>
+
+    <div class="wq q"><span class="num">1</span><div class="wbody">
+      <p class="wprompt">What took you a long time this week? Start with <b>It took&nbsp;me&hellip;</b></p>
+      <textarea class="hw-field own" rows="2" data-k="w1" data-label="4.1 What took you a long time this week? (It took me...)" aria-label="Your sentence with It took me" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="wq q"><span class="num">2</span><div class="wbody">
+      <p class="wprompt">Who comes over to your home, and what do you do together? Use <b>come&nbsp;over</b>.</p>
+      <textarea class="hw-field own" rows="2" data-k="w2" data-label="4.2 Who comes over to your home, and what do you do together? (come over)" aria-label="Your sentence with come over" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+</section>
+
+<section class="ex-card answers" id="answers" hidden>
+  <div class="ex-header">Answers</div>
+  <div class="ex-body"><p class="note">Compare with your answers. &#10003; = the same, &#10007; = look again.</p><ol id="anslist"></ol></div>
+</section>
+
+<script>
+(function () {
+  function init() {
+    var groups = {}, picked = null;
+    function field(k) { var all = document.querySelectorAll(".store select, .store input"); for (var i = 0; i < all.length; i++) if (all[i].dataset.k === k) return all[i]; return null; }
+    document.querySelectorAll(".bank[data-group]").forEach(function (b) {
+      var g = b.dataset.group;
+      groups[g] = { name: g, bank: b, mode: b.dataset.mode, field: b.dataset.field,
+        slots: [].slice.call(document.querySelectorAll('.slot[data-group="' + g + '"]')) };
+    });
+    function groupOf(el) { return groups[el.dataset.group || el.closest("[data-group]").dataset.group]; }
+    function setVal(f, v) { if (f && f.value !== v) { f.value = v; f.dispatchEvent(new Event("input")); f.dispatchEvent(new Event("change")); } }
+    function sync(g) {
+      if (g.mode === "match") {
+        g.slots.forEach(function (s) { var t = s.querySelector(".tile"); setVal(field(s.dataset.field), t ? t.dataset.word : ""); });
+      } else {
+        var w = g.slots.map(function (s) { var t = s.querySelector(".tile"); return t ? t.dataset.word : "___"; });
+        while (w.length && w[w.length - 1] === "___") w.pop();
+        setVal(field(g.field), w.join(" "));
+      }
+    }
+    function toBank(tile, g) {
+      var i = +tile.dataset.i, kids = g.bank.querySelectorAll(".tile"), before = null;
+      for (var j = 0; j < kids.length; j++) { if (kids[j] !== tile && +kids[j].dataset.i > i) { before = kids[j]; break; } }
+      g.bank.insertBefore(tile, before);
+    }
+    function place(tile, slot) {
+      var g = groups[slot.dataset.group], from = tile.parentNode, old = slot.querySelector(".tile");
+      if (old && old !== tile) { if (from.classList.contains("slot")) from.appendChild(old); else toBank(old, g); }
+      slot.appendChild(tile); sync(g);
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked"); picked = null;
+      document.querySelectorAll(".slot.ready").forEach(function (s) { s.classList.remove("ready"); });
+    }
+    function slotAt(g, x, y) {
+      for (var i = 0; i < g.slots.length; i++) {
+        var r = g.slots[i].getBoundingClientRect(), pad = 10;
+        if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return g.slots[i];
+      }
+      return null;
+    }
+    // restore saved answers (hw.js has already put them back into the store fields)
+    Object.keys(groups).forEach(function (k) {
+      var g = groups[k];
+      function take(word) {
+        var ts = g.bank.querySelectorAll(".tile");
+        for (var i = 0; i < ts.length; i++) if (ts[i].dataset.word === word) return ts[i];
+        return null;
+      }
+      if (g.mode === "match") {
+        g.slots.forEach(function (s) { var f = field(s.dataset.field), v = f && f.value; if (v) { var t = take(v); if (t) s.appendChild(t); } });
+      } else {
+        var f = field(g.field), v = f && f.value;
+        if (v) v.split(" ").forEach(function (w, i) { if (w && w !== "___" && g.slots[i]) { var t = take(w); if (t) g.slots[i].appendChild(t); } });
+      }
+    });
+
+    // listen: Google UK English Female, rate 0.9, on click only; no other voice is substituted
+    var ukVoice = null;
+    function findVoice() {
+      if (!("speechSynthesis" in window)) return null;
+      var vs = window.speechSynthesis.getVoices();
+      for (var i = 0; i < vs.length; i++) if (vs[i].name === "Google UK English Female") return vs[i];
+      return null;
+    }
+    function updateSay() {
+      ukVoice = findVoice();
+      var tried = "speechSynthesis" in window && window.speechSynthesis.getVoices().length > 0;
+      document.querySelectorAll(".tile .say").forEach(function (b) { b.classList.toggle("off", !ukVoice && tried); });
+      var n = document.getElementById("saynote"); if (n) n.style.display = (!ukVoice && tried) || !("speechSynthesis" in window) ? "block" : "none";
+    }
+    if ("speechSynthesis" in window) { updateSay(); window.speechSynthesis.onvoiceschanged = updateSay; } else updateSay();
+    function speak(word) {
+      if (!ukVoice) ukVoice = findVoice();
+      if (!ukVoice) { updateSay(); return; }
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(word); u.voice = ukVoice; u.lang = ukVoice.lang; u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }
+    document.querySelectorAll(".tile .say").forEach(function (b) {
+      function go(e) { e.preventDefault(); e.stopPropagation(); speak(b.closest(".tile").dataset.word); }
+      b.addEventListener("pointerdown", function (e) { e.stopPropagation(); });
+      b.addEventListener("click", go);
+      b.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") go(e); });
+    });
+    document.querySelectorAll(".tile").forEach(function (tile) {
+      tile.addEventListener("click", function (e) { e.stopPropagation(); });
+      tile.addEventListener("pointerdown", function (e) {
+        if (e.button && e.button !== 0) return;
+        e.preventDefault();
+        var g = groupOf(tile.closest(".bank") || tile.parentNode);
+        var r = tile.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, home = tile.parentNode, ph = null;
+        try { tile.setPointerCapture(e.pointerId); } catch (err) {}
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            home.insertBefore(ph, tile);
+            tile.style.width = r.width + "px"; tile.classList.add("dragging");
+          }
+          tile.style.left = (ev.clientX - dx) + "px"; tile.style.top = (ev.clientY - dy) + "px";
+          if (ev.clientY < 50) window.scrollBy(0, -14); else if (ev.clientY > window.innerHeight - 50) window.scrollBy(0, 14);
+          var s = slotAt(g, ev.clientX, ev.clientY);
+          if (s !== over) { if (over) over.classList.remove("over"); over = s; if (s) s.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          if (!moved) {
+            if (home.classList.contains("slot")) { toBank(tile, g); unpick(); sync(g); return; }
+            if (g.mode === "order") {
+              unpick();
+              for (var i = 0; i < g.slots.length; i++) if (!g.slots[i].querySelector(".tile")) { place(tile, g.slots[i]); break; }
+              return;
+            }
+            if (picked === tile) { unpick(); return; }
+            unpick(); picked = tile; tile.classList.add("picked");
+            g.slots.forEach(function (s) { s.classList.add("ready"); });
+            return;
+          }
+          tile.classList.remove("dragging"); tile.style.left = tile.style.top = tile.style.width = "";
+          if (ph) ph.remove();
+          var s = ev.type === "pointerup" ? slotAt(g, ev.clientX, ev.clientY) : null;
+          if (s) place(tile, s);
+          else if (home.classList.contains("slot") && ev.type === "pointerup") { toBank(tile, g); sync(g); }
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+    document.querySelectorAll(".slot").forEach(function (s) {
+      s.addEventListener("click", function () {
+        if (picked && groupOf(picked.closest(".bank") || picked.parentNode) === groups[s.dataset.group]) { place(picked, s); unpick(); }
+      });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+
+<script>
+/* Answers appear only AFTER she sends the sheet (Dasha, 29 Sept 2026: «правильные ответы пусть ей показывает после выполнения»). */
+(function () {
+  var A = JSON.parse(decodeURIComponent(escape(atob("W1siZDEiLCAiMS4xIFRoaXMgbW9ybmluZyBJIGhhZCDigKYgd29yayIsICJhIGh1Z2UgYW1vdW50IG9mIl0sIFsiZDIiLCAiMS4yIFNoZSBoYXMgMyB1bml2ZXJzaXR5IOKApiIsICJkZWdyZWVzIl0sIFsiZDMiLCAiMS4zIE5vdyBJIGhhdmUgYSDigKYgYmFjayIsICJzb3JlIl0sIFsiZDQiLCAiMS40IEluIEF1Z3VzdCBpdCdzIOKApiBob3QiLCAiYm9pbGluZyJdLCBbImQ1IiwgIjEuNSBTaGUgd2FudHMg4oCmIHRvIG1ha2UgaGVyIGhhaXIgbG9uZ2VyIiwgImhhaXIgZXh0ZW5zaW9ucyJdLCBbImcxIiwgIjIuMSBNeSBodXNiYW5kIOKApiBvbmlvbnMiLCAiaGF0ZXMiXSwgWyJnMiIsICIyLjIgRG8geW91ciBmcmllbmRzIG9mdGVuIOKApiBvdmVyIGF0IHRoZSB3ZWVrZW5kPyIsICJjb21lIl0sIFsiZzMiLCAiMi4zIEhlciBiaXJ0aGRheSBpcyDigKYgMiB3ZWVrcyIsICJpbiJdLCBbImc0IiwgIjIuNCBTaGUg4oCmIHdyaXRlIiwgImRvZXNuJ3QiXSwgWyJnNSIsICIyLjUg4oCmIHRoZSBuZXdzPyIsICJIYXZlIHlvdSBoZWFyZCJdLCBbImc2IiwgIjIuNiBZZXN0ZXJkYXkgc2hlIOKApiB0aGF0IHNoZSB3YXMgYnVzeSIsICJzYWlkIl0sIFsiZzciLCAiMi43IE15IGh1c2JhbmQncyBkYXVnaHRlciDigKYiLCAiY29tZXMiXSwgWyJnOCIsICIyLjggU2hlIOKApiBzdG9yZSBoZXIgcGhvdG9zIGluIHRoZSBjbG91ZCIsICJkb2Vzbid0Il0sIFsiZzkiLCAiMi45IFNoZSDigKYgaGVyIGZyaWVuZHMgYW5kIGhlciBob21lIiwgIm1pc3NlcyJdLCBbImcxMCIsICIyLjEwIEhlciBiaXJ0aGRheSBpcyBpbiAyIHdlZWtzLCBzbyDigKYgZ28gdG8gYnV5IGhlciBhIHByZXNlbnQiLCAid2UnbGwiXSwgWyJnMTEiLCAiMi4xMSBTaGUg4oCmIGFyb3VuZCIsICJsb29rcyJdLCBbImIxIiwgIjMuMSIsICJJdCB0b29rIG1lIHRoZSB3aG9sZSBkYXkgdG8gc2VsZWN0IHRoZSBiZXN0IHBob3RvcyJdLCBbImIyIiwgIjMuMiDigKYgYXQgdGhlIHdlZWtlbmQiLCAiT3VyIGZyaWVuZHMgY29tZSBvdmVyIl0sIFsiYjMiLCAiMy4zIOKApiBpbiB0aGUgY2xvdWQiLCAiSSBkb24ndCBzdG9yZSBteSBwaG90b3MiXV0="))));
+  function norm(s) { return (s || "").toLowerCase().replace(/[.,!?]/g, "").replace(/\s+/g, " ").trim(); }
+  function val(k) { var els = document.querySelectorAll("[data-k]"); for (var i = 0; i < els.length; i++) if (els[i].dataset.k === k) return els[i].value || ""; return ""; }
+  function show() {
+    var box = document.getElementById("answers"), ol = document.getElementById("anslist");
+    if (!box || !ol || !box.hidden) return;
+    ol.innerHTML = "";
+    A.forEach(function (r) {
+      var mine = val(r[0]).replace(/___/g, "").trim(), ok = norm(mine) === norm(r[2]);
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="' + (ok ? "ok" : "no") + '">' + (ok ? "&#10003;" : "&#10007;") + "</span> " + r[1] + ": <b></b>" + (ok ? "" : ' <span class="yours"></span>');
+      li.querySelector("b").textContent = r[2];
+      if (!ok) li.querySelector(".yours").textContent = "(yours: " + (mine || "empty") + ")";
+      ol.appendChild(li);
+    });
+    box.hidden = false;
+    try { localStorage.setItem("kristina-2026-10-01-shown", "1"); } catch (e) {}
+  }
+  function watch() {
+    var msg = document.getElementById("hwMsg");
+    try { if (localStorage.getItem("kristina-2026-10-01-shown") === "1") setTimeout(show, 300); } catch (e) {}
+    if (!msg) return;
+    new MutationObserver(function () { if (/^Sent!/.test(msg.textContent)) setTimeout(show, 200); }).observe(msg, { childList: true, characterData: true, subtree: true });
+  }
+  if (document.readyState === "complete") setTimeout(watch, 500); else window.addEventListener("load", function () { setTimeout(watch, 500); });
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script src="../assets/hw.js?v=20260923-export2"></script>
+</body>
+</html>

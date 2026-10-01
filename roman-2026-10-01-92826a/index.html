@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 1 October 2026</title>
+<!-- Lesson 6 (reading), 1 Oct 2026. Part 1 = the rest of the Lonely Planet article (Esme Fox, 22 Mar 2024),
+     read on the publisher's page, NOT reproduced here. Part 2 = words from the lesson, no Spain contexts. -->
+<style>
+  @page { size: A4; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 760px; margin: auto; }
+  .keep { white-space: nowrap; }
+  p, .instr, .lede, .prompt, .do { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 16px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .instr { font-size: 14.5px; color: #626a62; margin-bottom: 10px; }
+  .ctx { font-size: 16px; margin: 0 0 4px; }
+
+  .source {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin-bottom: 4px;
+  }
+  .source a {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px; color: #31594b; text-decoration: none;
+    border-bottom: 1px solid #9fb3a6;
+  }
+  .source .url { display: block; font-size: 13px; color: #626a62; margin-top: 2px; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .rowq { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .rowq .prompt { flex: 1 1 auto; margin-bottom: 0; }
+  .rowq select { flex: 0 0 auto; }
+  .prompt { font-size: 16px; }
+  .prompt b { font-weight: 600; color: #31594b; white-space: nowrap; }
+  .stack .prompt { margin-bottom: 7px; }
+
+  .check { font-size: 14px; color: #626a62; margin: 8px 0 0; }
+  .check b { color: #31594b; font-weight: 600; }
+
+  .pick {
+    font: inherit; font-size: 15px;
+    min-width: 150px; padding: 5px 10px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+    resize: vertical;
+  }
+  .resp.two { min-height: 64px; }
+  .task textarea.resp.three { min-height: 88px !important; }
+  section textarea.resp.long, .task textarea.resp.long { min-height: 170px !important; }
+
+  .gap { display: inline-block; min-height: 0; height: 30px; padding: 3px 8px; margin: 0 3px; vertical-align: baseline; font-size: 15px; }
+  .cue { color: #626a62; font-size: 14px; white-space: nowrap; }
+  .vline { line-height: 2.1; }
+  .do { font-size: 17px; font-weight: 600; color: #1f2a24; margin: 2px 0 10px; }
+  .do b { color: #31594b; }
+
+  @media (max-width: 620px) {
+    .rowq { flex-wrap: wrap; gap: 8px; }
+  }
+
+  @media print {
+    body { font-size: 12.5px; line-height: 1.35; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 9px 0 7px; margin-bottom: 10px; }
+    .masthead { font-size: 10px; }
+    h1 { font-size: 21px; margin: 5px 0 2px; }
+    .lede { font-size: 12px; }
+    .task { padding: 9px 18px 10px; margin-bottom: 9px; }
+    h2 { font-size: 17px; margin-bottom: 3px; }
+    .instr { font-size: 12px; margin-bottom: 6px; }
+    .ctx { font-size: 12.5px; }
+    .source { padding: 5px 12px; }
+    .source a { font-size: 13.5px; }
+    .source .url { font-size: 11px; }
+    .check { font-size: 11.5px; margin-top: 5px; }
+    .q { padding: 5px 0; gap: 8px; grid-template-columns: 20px minmax(0, 1fr); }
+    .qnum { font-size: 11px; padding-top: 1px; }
+    .prompt { font-size: 12.5px; }
+    .stack .prompt { margin-bottom: 4px; }
+    .pick { font-size: 12px; min-width: 120px; padding: 3px 8px; }
+    .resp { font-size: 12.5px; padding: 4px 9px; }
+    .resp.two { min-height: 44px; height: 44px; }
+    .task textarea.resp.three { min-height: 62px !important; height: 62px; }
+    .task textarea.resp.long { min-height: 140px !important; height: 140px; }
+    .resp { resize: none; }
+    .resp::placeholder { color: transparent; }
+    .gap { height: 24px; font-size: 12px; }
+    .vline { line-height: 1.9; }
+    .cue { font-size: 11.5px; }
+    .do { font-size: 13.5px; margin-bottom: 6px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-10-01" data-sheet-id="roman-2026-10-01-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>1 October 2026</span></div>
+    <h1>Late dinners: two&nbsp;views</h1>
+    <div class="lede">About 35&nbsp;minutes.</div>
+  </header>
+
+  <div class="task">
+    <h2>1. Read the rest of the&nbsp;article</h2>
+    <div class="do">Read from the heading <b>Work-life balance</b> to the end of the&nbsp;article.</div>
+    <p class="ctx">Read tasks 2 and 3 first, then read the&nbsp;text.</p>
+    <div class="source">
+      <a href="https://www.lonelyplanet.com/articles/late-night-dining-spanish-culture" target="_blank" rel="noopener">Lonely Planet: &laquo;Is Spain&rsquo;s late-night dining culture about to&nbsp;change?&raquo;</a>
+      <span class="url">lonelyplanet.com/articles/late-night-dining-spanish-culture &middot; the article from the lesson, about 330&nbsp;words</span>
+    </div>
+  </div>
+
+  <div class="task">
+    <h2>2. Who says&nbsp;this?</h2>
+    <div class="do">Choose <b>Mireia</b>, <b>Dan</b> or <b>the writer</b> for each&nbsp;sentence.</div>
+
+    <div class="q"><span class="qnum">1.</span><div class="rowq">
+      <p class="prompt">A late evening in a tapas bar is better than a night in a&nbsp;nightclub.</p>
+      <select class="hw-field pick" data-k="a1" data-label="1. A late evening in a tapas bar is better than a night in a nightclub: who says this?" aria-label="Sentence 1: Mireia, Dan or the writer"><option value="">Choose</option><option value="Mireia">Mireia</option><option value="Dan">Dan</option><option value="the writer">the writer</option></select>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div class="rowq">
+      <p class="prompt">Some people like the late timetable, and some want it to be more like the rest of&nbsp;Europe.</p>
+      <select class="hw-field pick" data-k="a2" data-label="2. Some people like the late timetable, and some want it to be more like the rest of Europe: who says this?" aria-label="Sentence 2: Mireia, Dan or the writer"><option value="">Choose</option><option value="Mireia">Mireia</option><option value="Dan">Dan</option><option value="the writer">the writer</option></select>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div class="rowq">
+      <p class="prompt">Restaurants can stay open late at the weekend, but on weekdays the timetable is too&nbsp;late.</p>
+      <select class="hw-field pick" data-k="a3" data-label="3. Restaurants can stay open late at the weekend, but on weekdays the timetable is too late: who says this?" aria-label="Sentence 3: Mireia, Dan or the writer"><option value="">Choose</option><option value="Mireia">Mireia</option><option value="Dan">Dan</option><option value="the writer">the writer</option></select>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div class="rowq">
+      <p class="prompt">Because summers are getting hotter, dinner may move even&nbsp;later.</p>
+      <select class="hw-field pick" data-k="a4" data-label="4. Because summers are getting hotter, dinner may move even later: who says this?" aria-label="Sentence 4: Mireia, Dan or the writer"><option value="">Choose</option><option value="Mireia">Mireia</option><option value="Dan">Dan</option><option value="the writer">the writer</option></select>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>3. Three&nbsp;questions</h2>
+    <div class="do">Answer in your own words, in one or two&nbsp;sentences.</div>
+
+    <div class="q"><span class="qnum">1.</span><div class="stack">
+      <p class="prompt">Some people in the text find the weekday timetable too late. What reason do they&nbsp;give?</p>
+      <textarea class="hw-field resp two" rows="2" data-k="b2" data-label="1. Some people find the weekday timetable too late. What reason do they give?" aria-label="Question 1: the reason from the text" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div class="stack">
+      <p class="prompt">What is <i>sobremesa</i>?</p>
+      <textarea class="hw-field resp two" rows="2" data-k="b1" data-label="2. What is sobremesa?" aria-label="Question 2: what is sobremesa" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div class="stack">
+      <p class="prompt">Does the writer think Spaniards will start eating dinner earlier soon? What evidence does she&nbsp;give?</p>
+      <textarea class="hw-field resp two three" rows="3" data-k="c1" data-label="3. Does the writer think Spaniards will start eating dinner earlier soon? What evidence does she give?" aria-label="Question 3: will Spaniards eat earlier, and the writer's evidence" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>4. Your&nbsp;view</h2>
+    <div class="do">Whose view is closer to your experience, Mireia&rsquo;s or Dan&rsquo;s? Write 3-4 sentences and say&nbsp;why.</div>
+    <textarea class="hw-field resp long" rows="7" data-k="d1" data-label="4. Whose view is closer to your experience, Mireia's or Dan's? (3-4 sentences)" aria-label="Your view, 3-4 sentences" placeholder="Type your answer here"></textarea>
+    <p class="check">Check: <b>a reason</b> &middot; <b>an example from your own&nbsp;life</b></p>
+  </div>
+
+  <div class="task">
+    <h2>5. Words from the&nbsp;lesson</h2>
+    <div class="do">Write the English phrase. The Russian in brackets is a&nbsp;hint.</div>
+    <p class="instr">Change the form to fit the&nbsp;sentence.</p>
+    <div class="q"><span class="qnum">1.</span><p class="prompt vline">Sorry, I <input class="hw-field resp gap" style="width:140px" data-k="v1" data-label="1. Sorry, I ___ (не могу вспомнить) the name of their IT manager. I'll check my emails." aria-label="Gap 1" autocomplete="off"> <span class="cue">(не могу вспомнить)</span> the name of their IT manager. I&rsquo;ll check my&nbsp;emails.</p></div>
+    <div class="q"><span class="qnum">2.</span><p class="prompt vline">When our kids were babies, we <input class="hw-field resp gap" style="width:160px" data-k="v2" data-label="2. When our kids were babies, we ___ (не были привязаны к) school holidays, so we could travel in May." aria-label="Gap 2" autocomplete="off"> <span class="cue">(не были привязаны к)</span> school holidays, so we could travel in&nbsp;May.</p></div>
+    <div class="q"><span class="qnum">3.</span><p class="prompt vline"><input class="hw-field resp gap" style="width:130px" data-k="v3" data-label="3. ___ (хотя) I trained for three months, the last ten kilometres of the marathon were really hard." aria-label="Gap 3" autocomplete="off"> <span class="cue">(хотя)</span> I trained for three months, the last ten kilometres of the marathon were really&nbsp;hard.</p></div>
+    <div class="q"><span class="qnum">4.</span><p class="prompt vline">I can&rsquo;t give you the exact figure <input class="hw-field resp gap" style="width:210px" data-k="v4" data-label="4. I can't give you the exact figure ___ (навскидку), but sales are about 20% higher than last year." aria-label="Gap 4" autocomplete="off"> <span class="cue">(навскидку),</span> but sales are about 20% higher than last&nbsp;year.</p></div>
+    <div class="q"><span class="qnum">5.</span><p class="prompt vline">When my colleague moved to London last year, he <input class="hw-field resp gap" style="width:150px" data-k="v5" data-label="5. When my colleague moved to London last year, he ___ (уже бывал) there three times, so he knew the city a bit." aria-label="Gap 5" autocomplete="off"> <span class="cue">(уже бывал)</span> there three times, so he knew the city a&nbsp;bit.</p></div>
+    <div class="q"><span class="qnum">6.</span><p class="prompt vline"><input class="hw-field resp gap" style="width:130px" data-k="v6" data-label="6. ___ (к тому времени, как) the kids are in bed, it's usually ten o'clock and I'm too tired to read." aria-label="Gap 6" autocomplete="off"> <span class="cue">(к тому времени, как)</span> the kids are in bed, it&rsquo;s usually ten o&rsquo;clock and I&rsquo;m too tired to&nbsp;read.</p></div>
+    <div class="q"><span class="qnum">7.</span><p class="prompt vline">The old software was too <input class="hw-field resp gap" style="width:110px" data-k="v7" data-label="7. The old software was too ___ (негибкой): every small change took our team a month." aria-label="Gap 7" autocomplete="off"> <span class="cue">(негибкой):</span> every small change took our team a&nbsp;month.</p></div>
+    <div class="q"><span class="qnum">8.</span><p class="prompt vline">If you&rsquo;re ever in Prague, <input class="hw-field resp gap" style="width:190px" data-k="v8" data-label="8. If you're ever in Prague, ___ (стоит посетить) the castle early in the morning, before the crowds." aria-label="Gap 8" autocomplete="off"> <span class="cue">(стоит посетить)</span> the castle early in the morning, before the&nbsp;crowds.</p></div>
+    <div class="q"><span class="qnum">9.</span><p class="prompt vline">Last week we <input class="hw-field resp gap" style="width:150px" data-k="v9" data-label="9. Last week we ___ (связались с) two new clients in Uzbekistan." aria-label="Gap 9" autocomplete="off"> <span class="cue">(связались с)</span> two new clients in&nbsp;Uzbekistan.</p></div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script src="../assets/hw.js?v=20260923-export2"></script>
+</body>
+</html>

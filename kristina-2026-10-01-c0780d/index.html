@@ -64,17 +64,17 @@ header .sub { font-size: 14px; opacity: 0.85; margin-top: 2px; }
 .slot .tile { box-shadow: none; }
 
 /* Part 1: phrase into the sentence */
-.glist { display: flex; flex-direction: column; gap: 6px; }
+.glist { display: flex; flex-direction: column; gap: 12px; }
 .grow { display: flex; align-items: flex-start; gap: 12px; }
-.grow .num { margin-top: 9px; }
-.gsent { flex: 1; font-size: 16.5px; line-height: 2.2; }
+.grow .num { margin-top: 7px; }
+.gsent { flex: 1; font-size: 16.5px; line-height: 1.75; }
 .gsent .slot { min-width: 130px; vertical-align: middle; margin: 0 3px; padding: 0 2px; }
 
 /* Part 2: choose the form */
-.flist { display: flex; flex-direction: column; gap: 4px; }
+.flist { display: flex; flex-direction: column; gap: 12px; }
 .frow { display: flex; align-items: flex-start; gap: 12px; }
-.frow .num { margin-top: 8px; }
-.fsent { flex: 1; font-size: 16.5px; line-height: 2.2; }
+.frow .num { margin-top: 4px; }
+.fsent { flex: 1; font-size: 16.5px; line-height: 1.75; }
 .fsent select { font: inherit; font-size: 16px; }
 .fsent select.hw-field { min-width: 0 !important; min-height: 34px; padding: 1px 6px; vertical-align: baseline; }
 
@@ -423,7 +423,9 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
     }
     document.querySelectorAll(".tile .say").forEach(function (b) {
       function go(e) { e.preventDefault(); e.stopPropagation(); speak(b.closest(".tile").dataset.word); }
-      b.addEventListener("pointerdown", function (e) { e.stopPropagation(); });
+      // On a touchscreen the browser snaps a tap near a short tile's middle onto this icon, so a touch on it
+      // in the bank also picks the tile (and still speaks). Mouse, and tiles already in a box: listen only.
+      b.addEventListener("pointerdown", function (e) { if (e.pointerType !== "touch" || b.closest(".slot")) e.stopPropagation(); });
       b.addEventListener("click", go);
       b.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") go(e); });
     });

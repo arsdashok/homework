@@ -403,7 +403,9 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
     }
     document.querySelectorAll(".tile .say").forEach(function (b) {
       function go(e) { e.preventDefault(); e.stopPropagation(); speak(b.closest(".tile").dataset.word); }
-      b.addEventListener("pointerdown", function (e) { e.stopPropagation(); });
+      // On a touchscreen the browser snaps a tap near a short tile's middle onto this icon, so a touch on it
+      // in the bank also picks the tile (and still speaks). Mouse, and tiles already in a box: listen only.
+      b.addEventListener("pointerdown", function (e) { if (e.pointerType !== "touch" || b.closest(".slot")) e.stopPropagation(); });
       b.addEventListener("click", go);
       b.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") go(e); });
     });

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kiyan · Maths homework · 2 October 2026</title>
+<!-- Built from the F1 deck used on 2 Oct (Lessons/Maths/08_F1_Comparing_Fractions, cards 00-06 only: same denominator, one part each, predict without bars, who is right). Equivalence deliberately left out. Key in the .key.json beside this file, never in this page. -->
+<style>
+@page { size: A4; margin: 12mm 14mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
+  font-size: 16px; line-height: 1.45; color: #1f2937; background: #fff;
+  max-width: 780px; margin: 0 auto;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 2px solid #8072b2; padding-bottom: 8px; margin-bottom: 14px;
+}
+header h1 { font-size: 23px; font-weight: 700; }
+header span { font-size: 13px; color: #4b5563; }
+
+section.task {
+  margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #9ca3af;
+  page-break-inside: avoid; break-inside: avoid;
+}
+section.task:last-of-type { border-bottom: 0; margin-bottom: 0; }
+.sec { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #64518e;
+  margin-bottom: 4px; page-break-after: avoid; break-after: avoid; }
+.instruction { font-size: 20px; font-weight: 700; color: #111827; margin: 4px 0 6px; text-wrap: pretty; }
+.hint { font-size: 16px; color: #1f2937; margin: -2px 0 8px; }
+.keyline { border-left: 3px solid #4b5563; padding: 2px 0 2px 12px; margin: 2px 0 8px; font-size: 16.5px; color: #111827; }
+
+.frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle;
+  line-height: 1.1; margin: 0 3px; font-weight: 600; font-size: 19px; }
+.frac .fn, .frac .fd { padding: 0 4px; }
+.frac .fd { border-top: 2px solid #111827; }
+.frac.big { font-size: 26px; font-weight: 700; }
+
+.q { page-break-inside: avoid; break-inside: avoid; }
+.item { display: flex; align-items: center; gap: 10px 22px; padding: 6px 0; }
+.item + .item { margin-top: 8px; }
+.num { display: inline-block; min-width: 24px; font-size: 17px; font-weight: 700; color: #64518e; align-self: center; }
+.bars { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.barrow { display: flex; align-items: center; gap: 10px; }
+.barrow .frac { width: 40px; margin: 0; }
+svg.shade { display: block; flex: 0 1 340px; width: 340px; min-width: 0; max-width: 100%; height: auto; touch-action: manipulation; }
+svg.shade rect.part { cursor: pointer; }
+svg.shade line, svg.shade rect.outline { pointer-events: none; }
+.cmp { display: flex; align-items: center; gap: 12px; }
+.q select.sign { min-width: 142px; width: 142px; font-size: 21px; text-align: center; }
+.mk { display: inline-block; min-width: 2px; min-height: 20px; vertical-align: middle; }
+.cmp .mk { min-width: 34px; }
+/* every bar item's comparison has the same width, so all bars on the sheet are the same length */
+.item:not(.plain) .cmp .frac.big { min-width: 42px; }
+.plain { padding: 4px 0; }
+.plain .cmp { margin-left: 2px; }
+
+.claim { display: flex; align-items: center; gap: 14px; margin: 4px 0 8px; }
+.claim .who { font-weight: 700; font-size: 17px; color: #111827; background: #f3f1fb; border-radius: 999px; padding: 3px 14px; }
+.claim p { font-size: 18px; color: #111827; }
+.q6 { display: flex; align-items: center; gap: 12px; padding: 2px 0 8px; }
+.q select.choice { min-width: 190px; font-size: 17px; }
+.circle-opt { display: none; font-size: 18px; color: #111827; }
+/* local look mirrors the shared hw.css (which wins once published), so the PDF shows the boxes too */
+.q select, div.why { font-family: inherit; color: #1d4ed8; font-weight: 600; background: #f6f5ff;
+  border: 2px solid #8072b2; border-radius: 8px; }
+.q select { min-height: 40px; padding: 4px 10px; }
+section.task div.why { min-height: 78px !important; margin-left: 36px; padding: 8px 12px; }
+
+@media screen { body { padding: 26px 20px 40px; } }
+@media (max-width: 620px) {
+  .item { flex-wrap: wrap; }
+  .item:not(.plain) .cmp { margin-left: 34px; }
+  .bars { flex: 1 1 260px; }
+  .claim { align-items: flex-start; flex-wrap: wrap; }
+  section.task div.why { margin-left: 0; }
+}
+@media print {
+  body { font-size: 14px; line-height: 1.35; }
+  header { margin-bottom: 8px; padding-bottom: 6px; }
+  section.task { margin-bottom: 8px; padding-bottom: 6px; }
+  .instruction { font-size: 17.5px; margin: 2px 0 4px; }
+  .hint { display: none; }
+  .item { padding: 2px 0; gap: 8px 18px; }
+  .item + .item { margin-top: 4px; }
+  .bars { gap: 5px; }
+  svg.shade { width: 300px; flex-basis: 300px; }
+  /* paper: a sign menu with nothing chosen prints as an empty box to write in; a chosen sign prints without the arrow */
+  .q select.sign { -webkit-appearance: none; appearance: none; background-image: none; }
+  .q select.sign.is-empty { color: transparent !important; }
+  .plain .cmp .frac.big:first-child { min-width: 46px; }
+  /* paper: Q6 is circled, not chosen from a menu */
+  .q6.is-empty select.choice { display: none; }
+  .q6.is-empty .circle-opt { display: inline; }
+  .q select.sign { min-width: 138px; width: 138px; font-size: 20px; }
+  .frac.big { font-size: 23px; }
+  .claim { margin: 2px 0 4px; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Kiyan" data-sheet="Maths comparing fractions 2026-10-02" data-sheet-id="kiyan-2026-10-02-maths-comparing-fractions">
+<div id="sheet">
+
+
+<header>
+  <h1>Kiyan · Maths</h1>
+  <span>2 October 2026</span>
+</header>
+
+<section class="task" id="same-denominator">
+  <p class="sec">Same denominator</p>
+  <p class="keyline">&lt; means <b>is smaller than</b>. &nbsp;&nbsp; &gt; means <b>is bigger&nbsp;than</b>.</p>
+  <p class="instruction">Shade each fraction on its bar. Then choose &lt;, &gt; or&nbsp;=.</p>
+  <p class="hint">Tap the part where your shading&nbsp;ends.</p>
+  <div class="q item"><span class="num">1</span><div class="bars"><div class="barrow"><span class="frac"><span class="fn">5</span><span class="fd">7</span></span><svg class="shade" data-for="s1a" viewBox="0 0 368 48" width="368" height="48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar cut into 7 equal parts"><rect class="part" data-i="0" x="4.00" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="1" x="55.43" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="2" x="106.86" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="3" x="158.29" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="4" x="209.71" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="5" x="261.14" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="6" x="312.57" y="4" width="51.43" height="40" fill="#ffffff"/><line x1="55.43" y1="4" x2="55.43" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="106.86" y1="4" x2="106.86" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="158.29" y1="4" x2="158.29" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="209.71" y1="4" x2="209.71" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="261.14" y1="4" x2="261.14" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="312.57" y1="4" x2="312.57" y2="44" stroke="#1f2937" stroke-width="2.2"/><rect class="outline" x="4" y="4" width="360" height="40" fill="none" stroke="#1f2937" stroke-width="3"/></svg><input type="hidden" data-k="s1a" data-label="1. The 5/7 bar: parts shaded" class="hw-field"></div><div class="barrow"><span class="frac"><span class="fn">2</span><span class="fd">7</span></span><svg class="shade" data-for="s1b" viewBox="0 0 368 48" width="368" height="48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar cut into 7 equal parts"><rect class="part" data-i="0" x="4.00" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="1" x="55.43" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="2" x="106.86" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="3" x="158.29" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="4" x="209.71" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="5" x="261.14" y="4" width="51.43" height="40" fill="#ffffff"/><rect class="part" data-i="6" x="312.57" y="4" width="51.43" height="40" fill="#ffffff"/><line x1="55.43" y1="4" x2="55.43" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="106.86" y1="4" x2="106.86" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="158.29" y1="4" x2="158.29" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="209.71" y1="4" x2="209.71" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="261.14" y1="4" x2="261.14" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="312.57" y1="4" x2="312.57" y2="44" stroke="#1f2937" stroke-width="2.2"/><rect class="outline" x="4" y="4" width="360" height="40" fill="none" stroke="#1f2937" stroke-width="3"/></svg><input type="hidden" data-k="s1b" data-label="1. The 2/7 bar: parts shaded" class="hw-field"></div></div><div class="cmp"><span class="frac big"><span class="fn">5</span><span class="fd">7</span></span><select class="hw-field sign is-empty" data-k="c1" data-label="1. 5/7 and 2/7: sign" aria-label="1. 5/7 and 2/7: sign"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="frac big"><span class="fn">2</span><span class="fd">7</span></span><span class="mk" data-field="c1"></span></div></div>
+</section>
+
+<section class="task" id="one-part">
+  <p class="sec">One part each</p>
+  <p class="instruction">Shade one part in each bar. Then choose &lt;, &gt; or&nbsp;=.</p>
+  <p class="hint">Tap the first part of each&nbsp;bar.</p>
+  <div class="q item"><span class="num">2</span><div class="bars"><div class="barrow"><span class="frac"><span class="fn">1</span><span class="fd">6</span></span><svg class="shade" data-for="s2a" viewBox="0 0 368 48" width="368" height="48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar cut into 6 equal parts"><rect class="part" data-i="0" x="4.00" y="4" width="60.00" height="40" fill="#ffffff"/><rect class="part" data-i="1" x="64.00" y="4" width="60.00" height="40" fill="#ffffff"/><rect class="part" data-i="2" x="124.00" y="4" width="60.00" height="40" fill="#ffffff"/><rect class="part" data-i="3" x="184.00" y="4" width="60.00" height="40" fill="#ffffff"/><rect class="part" data-i="4" x="244.00" y="4" width="60.00" height="40" fill="#ffffff"/><rect class="part" data-i="5" x="304.00" y="4" width="60.00" height="40" fill="#ffffff"/><line x1="64.00" y1="4" x2="64.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="124.00" y1="4" x2="124.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="184.00" y1="4" x2="184.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="244.00" y1="4" x2="244.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="304.00" y1="4" x2="304.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><rect class="outline" x="4" y="4" width="360" height="40" fill="none" stroke="#1f2937" stroke-width="3"/></svg><input type="hidden" data-k="s2a" data-label="2. The 1/6 bar: parts shaded" class="hw-field"></div><div class="barrow"><span class="frac"><span class="fn">1</span><span class="fd">3</span></span><svg class="shade" data-for="s2b" viewBox="0 0 368 48" width="368" height="48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar cut into 3 equal parts"><rect class="part" data-i="0" x="4.00" y="4" width="120.00" height="40" fill="#ffffff"/><rect class="part" data-i="1" x="124.00" y="4" width="120.00" height="40" fill="#ffffff"/><rect class="part" data-i="2" x="244.00" y="4" width="120.00" height="40" fill="#ffffff"/><line x1="124.00" y1="4" x2="124.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="244.00" y1="4" x2="244.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><rect class="outline" x="4" y="4" width="360" height="40" fill="none" stroke="#1f2937" stroke-width="3"/></svg><input type="hidden" data-k="s2b" data-label="2. The 1/3 bar: parts shaded" class="hw-field"></div></div><div class="cmp"><span class="frac big"><span class="fn">1</span><span class="fd">6</span></span><select class="hw-field sign is-empty" data-k="c2" data-label="2. 1/6 and 1/3: sign" aria-label="2. 1/6 and 1/3: sign"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="frac big"><span class="fn">1</span><span class="fd">3</span></span><span class="mk" data-field="c2"></span></div></div>
+  <div class="q item"><span class="num">3</span><div class="bars"><div class="barrow"><span class="frac"><span class="fn">1</span><span class="fd">4</span></span><svg class="shade" data-for="s3a" viewBox="0 0 368 48" width="368" height="48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar cut into 4 equal parts"><rect class="part" data-i="0" x="4.00" y="4" width="90.00" height="40" fill="#ffffff"/><rect class="part" data-i="1" x="94.00" y="4" width="90.00" height="40" fill="#ffffff"/><rect class="part" data-i="2" x="184.00" y="4" width="90.00" height="40" fill="#ffffff"/><rect class="part" data-i="3" x="274.00" y="4" width="90.00" height="40" fill="#ffffff"/><line x1="94.00" y1="4" x2="94.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="184.00" y1="4" x2="184.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="274.00" y1="4" x2="274.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><rect class="outline" x="4" y="4" width="360" height="40" fill="none" stroke="#1f2937" stroke-width="3"/></svg><input type="hidden" data-k="s3a" data-label="3. The 1/4 bar: parts shaded" class="hw-field"></div><div class="barrow"><span class="frac"><span class="fn">1</span><span class="fd">10</span></span><svg class="shade" data-for="s3b" viewBox="0 0 368 48" width="368" height="48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar cut into 10 equal parts"><rect class="part" data-i="0" x="4.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="1" x="40.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="2" x="76.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="3" x="112.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="4" x="148.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="5" x="184.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="6" x="220.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="7" x="256.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="8" x="292.00" y="4" width="36.00" height="40" fill="#ffffff"/><rect class="part" data-i="9" x="328.00" y="4" width="36.00" height="40" fill="#ffffff"/><line x1="40.00" y1="4" x2="40.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="76.00" y1="4" x2="76.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="112.00" y1="4" x2="112.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="148.00" y1="4" x2="148.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="184.00" y1="4" x2="184.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="220.00" y1="4" x2="220.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="256.00" y1="4" x2="256.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="292.00" y1="4" x2="292.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><line x1="328.00" y1="4" x2="328.00" y2="44" stroke="#1f2937" stroke-width="2.2"/><rect class="outline" x="4" y="4" width="360" height="40" fill="none" stroke="#1f2937" stroke-width="3"/></svg><input type="hidden" data-k="s3b" data-label="3. The 1/10 bar: parts shaded" class="hw-field"></div></div><div class="cmp"><span class="frac big"><span class="fn">1</span><span class="fd">4</span></span><select class="hw-field sign is-empty" data-k="c3" data-label="3. 1/4 and 1/10: sign" aria-label="3. 1/4 and 1/10: sign"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="frac big"><span class="fn">1</span><span class="fd">10</span></span><span class="mk" data-field="c3"></span></div></div>
+</section>
+
+<section class="task" id="no-bars">
+  <p class="sec">No bars</p>
+  <p class="instruction">No bars this time. Choose &lt;, &gt; or&nbsp;=.</p>
+  <div class="q item plain"><span class="num">4</span><div class="cmp"><span class="frac big"><span class="fn">1</span><span class="fd">3</span></span><select class="hw-field sign is-empty" data-k="c4" data-label="4. 1/3 and 1/7: sign" aria-label="4. 1/3 and 1/7: sign"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="frac big"><span class="fn">1</span><span class="fd">7</span></span><span class="mk" data-field="c4"></span></div></div>
+  <div class="q item plain"><span class="num">5</span><div class="cmp"><span class="frac big"><span class="fn">1</span><span class="fd">12</span></span><select class="hw-field sign is-empty" data-k="c5" data-label="5. 1/12 and 1/8: sign" aria-label="5. 1/12 and 1/8: sign"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="frac big"><span class="fn">1</span><span class="fd">8</span></span><span class="mk" data-field="c5"></span></div></div>
+</section>
+
+<section class="task" id="mia">
+  <p class="sec">Is Mia right?</p>
+  <div class="claim"><span class="who">Mia</span>
+    <p><span class="frac"><span class="fn">1</span><span class="fd">9</span></span> of a bar is bigger than <span class="frac"><span class="fn">1</span><span class="fd">5</span></span> of the same bar, because 9 is bigger than&nbsp;5.</p></div>
+  <p class="instruction">Choose right or wrong. Then write why in one&nbsp;sentence.</p>
+  <div class="q q6 is-empty"><span class="num">6</span>
+    <select class="hw-field choice" data-k="m6" data-label="6. Is Mia right? (1/9 bigger than 1/5)" aria-label="Is Mia right?"><option value="">Choose</option><option value="Mia is right">Mia is right</option><option value="Mia is wrong">Mia is wrong</option></select>
+    <span class="circle-opt">right &nbsp;/&nbsp; wrong</span>
+  </div>
+  <div class="hw-field why" contenteditable="true" data-k="w6" data-label="6. Why is Mia right or wrong?" aria-label="Why is Mia right or wrong?"></div>
+</section>
+
+
+<script>
+/* Tap-to-shade bars. The count of shaded parts lives in the hidden data-k input beside each bar,
+   so hw.js saves it, restores it after a reload and sends it with the sheet. Shading fills from the left. */
+(function () {
+  var SHADE = "#6C63FF";
+  function field(svg) { return document.querySelector("input[data-k='" + svg.getAttribute("data-for") + "']"); }
+  function paint(svg) {
+    var f = field(svg), n = f ? (parseInt(f.value, 10) || 0) : 0;
+    [].forEach.call(svg.querySelectorAll("rect.part"), function (r, i) { r.setAttribute("fill", i < n ? SHADE : "#ffffff"); });
+  }
+  [].forEach.call(document.querySelectorAll("svg.shade"), function (svg) {
+    svg.addEventListener("click", function (e) {
+      var r = e.target && e.target.closest ? e.target.closest("rect.part") : null;
+      var f = field(svg);
+      if (!r || !f) return;
+      var i = parseInt(r.getAttribute("data-i"), 10) + 1, n = parseInt(f.value, 10) || 0;
+      n = (n === i) ? i - 1 : i;
+      f.value = n ? String(n) : "";
+      f.dispatchEvent(new Event("change", { bubbles: true }));
+      paint(svg);
+    });
+  });
+  function empties() {
+    [].forEach.call(document.querySelectorAll("select.sign, select.choice"), function (s) {
+      s.classList.toggle("is-empty", !s.value);
+      if (s.classList.contains("choice")) s.closest(".q6").classList.toggle("is-empty", !s.value);
+    });
+  }
+  document.addEventListener("change", empties, true);
+  window.addEventListener("beforeprint", empties);
+  function all() { [].forEach.call(document.querySelectorAll("svg.shade"), paint); empties(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", all); else all();
+  window.addEventListener("load", all);
+})();
+</script>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJjMSI6IHsidCI6ICJleGFjdCIsICJhIjogIj4ifSwgImMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiPCJ9LCAiYzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI+In0sICJjNCI6IHsidCI6ICJleGFjdCIsICJhIjogIj4ifSwgImM1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiPCJ9LCAibTYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJNaWEgaXMgd3JvbmcifSwgInc2IjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body>
+</html>

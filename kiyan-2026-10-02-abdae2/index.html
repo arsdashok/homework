@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- hw-mode: online. Built from the 2 Oct lesson (25 Sept metaphor sheet reviewed: an adjective is not a metaphor; "like" makes a simile). Private marking key in the .key.json beside this file, never in this page. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kiyan · English homework · 2 October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 12mm 14mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
+  font-size: 16px; line-height: 1.45; color: #1f2937; background: #fff;
+  max-width: 820px; margin: 0 auto;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+p { text-wrap: pretty; }
+header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 2px solid #8072b2; padding-bottom: 8px; margin-bottom: 18px;
+}
+header h1 { font-size: 23px; font-weight: 700; }
+header span { font-size: 13px; color: #4b5563; }
+
+section.task { margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #9ca3af; }
+section.task:last-of-type { border-bottom: 0; margin-bottom: 0; }
+
+/* type hierarchy: small section label, ONE large bold instruction, small light note */
+.label { font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #64518e; margin-bottom: 4px; page-break-after: avoid; break-after: avoid; }
+.instruction { font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 2px; page-break-after: avoid; break-after: avoid; }
+.note { font-size: 14px; font-weight: 400; color: #6b7280; margin-bottom: 12px; }
+
+/* A: sort into three boxes */
+.bank {
+  display: flex; flex-wrap: wrap; gap: 10px; min-height: 56px;
+  padding: 12px; border-radius: 12px; background: #f6f5ff; margin-bottom: 14px;
+}
+.card {
+  font: inherit; font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400;
+  color: #111827; text-align: left; line-height: 1.3;
+  background: #fff; border: 2px solid #8072b2; border-radius: 12px;
+  padding: 7px 12px; cursor: grab; max-width: 100%;
+  touch-action: none; user-select: none; -webkit-user-select: none;
+  box-shadow: 0 2px 0 #ddd6fe;
+}
+.card .cn { font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-size: 12.5px; font-weight: 700; color: #8072b2; margin-right: 7px; }
+.card.picked { outline: 3px solid #f59e0b; outline-offset: 2px; }
+.card.ghosted { opacity: 0.35; }
+.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; transform: scale(1.04); margin: 0; }
+.bins { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.bin {
+  border: 2px dashed #a99fd6; border-radius: 14px; background: #fcfbff;
+  min-height: 150px; padding: 8px 10px 12px; cursor: pointer;
+  page-break-inside: avoid; break-inside: avoid;
+}
+.bin h3 { font-size: 18px; font-weight: 700; color: #111827; text-align: center; }
+.bin .what { font-size: 13px; color: #6b7280; text-align: center; margin-bottom: 8px; }
+.bincards { display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+.bincards .card { box-shadow: none; font-size: 16px; }
+.over, .ready { border-color: #64518e !important; background: #efecfb !important; }
+.store { display: none; }
+
+/* B: make it a metaphor */
+.example { border-left: 3px solid #4b5563; padding: 3px 0 3px 13px; margin: 10px 0 12px; color: #111827; page-break-inside: avoid; break-inside: avoid; }
+.example .elabel { font-size: 12.5px; font-weight: 700; color: #4b5563; margin-bottom: 3px; }
+.verse { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.45; }
+.verse .from { color: #6b7280; }
+.verse .hl { color: #64518e; font-weight: 700; }
+.example .why { font-size: 15px; color: #374151; margin-top: 4px; }
+.q { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; page-break-inside: avoid; break-inside: avoid; }
+.qnum { display: inline-block; min-width: 22px; font-size: 17px; font-weight: 700; color: #64518e; padding-top: 1px; }
+.qbody { flex: 1; min-width: 0; }
+.prompt { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; color: #111827; margin-bottom: 6px; }
+div.sent {
+  min-height: 64px; border: 2px solid #8072b2; border-radius: 8px; background: #f6f5ff;
+  padding: 8px 12px; color: #1d4ed8; font-weight: 600; white-space: pre-wrap; word-wrap: break-word;
+}
+section div.sent { min-height: 64px !important; }
+
+@media screen { body { padding: 26px 20px 40vh; } }
+.print-only { display: none; }
+@media (max-width: 620px) {
+  body { padding: 18px 12px 40vh; }
+  .instruction { font-size: 18.5px; }
+  .bins { grid-template-columns: 1fr; gap: 10px; }
+  .bin { min-height: 92px; }
+  .card { font-size: 16px; }
+}
+@media print {
+  body { font-size: 14.5px; line-height: 1.38; }
+  header { margin-bottom: 12px; }
+  section.task { margin-bottom: 14px; padding-bottom: 12px; }
+  .note { margin-bottom: 8px; }
+  .screen-only { display: none !important; }
+  .print-only { display: block; margin-bottom: 8px; }
+  .bank { padding: 8px; gap: 7px; margin-bottom: 10px; }
+  .card { font-size: 15px; padding: 4px 10px; box-shadow: none; }
+  .bin { min-height: 118px; }
+  .example { margin: 6px 0 8px; }
+  .q { padding: 3px 0; }
+  div.sent, section div.sent { min-height: 56px !important; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Kiyan" data-sheet="English metaphors 2026-10-02" data-sheet-id="kiyan-2026-10-02-english-metaphors">
+<div id="sheet">
+
+
+<header>
+  <h1>Kiyan · English</h1>
+  <span>2 October 2026</span>
+</header>
+
+<section class="task" id="sort">
+  <p class="label">A · Sort the&nbsp;lines</p>
+  <p class="instruction screen-only">Drag each line into the right&nbsp;box.</p>
+  <p class="note screen-only">Or tap a line, then tap a box. Tap a line in a box to send it&nbsp;back.</p>
+  <p class="instruction print-only">Write each number in the right&nbsp;box.</p>
+
+  <div class="bank" id="bank">
+    <button type="button" class="card" data-field="c1" data-i="1"><span class="cn">1</span>My sister is a volcano when she&rsquo;s&nbsp;angry.</button>
+    <button type="button" class="card" data-field="c2" data-i="2"><span class="cn">2</span>Our dog is&nbsp;lazy.</button>
+    <button type="button" class="card" data-field="c3" data-i="3"><span class="cn">3</span>The cat next door is like a tiny&nbsp;lion.</button>
+    <button type="button" class="card" data-field="c4" data-i="4"><span class="cn">4</span>My aunt is a nurse at the&nbsp;hospital.</button>
+    <button type="button" class="card" data-field="c5" data-i="5"><span class="cn">5</span>The snow was a white blanket on the&nbsp;garden.</button>
+    <button type="button" class="card" data-field="c6" data-i="6"><span class="cn">6</span>The bus was as slow as a&nbsp;snail.</button>
+  </div>
+
+  <div class="bins">
+    <div class="bin" data-val="metaphor"><h3>Metaphor</h3><p class="what">says it IS something it is&nbsp;not</p><div class="bincards"></div></div>
+    <div class="bin" data-val="simile"><h3>Simile</h3><p class="what">compares with <i>like</i> or&nbsp;<i>as</i></p><div class="bincards"></div></div>
+    <div class="bin" data-val="not a comparison"><h3>Not a comparison</h3><p class="what">a fact or a describing&nbsp;word</p><div class="bincards"></div></div>
+  </div>
+
+  <div class="store" aria-hidden="true">
+    <select data-k="c1" data-label="A1. My sister is a volcano when she's angry.: metaphor, simile or not a comparison" class="hw-field"><option value="">Choose</option><option value="metaphor">metaphor</option><option value="simile">simile</option><option value="not a comparison">not a comparison</option></select>
+    <select data-k="c2" data-label="A2. Our dog is lazy.: metaphor, simile or not a comparison" class="hw-field"><option value="">Choose</option><option value="metaphor">metaphor</option><option value="simile">simile</option><option value="not a comparison">not a comparison</option></select>
+    <select data-k="c3" data-label="A3. The cat next door is like a tiny lion.: metaphor, simile or not a comparison" class="hw-field"><option value="">Choose</option><option value="metaphor">metaphor</option><option value="simile">simile</option><option value="not a comparison">not a comparison</option></select>
+    <select data-k="c4" data-label="A4. My aunt is a nurse at the hospital.: metaphor, simile or not a comparison" class="hw-field"><option value="">Choose</option><option value="metaphor">metaphor</option><option value="simile">simile</option><option value="not a comparison">not a comparison</option></select>
+    <select data-k="c5" data-label="A5. The snow was a white blanket on the garden.: metaphor, simile or not a comparison" class="hw-field"><option value="">Choose</option><option value="metaphor">metaphor</option><option value="simile">simile</option><option value="not a comparison">not a comparison</option></select>
+    <select data-k="c6" data-label="A6. The bus was as slow as a snail.: metaphor, simile or not a comparison" class="hw-field"><option value="">Choose</option><option value="metaphor">metaphor</option><option value="simile">simile</option><option value="not a comparison">not a comparison</option></select>
+  </div>
+</section>
+
+<section class="task" id="fix">
+  <p class="label">B · Make it a&nbsp;metaphor</p>
+  <p class="instruction">Write the whole line again, with a thing instead of the describing&nbsp;word.</p>
+
+  <div class="example">
+    <div class="elabel">Example</div>
+    <p class="verse from">I&rsquo;m <span class="hl">tall</span> because I can reach the top&nbsp;shelf.</p>
+    <p class="verse">I am <span class="hl">a ladder</span> because I can reach the top&nbsp;shelf.</p>
+    <p class="why">A ladder can reach the top shelf, and so can I. The because part is true of&nbsp;both.</p>
+  </div>
+  <p class="note">The weirder the thing, the&nbsp;better.</p>
+
+  <div class="q"><span class="qnum">1</span><div class="qbody">
+    <p class="prompt">I&rsquo;m strong because I can lift heavy&nbsp;things.</p>
+    <div class="hw-field sent" contenteditable="true" data-k="f1" data-label="B1. I'm strong because I can lift heavy things. My metaphor (I am a ... because ...)"></div>
+  </div></div>
+  <div class="q"><span class="qnum">2</span><div class="qbody">
+    <p class="prompt">I&rsquo;m good at headers because I can jump really&nbsp;high.</p>
+    <div class="hw-field sent" contenteditable="true" data-k="f2" data-label="B2. I'm good at headers because I can jump really high. My metaphor (I am a ... because ...)"></div>
+  </div></div>
+</section>
+
+<script>
+(function () {
+  function init() {
+    function field(k) { var all = document.querySelectorAll(".store [data-k]"); for (var i = 0; i < all.length; i++) if (all[i].dataset.k === k) return all[i]; return null; }
+    function setVal(f, v) { if (f && f.value !== v) { f.value = v; f.dispatchEvent(new Event("input")); f.dispatchEvent(new Event("change")); } }
+    var picked = null;
+    var bank = document.getElementById("bank"), bins = [].slice.call(document.querySelectorAll(".bin"));
+    function unpick() {
+      if (picked) picked.classList.remove("picked"); picked = null;
+      bins.forEach(function (b) { b.classList.remove("ready"); });
+    }
+    function hit(list, x, y) {
+      for (var i = 0; i < list.length; i++) {
+        var r = list[i].getBoundingClientRect(), pad = 8;
+        if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return list[i];
+      }
+      return null;
+    }
+    // drag with a floating copy; the card itself stays put until the drop
+    function dragify(tile, o) {
+      tile.addEventListener("click", function (e) { e.stopPropagation(); });
+      tile.addEventListener("pointerdown", function (e) {
+        if (e.button && e.button !== 0) return;
+        e.preventDefault();
+        var r = tile.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ghost = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ghost = tile.cloneNode(true); ghost.classList.add("dragging"); ghost.style.width = r.width + "px";
+            ghost.querySelectorAll(".hw-mark").forEach(function (m) { m.remove(); });
+            document.body.appendChild(ghost); tile.classList.add("ghosted");
+          }
+          ghost.style.left = (ev.clientX - dx) + "px"; ghost.style.top = (ev.clientY - dy) + "px";
+          if (ev.clientY < 50) window.scrollBy(0, -14); else if (ev.clientY > window.innerHeight - 50) window.scrollBy(0, 14);
+          var t = hit(o.targets(), ev.clientX, ev.clientY);
+          if (t !== over) { if (over) over.classList.remove("over"); over = t; if (t) t.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          if (!moved) { o.tap(); return; }
+          ghost.remove(); tile.classList.remove("ghosted");
+          var t = ev.type === "pointerup" ? hit(o.targets(), ev.clientX, ev.clientY) : null;
+          if (t) o.drop(t); else if (o.out) o.out();
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    }
+    function home(card) {
+      var i = +card.dataset.i, kids = bank.querySelectorAll(".card"), before = null;
+      for (var j = 0; j < kids.length; j++) if (kids[j] !== card && +kids[j].dataset.i > i) { before = kids[j]; break; }
+      bank.insertBefore(card, before); setVal(field(card.dataset.field), "");
+    }
+    function toBin(card, bin) { bin.querySelector(".bincards").appendChild(card); setVal(field(card.dataset.field), bin.dataset.val); }
+    document.querySelectorAll("#bank .card").forEach(function (card) {
+      dragify(card, {
+        targets: function () { return bins; },
+        drop: function (bin) { toBin(card, bin); },
+        out: function () { if (card.closest(".bin")) home(card); },
+        tap: function () {
+          if (card.closest(".bin")) { unpick(); home(card); return; }
+          if (picked === card) { unpick(); return; }
+          unpick(); picked = card; card.classList.add("picked");
+          bins.forEach(function (b) { b.classList.add("ready"); });
+        }
+      });
+      var f = field(card.dataset.field);
+      if (f && f.value) bins.forEach(function (b) { if (b.dataset.val === f.value) b.querySelector(".bincards").appendChild(card); });
+    });
+    bins.forEach(function (b) { b.addEventListener("click", function () { if (picked) { toBin(picked, b); unpick(); } }); });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJjMSI6IHsidCI6ICJleGFjdCIsICJhIjogIm1ldGFwaG9yIn0sICJjMiI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vdCBhIGNvbXBhcmlzb24ifSwgImMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2ltaWxlIn0sICJjNCI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vdCBhIGNvbXBhcmlzb24ifSwgImM1IjogeyJ0IjogImV4YWN0IiwgImEiOiAibWV0YXBob3IifSwgImM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2ltaWxlIn0sICJmMSI6IHsidCI6ICJvcGVuIn0sICJmMiI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body>
+</html>

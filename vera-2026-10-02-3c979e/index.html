@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vera: Homework 2 October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2a4a; --blue: #1d4e89; --line: #9db3cc; --bg: #eef3f9; --paper: #ffffff;
+    --accent: #ff7a1a; --accent-ink: #b9500a; --muted: #56677c;
+  }
+  @page { size: A4; margin: 9mm 11mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-size: 16px; line-height: 1.45;
+    color: var(--navy); background: var(--bg); max-width: 800px; margin: 0 auto; padding: 18px 14px 20px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+
+  /* header = an engineering drawing title block */
+  header.tb {
+    position: relative; overflow: hidden; background: var(--navy); color: #fff; border-radius: 12px;
+    padding: 22px 24px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  header.tb svg.grid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .tb-main, .tb-block { position: relative; z-index: 1; }
+  .kicker { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  header.tb h1 { font-size: 36px; line-height: 1.05; font-weight: 800; letter-spacing: -.01em; }
+  .tb-block { flex: none; border: 1.5px solid rgba(255,255,255,.55); border-radius: 6px; min-width: 190px; }
+  .tb-block div { padding: 5px 12px; font-size: 15px; font-weight: 500; border-top: 1px solid rgba(255,255,255,.3); }
+  .tb-block div:first-child { border-top: 0; }
+  .tb-block span { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9fc0e6; }
+
+  /* parts */
+  .part {
+    position: relative; background: var(--paper); border: 1.5px solid var(--navy); border-radius: 10px;
+    padding: 18px 22px 20px; margin-bottom: 18px; box-shadow: 4px 4px 0 rgba(11,42,74,.13);
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plabel { font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 4px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: 4px; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+  .q { page-break-inside: avoid; break-inside: avoid; }
+
+  /* tiles */
+  .chip {
+    font: inherit; font-size: 16px; font-weight: 700; color: var(--navy); background: #fff;
+    border: 2px solid var(--navy); border-radius: 8px; padding: 9px 16px; min-height: 44px;
+    box-shadow: 2px 2px 0 var(--navy); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .chip.picked { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .chip.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; box-shadow: 5px 5px 0 rgba(11,42,74,.35); }
+  .bank {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; min-height: 70px;
+    margin-top: 14px; padding: 12px; border: 1.5px dashed var(--line); border-radius: 10px; background: #f5f8fc;
+  }
+  .dz.ready .dslot, .dz.over .dslot, .dz:focus-visible .dslot { border-color: var(--accent); background: #fff4ea; }
+
+  /* part 1: the picture with drop boxes */
+  .stage { position: relative; width: 100%; max-width: 680px; aspect-ratio: 640 / 460; margin: 0 auto; }
+  .stage .stagebg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; border-radius: 8px; }
+  .zone {
+    position: absolute; transform: translateY(-50%); min-height: 34px; display: flex; align-items: center; gap: 6px;
+    background: #fff; border-radius: 8px; cursor: pointer; outline: none;
+  }
+  .zone .zn { flex: none; width: 24px; height: 24px; line-height: 24px; margin-left: 5px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 13px; font-weight: 700; text-align: center; }
+  .zone .dslot { flex: 1; align-self: stretch; min-width: 0; display: flex; align-items: center; justify-content: center; padding: 2px; border: 2px dashed #7f9bbd; border-radius: 8px; background: #fff; }
+  .zone .dslot .chip { font-size: 14.5px; padding: 3px 9px; min-height: 0; box-shadow: none; white-space: nowrap; }
+  .stage .zone > .hw-mark { position: absolute; z-index: 2; margin: 0; width: auto !important; }
+  .stage .zone > .hw-mark.hw-ok { right: 7px; top: 50%; transform: translateY(-50%); font-size: 17px; }
+  .stage .zone > .hw-mark.hw-no { left: 0; top: calc(100% + 3px); background: #fff; border-radius: 6px; padding: 0 7px; }
+  .stage .zone.up > .hw-mark.hw-no { top: auto; bottom: calc(100% + 3px); }
+
+  /* part 2: gap text */
+  .gq { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .gq .gn { flex: none; width: 28px; height: 28px; line-height: 28px; margin-top: 7px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 14px; font-weight: 700; text-align: center; }
+  .gq p { font-size: 17px; line-height: 2.55; }
+  .gap { display: inline-flex; align-items: center; vertical-align: middle; margin: 0 3px; cursor: pointer; outline: none; line-height: 1.2; }
+  .gap .dslot { display: inline-flex; align-items: center; justify-content: center; min-width: 120px; min-height: 38px; padding: 2px; border: 2px dashed #7f9bbd; border-radius: 8px; background: #fff; }
+  .gap .dslot .chip { font-size: 15px; padding: 4px 10px; min-height: 0; box-shadow: none; white-space: nowrap; }
+  .gap > .hw-mark { display: inline !important; flex: none !important; width: auto !important; margin: 0 0 0 6px !important; }
+
+  /* part 3 */
+  .wq { display: flex; align-items: flex-start; gap: 10px; margin-top: 12px; }
+  .wq .onum { flex: none; width: 30px; height: 30px; line-height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 700; text-align: center; }
+  .wq .wbody { flex: 1; min-width: 0; }
+  .wq .prompt { font-size: 17px; margin: 3px 0 8px; }
+  textarea.resp {
+    display: block; width: 100%; min-height: 76px; font: inherit; font-size: 16px; line-height: 1.5; color: #1d4ed8;
+    padding: 9px 12px; border: 2px solid #8fa8c8; border-radius: 8px; background: #f7faff; resize: vertical;
+  }
+  .store { display: none; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 8px 16px; }
+    header.tb { flex-direction: column; align-items: flex-start; padding: 18px; }
+    header.tb h1 { font-size: 30px; }
+    .tb-block { width: 100%; display: flex; }
+    .tb-block div { flex: 1; border-top: 0; border-left: 1px solid rgba(255,255,255,.3); padding: 5px 8px; font-size: 13.5px; }
+    .tb-block div:first-child { border-left: 0; }
+    .part { padding: 15px 12px 16px; }
+    .instr { font-size: 19px; }
+    .stage { width: calc(100% + 24px); max-width: none; margin: 0 -12px; }
+    .stage .stagebg { border-radius: 0; }
+    .zone { gap: 0; min-height: 32px; }
+    .zone .zn { display: none; }
+    .zone .dslot .chip { font-size: 12px; padding: 2px 4px; letter-spacing: -.01em; }
+    .stage .zone > .hw-mark { font-size: 13px; }
+    .stage .zone > .hw-mark.hw-ok { right: auto; left: 0; top: calc(100% + 3px); transform: none; background: #fff; border-radius: 6px; padding: 0 6px; font-size: 14px; }
+    .stage .zone.up > .hw-mark.hw-ok { top: auto; bottom: calc(100% + 3px); }
+    .stage .zone.dn-m > .hw-mark.hw-ok, .stage .zone.dn-m > .hw-mark.hw-no { top: calc(100% + 3px); bottom: auto; }   /* box 2 sits close under box 1 on a phone */
+    .chip { font-size: 15px; padding: 8px 13px; }
+    .gq { gap: 8px; }
+    .gq .gn { width: 24px; height: 24px; line-height: 24px; font-size: 12.5px; margin-top: 8px; }
+    .gq p { font-size: 16px; }
+    .gap .dslot { min-width: 108px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 13px; padding: 0; max-width: none; }
+    header.tb { padding: 8px 16px; margin-bottom: 6px; border-radius: 8px; }
+    header.tb h1 { font-size: 23px; }
+    .kicker { font-size: 10px; margin-bottom: 3px; }
+    .tb-block { min-width: 160px; }
+    .tb-block div { padding: 2px 10px; font-size: 12px; }
+    .tb-block span { font-size: 8.5px; }
+    .part { padding: 8px 14px 9px; margin-bottom: 6px; box-shadow: none; }
+    .plabel { font-size: 10px; margin-bottom: 1px; }
+    .instr { font-size: 16px; margin-bottom: 1px; }
+    .note { font-size: 11px; margin-bottom: 6px; }
+    .stage { max-width: 380px; }
+    .zone { min-height: 0; }
+    .zone .zn { width: 16px; height: 16px; line-height: 16px; font-size: 9.5px; margin-left: 3px; }
+    .zone .dslot { border-width: 1.5px; }
+    .chip { font-size: 12.5px; padding: 3px 10px; min-height: 0; box-shadow: none; border-width: 1.5px; }
+    .bank { margin-top: 4px; padding: 4px; min-height: 0; gap: 6px; }
+    .gq { margin-bottom: 2px; }
+    .gq .gn { width: 18px; height: 18px; line-height: 18px; font-size: 10px; margin-top: 5px; }
+    .gq p { font-size: 13px; line-height: 2.1; }
+    .gap .dslot { min-width: 96px; min-height: 22px; border-width: 1.5px; }
+    .wq { margin-top: 6px; }
+    .wq .onum { width: 20px; height: 20px; line-height: 20px; font-size: 11px; }
+    .wq .prompt { font-size: 13px; margin: 1px 0 4px; }
+    textarea.resp { min-height: 38px; height: 38px; resize: none; overflow: hidden; border-width: 1.5px; }
+    textarea.resp::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Vera" data-sheet="English 2026-10-02" data-sheet-id="vera-2026-10-02-english">
+<div id="sheet">
+
+
+<header class="tb">
+  <svg class="grid" aria-hidden="true"><defs><pattern id="tbgrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity=".13" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#tbgrid)"/></svg>
+  <div class="tb-main">
+    <div class="kicker">Technical English &middot; Unit&nbsp;1 &middot; Systems</div>
+    <h1>Emergency systems</h1>
+  </div>
+  <div class="tb-block">
+    <div><span>Name</span>Vera</div>
+    <div><span>Date</span>2 October 2026</div>
+    <div><span>Time</span>about 10&nbsp;minutes</div>
+  </div>
+</header>
+
+<section class="part" data-dnd="label">
+  <div class="plabel">Part 1 &middot; Safety devices</div>
+  <p class="instr">Drag each word to its&nbsp;box.</p>
+  <p class="note">One word is extra. You can also tap a word, then a&nbsp;box.</p>
+  <div class="stage" id="stage"><svg class="stagebg" viewBox="0 0 640 460" aria-hidden="true"><rect x="0" y="0" width="640" height="306" fill="#eaf2fb"/><g stroke="#d5e2f1" stroke-width="1"><line x1="32" y1="0" x2="32" y2="306"/><line x1="64" y1="0" x2="64" y2="306"/><line x1="96" y1="0" x2="96" y2="306"/><line x1="128" y1="0" x2="128" y2="306"/><line x1="160" y1="0" x2="160" y2="306"/><line x1="192" y1="0" x2="192" y2="306"/><line x1="224" y1="0" x2="224" y2="306"/><line x1="256" y1="0" x2="256" y2="306"/><line x1="288" y1="0" x2="288" y2="306"/><line x1="320" y1="0" x2="320" y2="306"/><line x1="352" y1="0" x2="352" y2="306"/><line x1="384" y1="0" x2="384" y2="306"/><line x1="416" y1="0" x2="416" y2="306"/><line x1="448" y1="0" x2="448" y2="306"/><line x1="480" y1="0" x2="480" y2="306"/><line x1="512" y1="0" x2="512" y2="306"/><line x1="544" y1="0" x2="544" y2="306"/><line x1="576" y1="0" x2="576" y2="306"/><line x1="608" y1="0" x2="608" y2="306"/><line x1="0" y1="32" x2="640" y2="32"/><line x1="0" y1="64" x2="640" y2="64"/><line x1="0" y1="96" x2="640" y2="96"/><line x1="0" y1="128" x2="640" y2="128"/><line x1="0" y1="160" x2="640" y2="160"/><line x1="0" y1="192" x2="640" y2="192"/><line x1="0" y1="224" x2="640" y2="224"/><line x1="0" y1="256" x2="640" y2="256"/><line x1="0" y1="288" x2="640" y2="288"/></g><path d="M0,300 Q20,292 40,300 Q60,308 80,300 Q100,292 120,300 Q140,308 160,300 Q180,292 200,300 Q220,308 240,300 Q260,292 280,300 Q300,308 320,300 Q340,292 360,300 Q380,308 400,300 Q420,292 440,300 Q460,308 480,300 Q500,292 520,300 Q540,308 560,300 Q580,292 600,300 Q620,308 640,300 V460 H0 Z" fill="#cfe0f2"/><path d="M200,352 q10,-6 20,0 t20,0" fill="none" stroke="#a9c5e3" stroke-width="2" stroke-linecap="round"/><path d="M430,352 q10,-6 20,0 t20,0" fill="none" stroke="#a9c5e3" stroke-width="2" stroke-linecap="round"/><path d="M580,352 q10,-6 20,0 t20,0" fill="none" stroke="#a9c5e3" stroke-width="2" stroke-linecap="round"/><path d="M150,374 q10,-6 20,0 t20,0" fill="none" stroke="#a9c5e3" stroke-width="2" stroke-linecap="round"/><path d="M500,374 q10,-6 20,0 t20,0" fill="none" stroke="#a9c5e3" stroke-width="2" stroke-linecap="round"/><path d="M230,446 q10,-6 20,0 t20,0" fill="none" stroke="#a9c5e3" stroke-width="2" stroke-linecap="round"/><path d="M540,446 q10,-6 20,0 t20,0" fill="none" stroke="#a9c5e3" stroke-width="2" stroke-linecap="round"/><line x1="250" y1="54" x2="520" y2="54" stroke="#0b2a4a" stroke-width="6" stroke-linecap="round"/><rect x="381" y="52" width="12" height="25" fill="#0b2a4a"/><polygon points="304,77 182,81 182,89 304,92" fill="#fff" stroke="#0b2a4a" stroke-width="2.5" stroke-linejoin="round"/><path d="M190,82 L178,56 L166,56 L170,92 Z" fill="#fff" stroke="#0b2a4a" stroke-width="2.5" stroke-linejoin="round"/><circle cx="172" cy="70" r="16" fill="none" stroke="#0b2a4a" stroke-width="2" stroke-dasharray="4 3"/><path d="M312,76 H436 Q468,76 480,100 Q487,117 474,128 Q466,134 450,134 H314 Q300,134 300,120 V88 Q300,76 312,76 Z" fill="#fff" stroke="#0b2a4a" stroke-width="2.5" stroke-linejoin="round"/><path d="M440,83 Q460,84 471,104 H440 Z" fill="#bcd6f0" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><rect x="396" y="86" width="32" height="18" rx="4" fill="#bcd6f0" stroke="#0b2a4a" stroke-width="2"/><rect x="312" y="105" width="42" height="26" rx="3" fill="#0b2a4a"/><line x1="332" y1="134" x2="328" y2="150" stroke="#0b2a4a" stroke-width="3"/><line x1="440" y1="134" x2="444" y2="150" stroke="#0b2a4a" stroke-width="3"/><path d="M314,150 H462 Q470,150 470,144" fill="none" stroke="#0b2a4a" stroke-width="3.5" stroke-linecap="round"/><rect x="320" y="93" width="16" height="9" rx="2" fill="#0b2a4a"/><rect x="244" y="95" width="88" height="5" rx="2" fill="#0b2a4a"/><rect x="232" y="100" width="46" height="22" rx="10" fill="#fff" stroke="#0b2a4a" stroke-width="2.8"/><line x1="241" y1="103.5" x2="241" y2="118.5" stroke="#0b2a4a" stroke-width="1.6"/><line x1="247" y1="103.5" x2="247" y2="118.5" stroke="#0b2a4a" stroke-width="1.6"/><line x1="253" y1="103.5" x2="253" y2="118.5" stroke="#0b2a4a" stroke-width="1.6"/><line x1="259" y1="103.5" x2="259" y2="118.5" stroke="#0b2a4a" stroke-width="1.6"/><line x1="265" y1="103.5" x2="265" y2="118.5" stroke="#0b2a4a" stroke-width="1.6"/><line x1="271" y1="103.5" x2="271" y2="118.5" stroke="#0b2a4a" stroke-width="1.6"/><rect x="227" y="103" width="6" height="16" rx="1.5" fill="#0b2a4a"/><rect x="277" y="103" width="6" height="16" rx="1.5" fill="#0b2a4a"/><line x1="255" y1="122" x2="255" y2="172" stroke="#4b5d73" stroke-width="2.6"/><g transform="translate(255,172) scale(1.25) translate(-416,-192)"><path d="M416,192 V198 Q416,203 411,202" fill="none" stroke="#0b2a4a" stroke-width="2.5" stroke-linecap="round"/><line x1="407" y1="227" x2="414" y2="197" stroke="#0b2a4a" stroke-width="4" stroke-linecap="round"/><line x1="425" y1="227" x2="418" y2="197" stroke="#0b2a4a" stroke-width="4" stroke-linecap="round"/><line x1="410" y1="252" x2="408" y2="280" stroke="#0b2a4a" stroke-width="5" stroke-linecap="round"/><line x1="422" y1="252" x2="425" y2="280" stroke="#0b2a4a" stroke-width="5" stroke-linecap="round"/><circle cx="416" cy="213" r="9" fill="#f3d2b6" stroke="#0b2a4a" stroke-width="2"/><rect x="403" y="222" width="26" height="32" rx="7" fill="#ffc23a" stroke="#0b2a4a" stroke-width="2"/><path d="M408,222 Q416,231 424,222" fill="none" stroke="#0b2a4a" stroke-width="1.6"/><line x1="405.5" y1="235" x2="426.5" y2="235" stroke="#fff" stroke-width="2.6"/><line x1="405.5" y1="245" x2="426.5" y2="245" stroke="#fff" stroke-width="2.6"/></g><g transform="translate(290,317) scale(1.25) translate(-332,-317)"><rect x="355" y="281" width="24" height="26" rx="6" fill="#ffc23a" stroke="#0b2a4a" stroke-width="2"/><line x1="376" y1="287" x2="386" y2="268" stroke="#0b2a4a" stroke-width="4" stroke-linecap="round"/><line x1="385" y1="270" x2="391" y2="259" stroke="#e63946" stroke-width="4" stroke-linecap="round"/><circle cx="366" cy="272" r="9" fill="#f3d2b6" stroke="#0b2a4a" stroke-width="2"/><rect x="262" y="302" width="140" height="30" rx="15" fill="#ff7a1a" stroke="#0b2a4a" stroke-width="2.5"/><line x1="276" y1="317" x2="388" y2="317" stroke="#c9580f" stroke-width="2"/><path d="M296,302 V332 M330,302 V332 M364,302 V332" stroke="#c9580f" stroke-width="1.6"/><path d="M250,327 Q263,321 276,327 T302,327 T328,327 T354,327 T380,327 T406,327 T432,327 V344 H250 Z" fill="#cfe0f2"/></g><path d="M364.8,241.5 Q389.8,170 498,174" fill="none" stroke="#9aa9bb" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="1 7"/><g stroke="#e63946" stroke-width="3.2" stroke-linecap="round"><line x1="536.6" y1="182.9" x2="543.1" y2="185.6"/><line x1="526.9" y1="192.6" x2="529.6" y2="199.1"/><line x1="513.1" y1="192.6" x2="510.4" y2="199.1"/><line x1="503.4" y1="182.9" x2="496.9" y2="185.6"/><line x1="503.4" y1="169.1" x2="496.9" y2="166.4"/><line x1="513.1" y1="159.4" x2="510.4" y2="152.9"/><line x1="526.9" y1="159.4" x2="529.6" y2="152.9"/><line x1="536.6" y1="169.1" x2="543.1" y2="166.4"/></g><circle cx="520" cy="176" r="13" fill="#e63946"/><circle cx="520" cy="176" r="5.5" fill="#fff3c4"/><g transform="translate(95,320) scale(1.3) translate(-545,-320)"><line x1="545" y1="298" x2="545" y2="266" stroke="#0b2a4a" stroke-width="2.5"/><circle cx="545" cy="264" r="2.6" fill="#0b2a4a"/><path d="M551.9,258.2 A9,9 0 0 1 551.9,269.8" fill="none" stroke="#0b2a4a" stroke-width="2.2" stroke-linecap="round"/><path d="M538.1,269.8 A9,9 0 0 1 538.1,258.2" fill="none" stroke="#0b2a4a" stroke-width="2.2" stroke-linecap="round"/><path d="M557.3,253.7 A16,16 0 0 1 557.3,274.3" fill="none" stroke="#0b2a4a" stroke-width="2.2" stroke-linecap="round"/><path d="M532.7,274.3 A16,16 0 0 1 532.7,253.7" fill="none" stroke="#0b2a4a" stroke-width="2.2" stroke-linecap="round"/><path d="M562.6,249.2 A23,23 0 0 1 562.6,278.8" fill="none" stroke="#0b2a4a" stroke-width="2.2" stroke-linecap="round"/><path d="M527.4,278.8 A23,23 0 0 1 527.4,249.2" fill="none" stroke="#0b2a4a" stroke-width="2.2" stroke-linecap="round"/><rect x="533" y="304" width="24" height="32" rx="5" fill="#fff" stroke="#0b2a4a" stroke-width="2.5"/><rect x="531" y="295" width="28" height="13" rx="5" fill="#ff7a1a" stroke="#0b2a4a" stroke-width="2.5"/><line x1="537" y1="316" x2="553" y2="316" stroke="#0b2a4a" stroke-width="2"/><path d="M524,327 Q534.5,321 545,327 T566,327 V342 H524 Z" fill="#cfe0f2"/></g><g stroke="#1d4e89" stroke-width="1.9" stroke-dasharray="5 4" fill="none"><line x1="125.0" y1="119.0" x2="230.0" y2="111.0"/><circle cx="230.0" cy="111.0" r="3.6" fill="#1d4e89" stroke="none"/><line x1="115.0" y1="189.0" x2="237.8" y2="229.5"/><circle cx="237.8" cy="229.5" r="3.6" fill="#1d4e89" stroke="none"/><line x1="547.0" y1="243.0" x2="520.0" y2="191.0"/><circle cx="520.0" cy="191.0" r="3.6" fill="#1d4e89" stroke="none"/><line x1="95.0" y1="419.0" x2="95.0" y2="318.0"/><circle cx="95.0" cy="318.0" r="3.6" fill="#1d4e89" stroke="none"/><line x1="385.0" y1="419.0" x2="350.0" y2="323.2"/><circle cx="350.0" cy="323.2" r="3.6" fill="#1d4e89" stroke="none"/></g></svg><div class="zone dz up" data-field="l1" style="left:6.25%;top:25.87%;width:26.56%;height:9.13%" tabindex="0" aria-label="Box 1"><span class="zn">1</span><span class="dslot"></span></div><div class="zone dz up dn-m" data-field="l2" style="left:4.69%;top:41.09%;width:26.56%;height:9.13%" tabindex="0" aria-label="Box 2"><span class="zn">2</span><span class="dslot"></span></div><div class="zone dz" data-field="l3" style="left:72.19%;top:52.83%;width:26.56%;height:9.13%" tabindex="0" aria-label="Box 3"><span class="zn">3</span><span class="dslot"></span></div><div class="zone dz up" data-field="l4" style="left:1.56%;top:91.09%;width:26.56%;height:9.13%" tabindex="0" aria-label="Box 4"><span class="zn">4</span><span class="dslot"></span></div><div class="zone dz up" data-field="l5" style="left:46.88%;top:91.09%;width:26.56%;height:9.13%" tabindex="0" aria-label="Box 5"><span class="zn">5</span><span class="dslot"></span></div></div>
+  <div class="bank" aria-label="Words"><button type="button" class="chip" data-word="life raft">life raft</button><button type="button" class="chip" data-word="flare">flare</button><button type="button" class="chip" data-word="satellite">satellite</button><button type="button" class="chip" data-word="winch">winch</button><button type="button" class="chip" data-word="beacon">beacon</button><button type="button" class="chip" data-word="life jacket">life jacket</button></div>
+</section>
+
+<section class="part" data-dnd="gaps">
+  <div class="plabel">Part 2 &middot; A smoke alarm in a workshop</div>
+  <p class="instr">Drag the right word into each&nbsp;gap.</p>
+  <p class="note">One word is&nbsp;extra.</p>
+  <div class="gq q"><span class="gn">1</span><p>Smoke in the workshop <span class="dz gap" data-field="g1" tabindex="0" aria-label="Gap 1"><span class="dslot"></span></span> the&nbsp;alarm.</p></div><div class="gq q"><span class="gn">2</span><p>The alarm <span class="dz gap" data-field="g2" tabindex="0" aria-label="Gap 2"><span class="dslot"></span></span> a signal to the fire&nbsp;station.</p></div><div class="gq q"><span class="gn">3</span><p>The fire station <span class="dz gap" data-field="g3" tabindex="0" aria-label="Gap 3"><span class="dslot"></span></span> the signal from the&nbsp;alarm.</p></div><div class="gq q"><span class="gn">4</span><p>The screen at the station shows the exact <span class="dz gap" data-field="g4" tabindex="0" aria-label="Gap 4"><span class="dslot"></span></span> of the smoke: room&nbsp;4.</p></div><div class="gq q"><span class="gn">5</span><p>So the firefighters can <span class="dz gap" data-field="g5" tabindex="0" aria-label="Gap 5"><span class="dslot"></span></span> the fire in&nbsp;seconds.</p></div>
+  <div class="bank" aria-label="Words for the gaps"><button type="button" class="chip" data-word="receives">receives</button><button type="button" class="chip" data-word="locate">locate</button><button type="button" class="chip" data-word="activates">activates</button><button type="button" class="chip" data-word="location">location</button><button type="button" class="chip" data-word="detaches">detaches</button><button type="button" class="chip" data-word="transmits">transmits</button></div>
+</section>
+
+<section class="part">
+  <div class="plabel">Part 3 &middot; Your turn</div>
+  <p class="instr">Write one sentence for&nbsp;each.</p>
+  <div class="wq q"><span class="onum">1</span><div class="wbody"><p class="prompt">A machine in your family&rsquo;s factory stops at night. How does the engineer find out? Use&nbsp;<b>transmit</b>.</p><textarea class="hw-field resp" rows="2" data-k="q1" data-label="3.1 A machine stops at night: how does the engineer find out? (transmit)" aria-label="Sentence 1" placeholder="Type your answer here"></textarea></div></div>
+  <div class="wq q"><span class="onum">2</span><div class="wbody"><p class="prompt">How does a taxi app know where you are? Use&nbsp;<b>location</b>.</p><textarea class="hw-field resp" rows="2" data-k="q2" data-label="3.2 How does a taxi app know where you are? (location)" aria-label="Sentence 2" placeholder="Type your answer here"></textarea></div></div>
+  <div class="wq q"><span class="onum">3</span><div class="wbody"><p class="prompt">Write one sentence with <b>if</b> about a machine with a problem. Use&nbsp;<b>receive</b>.</p><textarea class="hw-field resp" rows="2" data-k="q3" data-label="3.3 A sentence with if about a machine with a problem (receive)" aria-label="Sentence 3" placeholder="Type your answer here"></textarea></div></div>
+  
+</section>
+
+<div class="store"><select data-k="l1" data-label="1.1 Safety devices, box 1" aria-label="Box 1" class="hw-field"><option value="">Choose</option><option value="beacon">beacon</option><option value="flare">flare</option><option value="life jacket">life jacket</option><option value="life raft">life raft</option><option value="satellite">satellite</option><option value="winch">winch</option></select><select data-k="l2" data-label="1.2 Safety devices, box 2" aria-label="Box 2" class="hw-field"><option value="">Choose</option><option value="beacon">beacon</option><option value="flare">flare</option><option value="life jacket">life jacket</option><option value="life raft">life raft</option><option value="satellite">satellite</option><option value="winch">winch</option></select><select data-k="l3" data-label="1.3 Safety devices, box 3" aria-label="Box 3" class="hw-field"><option value="">Choose</option><option value="beacon">beacon</option><option value="flare">flare</option><option value="life jacket">life jacket</option><option value="life raft">life raft</option><option value="satellite">satellite</option><option value="winch">winch</option></select><select data-k="l4" data-label="1.4 Safety devices, box 4" aria-label="Box 4" class="hw-field"><option value="">Choose</option><option value="beacon">beacon</option><option value="flare">flare</option><option value="life jacket">life jacket</option><option value="life raft">life raft</option><option value="satellite">satellite</option><option value="winch">winch</option></select><select data-k="l5" data-label="1.5 Safety devices, box 5" aria-label="Box 5" class="hw-field"><option value="">Choose</option><option value="beacon">beacon</option><option value="flare">flare</option><option value="life jacket">life jacket</option><option value="life raft">life raft</option><option value="satellite">satellite</option><option value="winch">winch</option></select><select data-k="g1" data-label="2.1 Smoke in the workshop ___ the alarm." aria-label="Gap 1" class="hw-field"><option value="">Choose</option><option value="activates">activates</option><option value="detaches">detaches</option><option value="locate">locate</option><option value="location">location</option><option value="receives">receives</option><option value="transmits">transmits</option></select><select data-k="g2" data-label="2.2 The alarm ___ a signal to the fire station." aria-label="Gap 2" class="hw-field"><option value="">Choose</option><option value="activates">activates</option><option value="detaches">detaches</option><option value="locate">locate</option><option value="location">location</option><option value="receives">receives</option><option value="transmits">transmits</option></select><select data-k="g3" data-label="2.3 The fire station ___ the signal from the alarm." aria-label="Gap 3" class="hw-field"><option value="">Choose</option><option value="activates">activates</option><option value="detaches">detaches</option><option value="locate">locate</option><option value="location">location</option><option value="receives">receives</option><option value="transmits">transmits</option></select><select data-k="g4" data-label="2.4 The screen at the station shows the exact ___ of the smoke: room 4." aria-label="Gap 4" class="hw-field"><option value="">Choose</option><option value="activates">activates</option><option value="detaches">detaches</option><option value="locate">locate</option><option value="location">location</option><option value="receives">receives</option><option value="transmits">transmits</option></select><select data-k="g5" data-label="2.5 So the firefighters can ___ the fire in seconds." aria-label="Gap 5" class="hw-field"><option value="">Choose</option><option value="activates">activates</option><option value="detaches">detaches</option><option value="locate">locate</option><option value="location">location</option><option value="receives">receives</option><option value="transmits">transmits</option></select></div>
+
+<script>
+(function () {
+  function init() {
+    var store = {};
+    document.querySelectorAll(".store [data-k]").forEach(function (s) { store[s.dataset.k] = s; });
+    var groups = [].slice.call(document.querySelectorAll("[data-dnd]"));
+    var picked = null;
+    function groupOf(el) { return el.closest("[data-dnd]"); }
+    function zones(g) { return [].slice.call(g.querySelectorAll(".dz")); }
+    function bank(g) { return g.querySelector(".bank"); }
+    function slotOf(z) { return z.querySelector(".dslot"); }
+    function sync(g) {
+      zones(g).forEach(function (z) {
+        var c = slotOf(z).querySelector(".chip"), s = store[z.dataset.field], v = c ? c.dataset.word : "";
+        if (s && s.value !== v) { s.value = v; s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+      });
+    }
+    function place(chip, z) {
+      var g = groupOf(z), slot = slotOf(z), old = slot.querySelector(".chip");
+      if (old && old !== chip) bank(g).appendChild(old);
+      slot.appendChild(chip); sync(g);
+    }
+    function toBank(chip) { var g = groupOf(chip); bank(g).appendChild(chip); sync(g); }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null;
+      document.querySelectorAll(".dz.ready").forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(chip) {
+      unpick(); picked = chip; chip.classList.add("picked");
+      zones(groupOf(chip)).forEach(function (z) { z.classList.add("ready"); });
+    }
+    function zoneAt(g, x, y) {
+      var zs = zones(g);
+      for (var i = 0; i < zs.length; i++) {
+        var r = zs[i].getBoundingClientRect(), pad = 10;
+        if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return zs[i];
+      }
+      return null;
+    }
+    function tap(chip) {   // a tap (or Enter) on a tile
+      var home = chip.parentNode;
+      if (home.classList.contains("dslot")) {
+        if (picked && picked !== chip && groupOf(picked) === groupOf(chip)) { place(picked, home.closest(".dz")); unpick(); }
+        else { unpick(); toBank(chip); }
+        return;
+      }
+      if (picked === chip) { unpick(); return; }
+      pick(chip);
+    }
+    // put saved answers back on the picture and in the boxes
+    groups.forEach(function (g) {
+      zones(g).forEach(function (z) {
+        var s = store[z.dataset.field]; if (!s || !s.value) return;
+        var c = bank(g).querySelector('.chip[data-word="' + s.value + '"]');
+        if (c) slotOf(z).appendChild(c);
+      });
+    });
+    document.querySelectorAll("[data-dnd] .chip").forEach(function (chip) {
+      chip.addEventListener("pointerdown", function (e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        e.preventDefault();
+        var g = groupOf(chip), r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, home = chip.parentNode, next = chip.nextSibling, ph = null;
+        try { chip.setPointerCapture(e.pointerId); } catch (err) {}
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:block;flex:none;width:" + r.width + "px;height:" + r.height + "px";
+            home.insertBefore(ph, next);
+            chip.style.width = r.width + "px"; chip.classList.add("dragging");
+          }
+          chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(g, ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          if (!moved) { if (ev.type === "pointerup") tap(chip); return; }   // a cancelled touch is a scroll, not a tap
+          chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(g, ev.clientX, ev.clientY) : null;
+          if (z) place(chip, z);
+          else if (home.classList.contains("dslot") && ev.type === "pointerup") toBank(chip);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+      chip.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tap(chip); }
+      });
+    });
+    groups.forEach(function (g) {
+      zones(g).forEach(function (z) {
+        z.addEventListener("click", function (e) {
+          if (e.target.closest(".chip")) return;
+          if (picked && groupOf(picked) === g) { place(picked, z); unpick(); }
+        });
+        z.addEventListener("keydown", function (e) {
+          if ((e.key === "Enter" || e.key === " ") && picked && groupOf(picked) === g && !e.target.closest(".chip")) { e.preventDefault(); place(picked, z); unpick(); }
+        });
+      });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJsMSI6IHsidCI6ICJleGFjdCIsICJhIjogIndpbmNoIn0sICJsMiI6IHsidCI6ICJleGFjdCIsICJhIjogImxpZmUgamFja2V0In0sICJsMyI6IHsidCI6ICJleGFjdCIsICJhIjogImZsYXJlIn0sICJsNCI6IHsidCI6ICJleGFjdCIsICJhIjogImJlYWNvbiJ9LCAibDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsaWZlIHJhZnQifSwgImcxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYWN0aXZhdGVzIn0sICJnMiI6IHsidCI6ICJleGFjdCIsICJhIjogInRyYW5zbWl0cyJ9LCAiZzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyZWNlaXZlcyJ9LCAiZzQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsb2NhdGlvbiJ9LCAiZzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsb2NhdGUifSwgInExIjogeyJ0IjogIm9wZW4ifSwgInEyIjogeyJ0IjogIm9wZW4ifSwgInEzIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body>
+</html>

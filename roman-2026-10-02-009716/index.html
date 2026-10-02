@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 2 October 2026</title>
+<!-- Lesson 7 (TED video, Bill Gross), 2 Oct 2026. He was tired and asked for a SHORT sheet («если короткий, да, короткий»).
+     New frame from the last minutes of the lesson: What matters most (to me) is ... / X matters more than Y,
+     with One reason is that ... (lesson 6) recycled. Part 1 = his own ranking (drag and drop, nothing to mark).
+     Part 2 = three sentences, one per phrase. Model = Dasha's own hotel example from the lesson.
+     All five cards are SINGULAR on purpose, so "... matters more than ..." never needs plural agreement. -->
+<style>
+  @page { size: A4; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 760px; margin: auto; }
+  p, .do, .ctx, .note { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .ctx { font-size: 16px; margin: 0 0 4px; }
+  .do { font-size: 17px; font-weight: 600; color: #1f2a24; margin: 2px 0 6px; }
+  .note { font-size: 13.5px; color: #626a62; margin: 0 0 12px; }
+
+  /* ---------- 1. ranking: drag the cards to the numbers ---------- */
+  .rankwrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+  .rank { display: flex; flex-direction: column; gap: 9px; }
+  .zone { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .zone .zn {
+    flex: none; width: 30px; height: 30px; line-height: 30px; border-radius: 50%;
+    background: #31594b; color: #fff; text-align: center;
+    font-family: Georgia, 'Times New Roman', serif; font-size: 16px;
+  }
+  .zone .slot {
+    flex: 1 1 auto; min-width: 0; min-height: 46px;
+    border: 2px dashed #9fb3a6; border-radius: 6px; background: #fbfcf9;
+    display: flex; align-items: center; padding: 4px 6px;
+  }
+  .zone .tag { flex: none; width: 92px; font-size: 13px; color: #626a62; }
+  .zone.over .slot, .zone.ready .slot { border-color: #31594b; background: #eff2eb; }
+  .zone:focus { outline: none; }
+  .zone:focus-visible .slot { border-color: #31594b; box-shadow: 0 0 0 3px #d9e4dc; }
+
+  .wbank {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 9px;
+    min-height: 262px; padding: 12px; border-radius: 6px; background: #eff2eb;
+  }
+  .wchip {
+    font: inherit; font-size: 15.5px; line-height: 1.3; color: #1f2a24; text-align: left;
+    background: #fffefa; border: 1.5px solid #31594b; border-radius: 6px;
+    padding: 7px 14px; cursor: grab; touch-action: none;
+    user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .10);
+  }
+  .wbank.done { background: transparent; }
+  .wchip.picked { outline: 3px solid #c79a2c; outline-offset: 2px; }
+  .wchip.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; box-shadow: 0 6px 16px rgba(0, 0, 0, .18); }
+  .slot .wchip { max-width: 100%; }
+  .rank-selects { display: none; }
+
+  /* ---------- 2. three sentences ---------- */
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .prompt { font-size: 16px; margin-bottom: 7px; }
+  .frame { font-family: Georgia, 'Times New Roman', serif; color: #31594b; font-weight: 600; font-size: 17px; white-space: nowrap; }
+  .gloss { font-size: 13.5px; color: #626a62; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+    resize: vertical;
+  }
+  .task textarea.resp.two { min-height: 64px !important; }
+
+  @media (max-width: 620px) {
+    .rankwrap { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .zone .tag { display: none; }
+    .wbank { flex-direction: row; flex-wrap: wrap; min-height: 0; }
+    .frame { white-space: normal; }
+  }
+
+  @media print {
+    body { font-size: 12.5px; line-height: 1.35; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 9px 0 7px; margin-bottom: 10px; }
+    .masthead { font-size: 10px; }
+    h1 { font-size: 21px; margin: 5px 0 2px; }
+    .lede { font-size: 12px; }
+    .task { padding: 9px 18px 10px; margin-bottom: 8px; }
+    h2 { font-size: 17px; margin-bottom: 3px; }
+    .ctx { font-size: 12.5px; }
+    .do { font-size: 13.5px; margin-bottom: 8px; }
+    .note { display: none; }
+    .rankwrap { gap: 16px; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+    .rank { gap: 5px; }
+    .zone .zn { width: 24px; height: 24px; line-height: 24px; font-size: 13px; }
+    .zone { gap: 8px; }
+    .zone .slot { min-height: 40px; border-width: 1.5px; }
+    .zone .tag { font-size: 10.5px; line-height: 1.15; width: 44px; }
+    .wbank { min-height: 0; gap: 7px; padding: 9px; }
+    .wchip { font-size: 12.5px; padding: 4px 10px; box-shadow: none; }
+    .model { font-size: 13px; padding: 5px 12px; margin-bottom: 5px; }
+    .model .lab { font-size: 10.5px; }
+    .q { padding: 5px 0; gap: 8px; grid-template-columns: 20px minmax(0, 1fr); }
+    .qnum { font-size: 11px; padding-top: 1px; }
+    .prompt { font-size: 12.5px; margin-bottom: 4px; }
+    .frame { font-size: 13.5px; }
+    .gloss { font-size: 11px; }
+    .resp { font-size: 12.5px; padding: 4px 9px; resize: none; }
+    .task textarea.resp.two { min-height: 75px !important; height: 75px; }
+    .resp::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-10-02" data-sheet-id="roman-2026-10-02-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>2 October 2026</span></div>
+    <h1>What matters&nbsp;most</h1>
+    <div class="lede">About 10&nbsp;minutes.</div>
+  </header>
+
+  <div class="task">
+    <h2>1. Choosing a&nbsp;school</h2>
+    <p class="ctx">What matters most when you choose a school for your&nbsp;children?</p>
+    <div class="do">Put the cards in your order: 1 matters most, 5 matters&nbsp;least.</div>
+    <p class="note">Drag a card to a number, or tap a card and then a&nbsp;number.</p>
+
+    <div class="rankwrap">
+      <div class="rank" id="rankstage">
+        <div class="zone" data-r="r1" data-field="r1" tabindex="0" aria-label="Number 1, matters most"><span class="zn">1</span><span class="slot"></span><span class="tag">matters most</span></div>
+        <div class="zone" data-r="r2" data-field="r2" tabindex="0" aria-label="Number 2"><span class="zn">2</span><span class="slot"></span><span class="tag"></span></div>
+        <div class="zone" data-r="r3" data-field="r3" tabindex="0" aria-label="Number 3"><span class="zn">3</span><span class="slot"></span><span class="tag"></span></div>
+        <div class="zone" data-r="r4" data-field="r4" tabindex="0" aria-label="Number 4"><span class="zn">4</span><span class="slot"></span><span class="tag"></span></div>
+        <div class="zone" data-r="r5" data-field="r5" tabindex="0" aria-label="Number 5, matters least"><span class="zn">5</span><span class="slot"></span><span class="tag">matters least</span></div>
+      </div>
+      <div class="wbank" id="rbank" aria-label="Cards">
+        <button type="button" class="wchip" data-i="0" data-word="the cost">the cost</button>
+        <button type="button" class="wchip" data-i="1" data-word="class size">class size</button>
+        <button type="button" class="wchip" data-i="2" data-word="the language of the lessons">the language of the lessons</button>
+        <button type="button" class="wchip" data-i="3" data-word="the quality of teaching">the quality of teaching</button>
+        <button type="button" class="wchip" data-i="4" data-word="the distance from home">the distance from home</button>
+      </div>
+    </div>
+
+    <div class="rank-selects">
+      <select data-k="r1" data-label="Ranking, number 1 (matters most)" aria-label="Number 1" class="hw-field"><option value="">Choose</option><option value="the cost">the cost</option><option value="class size">class size</option><option value="the language of the lessons">the language of the lessons</option><option value="the quality of teaching">the quality of teaching</option><option value="the distance from home">the distance from home</option></select>
+      <select data-k="r2" data-label="Ranking, number 2" aria-label="Number 2" class="hw-field"><option value="">Choose</option><option value="the cost">the cost</option><option value="class size">class size</option><option value="the language of the lessons">the language of the lessons</option><option value="the quality of teaching">the quality of teaching</option><option value="the distance from home">the distance from home</option></select>
+      <select data-k="r3" data-label="Ranking, number 3" aria-label="Number 3" class="hw-field"><option value="">Choose</option><option value="the cost">the cost</option><option value="class size">class size</option><option value="the language of the lessons">the language of the lessons</option><option value="the quality of teaching">the quality of teaching</option><option value="the distance from home">the distance from home</option></select>
+      <select data-k="r4" data-label="Ranking, number 4" aria-label="Number 4" class="hw-field"><option value="">Choose</option><option value="the cost">the cost</option><option value="class size">class size</option><option value="the language of the lessons">the language of the lessons</option><option value="the quality of teaching">the quality of teaching</option><option value="the distance from home">the distance from home</option></select>
+      <select data-k="r5" data-label="Ranking, number 5 (matters least)" aria-label="Number 5" class="hw-field"><option value="">Choose</option><option value="the cost">the cost</option><option value="class size">class size</option><option value="the language of the lessons">the language of the lessons</option><option value="the quality of teaching">the quality of teaching</option><option value="the distance from home">the distance from home</option></select>
+    </div>
+  </div>
+
+  <div class="task">
+    <h2>2. Explain your&nbsp;order</h2>
+    <div class="do">Write four sentences about your order, like the&nbsp;example.</div>
+    <div class="model">
+      <span class="lab">Example: choosing a hotel</span>
+      <b>What matters most to me is</b> a quiet&nbsp;room.<br>
+      <b>One reason is that</b> I can&rsquo;t sleep when it&rsquo;s&nbsp;noisy.<br>
+      A quiet room <b>matters more than</b> the&nbsp;view.
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><div class="stack">
+      <p class="prompt"><span class="frame">What matters most to me is&nbsp;&hellip;</span></p>
+      <textarea class="hw-field resp two" rows="2" data-k="s1" data-label="Sentence 1: What matters most to me is ..." aria-label="Sentence 1" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div class="stack">
+      <p class="prompt"><span class="frame">One reason is that&nbsp;&hellip;</span> <span class="gloss">(why your number 1 matters&nbsp;most)</span></p>
+      <textarea class="hw-field resp two" rows="2" data-k="s2" data-label="Sentence 2: One reason is that ... (why number 1 matters most)" aria-label="Sentence 2" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div class="stack">
+      <p class="prompt"><span class="frame">&hellip;&nbsp;matters more than&nbsp;&hellip;</span> <span class="gloss">(compare two&nbsp;cards)</span></p>
+      <textarea class="hw-field resp two" rows="2" data-k="s3" data-label="Sentence 3: ... matters more than ... (two cards)" aria-label="Sentence 3" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div class="stack">
+      <p class="prompt"><span class="gloss">Compare two other&nbsp;cards.</span></p>
+      <textarea class="hw-field resp two" rows="2" data-k="s4" data-label="Sentence 4: compare two other cards (no frame printed)" aria-label="Sentence 4" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  function init() {
+    var stage = document.getElementById("rankstage"), bank = document.getElementById("rbank");
+    if (!stage || !bank) return;
+    var zones = [].slice.call(stage.querySelectorAll(".zone"));
+    var sel = {};
+    document.querySelectorAll(".rank-selects select").forEach(function (s) { sel[s.dataset.k] = s; });
+    var picked = null;
+
+    function slotOf(z) { return z.querySelector(".slot"); }
+    function inSlot(chip) { return !!(chip.parentNode && chip.parentNode.classList && chip.parentNode.classList.contains("slot")); }
+    function sync() {
+      zones.forEach(function (z) {
+        var c = slotOf(z).querySelector(".wchip"), s = sel[z.dataset.r], v = c ? c.dataset.word : "";
+        if (s.value !== v) { s.value = v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+      });
+      bank.classList.toggle("done", !bank.querySelector(".wchip"));   // all cards placed: no empty grey box
+    }
+    function toBank(chip) {   // back to the bank, in its original place
+      var i = +chip.dataset.i, before = null;
+      [].slice.call(bank.querySelectorAll(".wchip")).some(function (c) { if (+c.dataset.i > i) { before = c; return true; } return false; });
+      bank.insertBefore(chip, before); sync();
+    }
+    function place(chip, zone) {
+      var from = inSlot(chip) ? chip.parentNode : null, slot = slotOf(zone), old = slot.querySelector(".wchip");
+      if (old && old !== chip) { if (from) from.appendChild(old); else toBank(old); }   // swap when moving between numbers
+      slot.appendChild(chip); sync();
+    }
+    function unpick() { if (picked) picked.classList.remove("picked"); picked = null; zones.forEach(function (z) { z.classList.remove("ready"); }); }
+    function pick(chip) { unpick(); picked = chip; chip.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function zoneOfSlot(slot) { for (var i = 0; i < zones.length; i++) if (slotOf(zones[i]) === slot) return zones[i]; return null; }
+    function zoneAt(x, y) {
+      var best = null, bestD = 1e9;
+      zones.forEach(function (z) {
+        var r = z.getBoundingClientRect(), pad = 6;
+        if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) {
+          var d = Math.abs(y - (r.top + r.bottom) / 2);
+          if (d < bestD) { bestD = d; best = z; }
+        }
+      });
+      return best;
+    }
+    function tap(chip) {
+      if (inSlot(chip)) {
+        if (picked && picked !== chip) { place(picked, zoneOfSlot(chip.parentNode)); unpick(); return; }
+        unpick(); toBank(chip); return;
+      }
+      if (picked === chip) { unpick(); return; }
+      pick(chip);
+    }
+
+    // restore saved answers (hw.js has already put them into the hidden selects)
+    zones.forEach(function (z) {
+      var v = sel[z.dataset.r].value; if (!v) return;
+      var c = bank.querySelector('.wchip[data-word="' + v + '"]'); if (c) slotOf(z).appendChild(c);
+    });
+    bank.classList.toggle("done", !bank.querySelector(".wchip"));
+
+    document.querySelectorAll(".rankwrap .wchip").forEach(function (chip) {
+      chip.addEventListener("pointerdown", function (e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        e.preventDefault();
+        var r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, sx = e.clientX, sy = e.clientY, moved = false, over = null;
+        var home = chip.parentNode, next = chip.nextSibling, ph = null;
+        try { chip.setPointerCapture(e.pointerId); } catch (err) {}
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:block;flex:none;width:" + r.width + "px;height:" + r.height + "px";
+            home.insertBefore(ph, next);
+            chip.style.width = r.width + "px"; chip.classList.add("dragging");
+          }
+          chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          chip._pt = Date.now();   // the click that follows this pointer is ignored below
+          if (!moved) { tap(chip); return; }
+          chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(chip, z);
+          else if (inSlot(chip) && ev.type === "pointerup") toBank(chip);   // dragged off a number: back to the cards
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+      chip.addEventListener("click", function (e) {
+        e.stopPropagation();   // taps and drags are handled on pointerup; do not let the click reach the number box
+        if (Date.now() - (chip._pt || 0) > 700) tap(chip);   // a click with no pointer before it = keyboard (Enter / Space)
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+      z.addEventListener("keydown", function (e) {
+        if ((e.key === "Enter" || e.key === " ") && picked) { e.preventDefault(); place(picked, z); unpick(); }
+      });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJyMSI6IHsidCI6ICJvcGVuIn0sICJyMiI6IHsidCI6ICJvcGVuIn0sICJyMyI6IHsidCI6ICJvcGVuIn0sICJyNCI6IHsidCI6ICJvcGVuIn0sICJyNSI6IHsidCI6ICJvcGVuIn0sICJzMSI6IHsidCI6ICJvcGVuIn0sICJzMiI6IHsidCI6ICJvcGVuIn0sICJzMyI6IHsidCI6ICJvcGVuIn0sICJzNCI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body>
+</html>

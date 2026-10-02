@@ -127,11 +127,13 @@ textarea.own { display: block; width: 100%; min-height: 60px; font: inherit; }
 
 .vocablink { font-size: 15.5px; margin: -6px 0 14px; padding: 8px 14px; background: #eefaf8; border-radius: 12px; }
 .vocablink a { color: #1d7a71; font-weight: 700; }
-.answers ol { padding-left: 20px; font-size: 15.5px; }
-.answers li { margin-bottom: 4px; }
-.answers .ok { color: #1d7a71; font-weight: 700; }
-.answers .no { color: #c05621; font-weight: 700; }
-.answers .yours { color: #777; font-size: 13.5px; }
+.mark { display: block; margin-top: 6px; font-size: 14.5px; font-weight: 700; line-height: 1.3; }
+.mark.ok { color: #1d7a71; }
+.mark.no { color: #c05621; }
+.mark .right { font-weight: 600; }
+.card4 .mark { display: inline; margin: 0 0 0 8px; }
+.replies + .mark { text-align: right; margin-top: 2px; }
+.answers .score { font-size: 18px; font-weight: 700; color: #1d4f4a; margin: 0 0 4px; }
 
 @media (max-width: 620px) {
   body { padding: 10px; }
@@ -419,7 +421,7 @@ textarea.own { display: block; width: 100%; min-height: 60px; font: inherit; }
 
 <section class="ex-card answers" id="answers" hidden>
   <div class="ex-header">Answers</div>
-  <div class="ex-body"><p class="note">Compare with your answers. &#10003; = the same, &#10007; = look again.</p><ol id="anslist"></ol></div>
+  <div class="ex-body"><p class="score" id="anscore"></p><p class="note">&#10003; = right. &#10007; = look again: the right answer is next to the task.</p></div>
 </section>
 
 <script>
@@ -631,22 +633,43 @@ textarea.own { display: block; width: 100%; min-height: 60px; font: inherit; }
 <script>
 /* Answers appear only AFTER she sends the sheet (Dasha, 29 Sept 2026: «правильные ответы пусть ей показывает после выполнения»). */
 (function () {
-  var A = JSON.parse(decodeURIComponent(escape(atob("W1sicDEiLCAiMS4xIGJpc2N1aXRzIiwgImJlc3QgYmVmb3JlIl0sIFsicDIiLCAiMS4yIGZyZXNoIG1lYXQiLCAidXNlIGJ5Il0sIFsicDMiLCAiMS4zIGhvbmV5IiwgImJlc3QgYmVmb3JlIl0sIFsicDQiLCAiMS40IGNob2NvbGF0ZSIsICJiZXN0IGJlZm9yZSJdLCBbInA1IiwgIjEuNSBmcmVzaCBmaXNoIiwgInVzZSBieSJdLCBbInA2IiwgIjEuNiByYXcgY2hpY2tlbiIsICJ1c2UgYnkiXSwgWyJwNyIsICIxLjcgdGlubmVkIHRvbWF0b2VzIiwgImJlc3QgYmVmb3JlIl0sIFsicDgiLCAiMS44IHJlYWR5LW1hZGUgc2FsYWQiLCAidXNlIGJ5Il0sIFsiYjEiLCAiMi4xIiwgIkl0IHRvb2sgbWUgdHdvIGhvdXJzIHRvIHByaWNlIHRoZSB1bnNvbGQgc3RvY2suIl0sIFsiYjIiLCAiMi4yIiwgIkl0IHRha2VzIHVzIGFuIGhvdXIgYW5kIGEgaGFsZiB0byBkcml2ZSB0byBEdWJhaS4iXSwgWyJiMyIsICIyLjMiLCAiSG93IGxvbmcgZG9lcyBpdCB0YWtlIHlvdSB0byBnZXQgdG8gdGhlIGFpcnBvcnQ/Il0sIFsiYjQiLCAiMi40IiwgIkl0IHRvb2sgdXMgdHdvIGhvdXJzIHRvIGdldCB0byB0aGUgaG90ZWwuIl0sIFsiYjUiLCAiMi41IiwgIkluIG15IG9waW5pb24sIHdlIHNob3VsZCBzZWxsIHRoZSBzdXJwbHVzIHN0b2NrIGF0IGEgZGlzY291bnQuIl0sIFsiYjYiLCAiMi42IiwgIkZyZXNoIGNoZWVzZSBoYXMgYSBzaG9ydCBzaGVsZiBsaWZlLCBzbyB3ZSBzZWxsIGl0IGZpcnN0LiJdLCBbInQxIiwgIjMuMSBTaGUgX19fIG1lIHRvIGNvbWUgaGVyZS4iLCAidG9sZCJdLCBbInQyIiwgIjMuMiBTaGUgX19fLCBcdTIwMWNDb21lIGhlcmUuXHUyMDFkIiwgInNhaWQiXSwgWyJ0MyIsICIzLjMgXHUyMDFjSSdtIHNvIHRpcmVkLFx1MjAxZCBteSBmcmllbmQgX19fLiIsICJzYWlkIl0sIFsidDQiLCAiMy40IE15IGh1c2JhbmQgX19fIG1lIGFib3V0IGhpcyBOZXcgWmVhbGFuZCB2aXNhLiIsICJ0b2xkIl0sIFsidDUiLCAiMy41IE1pbGFuYSBfX18gdXMgYWJvdXQgaGVyIGhvc3QgZmFtaWx5LiIsICJ0b2xkIl0sIFsidDYiLCAiMy42IFRoZSBtYW5hZ2VyIF9fXyB0aGF0IHRoZSBicmVhZCB3YXMgc29sZCBvdXQuIiwgInNhaWQiXSwgWyJjMSIsICI1LjEgSGF2ZSB5b3UgZXZlciBiZWVuIHRvIE5ldyBaZWFsYW5kPyIsICJObywgSSd2ZSBuZXZlciBiZWVuIHRoZXJlLiJdLCBbImMyIiwgIjUuMiBIYXZlIHlvdSBldmVyIGZsb3duIGluIGEgaG90IGFpciBiYWxsb29uPyIsICJObywgSSd2ZSBuZXZlciBmbG93biBpbiBvbmUuIl0sIFsiYzMiLCAiNS4zIEhvdyBtYW55IGNvdW50cmllcyBoYXZlIHlvdSBiZWVuIHRvPyIsICJJJ3ZlIGJlZW4gdG8gYSBsb3Qgb2YgY291bnRyaWVzLiJdLCBbImM0IiwgIjUuNCBIYXZlIHlvdSBldmVyIG1vdmVkIGhvdXNlPyIsICJZZXMsIEkndmUgbW92ZWQgbW9yZSB0aGFuIHRlbiB0aW1lcy4iXSwgWyJjNSIsICI1LjUgSGF2ZSB5b3UgZXZlciBlYXRlbiBhbnl0aGluZyByZWFsbHkgdW51c3VhbD8iLCAiWWVzLCBJJ3ZlIGVhdGVuIHNvbWV0aGluZyBzdHJhbmdlIGluIEthemFraHN0YW4uIl0sIFsiYzYiLCAiNS42IERvIHlvdSByZW1lbWJlciB0aGUgYm9va3MgeW91J3ZlIHJlYWQ/IiwgIlllcywgSSByZW1lbWJlciBldmVyeXRoaW5nIHRoYXQgSSd2ZSByZWFkLiJdXQ=="))));
+  var A = JSON.parse(decodeURIComponent(escape(atob("W1sicDEiLCAiMS4xIGJpc2N1aXRzIiwgImJlc3QgYmVmb3JlIl0sIFsicDIiLCAiMS4yIGZyZXNoIG1lYXQiLCAidXNlIGJ5Il0sIFsicDMiLCAiMS4zIGhvbmV5IiwgImJlc3QgYmVmb3JlIl0sIFsicDQiLCAiMS40IGNob2NvbGF0ZSIsICJiZXN0IGJlZm9yZSJdLCBbInA1IiwgIjEuNSBmcmVzaCBmaXNoIiwgInVzZSBieSJdLCBbInA2IiwgIjEuNiByYXcgY2hpY2tlbiIsICJ1c2UgYnkiXSwgWyJwNyIsICIxLjcgdGlubmVkIHRvbWF0b2VzIiwgImJlc3QgYmVmb3JlIl0sIFsicDgiLCAiMS44IHJlYWR5LW1hZGUgc2FsYWQiLCAidXNlIGJ5Il0sIFsiYjEiLCAiMi4xIiwgIkl0IHRvb2sgbWUgdHdvIGhvdXJzIHRvIHByaWNlIHRoZSB1bnNvbGQgc3RvY2suIl0sIFsiYjIiLCAiMi4yIiwgIkl0IHRha2VzIHVzIGFuIGhvdXIgYW5kIGEgaGFsZiB0byBkcml2ZSB0byBEdWJhaS4iXSwgWyJiMyIsICIyLjMiLCAiSG93IGxvbmcgZG9lcyBpdCB0YWtlIHlvdSB0byBnZXQgdG8gdGhlIGFpcnBvcnQ/Il0sIFsiYjQiLCAiMi40IiwgIkl0IHRvb2sgdXMgdHdvIGhvdXJzIHRvIGdldCB0byB0aGUgaG90ZWwuIl0sIFsiYjUiLCAiMi41IiwgIkluIG15IG9waW5pb24sIHdlIHNob3VsZCBzZWxsIHRoZSBzdXJwbHVzIHN0b2NrIGF0IGEgZGlzY291bnQuIl0sIFsiYjYiLCAiMi42IiwgIkZyZXNoIGNoZWVzZSBoYXMgYSBzaG9ydCBzaGVsZiBsaWZlLCBzbyB3ZSBzZWxsIGl0IGZpcnN0LiJdLCBbInQxIiwgIjMuMSBUaGUgZG9jdG9yIF9fXyBtZSB0byByZXN0LiIsICJ0b2xkIl0sIFsidDIiLCAiMy4yIEhlIF9fXywgXHUyMDFjU2l0IGRvd24uXHUyMDFkIiwgInNhaWQiXSwgWyJ0MyIsICIzLjMgXHUyMDFjSSdtIHNvIHRpcmVkLFx1MjAxZCBteSBmcmllbmQgX19fLiIsICJzYWlkIl0sIFsidDQiLCAiMy40IE15IGh1c2JhbmQgX19fIG1lIGFib3V0IGhpcyBOZXcgWmVhbGFuZCB2aXNhLiIsICJ0b2xkIl0sIFsidDUiLCAiMy41IE1pbGFuYSBfX18gdXMgYWJvdXQgaGVyIGhvc3QgZmFtaWx5LiIsICJ0b2xkIl0sIFsidDYiLCAiMy42IFRoZSBtYW5hZ2VyIF9fXyB0aGF0IHRoZSBicmVhZCB3YXMgc29sZCBvdXQuIiwgInNhaWQiXSwgWyJjMSIsICI1LjEgSGF2ZSB5b3UgZXZlciBiZWVuIHRvIE5ldyBaZWFsYW5kPyIsICJObywgSSd2ZSBuZXZlciBiZWVuIHRoZXJlLiJdLCBbImMyIiwgIjUuMiBIYXZlIHlvdSBldmVyIGZsb3duIGluIGEgaG90IGFpciBiYWxsb29uPyIsICJObywgSSd2ZSBuZXZlciBmbG93biBpbiBvbmUuIl0sIFsiYzMiLCAiNS4zIEhvdyBtYW55IGNvdW50cmllcyBoYXZlIHlvdSBiZWVuIHRvPyIsICJJJ3ZlIGJlZW4gdG8gYSBsb3Qgb2YgY291bnRyaWVzLiJdLCBbImM0IiwgIjUuNCBIYXZlIHlvdSBldmVyIG1vdmVkIGhvdXNlPyIsICJZZXMsIEkndmUgbW92ZWQgbW9yZSB0aGFuIHRlbiB0aW1lcy4iXSwgWyJjNSIsICI1LjUgSGF2ZSB5b3UgZXZlciBlYXRlbiBhbnl0aGluZyByZWFsbHkgdW51c3VhbD8iLCAiWWVzLCBJJ3ZlIGVhdGVuIHNvbWV0aGluZyBzdHJhbmdlIGluIEthemFraHN0YW4uIl0sIFsiYzYiLCAiNS42IERvIHlvdSByZW1lbWJlciB0aGUgYm9va3MgeW91J3ZlIHJlYWQ/IiwgIlllcywgSSByZW1lbWJlciBldmVyeXRoaW5nIHRoYXQgSSd2ZSByZWFkLiJdXQ=="))));
   function norm(s) { return (s || "").toLowerCase().replace(/[.,!?]/g, "").replace(/\s+/g, " ").trim(); }
   function val(k) { var els = document.querySelectorAll("[data-k]"); for (var i = 0; i < els.length; i++) if (els[i].dataset.k === k) return els[i].value || ""; return ""; }
-  function show() {
-    var box = document.getElementById("answers"), ol = document.getElementById("anslist");
-    if (!box || !ol || !box.hidden) return;
-    ol.innerHTML = "";
+  var shown = false;
+  function markFor(k) {
+    var el = document.querySelector('[data-field="' + k + '"]');
+    if (!el) return null;
+    var c = k.charAt(0);
+    if (c === "p") return { host: el, how: "append" };
+    if (c === "b") return { host: el.closest(".bwrap") || el, how: "append" };
+    if (c === "t") return { host: el, how: "append" };
+    if (c === "c") return { host: el, how: "after" };
+    return null;
+  }
+  function render() {
+    document.querySelectorAll(".mark").forEach(function (m) { m.remove(); });
+    var right = 0;
     A.forEach(function (r) {
       var mine = val(r[0]).replace(/___/g, "").trim(), ok = norm(mine) === norm(r[2]);
-      var li = document.createElement("li");
-      li.innerHTML = '<span class="' + (ok ? "ok" : "no") + '">' + (ok ? "&#10003;" : "&#10007;") + "</span> " + r[1] + ": <b></b>" + (ok ? "" : ' <span class="yours"></span>');
-      li.querySelector("b").textContent = r[2];
-      if (!ok) li.querySelector(".yours").textContent = "(yours: " + (mine || "empty") + ")";
-      ol.appendChild(li);
+      if (ok) right++;
+      var spot = markFor(r[0]); if (!spot) return;
+      var m = document.createElement(spot.host.tagName === "BUTTON" ? "span" : "div");
+      m.className = "mark " + (ok ? "ok" : "no");
+      if (ok) m.innerHTML = "&#10003;";
+      else { m.innerHTML = '&#10007; <span class="right"></span>'; m.querySelector(".right").textContent = r[2]; }
+      if (spot.how === "after") spot.host.parentNode.insertBefore(m, spot.host.nextSibling); else spot.host.appendChild(m);
     });
-    box.hidden = false;
+    var sc = document.getElementById("anscore");
+    if (sc) sc.textContent = "Your score: " + right + " of " + A.length;
+  }
+  function show() {
+    var box = document.getElementById("answers");
+    if (shown) { render(); return; }
+    shown = true;
+    render();
+    if (box) box.hidden = false;
+    document.querySelectorAll(".store [data-k]").forEach(function (f) { f.addEventListener("change", function () { setTimeout(render, 0); }); });
     try { localStorage.setItem("kristina-2026-10-02-shown", "1"); } catch (e) {}
   }
   function watch() {

@@ -137,13 +137,115 @@
       }).then(function () { button.disabled = false; button.textContent = label; });
     };
   });
+
+  // ---------- instant check after sending (Dasha, 2 Oct 2026) ----------
+  // Items with one clear answer get a tick, or a cross with the right answer, NEXT TO THE TASK.
+  // Items the pupil writes in her own words get "Feedback in the lesson".
+  // Answers come from <script id="hw-check"> (base64 JSON, written by publish_online_hw.py from the
+  // sheet's key: only exact / words / set answers, never the private open-answer guidance).
+  // The comparison mirrors the Homework mailer (Admin/Homework backend/Code.gs), so the page and
+  // Dasha's email always agree.
+  function answerOf(el) {
+    if (el.classList.contains("circle-words")) return [].map.call(el.querySelectorAll(".hw-circled"), function (w) { return w.textContent; }).join(", ");
+    return val(el).trim();
+  }
+  var CHECK = null, CHECKED = "hw-checked-" + META.sheetId;
+  try {
+    var ce = document.getElementById("hw-check");
+    if (ce) CHECK = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(ce.textContent.trim()), function (c) { return c.charCodeAt(0); })));
+  } catch (e) { CHECK = null; }
+  function cNorm(s) { return String(s || "").toLowerCase().replace(/[\s,]/g, ""); }
+  function cWords(s) { return String(s || "").toLowerCase().replace(/[,.]/g, " ").replace(/\s+/g, " ").trim(); }
+  function cSet(s) { return String(s || "").toLowerCase().split(/[\s,]+/).filter(String).sort().join(","); }
+  function seen(el) { return !!(el && el.getClientRects().length) && !el.closest("[hidden]"); }
+  function writable(el) { return /^(TEXTAREA|INPUT)$/.test(el.tagName) || el.isContentEditable || el.classList.contains("circle-words"); }
+  var checking = false;
+  function showChecks() {
+    if (!CHECK) return "";
+    checking = true;
+    document.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
+    var right = 0, marked = 0, open = 0, lists = [];
+    document.querySelectorAll("#sheet [data-k]").forEach(function (el) {
+      var k = el.dataset.k, key = CHECK[k];
+      var vis = document.querySelector('[data-field="' + k + '"]');
+      var anchor = seen(vis) ? vis : (seen(el) ? el : null);
+      var node;
+      if (key && key.t && key.t !== "open") {
+        var mine = answerOf(el), f = key.t === "exact" ? cNorm : key.t === "words" ? cWords : cSet;
+        var ok = !!mine && f(mine) === f(key.a);
+        marked++; if (ok) right++;
+        node = document.createElement("span");
+        node.className = "hw-mark " + (ok ? "hw-ok" : "hw-no");
+        if (ok) node.textContent = "✓";
+        else { node.textContent = "✗ "; var r = document.createElement("span"); r.className = "hw-right"; r.textContent = key.a; node.appendChild(r); }
+      } else {
+        if (!anchor || anchor !== el || !writable(el)) return;   // hidden helpers and print-only boxes get nothing
+        open++;
+        node = document.createElement("span");
+        node.className = "hw-mark hw-open";
+        node.textContent = "Feedback in the lesson";
+      }
+      if (!anchor) {   // a hidden data store with no visible twin: list it under the task it belongs to
+        var host = el.parentElement; while (host && !seen(host)) host = host.parentElement;
+        if (!host) return;
+        var list = host.querySelector(":scope > .hw-mark-list");
+        if (!list) { list = document.createElement("div"); list.className = "hw-mark-list"; host.appendChild(list); }
+        var row = document.createElement("div");
+        row.textContent = (el.dataset.label || k).replace(/:.*$/, "") + ": ";
+        row.appendChild(node); list.appendChild(row);
+        return;
+      }
+      if (anchor.tagName === "BUTTON") { node.classList.add("hw-mark-in"); anchor.appendChild(node); return; }
+      if (node.textContent.length < 28) node.classList.add("hw-short");
+      if (anchor === el && el.classList.contains("hw-gap")) {   // letters typed inside a word: mark after the WHOLE word
+        var at = el, nx = el.nextSibling;
+        while (nx) {
+          if (nx.nodeType === 3) {
+            var cut = nx.textContent.search(/\s/);
+            if (cut === -1) { at = nx; nx = nx.nextSibling; continue; }
+            if (cut > 0) { nx.splitText(cut); at = nx; }
+            break;
+          }
+          if (nx.nodeType === 1 && !nx.matches("[data-k]") && !/^\s/.test(nx.textContent) && getComputedStyle(nx).display.indexOf("inline") === 0) {
+            at = nx; if (/\s/.test(nx.textContent)) break; nx = nx.nextSibling; continue;
+          }
+          break;
+        }
+        at.parentNode.insertBefore(node, at.nextSibling); return;
+      }
+      if (anchor === el && (/^(INPUT|SELECT)$/.test(el.tagName) || getComputedStyle(el).display.indexOf("inline") === 0)) {
+        anchor.parentNode.insertBefore(node, anchor.nextSibling); return;   // inline: right after the box or menu
+      }
+      node.classList.add("hw-mark-blk");
+      if (anchor !== el) { anchor.appendChild(node); return; }   // inside the visible card, tile bank or reply group
+      var below = el;   // under a writing box, but never squeezed into a side-by-side row with it
+      while (below.parentElement && below.parentElement.id !== "sheet") {
+        var cs = getComputedStyle(below.parentElement);
+        if (cs.display.indexOf("grid") >= 0 || (cs.display.indexOf("flex") >= 0 && cs.flexDirection.indexOf("row") === 0)) below = below.parentElement; else break;
+      }
+      below.parentNode.insertBefore(node, below.nextSibling);
+    });
+    checking = false;
+    if (!marked) return open ? "Dasha will read it. Your own writing: feedback in the lesson." : "";
+    return right + " of " + marked + " right. ✗ shows the right answer." + (open ? " Your own writing: feedback in the lesson." : "");
+  }
+  window.hwShowChecks = showChecks;
+  function recheck() {
+    var t = null;
+    document.addEventListener("input", function () { if (checking) return; clearTimeout(t); t = setTimeout(showChecks, 150); }, true);
+    document.addEventListener("change", function () { if (checking) return; clearTimeout(t); t = setTimeout(showChecks, 150); }, true);
+  }
+  if (CHECK) {
+    var wasChecked = false; try { wasChecked = localStorage.getItem(CHECKED) === "1"; } catch (e) {}
+    if (wasChecked) {
+      var later = function () { setTimeout(function () { var sc = showChecks(); if (!recheck.on) { recheck.on = true; recheck(); } var msg = document.getElementById("hwMsg"); if (msg && sc) msg.textContent = "Sent! " + sc; }, 600); };
+      if (document.readyState === "complete") later(); else window.addEventListener("load", later);
+    }
+  }
   window.hwSend = function () {
     var btn = document.getElementById("hwSend"), msg = document.getElementById("hwMsg"), answers = [];
     document.querySelectorAll("[data-k]").forEach(function (el) {
-      var a;
-      if (el.classList.contains("circle-words")) a = [].map.call(el.querySelectorAll(".hw-circled"), function (w) { return w.textContent; }).join(", ");
-      else a = val(el).trim();
-      answers.push({ k: el.dataset.k, q: el.dataset.label || el.dataset.k, a: a });
+      answers.push({ k: el.dataset.k, q: el.dataset.label || el.dataset.k, a: answerOf(el) });
     });
     var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q); }).length;
     if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return;
@@ -153,7 +255,12 @@
         return fetch(SEND_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({ key: SEND_KEY, student: META.student, sheet: META.sheet, sheetId: META.sheetId, answers: answers, pdf: pdf }) });
       })
-      .then(function () { msg.textContent = "Sent! Dasha will check it. ✓"; btn.textContent = "Sent ✓"; })
+      .then(function () {
+        var score = showChecks(); if (!recheck.on) { recheck.on = true; recheck(); }
+        try { localStorage.setItem(CHECKED, "1"); } catch (e) {}
+        msg.textContent = "Sent! " + (score || "Dasha will check it. ✓");
+        btn.textContent = "Sent ✓";
+      })
       .catch(function () { btn.disabled = false; msg.textContent = "It did not send. Check the internet and try again, or save a copy as a PDF."; });
   };
 })();

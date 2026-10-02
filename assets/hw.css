@@ -29,3 +29,15 @@ body.hw-pdf-mode textarea.hw-field::placeholder { color:transparent; }
 /* in-word letter gap (missing letters typed inside the word) and choose-from-a-list answers */
 input.hw-field.hw-gap { display:inline-block; width:2.7em; min-width:0; min-height:0; height:1.55em; padding:0 3px; margin:0 2px; letter-spacing:.06em; vertical-align:baseline; font-size:inherit; }
 select.hw-field { display:inline-block; min-height:40px; min-width:210px; padding:4px 10px; cursor:pointer; }
+
+/* instant check after sending: tick, or cross + right answer, next to each task (Dasha, 2 Oct 2026) */
+.hw-mark { font-family: 'Rubik','Segoe UI',Arial,sans-serif; font-size: 15px; font-weight: 700; line-height: 1.35; margin-left: 6px; white-space: normal; }
+.hw-mark.hw-ok { color: #15803d; }
+.hw-mark.hw-no { color: #c2410c; }
+.hw-mark .hw-right { font-weight: 600; }
+.hw-mark.hw-open { color: #6b7280; font-weight: 500; font-size: 14px; font-style: italic; }
+.hw-mark.hw-mark-blk { display: block; margin: 6px 0 0; flex-basis: 100%; width: 100%; grid-column: 1 / -1; text-align: left; }
+.hw-mark.hw-mark-in { margin-left: 8px; }
+.hw-mark-list { margin-top: 8px; font-size: 15px; line-height: 1.6; }
+@media print { .hw-mark.hw-open { display: none; } }
+.hw-mark.hw-short { white-space: nowrap; flex-shrink: 0; }

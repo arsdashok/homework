@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evie · Maths homework · 3 October 2026</title>
+<style>
+@page {size:A4; margin:10mm 10mm;}
+* {box-sizing:border-box;}
+body {font-family:'Segoe UI',Arial,sans-serif; color:#252333; margin:0; font-size:15px; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+.page {max-width:1150px; margin:0 auto; padding:0 12px;}
+header {background:linear-gradient(135deg,#6c63ff,#a78bfa); color:white; border-radius:9px; padding:10px 16px; margin:12px 0 16px;}
+h1 {font-size:22px; margin:0 0 3px;}
+.meta {font-size:12px;}
+.wrap {display:grid; grid-template-columns:minmax(0,1fr) 250px; gap:28px; align-items:start;}
+section {margin-bottom:18px;}
+.lbl {font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#6d4fc2; margin:0 0 4px; break-after:avoid; page-break-after:avoid;}
+.instr {font-size:19px; font-weight:700; color:#1f1b2e; margin:0 0 4px; line-height:1.35; break-after:avoid; page-break-after:avoid;}
+.note {font-size:13px; color:#6b6280; margin:0 0 8px;}
+.note.pr {display:none;}
+.num {font-weight:700; color:#5b32b5;}
+.nw {white-space:nowrap;}
+
+/* answer buttons: every answer on this sheet is a choice */
+.opts {display:flex; flex-wrap:wrap; align-items:center; gap:7px;}
+.opt, .dig {font:inherit; font-weight:700; color:#3f3752; background:#fff; border:2px solid #c9bdf0; border-radius:9px; cursor:pointer; transition:background .12s, box-shadow .12s;}
+.opt {font-size:16px; padding:5px 12px; min-width:76px;}
+.opt.wide {min-width:0; font-size:14px; line-height:1.15; padding:3px 11px; text-align:center;}
+.dig {font-size:21px; width:38px; height:40px; padding:0;}
+.comma {font-size:21px; font-weight:700; color:#3f3752; margin:0 -3px; align-self:flex-end; line-height:1.2;}
+.opt:hover, .dig:hover {background:#f3f0ff; border-color:#a78bfa;}
+.opts .opt.on, .opts .dig.on {background:#6c63ff; border-color:#6c63ff; color:#fff; box-shadow:0 0 0 3px #ddd6fe;}
+
+/* one rounding item: number line above the steps, beside them when there is room */
+.q {break-inside:avoid; page-break-inside:avoid;}
+.q.dd {padding:12px 0 14px; border-bottom:1px solid #e9e4f7; container-type:inline-size;}
+.q.dd:last-child {border-bottom:0;}
+.qhead {font-size:19px; margin:0 0 8px;}
+.ibody {display:grid; grid-template-columns:minmax(0,1fr); gap:10px 18px; align-items:center;}
+.viz {order:-1; width:100%; max-width:340px; margin:0 auto 4px;}
+@container (min-width:780px) {
+  .ibody {grid-template-columns:minmax(0,1fr) 275px;}
+  .viz {order:0; max-width:none; margin:0;}
+}
+.step {display:grid; grid-template-columns:28px 142px minmax(0,1fr); align-items:center; gap:8px; padding:3px 0;}
+.badge {width:26px; height:26px; line-height:26px; border-radius:50%; background:#ede9fe; color:#5b32b5; text-align:center; font-size:13px; font-weight:700;}
+.step.got .badge {background:#6c63ff; color:#fff;}
+.slab {font-size:15px; line-height:1.25;}
+svg.nl {display:block; width:100%; height:auto;}
+svg.nl .arr {display:none;}
+.q[data-dir="lo"] svg.nl .arr-lo, .q[data-dir="hi"] svg.nl .arr-hi {display:inline;}
+.shows {display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;}
+.showbox {display:flex; align-items:center; justify-content:center; min-height:30px; border:2px dashed #c9bdf0; border-radius:8px; font-weight:700; font-size:14px; color:#5b32b5; background:#faf9ff;}
+.showbox.full {border-style:solid; border-color:#a78bfa; background:#f3f0ff;}
+.showbox.hit {border-color:#f59e0b; background:#fff7e6;}
+.shows.lab span {font-size:11.5px; color:#6b6280; text-align:center;}
+.store {display:none;}
+
+/* comparison pairs */
+.pair {display:flex; flex-wrap:wrap; align-items:center; gap:2px 30px; padding:5px 0; border-bottom:1px solid #f0ecfa;}
+.pair:last-child {border-bottom:0;}
+.crow {display:flex; flex-wrap:nowrap; align-items:center; gap:7px; font-size:17px; padding:3px 0;}
+.crow .num {font-size:18px; min-width:68px;}
+.opt.sq {min-width:0; width:38px; padding:5px 0;}
+
+/* worked model, side column */
+aside.model {position:sticky; top:12px; border-left:3px solid #b6a0ec; padding:2px 0 4px 14px; font-size:14px; color:#3f3752;}
+aside .mq {font-size:16px; margin:2px 0 4px;}
+svg.mline {display:block; width:100%; max-width:240px; height:auto; margin:2px 0 6px;}
+aside ol {margin:0; padding-left:18px;}
+aside li {margin:0 0 5px; line-height:1.4;}
+aside .rule {margin-top:8px; font-weight:700; color:#1f1b2e;}
+
+@media (max-width:820px) {
+  .wrap {grid-template-columns:1fr;}
+  aside.model {position:static; border-left:0; border-top:2px solid #e9e4f7; padding:12px 0 0;}
+}
+@media (max-width:640px) {
+  .step {grid-template-columns:26px minmax(0,1fr); row-gap:5px;}
+  .step .opts {grid-column:2;}
+  .opt {min-width:0;}
+}
+@media print {
+  body {font-size:12.5px;}
+  .page {max-width:none; padding:0;}
+  header {margin:0 0 8px; padding:6px 14px;}
+  h1 {font-size:19px; margin:0;}
+  .wrap {grid-template-columns:minmax(0,1fr) 172px; gap:13px;}
+  aside.model {position:static; border-top:0; border-left:3px solid #b6a0ec; padding:2px 0 4px 9px; font-size:11.5px;}
+  aside .mq {font-size:13px;}
+  aside li {margin-bottom:3px; line-height:1.3;}
+  section {margin-bottom:6px;}
+  .lbl {font-size:10.5px; margin-bottom:2px;}
+  .instr {font-size:15.5px; margin-bottom:2px;}
+  .note {font-size:11px; margin-bottom:3px;}
+  .note.scr {display:none;}
+  .note.pr {display:block;}
+  .shows:not(.lab) {display:none;}
+  .shows.lab {margin-top:-2px;}
+  svg.mline .mv {font-size:15px;}
+  svg.mline .mh {font-size:13px;}
+  .q.dd {padding:5px 0 6px; container-type:normal;}
+  .qhead {font-size:15px; margin-bottom:3px;}
+  .ibody {grid-template-columns:minmax(0,1fr) 172px; gap:8px;}
+  .viz {order:0; max-width:none; margin:0;}
+  .step {grid-template-columns:19px 116px minmax(0,1fr); gap:5px; padding:1.5px 0;}
+  .slab {white-space:nowrap;}
+  .badge {width:18px; height:18px; line-height:18px; font-size:10.5px;}
+  .slab {font-size:11.5px;}
+  .opts {gap:4px;}
+  .opt {font-size:12px; padding:2px 6px; min-width:54px; border-width:1.5px; border-radius:6px;}
+  .opt.wide {font-size:10.5px; padding:1px 6px;}
+  .dig {font-size:14px; width:24px; height:24px; border-width:1.5px; border-radius:6px;}
+  .comma {font-size:14px;}
+  .showbox {min-height:20px; font-size:11px; border-width:1.5px;}
+  .shows {gap:4px;}
+  .shows.lab span {font-size:9.5px;}
+  .pair {gap:2px 11px; padding:2px 0; flex-wrap:nowrap;}
+  .crow {font-size:12.5px; padding:1px 0; gap:5px;}
+  .crow .num {font-size:13.5px; min-width:53px;}
+  .opt.sq {width:24px; min-width:0; padding:2px 0;}
+}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Evie" data-sheet="Maths 2026-10-03" data-sheet-id="evie-2026-10-03-maths">
+<div id="sheet">
+
+<div class="page">
+<header><h1>Evie · Maths</h1><div class="meta">3 October 2026 · Comparing and rounding</div></header>
+<div class="wrap">
+<main>
+
+<section>
+<p class="lbl">Which is bigger?</p>
+<p class="instr">Count the digits. Then choose the bigger&nbsp;number.</p>
+<div class="pairs"><div class="q pair">
+<div class="crow"><span class="num">97,640</span><div class="opts" data-field="e_c1a"><button type="button" class="opt sq" data-v="5">5</button><button type="button" class="opt sq" data-v="6">6</button><button type="button" class="opt sq" data-v="7">7</button></div><span class="nw">digits</span></div>
+<div class="crow"><span class="num">110,205</span><div class="opts" data-field="e_c1b"><button type="button" class="opt sq" data-v="4">4</button><button type="button" class="opt sq" data-v="5">5</button><button type="button" class="opt sq" data-v="6">6</button></div><span class="nw">digits</span></div>
+<div class="crow">Bigger: <div class="opts" data-field="e_c1w"><button type="button" class="opt" data-v="97,640">97,640</button><button type="button" class="opt" data-v="110,205">110,205</button></div></div>
+<div class="store"><select data-k="e_c1a" data-label="Evie · pair 1: 97,640, how many digits" class="hw-field"><option value="">Choose</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select><select data-k="e_c1b" data-label="Evie · pair 1: 110,205, how many digits" class="hw-field"><option value="">Choose</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><select data-k="e_c1w" data-label="Evie · pair 1: the bigger number" class="hw-field"><option value="">Choose</option><option value="97,640">97,640</option><option value="110,205">110,205</option></select></div>
+</div><div class="q pair">
+<div class="crow"><span class="num">102,400</span><div class="opts" data-field="e_c2a"><button type="button" class="opt sq" data-v="5">5</button><button type="button" class="opt sq" data-v="6">6</button><button type="button" class="opt sq" data-v="7">7</button></div><span class="nw">digits</span></div>
+<div class="crow"><span class="num">89,950</span><div class="opts" data-field="e_c2b"><button type="button" class="opt sq" data-v="5">5</button><button type="button" class="opt sq" data-v="6">6</button><button type="button" class="opt sq" data-v="7">7</button></div><span class="nw">digits</span></div>
+<div class="crow">Bigger: <div class="opts" data-field="e_c2w"><button type="button" class="opt" data-v="102,400">102,400</button><button type="button" class="opt" data-v="89,950">89,950</button></div></div>
+<div class="store"><select data-k="e_c2a" data-label="Evie · pair 2: 102,400, how many digits" class="hw-field"><option value="">Choose</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select><select data-k="e_c2b" data-label="Evie · pair 2: 89,950, how many digits" class="hw-field"><option value="">Choose</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select><select data-k="e_c2w" data-label="Evie · pair 2: the bigger number" class="hw-field"><option value="">Choose</option><option value="102,400">102,400</option><option value="89,950">89,950</option></select></div>
+</div><div class="q pair">
+<div class="crow"><span class="num">21,005</span><div class="opts" data-field="e_c3a"><button type="button" class="opt sq" data-v="3">3</button><button type="button" class="opt sq" data-v="4">4</button><button type="button" class="opt sq" data-v="5">5</button></div><span class="nw">digits</span></div>
+<div class="crow"><span class="num">9,870</span><div class="opts" data-field="e_c3b"><button type="button" class="opt sq" data-v="4">4</button><button type="button" class="opt sq" data-v="5">5</button><button type="button" class="opt sq" data-v="6">6</button></div><span class="nw">digits</span></div>
+<div class="crow">Bigger: <div class="opts" data-field="e_c3w"><button type="button" class="opt" data-v="21,005">21,005</button><button type="button" class="opt" data-v="9,870">9,870</button></div></div>
+<div class="store"><select data-k="e_c3a" data-label="Evie · pair 3: 21,005, how many digits" class="hw-field"><option value="">Choose</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select><select data-k="e_c3b" data-label="Evie · pair 3: 9,870, how many digits" class="hw-field"><option value="">Choose</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><select data-k="e_c3w" data-label="Evie · pair 3: the bigger number" class="hw-field"><option value="">Choose</option><option value="21,005">21,005</option><option value="9,870">9,870</option></select></div>
+</div></div>
+</section>
+<section>
+<p class="lbl">Rounding on a number line</p>
+<p class="instr">Round each number in six steps. Choose one answer at every&nbsp;step.</p>
+<p class="note scr">A step's number fills in when you answer it. Tap another answer to change your&nbsp;mind.</p>
+<p class="note pr">Circle one answer at every&nbsp;step.</p>
+<div class="q dd" data-lo="48,000" data-hi="49,000">
+<p class="qhead"><span class="num">48,620</span>&nbsp;to the nearest 1,000</p>
+<div class="ibody"><div class="steps"><div class="step"><span class="badge" data-n="1">1</span><span class="slab">Thousands&nbsp;digit</span><div class="opts digits" data-field="e_1p"><button type="button" class="dig" data-v="4 (ten thousands)">4</button><button type="button" class="dig" data-v="8 (thousands)">8</button><span class="comma">,</span><button type="button" class="dig" data-v="6 (hundreds)">6</button><button type="button" class="dig" data-v="2 (tens)">2</button><button type="button" class="dig" data-v="0 (ones)">0</button></div></div><div class="step"><span class="badge" data-n="2">2</span><span class="slab">Smaller neighbour</span><div class="opts" data-field="e_1s" data-show="s"><button type="button" class="opt" data-v="40,000">40,000</button><button type="button" class="opt" data-v="48,000">48,000</button><button type="button" class="opt" data-v="48,600">48,600</button></div></div><div class="step"><span class="badge" data-n="3">3</span><span class="slab">Bigger neighbour</span><div class="opts" data-field="e_1b" data-show="b"><button type="button" class="opt" data-v="58,000">58,000</button><button type="button" class="opt" data-v="48,100">48,100</button><button type="button" class="opt" data-v="49,000">49,000</button></div></div><div class="step"><span class="badge" data-n="4">4</span><span class="slab">Halfway</span><div class="opts" data-field="e_1h" data-show="h"><button type="button" class="opt" data-v="48,500">48,500</button><button type="button" class="opt" data-v="45,000">45,000</button><button type="button" class="opt" data-v="48,050">48,050</button></div></div><div class="step"><span class="badge" data-n="5">5</span><span class="slab"><span class="num">48,620</span>&nbsp;is</span><div class="opts" data-field="e_1d"><button type="button" class="opt wide" data-v="before halfway: round down">before halfway<br>round down</button><button type="button" class="opt wide" data-v="halfway or after: round UP">halfway or after<br>round UP</button></div></div><div class="step"><span class="badge" data-n="6">6</span><span class="slab"><span class="num">48,620</span> rounds&nbsp;to</span><div class="opts" data-field="e_1r" data-show="r"><button type="button" class="opt" data-v="49,000">49,000</button><button type="button" class="opt" data-v="48,000">48,000</button><button type="button" class="opt" data-v="50,000">50,000</button></div></div></div><div class="viz"><svg class="nl" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="arr arr-lo"><line x1="174.0" y1="36" x2="58.0" y2="36" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" opacity=".75"/><polygon points="47.0,36 61.0,28 61.0,44" fill="#f59e0b"/></g><g class="arr arr-hi"><line x1="174.0" y1="36" x2="242.0" y2="36" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" opacity=".75"/><polygon points="253.0,36 239.0,28 239.0,44" fill="#f59e0b"/></g><line x1="50.0" y1="36" x2="250.0" y2="36" stroke="#374151" stroke-width="2.2"/><line x1="50.0" y1="27" x2="50.0" y2="45" stroke="#374151" stroke-width="2"/><line x1="250.0" y1="27" x2="250.0" y2="45" stroke="#374151" stroke-width="2"/><line x1="70.0" y1="32" x2="70.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="90.0" y1="32" x2="90.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="110.0" y1="32" x2="110.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="130.0" y1="32" x2="130.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="150.0" y1="29" x2="150.0" y2="43" stroke="#6b7280" stroke-width="1.6"/><line x1="170.0" y1="32" x2="170.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="190.0" y1="32" x2="190.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="210.0" y1="32" x2="210.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="230.0" y1="32" x2="230.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="50.0" y1="47" x2="50.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="150.0" y1="47" x2="150.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="250.0" y1="47" x2="250.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="174.0" y1="21" x2="174.0" y2="36" stroke="#dc2626" stroke-width="2"/><circle cx="174.0" cy="36" r="5" fill="#dc2626"/><text x="174.0" y="16" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#dc2626">48,620</text></svg><div class="shows"><span class="showbox" data-show="s"></span><span class="showbox" data-show="h"></span><span class="showbox" data-show="b"></span></div><div class="shows lab"><span>smaller</span><span>halfway</span><span>bigger</span></div></div></div>
+<div class="store"><select data-k="e_1p" data-label="Evie · 1. 48,620 to the nearest 1,000: step 1, the thousands digit" class="hw-field"><option value="">Choose</option><option value="4 (ten thousands)">4 (ten thousands)</option><option value="8 (thousands)">8 (thousands)</option><option value="6 (hundreds)">6 (hundreds)</option><option value="2 (tens)">2 (tens)</option><option value="0 (ones)">0 (ones)</option></select><select data-k="e_1s" data-label="Evie · 1. 48,620 to the nearest 1,000: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="40,000">40,000</option><option value="48,000">48,000</option><option value="48,600">48,600</option></select><select data-k="e_1b" data-label="Evie · 1. 48,620 to the nearest 1,000: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="58,000">58,000</option><option value="48,100">48,100</option><option value="49,000">49,000</option></select><select data-k="e_1h" data-label="Evie · 1. 48,620 to the nearest 1,000: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="48,500">48,500</option><option value="45,000">45,000</option><option value="48,050">48,050</option></select><select data-k="e_1d" data-label="Evie · 1. 48,620 to the nearest 1,000: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="before halfway: round down">before halfway: round down</option><option value="halfway or after: round UP">halfway or after: round UP</option></select><select data-k="e_1r" data-label="Evie · 1. 48,620 to the nearest 1,000: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="49,000">49,000</option><option value="48,000">48,000</option><option value="50,000">50,000</option></select></div>
+</div>
+<div class="q dd" data-lo="530,000" data-hi="540,000">
+<p class="qhead"><span class="num">535,000</span>&nbsp;to the nearest 10,000</p>
+<div class="ibody"><div class="steps"><div class="step"><span class="badge" data-n="1">1</span><span class="slab">Ten&nbsp;thousands&nbsp;digit</span><div class="opts digits" data-field="e_2p"><button type="button" class="dig" data-v="5 (hundred thousands)">5</button><button type="button" class="dig" data-v="3 (ten thousands)">3</button><button type="button" class="dig" data-v="5 (thousands)">5</button><span class="comma">,</span><button type="button" class="dig" data-v="0 (hundreds)">0</button><button type="button" class="dig" data-v="0 (tens)">0</button><button type="button" class="dig" data-v="0 (ones)">0</button></div></div><div class="step"><span class="badge" data-n="2">2</span><span class="slab">Smaller neighbour</span><div class="opts" data-field="e_2s" data-show="s"><button type="button" class="opt" data-v="53,000">53,000</button><button type="button" class="opt" data-v="540,000">540,000</button><button type="button" class="opt" data-v="530,000">530,000</button></div></div><div class="step"><span class="badge" data-n="3">3</span><span class="slab">Bigger neighbour</span><div class="opts" data-field="e_2b" data-show="b"><button type="button" class="opt" data-v="630,000">630,000</button><button type="button" class="opt" data-v="540,000">540,000</button><button type="button" class="opt" data-v="531,000">531,000</button></div></div><div class="step"><span class="badge" data-n="4">4</span><span class="slab">Halfway</span><div class="opts" data-field="e_2h" data-show="h"><button type="button" class="opt" data-v="550,000">550,000</button><button type="button" class="opt" data-v="535,000">535,000</button><button type="button" class="opt" data-v="530,500">530,500</button></div></div><div class="step"><span class="badge" data-n="5">5</span><span class="slab"><span class="num">535,000</span>&nbsp;is</span><div class="opts" data-field="e_2d"><button type="button" class="opt wide" data-v="before halfway: round down">before halfway<br>round down</button><button type="button" class="opt wide" data-v="halfway or after: round UP">halfway or after<br>round UP</button></div></div><div class="step"><span class="badge" data-n="6">6</span><span class="slab"><span class="num">535,000</span> rounds&nbsp;to</span><div class="opts" data-field="e_2r" data-show="r"><button type="button" class="opt" data-v="540,000">540,000</button><button type="button" class="opt" data-v="530,000">530,000</button><button type="button" class="opt" data-v="535,000">535,000</button></div></div></div><div class="viz"><svg class="nl" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="arr arr-lo"><line x1="150.0" y1="36" x2="58.0" y2="36" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" opacity=".75"/><polygon points="47.0,36 61.0,28 61.0,44" fill="#f59e0b"/></g><g class="arr arr-hi"><line x1="150.0" y1="36" x2="242.0" y2="36" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" opacity=".75"/><polygon points="253.0,36 239.0,28 239.0,44" fill="#f59e0b"/></g><line x1="50.0" y1="36" x2="250.0" y2="36" stroke="#374151" stroke-width="2.2"/><line x1="50.0" y1="27" x2="50.0" y2="45" stroke="#374151" stroke-width="2"/><line x1="250.0" y1="27" x2="250.0" y2="45" stroke="#374151" stroke-width="2"/><line x1="70.0" y1="32" x2="70.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="90.0" y1="32" x2="90.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="110.0" y1="32" x2="110.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="130.0" y1="32" x2="130.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="150.0" y1="29" x2="150.0" y2="43" stroke="#6b7280" stroke-width="1.6"/><line x1="170.0" y1="32" x2="170.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="190.0" y1="32" x2="190.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="210.0" y1="32" x2="210.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="230.0" y1="32" x2="230.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="50.0" y1="47" x2="50.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="150.0" y1="47" x2="150.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="250.0" y1="47" x2="250.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="150.0" y1="21" x2="150.0" y2="36" stroke="#dc2626" stroke-width="2"/><circle cx="150.0" cy="36" r="5" fill="#dc2626"/><text x="150.0" y="16" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#dc2626">535,000</text></svg><div class="shows"><span class="showbox" data-show="s"></span><span class="showbox" data-show="h"></span><span class="showbox" data-show="b"></span></div><div class="shows lab"><span>smaller</span><span>halfway</span><span>bigger</span></div></div></div>
+<div class="store"><select data-k="e_2p" data-label="Evie · 2. 535,000 to the nearest 10,000: step 1, the ten thousands digit" class="hw-field"><option value="">Choose</option><option value="5 (hundred thousands)">5 (hundred thousands)</option><option value="3 (ten thousands)">3 (ten thousands)</option><option value="5 (thousands)">5 (thousands)</option><option value="0 (hundreds)">0 (hundreds)</option><option value="0 (tens)">0 (tens)</option><option value="0 (ones)">0 (ones)</option></select><select data-k="e_2s" data-label="Evie · 2. 535,000 to the nearest 10,000: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="53,000">53,000</option><option value="540,000">540,000</option><option value="530,000">530,000</option></select><select data-k="e_2b" data-label="Evie · 2. 535,000 to the nearest 10,000: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="630,000">630,000</option><option value="540,000">540,000</option><option value="531,000">531,000</option></select><select data-k="e_2h" data-label="Evie · 2. 535,000 to the nearest 10,000: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="550,000">550,000</option><option value="535,000">535,000</option><option value="530,500">530,500</option></select><select data-k="e_2d" data-label="Evie · 2. 535,000 to the nearest 10,000: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="before halfway: round down">before halfway: round down</option><option value="halfway or after: round UP">halfway or after: round UP</option></select><select data-k="e_2r" data-label="Evie · 2. 535,000 to the nearest 10,000: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="540,000">540,000</option><option value="530,000">530,000</option><option value="535,000">535,000</option></select></div>
+</div>
+<div class="q dd" data-lo="70,000" data-hi="80,000">
+<p class="qhead"><span class="num">73,600</span>&nbsp;to the nearest 10,000</p>
+<div class="ibody"><div class="steps"><div class="step"><span class="badge" data-n="1">1</span><span class="slab">Ten&nbsp;thousands&nbsp;digit</span><div class="opts digits" data-field="e_3p"><button type="button" class="dig" data-v="7 (ten thousands)">7</button><button type="button" class="dig" data-v="3 (thousands)">3</button><span class="comma">,</span><button type="button" class="dig" data-v="6 (hundreds)">6</button><button type="button" class="dig" data-v="0 (tens)">0</button><button type="button" class="dig" data-v="0 (ones)">0</button></div></div><div class="step"><span class="badge" data-n="2">2</span><span class="slab">Smaller neighbour</span><div class="opts" data-field="e_3s" data-show="s"><button type="button" class="opt" data-v="73,000">73,000</button><button type="button" class="opt" data-v="80,000">80,000</button><button type="button" class="opt" data-v="70,000">70,000</button></div></div><div class="step"><span class="badge" data-n="3">3</span><span class="slab">Bigger neighbour</span><div class="opts" data-field="e_3b" data-show="b"><button type="button" class="opt" data-v="71,000">71,000</button><button type="button" class="opt" data-v="80,000">80,000</button><button type="button" class="opt" data-v="83,600">83,600</button></div></div><div class="step"><span class="badge" data-n="4">4</span><span class="slab">Halfway</span><div class="opts" data-field="e_3h" data-show="h"><button type="button" class="opt" data-v="70,500">70,500</button><button type="button" class="opt" data-v="85,000">85,000</button><button type="button" class="opt" data-v="75,000">75,000</button></div></div><div class="step"><span class="badge" data-n="5">5</span><span class="slab"><span class="num">73,600</span>&nbsp;is</span><div class="opts" data-field="e_3d"><button type="button" class="opt wide" data-v="before halfway: round down">before halfway<br>round down</button><button type="button" class="opt wide" data-v="halfway or after: round UP">halfway or after<br>round UP</button></div></div><div class="step"><span class="badge" data-n="6">6</span><span class="slab"><span class="num">73,600</span> rounds&nbsp;to</span><div class="opts" data-field="e_3r" data-show="r"><button type="button" class="opt" data-v="80,000">80,000</button><button type="button" class="opt" data-v="74,000">74,000</button><button type="button" class="opt" data-v="70,000">70,000</button></div></div></div><div class="viz"><svg class="nl" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="arr arr-lo"><line x1="122.0" y1="36" x2="58.0" y2="36" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" opacity=".75"/><polygon points="47.0,36 61.0,28 61.0,44" fill="#f59e0b"/></g><g class="arr arr-hi"><line x1="122.0" y1="36" x2="242.0" y2="36" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" opacity=".75"/><polygon points="253.0,36 239.0,28 239.0,44" fill="#f59e0b"/></g><line x1="50.0" y1="36" x2="250.0" y2="36" stroke="#374151" stroke-width="2.2"/><line x1="50.0" y1="27" x2="50.0" y2="45" stroke="#374151" stroke-width="2"/><line x1="250.0" y1="27" x2="250.0" y2="45" stroke="#374151" stroke-width="2"/><line x1="70.0" y1="32" x2="70.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="90.0" y1="32" x2="90.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="110.0" y1="32" x2="110.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="130.0" y1="32" x2="130.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="150.0" y1="29" x2="150.0" y2="43" stroke="#6b7280" stroke-width="1.6"/><line x1="170.0" y1="32" x2="170.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="190.0" y1="32" x2="190.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="210.0" y1="32" x2="210.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="230.0" y1="32" x2="230.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="50.0" y1="47" x2="50.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="150.0" y1="47" x2="150.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="250.0" y1="47" x2="250.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="122.0" y1="21" x2="122.0" y2="36" stroke="#dc2626" stroke-width="2"/><circle cx="122.0" cy="36" r="5" fill="#dc2626"/><text x="122.0" y="16" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#dc2626">73,600</text></svg><div class="shows"><span class="showbox" data-show="s"></span><span class="showbox" data-show="h"></span><span class="showbox" data-show="b"></span></div><div class="shows lab"><span>smaller</span><span>halfway</span><span>bigger</span></div></div></div>
+<div class="store"><select data-k="e_3p" data-label="Evie · 3. 73,600 to the nearest 10,000: step 1, the ten thousands digit" class="hw-field"><option value="">Choose</option><option value="7 (ten thousands)">7 (ten thousands)</option><option value="3 (thousands)">3 (thousands)</option><option value="6 (hundreds)">6 (hundreds)</option><option value="0 (tens)">0 (tens)</option><option value="0 (ones)">0 (ones)</option></select><select data-k="e_3s" data-label="Evie · 3. 73,600 to the nearest 10,000: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="73,000">73,000</option><option value="80,000">80,000</option><option value="70,000">70,000</option></select><select data-k="e_3b" data-label="Evie · 3. 73,600 to the nearest 10,000: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="71,000">71,000</option><option value="80,000">80,000</option><option value="83,600">83,600</option></select><select data-k="e_3h" data-label="Evie · 3. 73,600 to the nearest 10,000: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="70,500">70,500</option><option value="85,000">85,000</option><option value="75,000">75,000</option></select><select data-k="e_3d" data-label="Evie · 3. 73,600 to the nearest 10,000: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="before halfway: round down">before halfway: round down</option><option value="halfway or after: round UP">halfway or after: round UP</option></select><select data-k="e_3r" data-label="Evie · 3. 73,600 to the nearest 10,000: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="80,000">80,000</option><option value="74,000">74,000</option><option value="70,000">70,000</option></select></div>
+</div>
+<div class="q dd" data-lo="306,000" data-hi="307,000">
+<p class="qhead"><span class="num">306,240</span>&nbsp;to the nearest 1,000</p>
+<div class="ibody"><div class="steps"><div class="step"><span class="badge" data-n="1">1</span><span class="slab">Thousands&nbsp;digit</span><div class="opts digits" data-field="e_4p"><button type="button" class="dig" data-v="3 (hundred thousands)">3</button><button type="button" class="dig" data-v="0 (ten thousands)">0</button><button type="button" class="dig" data-v="6 (thousands)">6</button><span class="comma">,</span><button type="button" class="dig" data-v="2 (hundreds)">2</button><button type="button" class="dig" data-v="4 (tens)">4</button><button type="button" class="dig" data-v="0 (ones)">0</button></div></div><div class="step"><span class="badge" data-n="2">2</span><span class="slab">Smaller neighbour</span><div class="opts" data-field="e_4s" data-show="s"><button type="button" class="opt" data-v="306,000">306,000</button><button type="button" class="opt" data-v="300,000">300,000</button><button type="button" class="opt" data-v="306,200">306,200</button></div></div><div class="step"><span class="badge" data-n="3">3</span><span class="slab">Bigger neighbour</span><div class="opts" data-field="e_4b" data-show="b"><button type="button" class="opt" data-v="316,000">316,000</button><button type="button" class="opt" data-v="30,700">30,700</button><button type="button" class="opt" data-v="307,000">307,000</button></div></div><div class="step"><span class="badge" data-n="4">4</span><span class="slab">Halfway</span><div class="opts" data-field="e_4h" data-show="h"><button type="button" class="opt" data-v="305,000">305,000</button><button type="button" class="opt" data-v="306,500">306,500</button><button type="button" class="opt" data-v="306,050">306,050</button></div></div><div class="step"><span class="badge" data-n="5">5</span><span class="slab"><span class="num">306,240</span>&nbsp;is</span><div class="opts" data-field="e_4d"><button type="button" class="opt wide" data-v="before halfway: round down">before halfway<br>round down</button><button type="button" class="opt wide" data-v="halfway or after: round UP">halfway or after<br>round UP</button></div></div><div class="step"><span class="badge" data-n="6">6</span><span class="slab"><span class="num">306,240</span> rounds&nbsp;to</span><div class="opts" data-field="e_4r" data-show="r"><button type="button" class="opt" data-v="306,000">306,000</button><button type="button" class="opt" data-v="307,000">307,000</button><button type="button" class="opt" data-v="310,000">310,000</button></div></div></div><div class="viz"><svg class="nl" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="arr arr-lo"><line x1="98.0" y1="36" x2="58.0" y2="36" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" opacity=".75"/><polygon points="47.0,36 61.0,28 61.0,44" fill="#f59e0b"/></g><g class="arr arr-hi"><line x1="98.0" y1="36" x2="242.0" y2="36" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" opacity=".75"/><polygon points="253.0,36 239.0,28 239.0,44" fill="#f59e0b"/></g><line x1="50.0" y1="36" x2="250.0" y2="36" stroke="#374151" stroke-width="2.2"/><line x1="50.0" y1="27" x2="50.0" y2="45" stroke="#374151" stroke-width="2"/><line x1="250.0" y1="27" x2="250.0" y2="45" stroke="#374151" stroke-width="2"/><line x1="70.0" y1="32" x2="70.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="90.0" y1="32" x2="90.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="110.0" y1="32" x2="110.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="130.0" y1="32" x2="130.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="150.0" y1="29" x2="150.0" y2="43" stroke="#6b7280" stroke-width="1.6"/><line x1="170.0" y1="32" x2="170.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="190.0" y1="32" x2="190.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="210.0" y1="32" x2="210.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="230.0" y1="32" x2="230.0" y2="40" stroke="#9ca3af" stroke-width="1.2"/><line x1="50.0" y1="47" x2="50.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="150.0" y1="47" x2="150.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="250.0" y1="47" x2="250.0" y2="60" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="98.0" y1="21" x2="98.0" y2="36" stroke="#dc2626" stroke-width="2"/><circle cx="98.0" cy="36" r="5" fill="#dc2626"/><text x="98.0" y="16" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#dc2626">306,240</text></svg><div class="shows"><span class="showbox" data-show="s"></span><span class="showbox" data-show="h"></span><span class="showbox" data-show="b"></span></div><div class="shows lab"><span>smaller</span><span>halfway</span><span>bigger</span></div></div></div>
+<div class="store"><select data-k="e_4p" data-label="Evie · 4. 306,240 to the nearest 1,000: step 1, the thousands digit" class="hw-field"><option value="">Choose</option><option value="3 (hundred thousands)">3 (hundred thousands)</option><option value="0 (ten thousands)">0 (ten thousands)</option><option value="6 (thousands)">6 (thousands)</option><option value="2 (hundreds)">2 (hundreds)</option><option value="4 (tens)">4 (tens)</option><option value="0 (ones)">0 (ones)</option></select><select data-k="e_4s" data-label="Evie · 4. 306,240 to the nearest 1,000: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="306,000">306,000</option><option value="300,000">300,000</option><option value="306,200">306,200</option></select><select data-k="e_4b" data-label="Evie · 4. 306,240 to the nearest 1,000: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="316,000">316,000</option><option value="30,700">30,700</option><option value="307,000">307,000</option></select><select data-k="e_4h" data-label="Evie · 4. 306,240 to the nearest 1,000: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="305,000">305,000</option><option value="306,500">306,500</option><option value="306,050">306,050</option></select><select data-k="e_4d" data-label="Evie · 4. 306,240 to the nearest 1,000: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="before halfway: round down">before halfway: round down</option><option value="halfway or after: round UP">halfway or after: round UP</option></select><select data-k="e_4r" data-label="Evie · 4. 306,240 to the nearest 1,000: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="306,000">306,000</option><option value="307,000">307,000</option><option value="310,000">310,000</option></select></div>
+</div>
+</section>
+</main>
+<aside class="model">
+<p class="lbl">Like this</p>
+<p class="mq"><span class="num">253,700</span> to the nearest&nbsp;10,000</p>
+<svg class="mline" viewBox="0 0 230 82" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="93.9" y1="34" x2="41.0" y2="34" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" opacity=".75"/><polygon points="31.0,34 43.0,27 43.0,41" fill="#f59e0b"/><line x1="34.0" y1="34" x2="196.0" y2="34" stroke="#374151" stroke-width="2"/><line x1="34.0" y1="26" x2="34.0" y2="42" stroke="#374151" stroke-width="1.8"/><line x1="196.0" y1="26" x2="196.0" y2="42" stroke="#374151" stroke-width="1.8"/><line x1="50.2" y1="30" x2="50.2" y2="38" stroke="#9ca3af" stroke-width="1"/><line x1="66.4" y1="30" x2="66.4" y2="38" stroke="#9ca3af" stroke-width="1"/><line x1="82.6" y1="30" x2="82.6" y2="38" stroke="#9ca3af" stroke-width="1"/><line x1="98.8" y1="30" x2="98.8" y2="38" stroke="#9ca3af" stroke-width="1"/><line x1="115.0" y1="30" x2="115.0" y2="38" stroke="#9ca3af" stroke-width="1"/><line x1="131.2" y1="30" x2="131.2" y2="38" stroke="#9ca3af" stroke-width="1"/><line x1="147.4" y1="30" x2="147.4" y2="38" stroke="#9ca3af" stroke-width="1"/><line x1="163.6" y1="30" x2="163.6" y2="38" stroke="#9ca3af" stroke-width="1"/><line x1="179.8" y1="30" x2="179.8" y2="38" stroke="#9ca3af" stroke-width="1"/><circle cx="115.0" cy="34" r="4" fill="#9ca3af"/><line x1="93.9" y1="20" x2="93.9" y2="34" stroke="#dc2626" stroke-width="1.8"/><circle cx="93.9" cy="34" r="4.2" fill="#dc2626"/><text x="93.9" y="15" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">253,700</text><text x="34.0" y="60" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#5b32b5" class="mv">250,000</text><text x="115.0" y="60" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#5b32b5" class="mv">255,000</text><text x="196.0" y="60" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#5b32b5" class="mv">260,000</text><text x="115.0" y="77" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#6b6280" class="mh">halfway</text></svg>
+<ol>
+<li>The ten thousands digit:&nbsp;2<b class="num">5</b>3,700</li>
+<li>Smaller neighbour: keep every digit up to and including that one. The rest turn into zeros: <b>250,000</b></li>
+<li>Bigger neighbour: ten thousand more: <b>260,000</b></li>
+<li>Halfway: ignore the thousands. 250 and 260, so 255. Bring the thousands back: <b>255,000</b></li>
+<li>253,700 is before halfway, so round&nbsp;down.</li>
+<li>253,700 rounds to&nbsp;<b>250,000</b></li>
+</ol>
+<p class="rule">Exactly on halfway? Round&nbsp;UP.</p>
+</aside>
+</div>
+</div>
+
+<script>
+(function () {
+  function setup(q) {
+    function selFor(k) { return q.querySelector('.store select[data-k="' + k + '"]'); }
+    function paint(group) {
+      var s = selFor(group.dataset.field), v = s ? s.value : "";
+      group.querySelectorAll("button").forEach(function (b) {
+        var on = !!v && b.dataset.v === v;
+        b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      var step = group.closest(".step");
+      if (step) step.classList.toggle("got", !!v);
+      var show = group.dataset.show;
+      if (show === "s" || show === "h" || show === "b") {
+        var box = q.querySelector('.showbox[data-show="' + show + '"]');
+        if (box) { box.textContent = v; box.classList.toggle("full", !!v); }
+      }
+      if (show === "r") {
+        q.dataset.dir = v && v === q.dataset.lo ? "lo" : (v && v === q.dataset.hi ? "hi" : "");
+      }
+      // the box holding the number she rounded to glows gold
+      var r = q.querySelector('.opts[data-show="r"]'), rs = r ? selFor(r.dataset.field) : null, rv = rs ? rs.value : "";
+      q.querySelectorAll(".showbox").forEach(function (bx) { bx.classList.toggle("hit", !!rv && bx.textContent === rv); });
+    }
+    q.querySelectorAll(".opts[data-field]").forEach(function (group) {
+      paint(group);   // saved answers come back on reload
+      group.querySelectorAll("button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var s = selFor(group.dataset.field); if (!s) return;
+          if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+          paint(group);
+        });
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".q").forEach(function (q) { if (q.querySelector(".store")) setup(q); }); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJlX2MxYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjUifSwgImVfYzFiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiJ9LCAiZV9jMXciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMTAsMjA1In0sICJlX2MyYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjYifSwgImVfYzJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiZV9jMnciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMDIsNDAwIn0sICJlX2MzYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjUifSwgImVfYzNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAiZV9jM3ciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMSwwMDUifSwgImVfMXAiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4ICh0aG91c2FuZHMpIn0sICJlXzFzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDgsMDAwIn0sICJlXzFiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDksMDAwIn0sICJlXzFoIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDgsNTAwIn0sICJlXzFkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiaGFsZndheSBvciBhZnRlcjogcm91bmQgVVAifSwgImVfMXIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0OSwwMDAifSwgImVfMnAiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzICh0ZW4gdGhvdXNhbmRzKSJ9LCAiZV8ycyI6IHsidCI6ICJleGFjdCIsICJhIjogIjUzMCwwMDAifSwgImVfMmIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1NDAsMDAwIn0sICJlXzJoIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTM1LDAwMCJ9LCAiZV8yZCI6IHsidCI6ICJleGFjdCIsICJhIjogImhhbGZ3YXkgb3IgYWZ0ZXI6IHJvdW5kIFVQIn0sICJlXzJyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTQwLDAwMCJ9LCAiZV8zcCI6IHsidCI6ICJleGFjdCIsICJhIjogIjcgKHRlbiB0aG91c2FuZHMpIn0sICJlXzNzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzAsMDAwIn0sICJlXzNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiODAsMDAwIn0sICJlXzNoIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzUsMDAwIn0sICJlXzNkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYmVmb3JlIGhhbGZ3YXk6IHJvdW5kIGRvd24ifSwgImVfM3IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3MCwwMDAifSwgImVfNHAiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2ICh0aG91c2FuZHMpIn0sICJlXzRzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzA2LDAwMCJ9LCAiZV80YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMwNywwMDAifSwgImVfNGgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzMDYsNTAwIn0sICJlXzRkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYmVmb3JlIGhhbGZ3YXk6IHJvdW5kIGRvd24ifSwgImVfNHIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzMDYsMDAwIn19</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body></html>

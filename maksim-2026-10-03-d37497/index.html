@@ -1,0 +1,152 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Maksim_Homework_2026-10-03.key.json -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Maksim · English · 3 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.7; }
+.wrap { max-width:900px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+a { color:var(--accent); text-underline-offset:4px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 36px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; page-break-inside:avoid; break-inside:avoid; }
+.section-heading { display:flex; gap:18px; align-items:baseline; margin-bottom:20px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:14px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:25px; line-height:1.3; letter-spacing:-.025em; }
+.section-heading p { margin:6px 0 0; font-size:15px; color:var(--muted); }
+.instruction { font-size:17px; font-weight:650; margin:0 0 8px; }
+.language-note { border-left:3px solid var(--accent); background:#f0f7f7; border-radius:0 12px 12px 0; padding:12px 20px; margin:0 0 18px; font-size:16px; }
+.language-note p { margin:4px 0; }
+.language-note .mini { color:var(--muted); }
+.prompt { margin:0; line-height:2.4; }
+.question { padding:16px 0; border-bottom:1px solid #edf1f3; page-break-inside:avoid; break-inside:avoid; }
+.question:last-child { border-bottom:0; }
+.question label { line-height:2.5; }
+.sentence-question label { display:block; line-height:1.7; margin-bottom:10px; }
+.sentence-prompt { font-weight:600; }
+.sentence-prompt.plain { font-weight:400; }
+.quote { font-weight:600; }
+.task-label { display:block; font-size:15px; color:var(--muted); }
+.rowq { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.rowq .prompt { margin:0; }
+/* Local preview only: the shared hw.css styles .hw-field on the live page and wins over these. */
+input, textarea, select { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+input.gap { width:150px; min-height:44px; margin:3px 5px; text-align:center; }
+input.gap-wide { width:190px; }
+input.line { display:block; width:100%; min-height:44px; }
+textarea { display:block; width:100%; min-height:80px; line-height:1.6; resize:vertical; }
+select { min-width:170px; min-height:44px; }
+button { font:inherit; cursor:pointer; border:0; }
+.check-button { background:#eff5f5; color:#005c58; padding:11px 18px; border-radius:8px; font-weight:650; font-size:15px; margin-top:18px; }
+.check-button:hover { background:#dceceb; }
+.check-all { background:var(--accent); color:white; padding:13px 22px; border-radius:9px; font-size:16px; font-weight:650; }
+.check-row { text-align:center; margin:6px 0 10px; }
+.feedback { margin:10px 0 0; padding:10px 16px; font-size:16px; line-height:1.6; background:#f0f5f7; border-left:3px solid #94a6b2; border-radius:0 6px 6px 0; }
+.feedback[data-result="correct"] { background:#eef8f3; border-color:#18794e; color:#155c3c; }
+.feedback[data-result="retry"] { background:#fff6e9; border-color:#b66d12; color:#754307; }
+[hidden] { display:none !important; }
+.nowrap { white-space:nowrap; }
+.print-opts { display:none; }
+.pbox { display:inline-block; width:90px; height:26px; border:1.5px solid #a4b5c0; border-radius:6px; background:#f8fafb; vertical-align:middle; }
+.hw-pdf-mode .print-opts { display:none; }
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 20px; border-radius:14px; }
+  h2 { font-size:23px; } .rowq { flex-wrap:wrap; gap:8px; } .edition { font-size:12px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  select { display:none !important; } .print-opts { display:inline !important; }
+  body { background:white; font-size:12pt; } .wrap { padding:0; max-width:none; }
+  .exercise { box-shadow:none; padding:18px 22px; margin-bottom:16px; }
+  .page-header { padding-bottom:18px; } .heading-row { margin:10px 0 14px; }
+  .language-note, .instruction, .section-heading { page-break-after:avoid; break-after:avoid; }
+  .check-button, .check-row, .feedback { display:none !important; }
+  .exercise { page-break-inside:avoid; break-inside:avoid; padding:14px 20px; margin-bottom:12px; }
+  .language-note { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .section-heading { break-after:avoid; page-break-after:avoid; }
+  .question { padding:6px 0; } .question label { line-height:2; }
+  textarea { min-height:50px; }
+  .language-note { padding:8px 16px; margin-bottom:10px; }
+  .repairs { break-inside:avoid; page-break-inside:avoid; }
+  textarea { resize:none; }
+  textarea.hw-field { min-height:0 !important; height:48px !important; }
+  textarea.hw-field[rows="3"], textarea.hw-field[rows="4"] { height:64px !important; }
+  .sentence-question label { margin-bottom:4px; }
+  body { line-height:1.45; } .question { padding:4px 0; } .sentence-question label { line-height:1.45; }
+  input.line { min-height:0; height:38px; } .page-header { padding-bottom:10px; } .page-meta { padding-top:10px; }
+  .quote { font-weight:600; }
+}
+body.hw-pdf-mode { background:white; }
+.hw-pdf-mode .check-button, .hw-pdf-mode .check-row { display:none; }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Maksim" data-sheet="English 2026-10-03" data-sheet-id="maksim-2026-10-03-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>English, in practice.</h1><span class="edition">3<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Maksim · 3 October · 3 exercises · about 15 minutes</span><a href="https://arsdashok.github.io/vocab/2c73e70a0550a136/">Your vocabulary ↗</a></div>
+</header>
+
+<section class="exercise" aria-labelledby="title-1">
+  <div class="section-heading"><span class="section-number">01</span><div><h2 id="title-1">Report&nbsp;it</h2><p>Statements, instructions and&nbsp;questions.</p></div></div>
+  <div class="language-note">
+    <p>A statement: <strong>said (that)</strong> + past. An instruction: <strong>told me to</strong> + verb. A question: <strong>asked if</strong> + past (can → could, is →&nbsp;was).</p>
+    <p class="mini">At the hotel I asked: “Is breakfast included?” → I <strong>asked if</strong> breakfast <strong>was</strong>&nbsp;included.</p>
+  </div>
+  <p class="instruction">Write what they said in one full&nbsp;sentence.</p>
+  <div class="question sentence-question"><label><span class="task-label">1. Your acting teacher, at the start of the&nbsp;class:</span><span class="quote">“Stand in the middle of the&nbsp;room.”</span></label><textarea class="hw-field" rows="2" data-k="t1" data-label="1. Acting teacher: Stand in the middle of the room." spellcheck="false" aria-label="Report sentence 1"></textarea></div>
+  <div class="question sentence-question"><label><span class="task-label">2. Your guitar teacher, on the&nbsp;phone:</span><span class="quote">“Can you come on&nbsp;Tuesday?”</span></label><textarea class="hw-field" rows="2" data-k="t2" data-label="2. Guitar teacher: Can you come on Tuesday?" spellcheck="false" aria-label="Report sentence 2"></textarea></div>
+  <div class="question sentence-question"><label><span class="task-label">3. The shop assistant, in the&nbsp;afternoon:</span><span class="quote">“We’re closing early&nbsp;today.”</span></label><textarea class="hw-field" rows="2" data-k="t3" data-label="3. Shop assistant: We're closing early today." spellcheck="false" aria-label="Report sentence 3"></textarea></div>
+  <div class="question sentence-question"><label><span class="task-label">4. The bus&nbsp;driver:</span><span class="quote">“Show me your ticket,&nbsp;please.”</span></label><textarea class="hw-field" rows="2" data-k="t4" data-label="4. Bus driver: Show me your ticket, please." spellcheck="false" aria-label="Report sentence 4"></textarea></div>
+</section>
+
+<section class="exercise" aria-labelledby="title-2">
+  <div class="section-heading"><span class="section-number">02</span><div><h2 id="title-2">In your own&nbsp;words</h2><p>Three forms that still&nbsp;slip.</p></div></div>
+  <div class="language-note">
+    <p><strong>must</strong> has no past form. <strong>Nothing</strong> already means “not”, so the verb stays positive. <strong>himself</strong> is for actions done to yourself: <em>he cut&nbsp;himself</em>.</p>
+  </div>
+  <p class="instruction">Answer each one in a full&nbsp;sentence.</p>
+  <div class="question sentence-question"><label><span class="task-label">5. Think of your last acting class. What was one rule in that class? Start with <em>Last Saturday&nbsp;we</em>.</span></label><textarea class="hw-field" rows="2" data-k="m1" data-label="5. One rule from the last acting class (Last Saturday we ...)" spellcheck="false" aria-label="Your sentence 5"></textarea></div>
+  <div class="question sentence-question"><label><span class="task-label">6. A colleague asks: “Did anything exciting happen at work this week?” It was a quiet week. Answer with <em>No,</em> and say whatIt was a quiet week. Answer with&nbsp;<em>No,</em>nbsp;happened.</span></label><textarea class="hw-field" rows="2" data-k="n1" data-label="6. Did anything exciting happen at work this week? (No, ...)" spellcheck="false" aria-label="Your sentence 6"></textarea></div>
+  <div class="question sentence-question"><label><span class="task-label">7. Your brother never travels without his old guitar. Write a sentence about what he always does on a&nbsp;trip.</span></label><textarea class="hw-field" rows="2" data-k="h1" data-label="7. Your brother and his guitar on a trip" spellcheck="false" aria-label="Your sentence 7"></textarea></div>
+</section>
+
+<section class="exercise" aria-labelledby="title-3">
+  <div class="section-heading"><span class="section-number">03</span><div><h2 id="title-3">New&nbsp;words</h2><p>From the&nbsp;lesson.</p></div></div>
+  <div class="language-note">
+    <p><strong>until</strong> = up to the moment when something happens. <strong>while</strong> = during the same&nbsp;time.</p>
+    <p><strong>a burglary</strong> = someone gets into a place to steal when nobody is there. <strong>a robbery</strong> = someone takes things from a person, often with&nbsp;threats.</p>
+    <p class="mini">We sat in the café <strong>until</strong> the rain stopped. I listen to podcasts <strong>while</strong> I cook. <strong>It took me ages to</strong> find a parking&nbsp;space.</p>
+  </div>
+  <p class="instruction">8 and 9. Choose the correct word for each&nbsp;gap.</p>
+  <div class="question"><p class="prompt">8. Someone took my phone <select class="hw-field" data-k="u1" data-label="8a. Someone took my phone ___ I was asleep on the train."><option value="">Choose</option><option value="until">until</option><option value="while">while</option></select><span class="print-opts"><span class="pbox"></span> (until / while)</span> I was asleep on the train, so I couldn’t call anyone <select class="hw-field" data-k="u2" data-label="8b. I couldn't call anyone ___ I got home."><option value="">Choose</option><option value="until">until</option><option value="while">while</option></select><span class="print-opts"><span class="pbox"></span> (until / while)</span> I got&nbsp;home.</p></div>
+  <div class="question"><p class="prompt">9. Last month two men in masks stopped a woman in the street and took her bag. It was a <select class="hw-field" data-k="b1" data-label="9a. Two men stopped a woman in the street and took her bag. It was a ___."><option value="">Choose</option><option value="robbery">robbery</option><option value="burglary">burglary</option></select><span class="print-opts"><span class="pbox"></span> (robbery / burglary)</span>. Last night someone got into the empty office next to mine through a window and took two laptops. It was a <select class="hw-field" data-k="b2" data-label="9b. Someone got into the empty office at night and took two laptops. It was a ___."><option value="">Choose</option><option value="robbery">robbery</option><option value="burglary">burglary</option></select><span class="print-opts"><span class="pbox"></span> (robbery / burglary)</span>.</p></div>
+  <p class="instruction">10. Write one true sentence about your week. Use <em>It took me ages to</em> +&nbsp;verb.</p>
+  <div class="question sentence-question"><textarea class="hw-field" rows="2" data-k="w1" data-label="10. A true sentence about your week with It took me ages to ..." spellcheck="false" aria-label="Your sentence 10"></textarea></div>
+</section>
+</main>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJ0MSI6IHsidCI6ICJvcGVuIn0sICJ0MiI6IHsidCI6ICJvcGVuIn0sICJ0MyI6IHsidCI6ICJvcGVuIn0sICJ0NCI6IHsidCI6ICJvcGVuIn0sICJtMSI6IHsidCI6ICJvcGVuIn0sICJuMSI6IHsidCI6ICJvcGVuIn0sICJoMSI6IHsidCI6ICJvcGVuIn0sICJ1MSI6IHsidCI6ICJleGFjdCIsICJhIjogIndoaWxlIn0sICJ1MiI6IHsidCI6ICJleGFjdCIsICJhIjogInVudGlsIn0sICJiMSI6IHsidCI6ICJleGFjdCIsICJhIjogInJvYmJlcnkifSwgImIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYnVyZ2xhcnkifSwgIncxIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body>
+</html>

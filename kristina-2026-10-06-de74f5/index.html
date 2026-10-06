@@ -200,10 +200,14 @@ section textarea.own { min-height: 78px !important; overflow: hidden; resize: no
   <div class="ex-header">Part 1 &middot; Find the mistake</div>
   <div class="ex-body">
     <p class="instruction">Tap the wrong word. Then choose the&nbsp;fix.</p>
-    <p class="note">Each sentence has one mistake. <b>take it out</b> means the word is extra. Tap the word again to&nbsp;unmark&nbsp;it.</p>
-    <div class="fix example" aria-label="Example"><span class="num">Example</span><div class="fbody">
+    <p class="note">Each sentence has one mistake. Sometimes the word must be <b>changed</b> (example 1), sometimes it is simply <b>extra</b> and goes away (example 2). Tap the word again to&nbsp;unmark&nbsp;it.</p>
+    <div class="fix example" aria-label="Example"><span class="num">Example 1</span><div class="fbody">
       <div class="words"><span class="w">I've</span> <span class="w">never</span> <span class="w">been</span> <span class="w on">in</span> <span class="w">Japan.</span></div>
       <span class="fixpick">Fix: <span class="fixdone">to</span></span>
+    </div></div>
+    <div class="fix example" aria-label="Example 2"><span class="num">Example 2</span><div class="fbody">
+      <div class="words"><span class="w">My</span> <span class="w">son</span> <span class="w on">he</span> <span class="w">lives</span> <span class="w">in</span> <span class="w">London.</span></div>
+      <span class="fixpick">Fix: <span class="fixdone">delete it, no word needed</span></span>
     </div></div>
     <div class="fix q"><span class="num">1</span><div class="fbody">
       <div class="words" data-field="a1w" data-s="It took us three days for pack all the kitchen things."></div>
@@ -215,7 +219,7 @@ section textarea.own { min-height: 78px !important; overflow: hidden; resize: no
     </div></div>
     <div class="fix q"><span class="num">3</span><div class="fbody">
       <div class="words" data-field="a3w" data-s="It takes me for forty minutes to get to the gym."></div>
-      <label class="fixpick">Fix: <select data-k="a3f" data-label="1.3 fix: It takes me for forty minutes to get to the gym." class="hw-field"><option value="">Choose</option><option value="take it out">take it out</option><option value="them">them</option><option value="took">took</option></select></label>
+      <label class="fixpick">Fix: <select data-k="a3f" data-label="1.3 fix: It takes me for forty minutes to get to the gym." class="hw-field"><option value="">Choose</option><option value="delete it, no word needed">delete it, no word needed</option><option value="them">them</option><option value="took">took</option></select></label>
     </div></div>
     <div class="fix q"><span class="num">4</span><div class="fbody">
       <div class="words" data-field="a4w" data-s="Yesterday it takes me an hour to get through passport control."></div>
@@ -223,7 +227,7 @@ section textarea.own { min-height: 78px !important; overflow: hidden; resize: no
     </div></div>
     <div class="fix q"><span class="num">5</span><div class="fbody">
       <div class="words" data-field="a5w" data-s="It takes my neighbour twenty minutes to drives to the office."></div>
-      <label class="fixpick">Fix: <select data-k="a5f" data-label="1.5 fix: It takes my neighbour twenty minutes to drives to the office." class="hw-field"><option value="">Choose</option><option value="them">them</option><option value="drive">drive</option><option value="take it out">take it out</option></select></label>
+      <label class="fixpick">Fix: <select data-k="a5f" data-label="1.5 fix: It takes my neighbour twenty minutes to drives to the office." class="hw-field"><option value="">Choose</option><option value="them">them</option><option value="drive">drive</option><option value="delete it, no word needed">delete it, no word needed</option></select></label>
     </div></div>
     <div class="fix q"><span class="num">6</span><div class="fbody">
       <div class="words" data-field="a6w" data-s="It took they all week to paint the villa."></div>
@@ -465,7 +469,7 @@ section textarea.own { min-height: 78px !important; overflow: hidden; resize: no
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJhMXciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmb3IifSwgImExZiI6IHsidCI6ICJleGFjdCIsICJhIjogInRvIn0sICJhMnciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJvdXIifSwgImEyZiI6IHsidCI6ICJleGFjdCIsICJhIjogInVzIn0sICJhM3ciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmb3IifSwgImEzZiI6IHsidCI6ICJleGFjdCIsICJhIjogInRha2UgaXQgb3V0In0sICJhNHciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0YWtlcyJ9LCAiYTRmIjogeyJ0IjogImV4YWN0IiwgImEiOiAidG9vayJ9LCAiYTV3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZHJpdmVzIn0sICJhNWYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkcml2ZSJ9LCAiYTZ3IjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhleSJ9LCAiYTZmIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlbSJ9LCAiZzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJnbyBzY3ViYSBkaXZpbmcifSwgImcyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZ28gcnVubmluZyJ9LCAiZzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJnbyBza2F0aW5nIn0sICJnNCI6IHsidCI6ICJleGFjdCIsICJhIjogImdvIHNob3BwaW5nIn0sICJnNSI6IHsidCI6ICJleGFjdCIsICJhIjogImdvIGhpa2luZyJ9LCAiYzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJOb3Qgc3VyZS4gSSd2ZSBuZXZlciBnb25lIHNrYXRpbmcuIn0sICJjMiI6IHsidCI6ICJleGFjdCIsICJhIjogIldlIHdlbnQgc2hvcHBpbmcgYXQgdGhlIG1hbGwuIn0sICJjMyI6IHsidCI6ICJleGFjdCIsICJhIjogIlllcyEgSSd2ZSBuZXZlciBnb25lIHNjdWJhIGRpdmluZy4ifSwgImUxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiSG9wZSB5b3UgYXJlIGRvaW5nIHdlbGwifSwgImUyIjogeyJ0IjogImV4YWN0IiwgImEiOiAibG9va2luZyBhZnRlciJ9LCAiZTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0YWtlIHRoZSBidXMifSwgImU0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYmUgbGF0ZSBmb3IifSwgImU1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiRnJvbSB5b3VyIHBvaW50IG9mIHZpZXcifSwgImQxIjogeyJ0IjogIm9wZW4ifSwgImQyIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script type="application/json" id="hw-check">eyJhMXciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmb3IifSwgImExZiI6IHsidCI6ICJleGFjdCIsICJhIjogInRvIn0sICJhMnciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJvdXIifSwgImEyZiI6IHsidCI6ICJleGFjdCIsICJhIjogInVzIn0sICJhM3ciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmb3IifSwgImEzZiI6IHsidCI6ICJleGFjdCIsICJhIjogImRlbGV0ZSBpdCwgbm8gd29yZCBuZWVkZWQifSwgImE0dyI6IHsidCI6ICJleGFjdCIsICJhIjogInRha2VzIn0sICJhNGYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0b29rIn0sICJhNXciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkcml2ZXMifSwgImE1ZiI6IHsidCI6ICJleGFjdCIsICJhIjogImRyaXZlIn0sICJhNnciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGV5In0sICJhNmYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVtIn0sICJnMSI6IHsidCI6ICJleGFjdCIsICJhIjogImdvIHNjdWJhIGRpdmluZyJ9LCAiZzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJnbyBydW5uaW5nIn0sICJnMyI6IHsidCI6ICJleGFjdCIsICJhIjogImdvIHNrYXRpbmcifSwgImc0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZ28gc2hvcHBpbmcifSwgImc1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZ28gaGlraW5nIn0sICJjMSI6IHsidCI6ICJleGFjdCIsICJhIjogIk5vdCBzdXJlLiBJJ3ZlIG5ldmVyIGdvbmUgc2thdGluZy4ifSwgImMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiV2Ugd2VudCBzaG9wcGluZyBhdCB0aGUgbWFsbC4ifSwgImMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiWWVzISBJJ3ZlIG5ldmVyIGdvbmUgc2N1YmEgZGl2aW5nLiJ9LCAiZTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJIb3BlIHlvdSBhcmUgZG9pbmcgd2VsbCJ9LCAiZTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsb29raW5nIGFmdGVyIn0sICJlMyI6IHsidCI6ICJleGFjdCIsICJhIjogInRha2UgdGhlIGJ1cyJ9LCAiZTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJiZSBsYXRlIGZvciJ9LCAiZTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJGcm9tIHlvdXIgcG9pbnQgb2YgdmlldyJ9LCAiZDEiOiB7InQiOiAib3BlbiJ9LCAiZDIiOiB7InQiOiAib3BlbiJ9fQ==</script>
 <script src="../assets/hw.js?v=20261002-check"></script>
 </body>
 </html>

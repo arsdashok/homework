@@ -12,7 +12,7 @@
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   font-size: 17px; line-height: 1.5; color: #222; background: #fff;
-  padding: 16px; max-width: 820px; margin: auto;
+  padding: 16px 28px; max-width: 1180px; margin: auto;
   -webkit-print-color-adjust: exact; print-color-adjust: exact;
 }
 p { text-wrap: pretty; }
@@ -60,7 +60,14 @@ header .sub { font-size: 14px; opacity: 0.85; margin-top: 2px; }
 
 /* PART 1: find the mistake */
 .fix { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.fbody { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+/* Two real columns instead of space-between: the sentence gets the room it needs and
+   every Fix control lands on the same vertical line, so the eye runs straight down them.
+   space-between left a 600px hole on a wide screen. Dasha, 6 Oct 2026. */
+.fbody { flex: 1; min-width: 0; display: grid; grid-template-columns: minmax(0,1fr) 300px;
+         align-items: center; gap: 26px; }
+.fbody .words { font-size: 19px; line-height: 1.75; }
+.fixpick select, .fbody select { width: 100%; min-height: 44px; font-size: 16px;
+         padding: 8px 12px; border-radius: 10px; }
 .words { display: block; font-size: 17.5px; line-height: 2; }
 .w {
   font: inherit; color: #222; background: none; border: 2px solid transparent; border-radius: 8px;
@@ -68,7 +75,7 @@ header .sub { font-size: 14px; opacity: 0.85; margin-top: 2px; }
 }
 .w:hover { background: #eefaf8; }
 .w.on { background: #fde3d6; border-color: #f2a882; color: #9c3f1f; text-decoration: line-through; }
-.fixpick { display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 14px; color: #777; }
+.fixpick { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 15px; color: #777; }
 .fixpick select { min-width: 132px; }
 .fix.example { background: #f6f8f8; border-radius: 12px; padding: 4px 10px; margin: 0 -10px 12px; color: #888; }
 .fix.example .num { background: #b9c7c5; font-size: 10px; width: auto; padding: 0 8px; border-radius: 999px; }
@@ -121,7 +128,8 @@ section textarea.own { min-height: 78px !important; overflow: hidden; resize: no
   body { padding: 10px; }
   .ex-body { padding: 12px 12px 16px; }
   .instruction { font-size: 18.5px; }
-  .fbody { flex-wrap: wrap; gap: 8px; }
+  .fbody { grid-template-columns: 1fr; gap: 10px; }
+  .fbody .words { font-size: 17px; }
   .pics { grid-template-columns: repeat(3, 1fr); }
   .turn, .wq, .fix { gap: 8px; }
   .reply { max-width: 100%; }

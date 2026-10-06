@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 6 October 2026</title>
+<!-- Lesson 8 (polite indirect questions), 6 Oct 2026. About 20 minutes (his request for more, 25 Sept).
+     Part 1 = the lesson's frame, wh- questions only (yes/no "if" not taught). Fresh contexts, none of the
+     lesson's own items (ticket, coat, registration, wifi, pharmacy, shuttle, slides, dinner, airport time).
+     Shaky points built in: does disappears and the -s comes back (1, 4, 6), a preposition at the end (3, 6),
+     will (5), a modal (2). Model = a be-question, so no does-item can be copied from it.
+     Part 2 = ten gap sentences recycling lessons 6-8 phrases, Russian cue, form changed to fit.
+     No Spain content on the sheet. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 820px; margin: auto; }
+  p, .do, .note { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 17px; font-weight: 600; color: #1f2a24; margin: 2px 0 8px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .prompt { font-size: 16px; margin-bottom: 6px; }
+  .where { font-size: 13px; color: #626a62; margin-right: 6px; }
+  .direct { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color: #1f2a24; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+
+  /* gap sentences */
+  .vline { line-height: 2.1; margin-bottom: 0; }
+  .gap { display: inline-block; width: auto; min-height: 0; height: 30px; padding: 3px 8px; margin: 0 3px; vertical-align: baseline; font-size: 15px; }
+  .cue { color: #626a62; font-size: 14px; white-space: nowrap; }
+  .nw { white-space: nowrap; }
+
+  @media (max-width: 620px) {
+    .gap { max-width: 100%; }
+  }
+
+  @media print {
+    body { font-size: 12px; line-height: 1.3; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 20px; margin: 4px 0 1px; }
+    .lede { font-size: 11.5px; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 16px; margin-bottom: 2px; }
+    .do { font-size: 13px; margin-bottom: 5px; }
+    .model { font-size: 12.5px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 4px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 1px; }
+    .prompt { font-size: 12px; margin-bottom: 3px; }
+    .where { font-size: 10.5px; }
+    .direct { font-size: 13px; }
+    .resp { font-size: 12px; padding: 3px 9px; height: 26px; }
+    .resp::placeholder { color: transparent; }
+    .vline { line-height: 1.75; }
+    .gap { height: 21px; font-size: 11.5px; padding: 1px 7px; }
+    .cue { font-size: 11px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-10-06" data-sheet-id="roman-2026-10-06-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>6 October 2026</span></div>
+    <h1>Could you tell&nbsp;me&hellip;?</h1>
+    <div class="lede">About 20&nbsp;minutes.</div>
+  </header>
+
+  <div class="task">
+    <h2>1. Polite questions</h2>
+    <div class="do">Make each question polite. Start with <i>Could you tell me</i> or <i>Do you know</i>, and end with a question&nbsp;mark.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      Where is the lift? &rarr; <b>Could you tell me where the lift&nbsp;is?</b><br>
+      When does the shop open? &rarr; <b>Do you know when the shop&nbsp;opens?</b>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><div>
+      <p class="prompt"><span class="where">At a hotel reception:</span> <span class="direct">What time does breakfast&nbsp;finish?</span></p>
+      <input class="hw-field resp" data-k="q1" data-label="1. Hotel reception: What time does breakfast finish?" aria-label="Question 1" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div>
+      <p class="prompt"><span class="where">At an airport:</span> <span class="direct">Where can I get a taxi to the city&nbsp;centre?</span></p>
+      <input class="hw-field resp" data-k="q2" data-label="2. Airport: Where can I get a taxi to the city centre?" aria-label="Question 2" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div>
+      <p class="prompt"><span class="where">In a new office building:</span> <span class="direct">Which floor is the IT department&nbsp;on?</span></p>
+      <input class="hw-field resp" data-k="q3" data-label="3. New office building: Which floor is the IT department on?" aria-label="Question 3" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div>
+      <p class="prompt"><span class="where">At a doctor&rsquo;s surgery:</span> <span class="direct">How often does my son need to take this&nbsp;medicine?</span></p>
+      <input class="hw-field resp" data-k="q4" data-label="4. Doctor's surgery: How often does my son need to take this medicine?" aria-label="Question 4" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">5.</span><div>
+      <p class="prompt"><span class="where">At a client&rsquo;s office:</span> <span class="direct">When will the director be back from&nbsp;lunch?</span></p>
+      <input class="hw-field resp" data-k="q5" data-label="5. Client's office: When will the director be back from lunch?" aria-label="Question 5" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">6.</span><div>
+      <p class="prompt"><span class="where">At an airport:</span> <span class="direct">Which gate does the flight to Tashkent leave&nbsp;from?</span></p>
+      <input class="hw-field resp" data-k="q6" data-label="6. Airport: Which gate does the flight to Tashkent leave from?" aria-label="Question 6" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>2. Phrases from our lessons</h2>
+    <div class="do">Write the phrase in English. Change its form to fit the&nbsp;sentence.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      Everyone in the office <b>had a coffee</b> (выпил кофе) before the&nbsp;meeting.
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><p class="prompt vline">Our company <input class="hw-field resp gap" style="width:150px" data-k="v1" data-label="1. Our company ___ (раньше работала) only in Russia, but now we have clients in Kazakhstan and Moldova." aria-label="Gap 1" autocomplete="off"> <span class="cue">(раньше работала)</span> only in Russia, but now we have clients in Kazakhstan and&nbsp;Moldova.</p></div>
+
+    <div class="q"><span class="qnum">2.</span><p class="prompt vline">My children <input class="hw-field resp gap" style="width:190px" data-k="v2" data-label="2. My children ___ (раньше не любили) vegetables, but now they eat salad every day." aria-label="Gap 2" autocomplete="off"> <span class="cue">(раньше не любили)</span> vegetables, but now they eat salad every&nbsp;day.</p></div>
+
+    <div class="q"><span class="qnum">3.</span><p class="prompt vline">In 2019 I <input class="hw-field resp gap" style="width:110px" data-k="v3" data-label="3. In 2019 I ___ (один раз был) in Tashkent for a conference." aria-label="Gap 3" autocomplete="off"> <span class="cue">(один раз был)</span> in Tashkent for a&nbsp;conference.</p></div>
+
+    <div class="q"><span class="qnum">4.</span><p class="prompt vline"><input class="hw-field resp gap" style="width:200px" data-k="v4" data-label="4. ___ (навскидку), I'd say the new project will take about three months." aria-label="Gap 4" autocomplete="off"> <span class="cue">(навскидку),</span> I&rsquo;d say the new project will take about three&nbsp;months.</p></div>
+
+    <div class="q"><span class="qnum">5.</span><p class="prompt vline">Last week I <input class="hw-field resp gap" style="width:150px" data-k="v5" data-label="5. Last week I ___ (случайно встретил) an old university friend at the airport in Istanbul." aria-label="Gap 5" autocomplete="off"> <span class="cue">(случайно встретил)</span> an old university friend at the airport in&nbsp;Istanbul.</p></div>
+
+    <div class="q"><span class="qnum">6.</span><p class="prompt vline">A slow run in the park helps me <input class="hw-field resp gap" style="width:110px" data-k="v6" data-label="6. A slow run in the park helps me ___ (расслабиться) after a busy week." aria-label="Gap 6" autocomplete="off"> <span class="cue">(расслабиться)</span> after a busy&nbsp;week.</p></div>
+
+    <div class="q"><span class="qnum">7.</span><p class="prompt vline">The new version of our app <input class="hw-field resp gap" style="width:150px" data-k="v7" data-label="7. The new version of our app ___ (стоит попробовать): it's much faster." aria-label="Gap 7" autocomplete="off"> <span class="cue">(стоит попробовать):</span> it&rsquo;s much&nbsp;faster.</p></div>
+
+    <div class="q"><span class="qnum">8.</span><p class="prompt vline">After our presentation, two banks from Uzbekistan <input class="hw-field resp gap" style="width:140px" data-k="v8" data-label="8. After our presentation, two banks from Uzbekistan ___ (связались с) us." aria-label="Gap 8" autocomplete="off"> <span class="cue">(связались с)</span>&nbsp;us.</p></div>
+
+    <div class="q"><span class="qnum">9.</span><p class="prompt vline">After a long flight I <input class="hw-field resp gap" style="width:160px" data-k="v9" data-label="9. After a long flight I ___ (лучше бы поехал) straight to the hotel than to the office." aria-label="Gap 9" autocomplete="off"> <span class="cue">(лучше бы поехал)</span> straight to the hotel than to the&nbsp;office.</p></div>
+
+    <div class="q"><span class="qnum">10.</span><p class="prompt vline">When I choose running shoes, <input class="hw-field resp gap" style="width:230px" data-k="v10" data-label="10. When I choose running shoes, ___ (для меня важнее всего) comfort, not the price." aria-label="Gap 10" autocomplete="off"> <span class="cue">(для меня важнее всего)</span> comfort, not the&nbsp;price.</p></div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJxMSI6IHsidCI6ICJvcGVuIn0sICJxMiI6IHsidCI6ICJvcGVuIn0sICJxMyI6IHsidCI6ICJvcGVuIn0sICJxNCI6IHsidCI6ICJvcGVuIn0sICJxNSI6IHsidCI6ICJvcGVuIn0sICJxNiI6IHsidCI6ICJvcGVuIn0sICJ2MSI6IHsidCI6ICJvcGVuIn0sICJ2MiI6IHsidCI6ICJvcGVuIn0sICJ2MyI6IHsidCI6ICJvcGVuIn0sICJ2NCI6IHsidCI6ICJvcGVuIn0sICJ2NSI6IHsidCI6ICJvcGVuIn0sICJ2NiI6IHsidCI6ICJvcGVuIn0sICJ2NyI6IHsidCI6ICJvcGVuIn0sICJ2OCI6IHsidCI6ICJvcGVuIn0sICJ2OSI6IHsidCI6ICJvcGVuIn0sICJ2MTAiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body>
+</html>

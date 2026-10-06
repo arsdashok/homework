@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aahan &middot; Maths homework &middot; 6 October 2026</title>
+<!-- 6 Oct 2026. Taught envelope: Materials/Maths/Year 5/Lessons/2026-W41 Multi-step Problems/Whiteboard_Cards_2026_W41_Multi_Step_Problems.html,
+     cards 01-05 (exit ticket not run), plus Dasha's live extras: two steps as ONE calculation with brackets, brackets only
+     when the first step is not left-to-right; compensation in subtraction = add the same to BOTH numbers (121 - 99 = 122 - 100).
+     Block 1 "Did they finish the job?": stamps N D N N D (jumbled, no run of 3); two finished items, one of them a
+       fewer-then-together, so "fewer" does not predict the stamp. Every character's arithmetic is right: only stopping is tested.
+       Model (Pip, hens/ducks) answers no item.
+     Block 2 compensation: +1, +2, +1, +3 to both numbers; the round second number is printed, he types the new first number.
+       Model 121 - 99 (Dasha's own example) answers no item.
+     Block 3 brackets: right tile positions 3, 1, 2; distractors with and without brackets in each set except b2's right one has none.
+       Model 50 + 20 + 15 (all-add structure) appears in no item.
+     No lesson-card numbers reused. No running numbering across blocks. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --teal-soft: #e3f5f4; --muted: #6b5f4e;
+}
+@page { size: A4; margin: 9mm 11mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font: 17px/1.5 'Rubik', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--cream);
+  max-width: 980px; margin: 0 auto; padding: 22px 18px 40px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.display { font-family: 'Luckiest Guy', 'Arial Black', 'Rubik', sans-serif; font-weight: 400; letter-spacing: .02em; }
+.nw { white-space: nowrap; }
+.prt { display: none; }
+select.hidsel, select.hidsel.hw-field { display: none !important; }
+/* banner */
+.banner { position: relative; height: 150px; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px; background: var(--orange); }
+.banner .digits { position: absolute; inset: -14px -10px auto -10px; font-size: 118px; line-height: .9; color: rgba(255,255,255,.18); white-space: nowrap; letter-spacing: .12em; }
+.banner .digits.two { top: 76px; left: -40px; color: rgba(27,23,18,.12); }
+.banner .label { position: absolute; left: 18px; bottom: 16px; background: var(--paper); border: 3px solid var(--ink); border-radius: 12px; padding: 8px 16px 6px; box-shadow: 4px 4px 0 var(--ink); }
+.banner .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.banner h1 { font-size: 34px; line-height: 1.05; }
+.banner .date { position: absolute; right: 16px; top: 14px; background: var(--ink); color: var(--gold); font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+/* cards */
+section { background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 20px; margin-bottom: 28px; break-inside: avoid; page-break-inside: avoid; }
+h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 27px; line-height: 1.1; margin-bottom: 12px; break-after: avoid; page-break-after: avoid; }
+.badge { flex: none; width: 42px; height: 42px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; padding-top: 3px; }
+.instruction { font-size: 20px; line-height: 1.35; font-weight: 700; margin-bottom: 4px; text-wrap: pretty; }
+.note { font-size: 14px; line-height: 1.4; color: var(--muted); margin-bottom: 12px; text-wrap: pretty; }
+.qnum { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.qnum.ex { background: #fff; font-size: 11px; }
+.fin { width: 140px; max-width: 100%; font: inherit; font-size: 17px; }
+.q, .job { break-inside: avoid; page-break-inside: avoid; }
+
+/* block 1 */
+.job { display: grid; grid-template-columns: 34px minmax(0, 1fr) 236px; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 2px dashed #e6d6b4; }
+.job:last-child { border-bottom: 0; }
+.job.model-row { background: var(--teal-soft); border: 2px solid var(--teal); border-radius: 14px; padding: 10px 12px; margin-bottom: 6px; color: #3d3528; }
+.prob { font-size: 17px; line-height: 1.45; text-wrap: pretty; }
+.bubble { position: relative; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: 8px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 6px 12px 6px 6px; box-shadow: 3px 3px 0 var(--ink); font-variant-numeric: tabular-nums; }
+.who { color: #fff; font-weight: 800; font-size: 14px; border-radius: 999px; padding: 2px 10px; border: 2px solid var(--ink); }
+.wl { font-size: 17px; font-weight: 600; white-space: nowrap; }
+.wl.done { font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; color: var(--orange); letter-spacing: .03em; }
+.decide { display: flex; flex-direction: column; gap: 6px; }
+.stamps { display: flex; gap: 8px; }
+.stamp { flex: 1; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 15px; letter-spacing: .04em; color: var(--ink); background: #fff; border: 2.5px dashed var(--ink); border-radius: 10px; padding: 7px 4px 4px; cursor: pointer; text-align: center; transform: rotate(-2deg); }
+.stamp + .stamp { transform: rotate(2deg); }
+.stamp.on { background: var(--gold); border-style: solid; box-shadow: 3px 3px 0 var(--ink); }
+.stamps.shown .stamp { cursor: default; }
+.anslab { font-size: 13px; color: var(--muted); }
+.shownans { font-size: 16px; font-weight: 700; color: #1f4fb0; background: #fff; border: 2px solid #9fb0c9; border-radius: 8px; padding: 4px 10px; font-variant-numeric: tabular-nums; }
+
+/* block 2 */
+.split2 { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 24px; align-items: start; }
+.items2 { margin-top: 6px; }
+.comp { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; padding: 8px 0; border-bottom: 2px dashed #e6d6b4; }
+.comp:last-child { border-bottom: 0; }
+.crow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.prompt { font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 170px; }
+.arrow { font-size: 22px; color: var(--teal); font-weight: 800; }
+.eq { display: inline-flex; align-items: center; gap: 8px; font-size: 19px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fin.mid { width: 120px; }
+.tail { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.lab { display: inline-block; min-width: 92px; text-align: right; }
+.op { font-weight: 600; }
+.workit { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 15px; font-weight: 700; margin-top: 4px; }
+.msub { display: grid; grid-template-columns: minmax(0,1fr) 230px 150px; gap: 12px; align-items: center; }
+.model { border-left: 3px solid var(--teal); padding: 4px 0 4px 14px; color: var(--muted); }
+.model .tag, .mtag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
+.msum { font-size: 21px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.mstep { font-size: 14px; margin: 2px 0; }
+.plus { display: inline-block; background: var(--teal); color: #fff; font-weight: 800; border-radius: 999px; padding: 0 9px; border: 2px solid var(--ink); }
+
+/* block 3 */
+.pmodel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: center; background: var(--teal-soft); border: 2px solid var(--teal); border-radius: 14px; padding: 10px 12px; margin-bottom: 14px; }
+.pmodel .mtag { grid-column: 1 / -1; margin-bottom: -6px; }
+.mprob { font-size: 15px; color: #3d3528; }
+.picks3 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.pick { display: grid !important; grid-template-columns: minmax(0, 1fr) 330px; grid-template-rows: auto auto 1fr; }
+.pick .phead, .pick .barbox { grid-column: 1; }
+.pick .slot { grid-column: 2; grid-row: 1; }
+.pick .bank { grid-column: 2; grid-row: 2 / 4; }
+.pick .workit { grid-column: 1; }
+.pick .prob { font-size: 17px !important; }
+.barbox { max-width: 520px; }
+.pick { border: 2px solid var(--ink); border-radius: 14px; background: #fff; padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px 22px; }
+.phead { display: flex; gap: 8px; align-items: flex-start; }
+.pick .prob { font-size: 15.5px; }
+.barbox svg { display: block; width: 100%; height: auto; }
+.slot { min-height: 46px; border: 2.5px dashed var(--teal); border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 5px; background: #fbfffe; }
+.slot.over, .slot.ready { background: var(--teal-soft); }
+.slot.filled { border-style: solid; }
+.slothint { font-size: 13px; color: #8a9a99; }
+.slot .tile ~ .slothint, .slot.has .slothint { display: none; }
+.bank { display: flex; flex-direction: column; gap: 8px; align-items: stretch; min-height: 0; }
+.tile { font: inherit; font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink); background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 10px; padding: 6px 10px; box-shadow: 3px 3px 0 var(--ink); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; white-space: nowrap; text-align: center; }
+.tile.static { cursor: default; }
+.tile.picked { outline: 3px solid var(--orange); outline-offset: 2px; }
+.tile.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; transform: scale(1.05); }
+
+@media screen and (max-width: 900px) {
+  .pick { grid-template-columns: minmax(0, 1fr); }
+  .pick .slot, .pick .bank { grid-column: 1; grid-row: auto; }
+  .pmodel { grid-template-columns: minmax(0, 1fr); }
+  .msub { grid-template-columns: minmax(0, 1fr); }
+  .pick .workit { grid-column: 1; }
+  .job { grid-template-columns: 34px minmax(0, 1fr); }
+  .job .decide { grid-column: 2; }
+  .split2 { grid-template-columns: minmax(0, 1fr); }
+  .model { max-width: 300px; }
+}
+@media screen and (max-width: 620px) {
+  body { padding: 16px 12px 36px; }
+  .banner { height: 160px; }
+  .banner .label { right: 16px; bottom: 14px; }
+  .banner h1 { font-size: 26px; }
+  .banner .date { top: 10px; font-size: 12px; }
+  section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 23px; }
+  .instruction { font-size: 18px; }
+  .job { grid-template-columns: 30px minmax(0, 1fr); gap: 10px; }
+  .wl { white-space: normal; }
+  .prompt { font-size: 18px; min-width: 0; }
+  .eq { flex-wrap: wrap; white-space: normal; }
+  .fin, .fin.mid { width: 110px !important; min-width: 0 !important; }
+  .tile { white-space: normal; }
+}
+@media print {
+  html, body { background: #fff; }
+  body { padding: 0; max-width: none; font-size: 11.5px; line-height: 1.3; }
+  .scr { display: none !important; }
+  .prt { display: inline; }
+  .banner { height: 62px; margin-bottom: 9px; box-shadow: 4px 4px 0 var(--ink); }
+  .banner .digits { font-size: 62px; }
+  .banner .digits.two { top: 34px; }
+  .banner .label { bottom: 7px; padding: 3px 12px 2px; }
+  .banner .kicker { font-size: 9.5px; }
+  .banner h1 { font-size: 20px; }
+  .banner .date { font-size: 10.5px; top: 8px; }
+  section { padding: 7px 12px 8px; margin-bottom: 9px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 17px; margin-bottom: 3px; gap: 8px; }
+  .badge { width: 25px; height: 25px; font-size: 14px; }
+  .instruction { font-size: 13.5px; margin-bottom: 1px; }
+  .note { font-size: 10px; margin-bottom: 4px; }
+  .qnum { width: 20px; height: 20px; font-size: 10.5px; }
+  .qnum.ex { font-size: 7.5px; }
+  .fin { font-size: 11.5px; width: 100px; }
+  .job { grid-template-columns: 22px minmax(0, 1fr) 190px; gap: 8px; padding: 4px 0; }
+  .job.model-row { padding: 4px 8px; margin-bottom: 3px; }
+  .prob { font-size: 11.5px; line-height: 1.3; }
+  .bubble { margin-top: 3px; padding: 2px 8px 2px 3px; gap: 2px 8px; box-shadow: 2px 2px 0 var(--ink); border-width: 1.5px; }
+  .who { font-size: 9.5px; padding: 0 7px; border-width: 1.5px; }
+  .wl { font-size: 11.5px; }
+  .decide { gap: 2px; }
+  .stamp { font-size: 10.5px; padding: 3px 2px 1px; border-width: 1.5px; }
+  .stamp.on { box-shadow: 2px 2px 0 var(--ink); }
+  .anslab { font-size: 9px; }
+  .shownans { font-size: 11px; padding: 1px 6px; }
+  .split2 { grid-template-columns: minmax(0, 1fr) 150px; gap: 14px; }
+  .comp { grid-template-columns: 22px minmax(0, 1fr); padding: 2px 0; gap: 6px; }
+  .crow { gap: 8px; flex-wrap: nowrap; }
+  .prompt { font-size: 12.5px; min-width: 110px; }
+  .arrow { font-size: 13px; }
+  .eq { font-size: 12px; gap: 4px; }
+  .eq .fin { width: 80px; }
+  .eq .fin.mid { width: 80px; }
+  .msum { font-size: 13.5px; }
+  .mstep { font-size: 10px; }
+  .model .tag, .mtag { font-size: 8.5px; }
+  .pmodel { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 14px; row-gap: 2px; padding: 4px 8px; margin-bottom: 6px; }
+  .msub { grid-template-columns: minmax(0,1fr) 95px; gap: 3px 8px; }
+  .msub .mprob { grid-column: 1 / -1; }
+  .msub .barbox { grid-column: 1; }
+  .msub .slot { grid-column: 2; grid-row: 2; display: flex !important; min-height: 0; }
+  .workit { font-size: 10.5px; margin-top: 2px; }
+  .workit .fin { width: 90px; }
+  .lab { min-width: 52px; }
+  .mprob { font-size: 10.5px; }
+  .picks3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .pick { display: flex !important; }
+  .pick .prob { font-size: 10.5px !important; }
+  .barbox { max-width: none; }
+  .pick { padding: 5px 7px 7px; gap: 4px; border-width: 1.5px; }
+  .pick .prob { font-size: 10.5px; }
+  .slot { min-height: 22px; padding: 2px; border-width: 1.5px; }
+  .slothint { font-size: 8.5px; }
+  .bank { gap: 4px; }
+  .tile { font-size: 10.5px; padding: 2px 5px; box-shadow: 2px 2px 0 var(--ink); border-width: 1.5px; }
+  .pick .slot, .anslab { display: none; }
+  .job { padding: 2px 0; }
+  .prob { line-height: 1.22; }
+  .bubble { margin-top: 2px; }
+  .job.model-row { padding: 3px 8px; }
+  .banner { height: 54px; margin-bottom: 8px; }
+  .banner .digits { font-size: 54px; }
+  .banner .digits.two { top: 28px; }
+  section { margin-bottom: 8px; }
+  .decide { gap: 3px; }
+  .fin { height: 22px; }
+  .banner { height: 46px; margin-bottom: 6px; }
+  .banner .digits { font-size: 46px; }
+  .banner .label { bottom: 5px; }
+  .banner h1 { font-size: 18px; }
+  section { padding: 5px 12px 6px; margin-bottom: 6px; }
+  h2 { margin-bottom: 1px; }
+  .note { margin-bottom: 2px; }
+  .job { padding: 1px 0; }
+  .prob { font-size: 11px; }
+  .comp { padding: 1px 0; }
+  .eq .fin, .eq .fin.mid { height: 20px; }
+  .pmodel { margin-bottom: 4px; padding: 2px 8px 4px; }
+  .mprob { font-size: 10px; line-height: 1.2; }
+  .pick { padding: 4px 7px 5px; gap: 3px; }
+  .tile { padding: 1px 5px; }
+  .banner .kicker { font-size: 8px; line-height: 1.1; }
+  .banner .label { padding: 2px 10px 1px; }
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Aahan" data-sheet="Maths 2026-10-06" data-sheet-id="aahan-2026-10-06-maths">
+<div id="sheet">
+
+<div class="banner">
+  <div class="digits display" aria-hidden="true">+ &minus; ( ) + &minus; ( ) +</div>
+  <div class="digits two display" aria-hidden="true">( ) &minus; + ( ) &minus; +</div>
+  <span class="date">6 October</span>
+  <div class="label">
+    <div class="kicker">Multi-step problems</div>
+    <h1 class="display">Aahan's maths</h1>
+  </div>
+</div>
+
+<section id="jobs">
+  <h2><span class="badge">1</span> Did they finish the job?</h2>
+  <p class="instruction">Check each answer against the question. <span class="scr">Tap a stamp.</span><span class="prt">Circle a stamp.</span> Then type the answer to <span class="nw">the question.</span></p>
+  <p class="note">If they stopped too early or took a wrong step, do the last step <span class="nw">for them.</span></p>
+  <div class="jobs">
+<div class="job model-row"><span class="qnum ex">e.g.</span>
+  <div class="story"><p class="prob">A farm has 3,400 hens and 600 fewer ducks. How many birds are there together?</p>
+    <div class="bubble"><span class="who" style="background:#6b5f4e">Pip</span><div class="wl">3,400 &minus; 600 = 2,800</div><div class="wl">So there are more hens.</div><div class="wl done">Done!</div></div></div>
+  <div class="decide"><div class="stamps shown"><span class="stamp">Job done</span><span class="stamp on">Not finished</span></div><label class="anslab">Answer to the question</label><span class="shownans">3,400 + 2,800 = 6,200</span></div>
+</div><div class="job"><span class="qnum">1</span>
+  <div class="story"><p class="prob">A football club shop sold 24,600 shirts in August and 5,850 fewer in September. How many shirts did it sell across both months?</p>
+    <div class="bubble"><span class="who" style="background:#e2562b">Zara</span><div class="wl">24,600 &minus; 5,850 = 18,750</div><div class="wl done">Done!</div></div></div>
+  <div class="decide"><div class="stamps" data-field="j1" role="group" aria-label="Job done or not finished"><button type="button" class="stamp" data-v="job done">Job done</button><button type="button" class="stamp" data-v="not finished">Not finished</button></div><select class="hw-field hidsel" data-k="j1" data-label="1.1 Zara: job done or not finished?"><option value="">Choose</option><option value="job done">job done</option><option value="not finished">not finished</option></select><label class="anslab">Answer to the question</label><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a1" data-label="1.1 Answer to the question" aria-label="Answer to the question"></div>
+</div><div class="job"><span class="qnum">2</span>
+  <div class="story"><p class="prob">A water park had 32,500 visitors in June and 6,400 more in July. How many visitors across both months?</p>
+    <div class="bubble"><span class="who" style="background:#22a39f">Leo</span><div class="wl">32,500 + (32,500 + 6,400) = 71,400</div><div class="wl done">Done!</div></div></div>
+  <div class="decide"><div class="stamps" data-field="j2" role="group" aria-label="Job done or not finished"><button type="button" class="stamp" data-v="job done">Job done</button><button type="button" class="stamp" data-v="not finished">Not finished</button></div><select class="hw-field hidsel" data-k="j2" data-label="1.2 Leo: job done or not finished?"><option value="">Choose</option><option value="job done">job done</option><option value="not finished">not finished</option></select><label class="anslab">Answer to the question</label><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a2" data-label="1.2 Answer to the question" aria-label="Answer to the question"></div>
+</div><div class="job"><span class="qnum">3</span>
+  <div class="story"><p class="prob">Children at a football camp vote for their favourite player. Jude Bellingham gets 47,200 votes. Another player gets 12,650 fewer. How many votes do the two players get together?</p>
+    <div class="bubble"><span class="who" style="background:#7c4dcc">Omar</span><div class="wl">47,200 &minus; 12,650 = 34,550</div><div class="wl done">Done!</div></div></div>
+  <div class="decide"><div class="stamps" data-field="j3" role="group" aria-label="Job done or not finished"><button type="button" class="stamp" data-v="job done">Job done</button><button type="button" class="stamp" data-v="not finished">Not finished</button></div><select class="hw-field hidsel" data-k="j3" data-label="1.3 Omar: job done or not finished?"><option value="">Choose</option><option value="job done">job done</option><option value="not finished">not finished</option></select><label class="anslab">Answer to the question</label><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a3" data-label="1.3 Answer to the question" aria-label="Answer to the question"></div>
+</div><div class="job"><span class="qnum">4</span>
+  <div class="story"><p class="prob">A sticker shop had 65,000 stickers. It sold 18,400 on Monday and 22,750 on Tuesday. How many stickers are left?</p>
+    <div class="bubble"><span class="who" style="background:#d6336c">Mia</span><div class="wl">18,400 + 22,750 = 41,150</div><div class="wl">22,750 &minus; 18,400 = 4,350</div><div class="wl done">Done!</div></div></div>
+  <div class="decide"><div class="stamps" data-field="j4" role="group" aria-label="Job done or not finished"><button type="button" class="stamp" data-v="job done">Job done</button><button type="button" class="stamp" data-v="not finished">Not finished</button></div><select class="hw-field hidsel" data-k="j4" data-label="1.4 Mia: job done or not finished?"><option value="">Choose</option><option value="job done">job done</option><option value="not finished">not finished</option></select><label class="anslab">Answer to the question</label><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a4" data-label="1.4 Answer to the question" aria-label="Answer to the question"></div>
+</div><div class="job"><span class="qnum">5</span>
+  <div class="story"><p class="prob">A theme park had 58,300 visitors in May and 7,900 fewer in June. How many visitors across both months?</p>
+    <div class="bubble"><span class="who" style="background:#2f6fd6">Ben</span><div class="wl">58,300 &minus; 7,900 = 50,400</div><div class="wl">58,300 + 50,400 = 108,700</div><div class="wl done">Done!</div></div></div>
+  <div class="decide"><div class="stamps" data-field="j5" role="group" aria-label="Job done or not finished"><button type="button" class="stamp" data-v="job done">Job done</button><button type="button" class="stamp" data-v="not finished">Not finished</button></div><select class="hw-field hidsel" data-k="j5" data-label="1.5 Ben: job done or not finished?"><option value="">Choose</option><option value="job done">job done</option><option value="not finished">not finished</option></select><label class="anslab">Answer to the question</label><input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="a5" data-label="1.5 Answer to the question" aria-label="Answer to the question"></div>
+</div>
+  </div>
+</section>
+
+<section id="comp">
+  <h2><span class="badge">2</span> Make it friendly</h2>
+  <div class="split2">
+    <div>
+      <p class="instruction">Add the same to both numbers. Type the new numbers, then <span class="nw">the answer.</span></p>
+      <div class="items2">
+<div class="q comp"><span class="qnum">1</span><div class="crow">
+  <p class="prompt">34,250 &minus; 9,999</p><span class="arrow">&rarr;</span>
+  <span class="eq"><input class="hw-field fin mid" inputmode="numeric" autocomplete="off" data-k="n1" data-label="2.1 34,250 minus 9,999: new first number" aria-label="new first number"> <span class="tail"><span class="lab">&minus; 10,000 =</span> <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c1" data-label="2.1 34,250 minus 9,999: answer" aria-label="answer"></span></span>
+</div></div><div class="q comp"><span class="qnum">2</span><div class="crow">
+  <p class="prompt">61,400 &minus; 4,998</p><span class="arrow">&rarr;</span>
+  <span class="eq"><input class="hw-field fin mid" inputmode="numeric" autocomplete="off" data-k="n2" data-label="2.2 61,400 minus 4,998: new first number" aria-label="new first number"> <span class="tail"><span class="lab">&minus; 5,000 =</span> <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c2" data-label="2.2 61,400 minus 4,998: answer" aria-label="answer"></span></span>
+</div></div><div class="q comp"><span class="qnum">3</span><div class="crow">
+  <p class="prompt">8,375 &minus; 2,999</p><span class="arrow">&rarr;</span>
+  <span class="eq"><input class="hw-field fin mid" inputmode="numeric" autocomplete="off" data-k="n3" data-label="2.3 8,375 minus 2,999: new first number" aria-label="new first number"> <span class="tail"><span class="op">&minus;</span> <input class="hw-field fin mid" inputmode="numeric" autocomplete="off" data-k="r3" data-label="2.3 8,375 minus 2,999: new second number" aria-label="new second number"> <span class="op">=</span> <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c3" data-label="2.3 8,375 minus 2,999: answer" aria-label="answer"></span></span>
+</div></div><div class="q comp"><span class="qnum">4</span><div class="crow">
+  <p class="prompt">70,060 &minus; 19,997</p><span class="arrow">&rarr;</span>
+  <span class="eq"><input class="hw-field fin mid" inputmode="numeric" autocomplete="off" data-k="n4" data-label="2.4 70,060 minus 19,997: new first number" aria-label="new first number"> <span class="tail"><span class="op">&minus;</span> <input class="hw-field fin mid" inputmode="numeric" autocomplete="off" data-k="r4" data-label="2.4 70,060 minus 19,997: new second number" aria-label="new second number"> <span class="op">=</span> <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="c4" data-label="2.4 70,060 minus 19,997: answer" aria-label="answer"></span></span>
+</div></div>
+      </div>
+    </div>
+    <aside class="model">
+      <div class="tag">Like this</div>
+      <div class="msum">121 &minus; 99</div>
+      <div class="mstep"><span class="plus">+1</span> to both</div>
+      <div class="msum">122 &minus; 100 = <b>22</b></div>
+    </aside>
+  </div>
+</section>
+
+<section id="brackets">
+  <h2><span class="badge">3</span> One calculation</h2>
+  <p class="instruction"><span class="scr">Drag the right calculation under <span class="nw">each bar.</span></span><span class="prt">Circle the right calculation for <span class="nw">each bar.</span></span></p>
+  <p class="note">Brackets go round the step you do first, when it is not the first one in <span class="nw">the line.</span> Brackets hold a step (two numbers and a sign), never <span class="nw">one number.</span> <span class="scr tapnote">Tap a tile, then tap the box, if dragging is tricky.</span></p>
+  <div class="pmodel"><div class="mtag">Like this</div>
+  <div class="msub"><p class="mprob">Kim has 50 stickers. She gets 20 more on Monday and 15 more on Tuesday. How many now?</p>
+  <div class="barbox"><svg viewBox="0 0 312 36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar: 50, then 20, then 15"><rect x="6.0" y="6" width="176.5" height="24" fill="#fde3a7" stroke="#1b1712" stroke-width="2"/><text x="94.2" y="23" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#1b1712" text-anchor="middle">50</text><rect x="182.5" y="6" width="70.6" height="24" fill="#c9ecd2" stroke="#1b1712" stroke-width="2"/><text x="217.8" y="23" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#1b1712" text-anchor="middle">20</text><rect x="253.1" y="6" width="52.9" height="24" fill="#cfe0fb" stroke="#1b1712" stroke-width="2"/><text x="279.5" y="23" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#1b1712" text-anchor="middle">15</text></svg></div>
+  <div class="slot filled"><span class="tile static">50 + 20 + 15</span></div></div>
+  <div class="msub"><p class="mprob">Kim has 40 stickers. Sam has 15 more than Kim. How many do they have together?</p>
+  <div class="barbox"><svg viewBox="0 0 270 52" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bars: Kim 40; Sam 40 and 15 more; together is a question mark"><rect x="6.0" y="4" width="167.3" height="20" fill="#fde3a7" stroke="#1b1712" stroke-width="2"/><text x="89.6" y="18" font-family="Rubik, Segoe UI, Arial" font-size="11" font-weight="700" fill="#1b1712" text-anchor="middle">Kim 40</text><rect x="6.0" y="28" width="167.3" height="20" fill="#fde3a7" stroke="#1b1712" stroke-width="2"/><rect x="173.3" y="28" width="62.7" height="20" fill="#c9ecd2" stroke="#1b1712" stroke-width="2"/><text x="89.6" y="42" font-family="Rubik, Segoe UI, Arial" font-size="11" font-weight="700" fill="#1b1712" text-anchor="middle">Sam</text><text x="204.6" y="42" font-family="Rubik, Segoe UI, Arial" font-size="10" font-weight="700" fill="#1b1712" text-anchor="middle">15 more</text><path d="M239.0 4 H244.0 V48 H239.0" fill="none" stroke="#1a7f7c" stroke-width="2"/><text x="248.0" y="31" font-family="Rubik, Segoe UI, Arial" font-size="14" font-weight="800" fill="#e2562b" text-anchor="start">?</text></svg></div>
+  <div class="slot filled"><span class="tile static">40 + (40 + 15)</span></div></div>
+</div>
+  <div class="picks3">
+<div class="pick q"><div class="phead"><span class="qnum">1</span><p class="prob">A bike race wants 80,000 fans. 27,500 come on Saturday and 31,200 come on Sunday. How many more fans does it need?</p></div>
+  <div class="barbox"><svg viewBox="0 0 312 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar: 80,000 wanted on top; below 27,500, 31,200 and a question mark"><rect x="6.0" y="6" width="300.0" height="26" fill="#fde3a7" stroke="#1b1712" stroke-width="2"/><text x="156.0" y="24" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#1b1712" text-anchor="middle">80,000 wanted</text><rect x="6.0" y="40" width="103.1" height="26" fill="#bfe6e4" stroke="#1b1712" stroke-width="2"/><text x="57.6" y="58" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#1b1712" text-anchor="middle">27,500</text><rect x="109.1" y="40" width="117.0" height="26" fill="#cfe0fb" stroke="#1b1712" stroke-width="2"/><text x="167.6" y="58" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#1b1712" text-anchor="middle">31,200</text><rect x="226.1" y="40" width="79.9" height="26" fill="#fff" stroke="#1b1712" stroke-width="2" stroke-dasharray="5 4"/><text x="266.1" y="58" font-family="Rubik, Segoe UI, Arial" font-size="16" font-weight="800" fill="#e2562b" text-anchor="middle">?</text></svg></div>
+  <div class="slot zone" data-field="b1" aria-label="One calculation"><span class="slothint">One calculation goes here</span></div>
+  <div class="bank"><button type="button" class="tile" data-v="80,000 − 27,500 + 31,200">80,000 &minus; 27,500 + 31,200</button><button type="button" class="tile" data-v="(80,000 + 27,500) − 31,200">(80,000 + 27,500) &minus; 31,200</button><button type="button" class="tile" data-v="80,000 − (27,500 + 31,200)">80,000 &minus; (27,500 + 31,200)</button></div>
+  <select class="hw-field hidsel" data-k="b1" data-label="3.1 One calculation"><option value="">Choose</option><option value="80,000 − 27,500 + 31,200">80,000 − 27,500 + 31,200</option><option value="(80,000 + 27,500) − 31,200">(80,000 + 27,500) − 31,200</option><option value="80,000 − (27,500 + 31,200)">80,000 − (27,500 + 31,200)</option></select>
+</div><div class="pick q"><div class="phead"><span class="qnum">2</span><p class="prob">A swimming club has 52,000 members. 6,300 leave, then 4,800 join. How many members now?</p></div>
+  <div class="barbox"><svg viewBox="0 0 312 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar: 52,000 members, 6,300 crossed out as leaving, then 4,800 joining, now is a question mark"><rect x="6.0" y="6" width="263.7" height="26" fill="#fde3a7" stroke="#1b1712" stroke-width="2"/><rect x="269.7" y="6" width="36.3" height="26" fill="#fde0d6" stroke="#1b1712" stroke-width="2" stroke-dasharray="5 4"/><text x="137.8" y="24" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#1b1712" text-anchor="middle">52,000 members</text><line x1="273.7" y1="10" x2="302.0" y2="28" stroke="#e2562b" stroke-width="2"/><line x1="273.7" y1="28" x2="302.0" y2="10" stroke="#e2562b" stroke-width="2"/><text x="306.0" y="46" font-family="Rubik, Segoe UI, Arial" font-size="11.5" font-weight="800" fill="#c2410c" text-anchor="end">6,300 leave</text><rect x="6.0" y="54" width="263.7" height="26" fill="#fde3a7" stroke="#1b1712" stroke-width="2"/><rect x="269.7" y="54" width="27.7" height="26" fill="#c9ecd2" stroke="#1b1712" stroke-width="2"/><text x="297.3" y="94" font-family="Rubik, Segoe UI, Arial" font-size="11.5" font-weight="800" fill="#1a7f4a" text-anchor="end">4,800 join</text><text x="137.8" y="72" font-family="Rubik, Segoe UI, Arial" font-size="14" font-weight="800" fill="#e2562b" text-anchor="middle">now = ?</text></svg></div>
+  <div class="slot zone" data-field="b2" aria-label="One calculation"><span class="slothint">One calculation goes here</span></div>
+  <div class="bank"><button type="button" class="tile" data-v="52,000 − 6,300 + 4,800">52,000 &minus; 6,300 + 4,800</button><button type="button" class="tile" data-v="52,000 − (6,300 + 4,800)">52,000 &minus; (6,300 + 4,800)</button><button type="button" class="tile" data-v="52,000 + 6,300 − 4,800">52,000 + 6,300 &minus; 4,800</button></div>
+  <select class="hw-field hidsel" data-k="b2" data-label="3.2 One calculation"><option value="">Choose</option><option value="52,000 − 6,300 + 4,800">52,000 − 6,300 + 4,800</option><option value="52,000 − (6,300 + 4,800)">52,000 − (6,300 + 4,800)</option><option value="52,000 + 6,300 − 4,800">52,000 + 6,300 − 4,800</option></select>
+</div><div class="pick q"><div class="phead"><span class="qnum">3</span><p class="prob">In a quiz, Team A scores 14,600 points. Team B scores 3,900 fewer. How many points do the teams score together?</p></div>
+  <div class="barbox"><svg viewBox="0 0 330 86" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bars: Team A 14,600; Team B shorter by 3,900 fewer; together is a question mark"><rect x="6.0" y="6" width="250.0" height="24" fill="#fde3a7" stroke="#1b1712" stroke-width="2"/><text x="131.0" y="23" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#1b1712" text-anchor="middle">Team A 14,600</text><rect x="6.0" y="36" width="183.2" height="24" fill="#fff" stroke="#1b1712" stroke-width="2"/><text x="97.6" y="53" font-family="Rubik, Segoe UI, Arial" font-size="13" font-weight="700" fill="#6b5f4e" text-anchor="middle">Team B</text><line x1="189.2" y1="34" x2="189.2" y2="62" stroke="#e2562b" stroke-width="1.8" stroke-dasharray="4 3"/><line x1="189.2" y1="66" x2="256.0" y2="66" stroke="#e2562b" stroke-width="2"/><text x="222.6" y="80" font-family="Rubik, Segoe UI, Arial" font-size="11.5" font-weight="800" fill="#c2410c" text-anchor="middle">3,900 fewer</text><path d="M261.0 6 H266.0 V60 H261.0" fill="none" stroke="#1a7f7c" stroke-width="2.2"/><text x="272.0" y="38" font-family="Rubik, Segoe UI, Arial" font-size="12" font-weight="800" fill="#1a7f7c" text-anchor="start">together</text><text x="272.0" y="54" font-family="Rubik, Segoe UI, Arial" font-size="14" font-weight="800" fill="#e2562b" text-anchor="start">= ?</text></svg></div>
+  <div class="slot zone" data-field="b3" aria-label="One calculation"><span class="slothint">One calculation goes here</span></div>
+  <div class="bank"><button type="button" class="tile" data-v="14,600 − 3,900">14,600 &minus; 3,900</button><button type="button" class="tile" data-v="14,600 + (14,600 − 3,900)">14,600 + (14,600 &minus; 3,900)</button><button type="button" class="tile" data-v="14,600 + (14,600 + 3,900)">14,600 + (14,600 + 3,900)</button></div>
+  <select class="hw-field hidsel" data-k="b3" data-label="3.3 One calculation"><option value="">Choose</option><option value="14,600 − 3,900">14,600 − 3,900</option><option value="14,600 + (14,600 − 3,900)">14,600 + (14,600 − 3,900)</option><option value="14,600 + (14,600 + 3,900)">14,600 + (14,600 + 3,900)</option></select>
+<label class="workit">Now work it out <input class="hw-field fin" inputmode="numeric" autocomplete="off" data-k="w3" data-label="3.3 Now work it out: points together" aria-label="Now work it out"></label></div>
+  </div>
+</section>
+
+<script>
+(function () {
+  function fire(s) { s.dispatchEvent(new Event("change", { bubbles: true })); s.dispatchEvent(new Event("input", { bubbles: true })); }
+  function stamps() {
+    document.querySelectorAll(".stamps[data-field]").forEach(function (g) {
+      var s = document.querySelector('select[data-k="' + g.dataset.field + '"]');
+      var bs = [].slice.call(g.querySelectorAll(".stamp"));
+      function show() { bs.forEach(function (b) { b.classList.toggle("on", !!s.value && b.dataset.v === s.value); }); }
+      bs.forEach(function (b) {
+        b.addEventListener("click", function () { s.value = (s.value === b.dataset.v) ? "" : b.dataset.v; fire(s); show(); });
+      });
+      show();
+    });
+  }
+  function picks() {
+    var picked = null, allSlots = [];
+    function unpick() { if (picked) picked.classList.remove("picked"); picked = null; allSlots.forEach(function (z) { z.classList.remove("ready"); }); }
+    document.querySelectorAll(".pick").forEach(function (box) {
+      var slot = box.querySelector(".slot"), bank = box.querySelector(".bank");
+      var sel = box.querySelector("select[data-k]");
+      var tiles = [].slice.call(bank.querySelectorAll(".tile"));
+      allSlots.push(slot);
+      tiles.forEach(function (t, i) { t.dataset.i = i; t._box = box; });
+      function home(t) {
+        var after = [].slice.call(bank.querySelectorAll(".tile")).filter(function (x) { return +x.dataset.i > +t.dataset.i; })[0];
+        bank.insertBefore(t, after || null);
+      }
+      function place(t) {
+        [].slice.call(slot.querySelectorAll(".tile")).forEach(function (o) { if (o !== t) home(o); });
+        slot.insertBefore(t, slot.firstChild); slot.classList.add("has");
+        if (sel.value !== t.dataset.v) { sel.value = t.dataset.v; fire(sel); }
+      }
+      function back(t) { home(t); slot.classList.remove("has"); if (sel.value) { sel.value = ""; fire(sel); } }
+      box._place = place;
+      if (sel.value) { var t0 = tiles.filter(function (t) { return t.dataset.v === sel.value; })[0]; if (t0) place(t0); }
+      slot.addEventListener("click", function () { if (picked && picked._box === box) { place(picked); unpick(); } });
+      tiles.forEach(function (chip) {
+        chip.addEventListener("pointerdown", function (e) {
+          if (e.button !== undefined && e.button > 0) return;
+          e.preventDefault();
+          var r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, sx = e.clientX, sy = e.clientY, moved = false, over = false, ph = null;
+          var parent = chip.parentNode, next = chip.nextSibling;
+          function inSlot(x, y) { var q = slot.getBoundingClientRect(), p = 10; return x >= q.left - p && x <= q.right + p && y >= q.top - p && y <= q.bottom + p; }
+          function move(ev) {
+            if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+            if (!moved) {
+              moved = true; unpick();
+              ph = document.createElement("span"); ph.style.cssText = "display:block;height:" + r.height + "px";
+              parent.insertBefore(ph, next);
+              chip.style.width = r.width + "px"; chip.classList.add("dragging");
+            }
+            chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+            var o = inSlot(ev.clientX, ev.clientY); if (o !== over) { over = o; slot.classList.toggle("over", o); }
+          }
+          function up(ev) {
+            window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+            slot.classList.remove("over");
+            var wasIn = parent === slot;
+            if (!moved) {
+              if (wasIn) { back(chip); unpick(); return; }
+              if (picked === chip) { unpick(); return; }
+              unpick(); picked = chip; chip.classList.add("picked"); slot.classList.add("ready"); return;
+            }
+            chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+            if (ph) ph.remove();
+            if (ev.type === "pointerup" && inSlot(ev.clientX, ev.clientY)) place(chip);
+            else if (wasIn && ev.type === "pointerup") back(chip);
+            else parent.insertBefore(chip, next && next.parentNode === parent ? next : null);
+          }
+          window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+        });
+      });
+    });
+  }
+  function start() { stamps(); picks(); }
+  if (document.readyState === "complete") start(); else window.addEventListener("load", start);
+})();
+
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJuMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjM0LDI1MSJ9LCAiYzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNCwyNTEifSwgIm4yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjEsNDAyIn0sICJjMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjU2LDQwMiJ9LCAibjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4LDM3NiJ9LCAiYzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1LDM3NiJ9LCAicjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzLDAwMCJ9LCAibjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3MCwwNjMifSwgImM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTAsMDYzIn0sICJyNCI6IHsidCI6ICJleGFjdCIsICJhIjogIjIwLDAwMCJ9LCAiajEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJub3QgZmluaXNoZWQifSwgImExIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDMsMzUwIn0sICJqMiI6IHsidCI6ICJleGFjdCIsICJhIjogImpvYiBkb25lIn0sICJhMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjcxLDQwMCJ9LCAiajMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJub3QgZmluaXNoZWQifSwgImEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiODEsNzUwIn0sICJqNCI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vdCBmaW5pc2hlZCJ9LCAiYTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMyw4NTAifSwgImo1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiam9iIGRvbmUifSwgImE1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTA4LDcwMCJ9LCAiYjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4MCwwMDAg4oiSICgyNyw1MDAgKyAzMSwyMDApIn0sICJiMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjUyLDAwMCDiiJIgNiwzMDAgKyA0LDgwMCJ9LCAiYjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNCw2MDAgKyAoMTQsNjAwIOKIkiAzLDkwMCkifSwgInczIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjUsMzAwIn19</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body>
+</html>

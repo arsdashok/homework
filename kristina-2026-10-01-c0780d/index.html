@@ -496,6 +496,7 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
     box.hidden = false;
     try { localStorage.setItem("kristina-2026-10-01-shown", "1"); } catch (e) {}
   }
+  window.hwShowExtra = show;   // hw.js calls this before building Dasha's PDF (7 Oct 2026)
   function watch() {
     var msg = document.getElementById("hwMsg");
     try { if (localStorage.getItem("kristina-2026-10-01-shown") === "1") setTimeout(show, 300); } catch (e) {}
@@ -511,6 +512,6 @@ textarea.own { display: block; width: 100%; min-height: 76px; font: inherit; }
   <div class="hw-msg" id="hwMsg">Check your answers, then press the button.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script src="../assets/hw.js?v=20260923-export2"></script>
+<script src="../assets/hw.js?v=20261007-pdfmarks"></script>
 </body>
 </html>

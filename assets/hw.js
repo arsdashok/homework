@@ -80,7 +80,9 @@
         "#sheet .hw-pdf-answer{display:block!important;height:auto!important;max-height:none!important;min-height:38px!important;overflow:visible!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:break-word!important;text-wrap:wrap!important;padding:8px 10px!important;box-shadow:none!important;}",
         "#sheet .hw-pdf-inline{display:inline-block!important;vertical-align:middle;min-width:80px;max-width:100%!important;}",
         "#sheet .hw-pdf-gap{min-width:0!important;min-height:0!important;padding:0 3px!important;}",
-        "#sheet img,#sheet svg{max-width:100%;}"
+        "#sheet img,#sheet svg{max-width:100%;}",
+        // In Dasha's PDF the marks stay; the pupil-facing «Feedback in the lesson» note is noise there.
+        "#sheet .hw-mark.hw-open{display:none!important;}"
       ].join("\n");
       doc.head.appendChild(fixes);
       var script = doc.createElement("script");
@@ -250,17 +252,24 @@
     var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q); }).length;
     if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return;
     btn.disabled = true; msg.textContent = "Sending… (this takes a few seconds)";
+    // Mark FIRST, so the PDF Dasha receives shows the ticks, crosses and right answers too
+    // (Dasha, 7 Oct 2026: «чтобы в пдф которая мне приходит тоже были видны правильные ответы»).
+    var score = showChecks();
+    try { if (typeof window.hwShowExtra === "function") window.hwShowExtra(); } catch (e) {}
     makePDF()
       .then(function (pdf) {
         return fetch(SEND_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({ key: SEND_KEY, student: META.student, sheet: META.sheet, sheetId: META.sheetId, answers: answers, pdf: pdf }) });
       })
       .then(function () {
-        var score = showChecks(); if (!recheck.on) { recheck.on = true; recheck(); }
+        if (!recheck.on) { recheck.on = true; recheck(); }
         try { localStorage.setItem(CHECKED, "1"); } catch (e) {}
         msg.textContent = "Sent! " + (score || "Dasha will check it. ✓");
         btn.textContent = "Sent ✓";
       })
-      .catch(function () { btn.disabled = false; msg.textContent = "It did not send. Check the internet and try again, or save a copy as a PDF."; });
+      .catch(function () {
+        document.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
+        btn.disabled = false; msg.textContent = "It did not send. Check the internet and try again, or save a copy as a PDF.";
+      });
   };
 })();

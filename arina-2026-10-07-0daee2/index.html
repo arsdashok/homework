@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arina: Practice 7 October 2026</title>
+<style>
+  :root {
+    --ink: #1f2340; --muted: #6b7088; --violet: #6c63ff; --lilac: #a78bfa;
+    --soft: #f4f2ff; --line: #d9d5f5; --paper: #ffffff;
+  }
+  @page { size: A4; margin: 11mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5;
+    color: var(--ink); background: #faf9ff; max-width: 900px; margin: 0 auto; padding: 32px 22px 48px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+
+  header.top {
+    background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%); color: #fff; border-radius: 16px;
+    padding: 26px 30px; margin-bottom: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+  }
+  header.top .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .85; margin-bottom: 6px; }
+  header.top h1 { font-size: 32px; line-height: 1.1; font-weight: 700; }
+  header.top .meta { font-size: 15px; text-align: right; opacity: .95; }
+  .intro { font-size: 15px; color: var(--muted); margin: -12px 0 26px 4px; }
+
+  .part {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 28px 22px; margin-bottom: 26px;
+  }
+  .plabel { font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); margin-bottom: 6px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 4px; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+
+  .q {
+    display: flex; align-items: baseline; gap: 14px; padding: 13px 0; border-bottom: 1px solid #eeecfb;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-of-type { border-bottom: 0; }
+  .qn { flex: none; width: 22px; font-size: 15px; color: var(--muted); }
+  .q p { font-size: 18px; line-height: 2.1; }
+  .hw-gap { width: 3.6em; font: inherit; text-align: center; }
+  select { font: inherit; font-size: 16px; margin: 0 3px; vertical-align: middle; }
+  .po { display: none; }
+
+  /* drag tiles */
+  .chip {
+    font: inherit; font-size: 16px; font-weight: 600; color: var(--ink); background: #fff;
+    border: 1.5px solid var(--violet); border-radius: 999px; padding: 8px 18px; min-height: 42px;
+    cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .chip.picked { outline: 3px solid var(--lilac); outline-offset: 2px; }
+  .chip.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; box-shadow: 0 6px 18px rgba(108,99,255,.3); }
+  .bank {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; min-height: 66px;
+    margin: 6px 0 8px; padding: 12px; border: 1.5px dashed var(--line); border-radius: 12px; background: var(--soft);
+  }
+  .gap { display: inline-flex; align-items: center; vertical-align: middle; margin: 0 3px; cursor: pointer; outline: none; line-height: 1.2; }
+  .gap .dslot { display: inline-flex; align-items: center; justify-content: center; min-width: 150px; min-height: 40px; padding: 2px; border: 2px dashed #b3abf0; border-radius: 10px; background: #fff; }
+  .gap .dslot .chip { font-size: 15px; padding: 4px 12px; min-height: 0; white-space: nowrap; }
+  .dz.ready .dslot, .dz.over .dslot, .dz:focus-visible .dslot { border-color: var(--violet); background: var(--soft); }
+  .gap > .hw-mark { display: inline !important; flex: none !important; width: auto !important; margin: 0 0 0 6px !important; }
+  .store { display: none; }
+
+  @media (max-width: 620px) {
+    body { padding: 14px 10px 24px; }
+    header.top { flex-direction: column; align-items: flex-start; padding: 20px; }
+    header.top h1 { font-size: 26px; }
+    header.top .meta { text-align: left; }
+    .part { padding: 18px 14px; }
+    .instr { font-size: 19px; }
+    .q p { font-size: 16.5px; }
+    .gap .dslot { min-width: 120px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 12px; padding: 0; max-width: none; }
+    header.top { padding: 10px 18px; margin-bottom: 8px; border-radius: 10px; }
+    header.top h1 { font-size: 21px; }
+    header.top .kicker { font-size: 9.5px; margin-bottom: 2px; }
+    header.top .meta { font-size: 11px; }
+    .intro { font-size: 10.5px; margin: 0 0 8px 2px; }
+    .part { padding: 9px 16px 6px; margin-bottom: 8px; border-radius: 10px; }
+    .plabel { font-size: 9.5px; margin-bottom: 1px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 2px; }
+    .q { padding: 3px 0; gap: 8px; }
+    .qn { font-size: 11px; width: 14px; }
+    .q p { font-size: 13px; line-height: 1.9; }
+    select { display: none !important; }
+    .po { display: inline-block; min-width: 90px; border-bottom: 1px solid #8a84c9; margin: 0 3px; font-size: 11px; color: var(--muted); line-height: 1.2; padding: 0 3px; }
+    .chip { font-size: 12px; padding: 2px 10px; min-height: 0; border-width: 1.2px; }
+    .bank { margin: 3px 0 4px; padding: 4px; min-height: 0; gap: 6px; }
+    .gap .dslot { min-width: 100px; min-height: 20px; border-width: 1.2px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Arina" data-sheet="English 2026-10-07" data-sheet-id="arina-2026-10-07-english">
+<div id="sheet">
+
+
+<header class="top">
+  <div>
+    <div class="kicker">Optional practice</div>
+    <h1>Small words, natural forms</h1>
+  </div>
+  <div class="meta">Arina<br>7 October 2026</div>
+</header>
+<p class="intro">About 10 minutes. Skip anything you&nbsp;like.</p>
+
+<section class="part">
+  <div class="plabel">Part 1 &middot; Small words</div>
+  <p class="instr">Type the missing word, or choose&nbsp;one.</p>
+
+  <div class="q"><span class="qn">1</span><p>I can&rsquo;t listen <input class="hw-field hw-gap" maxlength="6" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="a1" data-label="1. I can't listen __ podcasts when I'm reading Oblomov." aria-label="1. missing word"> podcasts when I&rsquo;m reading&nbsp;Oblomov.</p></div>
+
+  <div class="q"><span class="qn">2</span><p>Text me when your lesson ends. I&rsquo;ll be waiting <input class="hw-field hw-gap" maxlength="6" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="a2" data-label="2. I'll be waiting __ you by the gate." aria-label="2. missing word"> you by the&nbsp;gate.</p></div>
+
+  <div class="q"><span class="qn">3</span><p>We&rsquo;re going back to Kaluga <select data-k="a3" data-label="3. We're going back to Kaluga ___ the end of October." aria-label="3. choose" class="hw-field"><option value="">Choose</option><option value="in">in</option><option value="at">at</option></select><span class="po">in / at</span> the end of&nbsp;October.</p></div>
+
+  <div class="q"><span class="qn">4</span><p>Do you listen <input class="hw-field hw-gap" maxlength="6" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="a4" data-label="4. Do you listen __ music when you do your homework?" aria-label="4. missing word"> music when you do your&nbsp;homework?</p></div>
+
+  <div class="q"><span class="qn">5</span><p>My pencil case <select data-k="a5" data-label="5. My pencil case ___ two pens, a ruler and a lot of crumbs." aria-label="5. choose" class="hw-field"><option value="">Choose</option><option value="contains">contains</option><option value="consists of">consists of</option></select><span class="po">contains / consists of</span> two pens, a ruler and a lot of&nbsp;crumbs.</p></div>
+</section>
+
+<section class="part">
+  <div class="plabel">Part 2 &middot; Natural English</div>
+  <p class="instr">Choose the natural&nbsp;form.</p>
+
+  <div class="q"><span class="qn">6</span><p>I didn&rsquo;t expect that our teacher <select data-k="b1" data-label="6. I didn't expect that our teacher ___ cancel the test, but she did." aria-label="6. choose" class="hw-field"><option value="">Choose</option><option value="will">will</option><option value="would">would</option></select><span class="po">will / would</span> cancel the test, but she&nbsp;did.</p></div>
+
+  <div class="q"><span class="qn">7</span><p>I <select data-k="b2" data-label="7. I ___ my friend from summer camp since June." aria-label="7. choose" class="hw-field"><option value="">Choose</option><option value="didn't text">didn&rsquo;t text</option><option value="haven't texted">haven&rsquo;t texted</option></select><span class="po">didn&rsquo;t text / haven&rsquo;t texted</span> my friend from summer camp since&nbsp;June.</p></div>
+
+  <div class="q"><span class="qn">8</span><p>I love <select data-k="b3" data-label="8. I love ___ series in bed, and that's why I never get enough sleep." aria-label="8. choose" class="hw-field"><option value="">Choose</option><option value="watching">watching</option><option value="it to watch">it to watch</option></select><span class="po">watching / it to watch</span> series in bed, and that&rsquo;s why I never get enough&nbsp;sleep.</p></div>
+
+  <div class="q"><span class="qn">9</span><p><select data-k="b4" data-label="9. ___ have to read all of Oblomov in one week?" aria-label="9. choose" class="hw-field"><option value="">Choose</option><option value="Why do I">Why do I</option><option value="Why I">Why I</option></select><span class="po">Why do I / Why I</span> have to read all of Oblomov in one&nbsp;week?</p></div>
+
+  <div class="q"><span class="qn">10</span><p>Before a test I sometimes have <select data-k="b5" data-label="10. Before a test I sometimes have ___, but it doesn't really help." aria-label="10. choose" class="hw-field"><option value="">Choose</option><option value="an energetic drink">an energetic drink</option><option value="an energy drink">an energy drink</option></select><span class="po">an energetic drink / an energy drink</span>, but it doesn&rsquo;t really&nbsp;help.</p></div>
+
+  <div class="q"><span class="qn">11</span><p>Some online courses <select data-k="b6" data-label="11. Some online courses ___ bloggers to recommend them." aria-label="11. choose" class="hw-field"><option value="">Choose</option><option value="buy">buy</option><option value="pay">pay</option></select><span class="po">buy / pay</span> bloggers to recommend&nbsp;them.</p></div>
+</section>
+
+<section class="part" data-dnd="gaps">
+  <div class="plabel">Part 3 &middot; Words from the lesson</div>
+  <p class="instr">Drag each phrase into its&nbsp;gap.</p>
+  <p class="note">You can also tap a phrase, then a&nbsp;gap.</p>
+  <div class="bank" aria-label="Phrases"><button type="button" class="chip" data-word="approachable">approachable</button><button type="button" class="chip" data-word="trust your gut">trust your gut</button><button type="button" class="chip" data-word="procrastinate">procrastinate</button><button type="button" class="chip" data-word="fall behind">fall behind</button><button type="button" class="chip" data-word="peer pressure">peer pressure</button></div>
+
+  <div class="q"><span class="qn">12</span><p>Instead of starting my essay, I <span class="dz gap" data-field="c1" tabindex="0" aria-label="Gap 12"><span class="dslot"></span></span> for two hours and then write it at&nbsp;midnight.</p></div>
+  <div class="q"><span class="qn">13</span><p>Our new form teacher is calmer and kinder than the old one, so she&rsquo;s much more <span class="dz gap" data-field="c2" tabindex="0" aria-label="Gap 13"><span class="dslot"></span></span>.</p></div>
+  <div class="q"><span class="qn">14</span><p>Some students choose the same exam subjects as their friends. That&rsquo;s <span class="dz gap" data-field="c3" tabindex="0" aria-label="Gap 14"><span class="dslot"></span></span>.</p></div>
+  <div class="q"><span class="qn">15</span><p>If you miss two weeks of school, it&rsquo;s very easy to <span class="dz gap" data-field="c4" tabindex="0" aria-label="Gap 15"><span class="dslot"></span></span> in&nbsp;physics.</p></div>
+  <div class="q"><span class="qn">16</span><p>My mum&rsquo;s advice for hard choices: don&rsquo;t overthink it, just <span class="dz gap" data-field="c5" tabindex="0" aria-label="Gap 16"><span class="dslot"></span></span>.</p></div>
+</section>
+
+<div class="store"><select data-k="c1" data-label="12. Instead of starting my essay, I ___ for two hours and then write it at midnight." aria-label="Gap 12" class="hw-field"><option value="">Choose</option><option value="approachable">approachable</option><option value="fall behind">fall behind</option><option value="peer pressure">peer pressure</option><option value="procrastinate">procrastinate</option><option value="trust your gut">trust your gut</option></select><select data-k="c2" data-label="13. Our new form teacher is calmer and kinder, so she's much more ___." aria-label="Gap 13" class="hw-field"><option value="">Choose</option><option value="approachable">approachable</option><option value="fall behind">fall behind</option><option value="peer pressure">peer pressure</option><option value="procrastinate">procrastinate</option><option value="trust your gut">trust your gut</option></select><select data-k="c3" data-label="14. Some students choose the same exam subjects as their friends. That's ___." aria-label="Gap 14" class="hw-field"><option value="">Choose</option><option value="approachable">approachable</option><option value="fall behind">fall behind</option><option value="peer pressure">peer pressure</option><option value="procrastinate">procrastinate</option><option value="trust your gut">trust your gut</option></select><select data-k="c4" data-label="15. If you miss two weeks of school, it's very easy to ___ in physics." aria-label="Gap 15" class="hw-field"><option value="">Choose</option><option value="approachable">approachable</option><option value="fall behind">fall behind</option><option value="peer pressure">peer pressure</option><option value="procrastinate">procrastinate</option><option value="trust your gut">trust your gut</option></select><select data-k="c5" data-label="16. My mum's advice for hard choices: don't overthink it, just ___." aria-label="Gap 16" class="hw-field"><option value="">Choose</option><option value="approachable">approachable</option><option value="fall behind">fall behind</option><option value="peer pressure">peer pressure</option><option value="procrastinate">procrastinate</option><option value="trust your gut">trust your gut</option></select></div>
+
+<script>
+(function () {
+  function init() {
+    var store = {};
+    document.querySelectorAll(".store [data-k]").forEach(function (s) { store[s.dataset.k] = s; });
+    var groups = [].slice.call(document.querySelectorAll("[data-dnd]"));
+    var picked = null;
+    function groupOf(el) { return el.closest("[data-dnd]"); }
+    function zones(g) { return [].slice.call(g.querySelectorAll(".dz")); }
+    function bank(g) { return g.querySelector(".bank"); }
+    function slotOf(z) { return z.querySelector(".dslot"); }
+    function sync(g) {
+      zones(g).forEach(function (z) {
+        var c = slotOf(z).querySelector(".chip"), s = store[z.dataset.field], v = c ? c.dataset.word : "";
+        if (s && s.value !== v) { s.value = v; s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+      });
+    }
+    function place(chip, z) {
+      var g = groupOf(z), slot = slotOf(z), old = slot.querySelector(".chip");
+      if (old && old !== chip) bank(g).appendChild(old);
+      slot.appendChild(chip); sync(g);
+    }
+    function toBank(chip) { var g = groupOf(chip); bank(g).appendChild(chip); sync(g); }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null;
+      document.querySelectorAll(".dz.ready").forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(chip) {
+      unpick(); picked = chip; chip.classList.add("picked");
+      zones(groupOf(chip)).forEach(function (z) { z.classList.add("ready"); });
+    }
+    function zoneAt(g, x, y) {
+      var zs = zones(g);
+      for (var i = 0; i < zs.length; i++) {
+        var r = zs[i].getBoundingClientRect(), pad = 10;
+        if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return zs[i];
+      }
+      return null;
+    }
+    function tap(chip) {
+      var home = chip.parentNode;
+      if (home.classList.contains("dslot")) {
+        if (picked && picked !== chip && groupOf(picked) === groupOf(chip)) { place(picked, home.closest(".dz")); unpick(); }
+        else { unpick(); toBank(chip); }
+        return;
+      }
+      if (picked === chip) { unpick(); return; }
+      pick(chip);
+    }
+    groups.forEach(function (g) {
+      zones(g).forEach(function (z) {
+        var s = store[z.dataset.field]; if (!s || !s.value) return;
+        var c = bank(g).querySelector('.chip[data-word="' + s.value + '"]');
+        if (c) slotOf(z).appendChild(c);
+      });
+    });
+    document.querySelectorAll("[data-dnd] .chip").forEach(function (chip) {
+      chip.addEventListener("pointerdown", function (e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        e.preventDefault();
+        var g = groupOf(chip), r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, home = chip.parentNode, next = chip.nextSibling, ph = null;
+        try { chip.setPointerCapture(e.pointerId); } catch (err) {}
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;flex:none;width:" + r.width + "px;height:" + r.height + "px";
+            home.insertBefore(ph, next);
+            chip.style.width = r.width + "px"; chip.classList.add("dragging");
+          }
+          chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(g, ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          if (!moved) { if (ev.type === "pointerup") tap(chip); return; }
+          chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(g, ev.clientX, ev.clientY) : null;
+          if (z) place(chip, z);
+          else if (home.classList.contains("dslot") && ev.type === "pointerup") toBank(chip);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+      chip.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tap(chip); }
+      });
+    });
+    groups.forEach(function (g) {
+      zones(g).forEach(function (z) {
+        z.addEventListener("click", function (e) {
+          if (e.target.closest(".chip")) return;
+          if (picked && groupOf(picked) === g) { place(picked, z); unpick(); }
+        });
+        z.addEventListener("keydown", function (e) {
+          if ((e.key === "Enter" || e.key === " ") && picked && groupOf(picked) === g && !e.target.closest(".chip")) { e.preventDefault(); place(picked, z); unpick(); }
+        });
+      });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJhMSI6IHsidCI6ICJleGFjdCIsICJhIjogInRvIn0sICJhMiI6IHsidCI6ICJleGFjdCIsICJhIjogImZvciJ9LCAiYTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhdCJ9LCAiYTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0byJ9LCAiYTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb250YWlucyJ9LCAiYjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3b3VsZCJ9LCAiYjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoYXZlbid0IHRleHRlZCJ9LCAiYjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3YXRjaGluZyJ9LCAiYjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaHkgZG8gSSJ9LCAiYjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhbiBlbmVyZ3kgZHJpbmsifSwgImI2IjogeyJ0IjogImV4YWN0IiwgImEiOiAicGF5In0sICJjMSI6IHsidCI6ICJleGFjdCIsICJhIjogInByb2NyYXN0aW5hdGUifSwgImMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYXBwcm9hY2hhYmxlIn0sICJjMyI6IHsidCI6ICJleGFjdCIsICJhIjogInBlZXIgcHJlc3N1cmUifSwgImM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZmFsbCBiZWhpbmQifSwgImM1IjogeyJ0IjogImV4YWN0IiwgImEiOiAidHJ1c3QgeW91ciBndXQifX0=</script>
+<script src="../assets/hw.js?v=20261002-check"></script>
+</body>
+</html>

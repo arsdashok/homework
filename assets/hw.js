@@ -12,10 +12,29 @@
   document.querySelectorAll(".circle-words").forEach(function (el) {
     el.innerHTML = el.textContent.replace(/([A-Za-z']+)/g, function (m) { n++; return '<span class="hw-w" data-w="w' + n + '">' + m + "</span>"; });
   });
+  // "circle-words break-lines" (Dasha, 7 Oct 2026): a tapped word ends its line, so the text breaks
+  // after it (and after its own comma or full stop); tapping it again joins the line back.
+  // The words are still marked by the same key ("set" of the tapped words).
+  function syncBreaks(box) {
+    box.querySelectorAll("br.hw-br").forEach(function (b) { b.remove(); });
+    box.querySelectorAll(".hw-w.hw-circled").forEach(function (w) {
+      var at = w, nx = w.nextSibling;
+      if (nx && nx.nodeType === 3) {
+        var p = nx.textContent.match(/^[^\sA-Za-z']*/)[0].length;
+        if (p) { if (p < nx.textContent.length) nx.splitText(p); at = nx; }
+      }
+      var br = document.createElement("br"); br.className = "hw-br";
+      at.parentNode.insertBefore(br, at.nextSibling);
+    });
+  }
   document.querySelectorAll(".hw-w").forEach(function (w) {
     if (state[w.dataset.w]) w.classList.add("hw-circled");
-    w.addEventListener("click", function () { w.classList.toggle("hw-circled"); state[w.dataset.w] = w.classList.contains("hw-circled"); save(); });
+    w.addEventListener("click", function () {
+      w.classList.toggle("hw-circled"); state[w.dataset.w] = w.classList.contains("hw-circled"); save();
+      var box = w.closest(".break-lines"); if (box) syncBreaks(box);
+    });
   });
+  document.querySelectorAll(".circle-words.break-lines").forEach(syncBreaks);
   function isCtl(el) { return /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName); }
   function val(el) { return isCtl(el) ? el.value : el.innerText; }
   document.querySelectorAll("[data-k]").forEach(function (el) {

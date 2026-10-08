@@ -78,6 +78,12 @@
       sheet.querySelectorAll("[data-k]").forEach(function (copy, i) {
         var original = originals[i];
         if (copy.classList.contains("circle-words")) return;
+        // A hidden select/input is the saved value behind a visible drop zone or
+        // choice group. Printing that storage field again duplicates the answer.
+        var twin = [].find.call(document.getElementById("sheet").querySelectorAll("[data-field]"), function (node) {
+          return node.dataset.field === original.dataset.k;
+        });
+        if (!seen(original) && seen(twin)) { copy.remove(); return; }
         var answer = doc.createElement("span");
         answer.className = copy.className + " hw-pdf-answer";
         answer.dataset.k = original.dataset.k;
@@ -86,8 +92,34 @@
         answer.textContent = val(original) || "\u00a0";
         copy.replaceWith(answer);
       });
+      // Keep each wrong response with its correction. Putting extra inline text
+      // into an equation row can otherwise push the last answer off the page.
+      sheet.querySelectorAll(".hw-pdf-answer").forEach(function (answer) {
+        var mark = answer.nextElementSibling;
+        if (!answer.classList.contains("hw-pdf-inline") || !mark || !mark.classList.contains("hw-no")) return;
+        var group = doc.createElement("span");
+        group.className = "hw-pdf-response";
+        answer.parentNode.insertBefore(group, answer);
+        group.appendChild(answer); group.appendChild(mark);
+      });
       doc.body.className = "hw-pdf-mode";
       doc.body.appendChild(sheet);
+      // Dragging belongs only to the live page. Use ordinary flow boxes in the
+      // export: html2canvas misplaces inline flex children in centred drop zones.
+      sheet.querySelectorAll(".dragging, .picked, .over, .ready").forEach(function (node) {
+        node.classList.remove("dragging", "picked", "over", "ready");
+      });
+      sheet.querySelectorAll(".tile, .chip").forEach(function (node) {
+        // The same class also names picture cards; preserve their grid layout.
+        if (node.querySelector("img, svg, [data-k]")) return;
+        node.classList.add("hw-pdf-tile");
+      });
+      sheet.querySelectorAll(".slot, .drop, .dz, .pslot, .dslot").forEach(function (node) {
+        if (node.querySelector(".tile, .chip")) {
+          node.classList.add("hw-pdf-drop");
+          if (node.tagName === "SPAN") node.classList.add("hw-pdf-drop-inline");
+        }
+      });
       var fixes = doc.createElement("style");
       fixes.textContent = [
         // Leave a small horizontal safety gutter inside html2pdf's rounded A4 container.
@@ -99,9 +131,18 @@
         "#sheet .hw-pdf-answer{display:block!important;height:auto!important;max-height:none!important;min-height:38px!important;overflow:visible!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:break-word!important;text-wrap:wrap!important;padding:8px 10px!important;box-shadow:none!important;}",
         "#sheet .hw-pdf-inline{display:inline-block!important;vertical-align:middle;min-width:80px;max-width:100%!important;}",
         "#sheet .hw-pdf-gap{min-width:0!important;min-height:0!important;padding:0 3px!important;}",
+        "#sheet .hw-pdf-response{display:inline-flex!important;flex-direction:column!important;align-items:flex-start!important;vertical-align:top!important;min-width:0!important;max-width:100%!important;}",
+        "#sheet .hw-pdf-response>.hw-mark{display:block!important;margin:4px 0 0!important;white-space:normal!important;width:100%!important;font-size:13px!important;}" ,
         "#sheet img,#sheet svg{max-width:100%;}",
+        "#sheet .hw-pdf-drop{display:block!important;min-width:0!important;text-align:left!important;}",
+        "#sheet .hw-pdf-tile{position:static!important;inset:auto!important;transform:none!important;display:inline-block!important;max-width:100%!important;min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;box-sizing:border-box!important;vertical-align:middle!important;}",
+        "#sheet .hw-pdf-drop>.hw-pdf-tile{display:block!important;width:100%!important;margin:0!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-drop>.hw-mark{display:block!important;width:auto!important;margin:4px 0 0!important;white-space:normal!important;}" ,
+        "#sheet .hw-pdf-drop-inline{display:inline-block!important;max-width:100%!important;vertical-align:middle!important;}",
+        "#sheet .hw-pdf-drop-inline>.hw-pdf-tile{display:inline-block!important;width:auto!important;}",
         // In Dasha's PDF the marks stay; the pupil-facing «Feedback in the lesson» note is noise there.
-        "#sheet .hw-mark.hw-open{display:none!important;}"
+        "#sheet .hw-mark.hw-open{display:none!important;}",
+        "#sheet .hw-mark{max-width:100%!important;overflow-wrap:anywhere!important;}"
       ].join("\n");
       doc.head.appendChild(fixes);
       var script = doc.createElement("script");
@@ -115,11 +156,22 @@
           })); })
           .then(function () {
             frame.contentWindow.scrollTo(0, 0);
+            // SVGs with only CSS width:100% / height:auto lose their intrinsic
+            // size when html2canvas serialises them. Freeze the export dimensions
+            // after the fonts and responsive layout have settled.
+            sheet.querySelectorAll("svg").forEach(function (svg) {
+              var bounds = svg.getBoundingClientRect();
+              if (!bounds.width || !bounds.height) return;
+              svg.setAttribute("width", bounds.width);
+              svg.setAttribute("height", bounds.height);
+              svg.style.width = bounds.width + "px";
+              svg.style.height = bounds.height + "px";
+            });
             var options = {
               margin: [10, 10, 10, 10], image: {type:"jpeg",quality:0.94},
               html2canvas: {scale:1.5,useCORS:true,scrollX:0,scrollY:0,windowWidth:800,windowHeight:1100},
               jsPDF: {unit:"mm",format:"a4",orientation:"portrait"},
-              pagebreak: {mode:[],avoid:[".q", ".question", ".word-q", ".div-item", "tr", "header", ".model", ".task", ".instr", ".instruction", ".checks", "p", "h1", "h2", "h3", ".hw-pdf-answer"]}
+              pagebreak: {mode:[],avoid:[".q", ".question", ".word-q", ".div-item", "tr", "header", ".model", ".task", ".instr", ".instruction", ".checks", "p", "h1", "h2", "h3", ".hw-pdf-answer", ".hw-pdf-drop", ".pick", ".job", ".comp", ".pmodel", ".msub", ".pics", ".ex-card", ".handstage", ".hw-mark-list"]}
             };
             // html2pdf uses instanceof Array, so option arrays must belong to its realm.
             options = frame.contentWindow.JSON.parse(JSON.stringify(options));

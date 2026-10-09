@@ -7,63 +7,93 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Vlad · English · 8 October 2026</title>
 <style>
-:root { color-scheme:light; --ink:#1b2733; --muted:#5b6977; --accent:#2f4a6b; --line:#dbe2ea; }
+/* Vlad's look (9 Oct 2026): Maksim/Sergei system (Inter, pale page, white cards, numbered sections), own indigo accent, wide container. */
+:root { color-scheme:light; --ink:#16182b; --muted:#5a5f7a; --accent:#4f46e5; --accent-soft:#eef0ff; --line:#e1e3ef; }
 * { box-sizing:border-box; }
-body { margin:0; background:#f3f5f8; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.65; }
-.wrap { max-width:900px; margin:0 auto; padding:56px 36px 24px; }
-.page-header { padding:0 0 30px; }
-.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
-.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:18px 0 22px; }
-h1 { font-size:clamp(30px,4.5vw,44px); line-height:1.14; letter-spacing:-.04em; margin:0; font-weight:700; }
-.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
-.page-meta { font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:18px; }
-.exercise { background:white; border:1px solid var(--line); border-radius:18px; padding:30px 36px; margin-bottom:24px; page-break-inside:avoid; break-inside:avoid; }
-.section-heading { display:flex; gap:18px; align-items:baseline; margin-bottom:12px; break-after:avoid; page-break-after:avoid; }
-.section-number { font-size:12px; font-weight:750; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; }
-h2 { margin:0; font-size:15px; font-weight:650; color:var(--muted); letter-spacing:.02em; }
-.instruction { font-size:21px; font-weight:700; line-height:1.4; margin:0 0 14px; text-wrap:balance; }
-.note { border-left:3px solid var(--accent); background:#f1f4f8; border-radius:0 12px 12px 0; padding:12px 20px; margin:0 0 16px; font-size:16px; }
+body { margin:0; background:#f4f5fa; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.65; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction { text-wrap:pretty; }
+.wrap { max-width:1160px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { display:inline-block; font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); background:var(--accent-soft); border-radius:999px; padding:5px 14px; }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,48px); line-height:1.12; letter-spacing:-.045em; margin:0; font-weight:750; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); font-weight:600; }
+.page-meta { font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+.exercise { background:white; border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:20px; padding:32px 44px 30px; margin-bottom:26px; box-shadow:0 6px 20px #16182b08; page-break-inside:avoid; break-inside:avoid; }
+/* Section name = small label; the instruction is the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.instruction { font-size:22px; font-weight:700; line-height:1.4; letter-spacing:-.015em; margin:0 0 16px; }
+.note { border-left:3px solid var(--accent); background:#f6f6ff; border-radius:0 12px 12px 0; padding:12px 20px; margin:0 0 18px; font-size:16px; }
 .note p { margin:4px 0; }
 .mini { color:var(--muted); font-size:15px; }
-.phrases { display:grid; grid-template-columns:1fr 1fr; gap:6px 28px; margin:0 0 16px; padding:0; list-style:none; font-size:16px; }
-.phrases li { line-height:1.45; }
-.phrases strong { color:var(--accent); }
-.phrases span { color:var(--muted); }
-.question { padding:14px 0; border-bottom:1px solid #edf0f4; page-break-inside:avoid; break-inside:avoid; }
+.phrases { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:0 0 18px; padding:0; list-style:none; font-size:16px; }
+.phrases li { line-height:1.4; border:1px solid var(--line); border-radius:12px; padding:10px 14px; background:#fbfbfe; }
+.phrases strong { display:block; color:var(--accent); font-weight:700; }
+.phrases span { color:var(--muted); font-size:15px; }
+.question { padding:14px 0; border-bottom:1px solid #eef0f6; page-break-inside:avoid; break-inside:avoid; }
 .question:last-child { border-bottom:0; }
-.rowq { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
-.qlab { font-weight:600; color:var(--muted); }
-.prompt { margin:0; line-height:2.4; }
-.sentence-prompt { margin:0 0 8px; }
-.sounds { list-style:none; padding:0; margin:0; display:grid; gap:8px; }
-.sounds li { display:flex; gap:18px; align-items:baseline; }
-.sounds .w { font-weight:700; min-width:120px; font-size:19px; }
+.qlab { display:inline-block; min-width:32px; font-size:15px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+/* 01: number | phrase menu | sentence, one row */
+.item3 { display:grid; grid-template-columns:36px 250px 1fr; gap:18px; align-items:start; }
+.item3 .qlab { padding-top:10px; }
+.item3 select { width:100%; }
+/* 02: sentence | menu in a fixed second column */
+.row { display:grid; grid-template-columns:1fr 220px; gap:28px; align-items:center; }
+.prompt { margin:0; line-height:1.6; }
+.gap { display:inline-block; width:70px; height:20px; border-bottom:2px solid #a5a9c8; vertical-align:baseline; margin:0 4px; }
+.ctl select { width:100%; }
+/* 03: prompt | own sentence */
+section[aria-labelledby="t3"] .question { display:grid; grid-template-columns:400px 1fr; gap:28px; align-items:start; }
+.sentence-prompt { margin:0; padding-top:6px; }
+/* 04: listen | word | hint */
+.sounds { list-style:none; padding:0; margin:0; display:grid; gap:0; }
+.sounds li { display:grid; grid-template-columns:56px 170px 1fr; gap:14px; align-items:center; padding:10px 0; border-bottom:1px solid #eef0f6; }
+.sounds li:last-child { border-bottom:0; }
+.sounds .w { font-weight:700; font-size:19px; }
 .sounds .h { color:var(--muted); font-size:16px; }
-input, textarea, select { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+/* Local preview only: the shared hw.css styles .hw-field on the live page and wins over these. */
+input, textarea, select { font:inherit; color:#1d4ed8; background:#f8f9fc; border:1.5px solid #b3b8cf; border-radius:8px; padding:6px 10px; }
 textarea { display:block; width:100%; min-height:72px; line-height:1.6; resize:vertical; }
 select { min-width:150px; min-height:44px; }
 .print-opts { display:none; }
-.pbox { display:inline-block; width:110px; height:26px; border:1.5px solid #a4b5c0; border-radius:6px; background:#f8fafb; vertical-align:middle; }
+.pbox { display:inline-block; width:110px; height:26px; border:1.5px solid #b3b8cf; border-radius:6px; background:#f8f9fc; vertical-align:middle; }
 .pbox.wide { width:230px; }
 .nowrap { white-space:nowrap; }
+.say { border:1px solid #c7cbf5; background:var(--accent-soft); color:var(--accent); border-radius:10px; width:44px; height:40px; cursor:pointer; font-size:17px; }
+.say:hover { background:#e0e3ff; }
+@media (max-width:860px) {
+  .phrases { grid-template-columns:1fr 1fr; }
+  section[aria-labelledby="t3"] .question { grid-template-columns:1fr; gap:8px; }
+}
 @media (max-width:620px) {
-  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:22px 18px; border-radius:14px; }
-  .phrases { grid-template-columns:1fr; } .rowq { flex-wrap:wrap; } .instruction { font-size:19px; }
-  .sounds li { flex-direction:column; gap:0; }
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 20px 22px 24px; border-radius:14px; }
+  .instruction { font-size:19px; } .edition { font-size:12px; }
+  .phrases { grid-template-columns:1fr; }
+  .item3 { grid-template-columns:32px 1fr; gap:8px 10px; } .item3 textarea { grid-column:1 / -1; }
+  .row { grid-template-columns:1fr; gap:8px; }
+  .sounds li { grid-template-columns:52px 1fr; row-gap:2px; } .sounds .h { grid-column:2; }
 }
 @page { size:A4; margin:11mm; }
 @media print {
-  select { display:none !important; } .print-opts { display:inline !important; }
+  select { display:none !important; } .print-opts { display:inline !important; } .say { display:none; }
   body { background:white; font-size:11.5pt; line-height:1.45; } .wrap { padding:0; max-width:none; }
-  .exercise { padding:14px 20px; margin-bottom:12px; }
+  .exercise { box-shadow:none; padding:14px 22px 12px 26px; margin-bottom:12px; border-radius:14px; }
   .page-header { padding-bottom:12px; } .heading-row { margin:8px 0 12px; } .page-meta { padding-top:10px; }
+  h1 { font-size:30px; } .eyebrow { font-size:10px; padding:3px 10px; }
   .question { padding:6px 0; } .instruction { font-size:15pt; margin-bottom:8px; }
+  .phrases { gap:6px; margin-bottom:10px; } .phrases li { padding:5px 10px; font-size:10.5pt; } .phrases span { font-size:10pt; }
+  .item3 { grid-template-columns:24px 200px 1fr; gap:10px; } .item3 .qlab { padding-top:2px; }
+  .row { grid-template-columns:1fr 250px; gap:14px; } .ctl .print-opts { white-space:nowrap; font-size:10.5pt; } .pbox { width:64px; height:20px; } .pbox.wide { width:120px; }
+  .pick .print-opts { white-space:nowrap; } .prompt { line-height:1.4; }
+  section[aria-labelledby="t3"] .question { grid-template-columns:300px 1fr; gap:14px; }
+  .sounds li { grid-template-columns:150px 1fr; padding:5px 0; }
   textarea { resize:none; min-height:0; height:48px; }
   textarea.hw-field { min-height:0 !important; height:48px !important; }
   .note { padding:8px 16px; margin-bottom:10px; break-inside:avoid; page-break-inside:avoid; }
 }
 body.hw-pdf-mode { background:white; }
-.say{border:1px solid #cbd5e1;background:#fff;border-radius:8px;min-width:40px;min-height:36px;margin-right:8px;cursor:pointer;font-size:16px}@media print{.say{display:none}}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -91,12 +121,9 @@ body.hw-pdf-mode { background:white; }
     <li><strong>off the top of my head</strong> <span>without&nbsp;checking</span></li>
   </ul>
   <div class="note"><p class="mini">Like this, with a phrase from the lesson that is not on the list: We went to a <strong>fine dining</strong> place on Friday, and honestly the bread was the best&nbsp;part.</p></div>
-  <div class="question"><div class="rowq"><span class="qlab">1.</span><select class="hw-field" data-k="p1" data-label="1. Phrase chosen"><option value="">Choose a phrase</option><option value="nice and even">nice and even</option><option value="ultimately">ultimately</option><option value="it makes a difference">it makes a difference</option><option value="crave / a craving">crave / a craving</option><option value="foster">foster</option><option value="off the top of my head">off the top of my head</option></select><span class="print-opts">Phrase: <span class="pbox wide"></span></span></div>
-    <textarea class="hw-field" rows="2" data-k="s1" data-label="1. Your sentence" spellcheck="false" aria-label="Your sentence 1"></textarea></div>
-  <div class="question"><div class="rowq"><span class="qlab">2.</span><select class="hw-field" data-k="p2" data-label="2. Phrase chosen"><option value="">Choose a phrase</option><option value="nice and even">nice and even</option><option value="ultimately">ultimately</option><option value="it makes a difference">it makes a difference</option><option value="crave / a craving">crave / a craving</option><option value="foster">foster</option><option value="off the top of my head">off the top of my head</option></select><span class="print-opts">Phrase: <span class="pbox wide"></span></span></div>
-    <textarea class="hw-field" rows="2" data-k="s2" data-label="2. Your sentence" spellcheck="false" aria-label="Your sentence 2"></textarea></div>
-  <div class="question"><div class="rowq"><span class="qlab">3.</span><select class="hw-field" data-k="p3" data-label="3. Phrase chosen"><option value="">Choose a phrase</option><option value="nice and even">nice and even</option><option value="ultimately">ultimately</option><option value="it makes a difference">it makes a difference</option><option value="crave / a craving">crave / a craving</option><option value="foster">foster</option><option value="off the top of my head">off the top of my head</option></select><span class="print-opts">Phrase: <span class="pbox wide"></span></span></div>
-    <textarea class="hw-field" rows="2" data-k="s3" data-label="3. Your sentence" spellcheck="false" aria-label="Your sentence 3"></textarea></div>
+  <div class="question item3"><span class="qlab">1.</span><div class="pick"><select class="hw-field" data-k="p1" data-label="1. Phrase chosen"><option value="">Choose a phrase</option><option value="nice and even">nice and even</option><option value="ultimately">ultimately</option><option value="it makes a difference">it makes a difference</option><option value="crave / a craving">crave / a craving</option><option value="foster">foster</option><option value="off the top of my head">off the top of my head</option></select><span class="print-opts">Phrase: <span class="pbox wide"></span></span></div><textarea class="hw-field" rows="2" data-k="s1" data-label="1. Your sentence" spellcheck="false" aria-label="Your sentence 1"></textarea></div>
+  <div class="question item3"><span class="qlab">2.</span><div class="pick"><select class="hw-field" data-k="p2" data-label="2. Phrase chosen"><option value="">Choose a phrase</option><option value="nice and even">nice and even</option><option value="ultimately">ultimately</option><option value="it makes a difference">it makes a difference</option><option value="crave / a craving">crave / a craving</option><option value="foster">foster</option><option value="off the top of my head">off the top of my head</option></select><span class="print-opts">Phrase: <span class="pbox wide"></span></span></div><textarea class="hw-field" rows="2" data-k="s2" data-label="2. Your sentence" spellcheck="false" aria-label="Your sentence 2"></textarea></div>
+  <div class="question item3"><span class="qlab">3.</span><div class="pick"><select class="hw-field" data-k="p3" data-label="3. Phrase chosen"><option value="">Choose a phrase</option><option value="nice and even">nice and even</option><option value="ultimately">ultimately</option><option value="it makes a difference">it makes a difference</option><option value="crave / a craving">crave / a craving</option><option value="foster">foster</option><option value="off the top of my head">off the top of my head</option></select><span class="print-opts">Phrase: <span class="pbox wide"></span></span></div><textarea class="hw-field" rows="2" data-k="s3" data-label="3. Your sentence" spellcheck="false" aria-label="Your sentence 3"></textarea></div>
 </section>
 
 <section class="exercise" aria-labelledby="t2">
@@ -106,12 +133,12 @@ body.hw-pdf-mode { background:white; }
     <p>Habits and facts: <strong>present simple</strong>. Happening now, or a temporary situation around now (this week, these days): <strong>present continuous</strong>.</p>
     <p class="mini">Every Monday our team <strong>plans</strong> the sprint. (It happens every&nbsp;week.)</p>
   </div>
-  <div class="question"><p class="prompt"><span class="qlab">4.</span> I <select class="hw-field" data-k="g1" data-label="4. I ___ the metrics first thing in the morning."><option value="">Choose</option><option value="am checking">am checking</option><option value="check">check</option></select><span class="print-opts"><span class="pbox"></span> (am checking / check)</span> the metrics first thing in the morning.</p></div>
-  <div class="question"><p class="prompt"><span class="qlab">5.</span> Can I call you back? I <select class="hw-field" data-k="g2" data-label="5. Can I call you back? I ___ a demo to a client at the moment."><option value="">Choose</option><option value="am giving">am giving</option><option value="give">give</option></select><span class="print-opts"><span class="pbox"></span> (am giving / give)</span> a demo to a client at the moment.</p></div>
-  <div class="question"><p class="prompt"><span class="qlab">6.</span> This week we <select class="hw-field" data-k="g3" data-label="6. This week we ___ the release, because the payment bug is still open."><option value="">Choose</option><option value="are delaying">are delaying</option><option value="delay">delay</option></select><span class="print-opts"><span class="pbox"></span> (are delaying / delay)</span> the release, because the payment bug is still open.</p></div>
-  <div class="question"><p class="prompt"><span class="qlab">7.</span> Our app <select class="hw-field" data-k="g4" data-label="7. Our app ___ about two million users a month."><option value="">Choose</option><option value="is having">is having</option><option value="has">has</option></select><span class="print-opts"><span class="pbox"></span> (is having / has)</span> about two million users a month.</p></div>
-  <div class="question"><p class="prompt"><span class="qlab">8.</span> Most of our users <select class="hw-field" data-k="g5" data-label="8. Most of our users ___ the app on their phones, not on laptops."><option value="">Choose</option><option value="are using">are using</option><option value="use">use</option></select><span class="print-opts"><span class="pbox"></span> (are using / use)</span> the app on their phones, not&nbsp;on&nbsp;laptops.</p></div>
-  <div class="question"><p class="prompt"><span class="qlab">9.</span> Sorry, the dashboard <select class="hw-field" data-k="g6" data-label="9. Sorry, the dashboard ___ really slowly today."><option value="">Choose</option><option value="is loading">is loading</option><option value="loads">loads</option></select><span class="print-opts"><span class="pbox"></span> (is loading / loads)</span> really slowly today.</p></div>
+  <div class="question row"><p class="prompt"><span class="qlab">4.</span> I <span class="gap"></span> the metrics first thing in the morning.</p><div class="ctl"><select class="hw-field" data-k="g1" data-label="4. I ___ the metrics first thing in the morning."><option value="">Choose</option><option value="am checking">am checking</option><option value="check">check</option></select><span class="print-opts"><span class="pbox"></span> (am checking / check)</span></div></div>
+  <div class="question row"><p class="prompt"><span class="qlab">5.</span> Can I call you back? I <span class="gap"></span> a demo to a client at the moment.</p><div class="ctl"><select class="hw-field" data-k="g2" data-label="5. Can I call you back? I ___ a demo to a client at the moment."><option value="">Choose</option><option value="am giving">am giving</option><option value="give">give</option></select><span class="print-opts"><span class="pbox"></span> (am giving / give)</span></div></div>
+  <div class="question row"><p class="prompt"><span class="qlab">6.</span> This week we <span class="gap"></span> the release, because the payment bug is still open.</p><div class="ctl"><select class="hw-field" data-k="g3" data-label="6. This week we ___ the release, because the payment bug is still open."><option value="">Choose</option><option value="are delaying">are delaying</option><option value="delay">delay</option></select><span class="print-opts"><span class="pbox"></span> (are delaying / delay)</span></div></div>
+  <div class="question row"><p class="prompt"><span class="qlab">7.</span> Our app <span class="gap"></span> about two million users a month.</p><div class="ctl"><select class="hw-field" data-k="g4" data-label="7. Our app ___ about two million users a month."><option value="">Choose</option><option value="is having">is having</option><option value="has">has</option></select><span class="print-opts"><span class="pbox"></span> (is having / has)</span></div></div>
+  <div class="question row"><p class="prompt"><span class="qlab">8.</span> Most of our users <span class="gap"></span> the app on their phones, not&nbsp;on&nbsp;laptops.</p><div class="ctl"><select class="hw-field" data-k="g5" data-label="8. Most of our users ___ the app on their phones, not on laptops."><option value="">Choose</option><option value="are using">are using</option><option value="use">use</option></select><span class="print-opts"><span class="pbox"></span> (are using / use)</span></div></div>
+  <div class="question row"><p class="prompt"><span class="qlab">9.</span> Sorry, the dashboard <span class="gap"></span> really slowly today.</p><div class="ctl"><select class="hw-field" data-k="g6" data-label="9. Sorry, the dashboard ___ really slowly today."><option value="">Choose</option><option value="is loading">is loading</option><option value="loads">loads</option></select><span class="print-opts"><span class="pbox"></span> (is loading / loads)</span></div></div>
 </section>
 
 <section class="exercise" aria-labelledby="t3">

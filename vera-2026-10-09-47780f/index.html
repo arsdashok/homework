@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vera: Homework 9 October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2a4a; --blue: #1d4e89; --line: #9db3cc; --bg: #eef3f9; --paper: #ffffff;
+    --accent: #ff7a1a; --accent-ink: #b9500a; --muted: #56677c;
+  }
+  @page { size: A4; margin: 9mm 11mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-size: 16px; line-height: 1.45;
+    color: var(--navy); background: var(--bg); max-width: 800px; margin: 0 auto; padding: 18px 14px 20px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+
+  /* header = an engineering drawing title block */
+  header.tb {
+    position: relative; overflow: hidden; background: var(--navy); color: #fff; border-radius: 12px;
+    padding: 22px 24px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  header.tb svg.grid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .tb-main, .tb-block { position: relative; z-index: 1; }
+  .kicker { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  header.tb h1 { font-size: 36px; line-height: 1.05; font-weight: 800; letter-spacing: -.01em; }
+  .tb-block { flex: none; border: 1.5px solid rgba(255,255,255,.55); border-radius: 6px; min-width: 190px; }
+  .tb-block div { padding: 5px 12px; font-size: 15px; font-weight: 500; border-top: 1px solid rgba(255,255,255,.3); }
+  .tb-block div:first-child { border-top: 0; }
+  .tb-block span { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9fc0e6; }
+
+  /* parts */
+  .part {
+    position: relative; background: var(--paper); border: 1.5px solid var(--navy); border-radius: 10px;
+    padding: 18px 22px 20px; margin-bottom: 18px; box-shadow: 4px 4px 0 rgba(11,42,74,.13);
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plabel { font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 4px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: 4px; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+  .q { page-break-inside: avoid; break-inside: avoid; }
+
+  .gn { flex: none; width: 28px; height: 28px; line-height: 28px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 14px; font-weight: 700; text-align: center; }
+
+  /* part 1 */
+  .jq { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line); }
+  .note + .jq { border-top: 0; }
+  .jq .gn { margin-top: 2px; }
+  .jbody { flex: 1; min-width: 0; }
+  .jq .two { font-size: 14.5px; color: var(--muted); margin-bottom: 4px; }
+  .jq .joined { font-size: 17.5px; line-height: 2.3; }
+  .jq .joined-instr { font-size: 17px; font-weight: 500; margin-bottom: 6px; }
+  select.rel { min-width: 140px !important; margin: 0 4px; vertical-align: middle; }
+  textarea.resp {
+    display: block; width: 100%; min-height: 64px; font: inherit; font-size: 16px; line-height: 1.5; color: #1d4ed8;
+    padding: 9px 12px; border: 2px solid #8fa8c8; border-radius: 8px; background: #f7faff; resize: vertical;
+  }
+
+  /* part 2 */
+  .model { display: flex; align-items: center; gap: 18px; background: #fff8f1; border-left: 4px solid var(--accent); border-radius: 8px; padding: 8px 16px; margin: 10px 0 16px; }
+  .model .mfig { flex: none; width: 210px; }
+  .mlabel { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 2px; }
+  .mphrase { font-size: 19px; font-weight: 500; }
+  .mphrase b { color: var(--accent-ink); }
+  svg.boxfig { display: block; width: 100%; height: auto; font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; }
+  .dgrid { display: flex; flex-direction: column; gap: 14px; }
+  .dq { display: grid; grid-template-columns: 200px 1fr; grid-template-rows: auto 1fr; column-gap: 18px; align-items: center; padding-top: 12px; border-top: 1px dashed var(--line); }
+  .dq .dhead { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 500; margin-bottom: 2px; }
+  .dq svg.boxfig { grid-column: 1; }
+  section textarea.resp.dim { grid-column: 2; min-height: 64px !important; font-size: 17px; }
+  .cue { color: var(--muted); font-size: .9em; white-space: nowrap; }
+
+  /* part 3 */
+  .gq { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+  .gq .gn { margin-top: 9px; }
+  .gq p { font-size: 17.5px; line-height: 2.5; }
+  input.vgap { width: 160px; min-width: 0 !important; margin: 0 4px; vertical-align: middle; font-size: 16px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 8px 16px; }
+    header.tb { flex-direction: column; align-items: flex-start; padding: 18px; }
+    header.tb h1 { font-size: 30px; }
+    .tb-block { width: 100%; display: flex; }
+    .tb-block div { flex: 1; border-top: 0; border-left: 1px solid rgba(255,255,255,.3); padding: 5px 8px; font-size: 13.5px; }
+    .tb-block div:first-child { border-left: 0; }
+    .part { padding: 15px 12px 16px; }
+    .instr { font-size: 19px; }
+    .gn { width: 24px; height: 24px; line-height: 24px; font-size: 12.5px; }
+    .jq .joined, .gq p { font-size: 16px; }
+    .model { flex-direction: column; align-items: flex-start; }
+    .model .mfig { width: 190px; }
+    .dq { grid-template-columns: 1fr; }
+    .dq svg.boxfig { max-width: 230px; }
+    section textarea.resp.dim { grid-column: 1; margin-top: 6px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 13px; padding: 0; max-width: none; }
+    header.tb { padding: 8px 16px; margin-bottom: 6px; border-radius: 8px; }
+    header.tb h1 { font-size: 23px; }
+    .kicker { font-size: 10px; margin-bottom: 3px; }
+    .tb-block { min-width: 160px; }
+    .tb-block div { padding: 2px 10px; font-size: 12px; }
+    .tb-block span { font-size: 8.5px; }
+    .part { padding: 8px 14px 9px; margin-bottom: 6px; box-shadow: none; }
+    .plabel { font-size: 10px; margin-bottom: 1px; }
+    .instr { font-size: 16px; margin-bottom: 1px; }
+    .note { font-size: 11px; margin-bottom: 4px; }
+    .gn { width: 18px; height: 18px; line-height: 18px; font-size: 10px; }
+    .jq { padding: 2px 0; }
+    .jq .two { font-size: 11px; margin-bottom: 0; }
+    .jq .joined { font-size: 13px; line-height: 1.75; }
+    .jq .joined-instr { font-size: 13px; margin-bottom: 3px; }
+    select.rel { min-height: 22px !important; font-size: 12px; }
+    textarea.resp { min-height: 30px; height: 30px; resize: none; overflow: hidden; border-width: 1.5px; }
+    textarea.resp::placeholder, input.dim::placeholder { color: transparent; }
+    .model { padding: 4px 12px; margin: 4px 0 6px; }
+    .model .mfig { width: 125px; }
+    .mphrase { font-size: 14px; }
+    .dgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+    .dq { grid-template-columns: 120px 1fr; column-gap: 10px; padding-top: 3px; }
+    .dq .dhead { font-size: 12px; margin-bottom: 0; }
+    .dq svg.boxfig { max-width: 120px; }
+    section textarea.resp.dim { grid-column: 2; font-size: 12px; min-height: 44px !important; height: 44px; white-space: pre-wrap; }
+    .gq { margin-bottom: 0; }
+    .gq .gn { margin-top: 5px; }
+    .gq p { font-size: 13px; line-height: 2.1; }
+    input.vgap { min-height: 22px !important; }
+  }
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Vera" data-sheet="English 2026-10-09" data-sheet-id="vera-2026-10-09-english">
+<div id="sheet">
+
+
+<header class="tb">
+  <svg class="grid" aria-hidden="true"><defs><pattern id="tbgrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity=".13" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#tbgrid)"/></svg>
+  <div class="tb-main">
+    <div class="kicker">Technical English &middot; Unit&nbsp;1 &middot; Systems</div>
+    <h1>Joining ideas and sizes</h1>
+  </div>
+  <div class="tb-block">
+    <div><span>Name</span>Vera</div>
+    <div><span>Date</span>9 October 2026</div>
+    <div><span>Time</span>about 10&nbsp;minutes</div>
+  </div>
+</header>
+
+<section class="part">
+  <div class="plabel">Part 1 &middot; Two sentences into one</div>
+  <p class="instr">Choose who, which, where or from&nbsp;where.</p>
+  <p class="note">The grey line shows the two short&nbsp;sentences.</p>
+  <div class="jq q"><span class="gn">1</span><div class="jbody"><p class="two">The helicopter has a winch. The winch lifts people out of the&nbsp;water.</p><p class="joined">The helicopter has a winch, <select class="hw-field rel" data-k="j1" data-label="1.1 The helicopter has a winch, ___ lifts people out of the water." aria-label="1.1 The helicopter has a winch, ___ lifts people out of the water."><option value="">Choose</option><option value="who">who</option><option value="which">which</option><option value="where">where</option><option value="from where">from where</option></select> lifts people out of the&nbsp;water.</p></div></div><div class="jq q"><span class="gn">2</span><div class="jbody"><p class="two">The engineer repaired the beacon. The engineer works at the rescue&nbsp;centre.</p><p class="joined">The engineer <select class="hw-field rel" data-k="j2" data-label="1.2 The engineer ___ repaired the beacon works at the rescue centre." aria-label="1.2 The engineer ___ repaired the beacon works at the rescue centre."><option value="">Choose</option><option value="who">who</option><option value="which">which</option><option value="where">where</option><option value="from where">from where</option></select> repaired the beacon works at the rescue&nbsp;centre.</p></div></div><div class="jq q"><span class="gn">3</span><div class="jbody"><p class="two">This is the control room. The operators watch the alarms in the control&nbsp;room.</p><p class="joined">This is the control room <select class="hw-field rel" data-k="j3" data-label="1.3 This is the control room ___ the operators watch the alarms." aria-label="1.3 This is the control room ___ the operators watch the alarms."><option value="">Choose</option><option value="who">who</option><option value="which">which</option><option value="where">where</option><option value="from where">from where</option></select> the operators watch the&nbsp;alarms.</p></div></div><div class="jq q"><span class="gn">4</span><div class="jbody"><p class="two">The pilot flew the helicopter. The pilot found the boat in two&nbsp;hours.</p><p class="joined">The pilot <select class="hw-field rel" data-k="j4" data-label="1.4 The pilot ___ flew the helicopter found the boat in two hours." aria-label="1.4 The pilot ___ flew the helicopter found the boat in two hours."><option value="">Choose</option><option value="who">who</option><option value="which">which</option><option value="where">where</option><option value="from where">from where</option></select> flew the helicopter found the boat in two&nbsp;hours.</p></div></div><div class="jq q"><span class="gn">5</span><div class="jbody"><p class="two">The sailors were taken to the base. From the base they were flown to&nbsp;hospital.</p><p class="joined">The sailors were taken to the base, <select class="hw-field rel" data-k="j5" data-label="1.5 The sailors were taken to the base, ___ they were flown to hospital." aria-label="1.5 The sailors were taken to the base, ___ they were flown to hospital."><option value="">Choose</option><option value="who">who</option><option value="which">which</option><option value="where">where</option><option value="from where">from where</option></select> they were flown to&nbsp;hospital.</p></div></div><div class="jq q"><span class="gn">6</span><div class="jbody"><p class="two">Anna is the operator. Anna checks the alarm every&nbsp;morning.</p><p class="joined-instr">Now join them yourself. Write the whole&nbsp;sentence.</p><textarea class="hw-field resp" rows="2" data-k="j6" data-label="1.6 Join: Anna is the operator. Anna checks the alarm every morning." aria-label="Sentence 6" placeholder="Type your answer here"></textarea></div></div>
+</section>
+
+<section class="part">
+  <div class="plabel">Part 2 &middot; Sizes</div>
+  <p class="instr">Write the size of each part, like the&nbsp;model.</p>
+  <div class="model"><div class="mfig"><svg class="boxfig" viewBox="0 0 250 190" role="img" aria-label="the rescue beacon from the lesson: 260 mm, 102 mm, 83 mm"><polygon points="102.6,41.9 118.9,30.0 155.4,30.0 139.1,41.9" fill="#d5e4f4" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><polygon points="139.1,41.9 155.4,30.0 155.4,123.1 139.1,135.0" fill="#bcd6f0" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><rect x="102.6" y="41.9" width="36.5" height="93.1" fill="#fff4ea" stroke="#0b2a4a" stroke-width="2"/><line x1="90.6" y1="41.9" x2="90.6" y2="135.0" stroke="#ff7a1a" stroke-width="2"/><line x1="85.6" y1="41.9" x2="95.6" y2="41.9" stroke="#ff7a1a" stroke-width="2"/><line x1="85.6" y1="135.0" x2="95.6" y2="135.0" stroke="#ff7a1a" stroke-width="2"/><text x="83.6" y="93.4" text-anchor="end" font-size="16" font-weight="700" fill="#0b2a4a">260 mm</text><line x1="102.6" y1="148.0" x2="139.1" y2="148.0" stroke="#ff7a1a" stroke-width="2"/><line x1="102.6" y1="143.0" x2="102.6" y2="153.0" stroke="#ff7a1a" stroke-width="2"/><line x1="139.1" y1="143.0" x2="139.1" y2="153.0" stroke="#ff7a1a" stroke-width="2"/><text x="120.8" y="166.0" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2a4a">102 mm</text><line x1="148.1" y1="142.0" x2="164.4" y2="130.1" stroke="#ff7a1a" stroke-width="2"/><text x="164.3" y="145.1" font-size="16" font-weight="700" fill="#0b2a4a">83 mm</text></svg></div><div class="mtxt"><div class="mlabel">Like this</div><p class="mphrase">260 mm high <b>by</b> 102 mm wide <b>by</b> 83 mm&nbsp;deep</p></div></div><div class="dgrid"><div class="dq q"><div class="dhead"><span class="gn">1</span>an alarm panel</div><svg class="boxfig" viewBox="0 0 250 190" role="img" aria-label="an alarm panel: 300 mm, 250 mm, 90 mm"><polygon points="82.2,41.2 97.7,30.0 175.8,30.0 160.3,41.2" fill="#d5e4f4" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><polygon points="160.3,41.2 175.8,30.0 175.8,123.8 160.3,135.0" fill="#bcd6f0" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><rect x="82.2" y="41.2" width="78.1" height="93.8" fill="#eaf2fb" stroke="#0b2a4a" stroke-width="2"/><line x1="70.2" y1="41.2" x2="70.2" y2="135.0" stroke="#ff7a1a" stroke-width="2"/><line x1="65.2" y1="41.2" x2="75.2" y2="41.2" stroke="#ff7a1a" stroke-width="2"/><line x1="65.2" y1="135.0" x2="75.2" y2="135.0" stroke="#ff7a1a" stroke-width="2"/><text x="63.2" y="93.1" text-anchor="end" font-size="16" font-weight="700" fill="#0b2a4a">300 mm</text><line x1="82.2" y1="148.0" x2="160.3" y2="148.0" stroke="#ff7a1a" stroke-width="2"/><line x1="82.2" y1="143.0" x2="82.2" y2="153.0" stroke="#ff7a1a" stroke-width="2"/><line x1="160.3" y1="143.0" x2="160.3" y2="153.0" stroke="#ff7a1a" stroke-width="2"/><text x="121.3" y="166.0" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2a4a">250 mm</text><line x1="169.3" y1="142.0" x2="184.8" y2="130.8" stroke="#ff7a1a" stroke-width="2"/><text x="185.1" y="145.4" font-size="16" font-weight="700" fill="#0b2a4a">90 mm</text></svg><textarea class="hw-field resp dim" rows="2" data-k="d1" data-label="2.1 an alarm panel: 300, 250, 90 mm" aria-label="Size of an alarm panel" placeholder="Type your answer here" spellcheck="false"></textarea></div><div class="dq q"><div class="dhead"><span class="gn">2</span>a battery pack</div><svg class="boxfig" viewBox="0 0 250 190" role="img" aria-label="a battery pack: 45 mm, 120 mm, 70 mm"><polygon points="76.5,76.9 102.0,58.3 181.5,58.3 156.0,76.9" fill="#d5e4f4" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><polygon points="156.0,76.9 181.5,58.3 181.5,88.1 156.0,106.7" fill="#bcd6f0" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><rect x="76.5" y="76.9" width="79.5" height="29.8" fill="#eaf2fb" stroke="#0b2a4a" stroke-width="2"/><line x1="64.5" y1="76.9" x2="64.5" y2="106.7" stroke="#ff7a1a" stroke-width="2"/><line x1="59.5" y1="76.9" x2="69.5" y2="76.9" stroke="#ff7a1a" stroke-width="2"/><line x1="59.5" y1="106.7" x2="69.5" y2="106.7" stroke="#ff7a1a" stroke-width="2"/><text x="57.5" y="96.8" text-anchor="end" font-size="16" font-weight="700" fill="#0b2a4a">45 mm</text><line x1="76.5" y1="119.7" x2="156.0" y2="119.7" stroke="#ff7a1a" stroke-width="2"/><line x1="76.5" y1="114.7" x2="76.5" y2="124.7" stroke="#ff7a1a" stroke-width="2"/><line x1="156.0" y1="114.7" x2="156.0" y2="124.7" stroke="#ff7a1a" stroke-width="2"/><text x="116.2" y="137.7" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2a4a">120 mm</text><line x1="165.0" y1="113.7" x2="190.5" y2="95.1" stroke="#ff7a1a" stroke-width="2"/><text x="185.7" y="113.4" font-size="16" font-weight="700" fill="#0b2a4a">70 mm</text></svg><textarea class="hw-field resp dim" rows="2" data-k="d2" data-label="2.2 a battery pack: 45, 120, 70 mm" aria-label="Size of a battery pack" placeholder="Type your answer here" spellcheck="false"></textarea></div><div class="dq q"><div class="dhead"><span class="gn">3</span>a sensor</div><svg class="boxfig" viewBox="0 0 250 190" role="img" aria-label="a sensor: 75 mm, 40 mm, 25 mm"><polygon points="95.8,42.4 112.8,30.0 162.2,30.0 145.2,42.4" fill="#d5e4f4" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><polygon points="145.2,42.4 162.2,30.0 162.2,122.6 145.2,135.0" fill="#bcd6f0" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><rect x="95.8" y="42.4" width="49.4" height="92.6" fill="#eaf2fb" stroke="#0b2a4a" stroke-width="2"/><line x1="83.8" y1="42.4" x2="83.8" y2="135.0" stroke="#ff7a1a" stroke-width="2"/><line x1="78.8" y1="42.4" x2="88.8" y2="42.4" stroke="#ff7a1a" stroke-width="2"/><line x1="78.8" y1="135.0" x2="88.8" y2="135.0" stroke="#ff7a1a" stroke-width="2"/><text x="76.8" y="93.7" text-anchor="end" font-size="16" font-weight="700" fill="#0b2a4a">75 mm</text><line x1="95.8" y1="148.0" x2="145.2" y2="148.0" stroke="#ff7a1a" stroke-width="2"/><line x1="95.8" y1="143.0" x2="95.8" y2="153.0" stroke="#ff7a1a" stroke-width="2"/><line x1="145.2" y1="143.0" x2="145.2" y2="153.0" stroke="#ff7a1a" stroke-width="2"/><text x="120.5" y="166.0" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2a4a">40 mm</text><line x1="154.2" y1="142.0" x2="171.2" y2="129.6" stroke="#ff7a1a" stroke-width="2"/><text x="170.7" y="144.8" font-size="16" font-weight="700" fill="#0b2a4a">25 mm</text></svg><textarea class="hw-field resp dim" rows="2" data-k="d3" data-label="2.3 a sensor: 75, 40, 25 mm" aria-label="Size of a sensor" placeholder="Type your answer here" spellcheck="false"></textarea></div><div class="dq q"><div class="dhead"><span class="gn">4</span>a router</div><svg class="boxfig" viewBox="0 0 250 190" role="img" aria-label="a router: 60 mm, 180 mm, 110 mm"><polygon points="76.5,79.0 102.9,59.8 181.5,59.8 155.1,79.0" fill="#d5e4f4" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><polygon points="155.1,79.0 181.5,59.8 181.5,86.0 155.1,105.2" fill="#bcd6f0" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/><rect x="76.5" y="79.0" width="78.6" height="26.2" fill="#eaf2fb" stroke="#0b2a4a" stroke-width="2"/><line x1="64.5" y1="79.0" x2="64.5" y2="105.2" stroke="#ff7a1a" stroke-width="2"/><line x1="59.5" y1="79.0" x2="69.5" y2="79.0" stroke="#ff7a1a" stroke-width="2"/><line x1="59.5" y1="105.2" x2="69.5" y2="105.2" stroke="#ff7a1a" stroke-width="2"/><text x="57.5" y="97.1" text-anchor="end" font-size="16" font-weight="700" fill="#0b2a4a">60 mm</text><line x1="76.5" y1="118.2" x2="155.1" y2="118.2" stroke="#ff7a1a" stroke-width="2"/><line x1="76.5" y1="113.2" x2="76.5" y2="123.2" stroke="#ff7a1a" stroke-width="2"/><line x1="155.1" y1="113.2" x2="155.1" y2="123.2" stroke="#ff7a1a" stroke-width="2"/><text x="115.8" y="136.2" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2a4a">180 mm</text><line x1="164.1" y1="112.2" x2="190.5" y2="93.0" stroke="#ff7a1a" stroke-width="2"/><text x="185.3" y="111.6" font-size="16" font-weight="700" fill="#0b2a4a">110 mm</text></svg><textarea class="hw-field resp dim" rows="2" data-k="d4" data-label="2.4 a router: 60, 180, 110 mm" aria-label="Size of a router" placeholder="Type your answer here" spellcheck="false"></textarea></div></div>
+</section>
+
+<section class="part">
+  <div class="plabel">Part 3 &middot; Unit 1 verbs</div>
+  <p class="instr">Write the verb in the right&nbsp;form.</p>
+    <div class="gq q"><span class="gn">1</span><p>When a part is ready, the robot arm <input type="text" class="hw-field vgap" data-k="v1" data-label="3.1 When a part is ready, the robot arm ___ it from the holder. (detach)" aria-label="Gap 1" autocomplete="off" spellcheck="false"> it from the&nbsp;holder. <span class="cue">(detach)</span></p></div><div class="gq q"><span class="gn">2</span><p>Last week the inspectors <input type="text" class="hw-field vgap" data-k="v2" data-label="3.2 Last week the inspectors ___ a safety check of the whole factory. (carry out)" aria-label="Gap 2" autocomplete="off" spellcheck="false"> a safety check of the whole&nbsp;factory. <span class="cue">(carry out)</span></p></div>
+</section>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJqMSI6IHsidCI6ICJleGFjdCIsICJhIjogIndoaWNoIn0sICJqMiI6IHsidCI6ICJleGFjdCIsICJhIjogIndobyJ9LCAiajMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGVyZSJ9LCAiajQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgImo1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZnJvbSB3aGVyZSJ9LCAiajYiOiB7InQiOiAib3BlbiJ9LCAiZDEiOiB7InQiOiAib3BlbiJ9LCAiZDIiOiB7InQiOiAib3BlbiJ9LCAiZDMiOiB7InQiOiAib3BlbiJ9LCAiZDQiOiB7InQiOiAib3BlbiJ9LCAidjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkZXRhY2hlcyJ9LCAidjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjYXJyaWVkIG91dCJ9fQ==</script>
+<script src="../assets/hw.js?v=20261008-pdf-layout"></script>
+</body>
+</html>

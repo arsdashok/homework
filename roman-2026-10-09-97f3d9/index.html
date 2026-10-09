@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 9 October 2026</title>
+<!-- Lesson 10 (video: TED 2018 Lydia Machova, The secrets of learning a new language), 9 Oct 2026.
+     SHORT sheet (about 12-15 min): the 8 Oct sheet is kept for next week (Dasha, end of lesson).
+     Part 1 = the NEW frame «At first ..., but ... kept + -ing, and ...». Notes in the present, so he builds
+     the past himself: couldn't + base (item 3), spoke (4), won (5). Only item 1 (a program he did not
+     understand) takes «it started to make sense»; 2 = now + present, 3 = now, 4 and 5 = past result.
+     Model = guitar (in no item), past ending «I played», no couldn't, no make-sense ending.
+     Part 2 = the protected writing (card 4) that did not run. Part 3 = 8 gaps, today's phrases,
+     English only, two spare bank words. One Spain element: «learning Spanish» as a writing option. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 820px; margin: auto; }
+  p, .do, .note { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 17px; font-weight: 600; color: #1f2a24; margin: 2px 0 8px; }
+  .note { font-size: 14px; color: #626a62; margin: -4px 0 8px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .prompt { font-size: 16px; margin-bottom: 6px; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+
+  /* situation notes */
+  .notes { font-family: Georgia, 'Times New Roman', serif; font-size: 16.5px; color: #1f2a24; }
+  .notes .who { font-family: Arial, Helvetica, sans-serif; font-size: inherit; font-weight: 600; color: #1f2a24; margin-right: 6px; }
+  .notes .sep { color: #9fb3a5; margin: 0 6px; }
+
+  /* gap sentences */
+  .vline { line-height: 2.1; margin-bottom: 0; }
+  .gap { display: inline-block; width: auto; min-height: 0; height: 30px; padding: 3px 8px; margin: 0 3px; vertical-align: baseline; font-size: 15px; }
+  .nw { white-space: nowrap; }
+  @media (max-width: 620px) { .gap { max-width: 100%; } }
+
+  .bank {
+    display: flex; flex-wrap: wrap; gap: 6px 14px;
+    border: 1px dashed #9fb3a5; border-radius: 5px;
+    padding: 8px 14px; margin: 4px 0 10px;
+    font-family: Georgia, 'Times New Roman', serif; font-size: 16.5px; color: #1f2a24;
+  }
+  div.write { min-height: 150px !important; white-space: pre-wrap; }
+
+  @media print {
+    body { font-size: 12px; line-height: 1.3; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 20px; margin: 4px 0 1px; }
+    .lede { font-size: 11.5px; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 16px; margin-bottom: 2px; }
+    .do { font-size: 13px; margin-bottom: 5px; }
+    .note { font-size: 11px; margin-bottom: 4px; }
+    .model { font-size: 12.5px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 4px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 1px; }
+    .prompt { font-size: 12px; margin-bottom: 3px; }
+    .notes { font-size: 12.5px; }
+    .resp { font-size: 12px; padding: 3px 9px; height: 26px; }
+    .resp::placeholder { color: transparent; }
+    .vline { line-height: 1.75; }
+    .gap { height: 21px; font-size: 11.5px; padding: 1px 7px; }
+    .bank { font-size: 12.5px; padding: 4px 11px; margin-bottom: 5px; }
+    div.write { min-height: 95px !important; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-10-09" data-sheet-id="roman-2026-10-09-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>9 October 2026</span></div>
+    <h1>At first&hellip;, but I kept&nbsp;going</h1>
+    <div class="lede">About 15&nbsp;minutes.</div>
+  </header>
+
+  <div class="task">
+    <h2>1. At first&hellip;, but&hellip; kept&hellip;, and&hellip;</h2>
+    <div class="do">Turn the notes into one sentence, like the example: <i>At first &hellip;, but &hellip; kept + -ing, and&nbsp;&hellip;</i></div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="notes">I &middot; first: my fingers hurt <span class="sep">|</span> practise the guitar every evening <span class="sep">|</span> after a year: play my first song for my family</span><br>
+      &rarr; <b>At first my fingers hurt, but I kept practising every evening, and after a year I played my first song for my&nbsp;family.</b>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><div>
+      <p class="prompt notes"><span class="who">I &middot;</span>first: a new program at work, I don&rsquo;t understand the menus <span class="sep">|</span> use it every day <span class="sep">|</span> after a month: understand how it&nbsp;works</p>
+      <input class="hw-field resp" data-k="k1" data-label="1. I / new program at work, don't understand the menus / use it every day / after a month: understand how it works" aria-label="Sentence 1" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div>
+      <p class="prompt notes"><span class="who">my friend&rsquo;s daughter &middot;</span>first: she is afraid of deep water <span class="sep">|</span> go to the pool every Saturday <span class="sep">|</span> now: she can swim a whole&nbsp;length</p>
+      <input class="hw-field resp" data-k="k2" data-label="2. my friend's daughter / afraid of deep water / go to the pool every Saturday / now: can swim a whole length" aria-label="Sentence 2" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div>
+      <p class="prompt notes"><span class="who">I &middot;</span>first: I can&rsquo;t bake a soft loaf of bread <span class="sep">|</span> try a new recipe every weekend <span class="sep">|</span> now: my family asks for my&nbsp;bread</p>
+      <input class="hw-field resp" data-k="k3" data-label="3. I / can't bake a soft loaf / try a new recipe every weekend / now: my family asks for my bread" aria-label="Sentence 3" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div>
+      <p class="prompt notes"><span class="who">my business partner &middot;</span>first: he is very nervous before presentations <span class="sep">|</span> give a short talk every month <span class="sep">|</span> last year: speak at a conference for 500&nbsp;people</p>
+      <input class="hw-field resp" data-k="k4" data-label="4. my business partner / nervous before presentations / give a short talk every month / last year: speak at a conference for 500 people" aria-label="Sentence 4" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+
+    <div class="q"><span class="qnum">5.</span><div>
+      <p class="prompt notes"><span class="who">I &middot;</span>first: my elder son wins every game of chess <span class="sep">|</span> play with him every evening <span class="sep">|</span> in the end: win a&nbsp;game</p>
+      <input class="hw-field resp" data-k="k5" data-label="5. I / my elder son wins every game of chess / play with him every evening / in the end: win a game" aria-label="Sentence 5" autocomplete="off" placeholder="Type your answer here">
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>2. Something you learned slowly</h2>
+    <div class="do">Write 3 or 4 sentences. Use <i>At first &hellip;, but I kept &hellip;, and&nbsp;&hellip;</i> once.</div>
+    <div class="note">Building your company, learning Spanish, or something&nbsp;else.</div>
+    <div class="hw-field resp write" contenteditable="true" data-k="w1" data-label="2. Something you learned slowly (3-4 sentences: At first ..., but I kept ..., and ...)" aria-label="Your text"></div>
+  </div>
+
+  <div class="task">
+    <h2>3. Words from this week</h2>
+    <div class="do">Fill each gap from the box. Change the form if you need&nbsp;to.</div>
+    <div class="bank"><span>copy</span><span>even though</span><span>be happy with</span><span>run into</span><span>from day one</span><span>look it up</span><span>keen on</span><span>add</span><span>fill out</span><span>overcome</span></div>
+    <div class="model">
+      <span class="lab">Example</span>
+      Last spring I <b>took part in</b> a huge conference in&nbsp;Amsterdam.
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><p class="prompt vline">&ldquo;Tea or coffee?&rdquo; &ldquo;I don&rsquo;t mind, I&rsquo;m <input class="hw-field resp gap" style="width:110px" data-k="v1" data-label="1. Tea or coffee? I don't mind, I'm ___ both." aria-label="Gap" autocomplete="off" spellcheck="false"> <span class="nw">both.&rdquo;</span></p></div>
+
+    <div class="q"><span class="qnum">2.</span><p class="prompt vline">We went for a walk by the sea <input class="hw-field resp gap" style="width:120px" data-k="v2" data-label="2. We went for a walk by the sea ___ it was cold and windy." aria-label="Gap" autocomplete="off" spellcheck="false"> it was cold and&nbsp;windy.</p></div>
+
+    <div class="q"><span class="qnum">3.</span><p class="prompt vline">I met a new colleague yesterday, so I <input class="hw-field resp gap" style="width:90px" data-k="v3" data-label="3. I met a new colleague yesterday, so I ___ him on Skype, and now we can chat." aria-label="Gap" autocomplete="off" spellcheck="false"> him on Skype, and now we can&nbsp;chat.</p></div>
+
+    <div class="q"><span class="qnum">4.</span><p class="prompt vline">&ldquo;What does <i>fluent</i> mean?&rdquo; &ldquo;I&rsquo;m not sure. Let&rsquo;s <input class="hw-field resp gap" style="width:110px" data-k="v4" data-label="4. What does fluent mean? I'm not sure. Let's ___ in a dictionary." aria-label="Gap" autocomplete="off" spellcheck="false"> in a&nbsp;dictionary.&rdquo;</p></div>
+
+    <div class="q"><span class="qnum">5.</span><p class="prompt vline">Last year my sister finally <input class="hw-field resp gap" style="width:110px" data-k="v5" data-label="5. Last year my sister finally ___ her fear of flying." aria-label="Gap" autocomplete="off" spellcheck="false"> her fear of&nbsp;flying.</p></div>
+
+    <div class="q"><span class="qnum">6.</span><p class="prompt vline">My colleague is very <input class="hw-field resp gap" style="width:90px" data-k="v6" data-label="6. My colleague is very ___ photography: he takes his camera everywhere." aria-label="Gap" autocomplete="off" spellcheck="false"> photography: he takes his camera&nbsp;everywhere.</p></div>
+
+    <div class="q"><span class="qnum">7.</span><p class="prompt vline">I liked his email so much that I <input class="hw-field resp gap" style="width:90px" data-k="v7" data-label="7. I liked his email so much that I ___ it word for word into my notes." aria-label="Gap" autocomplete="off" spellcheck="false"> it word for word into my&nbsp;notes.</p></div>
+
+    <div class="q"><span class="qnum">8.</span><p class="prompt vline">She loved her new job <input class="hw-field resp gap" style="width:120px" data-k="v8" data-label="8. She loved her new job ___: she didn't need any time to get used to it." aria-label="Gap" autocomplete="off" spellcheck="false">: she didn&rsquo;t need any time to get used to&nbsp;it.</p></div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJrMSI6IHsidCI6ICJvcGVuIn0sICJrMiI6IHsidCI6ICJvcGVuIn0sICJrMyI6IHsidCI6ICJvcGVuIn0sICJrNCI6IHsidCI6ICJvcGVuIn0sICJrNSI6IHsidCI6ICJvcGVuIn0sICJ3MSI6IHsidCI6ICJvcGVuIn0sICJ2MSI6IHsidCI6ICJleGFjdCIsICJhIjogImhhcHB5IHdpdGgifSwgInYyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZXZlbiB0aG91Z2gifSwgInYzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYWRkZWQifSwgInY0IjogeyJ0IjogImV4YWN0IiwgImEiOiAibG9vayBpdCB1cCJ9LCAidjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJvdmVyY2FtZSJ9LCAidjYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJrZWVuIG9uIn0sICJ2NyI6IHsidCI6ICJleGFjdCIsICJhIjogImNvcGllZCJ9LCAidjgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmcm9tIGRheSBvbmUifX0=</script>
+<script src="../assets/hw.js?v=20261008-pdf-layout"></script>
+</body>
+</html>

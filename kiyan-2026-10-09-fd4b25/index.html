@@ -187,6 +187,8 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
 .ksent .pocket { background: #fff; border: 2px dashed var(--k); border-radius: 10px; padding: 2px 9px; color: var(--k); font-weight: 700; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .ksent .pocket u { text-decoration-thickness: 3px; text-underline-offset: 4px; }
 @media (max-width: 700px) { .kind { grid-template-columns: 1fr; } }
+.eqrow.pairrow { gap: 14px; padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px dashed #c4b5fd; }
+.eqrow.pairrow .flabel { font-size: 15px; font-weight: 600; color: #4b5563; }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -296,10 +298,11 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
 
 <section class="task" id="compare">
   <p class="label">Compare</p>
-  <p class="instruction">Change the fraction with the smaller denominator so both denominators are the same. Then&nbsp;compare.</p>
+  <p class="instruction">Look at both fractions first. Change the one with the smaller denominator so both denominators are the same. Then&nbsp;compare.</p>
   <p class="keyline">Choose &lt;, &gt; or =. &nbsp;&nbsp; &lt; means <b>is smaller than</b>. &nbsp;&nbsp; &gt; means <b>is bigger&nbsp;than</b>.</p>
 
   <div class="q item"><span class="num">3</span><div class="cmpwrap">
+    <div class="eqrow pairrow"><span class="flabel">Compare</span><span class="frac big"><span class="fn">3</span><span class="fd">5</span></span><span class="flabel">and</span><span class="frac big"><span class="fn">13</span><span class="fd">20</span></span></div>
     <div class="eqrow conv"><span class="frac big"><span class="fn">3</span><span class="fd">5</span></span> =
       <span class="frac big"><span class="fn"><input type="text" inputmode="numeric" autocomplete="off" data-k="m3n" data-label="Maths 3. 3/5 changed: numerator" aria-label="3. new numerator" class="hw-field"></span><span class="fd"><input type="text" inputmode="numeric" autocomplete="off" data-k="m3d" data-label="Maths 3. 3/5 changed: denominator" aria-label="3. new denominator" class="hw-field"></span></span></div>
     <div class="eqrow cmprow"><span class="flabel">so</span><span class="frac big"><span class="fn">3</span><span class="fd">5</span></span>
@@ -308,6 +311,7 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
   </div></div>
 
   <div class="q item"><span class="num">4</span><div class="cmpwrap">
+    <div class="eqrow pairrow"><span class="flabel">Compare</span><span class="frac big"><span class="fn">4</span><span class="fd">5</span></span><span class="flabel">and</span><span class="frac big"><span class="fn">12</span><span class="fd">15</span></span></div>
     <div class="eqrow conv"><span class="frac big"><span class="fn">4</span><span class="fd">5</span></span> =
       <span class="frac big"><span class="fn"><input type="text" inputmode="numeric" autocomplete="off" data-k="m4n" data-label="Maths 4. 4/5 changed: numerator" aria-label="4. new numerator" class="hw-field"></span><span class="fd"><input type="text" inputmode="numeric" autocomplete="off" data-k="m4d" data-label="Maths 4. 4/5 changed: denominator" aria-label="4. new denominator" class="hw-field"></span></span></div>
     <div class="eqrow cmprow"><span class="flabel">so</span><span class="frac big"><span class="fn">4</span><span class="fd">5</span></span>
@@ -316,6 +320,7 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
   </div></div>
 
   <div class="q item"><span class="num">5</span><div class="cmpwrap">
+    <div class="eqrow pairrow"><span class="flabel">Compare</span><span class="frac big"><span class="fn">7</span><span class="fd">12</span></span><span class="flabel">and</span><span class="frac big"><span class="fn">5</span><span class="fd">6</span></span></div>
     <div class="eqrow conv"><span class="frac big"><span class="fn">5</span><span class="fd">6</span></span> =
       <span class="frac big"><span class="fn"><input type="text" inputmode="numeric" autocomplete="off" data-k="m5n" data-label="Maths 5. 5/6 changed: numerator" aria-label="5. new numerator" class="hw-field"></span><span class="fd"><input type="text" inputmode="numeric" autocomplete="off" data-k="m5d" data-label="Maths 5. 5/6 changed: denominator" aria-label="5. new denominator" class="hw-field"></span></span></div>
     <div class="eqrow cmprow"><span class="flabel">so</span><span class="frac big"><span class="fn">7</span><span class="fd">12</span></span>
@@ -324,6 +329,7 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
   </div></div>
 
   <div class="q item"><span class="num">6</span><div class="cmpwrap">
+    <div class="eqrow pairrow"><span class="flabel">Compare</span><span class="frac big"><span class="fn">7</span><span class="fd">9</span></span><span class="flabel">and</span><span class="frac big"><span class="fn">20</span><span class="fd">27</span></span></div>
     <div class="eqrow conv"><span class="frac big"><span class="fn">7</span><span class="fd">9</span></span> =
       <span class="frac big"><span class="fn"><input type="text" inputmode="numeric" autocomplete="off" data-k="m6n" data-label="Maths 6. 7/9 changed: numerator" aria-label="6. new numerator" class="hw-field"></span><span class="fd"><input type="text" inputmode="numeric" autocomplete="off" data-k="m6d" data-label="Maths 6. 7/9 changed: denominator" aria-label="6. new denominator" class="hw-field"></span></span></div>
     <div class="eqrow cmprow"><span class="flabel">so</span><span class="frac big"><span class="fn">7</span><span class="fd">9</span></span>

@@ -161,7 +161,7 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
   .item { padding: 4px 0; }
   .item + .item { margin-top: 4px; }
   .keyline { margin-bottom: 6px; }
-  .cmpwrap { flex-wrap: nowrap; gap: 8px 18px; }
+  .cmpwrap { flex-wrap: wrap; gap: 8px 18px; }
   .eqrow.conv { width: 150px; flex: 0 0 150px; }
   .q select.sign { min-width: 104px; width: 104px; }
   svg.sbar { width: 150px; }
@@ -174,21 +174,24 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
 
 .remind2 { margin: 4px 0 18px; page-break-inside: avoid; break-inside: avoid; }
 .remind2 .what { font-size: 17px; font-weight: 500; color: #111827; margin-bottom: 10px; }
-.kind { display: grid; grid-template-columns: 310px 1fr; align-items: center; gap: 16px; border: 2px solid var(--k); border-radius: 16px; background: var(--kbg); padding: 12px 18px; margin-bottom: 10px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.kind { display: grid; grid-template-columns: 310px 1fr; align-items: center; gap: 16px; border: 2px solid var(--k); border-radius: 16px; background: var(--kbg); padding: 8px 16px; margin-bottom: 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .kind.rc { --k: #6d4fc2; --kbg: #f5f1ff; }
 .kind.pa { --k: #0f8a7a; --kbg: #ecfbf7; }
-.kleft { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.kleft { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .kname { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--k); border-radius: 999px; padding: 3px 12px; }
 .kchips { display: flex; flex-wrap: wrap; gap: 6px; }
 .kchips .chip { font-size: 15px; padding: 0 11px; }
 .kcap { font-size: 14px; color: #374151; }
-.ksent { font-family: Georgia, 'Times New Roman', serif; font-size: 21px; line-height: 1.5; color: #111827; margin: 0; }
+.ksent { font-family: Georgia, 'Times New Roman', serif; font-size: 20px; line-height: 1.45; color: #111827; margin: 0; }
 .ksent .cm { color: var(--k); font-size: 26px; }
 .ksent .pocket { background: #fff; border: 2px dashed var(--k); border-radius: 10px; padding: 2px 9px; color: var(--k); font-weight: 700; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .ksent .pocket u { text-decoration-thickness: 3px; text-underline-offset: 4px; }
 @media (max-width: 700px) { .kind { grid-template-columns: 1fr; } }
-.eqrow.pairrow { gap: 14px; padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px dashed #c4b5fd; }
+.eqrow.pairrow { flex-basis: 100%; gap: 14px; padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px dashed #c4b5fd; }
 .eqrow.pairrow .flabel { font-size: 15px; font-weight: 600; color: #4b5563; }
+.cmpwrap .spic { flex-basis: 100%; }
+.q.item { align-items: flex-start; }
+#compare .q.item > .num { align-self: flex-start !important; padding-top: 16px !important; margin-top: 0 !important; }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">

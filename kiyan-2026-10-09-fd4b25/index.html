@@ -170,6 +170,23 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
   .frac input { width: 54px; height: 34px; }
   .model .mbars svg.mbar { width: 290px; }
 }
+
+
+.remind2 { margin: 4px 0 18px; page-break-inside: avoid; break-inside: avoid; }
+.remind2 .what { font-size: 17px; font-weight: 500; color: #111827; margin-bottom: 10px; }
+.kind { display: grid; grid-template-columns: 310px 1fr; align-items: center; gap: 16px; border: 2px solid var(--k); border-radius: 16px; background: var(--kbg); padding: 12px 18px; margin-bottom: 10px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.kind.rc { --k: #6d4fc2; --kbg: #f5f1ff; }
+.kind.pa { --k: #0f8a7a; --kbg: #ecfbf7; }
+.kleft { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.kname { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--k); border-radius: 999px; padding: 3px 12px; }
+.kchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.kchips .chip { font-size: 15px; padding: 0 11px; }
+.kcap { font-size: 14px; color: #374151; }
+.ksent { font-family: Georgia, 'Times New Roman', serif; font-size: 21px; line-height: 1.5; color: #111827; margin: 0; }
+.ksent .cm { color: var(--k); font-size: 26px; }
+.ksent .pocket { background: #fff; border: 2px dashed var(--k); border-radius: 10px; padding: 2px 9px; color: var(--k); font-weight: 700; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.ksent .pocket u { text-decoration-thickness: 3px; text-underline-offset: 4px; }
+@media (max-width: 700px) { .kind { grid-template-columns: 1fr; } }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -187,12 +204,16 @@ h2.subject { display: inline-block; font-size: 14px; font-weight: 700; letter-sp
 <div class="part" id="english">
 <h2 class="subject">English</h2>
 
-<div class="remind">
-  <p class="what">Extra information can sit between two commas in&nbsp;two&nbsp;ways.</p>
-  <p class="ex"><span class="tag">Relative clause</span>My cousin, <span class="hl">who lives in Leeds</span>, has a pet&nbsp;snake.</p>
-  <p class="ex"><span class="tag">Parenthesis</span>My cousin, <span class="hl">a keen swimmer</span>, trains every&nbsp;morning.</p>
-  <p class="feat"><b>Parenthesis:</b> a few extra words between commas, no <i>who</i> or&nbsp;<i>which</i>.</p>
-  <div class="chips"><span class="clabel">A relative clause starts with</span><span class="chip">who</span><span class="chip">which</span><span class="chip">whose</span><span class="chip">where</span></div>
+<div class="remind2">
+  <p class="what">Extra information sits between two&nbsp;commas.</p>
+  <div class="kind rc">
+    <div class="kleft"><span class="kname">Relative clause</span><span class="kchips"><span class="chip">who</span><span class="chip">which</span><span class="chip">whose</span><span class="chip">where</span></span></div>
+    <p class="ksent">My cousin<b class="cm">,</b> <span class="pocket"><u>who</u> lives in Leeds</span><b class="cm">,</b> has a pet&nbsp;snake.</p>
+  </div>
+  <div class="kind pa">
+    <div class="kleft"><span class="kname">Parenthesis</span><span class="kcap">a few extra words, no who or&nbsp;which</span></div>
+    <p class="ksent">My cousin<b class="cm">,</b> <span class="pocket">a keen swimmer</span><b class="cm">,</b> trains every&nbsp;morning.</p>
+  </div>
 </div>
 
 <section class="task" id="sort">

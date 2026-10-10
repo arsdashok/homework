@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Clara Homework 10 October 2026</title>
+<style>
+@page { size:A4; margin:15mm 16mm; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:white; -webkit-print-color-adjust:exact; print-color-adjust:exact; font-size:14px; line-height:1.5; }
+.sheet-head { padding:14px 22px; background:#DDF5EB; border-radius:14px; margin-bottom:16px; border-top:5px solid #91D9BC; }
+.eyebrow { font-size:10px; letter-spacing:2px; font-weight:700; text-transform:uppercase; color:#376E59; margin-bottom:3px; }
+.sheet-head h1 { font-size:27px; line-height:1.2; font-weight:700; letter-spacing:-.8px; }
+
+/* subject divider: small label, the instruction is the biggest line in each task */
+.sec-head { display:flex; align-items:center; gap:12px; padding-bottom:8px; border-bottom:2px solid #A5DDC7; margin-bottom:12px; break-after:avoid; page-break-after:avoid; }
+.sec-head .subj { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:#285E49; background:#DDF5EB; border-radius:20px; padding:3px 12px; }
+.sec-head .note { font-size:12px; color:#587369; }
+.page-label { font-size:11px; color:#597B6C; margin-bottom:12px; letter-spacing:.5px; }
+.english { break-before:page; page-break-before:always; }
+
+.block { margin-bottom:14px; }
+.task-label { font-size:10.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#376E59; margin-bottom:2px; break-after:avoid; page-break-after:avoid; }
+.lead { font-size:18px; font-weight:700; color:#1B352D; line-height:1.35; margin:0 0 4px; text-wrap:pretty; break-after:avoid; page-break-after:avoid; }
+.small { font-size:12px; color:#587369; font-weight:400; margin:0 0 6px; text-wrap:pretty; }
+.q { padding:7px 0 8px; border-bottom:1px solid #D9E8E1; break-inside:avoid; page-break-inside:avoid; }
+.q:last-child { border-bottom:0; }
+.q-top { display:flex; gap:12px; align-items:center; }
+.q-num { flex:0 0 27px; height:27px; border-radius:8px; background:#DDF5EB; color:#285E49; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; }
+.prompt { font-size:15px; font-weight:400; font-variant-numeric:tabular-nums; }
+.prompt-q { font-size:15px; font-weight:400; }
+.sum { font-size:16px; letter-spacing:.3px; }
+.rowq { display:flex; align-items:center; justify-content:space-between; gap:24px; flex:1; }
+.rowq .prompt { white-space:nowrap; }
+.nb { width:120px; height:34px; border:1.5px solid #9CB9AC; border-radius:7px; background:white; font:inherit; font-size:15px; text-align:center; font-variant-numeric:tabular-nums; }
+.nb.wide { width:150px; }
+.foot { display:flex; justify-content:space-between; font-size:10px; color:#70867C; border-top:1px solid #D9E8E1; padding-top:9px; margin-top:12px; }
+
+/* estimate and answer rows */
+.arow { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin:6px 0 0 39px; }
+.arow .cap { flex:0 0 72px; font-size:11px; color:#688176; }
+.arow .nb { width:96px; }
+.arow .nb.wide { width:130px; }
+.q-top .arow { margin:0; }
+.arow .op { font-size:15px; color:#4A6B5E; font-weight:700; }
+.arow.ask { justify-content:space-between; gap:16px; }
+
+/* closed choices: on paper an empty menu becomes words to circle */
+.circle-opt { display:none; font-size:13px; color:#243F37; letter-spacing:.2px; }
+
+/* Zoe's work */
+.claim { display:flex; align-items:center; gap:18px; margin:6px 0 2px; padding:8px 14px; background:#EFF9F4; border-left:3px solid #A5DDC7; border-radius:0 6px 6px 0; break-inside:avoid; page-break-inside:avoid; }
+.claim .who { font-size:12px; font-weight:700; color:#285E49; background:#DDF5EB; border-radius:20px; padding:2px 10px; }
+.sent { min-height:52px; border:1.5px solid #9CB9AC; border-radius:7px; background:white; padding:8px 10px; font-size:14.5px; margin:6px 0 0 39px; }
+
+/* worked model beside the two subtractions */
+.with-example { display:grid; grid-template-columns:minmax(0,1fr) 52mm; gap:6mm; align-items:start; }
+.example { border:1px solid #C5DED1; border-left:4px solid #6ee7b7; border-radius:8px; padding:8px 10px; background:#F3FAF6; break-inside:avoid; page-break-inside:avoid; }
+.ex-title { font-size:10.5px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:#376E59; margin-bottom:4px; }
+.ex-line { font-size:11.5px; line-height:1.45; color:#243F37; font-variant-numeric:tabular-nums; }
+.ex-line b { color:#285E49; }
+.nw { white-space:nowrap; }
+.colsum { border-collapse:collapse; margin:6px auto 4px; font-variant-numeric:tabular-nums; font-size:13px; }
+.colsum td { width:17px; height:19px; text-align:center; padding:0; }
+.colsum td.cm { width:6px; }
+.colsum tr.ans td { border-top:2px solid #285E49; font-weight:700; }
+.colsum tr.exch td { font-size:9.5px; height:12px; color:#C2410C; font-weight:700; vertical-align:bottom; line-height:1; }
+.colsum s { text-decoration-color:#C2410C; text-decoration-thickness:1.5px; }
+.colsum.big { margin:0; font-size:16px; }
+.colsum.big td { width:19px; height:23px; }
+.ex-note { font-size:10.5px; color:#587369; line-height:1.4; margin:2px 0 4px; }
+
+/* English */
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
+.chip { padding:5px 14px; border-radius:22px; background:#6ee7b7; color:#123B2E; font-weight:700; font-size:14px; }
+.chip span { font-weight:400; font-size:12.5px; }
+.model { margin:4px 0 8px; padding:8px 14px; background:#F3FAF6; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; break-inside:avoid; page-break-inside:avoid; }
+.model .ex-title { margin-bottom:2px; }
+.model p { font-size:14px; }
+.model .was { color:#587369; }
+.model .now b { color:#285E49; }
+
+@media print {
+ .q { padding:6px 0 7px; }
+ .block { margin-bottom:11px; }
+ .choice-wrap.is-empty select { display:none !important; }
+ .choice-wrap.is-empty .circle-opt { display:inline-block; }
+}
+
+@media screen {
+ body{max-width:1000px;margin:auto;padding:40px 40px 64px;font-size:17px;line-height:1.6}
+ .sheet-head{padding:24px 28px;margin-bottom:34px}.sheet-head h1{font-size:32px}.eyebrow{font-size:12px;margin-bottom:8px}
+ .sec-head{margin-bottom:24px;padding-bottom:12px;gap:16px}.sec-head .subj{font-size:13px;padding:4px 14px}.sec-head .note{font-size:14px}
+ .block{margin-bottom:38px}.task-label{font-size:12.5px;margin-bottom:4px}.lead{font-size:24px;margin:0 0 8px}.small{font-size:15px;margin-bottom:10px}
+ .q{padding:18px 0 20px}.q-top{gap:16px}.q-num{flex-basis:34px;height:34px;font-size:16px}
+ .prompt,.prompt-q{font-size:19px}.sum{font-size:20px}
+ .nb{height:46px;font-size:18px;width:150px}.nb.wide{width:190px}.arow .nb{width:125px}.arow .nb.wide{width:190px}
+ .arow{margin:14px 0 0 50px;gap:10px}.arow .cap{flex-basis:100px;font-size:14px}.arow .op{font-size:19px}
+ .claim{padding:14px 20px;margin:10px 0 6px;gap:24px}.claim .who{font-size:14px}
+ .colsum.big{font-size:21px}.colsum.big td{width:25px;height:31px}
+ section div.sent, div.sent{min-height:92px !important;margin-left:50px;font-size:17px}
+ .with-example{grid-template-columns:minmax(0,1fr) 260px;gap:36px}
+ .example{position:sticky;top:20px;padding:16px 18px;margin-top:14px}
+ .ex-title{font-size:12.5px;margin-bottom:8px}.ex-line{font-size:15px}.ex-note{font-size:13.5px}
+ .colsum{font-size:19px;margin:10px auto 8px}.colsum td{width:22px;height:28px}.colsum td.cm{width:8px}.colsum tr.exch td{font-size:13px;height:16px}
+ .chip{font-size:18px;padding:8px 20px}.chip span{font-size:15px}
+ .model{padding:14px 20px;margin:10px 0 14px}.model p{font-size:18px}
+ .english{margin-top:90px}.page-label{font-size:12px;margin-bottom:22px}
+ .foot{font-size:12px;padding-top:20px;margin-top:30px}.foot>span:last-child{display:none}
+}
+@media screen and (max-width:820px){
+ .with-example{grid-template-columns:1fr}.example{position:static}
+}
+@media screen and (max-width:620px){
+ body{padding:24px 18px 48px}.rowq{flex-wrap:wrap}.rowq .prompt{white-space:normal}
+ .arow{margin-left:0}.q-top{align-items:flex-start}section div.sent, div.sent{margin-left:0}
+ .arow{gap:6px}.arow .cap{flex-basis:100%}.nb{width:104px}.arow .nb{width:84px}.nb.wide,.arow .nb.wide{width:170px}
+ .arow.ask{justify-content:flex-start}
+ .claim{flex-direction:column;align-items:flex-start;gap:8px;padding:12px 14px}
+ .choice-wrap select{max-width:100%}
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Clara" data-sheet="Maths and English 2026-10-10" data-sheet-id="clara-2026-10-10-maths-and-english">
+<div id="sheet">
+
+
+<div class="sheet-head">
+  <div class="eyebrow">Saturday 10 October 2026</div><h1>Clara · Homework</h1>
+</div>
+
+<!-- ============ MATHS ============ -->
+<div class="section maths">
+  <div class="sec-head">
+    <span class="subj">Maths</span>
+    <span class="note">Column subtraction</span>
+  </div>
+
+  <div class="block">
+    <div class="task-label">Column subtraction</div>
+    <p class="lead">Estimate first. Then subtract in columns on paper and type your&nbsp;answer.</p>
+    <p class="small">Round each number to the nearest 10,000: four to the floor, five to the&nbsp;sky.</p>
+
+    <div class="with-example">
+      <div class="qs">
+        <div class="q">
+          <div class="q-top"><div class="q-num">1</div><p class="prompt sum">704,213 − 356,548</p></div>
+          <div class="arow">
+            <span class="cap">Estimate</span>
+            <input class="hw-field nb" data-k="s1_r1" data-label="1. 704,213 − 356,548: estimate, first number rounded" aria-label="1. Estimate, first number rounded" autocomplete="off" spellcheck="false">
+            <span class="op">−</span>
+            <input class="hw-field nb" data-k="s1_r2" data-label="1. 704,213 − 356,548: estimate, second number rounded" aria-label="1. Estimate, second number rounded" autocomplete="off" spellcheck="false">
+            <span class="op">=</span>
+            <input class="hw-field nb" data-k="s1_est" data-label="1. 704,213 − 356,548: estimate" aria-label="1. Estimate answer" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="arow">
+            <span class="cap">Exact answer</span>
+            <input class="hw-field nb wide" data-k="s1_ans" data-label="1. 704,213 − 356,548: exact answer" aria-label="1. Exact answer" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="arow ask">
+            <p class="prompt-q">Is my answer close to my&nbsp;estimate?</p>
+            <span class="choice-wrap is-empty"><select data-k="s1_close" data-label="1. 704,213 − 356,548: is my answer close to my estimate?" aria-label="1. Is my answer close to my estimate?" class="hw-field"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="circle-opt">yes &nbsp;/&nbsp; no</span></span>
+          </div>
+        </div>
+
+        <div class="q">
+          <div class="q-top"><div class="q-num">2</div><p class="prompt sum">400,000 − 163,758</p></div>
+          <div class="arow">
+            <span class="cap">Estimate</span>
+            <input class="hw-field nb" data-k="s2_r1" data-label="2. 400,000 − 163,758: estimate, first number rounded" aria-label="2. Estimate, first number rounded" autocomplete="off" spellcheck="false">
+            <span class="op">−</span>
+            <input class="hw-field nb" data-k="s2_r2" data-label="2. 400,000 − 163,758: estimate, second number rounded" aria-label="2. Estimate, second number rounded" autocomplete="off" spellcheck="false">
+            <span class="op">=</span>
+            <input class="hw-field nb" data-k="s2_est" data-label="2. 400,000 − 163,758: estimate" aria-label="2. Estimate answer" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="arow">
+            <span class="cap">Exact answer</span>
+            <input class="hw-field nb wide" data-k="s2_ans" data-label="2. 400,000 − 163,758: exact answer" aria-label="2. Exact answer" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="arow ask">
+            <p class="prompt-q">Is my answer close to my&nbsp;estimate?</p>
+            <span class="choice-wrap is-empty"><select data-k="s2_close" data-label="2. 400,000 − 163,758: is my answer close to my estimate?" aria-label="2. Is my answer close to my estimate?" class="hw-field"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="circle-opt">yes &nbsp;/&nbsp; no</span></span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="example">
+        <p class="ex-title">Like this</p>
+        <p class="ex-line"><b>805,312 − 268,540</b></p>
+        <p class="ex-line">Estimate:<br><span class="nw">810,000 − 270,000 = 540,000</span></p>
+        <table class="colsum" aria-label="Column subtraction of 268,540 from 805,312">
+          <tr class="exch"><td></td><td></td><td>9</td><td>14</td><td class="cm"></td><td>12</td><td></td><td></td></tr>
+          <tr class="exch"><td></td><td>7</td><td><s>10</s></td><td><s>4</s></td><td class="cm"></td><td><s>2</s></td><td>11</td><td></td></tr>
+          <tr><td></td><td><s>8</s></td><td><s>0</s></td><td><s>5</s></td><td class="cm">,</td><td><s>3</s></td><td><s>1</s></td><td>2</td></tr>
+          <tr><td>−</td><td>2</td><td>6</td><td>8</td><td class="cm">,</td><td>5</td><td>4</td><td>0</td></tr>
+          <tr class="ans"><td></td><td>5</td><td>3</td><td>6</td><td class="cm">,</td><td>7</td><td>7</td><td>2</td></tr>
+        </table>
+        <p class="ex-note">Top digit too small? Knock on the neighbour’s door: exchange 1 for 10 and write it&nbsp;above.</p>
+        <p class="ex-note">Neighbour is 0? Knock on the next door. The 0 becomes 10, gives 1 and becomes&nbsp;9.</p>
+        <p class="ex-line">536,772 is close to 540,000.&nbsp;✓</p>
+      </aside>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="task-label">Check Zoe’s work</div>
+    <p class="lead">Use an estimate to check Zoe’s&nbsp;subtraction.</p>
+    <div class="claim">
+      <span class="who">Zoe</span>
+      <table class="colsum big" aria-label="Zoe's column subtraction: 600,400 minus 253,170 equals 447,230">
+        <tr><td></td><td>6</td><td>0</td><td>0</td><td class="cm">,</td><td>4</td><td>0</td><td>0</td></tr>
+        <tr><td>−</td><td>2</td><td>5</td><td>3</td><td class="cm">,</td><td>1</td><td>7</td><td>0</td></tr>
+        <tr class="ans"><td></td><td>4</td><td>4</td><td>7</td><td class="cm">,</td><td>2</td><td>3</td><td>0</td></tr>
+      </table>
+    </div>
+    <div class="q">
+      <div class="q-top"><div class="q-num">3</div><div class="arow">
+        <span class="cap">Estimate</span>
+        <input class="hw-field nb" data-k="z_r1" data-label="3. Zoe: estimate, 600,400 rounded" aria-label="3. Estimate, first number rounded" autocomplete="off" spellcheck="false">
+        <span class="op">−</span>
+        <input class="hw-field nb" data-k="z_r2" data-label="3. Zoe: estimate, 253,170 rounded" aria-label="3. Estimate, second number rounded" autocomplete="off" spellcheck="false">
+        <span class="op">=</span>
+        <input class="hw-field nb" data-k="z_est" data-label="3. Zoe: estimate" aria-label="3. Estimate answer" autocomplete="off" spellcheck="false">
+      </div></div>
+      <div class="arow ask">
+        <p class="prompt-q">Is Zoe&nbsp;right?</p>
+        <span class="choice-wrap is-empty"><select data-k="z_verdict" data-label="3. Is Zoe right? (600,400 − 253,170 = 447,230)" aria-label="3. Is Zoe right?" class="hw-field"><option value="">Choose</option><option value="Zoe is right">Zoe is right</option><option value="Zoe is wrong">Zoe is wrong</option></select><span class="circle-opt">right &nbsp;/&nbsp; wrong</span></span>
+      </div>
+      <div class="arow ask">
+        <p class="prompt-q">What did Zoe&nbsp;do?</p>
+        <span class="choice-wrap is-empty"><select data-k="z_mistake" data-label="3. What did Zoe do?" aria-label="3. What did Zoe do?" class="hw-field"><option value="">Choose</option><option value="She forgot to take 1 from the 6">She forgot to take 1 from the 6</option><option value="She took the smaller digit from the bigger one">She took the smaller digit from the bigger one</option><option value="She lined up the columns wrongly">She lined up the columns wrongly</option></select><span class="circle-opt">forgot to take 1 from the 6 &nbsp;/&nbsp; smaller from bigger &nbsp;/&nbsp; columns lined up wrongly</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span><span>1 / 2</span></div>
+
+<!-- ============ ENGLISH ============ -->
+<div class="section english">
+  <div class="page-label">CLARA’S HOMEWORK · 10 OCTOBER 2026</div>
+  <div class="sec-head"><span class="subj">English</span><span class="note">parenthesis · How to Be a Lion</span></div>
+
+  <div class="block">
+    <div class="task-label">Parenthesis</div>
+    <p class="small">Extra information goes between two commas. Take it out and the sentence still makes&nbsp;sense.</p>
+    <div class="model">
+      <p class="ex-title">Like this</p>
+      <p class="was">Our teacher read us a story.</p>
+      <p class="now">Our teacher<b>, a kind man,</b> read us a&nbsp;story.</p>
+    </div>
+
+    <p class="lead">Choose the extra information that&nbsp;fits.</p>
+    <div class="q"><div class="q-top"><div class="q-num">1</div><div class="rowq"><p class="prompt">Marianne, ___, helped Leonard with his&nbsp;poem.</p><span class="choice-wrap is-empty"><select data-k="p1" data-label="1. Marianne, ___, helped Leonard with his poem." aria-label="1. Choose the extra information" class="hw-field"><option value="">Choose</option><option value="a fierce lion">a fierce lion</option><option value="a little duck">a little duck</option><option value="a tall tree">a tall tree</option></select><span class="circle-opt">a fierce lion &nbsp;/&nbsp; a little duck &nbsp;/&nbsp; a tall tree</span></span></div></div></div>
+  </div>
+
+  <div class="block">
+    <p class="lead">Add extra information about the word in bold. Type the whole sentence with both&nbsp;commas.</p>
+    <p class="small">Use a few words, not who or which this time (like “a kind&nbsp;man”).</p>
+    <div class="q">
+      <div class="q-top"><div class="q-num">2</div><p class="prompt-q"><b>Leonard</b> sat on his Thinking&nbsp;Hill.</p></div>
+      <div class="hw-field sent" contenteditable="true" data-k="p2" data-label="2. Leonard sat on his Thinking Hill. (add a parenthesis)" aria-label="2. My sentence"></div>
+    </div>
+    <div class="q">
+      <div class="q-top"><div class="q-num">3</div><p class="prompt-q"><b>The lions</b> hid in the long&nbsp;grass.</p></div>
+      <div class="hw-field sent" contenteditable="true" data-k="p3" data-label="3. The lions hid in the long grass. (add a parenthesis)" aria-label="3. My sentence"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="lead">Write one sentence about your life with extra information between two&nbsp;commas.</p>
+    <p class="small">You could write about Poppy, cheer or Hilly&nbsp;Fields.</p>
+    <div class="q">
+      <div class="q-top"><div class="q-num">4</div><p class="prompt-q">My sentence</p></div>
+      <div class="hw-field sent" contenteditable="true" data-k="p4" data-label="4. My own sentence with a parenthesis" aria-label="4. My sentence"></div>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><span>We’ll talk about your sentences next&nbsp;lesson.</span><span>2 / 2</span></div>
+
+<script>
+/* An empty menu prints as words to circle; a chosen one prints as it is. */
+(function () {
+  function sync() {
+    var wraps = document.querySelectorAll('.choice-wrap');
+    for (var i = 0; i < wraps.length; i++) {
+      var s = wraps[i].querySelector('select');
+      wraps[i].classList.toggle('is-empty', !(s && s.value));
+    }
+  }
+  document.addEventListener('change', sync, true);
+  window.addEventListener('beforeprint', sync);
+  window.addEventListener('load', function () { sync(); setTimeout(sync, 500); setTimeout(sync, 1500); });
+  sync();
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJzMV9yMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcwMDAwMCJ9LCAiczFfcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzNjAwMDAifSwgInMxX2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjM0MDAwMCJ9LCAiczFfYW5zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzQ3NjY1In0sICJzMV9jbG9zZSI6IHsidCI6ICJvcGVuIn0sICJzMl9yMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQwMDAwMCJ9LCAiczJfcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNjAwMDAifSwgInMyX2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjI0MDAwMCJ9LCAiczJfYW5zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjM2MjQyIn0sICJzMl9jbG9zZSI6IHsidCI6ICJvcGVuIn0sICJ6X3IxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjAwMDAwIn0sICJ6X3IyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjUwMDAwIn0sICJ6X2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjM1MDAwMCJ9LCAiel92ZXJkaWN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiWm9lIGlzIHdyb25nIn0sICJ6X21pc3Rha2UiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJTaGUgZm9yZ290IHRvIHRha2UgMSBmcm9tIHRoZSA2In0sICJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogImEgbGl0dGxlIGR1Y2sifSwgInAyIjogeyJ0IjogIm9wZW4ifSwgInAzIjogeyJ0IjogIm9wZW4ifSwgInA0IjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261008-pdf-layout"></script>
+</body>
+</html>

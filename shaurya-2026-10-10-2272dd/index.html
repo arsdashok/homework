@@ -8,6 +8,18 @@
 @media print{.context{font-size:13px;margin-bottom:2px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:9mm;break-inside:avoid;page-break-inside:avoid}.pair .chartrow{grid-template-columns:1fr;gap:2mm}.pair .chart.pie{width:50mm;max-width:none}.pair .chart.goals{width:62mm;max-width:none}body{font-size:12px;line-height:1.3;max-width:none}header{margin-bottom:8px;padding-bottom:6px}h1{font-size:18px}header span{font-size:12px}h2{font-size:10px;margin-bottom:2px}.instruction{font-size:15px;margin-bottom:2px}.note{font-size:10.5px;margin-bottom:2px}section{margin-bottom:10px}.chartrow{grid-template-columns:78mm minmax(0,1fr);gap:9mm;margin-top:3px}figcaption{font-size:9.5px;margin-top:1px}.q{padding:7px 0;gap:8px}.qnum{font-size:14px}.prompt{font-size:13px;margin-bottom:5px}.unit{font-size:12px}.fin{font-size:13px;min-height:28px}}
 .mc{break-inside:auto;page-break-inside:auto}.mc .chartrow{padding:14px 0;border-bottom:1px solid #d8d9df;break-inside:avoid;page-break-inside:avoid}.mc .chartrow:last-child{border-bottom:0}.mc .q{border-bottom:0}.mc .chart{max-width:440px}.print-opts{display:none}
 @media print{.mc{break-before:page;page-break-before:always;margin-bottom:0}.mc select{display:none !important}.mc .chartrow{padding:5px 0;margin-top:0}.mc .q{padding:3px 0}.print-opts{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:#1f2937}.print-opts i{display:inline-block;width:10px;height:10px;border:1px solid #6b7280;border-radius:50%;margin-right:6px;vertical-align:-1px}}
+
+@media screen{body{max-width:1180px}.chartrow{grid-template-columns:minmax(0,63fr) minmax(0,37fr);gap:48px}.chart.pie{width:100%;max-width:440px}.chart.goals{width:100%;max-width:560px}.mc .chart{max-width:none}.zoomable svg{cursor:zoom-in;border-radius:6px}.zoomable svg:focus-visible{outline:3px solid #8072b2;outline-offset:4px}.zoomhint{font-size:14px;color:#64518e;text-align:center;margin-top:4px}}
+@media screen and (max-width:820px){.chartrow{grid-template-columns:minmax(0,1fr);gap:12px}}
+@media screen and (max-width:620px){body{padding:24px 14px 40px}.chart svg text:not([transform]){font-size:15px}.pie svg text{font-size:14px}}
+.zoom{position:fixed;inset:0;z-index:1000;background:rgba(17,24,39,.8);display:flex;align-items:center;justify-content:center;padding:12px}
+.zoom-box{background:#fff;border-radius:12px;padding:14px;max-width:100%;max-height:100%;overflow:auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.zoom-box svg{display:block;margin:0 auto;max-width:none}
+.zoom-cap{font-size:15px;color:#4b5563;text-align:center;margin:6px 0 0}.zoom-tip{display:none;font-size:14px;color:#64518e;text-align:center;margin:4px 0 0}.zoom-small .zoom-tip{display:block}@media (max-width:620px){.zoom{padding:6px}.zoom-box{padding:8px;border-radius:10px}}
+.zoom-x{position:fixed;top:12px;right:12px;z-index:1001;width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:#111827;font:600 30px/1 'Rubik','Segoe UI',Arial,sans-serif;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+html.zoom-open{overflow:hidden}
+body.hw-pdf-mode .zoomhint{display:none !important}
+@media print{.zoomhint,.zoom{display:none !important}}
 </style><meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -17,7 +29,7 @@
 <header><h1>Shaurya &middot; Maths</h1><span>10 October 2026</span></header>
 
 <section><h2>Reading the scale</h2><p class="instruction">Read the museum graph and type your&nbsp;answers.</p>
-<div class="chartrow"><figure class="chart museum"><!-- Generated via Tools/angle_svg.py (museum) --><svg viewBox="-14 0 446 302" style="width:100%; height:auto; display:block;">
+<div class="chartrow"><figure class="chart museum"><!-- Generated via Tools/angle_svg.py (museum): line_graph(..., x_grid_every=1, grid_color=#d1d5db, font_size=13) --><svg viewBox="-14 0 446 302" style="width:100%; height:auto; display:block;">
 <line x1="48" y1="256.0" x2="412" y2="256.0" stroke="#d1d5db" stroke-width="1"/>
 <text x="39" y="259.5" font-size="13" text-anchor="end" fill="#6b7280">0</text>
 <line x1="48" y1="244.0" x2="412" y2="244.0" stroke="#d1d5db" stroke-width="1"/>
@@ -44,6 +56,13 @@
 <line x1="48" y1="28.0" x2="412" y2="28.0" stroke="#d1d5db" stroke-width="1"/>
 <line x1="48" y1="16.0" x2="412" y2="16.0" stroke="#d1d5db" stroke-width="1"/>
 <text x="39" y="19.5" font-size="13" text-anchor="end" fill="#6b7280">400</text>
+<line x1="74.0" y1="16.0" x2="74.0" y2="256.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="126.0" y1="16.0" x2="126.0" y2="256.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="178.0" y1="16.0" x2="178.0" y2="256.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="230.0" y1="16.0" x2="230.0" y2="256.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="282.0" y1="16.0" x2="282.0" y2="256.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="334.0" y1="16.0" x2="334.0" y2="256.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="386.0" y1="16.0" x2="386.0" y2="256.0" stroke="#d1d5db" stroke-width="1"/>
 <line x1="48" y1="256.0" x2="412" y2="256.0" stroke="#374151" stroke-width="2"/>
 <line x1="48" y1="16.0" x2="48" y2="256.0" stroke="#374151" stroke-width="2"/>
 <text x="-3" y="136" font-size="13" fill="#6b7280" text-anchor="middle" transform="rotate(-90 -3 136)">people inside</text>
@@ -69,7 +88,7 @@
 </div></div></section>
 
 <section><h2>Rate from a graph</h2><p class="instruction">Work out how fast the candle&nbsp;burns.</p>
-<div class="chartrow"><figure class="chart candle"><!-- Generated via Tools/angle_svg.py (candle) --><svg viewBox="-14 0 427 272" style="width:100%; height:auto; display:block;">
+<div class="chartrow"><figure class="chart candle"><!-- Generated via Tools/angle_svg.py (candle): line_graph(..., x_grid_every=1, grid_color=#d1d5db, font_size=13) --><svg viewBox="-14 0 427 272" style="width:100%; height:auto; display:block;">
 <line x1="48" y1="226.0" x2="393" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
 <text x="39" y="229.5" font-size="13" text-anchor="end" fill="#6b7280">0</text>
 <line x1="48" y1="212.0" x2="393" y2="212.0" stroke="#d1d5db" stroke-width="1"/>
@@ -90,6 +109,14 @@
 <line x1="48" y1="30.0" x2="393" y2="30.0" stroke="#d1d5db" stroke-width="1"/>
 <line x1="48" y1="16.0" x2="393" y2="16.0" stroke="#d1d5db" stroke-width="1"/>
 <text x="39" y="19.5" font-size="13" text-anchor="end" fill="#6b7280">30</text>
+<line x1="48.0" y1="16.0" x2="48.0" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="94.0" y1="16.0" x2="94.0" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="140.0" y1="16.0" x2="140.0" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="186.0" y1="16.0" x2="186.0" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="232.0" y1="16.0" x2="232.0" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="278.0" y1="16.0" x2="278.0" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="324.0" y1="16.0" x2="324.0" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
+<line x1="370.0" y1="16.0" x2="370.0" y2="226.0" stroke="#d1d5db" stroke-width="1"/>
 <line x1="48" y1="226.0" x2="393" y2="226.0" stroke="#374151" stroke-width="2"/>
 <line x1="48" y1="16.0" x2="48" y2="226.0" stroke="#374151" stroke-width="2"/>
 <text x="-3" y="121" font-size="13" fill="#6b7280" text-anchor="middle" transform="rotate(-90 -3 121)">height (cm)</text>
@@ -367,6 +394,76 @@
 <div class="q"><span class="qnum">9.</span><div><p class="prompt">How many fewer points did the Owls score in their worst round than the Foxes scored in their best&nbsp;round?</p><select data-k="b9" data-label="9. Quiz chart: how many fewer points in the Owls' worst round than the Foxes' best round" aria-label="9. Quiz chart: how many fewer points in the Owls' worst round than the Foxes' best round" class="hw-field"><option value="">Choose</option><option value="22">a) 22</option><option value="26">b) 26</option><option value="21">c) 21</option><option value="24">d) 24</option><option value="16">e) 16</option></select><span class="print-opts"><span><i></i>a)&nbsp;22</span><span><i></i>b)&nbsp;26</span><span><i></i>c)&nbsp;21</span><span><i></i>d)&nbsp;24</span><span><i></i>e)&nbsp;16</span></span></div></div>
 </div></div>
 </section>
+<script>
+(function () {
+  // Enlarge a graph: tap or click it. Close with the x, Esc, or a tap on the dark backdrop.
+  var ov = null, opener = null;
+  function fit() {
+    if (!ov) return;
+    var svg = ov.querySelector("svg"), vb = svg.viewBox.baseVal, a = vb.width / vb.height;
+    var box = ov.querySelector(".zoom-box"), po = parseFloat(getComputedStyle(ov).paddingLeft), pb = parseFloat(getComputedStyle(box).paddingLeft);
+    // A phone held upright cannot show it much bigger than the page: say how to get closer.
+    ov.classList.toggle("zoom-small", window.innerWidth < 620 && window.innerWidth < window.innerHeight);
+    var below = 0;
+    [].forEach.call(box.querySelectorAll("p"), function (p) { below += p.offsetHeight ? p.offsetHeight + 6 : 0; });
+    var W = window.innerWidth - 2 * po - 2 * pb - 2, H = window.innerHeight - 2 * po - 2 * pb - below - 4;
+    var w = Math.max(200, Math.min(W, H * a));
+    svg.style.width = Math.round(w) + "px";
+    svg.style.height = Math.round(w / a) + "px";
+  }
+  function onKey(e) { if (e.key === "Escape") close(); }
+  function close() {
+    if (!ov) return;
+    ov.remove(); ov = null;
+    document.documentElement.classList.remove("zoom-open");
+    document.removeEventListener("keydown", onKey);
+    window.removeEventListener("resize", fit);
+    if (opener) opener.focus();
+  }
+  function open(fig) {
+    var svg = fig.querySelector("svg");
+    opener = svg;
+    ov = document.createElement("div");
+    ov.className = "zoom";
+    ov.setAttribute("role", "dialog");
+    ov.setAttribute("aria-modal", "true");
+    ov.setAttribute("aria-label", "Enlarged graph");
+    var x = document.createElement("button");
+    x.type = "button"; x.className = "zoom-x"; x.setAttribute("aria-label", "Close"); x.textContent = "×";
+    var box = document.createElement("div");
+    box.className = "zoom-box";
+    var copy = svg.cloneNode(true);
+    copy.removeAttribute("style"); copy.removeAttribute("tabindex"); copy.removeAttribute("role"); copy.removeAttribute("aria-label");
+    box.appendChild(copy);
+    var cap = fig.querySelector("figcaption");
+    if (cap) { var c = document.createElement("p"); c.className = "zoom-cap"; c.textContent = cap.textContent; box.appendChild(c); }
+    var tip = document.createElement("p"); tip.className = "zoom-tip"; tip.textContent = "Pinch to zoom in, or turn your phone sideways."; box.appendChild(tip);
+    ov.appendChild(x); ov.appendChild(box);
+    document.body.appendChild(ov);
+    document.documentElement.classList.add("zoom-open");
+    fit();
+    x.addEventListener("click", close);
+    ov.addEventListener("click", function (e) { if (e.target === ov) close(); });
+    document.addEventListener("keydown", onKey);
+    window.addEventListener("resize", fit);
+    x.focus();
+  }
+  document.querySelectorAll("figure.chart").forEach(function (fig) {
+    var svg = fig.querySelector("svg");
+    if (!svg) return;
+    fig.classList.add("zoomable");
+    svg.setAttribute("role", "button");
+    svg.setAttribute("tabindex", "0");
+    svg.setAttribute("aria-label", "Enlarge the graph");
+    svg.addEventListener("click", function () { open(fig); });
+    svg.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(fig); } });
+    var hint = document.createElement("p");
+    hint.className = "zoomhint";
+    hint.textContent = "Tap the graph to enlarge it";
+    fig.appendChild(hint);
+  });
+})();
+</script>
 </div><!-- /sheet -->
 <div class="hw-bar">
   <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>

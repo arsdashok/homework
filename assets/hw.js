@@ -175,7 +175,25 @@
             };
             // html2pdf uses instanceof Array, so option arrays must belong to its realm.
             options = frame.contentWindow.JSON.parse(JSON.stringify(options));
-            return frame.contentWindow.html2pdf().set(options).from(sheet).outputPdf("datauristring");
+            var scale = options.html2canvas.scale;
+            // html2pdf moves a block to a new page at multiples of inner.px.height (A4 floored
+            // to 1046 CSS px), but cuts the canvas every floor(canvas.width * ratio) canvas px
+            // (1047.33 CSS px). The 1.33 px gap added up page by page until the first line
+            // of a moved block was sliced. Use ONE page height for both, a whole number of
+            // canvas pixels, and draw each slice at its true height (no stretching).
+            return frame.contentWindow.html2pdf().set(options).from(sheet)
+              .then(function () {
+                var px = this.prop.pageSize.inner.px;
+                px.height = Math.floor(px.height * scale) / scale;
+              })
+              .toCanvas()
+              .then(function () {
+                var inner = this.prop.pageSize.inner, width = this.prop.canvas.width;
+                var slice = Math.round(inner.px.height * scale);
+                inner.height = slice * inner.width / width;
+                inner.ratio = (slice + 0.5) / width;   // toPdf floors canvas.width * ratio back to slice
+              })
+              .outputPdf("datauristring");
           }).then(function (uri) {
             var result = uri.split(",")[1];
             if (!result) throw new Error("PDF export produced no attachment");

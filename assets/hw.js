@@ -167,11 +167,31 @@
               svg.style.width = bounds.width + "px";
               svg.style.height = bounds.height + "px";
             });
+            // Never slice a line of text. html2pdf moves a block by putting a spacer before it,
+            // which only works in ordinary block flow, so keep whole every such block that holds
+            // lines itself (no block children) or one row of flex/grid items, like a footer.
+            var view = frame.contentWindow;
+            sheet.querySelectorAll("*").forEach(function (el) {
+              var cs = view.getComputedStyle(el), up = el.parentElement;
+              if (!up || !/^(block|flow-root|list-item)$/.test(view.getComputedStyle(up).display)) return;
+              if (!/^(block|flow-root|list-item|flex|grid)$/.test(cs.display) || /^(absolute|fixed)$/.test(cs.position) || cs.cssFloat !== "none") return;
+              if (!el.textContent.trim()) return;
+              var items = [].filter.call(el.children, function (child) {
+                var c = view.getComputedStyle(child);
+                return c.display !== "none" && !/^(absolute|fixed)$/.test(c.position);
+              });
+              if (/^(flex|grid)$/.test(cs.display)) {
+                // only a single row: a grid of stacked cells may still break between its rows
+                var rows = items.map(function (child) { return child.getBoundingClientRect(); });
+                if (rows.length && Math.max.apply(null, rows.map(function (r) { return r.top; })) >= Math.min.apply(null, rows.map(function (r) { return r.bottom; }))) return;
+              } else if (items.some(function (child) { return /^(block|flow-root|list-item|flex|grid|table)$/.test(view.getComputedStyle(child).display); })) return;
+              el.classList.add("hw-pdf-lines");
+            });
             var options = {
               margin: [10, 10, 10, 10], image: {type:"jpeg",quality:0.94},
               html2canvas: {scale:1.5,useCORS:true,scrollX:0,scrollY:0,windowWidth:800,windowHeight:1100},
               jsPDF: {unit:"mm",format:"a4",orientation:"portrait"},
-              pagebreak: {mode:[],avoid:[".q", ".question", ".word-q", ".div-item", "tr", "header", ".model", ".task", ".instr", ".instruction", ".checks", "p", "h1", "h2", "h3", ".hw-pdf-answer", ".hw-pdf-drop", ".pick", ".job", ".comp", ".pmodel", ".msub", ".pics", ".ex-card", ".handstage", ".hw-mark-list"]}
+              pagebreak: {mode:[],avoid:[".q", ".question", ".word-q", ".div-item", "tr", "header", ".model", ".task", ".instr", ".instruction", ".checks", "p", "h1", "h2", "h3", ".hw-pdf-answer", ".hw-pdf-drop", ".pick", ".job", ".comp", ".pmodel", ".msub", ".pics", ".ex-card", ".handstage", ".hw-mark-list", ".hw-pdf-lines"]}
             };
             // html2pdf uses instanceof Array, so option arrays must belong to its realm.
             options = frame.contentWindow.JSON.parse(JSON.stringify(options));

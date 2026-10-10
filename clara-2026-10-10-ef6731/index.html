@@ -119,6 +119,141 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
  .choice-wrap select{max-width:100%}
 }
 </style>
+<style>
+/* ===== Keep practising (added 10 Oct, Rebecca asked for more): drag, tap, type ===== */
+.more { break-before:page; page-break-before:always; }
+.store { display:none; }
+.screen-only { display:inline; }
+.print-only { display:none; }
+
+/* tiles you drag (or tap a tile, then tap a box); tap a placed tile to send it back */
+.bank { display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-height:42px; padding:7px 10px; border-radius:12px; background:#EFF9F4; }
+.tile { display:inline-block; padding:4px 12px; border-radius:8px; background:#6ee7b7; color:#123B2E; font-weight:700; font-size:15px; line-height:1.35; font-variant-numeric:tabular-nums; text-align:center; white-space:nowrap; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; }
+.tile.picked { outline:3px solid #285E49; outline-offset:2px; }
+.tile.dragging { position:fixed; z-index:50; cursor:grabbing; pointer-events:none; transform:scale(1.06); box-shadow:0 4px 10px rgba(0,0,0,.18); }
+.drop { border:1.5px dashed #7FBFA5; border-radius:8px; background:#F3FAF6; }
+.dnd.ready .drop { border-color:#285E49; background:#DDF5EB; }
+.drop.over { border-color:#285E49; border-style:solid; background:#DDF5EB; }
+
+/* sort into bins */
+.sort-top { display:flex; align-items:center; gap:12px; }
+.sort-top .bank { flex:1; }
+.bins { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:10px 0 0 39px; }
+.bin-label { text-align:center; font-size:11px; color:#587369; margin-bottom:3px; }
+.bin-label b { display:block; font-size:17px; color:#1B352D; font-variant-numeric:tabular-nums; }
+.bin .drop { min-height:84px; display:flex; flex-direction:column; align-items:center; gap:6px; padding:8px 6px; }
+
+/* counting chains: tap the wrong number */
+.step { flex:0 0 auto; font-size:12px; color:#587369; white-space:nowrap; }
+.chain { display:flex; flex-wrap:wrap; align-items:center; gap:4px 3px; }
+.cn { font:inherit; font-size:15.5px; font-variant-numeric:tabular-nums; color:#243F37; padding:2px 8px; border:2px solid transparent; border-radius:999px; background:#F3FAF6; cursor:pointer; }
+.cn:hover { background:#DDF5EB; }
+.cn.on { border-color:#C2410C; background:#FFF1E8; text-decoration:line-through; text-decoration-color:#C2410C; text-decoration-thickness:2px; }
+.chain .dot { color:#7FA394; }
+.chain-ex { display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; margin:2px 0 6px; padding:6px 12px; background:#F3FAF6; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; font-size:13px; font-variant-numeric:tabular-nums; }
+.chain-ex .ex-title { margin:0 6px 0 0; }
+.chain-ex .cn { font-size:13px; cursor:default; }
+.chain-ex .fix { font-weight:700; color:#285E49; }
+
+/* number lines: drag the right number into each box */
+.nl-item { display:flex; flex-wrap:wrap; align-items:flex-start; gap:8px 26px; margin:4px 0 0 39px; }
+.nl-stage { --bw:104px; position:relative; flex:1 1 380px; max-width:560px; height:112px; }
+.nl-line { position:absolute; left:8%; right:8%; top:74px; height:3px; background:#365f4e; }
+.nl-tick { position:absolute; top:68px; width:2px; height:14px; margin-left:-1px; background:#6f9c88; }
+.nl-tick.end { top:64px; height:22px; width:3px; margin-left:-1.5px; background:#365f4e; }
+.nl-end { position:absolute; top:90px; width:80px; margin-left:-40px; text-align:center; font-size:13px; color:#294c40; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.nl-box { position:absolute; top:0; left:calc(var(--x) - var(--bw) / 2); width:var(--bw); min-height:36px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; padding:2px; }
+.nl-box .tile { padding:3px 8px; }
+.nl-lead { position:absolute; top:38px; height:30px; left:var(--x); border-left:2px dashed #9CB9AC; }
+.nl-item .bank { flex:0 1 230px; align-self:center; }
+
+/* who or which: tiles into gaps */
+.wsent { font-size:15px; line-height:2.2; }
+.gap { display:inline-flex; align-items:center; justify-content:center; min-width:74px; height:30px; margin:0 3px; vertical-align:middle; }
+.gap .tile { padding:1px 10px; }
+.ww-bank { margin:4px 0 4px 39px; }
+
+/* tap the words */
+.tapline { font-size:16px; line-height:2.1; }
+.comma-tap .hw-w.hw-circled { border-color:transparent; background:#DDF5EB; }
+.cm-comma, .ex-comma { color:#C2410C; font-weight:800; }
+.tap-ex { margin:2px 0 6px; padding:6px 12px; background:#F3FAF6; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; font-size:14px; }
+.tap-ex .hl { background:#DDF5EB; border-radius:999px; padding:0 2px; }
+.tap-ex .ex-title { display:inline; margin-right:8px; }
+
+/* word problem */
+.story { font-size:15px; line-height:1.55; max-width:640px; }
+.opwrap select { min-width:0 !important; width:76px; }
+div.sent.long { min-height:96px; }
+.lead { break-inside:avoid; page-break-inside:avoid; }
+.block.keep, .task, .pmodel { break-inside:avoid; page-break-inside:avoid; }
+/* emailed PDF (hw.js export): a block pushed to a new page can start a few px above the cut
+   (html2pdf floors the page height), so give each task a little empty space on top */
+body.hw-pdf-mode .task { padding-top:14px; }
+
+@media print {
+ .screen-only { display:none !important; }
+ .print-only { display:inline !important; }
+ .ww-bank { display:none !important; }
+ .cn { background:none; padding:0 4px; }
+ .tile { cursor:default; }
+ .bins { margin-top:8px; }
+ .bin .drop { min-height:70px; }
+ .pb { break-before:page; page-break-before:always; }
+}
+
+@media screen {
+ .more { margin-top:90px; }
+ .bank { gap:12px; padding:10px 14px; min-height:60px; }
+ .tile { font-size:18px; padding:7px 16px; border-radius:10px; }
+ .bins { margin:18px 0 0 50px; gap:20px; }
+ .bin-label { font-size:13px; margin-bottom:6px; }
+ .bin-label b { font-size:22px; }
+ .bin .drop { min-height:150px; gap:10px; padding:12px 8px; }
+ .step { font-size:14px; }
+ .cn { font-size:19px; padding:4px 12px; }
+ .chain { gap:8px 6px; }
+ .chain-ex { font-size:16px; padding:10px 16px; margin:4px 0 12px; }
+ .chain-ex .cn { font-size:16px; }
+ .nl-item { margin:14px 0 0 50px; gap:14px 36px; }
+ .nl-stage { --bw:122px; height:138px; max-width:620px; }
+ .nl-line { top:92px; }
+ .nl-tick { top:85px; height:17px; }
+ .nl-tick.end { top:81px; height:25px; }
+ .nl-end { top:112px; font-size:15px; width:96px; margin-left:-48px; }
+ .nl-box { min-height:50px; }
+ .nl-box .tile { padding:5px 10px; }
+ .nl-lead { top:52px; height:34px; }
+ .wsent { font-size:19px; line-height:2.4; }
+ .gap { min-width:96px; height:42px; margin:0 5px; }
+ .gap .tile { padding:3px 14px; }
+ .ww-bank { margin:12px 0 10px 50px; }
+ .tapline { font-size:20px; line-height:2.2; }
+ .tap-ex { font-size:17px; padding:10px 16px; margin:4px 0 12px; }
+ .story { font-size:19px; }
+ section div.sent.long, div.sent.long { min-height:150px !important; }
+}
+@media screen and (max-width:620px){
+ .bins, .nl-item, .ww-bank { margin-left:0; }
+ .bins { gap:8px; }
+ .bin-label b { font-size:18px; }
+ .bin .drop { padding:8px 4px; }
+ .tile { font-size:16px; padding:6px 10px; }
+ .sort-top { align-items:flex-start; }
+ .q-top.chainrow { flex-wrap:wrap; }
+ .cn { font-size:17px; padding:3px 8px; }
+ .nl-stage { --bw:88px; flex-basis:100%; }
+ .nl-end { font-size:13px; }
+ .nl-box .tile { font-size:15px; padding:4px 6px; }
+ .nl-item .bank { flex-basis:100%; }
+ .nl-end { width:70px; margin-left:-35px; }
+ .gap { min-width:82px; }
+ /* long menus (items 1 and 3) must not push the page sideways on a phone */
+ .rowq, .arow.ask, .choice-wrap { min-width:0; max-width:100%; }
+ .choice-wrap { display:inline-block; }
+ .choice-wrap select { max-width:100%; }
+}
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -186,7 +321,7 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
         </div>
       </div>
 
-      <aside class="example">
+      <aside class="example pmodel">
         <p class="ex-title">Like this</p>
         <p class="ex-line"><b>805,312 − 268,540</b></p>
         <p class="ex-line">Estimate:<br><span class="nw">810,000 − 270,000 = 540,000</span></p>
@@ -204,7 +339,7 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
     </div>
   </div>
 
-  <div class="block">
+  <div class="block"><div class="task">
     <div class="task-label">Check Zoe’s work</div>
     <p class="lead">Use an estimate to check Zoe’s&nbsp;subtraction.</p>
     <div class="claim">
@@ -233,17 +368,157 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
         <span class="choice-wrap is-empty"><select data-k="z_mistake" data-label="3. What did Zoe do?" aria-label="3. What did Zoe do?" class="hw-field"><option value="">Choose</option><option value="She forgot to take 1 from the 6">She forgot to take 1 from the 6</option><option value="She took the smaller digit from the bigger one">She took the smaller digit from the bigger one</option><option value="She lined up the columns wrongly">She lined up the columns wrongly</option></select><span class="circle-opt">forgot to take 1 from the 6 &nbsp;/&nbsp; smaller from bigger &nbsp;/&nbsp; columns lined up wrongly</span></span>
       </div>
     </div>
+  </div></div>
+</div>
+
+<div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span><span>1 / 6</span></div>
+
+<!-- ============ MATHS: KEEP PRACTISING ============ -->
+<div class="section maths more">
+  <div class="block"><div class="task">
+  <div class="page-label">CLARA’S HOMEWORK · 10 OCTOBER 2026</div>
+  <div class="sec-head"><span class="subj">Maths</span><span class="note">keep practising · rounding · counting · a word problem</span></div>
+
+    <div class="task-label">Round to the nearest 1,000</div>
+    <p class="lead"><span class="screen-only">Drag each number into the box it rounds&nbsp;to.</span><span class="print-only">Write each number in the box it rounds&nbsp;to.</span></p>
+    <p class="small">Four to the floor, five to the&nbsp;sky.</p>
+    <div class="q dnd" data-mode="tile">
+      <div class="sort-top">
+        <div class="q-num">4</div>
+        <div class="bank" aria-label="Numbers to sort">
+          <span class="tile" data-v="400,821" data-store="rd1" data-field="rd1">400,821</span>
+          <span class="tile" data-v="399,087" data-store="rd2" data-field="rd2">399,087</span>
+          <span class="tile" data-v="400,499" data-store="rd3" data-field="rd3">400,499</span>
+          <span class="tile" data-v="399,948" data-store="rd4" data-field="rd4">399,948</span>
+          <span class="tile" data-v="400,500" data-store="rd5" data-field="rd5">400,500</span>
+          <span class="tile" data-v="399,412" data-store="rd6" data-field="rd6">399,412</span>
+        </div>
+      </div>
+      <div class="bins">
+        <div class="bin"><p class="bin-label">rounds to <b>399,000</b></p><div class="drop" data-v="399,000" aria-label="Rounds to 399,000"></div></div>
+        <div class="bin"><p class="bin-label">rounds to <b>400,000</b></p><div class="drop" data-v="400,000" aria-label="Rounds to 400,000"></div></div>
+        <div class="bin"><p class="bin-label">rounds to <b>401,000</b></p><div class="drop" data-v="401,000" aria-label="Rounds to 401,000"></div></div>
+      </div>
+    </div>
+    </div>
+    <div class="store" aria-hidden="true">
+      <select data-k="rd1" data-label="4. Round 400,821 to the nearest 1,000" tabindex="-1" class="hw-field"><option value=""></option><option value="399,000">399,000</option><option value="400,000">400,000</option><option value="401,000">401,000</option></select>
+      <select data-k="rd2" data-label="4. Round 399,087 to the nearest 1,000" tabindex="-1" class="hw-field"><option value=""></option><option value="399,000">399,000</option><option value="400,000">400,000</option><option value="401,000">401,000</option></select>
+      <select data-k="rd3" data-label="4. Round 400,499 to the nearest 1,000" tabindex="-1" class="hw-field"><option value=""></option><option value="399,000">399,000</option><option value="400,000">400,000</option><option value="401,000">401,000</option></select>
+      <select data-k="rd4" data-label="4. Round 399,948 to the nearest 1,000" tabindex="-1" class="hw-field"><option value=""></option><option value="399,000">399,000</option><option value="400,000">400,000</option><option value="401,000">401,000</option></select>
+      <select data-k="rd5" data-label="4. Round 400,500 to the nearest 1,000" tabindex="-1" class="hw-field"><option value=""></option><option value="399,000">399,000</option><option value="400,000">400,000</option><option value="401,000">401,000</option></select>
+      <select data-k="rd6" data-label="4. Round 399,412 to the nearest 1,000" tabindex="-1" class="hw-field"><option value=""></option><option value="399,000">399,000</option><option value="400,000">400,000</option><option value="401,000">401,000</option></select>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="task">
+    <div class="task-label">Counting across a zero</div>
+    <p class="lead"><span class="screen-only">Each row has one wrong number. Tap it, then type the right&nbsp;number.</span><span class="print-only">Each row has one wrong number. Circle it, then write the right&nbsp;number.</span></p>
+    <div class="chain-ex"><span class="ex-title">Like this</span><span>back in 100s:</span><span>1,400 · 1,300 · 1,200 ·</span><span class="cn on">1,010</span><span class="fix">The right number is&nbsp;1,100.</span></div>
+
+    <div class="q">
+      <div class="q-top chainrow"><div class="q-num">5</div><span class="step">back in 1,000s</span>
+        <div class="chain" data-store="c5w" data-field="c5w" role="group" aria-label="5. Back in 1,000s: tap the wrong number"><button type="button" class="cn" data-v="402,000">402,000</button><span class="dot">·</span><button type="button" class="cn" data-v="401,000">401,000</button><span class="dot">·</span><button type="button" class="cn" data-v="400,000">400,000</button><span class="dot">·</span><button type="button" class="cn" data-v="309,000">309,000</button></div>
+      </div>
+      <div class="arow"><span class="cap">Right number</span><input class="hw-field nb wide" data-k="c5fix" data-label="5. Back in 1,000s: the right number" aria-label="5. The right number" autocomplete="off" spellcheck="false"></div>
+    </div>
+    </div>
+    <div class="q">
+      <div class="q-top chainrow"><div class="q-num">6</div><span class="step">on in 10,000s</span>
+        <div class="chain" data-store="c6w" data-field="c6w" role="group" aria-label="6. On in 10,000s: tap the wrong number"><button type="button" class="cn" data-v="365,000">365,000</button><span class="dot">·</span><button type="button" class="cn" data-v="375,000">375,000</button><span class="dot">·</span><button type="button" class="cn" data-v="385,000">385,000</button><span class="dot">·</span><button type="button" class="cn" data-v="395,000">395,000</button><span class="dot">·</span><button type="button" class="cn" data-v="400,000">400,000</button></div>
+      </div>
+      <div class="arow"><span class="cap">Right number</span><input class="hw-field nb wide" data-k="c6fix" data-label="6. On in 10,000s: the right number" aria-label="6. The right number" autocomplete="off" spellcheck="false"></div>
+    </div>
+    <div class="q">
+      <div class="q-top chainrow"><div class="q-num">7</div><span class="step">back in 100s</span>
+        <div class="chain" data-store="c7w" data-field="c7w" role="group" aria-label="7. Back in 100s: tap the wrong number"><button type="button" class="cn" data-v="300,300">300,300</button><span class="dot">·</span><button type="button" class="cn" data-v="300,200">300,200</button><span class="dot">·</span><button type="button" class="cn" data-v="300,100">300,100</button><span class="dot">·</span><button type="button" class="cn" data-v="300,000">300,000</button><span class="dot">·</span><button type="button" class="cn" data-v="200,900">200,900</button></div>
+      </div>
+      <div class="arow"><span class="cap">Right number</span><input class="hw-field nb wide" data-k="c7fix" data-label="7. Back in 100s: the right number" aria-label="7. The right number" autocomplete="off" spellcheck="false"></div>
+    </div>
+    <div class="store" aria-hidden="true">
+      <select data-k="c5w" data-label="5. Back in 1,000s: the wrong number" tabindex="-1" class="hw-field"><option value=""></option><option value="402,000">402,000</option><option value="401,000">401,000</option><option value="400,000">400,000</option><option value="309,000">309,000</option></select>
+      <select data-k="c6w" data-label="6. On in 10,000s: the wrong number" tabindex="-1" class="hw-field"><option value=""></option><option value="365,000">365,000</option><option value="375,000">375,000</option><option value="385,000">385,000</option><option value="395,000">395,000</option><option value="400,000">400,000</option></select>
+      <select data-k="c7w" data-label="7. Back in 100s: the wrong number" tabindex="-1" class="hw-field"><option value=""></option><option value="300,300">300,300</option><option value="300,200">300,200</option><option value="300,100">300,100</option><option value="300,000">300,000</option><option value="200,900">200,900</option></select>
+    </div>
+  </div>
+
+  <div class="block pb">
+    <div class="task">
+    <div class="task-label">Number lines</div>
+    <p class="lead"><span class="screen-only">Drag the right number into each box on the&nbsp;line.</span><span class="print-only">Write the right number in each box on the&nbsp;line.</span></p>
+    <p class="small">Two numbers are left over each&nbsp;time.</p>
+    <!-- Tick positions computed: 11 ticks from 8% to 92%, step 8.4%. -->
+    <div class="q dnd" data-mode="zone">
+      <div class="q-top"><div class="q-num">8</div><p class="prompt-q">From 300,000 to&nbsp;400,000</p></div>
+      <div class="nl-item">
+        <div class="nl-stage" aria-label="Number line from 300,000 to 400,000 with 10 equal steps">
+          <div class="nl-line"></div>
+          <span class="nl-tick end" style="left:8%"></span><span class="nl-tick" style="left:16.4%"></span><span class="nl-tick" style="left:24.8%"></span><span class="nl-tick" style="left:33.2%"></span><span class="nl-tick" style="left:41.6%"></span><span class="nl-tick" style="left:50%"></span><span class="nl-tick" style="left:58.4%"></span><span class="nl-tick" style="left:66.8%"></span><span class="nl-tick" style="left:75.2%"></span><span class="nl-tick" style="left:83.6%"></span><span class="nl-tick end" style="left:92%"></span>
+          <span class="nl-end" style="left:8%">300,000</span><span class="nl-end" style="left:92%">400,000</span>
+          <span class="nl-lead" style="--x:50%"></span><span class="nl-lead" style="--x:75.2%"></span>
+          <div class="nl-box drop" style="--x:50%" data-store="nl8a" data-field="nl8a" aria-label="8. Box above the middle mark"></div>
+          <div class="nl-box drop" style="--x:75.2%" data-store="nl8b" data-field="nl8b" aria-label="8. Box above the eighth mark"></div>
+        </div>
+        <div class="bank" aria-label="8. Numbers to choose from"><span class="tile" data-v="305,000">305,000</span><span class="tile" data-v="380,000">380,000</span><span class="tile" data-v="350,000">350,000</span><span class="tile" data-v="308,000">308,000</span></div>
+      </div>
+    </div>
+    </div>
+    <div class="q dnd" data-mode="zone">
+      <div class="q-top"><div class="q-num">9</div><p class="prompt-q">From 540,000 to&nbsp;550,000</p></div>
+      <div class="nl-item">
+        <div class="nl-stage" aria-label="Number line from 540,000 to 550,000 with 10 equal steps">
+          <div class="nl-line"></div>
+          <span class="nl-tick end" style="left:8%"></span><span class="nl-tick" style="left:16.4%"></span><span class="nl-tick" style="left:24.8%"></span><span class="nl-tick" style="left:33.2%"></span><span class="nl-tick" style="left:41.6%"></span><span class="nl-tick" style="left:50%"></span><span class="nl-tick" style="left:58.4%"></span><span class="nl-tick" style="left:66.8%"></span><span class="nl-tick" style="left:75.2%"></span><span class="nl-tick" style="left:83.6%"></span><span class="nl-tick end" style="left:92%"></span>
+          <span class="nl-end" style="left:8%">540,000</span><span class="nl-end" style="left:92%">550,000</span>
+          <span class="nl-lead" style="--x:24.8%"></span><span class="nl-lead" style="--x:50%"></span>
+          <div class="nl-box drop" style="--x:24.8%" data-store="nl9a" data-field="nl9a" aria-label="9. Box above the second mark"></div>
+          <div class="nl-box drop" style="--x:50%" data-store="nl9b" data-field="nl9b" aria-label="9. Box above the middle mark"></div>
+        </div>
+        <div class="bank" aria-label="9. Numbers to choose from"><span class="tile" data-v="542,000">542,000</span><span class="tile" data-v="540,500">540,500</span><span class="tile" data-v="545,000">545,000</span><span class="tile" data-v="540,200">540,200</span></div>
+      </div>
+    </div>
+    <div class="store" aria-hidden="true">
+      <select data-k="nl8a" data-label="8. 300,000 to 400,000: the middle box" tabindex="-1" class="hw-field"><option value=""></option><option value="305,000">305,000</option><option value="380,000">380,000</option><option value="350,000">350,000</option><option value="308,000">308,000</option></select>
+      <select data-k="nl8b" data-label="8. 300,000 to 400,000: the box on the eighth mark" tabindex="-1" class="hw-field"><option value=""></option><option value="305,000">305,000</option><option value="380,000">380,000</option><option value="350,000">350,000</option><option value="308,000">308,000</option></select>
+      <select data-k="nl9a" data-label="9. 540,000 to 550,000: the box on the second mark" tabindex="-1" class="hw-field"><option value=""></option><option value="542,000">542,000</option><option value="540,500">540,500</option><option value="545,000">545,000</option><option value="540,200">540,200</option></select>
+      <select data-k="nl9b" data-label="9. 540,000 to 550,000: the middle box" tabindex="-1" class="hw-field"><option value=""></option><option value="542,000">542,000</option><option value="540,500">540,500</option><option value="545,000">545,000</option><option value="540,200">540,200</option></select>
+    </div>
+  </div>
+
+  <div class="block task">
+    <div class="task-label">A word problem</div>
+    <p class="lead">Estimate first. Then work it out on paper and type the&nbsp;answer.</p>
+    <p class="small">Round each number to the nearest 1,000 and write it in full, like&nbsp;52,000.</p>
+    <div class="q">
+      <div class="q-top"><div class="q-num">10</div><p class="story">A music festival sold 41,306 tickets on Saturday. On Sunday it sold 17,859 fewer tickets than on Saturday. How many tickets did it sell on&nbsp;Sunday?</p></div>
+      <div class="arow ask">
+        <p class="prompt-q">Will the answer be more or less than&nbsp;41,306?</p>
+        <span class="choice-wrap is-empty"><select data-k="wp_ml" data-label="10. Festival: more or less than 41,306?" aria-label="10. More or less than 41,306?" class="hw-field"><option value="">Choose</option><option value="more">more</option><option value="less">less</option></select><span class="circle-opt">more &nbsp;/&nbsp; less</span></span>
+      </div>
+      <div class="arow">
+        <span class="cap">Estimate</span>
+        <input class="hw-field nb" data-k="wp_r1" data-label="10. Festival: estimate, 41,306 rounded" aria-label="10. Estimate, first number rounded" autocomplete="off" spellcheck="false">
+        <span class="choice-wrap opwrap is-empty"><select data-k="wp_op" data-label="10. Festival: add or subtract?" aria-label="10. Plus or minus?" class="hw-field"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ &nbsp;/&nbsp; −</span></span>
+        <input class="hw-field nb" data-k="wp_r2" data-label="10. Festival: estimate, 17,859 rounded" aria-label="10. Estimate, second number rounded" autocomplete="off" spellcheck="false">
+        <span class="op">=</span>
+        <input class="hw-field nb" data-k="wp_est" data-label="10. Festival: estimate" aria-label="10. Estimate answer" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="arow">
+        <span class="cap">Exact answer</span>
+        <input class="hw-field nb wide" data-k="wp_ans" data-label="10. Festival: exact answer (tickets on Sunday)" aria-label="10. Exact answer" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span><span>1 / 2</span></div>
+<div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span><span>3 / 6</span></div>
 
 <!-- ============ ENGLISH ============ -->
 <div class="section english">
-  <div class="page-label">CLARA’S HOMEWORK · 10 OCTOBER 2026</div>
-  <div class="sec-head"><span class="subj">English</span><span class="note">parenthesis · How to Be a Lion</span></div>
-
-  <div class="block">
+  <div class="block task">
+    <div class="page-label">CLARA’S HOMEWORK · 10 OCTOBER 2026</div>
+    <div class="sec-head"><span class="subj">English</span><span class="note">parenthesis · How to Be a Lion</span></div>
     <div class="task-label">Parenthesis</div>
     <p class="small">Extra information goes between two commas. Take it out and the sentence still makes&nbsp;sense.</p>
     <div class="model">
@@ -257,11 +532,13 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
   </div>
 
   <div class="block">
+    <div class="task">
     <p class="lead">Add extra information about the word in bold. Type the whole sentence with both&nbsp;commas.</p>
     <p class="small">Use a few words, not who or which this time (like “a kind&nbsp;man”).</p>
     <div class="q">
       <div class="q-top"><div class="q-num">2</div><p class="prompt-q"><b>Leonard</b> sat on his Thinking&nbsp;Hill.</p></div>
       <div class="hw-field sent" contenteditable="true" data-k="p2" data-label="2. Leonard sat on his Thinking Hill. (add a parenthesis)" aria-label="2. My sentence"></div>
+    </div>
     </div>
     <div class="q">
       <div class="q-top"><div class="q-num">3</div><p class="prompt-q"><b>The lions</b> hid in the long&nbsp;grass.</p></div>
@@ -269,7 +546,7 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
     </div>
   </div>
 
-  <div class="block">
+  <div class="block task">
     <p class="lead">Write one sentence about your life with extra information between two&nbsp;commas.</p>
     <p class="small">You could write about Poppy, cheer or Hilly&nbsp;Fields.</p>
     <div class="q">
@@ -279,7 +556,68 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
   </div>
 </div>
 
-<div class="foot"><span>We’ll talk about your sentences next&nbsp;lesson.</span><span>2 / 2</span></div>
+<div class="foot"><span>We’ll talk about your sentences next&nbsp;lesson.</span><span>4 / 6</span></div>
+
+<!-- ============ ENGLISH: KEEP PRACTISING ============ -->
+<div class="section english-more more">
+  <div class="block dnd ww" data-mode="zone">
+    <div class="task">
+    <div class="page-label">CLARA’S HOMEWORK · 10 OCTOBER 2026</div>
+    <div class="sec-head"><span class="subj">English</span><span class="note">keep practising · who or which · commas · modal verbs</span></div>
+    <div class="task-label">Who or which?</div>
+    <p class="lead"><span class="screen-only">Drag who or which into each&nbsp;gap.</span><span class="print-only">Write who or which in each&nbsp;gap.</span></p>
+    <div class="chips"><span class="chip">who <span>for a person (or a pet with a name)</span></span><span class="chip">which <span>for an animal, a thing or a&nbsp;place</span></span></div>
+    <div class="bank ww-bank" aria-label="who and which tiles"><span class="tile" data-v="which">which</span><span class="tile" data-v="who">who</span><span class="tile" data-v="who">who</span><span class="tile" data-v="which">which</span><span class="tile" data-v="which">which</span><span class="tile" data-v="who">who</span></div>
+    <div class="q"><div class="q-top"><div class="q-num">5</div><p class="wsent" data-field="ww1">Our coach,<span class="gap drop" data-store="ww1" aria-label="5. Gap"></span>can do a backflip, runs the cheer&nbsp;club.</p></div></div>
+    </div>
+    <div class="q"><div class="q-top"><div class="q-num">6</div><p class="wsent" data-field="ww2">The fox,<span class="gap drop" data-store="ww2" aria-label="6. Gap"></span>lives behind our garden, comes out at&nbsp;night.</p></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">7</div><p class="wsent" data-field="ww3">The library,<span class="gap drop" data-store="ww3" aria-label="7. Gap"></span>has a reading den, opens on&nbsp;Saturdays.</p></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">8</div><p class="wsent" data-field="ww4">My friend,<span class="gap drop" data-store="ww4" aria-label="8. Gap"></span>sits next to me, can do a&nbsp;cartwheel.</p></div></div>
+    <div class="store" aria-hidden="true">
+      <select data-k="ww1" data-label="5. Our coach, ___ can do a backflip, runs the cheer club." tabindex="-1" class="hw-field"><option value=""></option><option value="who">who</option><option value="which">which</option></select>
+      <select data-k="ww2" data-label="6. The fox, ___ lives behind our garden, comes out at night." tabindex="-1" class="hw-field"><option value=""></option><option value="who">who</option><option value="which">which</option></select>
+      <select data-k="ww3" data-label="7. The library, ___ has a reading den, opens on Saturdays." tabindex="-1" class="hw-field"><option value=""></option><option value="who">who</option><option value="which">which</option></select>
+      <select data-k="ww4" data-label="8. My friend, ___ sits next to me, can do a cartwheel." tabindex="-1" class="hw-field"><option value=""></option><option value="who">who</option><option value="which">which</option></select>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="task">
+    <div class="task-label">Where do the commas go?</div>
+    <p class="lead"><span class="screen-only">Tap the two words that need a comma after&nbsp;them.</span><span class="print-only">Add the two missing commas to each&nbsp;sentence.</span></p>
+    <p class="small">Take the extra information out. The rest of the sentence should still make&nbsp;sense.</p>
+    <div class="tap-ex"><span class="ex-title">Like this</span><span class="hl">Grandad</span><span class="ex-comma">,</span> a keen <span class="hl">gardener</span><span class="ex-comma">,</span> grows&nbsp;tomatoes.</div>
+    <div class="q"><div class="q-top"><div class="q-num">9</div><p class="tapline circle-words comma-tap" data-k="cm1" data-label="9. Biscuit my grandma's puppy sleeps on the sofa. (words before the commas)">Biscuit my grandma's puppy sleeps on the sofa.</p></div></div>
+    </div>
+    <div class="q"><div class="q-top"><div class="q-num">10</div><p class="tapline circle-words comma-tap" data-k="cm2" data-label="10. The Science Museum which opens at ten is in London. (words before the commas)">The Science Museum which opens at ten is in London.</p></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">11</div><p class="tapline circle-words comma-tap" data-k="cm3" data-label="11. Mr Patel our new teacher plays the guitar. (words before the commas)">Mr Patel our new teacher plays the guitar.</p></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">12</div><p class="tapline circle-words comma-tap" data-k="cm4" data-label="12. Lily who lives on my street came to my party. (words before the commas)">Lily who lives on my street came to my party.</p></div></div>
+  </div>
+
+  <div class="block">
+    <div class="task">
+    <div class="task-label">Modal verbs</div>
+    <p class="lead"><span class="screen-only">Tap every modal&nbsp;verb.</span><span class="print-only">Circle every modal&nbsp;verb.</span></p>
+    <p class="small">A modal verb always needs another verb next to&nbsp;it.</p>
+    <div class="q"><div class="q-top"><div class="q-num">13</div><p class="tapline circle-words" data-k="md1" data-label="13. I have a cheer class on Tuesday, so I should go to bed early. (modal verbs)">I have a cheer class on Tuesday, so I should go to bed early.</p></div></div>
+    </div>
+    <div class="q"><div class="q-top"><div class="q-num">14</div><p class="tapline circle-words" data-k="md2" data-label="14. Poppy might want a walk, but it could rain later. (modal verbs)">Poppy might want a walk, but it could rain later.</p></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">15</div><p class="tapline circle-words" data-k="md3" data-label="15. My cousin has a scooter, and he can do a trick on it. (modal verbs)">My cousin has a scooter, and he can do a trick on it.</p></div></div>
+    <div class="q"><div class="q-top"><div class="q-num">16</div><p class="tapline circle-words" data-k="md4" data-label="16. It must be cold outside because the windows are icy. (modal verbs)">It must be cold outside because the windows are icy.</p></div></div>
+  </div>
+
+  <div class="block keep task">
+    <div class="task-label">Your writing</div>
+    <p class="lead">Write two or three sentences about a day out. Use a parenthesis and a who or which&nbsp;part.</p>
+    <p class="small">It could be a trip to the seaside, a museum or a friend’s&nbsp;party.</p>
+    <div class="q">
+      <div class="q-top"><div class="q-num">17</div><p class="prompt-q">My day out</p></div>
+      <div class="hw-field sent long" contenteditable="true" data-k="wr1" data-label="17. A day out: two or three sentences with a parenthesis and a who or which part" aria-label="17. My day out"></div>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><span>We’ll talk about your writing next&nbsp;lesson.</span><span>6 / 6</span></div>
 
 <script>
 /* An empty menu prints as words to circle; a chosen one prints as it is. */
@@ -297,13 +635,147 @@ body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:w
   sync();
 })();
 </script>
+<script>
+/* Keep practising: drag-and-drop tiles, tap-the-wrong-number chains, and commas that appear
+   after a tapped word. Every answer lives in a hidden select (data-k) inside .store, so the
+   shared hw.js saves it, restores it after a reload, sends it and marks it on its data-field twin.
+   data-mode="zone": each box holds one tile (box data-store = select).
+   data-mode="tile": each tile remembers the box it is in (tile data-store = select). */
+(function () {
+  function store(k) { return document.querySelector(".store [data-k='" + k + "']"); }
+  function fire(s) { s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+  function init() {
+    var picked = null, pickedGroup = null;
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      if (pickedGroup) pickedGroup.classList.remove("ready");
+      picked = null; pickedGroup = null;
+    }
+    [].forEach.call(document.querySelectorAll(".dnd"), function (g) {
+      var mode = g.dataset.mode || "zone";
+      var bank = g.querySelector(".bank");
+      var drops = [].slice.call(g.querySelectorAll(".drop"));
+      if (!bank || !drops.length) return;
+      function sync() {
+        if (mode === "zone") {
+          drops.forEach(function (d) {
+            var s = store(d.dataset.store); if (!s) return;
+            var t = d.querySelector(".tile"), v = t ? t.dataset.v : "";
+            if (s.value !== v) { s.value = v; fire(s); }
+          });
+        } else {
+          [].forEach.call(g.querySelectorAll(".tile"), function (t) {
+            var s = store(t.dataset.store); if (!s) return;
+            var d = t.closest(".drop"), v = d ? d.dataset.v : "";
+            if (s.value !== v) { s.value = v; fire(s); }
+          });
+        }
+      }
+      function place(t, d) {
+        if (mode === "zone") { var old = d.querySelector(".tile"); if (old && old !== t) bank.appendChild(old); }
+        d.appendChild(t); sync();
+      }
+      function toBank(t) { bank.appendChild(t); sync(); }
+      function dropAt(x, y) {
+        for (var i = 0; i < drops.length; i++) {
+          var r = drops[i].getBoundingClientRect(), p = 10;
+          if (x >= r.left - p && x <= r.right + p && y >= r.top - p && y <= r.bottom + p) return drops[i];
+        }
+        return null;
+      }
+      // put saved answers back
+      if (mode === "zone") {
+        drops.forEach(function (d) {
+          var s = store(d.dataset.store); if (!s || !s.value) return;
+          var t = [].find.call(bank.querySelectorAll(".tile"), function (x) { return x.dataset.v === s.value; });
+          if (t) d.appendChild(t);
+        });
+      } else {
+        [].forEach.call(g.querySelectorAll(".tile"), function (t) {
+          var s = store(t.dataset.store); if (!s || !s.value) return;
+          var d = drops.filter(function (x) { return x.dataset.v === s.value; })[0];
+          if (d) d.appendChild(t);
+        });
+      }
+      [].forEach.call(g.querySelectorAll(".tile"), function (t) {
+        t.addEventListener("pointerdown", function (e) {
+          if (e.button && e.button !== 0) return;
+          e.preventDefault();
+          var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+          var sx = e.clientX, sy = e.clientY, moved = false, over = null, home = t.parentNode, next = t.nextSibling, ph = null;
+          function move(ev) {
+            if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+            if (!moved) {
+              moved = true; unpick();
+              ph = document.createElement("span");
+              ph.style.cssText = "display:inline-block;flex:none;width:" + r.width + "px;height:" + r.height + "px";
+              home.insertBefore(ph, next);
+              t.style.width = r.width + "px"; t.classList.add("dragging");
+              document.body.appendChild(t);   // out of any positioned box while it moves
+            }
+            t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+            var d = dropAt(ev.clientX, ev.clientY);
+            if (d !== over) { if (over) over.classList.remove("over"); over = d; if (d) d.classList.add("over"); }
+          }
+          function up(ev) {
+            window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+            if (over) over.classList.remove("over");
+            var homeDrop = home.closest ? home.closest(".drop") : null;
+            if (!moved) {
+              if (homeDrop && picked && picked !== t && pickedGroup === g) { place(picked, homeDrop); unpick(); return; }
+              if (homeDrop) { toBank(t); unpick(); return; }
+              if (picked === t) { unpick(); return; }
+              unpick(); picked = t; pickedGroup = g; t.classList.add("picked"); g.classList.add("ready"); return;
+            }
+            t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+            var d = ev.type === "pointerup" ? dropAt(ev.clientX, ev.clientY) : null;
+            if (d) { if (ph) ph.remove(); place(t, d); }
+            else if (homeDrop && ev.type === "pointerup") { if (ph) ph.remove(); toBank(t); }
+            else { if (ph) { home.insertBefore(t, ph); ph.remove(); } else home.appendChild(t); }
+          }
+          window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+        });
+      });
+      drops.forEach(function (d) {
+        d.addEventListener("click", function () { if (picked && pickedGroup === g) { place(picked, d); unpick(); } });
+      });
+    });
+
+    // counting chains: tap one number to mark it as the wrong one; tap again to clear
+    [].forEach.call(document.querySelectorAll(".chain[data-store]"), function (c) {
+      var s = store(c.dataset.store); if (!s) return;
+      var btns = [].slice.call(c.querySelectorAll(".cn"));
+      function paint() { btns.forEach(function (b) { b.classList.toggle("on", s.value === b.dataset.v); b.setAttribute("aria-pressed", s.value === b.dataset.v ? "true" : "false"); }); }
+      paint();
+      btns.forEach(function (b) {
+        b.addEventListener("click", function () { s.value = s.value === b.dataset.v ? "" : b.dataset.v; fire(s); paint(); });
+      });
+    });
+
+    // commas: a tapped word gets a comma after it (the word is what is saved and marked)
+    function syncCommas(box) {
+      [].forEach.call(box.querySelectorAll(".cm-comma"), function (c) { c.remove(); });
+      [].forEach.call(box.querySelectorAll(".hw-w.hw-circled"), function (w) {
+        var c = document.createElement("span"); c.className = "cm-comma"; c.textContent = ",";
+        w.parentNode.insertBefore(c, w.nextSibling);
+      });
+    }
+    [].forEach.call(document.querySelectorAll(".comma-tap"), syncCommas);
+    document.addEventListener("click", function (e) {
+      var w = e.target && e.target.closest ? e.target.closest(".comma-tap .hw-w") : null;
+      if (w) syncCommas(w.closest(".comma-tap"));
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
 </div><!-- /sheet -->
 <div class="hw-bar">
   <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJzMV9yMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcwMDAwMCJ9LCAiczFfcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzNjAwMDAifSwgInMxX2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjM0MDAwMCJ9LCAiczFfYW5zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzQ3NjY1In0sICJzMV9jbG9zZSI6IHsidCI6ICJvcGVuIn0sICJzMl9yMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQwMDAwMCJ9LCAiczJfcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNjAwMDAifSwgInMyX2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjI0MDAwMCJ9LCAiczJfYW5zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjM2MjQyIn0sICJzMl9jbG9zZSI6IHsidCI6ICJvcGVuIn0sICJ6X3IxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjAwMDAwIn0sICJ6X3IyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjUwMDAwIn0sICJ6X2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjM1MDAwMCJ9LCAiel92ZXJkaWN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiWm9lIGlzIHdyb25nIn0sICJ6X21pc3Rha2UiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJTaGUgZm9yZ290IHRvIHRha2UgMSBmcm9tIHRoZSA2In0sICJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIk15IGNvdXNpbiwgYSBrZWVuIHN3aW1tZXIsIHdvbiBhIG1lZGFsLiJ9LCAicDIiOiB7InQiOiAib3BlbiJ9LCAicDMiOiB7InQiOiAib3BlbiJ9LCAicDQiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script type="application/json" id="hw-check">eyJzMV9yMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcwMDAwMCJ9LCAiczFfcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzNjAwMDAifSwgInMxX2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjM0MDAwMCJ9LCAiczFfYW5zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzQ3NjY1In0sICJzMV9jbG9zZSI6IHsidCI6ICJvcGVuIn0sICJzMl9yMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQwMDAwMCJ9LCAiczJfcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNjAwMDAifSwgInMyX2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjI0MDAwMCJ9LCAiczJfYW5zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjM2MjQyIn0sICJzMl9jbG9zZSI6IHsidCI6ICJvcGVuIn0sICJ6X3IxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjAwMDAwIn0sICJ6X3IyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjUwMDAwIn0sICJ6X2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjM1MDAwMCJ9LCAiel92ZXJkaWN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiWm9lIGlzIHdyb25nIn0sICJ6X21pc3Rha2UiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJTaGUgZm9yZ290IHRvIHRha2UgMSBmcm9tIHRoZSA2In0sICJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIk15IGNvdXNpbiwgYSBrZWVuIHN3aW1tZXIsIHdvbiBhIG1lZGFsLiJ9LCAicDIiOiB7InQiOiAib3BlbiJ9LCAicDMiOiB7InQiOiAib3BlbiJ9LCAicDQiOiB7InQiOiAib3BlbiJ9LCAicmQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDAxLDAwMCJ9LCAicmQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzk5LDAwMCJ9LCAicmQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDAwLDAwMCJ9LCAicmQ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDAwLDAwMCJ9LCAicmQ1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDAxLDAwMCJ9LCAicmQ2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzk5LDAwMCJ9LCAiYzV3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzA5LDAwMCJ9LCAiYzVmaXgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzOTksMDAwIn0sICJjNnciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MDAsMDAwIn0sICJjNmZpeCI6IHsidCI6ICJleGFjdCIsICJhIjogIjQwNSwwMDAifSwgImM3dyI6IHsidCI6ICJleGFjdCIsICJhIjogIjIwMCw5MDAifSwgImM3Zml4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjk5LDkwMCJ9LCAibmw4YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjM1MCwwMDAifSwgIm5sOGIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzODAsMDAwIn0sICJubDlhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTQyLDAwMCJ9LCAibmw5YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjU0NSwwMDAifSwgIndwX21sIjogeyJ0IjogImV4YWN0IiwgImEiOiAibGVzcyJ9LCAid3BfcjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MSwwMDAifSwgIndwX29wIjogeyJ0IjogImV4YWN0IiwgImEiOiAi4oiSIn0sICJ3cF9yMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjE4LDAwMCJ9LCAid3BfZXN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjMsMDAwIn0sICJ3cF9hbnMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMyw0NDcifSwgInd3MSI6IHsidCI6ICJleGFjdCIsICJhIjogIndobyJ9LCAid3cyIjogeyJ0IjogImV4YWN0IiwgImEiOiAid2hpY2gifSwgInd3MyI6IHsidCI6ICJleGFjdCIsICJhIjogIndoaWNoIn0sICJ3dzQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgImNtMSI6IHsidCI6ICJzZXQiLCAiYSI6ICJCaXNjdWl0LCBwdXBweSJ9LCAiY20yIjogeyJ0IjogInNldCIsICJhIjogIk11c2V1bSwgdGVuIn0sICJjbTMiOiB7InQiOiAic2V0IiwgImEiOiAiUGF0ZWwsIHRlYWNoZXIifSwgImNtNCI6IHsidCI6ICJzZXQiLCAiYSI6ICJMaWx5LCBzdHJlZXQifSwgIm1kMSI6IHsidCI6ICJzZXQiLCAiYSI6ICJzaG91bGQifSwgIm1kMiI6IHsidCI6ICJzZXQiLCAiYSI6ICJtaWdodCwgY291bGQifSwgIm1kMyI6IHsidCI6ICJzZXQiLCAiYSI6ICJjYW4ifSwgIm1kNCI6IHsidCI6ICJzZXQiLCAiYSI6ICJtdXN0In0sICJ3cjEiOiB7InQiOiAib3BlbiJ9fQ==</script>
 <script src="../assets/hw.js?v=20261008-pdf-layout"></script>
 </body>
 </html>

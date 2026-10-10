@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megan · Maths homework · 10 October 2026</title>
+<style>
+@page {size:A4; margin:11mm 11mm;}
+* {box-sizing:border-box;}
+html {-webkit-text-size-adjust:100%;}
+body {font-family:'Segoe UI',Arial,sans-serif; color:#252333; margin:0; font-size:18px; background:#fbfaff;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+.page {max-width:1180px; margin:0 auto; padding:0 28px 48px;}
+header {background:linear-gradient(135deg,#6c63ff,#a78bfa); color:#fff; border-radius:18px; padding:18px 30px; margin:26px 0 36px;}
+h1 {font-size:25px; margin:0 0 4px;}
+.meta {font-size:15px; opacity:.95;}
+section {margin:0 0 48px;}
+.lbl {font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#6d4fc2; margin:0 0 8px;}
+.instr {font-size:32px; font-weight:800; color:#1f1b2e; line-height:1.25; margin:0 0 8px; text-wrap:balance;}
+.note {font-size:17px; color:#6b6280; margin:0 0 26px;}
+.note.pr {display:none;}
+
+/* one card per number */
+.card {background:#fff; border:2px solid #e6e0fa; border-radius:22px; padding:28px 34px 30px; margin:0 0 34px;
+  transition:border-color .15s, box-shadow .15s;}
+.card.current {border-color:#a78bfa; box-shadow:0 10px 30px rgba(108,99,255,.13);}
+.card.model {background:#f7f5ff; border-color:#d9cff7;}
+.mtag {display:inline-block; margin:0 0 14px; padding:5px 14px; border-radius:999px; background:#6c63ff; color:#fff;
+  font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;}
+.ctitle {font-size:22px; margin:0 0 20px; color:#3f3752;}
+.big {font-size:31px; font-weight:800; color:#5b32b5; letter-spacing:.01em;}
+.cbody {display:grid; grid-template-columns:minmax(0,1fr) 500px; gap:40px;}
+.side .linebox {position:sticky; top:24px;}
+svg.nl {display:block; width:100%; height:auto;}
+.store {display:none;}
+
+/* steps */
+.steps {display:flex; flex-direction:column; gap:10px;}
+.step {border:3px solid transparent; border-radius:16px; padding:12px 16px 15px; transition:background .15s, border-color .15s;}
+.step.now {border-color:#f59e0b; background:#fffbeb;}
+.shead {display:flex; align-items:center; gap:14px; margin:0 0 12px;}
+.badge {flex:0 0 36px; width:36px; height:36px; border-radius:50%; border:2px solid #c9bdf0; background:#fff; color:#5b32b5;
+  display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700;}
+.step.got .badge {background:#6c63ff; border-color:#6c63ff; color:#fff;}
+.sq {font-size:20px; line-height:1.35;}
+.nowtag {display:none; margin-left:auto; flex:0 0 auto; padding:3px 13px; border-radius:999px; background:#f59e0b; color:#fff;
+  font-size:15px; font-weight:700; letter-spacing:.03em;}
+.step.now .nowtag {display:inline-block;}
+.how {margin:10px 0 0 50px; font-size:16px; color:#6b6280; line-height:1.4;}
+.hl {color:#6c63ff; font-weight:800;}
+
+/* answer buttons: every answer on this sheet is a choice */
+.opts {display:flex; flex-wrap:wrap; align-items:center; gap:14px; padding-left:50px;}
+.opt {font:inherit; font-size:22px; font-weight:700; color:#3f3752; background:#fff; border:2px solid #c9bdf0; border-radius:14px;
+  padding:12px 20px; min-width:124px; min-height:58px; line-height:1.2; text-align:center; cursor:pointer;
+  display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+  transition:background .12s, border-color .12s, box-shadow .12s;}
+span.opt {cursor:default;}
+.opt.dg {min-width:66px; font-size:26px; padding:8px 0;}
+.opt.two {min-width:200px; font-size:19px; padding:9px 18px;}
+.opt.two small {font-size:16px; font-weight:600; opacity:.85; margin-top:2px;}
+button.opt:hover {background:#f3f0ff; border-color:#a78bfa;}
+button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
+.opts .opt.on {background:#6c63ff; border-color:#6c63ff; color:#fff; box-shadow:0 0 0 4px #ddd6fe;}
+.opts > .hw-mark.hw-mark-blk {font-size:19px; margin:2px 0 0;}
+
+/* Evie's digit-count pairs */
+.pair .psteps {display:flex; flex-direction:column; gap:8px;}
+.pair .step {display:flex; flex-wrap:wrap; align-items:center; column-gap:28px; row-gap:10px;}
+.pair .shead {flex:0 1 450px; margin:0;}
+.pair .opts {flex:0 1 auto; padding-left:0;}
+.pair .opts > .hw-mark.hw-mark-blk {display:inline-block; flex:0 0 auto; width:auto; margin:0 0 0 4px; white-space:nowrap;}
+.instr + .note.pr + .card {margin-top:24px;}
+.pn {font-size:26px; font-weight:800; color:#5b32b5; white-space:nowrap;}
+
+@media (max-width:900px) {
+  .cbody {grid-template-columns:minmax(0,1fr); gap:14px;}
+  .side {order:-1;}
+  .side .linebox {position:sticky; top:0; z-index:2; background:#fff; padding:6px 0 8px; box-shadow:0 10px 10px -10px rgba(40,30,80,.25);}
+  .card.model .side .linebox {background:#f7f5ff;}
+  svg.nl {max-width:480px; margin:0 auto;}
+  .pair .shead {flex-basis:100%;}
+  .pair .opts {padding-left:50px;}
+}
+@media (max-width:600px) {
+  body {font-size:17px;}
+  .page {padding:0 12px 40px;}
+  header {padding:14px 18px; margin:14px 0 26px; border-radius:14px;}
+  h1 {font-size:22px;}
+  .instr {font-size:25px;}
+  .card {padding:18px 14px 20px; border-radius:18px;}
+  .ctitle {font-size:19px;}
+  .big {font-size:27px;}
+  .step {padding:10px 8px 12px;}
+  .sq {font-size:18px;}
+  .badge {flex-basis:32px; width:32px; height:32px; font-size:15px;}
+  .opts {padding-left:0; gap:10px;}
+  .opt {font-size:19px; min-width:0; padding:10px 12px; min-height:52px;}
+  .opt.dg {min-width:58px; font-size:24px;}
+  .opt.two {min-width:0; flex:1 1 140px; font-size:16px; padding:8px 10px;}
+  .opt.two small {font-size:14px;}
+  .how {margin-left:0;}
+  .pn {font-size:23px;}
+  .pair .opts {padding-left:0;}
+}
+
+@media print {
+
+body {font-size:13px; background:#fff;}
+.page {max-width:none; padding:0;}
+header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+h1 {font-size:19px; margin:0;}
+.meta {font-size:11.5px;}
+section {margin:0 0 14px;}
+.lbl {font-size:10.5px; margin:0 0 3px;}
+.instr {font-size:19px; margin:0 0 3px;}
+.note {font-size:12px; margin:0 0 10px;}
+.note.scr {display:none;}
+.note.pr {display:block;}
+.card {padding:11px 16px 13px; margin:0 0 12px; border-width:1.5px; border-radius:12px; box-shadow:none; break-inside:avoid; page-break-inside:avoid;}
+.card.current {border-color:#e6e0fa; box-shadow:none;}
+.card.model {border-color:#d9cff7;}
+.mtag {font-size:10px; padding:2px 9px; margin:0 0 6px;}
+.ctitle {font-size:14px; margin:0 0 7px;}
+.big {font-size:19px;}
+.cbody {grid-template-columns:minmax(0,1fr) 320px; gap:14px;}
+.lead {break-inside:avoid; page-break-inside:avoid;}
+.side {order:0;}
+.side .linebox {position:static; box-shadow:none; padding:4px 0 0; background:none;}
+.steps {gap:3px;}
+.step, .step.now {padding:3px 4px 5px; border:0; background:none;}
+.shead {gap:8px; margin:0 0 4px;}
+.badge {flex-basis:21px; width:21px; height:21px; font-size:11.5px; border-width:1.5px;}
+.sq {font-size:13px;}
+.nowtag {display:none !important;}
+.how {font-size:11px; margin:3px 0 0 29px;}
+.opts {gap:7px; padding-left:29px;}
+.opt {font-size:14px; padding:3px 10px; min-width:70px; min-height:0; border-width:1.5px; border-radius:8px; box-shadow:none;}
+.opts .opt.on {box-shadow:none;}
+.opt.dg {min-width:32px; font-size:15px; padding:2px 0;}
+.opt.two {min-width:0; flex:0 0 auto; font-size:12px; padding:3px 9px;}
+.opt.two small {font-size:10.5px; margin-top:0;}
+.pair .psteps {gap:2px;}
+.pair .step {column-gap:16px; row-gap:4px;}
+.pair .shead {flex:0 1 290px;}
+.instr + .note.pr + .card {margin-top:0;}
+.pair .opts {padding-left:0;}
+.pn {font-size:15px;}
+
+  .nl .dotg {display:inline;}
+  .nl .slot.empty {display:none;}
+}
+
+body.hw-pdf-mode body {font-size:13px; background:#fff;}
+body.hw-pdf-mode .page {max-width:none; padding:0;}
+body.hw-pdf-mode header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+body.hw-pdf-mode h1 {font-size:19px; margin:0;}
+body.hw-pdf-mode .meta {font-size:11.5px;}
+body.hw-pdf-mode section {margin:0 0 14px;}
+body.hw-pdf-mode .lbl {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .instr {font-size:19px; margin:0 0 3px;}
+body.hw-pdf-mode .note {font-size:12px; margin:0 0 10px;}
+body.hw-pdf-mode .note.scr {display:none;}
+body.hw-pdf-mode .note.pr {display:block;}
+body.hw-pdf-mode .card {padding:11px 16px 13px; margin:0 0 12px; border-width:1.5px; border-radius:12px; box-shadow:none; break-inside:avoid; page-break-inside:avoid;}
+body.hw-pdf-mode .card.current {border-color:#e6e0fa; box-shadow:none;}
+body.hw-pdf-mode .card.model {border-color:#d9cff7;}
+body.hw-pdf-mode .mtag {font-size:10px; padding:2px 9px; margin:0 0 6px;}
+body.hw-pdf-mode .ctitle {font-size:14px; margin:0 0 7px;}
+body.hw-pdf-mode .big {font-size:19px;}
+body.hw-pdf-mode .cbody {grid-template-columns:minmax(0,1fr) 320px; gap:14px;}
+body.hw-pdf-mode .lead {break-inside:avoid; page-break-inside:avoid;}
+body.hw-pdf-mode .side {order:0;}
+body.hw-pdf-mode .side .linebox {position:static; box-shadow:none; padding:4px 0 0; background:none;}
+body.hw-pdf-mode .steps {gap:3px;}
+body.hw-pdf-mode .step, body.hw-pdf-mode .step.now {padding:3px 4px 5px; border:0; background:none;}
+body.hw-pdf-mode .shead {gap:8px; margin:0 0 4px;}
+body.hw-pdf-mode .badge {flex-basis:21px; width:21px; height:21px; font-size:11.5px; border-width:1.5px;}
+body.hw-pdf-mode .sq {font-size:13px;}
+body.hw-pdf-mode .nowtag {display:none !important;}
+body.hw-pdf-mode .how {font-size:11px; margin:3px 0 0 29px;}
+body.hw-pdf-mode .opts {gap:7px; padding-left:29px;}
+body.hw-pdf-mode .opt {font-size:14px; padding:3px 10px; min-width:70px; min-height:0; border-width:1.5px; border-radius:8px; box-shadow:none;}
+body.hw-pdf-mode .opts .opt.on {box-shadow:none;}
+body.hw-pdf-mode .opt.dg {min-width:32px; font-size:15px; padding:2px 0;}
+body.hw-pdf-mode .opt.two {min-width:0; flex:0 0 auto; font-size:12px; padding:3px 9px;}
+body.hw-pdf-mode .opt.two small {font-size:10.5px; margin-top:0;}
+body.hw-pdf-mode .pair .psteps {gap:2px;}
+body.hw-pdf-mode .pair .step {column-gap:16px; row-gap:4px;}
+body.hw-pdf-mode .pair .shead {flex:0 1 290px;}
+body.hw-pdf-mode .instr + .note.pr + .card {margin-top:0;}
+body.hw-pdf-mode .pair .opts {padding-left:0;}
+body.hw-pdf-mode .pn {font-size:15px;}
+
+
+
+/* Megan: column frame beside the steps */
+.colframe {background:#fff; border:2px solid #e6e0fa; border-radius:16px; padding:16px 18px 18px;}
+.card.model .colframe {background:#fbfaff;}
+.estline {font-size:20px; color:#3f3752; margin:0 0 16px; display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.estline .elbl {font-weight:700; color:#6d4fc2; flex:0 0 100%;}
+.eslot {display:inline-flex; align-items:center; justify-content:center; min-width:104px; height:42px; padding:0 10px;
+  border:2px dashed #c9bdf0; border-radius:10px; background:#faf9ff; font-weight:800; color:#5b32b5; font-size:21px;}
+.eslot.full {border-style:solid; border-color:#a78bfa; background:#f3f0ff;}
+table.cols {border-collapse:collapse; margin:0 auto; font-variant-numeric:tabular-nums;}
+table.cols td {width:50px; height:50px; text-align:center; font-size:30px; font-weight:700; color:#252333; padding:0;}
+table.cols tr.carry td {height:30px; font-size:19px; color:#ea580c; font-weight:800; vertical-align:bottom;}
+table.cols td.sign {width:38px; color:#6b6280;}
+table.cols tr.bot td {border-bottom:3px solid #374151;}
+table.cols tr.ans td.c {border:2px dashed #c9bdf0; border-top:0; background:#faf9ff; color:#5b32b5;}
+table.cols tr.ans td.c.full {border-style:solid; border-color:#a78bfa; background:#f3f0ff;}
+table.cols tr.ans td.c.hl {box-shadow:inset 0 0 0 3px #f59e0b;}
+.coltip {font-size:15px; color:#6b6280; text-align:center; margin:12px 0 0;}
+.grouphead {font-size:15px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#8b7fb0; margin:12px 0 2px 16px;}
+.opt.cc {min-width:132px; font-size:24px; padding:8px 14px;}
+.opt.cc small {font-size:15px; font-weight:600; opacity:.85; margin-top:1px;}
+@media (max-width:600px) {
+  table.cols td {width:38px; height:42px; font-size:24px;}
+  table.cols td.sign {width:26px;}
+  .eslot {min-width:84px; font-size:18px; height:38px;}
+  .estline {font-size:17px;}
+  .opt.cc {min-width:0; flex:1 1 90px; font-size:20px;}
+  .grouphead {margin-left:8px;}
+}
+@media print {
+  .colframe {padding:6px 8px 8px; border-width:1.5px; border-radius:10px;}
+  .estline {font-size:12.5px; margin:0 0 6px; gap:4px;}
+  .eslot {min-width:62px; height:24px; font-size:13px; border-width:1.5px; border-radius:6px;}
+  table.cols td {width:26px; height:26px; font-size:16px;}
+  table.cols tr.carry td {height:16px; font-size:11px;}
+  table.cols td.sign {width:20px;}
+  table.cols tr.bot td {border-bottom-width:2px;}
+  table.cols tr.ans td.c {border-width:1.5px;}
+  table.cols tr.ans td.c.hl {box-shadow:none;}
+  .coltip {font-size:10.5px; margin:4px 0 0;}
+  .grouphead {font-size:10px; margin:4px 0 0 4px;}
+  .opt.cc {min-width:0; font-size:13px; padding:2px 8px;}
+  .opt.cc small {font-size:10px;}
+}
+body.hw-pdf-mode .colframe {padding:6px 8px 8px; border-width:1.5px; border-radius:10px;}
+body.hw-pdf-mode .estline {font-size:12.5px; margin:0 0 6px; gap:4px;}
+body.hw-pdf-mode .eslot {min-width:62px; height:24px; font-size:13px; border-width:1.5px; border-radius:6px;}
+body.hw-pdf-mode table.cols td {width:26px; height:26px; font-size:16px;}
+body.hw-pdf-mode table.cols tr.carry td {height:16px; font-size:11px;}
+body.hw-pdf-mode table.cols td.sign {width:20px;}
+body.hw-pdf-mode table.cols tr.bot td {border-bottom-width:2px;}
+body.hw-pdf-mode table.cols tr.ans td.c {border-width:1.5px;}
+body.hw-pdf-mode table.cols tr.ans td.c.hl {box-shadow:none;}
+body.hw-pdf-mode .coltip {font-size:10.5px; margin:4px 0 0;}
+body.hw-pdf-mode .grouphead {font-size:10px; margin:4px 0 0 4px;}
+body.hw-pdf-mode .opt.cc {min-width:0; font-size:13px; padding:2px 8px;}
+body.hw-pdf-mode .opt.cc small {font-size:10px;}
+
+body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, not a paper instruction */
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Megan" data-sheet="Maths 2026-10-10" data-sheet-id="megan-2026-10-10-maths">
+<div id="sheet">
+
+<div class="page">
+<header><h1>Megan · Maths</h1><div class="meta">10 October 2026 · Estimate and add</div></header>
+<div class="lead q"><section class="rnd">
+<p class="lbl">Estimate, then add</p>
+<p class="instr">Estimate first. Then add in columns and check your answer is&nbsp;close.</p>
+<p class="note scr">Tap one answer at every step. Use paper for the adding if it&nbsp;helps.</p>
+<p class="note pr">Circle one answer at every&nbsp;step.</p>
+<div class="card model">
+<p class="mtag">Like this</p>
+<p class="ctitle"><span class="big">46,255 + 27,381</span></p>
+<div class="cbody">
+<div class="steps"><div class="step got"><div class="shead"><span class="badge">1</span><span class="sq">Round <b>46,255</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt">47,000</span><span class="opt on">46,000</span></div><p class="how">Smaller neighbour 46,000, bigger 47,000, halfway 46,500. 46,255 is before halfway, so&nbsp;down.</p></div><div class="step got"><div class="shead"><span class="badge">2</span><span class="sq">Round <b>27,381</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt on">27,000</span><span class="opt">28,000</span></div><p class="how">27,381 is before 27,500, so&nbsp;down.</p></div><div class="step got"><div class="shead"><span class="badge">3</span><span class="sq">Add your two rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt on">73,000</span><span class="opt">83,000</span></div><p class="how">46,000 + 27,000 =&nbsp;73,000</p></div><p class="grouphead">Then add in columns, ones first</p><div class="step got"><div class="shead"><span class="badge">4</span><span class="sq">Ones column</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt cc on"><span>6</span><small>no carry</small></span></div><p class="how">5 + 1 = 6</p></div><div class="step got"><div class="shead"><span class="badge">5</span><span class="sq">Tens column</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt cc on"><span>3</span><small>carry 1</small></span></div><p class="how">5 + 8 = 13</p></div><div class="step got"><div class="shead"><span class="badge">6</span><span class="sq">Hundreds column</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt cc on"><span>6</span><small>no carry</small></span></div><p class="how">2 + 3 + 1 = 6</p></div><div class="step got"><div class="shead"><span class="badge">7</span><span class="sq">Thousands column</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt cc on"><span>3</span><small>carry 1</small></span></div><p class="how">6 + 7 = 13</p></div><div class="step got"><div class="shead"><span class="badge">8</span><span class="sq">Ten thousands column</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt dg on">7</span></div><p class="how">4 + 2 + 1 = 7</p></div><div class="step got"><div class="shead"><span class="badge">9</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt on">Yes, close</span><span class="opt">No, far away</span></div><p class="how">73,636 is close to 73,000.</p></div></div>
+<div class="side"><div class="linebox"><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot full" data-fill="a">46,000</span> + <span class="eslot full" data-fill="b">27,000</span> = <span class="eslot full" data-fill="e">73,000</span></p><table class="cols" aria-label="Column addition"><tr class="carry"><td class="sign"></td><td data-carry="4">1</td><td data-carry="3"></td><td data-carry="2">1</td><td data-carry="1"></td><td data-carry="0"></td></tr><tr><td class="sign"></td><td>4</td><td>6</td><td>2</td><td>5</td><td>5</td></tr><tr class="bot"><td class="sign">+</td><td>2</td><td>7</td><td>3</td><td>8</td><td>1</td></tr><tr class="ans"><td class="sign"></td><td class="c full" data-ans="4">7</td><td class="c full" data-ans="3">3</td><td class="c full" data-ans="2">6</td><td class="c full" data-ans="1">3</td><td class="c full" data-ans="0">6</td></tr></table><p class="coltip">A carry goes at the top of the next column.</p></div></div></div>
+</div>
+</div>
+</section></div>
+<section>
+<div class="card q item live">
+<p class="ctitle"><span class="qn">1.</span> <span class="big">37,682 + 25,439</span></p>
+<div class="cbody">
+<div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Round <b>37,682</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1a" data-fill="a"><button type="button" class="opt" data-v="37,000" aria-pressed="false">37,000</button><button type="button" class="opt" data-v="37,600" aria-pressed="false">37,600</button><button type="button" class="opt" data-v="38,000" aria-pressed="false">38,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Round <b>25,439</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1b" data-fill="b"><button type="button" class="opt" data-v="25,000" aria-pressed="false">25,000</button><button type="button" class="opt" data-v="26,000" aria-pressed="false">26,000</button><button type="button" class="opt" data-v="25,400" aria-pressed="false">25,400</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Add your two rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1e" data-fill="e"><button type="button" class="opt" data-v="62,000" aria-pressed="false">62,000</button><button type="button" class="opt" data-v="63,000" aria-pressed="false">63,000</button><button type="button" class="opt" data-v="73,000" aria-pressed="false">73,000</button></div></div><p class="grouphead">Now add in columns</p><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">Ones column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1c0" data-col="0"><button type="button" class="opt cc" data-v="1, carry 1" aria-pressed="false"><span>1</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="11, no carry" aria-pressed="false"><span>11</span><small>no carry</small></button><button type="button" class="opt cc" data-v="1, no carry" aria-pressed="false"><span>1</span><small>no carry</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Tens column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1c1" data-col="1"><button type="button" class="opt cc" data-v="2, carry 1" aria-pressed="false"><span>2</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="1, carry 1" aria-pressed="false"><span>1</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="12, no carry" aria-pressed="false"><span>12</span><small>no carry</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">6</span><span class="sq">Hundreds column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1c2" data-col="2"><button type="button" class="opt cc" data-v="0, carry 1" aria-pressed="false"><span>0</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="1, carry 1" aria-pressed="false"><span>1</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="11, no carry" aria-pressed="false"><span>11</span><small>no carry</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">7</span><span class="sq">Thousands column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1c3" data-col="3"><button type="button" class="opt cc" data-v="2, carry 1" aria-pressed="false"><span>2</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="13, no carry" aria-pressed="false"><span>13</span><small>no carry</small></button><button type="button" class="opt cc" data-v="3, carry 1" aria-pressed="false"><span>3</span><small>carry 1</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">8</span><span class="sq">Ten thousands column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1c4" data-col="4"><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button></div></div><div class="step" data-live><div class="shead"><span class="badge">9</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_1z"><button type="button" class="opt two" data-v="no, far away" aria-pressed="false">No, far away</button><button type="button" class="opt two" data-v="yes, close" aria-pressed="false">Yes, close</button></div></div></div>
+<div class="side"><div class="linebox"><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot" data-fill="a"></span> + <span class="eslot" data-fill="b"></span> = <span class="eslot" data-fill="e"></span></p><table class="cols" aria-label="Column addition"><tr class="carry"><td class="sign"></td><td data-carry="4"></td><td data-carry="3"></td><td data-carry="2"></td><td data-carry="1"></td><td data-carry="0"></td></tr><tr><td class="sign"></td><td>3</td><td>7</td><td>6</td><td>8</td><td>2</td></tr><tr class="bot"><td class="sign">+</td><td>2</td><td>5</td><td>4</td><td>3</td><td>9</td></tr><tr class="ans"><td class="sign"></td><td class="c" data-ans="4"></td><td class="c" data-ans="3"></td><td class="c" data-ans="2"></td><td class="c" data-ans="1"></td><td class="c" data-ans="0"></td></tr></table><p class="coltip">A carry goes at the top of the next column.</p></div></div></div>
+</div>
+<div class="store"><select data-k="m_1a" data-label="1. 37,682 + 25,439: round 37,682 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="37,000">37,000</option><option value="37,600">37,600</option><option value="38,000">38,000</option></select><select data-k="m_1b" data-label="1. 37,682 + 25,439: round 25,439 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="25,000">25,000</option><option value="26,000">26,000</option><option value="25,400">25,400</option></select><select data-k="m_1e" data-label="1. 37,682 + 25,439: estimate" class="hw-field"><option value="">Choose</option><option value="62,000">62,000</option><option value="63,000">63,000</option><option value="73,000">73,000</option></select><select data-k="m_1c0" data-label="1. 37,682 + 25,439: ones column" class="hw-field"><option value="">Choose</option><option value="1, carry 1">1, carry 1</option><option value="11, no carry">11, no carry</option><option value="1, no carry">1, no carry</option></select><select data-k="m_1c1" data-label="1. 37,682 + 25,439: tens column" class="hw-field"><option value="">Choose</option><option value="2, carry 1">2, carry 1</option><option value="1, carry 1">1, carry 1</option><option value="12, no carry">12, no carry</option></select><select data-k="m_1c2" data-label="1. 37,682 + 25,439: hundreds column" class="hw-field"><option value="">Choose</option><option value="0, carry 1">0, carry 1</option><option value="1, carry 1">1, carry 1</option><option value="11, no carry">11, no carry</option></select><select data-k="m_1c3" data-label="1. 37,682 + 25,439: thousands column" class="hw-field"><option value="">Choose</option><option value="2, carry 1">2, carry 1</option><option value="13, no carry">13, no carry</option><option value="3, carry 1">3, carry 1</option></select><select data-k="m_1c4" data-label="1. 37,682 + 25,439: ten thousands column" class="hw-field"><option value="">Choose</option><option value="5">5</option><option value="7">7</option><option value="6">6</option></select><select data-k="m_1z" data-label="1. 37,682 + 25,439: close to the estimate?" class="hw-field"><option value="">Choose</option><option value="no, far away">no, far away</option><option value="yes, close">yes, close</option></select></div>
+</div>
+<div class="card q item live">
+<p class="ctitle"><span class="qn">2.</span> <span class="big">284,519 + 136,846</span></p>
+<div class="cbody">
+<div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Round <b>284,519</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2a" data-fill="a"><button type="button" class="opt" data-v="285,000" aria-pressed="false">285,000</button><button type="button" class="opt" data-v="284,000" aria-pressed="false">284,000</button><button type="button" class="opt" data-v="28,000" aria-pressed="false">28,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Round <b>136,846</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2b" data-fill="b"><button type="button" class="opt" data-v="136,000" aria-pressed="false">136,000</button><button type="button" class="opt" data-v="13,000" aria-pressed="false">13,000</button><button type="button" class="opt" data-v="137,000" aria-pressed="false">137,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Add your two rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2e" data-fill="e"><button type="button" class="opt" data-v="421,000" aria-pressed="false">421,000</button><button type="button" class="opt" data-v="432,000" aria-pressed="false">432,000</button><button type="button" class="opt" data-v="422,000" aria-pressed="false">422,000</button></div></div><p class="grouphead">Now add in columns</p><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">Ones column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2c0" data-col="0"><button type="button" class="opt cc" data-v="15, no carry" aria-pressed="false"><span>15</span><small>no carry</small></button><button type="button" class="opt cc" data-v="5, carry 1" aria-pressed="false"><span>5</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="5, no carry" aria-pressed="false"><span>5</span><small>no carry</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Tens column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2c1" data-col="1"><button type="button" class="opt cc" data-v="6, no carry" aria-pressed="false"><span>6</span><small>no carry</small></button><button type="button" class="opt cc" data-v="5, no carry" aria-pressed="false"><span>5</span><small>no carry</small></button><button type="button" class="opt cc" data-v="6, carry 1" aria-pressed="false"><span>6</span><small>carry 1</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">6</span><span class="sq">Hundreds column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2c2" data-col="2"><button type="button" class="opt cc" data-v="3, carry 1" aria-pressed="false"><span>3</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="13, no carry" aria-pressed="false"><span>13</span><small>no carry</small></button><button type="button" class="opt cc" data-v="3, no carry" aria-pressed="false"><span>3</span><small>no carry</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">7</span><span class="sq">Thousands column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2c3" data-col="3"><button type="button" class="opt cc" data-v="0, carry 1" aria-pressed="false"><span>0</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="1, carry 1" aria-pressed="false"><span>1</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="11, no carry" aria-pressed="false"><span>11</span><small>no carry</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">8</span><span class="sq">Ten thousands column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2c4" data-col="4"><button type="button" class="opt cc" data-v="1, carry 1" aria-pressed="false"><span>1</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="12, no carry" aria-pressed="false"><span>12</span><small>no carry</small></button><button type="button" class="opt cc" data-v="2, carry 1" aria-pressed="false"><span>2</span><small>carry 1</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">9</span><span class="sq">Hundred thousands column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2c5" data-col="5"><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button></div></div><div class="step" data-live><div class="shead"><span class="badge">10</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_2z"><button type="button" class="opt two" data-v="yes, close" aria-pressed="false">Yes, close</button><button type="button" class="opt two" data-v="no, far away" aria-pressed="false">No, far away</button></div></div></div>
+<div class="side"><div class="linebox"><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot" data-fill="a"></span> + <span class="eslot" data-fill="b"></span> = <span class="eslot" data-fill="e"></span></p><table class="cols" aria-label="Column addition"><tr class="carry"><td class="sign"></td><td data-carry="5"></td><td data-carry="4"></td><td data-carry="3"></td><td data-carry="2"></td><td data-carry="1"></td><td data-carry="0"></td></tr><tr><td class="sign"></td><td>2</td><td>8</td><td>4</td><td>5</td><td>1</td><td>9</td></tr><tr class="bot"><td class="sign">+</td><td>1</td><td>3</td><td>6</td><td>8</td><td>4</td><td>6</td></tr><tr class="ans"><td class="sign"></td><td class="c" data-ans="5"></td><td class="c" data-ans="4"></td><td class="c" data-ans="3"></td><td class="c" data-ans="2"></td><td class="c" data-ans="1"></td><td class="c" data-ans="0"></td></tr></table><p class="coltip">A carry goes at the top of the next column.</p></div></div></div>
+</div>
+<div class="store"><select data-k="m_2a" data-label="2. 284,519 + 136,846: round 284,519 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="285,000">285,000</option><option value="284,000">284,000</option><option value="28,000">28,000</option></select><select data-k="m_2b" data-label="2. 284,519 + 136,846: round 136,846 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="136,000">136,000</option><option value="13,000">13,000</option><option value="137,000">137,000</option></select><select data-k="m_2e" data-label="2. 284,519 + 136,846: estimate" class="hw-field"><option value="">Choose</option><option value="421,000">421,000</option><option value="432,000">432,000</option><option value="422,000">422,000</option></select><select data-k="m_2c0" data-label="2. 284,519 + 136,846: ones column" class="hw-field"><option value="">Choose</option><option value="15, no carry">15, no carry</option><option value="5, carry 1">5, carry 1</option><option value="5, no carry">5, no carry</option></select><select data-k="m_2c1" data-label="2. 284,519 + 136,846: tens column" class="hw-field"><option value="">Choose</option><option value="6, no carry">6, no carry</option><option value="5, no carry">5, no carry</option><option value="6, carry 1">6, carry 1</option></select><select data-k="m_2c2" data-label="2. 284,519 + 136,846: hundreds column" class="hw-field"><option value="">Choose</option><option value="3, carry 1">3, carry 1</option><option value="13, no carry">13, no carry</option><option value="3, no carry">3, no carry</option></select><select data-k="m_2c3" data-label="2. 284,519 + 136,846: thousands column" class="hw-field"><option value="">Choose</option><option value="0, carry 1">0, carry 1</option><option value="1, carry 1">1, carry 1</option><option value="11, no carry">11, no carry</option></select><select data-k="m_2c4" data-label="2. 284,519 + 136,846: ten thousands column" class="hw-field"><option value="">Choose</option><option value="1, carry 1">1, carry 1</option><option value="12, no carry">12, no carry</option><option value="2, carry 1">2, carry 1</option></select><select data-k="m_2c5" data-label="2. 284,519 + 136,846: hundred thousands column" class="hw-field"><option value="">Choose</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select><select data-k="m_2z" data-label="2. 284,519 + 136,846: close to the estimate?" class="hw-field"><option value="">Choose</option><option value="yes, close">yes, close</option><option value="no, far away">no, far away</option></select></div>
+</div>
+<div class="card q item live">
+<p class="ctitle"><span class="qn">3.</span> <span class="big">45,273 + 518,694</span></p>
+<div class="cbody">
+<div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Round <b>45,273</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3a" data-fill="a"><button type="button" class="opt" data-v="46,000" aria-pressed="false">46,000</button><button type="button" class="opt" data-v="45,000" aria-pressed="false">45,000</button><button type="button" class="opt" data-v="45,200" aria-pressed="false">45,200</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Round <b>518,694</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3b" data-fill="b"><button type="button" class="opt" data-v="518,000" aria-pressed="false">518,000</button><button type="button" class="opt" data-v="51,000" aria-pressed="false">51,000</button><button type="button" class="opt" data-v="519,000" aria-pressed="false">519,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Add your two rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3e" data-fill="e"><button type="button" class="opt" data-v="564,000" aria-pressed="false">564,000</button><button type="button" class="opt" data-v="563,000" aria-pressed="false">563,000</button><button type="button" class="opt" data-v="574,000" aria-pressed="false">574,000</button></div></div><p class="grouphead">Now add in columns</p><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">Ones column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3c0" data-col="0"><button type="button" class="opt cc" data-v="7, no carry" aria-pressed="false"><span>7</span><small>no carry</small></button><button type="button" class="opt cc" data-v="7, carry 1" aria-pressed="false"><span>7</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="8, no carry" aria-pressed="false"><span>8</span><small>no carry</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Tens column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3c1" data-col="1"><button type="button" class="opt cc" data-v="16, no carry" aria-pressed="false"><span>16</span><small>no carry</small></button><button type="button" class="opt cc" data-v="6, no carry" aria-pressed="false"><span>6</span><small>no carry</small></button><button type="button" class="opt cc" data-v="6, carry 1" aria-pressed="false"><span>6</span><small>carry 1</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">6</span><span class="sq">Hundreds column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3c2" data-col="2"><button type="button" class="opt cc" data-v="8, no carry" aria-pressed="false"><span>8</span><small>no carry</small></button><button type="button" class="opt cc" data-v="9, no carry" aria-pressed="false"><span>9</span><small>no carry</small></button><button type="button" class="opt cc" data-v="9, carry 1" aria-pressed="false"><span>9</span><small>carry 1</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">7</span><span class="sq">Thousands column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3c3" data-col="3"><button type="button" class="opt cc" data-v="3, carry 1" aria-pressed="false"><span>3</span><small>carry 1</small></button><button type="button" class="opt cc" data-v="13, no carry" aria-pressed="false"><span>13</span><small>no carry</small></button><button type="button" class="opt cc" data-v="3, no carry" aria-pressed="false"><span>3</span><small>no carry</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">8</span><span class="sq">Ten thousands column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3c4" data-col="4"><button type="button" class="opt cc" data-v="6, no carry" aria-pressed="false"><span>6</span><small>no carry</small></button><button type="button" class="opt cc" data-v="5, no carry" aria-pressed="false"><span>5</span><small>no carry</small></button><button type="button" class="opt cc" data-v="6, carry 1" aria-pressed="false"><span>6</span><small>carry 1</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">9</span><span class="sq">Hundred thousands column: what do you&nbsp;write?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3c5" data-col="5"><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button></div></div><div class="step" data-live><div class="shead"><span class="badge">10</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_3z"><button type="button" class="opt two" data-v="yes, close" aria-pressed="false">Yes, close</button><button type="button" class="opt two" data-v="no, far away" aria-pressed="false">No, far away</button></div></div></div>
+<div class="side"><div class="linebox"><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot" data-fill="a"></span> + <span class="eslot" data-fill="b"></span> = <span class="eslot" data-fill="e"></span></p><table class="cols" aria-label="Column addition"><tr class="carry"><td class="sign"></td><td data-carry="5"></td><td data-carry="4"></td><td data-carry="3"></td><td data-carry="2"></td><td data-carry="1"></td><td data-carry="0"></td></tr><tr><td class="sign"></td><td></td><td>4</td><td>5</td><td>2</td><td>7</td><td>3</td></tr><tr class="bot"><td class="sign">+</td><td>5</td><td>1</td><td>8</td><td>6</td><td>9</td><td>4</td></tr><tr class="ans"><td class="sign"></td><td class="c" data-ans="5"></td><td class="c" data-ans="4"></td><td class="c" data-ans="3"></td><td class="c" data-ans="2"></td><td class="c" data-ans="1"></td><td class="c" data-ans="0"></td></tr></table><p class="coltip">A carry goes at the top of the next column.</p></div></div></div>
+</div>
+<div class="store"><select data-k="m_3a" data-label="3. 45,273 + 518,694: round 45,273 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="46,000">46,000</option><option value="45,000">45,000</option><option value="45,200">45,200</option></select><select data-k="m_3b" data-label="3. 45,273 + 518,694: round 518,694 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="518,000">518,000</option><option value="51,000">51,000</option><option value="519,000">519,000</option></select><select data-k="m_3e" data-label="3. 45,273 + 518,694: estimate" class="hw-field"><option value="">Choose</option><option value="564,000">564,000</option><option value="563,000">563,000</option><option value="574,000">574,000</option></select><select data-k="m_3c0" data-label="3. 45,273 + 518,694: ones column" class="hw-field"><option value="">Choose</option><option value="7, no carry">7, no carry</option><option value="7, carry 1">7, carry 1</option><option value="8, no carry">8, no carry</option></select><select data-k="m_3c1" data-label="3. 45,273 + 518,694: tens column" class="hw-field"><option value="">Choose</option><option value="16, no carry">16, no carry</option><option value="6, no carry">6, no carry</option><option value="6, carry 1">6, carry 1</option></select><select data-k="m_3c2" data-label="3. 45,273 + 518,694: hundreds column" class="hw-field"><option value="">Choose</option><option value="8, no carry">8, no carry</option><option value="9, no carry">9, no carry</option><option value="9, carry 1">9, carry 1</option></select><select data-k="m_3c3" data-label="3. 45,273 + 518,694: thousands column" class="hw-field"><option value="">Choose</option><option value="3, carry 1">3, carry 1</option><option value="13, no carry">13, no carry</option><option value="3, no carry">3, no carry</option></select><select data-k="m_3c4" data-label="3. 45,273 + 518,694: ten thousands column" class="hw-field"><option value="">Choose</option><option value="6, no carry">6, no carry</option><option value="5, no carry">5, no carry</option><option value="6, carry 1">6, carry 1</option></select><select data-k="m_3c5" data-label="3. 45,273 + 518,694: hundred thousands column" class="hw-field"><option value="">Choose</option><option value="6">6</option><option value="5">5</option><option value="4">4</option></select><select data-k="m_3z" data-label="3. 45,273 + 518,694: close to the estimate?" class="hw-field"><option value="">Choose</option><option value="yes, close">yes, close</option><option value="no, far away">no, far away</option></select></div>
+</div>
+</section>
+</div>
+<script>
+(function () {
+  var DOWN = "before halfway: round down", UP = "halfway or after: round UP";
+  function show(el, on) { if (el) el.setAttribute("display", on ? "inline" : "none"); }
+  function updateNow() {
+    var first = null;
+    document.querySelectorAll(".step[data-live]").forEach(function (s) {
+      s.classList.remove("now");
+      if (!first && !s.classList.contains("got")) first = s;
+    });
+    if (first) first.classList.add("now");
+    document.querySelectorAll(".card.live").forEach(function (c) { c.classList.toggle("current", !!first && c.contains(first)); });
+  }
+  function setup(card) {
+    function selFor(k) { return card.querySelector('.store select[data-k="' + k + '"]'); }
+    var groups = [].slice.call(card.querySelectorAll(".opts[data-field]"));
+    function paint() {
+      var vals = {};
+      groups.forEach(function (g) {
+        var s = selFor(g.dataset.field), v = s ? s.value : "";
+        g.querySelectorAll("button").forEach(function (b) {
+          var on = !!v && b.dataset.v === v;
+          b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        var st = g.closest(".step"); if (st) st.classList.toggle("got", !!v);
+        if (g.dataset.show) vals[g.dataset.show] = v;
+      });
+      if (!card.querySelector("svg.nl")) return;
+      var r = vals.r || "", lo = card.dataset.lo, hi = card.dataset.hi;
+      ["s", "h", "b"].forEach(function (k) {
+        var t = card.querySelector('text.slt[data-show="' + k + '"]'), box = card.querySelector('rect.slot[data-show="' + k + '"]');
+        var v = vals[k] || "", hit = !!r && !!v && v === r && k !== "h";
+        if (t) t.textContent = v;
+        if (box) {
+          box.setAttribute("fill", hit ? "#fff3d6" : (v ? "#f3f0ff" : "#faf9ff"));
+          box.setAttribute("stroke", hit ? "#f59e0b" : (v ? "#a78bfa" : "#c9bdf0"));
+          box.setAttribute("stroke-dasharray", v ? "none" : "6 4");
+          box.classList.toggle("empty", !v);
+        }
+      });
+      show(card.querySelector("g.dotg"), !!vals.h);   // the number drops onto the line once halfway is chosen
+      show(card.querySelector('rect.band[data-side="lo"]'), vals.d === DOWN);
+      show(card.querySelector('rect.band[data-side="hi"]'), vals.d === UP);
+      show(card.querySelector('g.arr[data-side="lo"]'), !!r && r === lo);
+      show(card.querySelector('g.arr[data-side="hi"]'), !!r && r === hi);
+    }
+    groups.forEach(function (g) {
+      g.querySelectorAll("button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var s = selFor(g.dataset.field); if (!s) return;
+          if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+          paint(); updateNow();
+        });
+      });
+    });
+    paint();   // saved answers come back on reload
+  }
+  function init() { document.querySelectorAll(".card.live").forEach(setup); updateNow(); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+
+(function () {
+  function setup(card) {
+    if (!card.querySelector(".colframe")) return;
+    function selFor(k) { return card.querySelector('.store select[data-k="' + k + '"]'); }
+    var groups = [].slice.call(card.querySelectorAll(".opts[data-field]"));
+    function paint() {
+      groups.forEach(function (g) {
+        var s = selFor(g.dataset.field), v = s ? s.value : "";
+        if (g.dataset.fill) {
+          var t = card.querySelector('.eslot[data-fill="' + g.dataset.fill + '"]');
+          if (t) { t.textContent = v; t.classList.toggle("full", !!v); }
+        }
+        if (g.dataset.col !== undefined) {
+          var i = parseInt(g.dataset.col, 10), parts = v.split(", ");
+          var a = card.querySelector('td[data-ans="' + i + '"]'), c = card.querySelector('td[data-carry="' + (i + 1) + '"]');
+          if (a) { a.textContent = v ? parts[0] : ""; a.classList.toggle("full", !!v); }
+          if (c) c.textContent = (parts[1] === "carry 1") ? "1" : "";
+        }
+      });
+      card.querySelectorAll("td.c").forEach(function (td) { td.classList.remove("hl"); });
+      var now = card.querySelector(".step.now .opts[data-col]");
+      if (now) { var h = card.querySelector('td[data-ans="' + now.dataset.col + '"]'); if (h) h.classList.add("hl"); }
+    }
+    card.addEventListener("click", function () { setTimeout(paint, 0); });
+    paint();
+    setTimeout(paint, 50);
+  }
+  function init() { document.querySelectorAll(".card.live").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtXzFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzgsMDAwIn0sICJtXzFiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjUsMDAwIn0sICJtXzFlIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjMsMDAwIn0sICJtXzFjMCI6IHsidCI6ICJleGFjdCIsICJhIjogIjEsIGNhcnJ5IDEifSwgIm1fMWMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiwgY2FycnkgMSJ9LCAibV8xYzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxLCBjYXJyeSAxIn0sICJtXzFjMyI6IHsidCI6ICJleGFjdCIsICJhIjogIjMsIGNhcnJ5IDEifSwgIm1fMWM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiJ9LCAibV8xeiI6IHsidCI6ICJleGFjdCIsICJhIjogInllcywgY2xvc2UifSwgIm1fMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyODUsMDAwIn0sICJtXzJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTM3LDAwMCJ9LCAibV8yZSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQyMiwwMDAifSwgIm1fMmMwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSwgY2FycnkgMSJ9LCAibV8yYzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2LCBubyBjYXJyeSJ9LCAibV8yYzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzLCBjYXJyeSAxIn0sICJtXzJjMyI6IHsidCI6ICJleGFjdCIsICJhIjogIjEsIGNhcnJ5IDEifSwgIm1fMmM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiwgY2FycnkgMSJ9LCAibV8yYzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0In0sICJtXzJ6IjogeyJ0IjogImV4YWN0IiwgImEiOiAieWVzLCBjbG9zZSJ9LCAibV8zYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQ1LDAwMCJ9LCAibV8zYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjUxOSwwMDAifSwgIm1fM2UiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1NjQsMDAwIn0sICJtXzNjMCI6IHsidCI6ICJleGFjdCIsICJhIjogIjcsIG5vIGNhcnJ5In0sICJtXzNjMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjYsIGNhcnJ5IDEifSwgIm1fM2MyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSwgbm8gY2FycnkifSwgIm1fM2MzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMywgY2FycnkgMSJ9LCAibV8zYzQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2LCBubyBjYXJyeSJ9LCAibV8zYzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1In0sICJtXzN6IjogeyJ0IjogImV4YWN0IiwgImEiOiAieWVzLCBjbG9zZSJ9fQ==</script>
+<script src="../assets/hw.js?v=20261008-pdf-layout"></script>
+</body></html>

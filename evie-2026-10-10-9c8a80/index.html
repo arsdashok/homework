@@ -192,50 +192,277 @@ body.hw-pdf-mode .pn {font-size:15px;}
 
 
 
+
 /* Evie: step 5 has three choices */
 .opt.three {min-width:0; font-size:17px; padding:9px 13px;}
-.roman {break-inside:avoid; page-break-inside:avoid;}
-.rwork {font-size:20px; font-weight:700; color:#3f3752; margin:-6px 0 22px;}
-.rwork span {font-weight:500; color:#6b6280; font-size:17px;}
-@media print {
-  .nl .slot.empty {display:inline;}
-  .page {display:flex; flex-direction:column;}
-  .page > header {order:0;}
-  .page > .lead {order:1;}
-  .page > section.roman {order:2;}
-  .page > section.items {order:3;}
-  .rwork {font-size:12.5px; margin:0 0 6px;}
-  .rwork span {font-size:11px;}
-}
-body.hw-pdf-mode .rwork {font-size:12.5px; margin:0 0 6px;}
-body.hw-pdf-mode .rwork span {font-size:11px;}
-@media screen and (min-width:901px) { .cbody {grid-template-columns:minmax(0,1fr) 430px;} .opts {gap:10px;} }
 .opt.three small {font-size:15px; font-weight:600; opacity:.85; margin-top:2px;}
-.roman .rkey {display:flex; flex-wrap:wrap; gap:12px; margin:0 0 22px;}
-.roman .rk {padding:8px 18px; border-radius:999px; background:#fef3c7; border:2px solid #f59e0b; font-size:20px; font-weight:800; color:#7c4a03;}
-.roman .rsteps {display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px 34px;}
-.rn {font-size:34px; font-weight:800; color:#5b32b5; letter-spacing:.06em;}
-@media (max-width:900px) { .roman .rsteps {grid-template-columns:minmax(0,1fr);} }
+@media screen and (min-width:901px) { .cbody {grid-template-columns:minmax(0,1fr) 430px;} .opts {gap:10px;} }
+.store {display:none !important;}
+
+/* ---------- Roman numerals: Mr Pumpkin's games ---------- */
+.roman {margin:64px 0 0;}
+.roman .lbl {display:flex; align-items:center; gap:8px; font-size:15px; margin:0 0 14px;}
+.pawicon {flex:0 0 auto;}
+.game {margin:0 0 50px;}
+.stage {display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; margin:0 0 18px; padding:16px 0 0; border-top:2px dashed #e6e0fa;}
+.stg {font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#6d4fc2;}
+.stt {font-size:22px; font-weight:700; color:#3f3752; margin-right:6px;}
+.rk {align-self:center; padding:5px 16px; border-radius:999px; background:#fef3c7; border:2px solid #f59e0b; font-size:21px; font-weight:800; color:#7c4a03; letter-spacing:.03em; white-space:nowrap;}
+.gcard {background:#fff; border:2px solid #e6e0fa; border-radius:22px; padding:20px 26px 22px; transition:border-color .15s, box-shadow .15s;}
+.gcard.current {border-color:#a78bfa; box-shadow:0 10px 30px rgba(108,99,255,.13);}
+.rn {font-family:'Segoe UI',Arial,sans-serif; font-size:34px; font-weight:800; color:#5b32b5; letter-spacing:.08em; white-space:nowrap;}
+.bignum {font-size:34px; font-weight:800; color:#5b32b5; min-width:44px; text-align:right; font-variant-numeric:tabular-nums;}
+.eq {font-size:28px; font-weight:700; color:#6b6280;}
+.ritem {position:relative; display:flex; flex-wrap:wrap; align-items:center; gap:12px 26px; border:3px solid transparent; border-radius:16px; padding:10px 14px;}
+.ritem + .ritem {margin-top:6px;}
+.ritem.now, .dnd.now, .code.now {border-color:#f59e0b; background:#fffbeb;}
+.ritem .opts {padding-left:0;}
+.ritem .nowtag {margin-left:auto;}
+.now .nowtag {display:inline-block;}
+.prompt {display:inline-flex; align-items:center; gap:12px; min-width:150px;}
+.opt.rm {min-width:96px; font-size:27px; letter-spacing:.07em;}
+.pawbox {flex:0 0 auto; display:block; width:330px; max-width:100%;}
+svg.paws {display:block; width:100%; height:auto;}
+.model-row {background:#f7f5ff; border:2px solid #e3dcfa; border-radius:16px;}
+.model-row .mtag, .sortex .mtag, .codeex .mtag {margin:0 8px 0 0;}
+.builds {margin-top:6px;}
+.builds .ritem + .ritem {margin-top:6px;}
+.rrule {display:flex; flex-wrap:wrap; align-items:center; gap:10px 22px; padding:12px 16px; margin:0 0 12px;}
+.rr {display:inline-flex; align-items:baseline; gap:12px;}
+.eqs {font-size:26px; font-weight:700; color:#3f3752; white-space:nowrap;}
+.rcap {font-size:20px; color:#3f3752;}
+
+/* build a numeral from tiles */
+.bq {display:inline-flex; align-items:center; gap:14px; flex-wrap:nowrap;}
+.bbox {display:flex; align-items:center; gap:7px; min-width:220px; min-height:68px; padding:7px 10px; border:2px dashed #a78bfa; border-radius:14px; background:#faf9ff;}
+.bbox.over {border-style:solid; border-color:#6c63ff; background:#ede9fe;}
+.bbox.done {border-style:solid; border-color:#c9bdf0; background:#fff;}
+.rl, .sup {display:inline-flex; align-items:center; justify-content:center; width:50px; height:52px; border-radius:12px; font-family:'Segoe UI',Arial,sans-serif; font-size:29px; font-weight:800; line-height:1; user-select:none; -webkit-user-select:none; touch-action:none;}
+.rl {background:#6c63ff; color:#fff; cursor:pointer;}
+.sup {background:#fef3c7; border:2px solid #f59e0b; color:#7c4a03; cursor:grab;}
+.sup:hover {background:#fde68a;}
+.sup:focus-visible, .rl:focus-visible {outline:3px solid #6c63ff; outline-offset:2px;}
+.supply {display:inline-flex; gap:10px; padding:6px 10px; border-radius:14px; background:#fffbeb;}
+.ghost {position:fixed; z-index:60; pointer-events:none; transform:scale(1.08); box-shadow:0 6px 14px rgba(0,0,0,.2); margin:0;}
+
+/* two sides of the I */
+.sides {display:flex; flex-direction:column; gap:8px; margin:0 0 18px; padding:12px 18px; background:#f7f5ff; border:2px solid #e3dcfa; border-radius:16px;}
+.side-r {display:flex; align-items:center; gap:16px; margin:0; font-size:21px; color:#3f3752;}
+.side-r .rn {min-width:70px;}
+.hi {color:#ea580c;}
+
+/* sort into two boxes */
+.dnd {position:relative; border:3px solid transparent; border-radius:16px; padding:8px 10px 10px;}
+.dnd > .nowtag {position:absolute; right:10px; top:-14px;}
+.sortex {display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin:0 0 14px; padding:10px 14px; font-size:20px; color:#3f3752; background:#f7f5ff; border:2px solid #e3dcfa; border-radius:16px;}
+.bank {display:flex; flex-wrap:wrap; align-items:center; gap:12px; min-height:76px; padding:12px 14px; border-radius:14px; background:#f3f0ff;}
+.tile {display:inline-block; padding:8px 18px; border-radius:12px; background:#6c63ff; color:#fff; font-family:'Segoe UI',Arial,sans-serif; font-weight:800; font-size:28px; line-height:1.25; letter-spacing:.08em; text-align:center; white-space:nowrap; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none;}
+.tile.static {cursor:default; font-size:24px; padding:5px 14px;}
+.tile .hw-mark {display:block; margin:5px -8px -2px; padding:1px 7px; border-radius:6px; background:#fff; font-size:14px; letter-spacing:0; line-height:1.3;}
+.tile.picked {outline:3px solid #f59e0b; outline-offset:2px;}
+.tile.dragging {position:fixed; z-index:60; cursor:grabbing; pointer-events:none; transform:scale(1.06); box-shadow:0 6px 14px rgba(0,0,0,.2);}
+.bins {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin:16px 0 0;}
+.bin-label {text-align:center; font-size:20px; font-weight:700; color:#3f3752; margin:0 0 6px;}
+.drop {border:2px dashed #a78bfa; border-radius:14px; background:#faf9ff;}
+.bin .drop {min-height:150px; display:flex; flex-wrap:wrap; align-content:flex-start; gap:10px; padding:12px;}
+.dnd.ready .drop {border-color:#6c63ff; background:#ede9fe;}
+.drop.over {border-style:solid; border-color:#6c63ff; background:#ede9fe;}
+
+/* quick two- and three-way choices */
+.quick .ritem {padding:8px 14px;}
+
+/* secret message */
+.code {position:relative; border:3px solid transparent; border-radius:16px; padding:10px;}
+.code > .nowtag {position:absolute; right:10px; top:-14px;}
+.akey {display:grid; grid-template-columns:repeat(16,minmax(0,1fr)); gap:6px; margin:0 0 16px;}
+.akey span {display:flex; flex-direction:column; align-items:center; padding:6px 0 5px; border-radius:10px; background:#f3f0ff;}
+.akey b {font-size:22px; color:#3f3752;}
+.akey small {font-size:15px; font-weight:600; color:#6b6280;}
+.codeex {display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin:0 0 18px; padding:10px 14px; background:#f7f5ff; border:2px solid #e3dcfa; border-radius:16px; font-size:24px; color:#3f3752;}
+.codeex .rn {font-size:28px;}
+.codeex .arrow {color:#6b6280;}
+.codeex .lt {color:#5b32b5;}
+.cwords {display:flex; flex-wrap:wrap; gap:22px 48px;}
+.cword {display:flex; gap:10px;}
+.cell {display:flex; flex-direction:column; align-items:center; gap:8px; min-width:66px;}
+.cell .rn {font-size:24px;}
+.code input.hw-field.cl, .code input.cl {width:58px; min-width:0; height:60px; min-height:0; padding:0; font-size:30px; font-weight:700; text-align:center; text-transform:uppercase; border:2px solid #8072b2; border-radius:10px; background:#f6f5ff; color:#1d4ed8;}
+.cell .hw-mark {margin:0; font-size:15px;}
+
+@media (max-width:900px) {
+  .akey {grid-template-columns:repeat(8,minmax(0,1fr));}
+}
 @media (max-width:600px) {
-  .opt.three {min-width:0; flex:1 1 140px; font-size:16px; padding:8px 10px;}
-  .opt.three small {font-size:13px;}
+  .roman {margin-top:48px;}
+  .stt {font-size:19px;}
+  .rk {font-size:18px; padding:4px 12px;}
+  .gcard {padding:14px 10px 16px; border-radius:18px;}
+  .ritem {gap:10px 14px; padding:8px 8px;}
   .rn {font-size:28px;}
+  .bignum {font-size:28px; min-width:34px;}
+  .eq {font-size:24px;}
+  .ritem.choose .opts {flex:1 1 200px; flex-wrap:nowrap; gap:8px;}
+  .ritem.choose .opt {flex:1 1 0; min-width:0;}
+  .opt.rm {font-size:22px; padding:10px 6px;}
+  .ritem .nowtag {position:absolute; right:6px; top:-13px; margin:0;}
+  .prompt {min-width:0;}
+  .bq {gap:8px;}
+  .bbox {min-width:120px; min-height:60px; padding:6px 7px; gap:6px;}
+  .rl, .sup {width:42px; height:46px; font-size:25px;}
+  .supply {gap:6px; padding:4px;}
+  .side-r {font-size:18px; gap:12px;}
+  .sides {gap:10px; padding:10px 12px;}
+  .tile {font-size:24px; padding:7px 14px;}
+  .bin-label {font-size:17px;}
+  .bin .drop {min-height:130px; padding:8px; gap:8px;}
+  .bins {gap:10px;}
+  .eqs {font-size:22px;}
+  .rcap {font-size:18px;}
+  .sortex {font-size:18px;}
+  .akey b {font-size:18px;}
+  .akey small {font-size:13px;}
+  .cwords {gap:16px 28px;}
+  .cword {gap:6px;}
+  .cell {min-width:46px; gap:6px;}
+  .cell .rn {font-size:19px;}
+  .code input.hw-field.cl, .code input.cl {width:44px; height:52px; font-size:26px;}
+  .codeex {font-size:20px;}
 }
+
 @media print {
-  .opt.three {min-width:0; font-size:12px; padding:3px 9px;}
-  .opt.three small {font-size:10.5px; margin-top:0;}
-  .roman .rkey {gap:6px; margin:0 0 6px;}
-  .roman .rk {font-size:12px; padding:2px 9px; border-width:1.5px;}
-  .roman .rsteps {grid-template-columns:repeat(2, minmax(0,1fr)); gap:3px 16px;}
-  .rn {font-size:17px;}
+
+.nl .slot.empty {display:inline;}
+.opt.three {min-width:0; font-size:12px; padding:3px 9px;}
+.opt.three small {font-size:10.5px; margin-top:0;}
+.roman {margin:18px 0 0;}
+.roman .lbl {font-size:10.5px; margin:0 0 3px;}
+.builds {display:flex; flex-wrap:wrap; gap:3px 30px; margin-top:3px;}
+.builds .ritem + .ritem {margin-top:0;}
+.pawicon {width:14px; height:14px;}
+.game {margin:0 0 12px; break-inside:avoid; page-break-inside:avoid;}
+.stage {margin:0 0 4px; padding:7px 0 0; gap:4px 9px; border-top-width:1.5px;}
+.stg {font-size:10px;}
+.stt {font-size:14px;}
+.rk {font-size:12.5px; padding:1px 9px; border-width:1.5px;}
+.gcard {padding:8px 12px 9px; border-width:1.5px; border-radius:12px; box-shadow:none;}
+.gcard.current {border-color:#e6e0fa; box-shadow:none;}
+.rn {font-size:17px;}
+.bignum {font-size:17px; min-width:22px;}
+.eq {font-size:15px;}
+.ritem, .ritem.now {padding:3px 4px; gap:4px 12px; border:0; background:none;}
+.ritem + .ritem {margin-top:2px;}
+.nowtag, .dnd > .nowtag, .code > .nowtag {display:none !important;}
+.prompt {gap:6px; min-width:70px;}
+.opt.rm {min-width:44px; font-size:14px; padding:2px 8px; letter-spacing:.05em;}
+.pawbox {width:170px;}
+.model-row {border-width:1.5px; border-radius:10px;}
+.rrule {padding:4px 9px; margin:0 0 4px; gap:4px 12px;}
+.eqs {font-size:14px;}
+.rcap {font-size:12.5px;}
+.bq {gap:7px;}
+.bbox {display:block; min-width:120px; width:120px; min-height:30px; height:auto; padding:3px 6px; border-width:1.5px; border-radius:8px; border-style:solid; border-color:#a78bfa; background:#fff;}
+.bbox.done {width:auto; min-width:60px;}
+.rl {display:inline; width:auto; height:auto; min-width:0; padding:0 1px; margin:0; font-size:17px; line-height:1.4; letter-spacing:.06em; background:none; color:#1d4ed8; border-radius:0;}
+.bbox.done .rl {color:#5b32b5;}
+.supply {display:none !important;}
+.sides {flex-direction:row; flex-wrap:wrap; margin:0 0 5px; padding:4px 10px; gap:3px 24px; border-width:1.5px; border-radius:10px;}
+.side-r {font-size:12.5px; gap:9px;}
+.side-r .rn {min-width:34px;}
+.dnd, .dnd.now {padding:2px 2px 4px; border:0; background:none;}
+.sortex {font-size:12.5px; padding:3px 9px; margin:0 0 5px; gap:4px 8px; border-width:1.5px; border-radius:10px;}
+.bank {min-height:0; padding:5px 8px; gap:6px; border-radius:8px;}
+.tile {font-size:15px; padding:2px 10px; border-radius:6px;}
+.tile.static {font-size:13px; padding:1px 8px;}
+.bins {gap:10px; margin:5px 0 0;}
+.bin-label {font-size:12px; margin:0 0 2px;}
+.drop {border-width:1.5px; border-radius:8px; border-style:solid; background:#fff;}
+.bin .drop {min-height:58px; padding:5px; gap:5px;}
+.quick {display:flex; flex-wrap:wrap; gap:2px 26px;}
+.quick .ritem {padding:2px 2px;}
+.quick .ritem + .ritem {margin-top:0;}
+.code, .code.now {padding:2px; border:0; background:none;}
+.akey {gap:3px; margin:0 0 6px; grid-template-columns:repeat(16,minmax(0,1fr));}
+.akey span {padding:2px 0; border-radius:5px;}
+.akey b {font-size:13px;}
+.akey small {font-size:10.5px;}
+.codeex {font-size:13px; padding:3px 9px; margin:0 0 6px; gap:4px 8px; border-width:1.5px; border-radius:10px;}
+.codeex .rn {font-size:15px;}
+.cwords {gap:6px 26px;}
+.cword {gap:6px;}
+.cell {min-width:40px; gap:3px;}
+.cell .rn {font-size:14px;}
+.code input.hw-field.cl, .code input.cl {width:34px; height:34px; font-size:17px; border-width:1.5px; border-radius:6px;}
 }
+body.hw-pdf-mode .nl .slot.empty {display:inline;}
 body.hw-pdf-mode .opt.three {min-width:0; font-size:12px; padding:3px 9px;}
 body.hw-pdf-mode .opt.three small {font-size:10.5px; margin-top:0;}
-body.hw-pdf-mode .roman .rkey {gap:6px; margin:0 0 6px;}
-body.hw-pdf-mode .roman .rk {font-size:12px; padding:2px 9px; border-width:1.5px;}
-body.hw-pdf-mode .roman .rsteps {grid-template-columns:repeat(2, minmax(0,1fr)); gap:3px 16px;}
+body.hw-pdf-mode .roman {margin:18px 0 0;}
+body.hw-pdf-mode .roman .lbl {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .builds {display:flex; flex-wrap:wrap; gap:3px 30px; margin-top:3px;}
+body.hw-pdf-mode .builds .ritem + .ritem {margin-top:0;}
+body.hw-pdf-mode .pawicon {width:14px; height:14px;}
+body.hw-pdf-mode .game {margin:0 0 12px; break-inside:avoid; page-break-inside:avoid;}
+body.hw-pdf-mode .stage {margin:0 0 4px; padding:7px 0 0; gap:4px 9px; border-top-width:1.5px;}
+body.hw-pdf-mode .stg {font-size:10px;}
+body.hw-pdf-mode .stt {font-size:14px;}
+body.hw-pdf-mode .rk {font-size:12.5px; padding:1px 9px; border-width:1.5px;}
+body.hw-pdf-mode .gcard {padding:8px 12px 9px; border-width:1.5px; border-radius:12px; box-shadow:none;}
+body.hw-pdf-mode .gcard.current {border-color:#e6e0fa; box-shadow:none;}
 body.hw-pdf-mode .rn {font-size:17px;}
+body.hw-pdf-mode .bignum {font-size:17px; min-width:22px;}
+body.hw-pdf-mode .eq {font-size:15px;}
+body.hw-pdf-mode .ritem, body.hw-pdf-mode .ritem.now {padding:3px 4px; gap:4px 12px; border:0; background:none;}
+body.hw-pdf-mode .ritem + .ritem {margin-top:2px;}
+body.hw-pdf-mode .nowtag, body.hw-pdf-mode .dnd > .nowtag, body.hw-pdf-mode .code > .nowtag {display:none !important;}
+body.hw-pdf-mode .prompt {gap:6px; min-width:70px;}
+body.hw-pdf-mode .opt.rm {min-width:44px; font-size:14px; padding:2px 8px; letter-spacing:.05em;}
+body.hw-pdf-mode .pawbox {width:170px;}
+body.hw-pdf-mode .model-row {border-width:1.5px; border-radius:10px;}
+body.hw-pdf-mode .rrule {padding:4px 9px; margin:0 0 4px; gap:4px 12px;}
+body.hw-pdf-mode .eqs {font-size:14px;}
+body.hw-pdf-mode .rcap {font-size:12.5px;}
+body.hw-pdf-mode .bq {gap:7px;}
+body.hw-pdf-mode .bbox {display:block; min-width:120px; width:120px; min-height:30px; height:auto; padding:3px 6px; border-width:1.5px; border-radius:8px; border-style:solid; border-color:#a78bfa; background:#fff;}
+body.hw-pdf-mode .bbox.done {width:auto; min-width:60px;}
+body.hw-pdf-mode .rl {display:inline; width:auto; height:auto; min-width:0; padding:0 1px; margin:0; font-size:17px; line-height:1.4; letter-spacing:.06em; background:none; color:#1d4ed8; border-radius:0;}
+body.hw-pdf-mode .bbox.done .rl {color:#5b32b5;}
+body.hw-pdf-mode .supply {display:none !important;}
+body.hw-pdf-mode .sides {flex-direction:row; flex-wrap:wrap; margin:0 0 5px; padding:4px 10px; gap:3px 24px; border-width:1.5px; border-radius:10px;}
+body.hw-pdf-mode .side-r {font-size:12.5px; gap:9px;}
+body.hw-pdf-mode .side-r .rn {min-width:34px;}
+body.hw-pdf-mode .dnd, body.hw-pdf-mode .dnd.now {padding:2px 2px 4px; border:0; background:none;}
+body.hw-pdf-mode .sortex {font-size:12.5px; padding:3px 9px; margin:0 0 5px; gap:4px 8px; border-width:1.5px; border-radius:10px;}
+body.hw-pdf-mode .bank {min-height:0; padding:5px 8px; gap:6px; border-radius:8px;}
+body.hw-pdf-mode .tile {font-size:15px; padding:2px 10px; border-radius:6px;}
+body.hw-pdf-mode .tile.static {font-size:13px; padding:1px 8px;}
+body.hw-pdf-mode .bins {gap:10px; margin:5px 0 0;}
+body.hw-pdf-mode .bin-label {font-size:12px; margin:0 0 2px;}
+body.hw-pdf-mode .drop {border-width:1.5px; border-radius:8px; border-style:solid; background:#fff;}
+body.hw-pdf-mode .bin .drop {min-height:58px; padding:5px; gap:5px;}
+body.hw-pdf-mode .quick {display:flex; flex-wrap:wrap; gap:2px 26px;}
+body.hw-pdf-mode .quick .ritem {padding:2px 2px;}
+body.hw-pdf-mode .quick .ritem + .ritem {margin-top:0;}
+body.hw-pdf-mode .code, body.hw-pdf-mode .code.now {padding:2px; border:0; background:none;}
+body.hw-pdf-mode .akey {gap:3px; margin:0 0 6px; grid-template-columns:repeat(16,minmax(0,1fr));}
+body.hw-pdf-mode .akey span {padding:2px 0; border-radius:5px;}
+body.hw-pdf-mode .akey b {font-size:13px;}
+body.hw-pdf-mode .akey small {font-size:10.5px;}
+body.hw-pdf-mode .codeex {font-size:13px; padding:3px 9px; margin:0 0 6px; gap:4px 8px; border-width:1.5px; border-radius:10px;}
+body.hw-pdf-mode .codeex .rn {font-size:15px;}
+body.hw-pdf-mode .cwords {gap:6px 26px;}
+body.hw-pdf-mode .cword {gap:6px;}
+body.hw-pdf-mode .cell {min-width:40px; gap:3px;}
+body.hw-pdf-mode .cell .rn {font-size:14px;}
+body.hw-pdf-mode .code input.hw-field.cl, body.hw-pdf-mode .code input.cl {width:34px; height:34px; font-size:17px; border-width:1.5px; border-radius:6px;}
 
+body.hw-pdf-mode #sheet .code .hw-pdf-answer {display:inline-block !important; width:34px !important; min-width:0 !important; min-height:34px !important; height:34px !important; padding:4px 0 0 !important; text-align:center !important; text-transform:uppercase; font-size:17px !important;}
+body.hw-pdf-mode #sheet .cell .hw-mark {font-size:11px !important; margin:0 !important; white-space:nowrap !important; width:auto !important;}
+body.hw-pdf-mode #sheet .ritem .hw-mark.hw-mark-blk {font-size:12px; margin:1px 0 0;}
+body.hw-pdf-mode #sheet .tile .hw-mark {font-size:11px !important; letter-spacing:0;}
+body.hw-pdf-mode #sheet .bin .hw-pdf-drop > .hw-pdf-tile + .hw-pdf-tile {margin-top:5px !important;}
+body.hw-pdf-mode #sheet .bin .hw-pdf-tile {background:#fff !important; color:#1d4ed8 !important; border:1.5px solid #c9bdf0 !important; text-align:left !important; padding:2px 10px !important; font-size:15px !important;}
+body.hw-pdf-mode #sheet .tile .hw-mark {display:inline-block !important; width:auto !important; margin:0 0 0 10px !important; padding:0 !important; background:none !important; font-size:11px !important;}
+body.hw-pdf-mode #sheet .bank:empty {display:none !important;}
 body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, not a paper instruction */
 </style><meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -260,65 +487,47 @@ body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, n
 </div>
 </section></div>
 <section class="items">
-<div class="card q item live" data-lo="460" data-hi="470">
-<p class="ctitle">Round <span class="big">465</span> to the nearest&nbsp;10</p>
-<div class="cbody">
-<div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Which digit is in the tens&nbsp;place?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_1p"><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Smaller neighbour?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_1s" data-show="s"><button type="button" class="opt" data-v="460" aria-pressed="false">460</button><button type="button" class="opt" data-v="46" aria-pressed="false">46</button><button type="button" class="opt" data-v="400" aria-pressed="false">400</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Bigger neighbour?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_1b" data-show="b"><button type="button" class="opt" data-v="560" aria-pressed="false">560</button><button type="button" class="opt" data-v="475" aria-pressed="false">475</button><button type="button" class="opt" data-v="470" aria-pressed="false">470</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">What is halfway?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_1h" data-show="h"><button type="button" class="opt" data-v="65" aria-pressed="false">65</button><button type="button" class="opt" data-v="455" aria-pressed="false">455</button><button type="button" class="opt" data-v="465" aria-pressed="false">465</button></div></div><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Is 465 before halfway, or halfway and&nbsp;after?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_1d" data-show="d"><button type="button" class="opt three" data-v="halfway or after: round UP" aria-pressed="false"><span>halfway or after</span><small>round UP</small></button><button type="button" class="opt three" data-v="before halfway: round down" aria-pressed="false"><span>before halfway</span><small>round down</small></button><button type="button" class="opt three" data-v="it stays the same" aria-pressed="false"><span>it stays the same</span><small>no change</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">6</span><span class="sq">So it rounds&nbsp;to…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_1r" data-show="r"><button type="button" class="opt" data-v="460" aria-pressed="false">460</button><button type="button" class="opt" data-v="465" aria-pressed="false">465</button><button type="button" class="opt" data-v="470" aria-pressed="false">470</button></div></div></div>
-<div class="side"><div class="linebox"><svg class="nl" width="460" height="196" viewBox="0 0 460 196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Number line from the smaller to the bigger neighbour"><rect class="band" data-side="lo" x="76.0" y="83" width="154.0" height="30" rx="7" fill="#ece7ff" display="none"/><rect class="band" data-side="hi" x="230.0" y="83" width="154.0" height="30" rx="7" fill="#ece7ff" display="none"/><g class="arr" data-side="lo" display="none"><line x1="230.0" y1="98" x2="93.0" y2="98" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" opacity=".85"/><polygon points="74.0,98 95.0,85 95.0,111" fill="#f59e0b"/></g><g class="arr" data-side="hi" display="none"><line x1="230.0" y1="98" x2="367.0" y2="98" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" opacity=".85"/><polygon points="386.0,98 365.0,85 365.0,111" fill="#f59e0b"/></g><line x1="76.0" y1="98" x2="384.0" y2="98" stroke="#374151" stroke-width="3"/><line x1="76.0" y1="82" x2="76.0" y2="114" stroke="#374151" stroke-width="3"/><line x1="384.0" y1="82" x2="384.0" y2="114" stroke="#374151" stroke-width="3"/><line x1="106.8" y1="91" x2="106.8" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="137.6" y1="91" x2="137.6" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="168.4" y1="91" x2="168.4" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="199.2" y1="91" x2="199.2" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="230.0" y1="85" x2="230.0" y2="111" stroke="#6b7280" stroke-width="2.5"/><line x1="260.8" y1="91" x2="260.8" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="291.6" y1="91" x2="291.6" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="322.4" y1="91" x2="322.4" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="353.2" y1="91" x2="353.2" y2="105" stroke="#9ca3af" stroke-width="1.6"/><rect class="slot empty" data-show="s" x="20.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="s" x="76.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="76.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">smaller neighbour</text><rect class="slot empty" data-show="h" x="174.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="h" x="230.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="230.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">halfway</text><rect class="slot empty" data-show="b" x="328.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="b" x="384.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="384.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">bigger neighbour</text><g class="dotg" display="none"><line x1="230.0" y1="52" x2="230.0" y2="98" stroke="#dc2626" stroke-width="2.5"/><circle cx="230.0" cy="98" r="9" fill="#dc2626" stroke="#fff" stroke-width="2.5"/><text x="230.0" y="42" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#dc2626">465</text></g></svg></div></div>
-</div>
-<div class="store"><select data-k="e_1p" data-label="1. 465 to the nearest 10: step 1, the tens digit" class="hw-field"><option value="">Choose</option><option value="4">4</option><option value="6">6</option><option value="5">5</option></select><select data-k="e_1s" data-label="1. 465 to the nearest 10: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="460">460</option><option value="46">46</option><option value="400">400</option></select><select data-k="e_1b" data-label="1. 465 to the nearest 10: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="560">560</option><option value="475">475</option><option value="470">470</option></select><select data-k="e_1h" data-label="1. 465 to the nearest 10: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="65">65</option><option value="455">455</option><option value="465">465</option></select><select data-k="e_1d" data-label="1. 465 to the nearest 10: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="halfway or after: round UP">halfway or after: round UP</option><option value="before halfway: round down">before halfway: round down</option><option value="it stays the same">it stays the same</option></select><select data-k="e_1r" data-label="1. 465 to the nearest 10: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="460">460</option><option value="465">465</option><option value="470">470</option></select></div>
-</div>
-<div class="card q item live" data-lo="3,600" data-hi="3,700">
-<p class="ctitle">Round <span class="big">3,672</span> to the nearest&nbsp;100</p>
-<div class="cbody">
-<div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Which digit is in the hundreds&nbsp;place?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_2p"><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Smaller neighbour?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_2s" data-show="s"><button type="button" class="opt" data-v="36" aria-pressed="false">36</button><button type="button" class="opt" data-v="3,600" aria-pressed="false">3,600</button><button type="button" class="opt" data-v="3,000" aria-pressed="false">3,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Bigger neighbour?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_2b" data-show="b"><button type="button" class="opt" data-v="3,700" aria-pressed="false">3,700</button><button type="button" class="opt" data-v="4,600" aria-pressed="false">4,600</button><button type="button" class="opt" data-v="3,772" aria-pressed="false">3,772</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">What is halfway?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_2h" data-show="h"><button type="button" class="opt" data-v="650" aria-pressed="false">650</button><button type="button" class="opt" data-v="3,650" aria-pressed="false">3,650</button><button type="button" class="opt" data-v="3,500" aria-pressed="false">3,500</button></div></div><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Is 3,672 before halfway, or halfway and&nbsp;after?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_2d" data-show="d"><button type="button" class="opt three" data-v="before halfway: round down" aria-pressed="false"><span>before halfway</span><small>round down</small></button><button type="button" class="opt three" data-v="it stays the same" aria-pressed="false"><span>it stays the same</span><small>no change</small></button><button type="button" class="opt three" data-v="halfway or after: round UP" aria-pressed="false"><span>halfway or after</span><small>round UP</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">6</span><span class="sq">So it rounds&nbsp;to…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_2r" data-show="r"><button type="button" class="opt" data-v="3,600" aria-pressed="false">3,600</button><button type="button" class="opt" data-v="3,700" aria-pressed="false">3,700</button><button type="button" class="opt" data-v="3,672" aria-pressed="false">3,672</button></div></div></div>
-<div class="side"><div class="linebox"><svg class="nl" width="460" height="196" viewBox="0 0 460 196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Number line from the smaller to the bigger neighbour"><rect class="band" data-side="lo" x="76.0" y="83" width="154.0" height="30" rx="7" fill="#ece7ff" display="none"/><rect class="band" data-side="hi" x="230.0" y="83" width="154.0" height="30" rx="7" fill="#ece7ff" display="none"/><g class="arr" data-side="lo" display="none"><line x1="297.8" y1="98" x2="93.0" y2="98" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" opacity=".85"/><polygon points="74.0,98 95.0,85 95.0,111" fill="#f59e0b"/></g><g class="arr" data-side="hi" display="none"><line x1="297.8" y1="98" x2="367.0" y2="98" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" opacity=".85"/><polygon points="386.0,98 365.0,85 365.0,111" fill="#f59e0b"/></g><line x1="76.0" y1="98" x2="384.0" y2="98" stroke="#374151" stroke-width="3"/><line x1="76.0" y1="82" x2="76.0" y2="114" stroke="#374151" stroke-width="3"/><line x1="384.0" y1="82" x2="384.0" y2="114" stroke="#374151" stroke-width="3"/><line x1="106.8" y1="91" x2="106.8" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="137.6" y1="91" x2="137.6" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="168.4" y1="91" x2="168.4" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="199.2" y1="91" x2="199.2" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="230.0" y1="85" x2="230.0" y2="111" stroke="#6b7280" stroke-width="2.5"/><line x1="260.8" y1="91" x2="260.8" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="291.6" y1="91" x2="291.6" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="322.4" y1="91" x2="322.4" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="353.2" y1="91" x2="353.2" y2="105" stroke="#9ca3af" stroke-width="1.6"/><rect class="slot empty" data-show="s" x="20.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="s" x="76.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="76.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">smaller neighbour</text><rect class="slot empty" data-show="h" x="174.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="h" x="230.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="230.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">halfway</text><rect class="slot empty" data-show="b" x="328.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="b" x="384.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="384.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">bigger neighbour</text><g class="dotg" display="none"><line x1="297.8" y1="52" x2="297.8" y2="98" stroke="#dc2626" stroke-width="2.5"/><circle cx="297.8" cy="98" r="9" fill="#dc2626" stroke="#fff" stroke-width="2.5"/><text x="297.8" y="42" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#dc2626">3,672</text></g></svg></div></div>
-</div>
-<div class="store"><select data-k="e_2p" data-label="2. 3,672 to the nearest 100: step 1, the hundreds digit" class="hw-field"><option value="">Choose</option><option value="3">3</option><option value="6">6</option><option value="7">7</option></select><select data-k="e_2s" data-label="2. 3,672 to the nearest 100: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="36">36</option><option value="3,600">3,600</option><option value="3,000">3,000</option></select><select data-k="e_2b" data-label="2. 3,672 to the nearest 100: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="3,700">3,700</option><option value="4,600">4,600</option><option value="3,772">3,772</option></select><select data-k="e_2h" data-label="2. 3,672 to the nearest 100: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="650">650</option><option value="3,650">3,650</option><option value="3,500">3,500</option></select><select data-k="e_2d" data-label="2. 3,672 to the nearest 100: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="before halfway: round down">before halfway: round down</option><option value="it stays the same">it stays the same</option><option value="halfway or after: round UP">halfway or after: round UP</option></select><select data-k="e_2r" data-label="2. 3,672 to the nearest 100: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="3,600">3,600</option><option value="3,700">3,700</option><option value="3,672">3,672</option></select></div>
-</div>
-<div class="card q item live" data-lo="58,000" data-hi="59,000">
+<div class="card q item live rcard" data-lo="58,000" data-hi="59,000">
 <p class="ctitle">Round <span class="big">58,310</span> to the nearest&nbsp;1,000</p>
 <div class="cbody">
 <div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Which digit is in the thousands&nbsp;place?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_3p"><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Smaller neighbour?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_3s" data-show="s"><button type="button" class="opt" data-v="58" aria-pressed="false">58</button><button type="button" class="opt" data-v="50,000" aria-pressed="false">50,000</button><button type="button" class="opt" data-v="58,000" aria-pressed="false">58,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Bigger neighbour?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_3b" data-show="b"><button type="button" class="opt" data-v="59,000" aria-pressed="false">59,000</button><button type="button" class="opt" data-v="68,000" aria-pressed="false">68,000</button><button type="button" class="opt" data-v="59,310" aria-pressed="false">59,310</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">What is halfway?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_3h" data-show="h"><button type="button" class="opt" data-v="8,500" aria-pressed="false">8,500</button><button type="button" class="opt" data-v="55,000" aria-pressed="false">55,000</button><button type="button" class="opt" data-v="58,500" aria-pressed="false">58,500</button></div></div><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Is 58,310 before halfway, or halfway and&nbsp;after?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_3d" data-show="d"><button type="button" class="opt three" data-v="halfway or after: round UP" aria-pressed="false"><span>halfway or after</span><small>round UP</small></button><button type="button" class="opt three" data-v="it stays the same" aria-pressed="false"><span>it stays the same</span><small>no change</small></button><button type="button" class="opt three" data-v="before halfway: round down" aria-pressed="false"><span>before halfway</span><small>round down</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">6</span><span class="sq">So it rounds&nbsp;to…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_3r" data-show="r"><button type="button" class="opt" data-v="59,000" aria-pressed="false">59,000</button><button type="button" class="opt" data-v="58,000" aria-pressed="false">58,000</button><button type="button" class="opt" data-v="58,310" aria-pressed="false">58,310</button></div></div></div>
 <div class="side"><div class="linebox"><svg class="nl" width="460" height="196" viewBox="0 0 460 196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Number line from the smaller to the bigger neighbour"><rect class="band" data-side="lo" x="76.0" y="83" width="154.0" height="30" rx="7" fill="#ece7ff" display="none"/><rect class="band" data-side="hi" x="230.0" y="83" width="154.0" height="30" rx="7" fill="#ece7ff" display="none"/><g class="arr" data-side="lo" display="none"><line x1="171.5" y1="98" x2="93.0" y2="98" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" opacity=".85"/><polygon points="74.0,98 95.0,85 95.0,111" fill="#f59e0b"/></g><g class="arr" data-side="hi" display="none"><line x1="171.5" y1="98" x2="367.0" y2="98" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" opacity=".85"/><polygon points="386.0,98 365.0,85 365.0,111" fill="#f59e0b"/></g><line x1="76.0" y1="98" x2="384.0" y2="98" stroke="#374151" stroke-width="3"/><line x1="76.0" y1="82" x2="76.0" y2="114" stroke="#374151" stroke-width="3"/><line x1="384.0" y1="82" x2="384.0" y2="114" stroke="#374151" stroke-width="3"/><line x1="106.8" y1="91" x2="106.8" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="137.6" y1="91" x2="137.6" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="168.4" y1="91" x2="168.4" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="199.2" y1="91" x2="199.2" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="230.0" y1="85" x2="230.0" y2="111" stroke="#6b7280" stroke-width="2.5"/><line x1="260.8" y1="91" x2="260.8" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="291.6" y1="91" x2="291.6" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="322.4" y1="91" x2="322.4" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="353.2" y1="91" x2="353.2" y2="105" stroke="#9ca3af" stroke-width="1.6"/><rect class="slot empty" data-show="s" x="20.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="s" x="76.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="76.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">smaller neighbour</text><rect class="slot empty" data-show="h" x="174.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="h" x="230.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="230.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">halfway</text><rect class="slot empty" data-show="b" x="328.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="b" x="384.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="384.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">bigger neighbour</text><g class="dotg" display="none"><line x1="171.5" y1="52" x2="171.5" y2="98" stroke="#dc2626" stroke-width="2.5"/><circle cx="171.5" cy="98" r="9" fill="#dc2626" stroke="#fff" stroke-width="2.5"/><text x="171.5" y="42" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#dc2626">58,310</text></g></svg></div></div>
 </div>
-<div class="store"><select data-k="e_3p" data-label="3. 58,310 to the nearest 1,000: step 1, the thousands digit" class="hw-field"><option value="">Choose</option><option value="5">5</option><option value="8">8</option><option value="3">3</option></select><select data-k="e_3s" data-label="3. 58,310 to the nearest 1,000: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="58">58</option><option value="50,000">50,000</option><option value="58,000">58,000</option></select><select data-k="e_3b" data-label="3. 58,310 to the nearest 1,000: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="59,000">59,000</option><option value="68,000">68,000</option><option value="59,310">59,310</option></select><select data-k="e_3h" data-label="3. 58,310 to the nearest 1,000: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="8,500">8,500</option><option value="55,000">55,000</option><option value="58,500">58,500</option></select><select data-k="e_3d" data-label="3. 58,310 to the nearest 1,000: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="halfway or after: round UP">halfway or after: round UP</option><option value="it stays the same">it stays the same</option><option value="before halfway: round down">before halfway: round down</option></select><select data-k="e_3r" data-label="3. 58,310 to the nearest 1,000: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="59,000">59,000</option><option value="58,000">58,000</option><option value="58,310">58,310</option></select></div>
+<div class="store"><select data-k="e_3p" data-label="1. 58,310 to the nearest 1,000: step 1, the thousands digit" class="hw-field"><option value="">Choose</option><option value="5">5</option><option value="8">8</option><option value="3">3</option></select><select data-k="e_3s" data-label="1. 58,310 to the nearest 1,000: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="58">58</option><option value="50,000">50,000</option><option value="58,000">58,000</option></select><select data-k="e_3b" data-label="1. 58,310 to the nearest 1,000: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="59,000">59,000</option><option value="68,000">68,000</option><option value="59,310">59,310</option></select><select data-k="e_3h" data-label="1. 58,310 to the nearest 1,000: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="8,500">8,500</option><option value="55,000">55,000</option><option value="58,500">58,500</option></select><select data-k="e_3d" data-label="1. 58,310 to the nearest 1,000: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="halfway or after: round UP">halfway or after: round UP</option><option value="it stays the same">it stays the same</option><option value="before halfway: round down">before halfway: round down</option></select><select data-k="e_3r" data-label="1. 58,310 to the nearest 1,000: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="59,000">59,000</option><option value="58,000">58,000</option><option value="58,310">58,310</option></select></div>
 </div>
-<div class="card q item live" data-lo="730,000" data-hi="740,000">
+<div class="card q item live rcard" data-lo="730,000" data-hi="740,000">
 <p class="ctitle">Round <span class="big">735,000</span> to the nearest&nbsp;10,000</p>
 <div class="cbody">
 <div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Which digit is in the ten thousands&nbsp;place?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_4p"><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Smaller neighbour?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_4s" data-show="s"><button type="button" class="opt" data-v="730,000" aria-pressed="false">730,000</button><button type="button" class="opt" data-v="73,000" aria-pressed="false">73,000</button><button type="button" class="opt" data-v="700,000" aria-pressed="false">700,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Bigger neighbour?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_4b" data-show="b"><button type="button" class="opt" data-v="740,000" aria-pressed="false">740,000</button><button type="button" class="opt" data-v="830,000" aria-pressed="false">830,000</button><button type="button" class="opt" data-v="745,000" aria-pressed="false">745,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">What is halfway?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_4h" data-show="h"><button type="button" class="opt" data-v="35,000" aria-pressed="false">35,000</button><button type="button" class="opt" data-v="735,000" aria-pressed="false">735,000</button><button type="button" class="opt" data-v="750,000" aria-pressed="false">750,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Is 735,000 before halfway, or halfway and&nbsp;after?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_4d" data-show="d"><button type="button" class="opt three" data-v="halfway or after: round UP" aria-pressed="false"><span>halfway or after</span><small>round UP</small></button><button type="button" class="opt three" data-v="before halfway: round down" aria-pressed="false"><span>before halfway</span><small>round down</small></button><button type="button" class="opt three" data-v="it stays the same" aria-pressed="false"><span>it stays the same</span><small>no change</small></button></div></div><div class="step" data-live><div class="shead"><span class="badge">6</span><span class="sq">So it rounds&nbsp;to…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_4r" data-show="r"><button type="button" class="opt" data-v="730,000" aria-pressed="false">730,000</button><button type="button" class="opt" data-v="735,000" aria-pressed="false">735,000</button><button type="button" class="opt" data-v="740,000" aria-pressed="false">740,000</button></div></div></div>
 <div class="side"><div class="linebox"><svg class="nl" width="460" height="196" viewBox="0 0 460 196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Number line from the smaller to the bigger neighbour"><rect class="band" data-side="lo" x="76.0" y="83" width="154.0" height="30" rx="7" fill="#ece7ff" display="none"/><rect class="band" data-side="hi" x="230.0" y="83" width="154.0" height="30" rx="7" fill="#ece7ff" display="none"/><g class="arr" data-side="lo" display="none"><line x1="230.0" y1="98" x2="93.0" y2="98" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" opacity=".85"/><polygon points="74.0,98 95.0,85 95.0,111" fill="#f59e0b"/></g><g class="arr" data-side="hi" display="none"><line x1="230.0" y1="98" x2="367.0" y2="98" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" opacity=".85"/><polygon points="386.0,98 365.0,85 365.0,111" fill="#f59e0b"/></g><line x1="76.0" y1="98" x2="384.0" y2="98" stroke="#374151" stroke-width="3"/><line x1="76.0" y1="82" x2="76.0" y2="114" stroke="#374151" stroke-width="3"/><line x1="384.0" y1="82" x2="384.0" y2="114" stroke="#374151" stroke-width="3"/><line x1="106.8" y1="91" x2="106.8" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="137.6" y1="91" x2="137.6" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="168.4" y1="91" x2="168.4" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="199.2" y1="91" x2="199.2" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="230.0" y1="85" x2="230.0" y2="111" stroke="#6b7280" stroke-width="2.5"/><line x1="260.8" y1="91" x2="260.8" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="291.6" y1="91" x2="291.6" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="322.4" y1="91" x2="322.4" y2="105" stroke="#9ca3af" stroke-width="1.6"/><line x1="353.2" y1="91" x2="353.2" y2="105" stroke="#9ca3af" stroke-width="1.6"/><rect class="slot empty" data-show="s" x="20.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="s" x="76.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="76.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">smaller neighbour</text><rect class="slot empty" data-show="h" x="174.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="h" x="230.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="230.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">halfway</text><rect class="slot empty" data-show="b" x="328.0" y="124" width="112" height="40" rx="10" fill="#faf9ff" stroke="#c9bdf0" stroke-width="2" stroke-dasharray="6 4"/><text class="slt" data-show="b" x="384.0" y="151" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#5b32b5"></text><text class="cap" x="384.0" y="188" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6b6280">bigger neighbour</text><g class="dotg" display="none"><line x1="230.0" y1="52" x2="230.0" y2="98" stroke="#dc2626" stroke-width="2.5"/><circle cx="230.0" cy="98" r="9" fill="#dc2626" stroke="#fff" stroke-width="2.5"/><text x="230.0" y="42" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#dc2626">735,000</text></g></svg></div></div>
 </div>
-<div class="store"><select data-k="e_4p" data-label="4. 735,000 to the nearest 10,000: step 1, the ten thousands digit" class="hw-field"><option value="">Choose</option><option value="7">7</option><option value="5">5</option><option value="3">3</option></select><select data-k="e_4s" data-label="4. 735,000 to the nearest 10,000: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="730,000">730,000</option><option value="73,000">73,000</option><option value="700,000">700,000</option></select><select data-k="e_4b" data-label="4. 735,000 to the nearest 10,000: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="740,000">740,000</option><option value="830,000">830,000</option><option value="745,000">745,000</option></select><select data-k="e_4h" data-label="4. 735,000 to the nearest 10,000: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="35,000">35,000</option><option value="735,000">735,000</option><option value="750,000">750,000</option></select><select data-k="e_4d" data-label="4. 735,000 to the nearest 10,000: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="halfway or after: round UP">halfway or after: round UP</option><option value="before halfway: round down">before halfway: round down</option><option value="it stays the same">it stays the same</option></select><select data-k="e_4r" data-label="4. 735,000 to the nearest 10,000: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="730,000">730,000</option><option value="735,000">735,000</option><option value="740,000">740,000</option></select></div>
+<div class="store"><select data-k="e_4p" data-label="2. 735,000 to the nearest 10,000: step 1, the ten thousands digit" class="hw-field"><option value="">Choose</option><option value="7">7</option><option value="5">5</option><option value="3">3</option></select><select data-k="e_4s" data-label="2. 735,000 to the nearest 10,000: step 2, smaller neighbour" class="hw-field"><option value="">Choose</option><option value="730,000">730,000</option><option value="73,000">73,000</option><option value="700,000">700,000</option></select><select data-k="e_4b" data-label="2. 735,000 to the nearest 10,000: step 3, bigger neighbour" class="hw-field"><option value="">Choose</option><option value="740,000">740,000</option><option value="830,000">830,000</option><option value="745,000">745,000</option></select><select data-k="e_4h" data-label="2. 735,000 to the nearest 10,000: step 4, halfway" class="hw-field"><option value="">Choose</option><option value="35,000">35,000</option><option value="735,000">735,000</option><option value="750,000">750,000</option></select><select data-k="e_4d" data-label="2. 735,000 to the nearest 10,000: step 5, round up or down" class="hw-field"><option value="">Choose</option><option value="halfway or after: round UP">halfway or after: round UP</option><option value="before halfway: round down">before halfway: round down</option><option value="it stays the same">it stays the same</option></select><select data-k="e_4r" data-label="2. 735,000 to the nearest 10,000: step 6, rounded number" class="hw-field"><option value="">Choose</option><option value="730,000">730,000</option><option value="735,000">735,000</option><option value="740,000">740,000</option></select></div>
 </div>
 </section>
-<section class="roman">
-<p class="lbl">Roman numeral code</p>
-<p class="instr">Crack the code. Which number is each Roman&nbsp;numeral?</p>
-<p class="note pr">Circle one answer for each&nbsp;numeral.</p>
-<div class="card q item live">
-<div class="rkey"><span class="rk">I = 1</span><span class="rk">V = 5</span><span class="rk">X = 10</span></div>
-<p class="rwork">IV = 5 &minus; 1 = 4 <span>(small before big: take away)</span> &middot; VI = 5 + 1 = 6 <span>(small after big: add)</span></p>
-<div class="steps rsteps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq"><span class="rn">IX</span>&nbsp;=</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r1"><button type="button" class="opt dg" data-v="11" aria-pressed="false">11</button><button type="button" class="opt dg" data-v="9" aria-pressed="false">9</button><button type="button" class="opt dg" data-v="10" aria-pressed="false">10</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq"><span class="rn">XIV</span>&nbsp;=</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r2"><button type="button" class="opt dg" data-v="16" aria-pressed="false">16</button><button type="button" class="opt dg" data-v="14" aria-pressed="false">14</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq"><span class="rn">VII</span>&nbsp;=</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r3"><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="12" aria-pressed="false">12</button><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq"><span class="rn">XVI</span>&nbsp;=</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r4"><button type="button" class="opt dg" data-v="16" aria-pressed="false">16</button><button type="button" class="opt dg" data-v="14" aria-pressed="false">14</button><button type="button" class="opt dg" data-v="11" aria-pressed="false">11</button></div></div></div>
-<div class="store"><select data-k="e_r1" data-label="Roman numeral IX" class="hw-field"><option value="">Choose</option><option value="11">11</option><option value="9">9</option><option value="10">10</option></select><select data-k="e_r2" data-label="Roman numeral XIV" class="hw-field"><option value="">Choose</option><option value="16">16</option><option value="14">14</option><option value="6">6</option></select><select data-k="e_r3" data-label="Roman numeral VII" class="hw-field"><option value="">Choose</option><option value="3">3</option><option value="12">12</option><option value="7">7</option></select><select data-k="e_r4" data-label="Roman numeral XVI" class="hw-field"><option value="">Choose</option><option value="16">16</option><option value="14">14</option><option value="11">11</option></select></div>
-</div>
-</section>
+<section class="roman"><div class="game task"><p class="lbl"><svg class="pawicon" width="26" height="26" viewBox="-21 -21 42 42" aria-hidden="true"><g transform="translate(0.0,0.0) rotate(0)" fill="#d9711c"><ellipse cx="0" cy="7.6" rx="12.5" ry="10.3"/><ellipse cx="-14.8" cy="-5.7" rx="4.4" ry="5.7"/><ellipse cx="-5.3" cy="-14.4" rx="4.4" ry="5.7"/><ellipse cx="5.3" cy="-14.4" rx="4.4" ry="5.7"/><ellipse cx="14.8" cy="-5.7" rx="4.4" ry="5.7"/></g></svg>Roman numerals &middot; Mr&nbsp;Pumpkin&rsquo;s&nbsp;games</p><div class="stage"><span class="stg">Stage 1</span><span class="stt">I and V</span><span class="rk">I = 1</span><span class="rk">V = 5</span></div><p class="instr">How many paw prints? Tap the Roman&nbsp;numeral.</p><p class="note pr">Circle one numeral for each&nbsp;row.</p><div class="gcard"><div class="ritem choose q" data-live><span class="pawbox"><svg class="paws" width="330" height="96" viewBox="0 0 330 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3 paw prints"><g transform="translate(36.0,32.0) rotate(84)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g><g transform="translate(98.0,64.0) rotate(96)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g><g transform="translate(160.0,32.0) rotate(84)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g></svg></span><div class="opts" data-field="r1a"><button type="button" class="opt rm" data-v="II" aria-pressed="false">II</button><button type="button" class="opt rm" data-v="III" aria-pressed="false">III</button><button type="button" class="opt rm" data-v="V" aria-pressed="false">V</button><button type="button" class="opt rm" data-v="I" aria-pressed="false">I</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="pawbox"><svg class="paws" width="330" height="96" viewBox="0 0 330 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="5 paw prints"><g transform="translate(36.0,32.0) rotate(84)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g><g transform="translate(98.0,64.0) rotate(96)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g><g transform="translate(160.0,32.0) rotate(84)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g><g transform="translate(222.0,64.0) rotate(96)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g><g transform="translate(284.0,32.0) rotate(84)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g></svg></span><div class="opts" data-field="r1b"><button type="button" class="opt rm" data-v="I" aria-pressed="false">I</button><button type="button" class="opt rm" data-v="III" aria-pressed="false">III</button><button type="button" class="opt rm" data-v="II" aria-pressed="false">II</button><button type="button" class="opt rm" data-v="V" aria-pressed="false">V</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="pawbox"><svg class="paws" width="330" height="96" viewBox="0 0 330 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2 paw prints"><g transform="translate(36.0,32.0) rotate(84)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g><g transform="translate(98.0,64.0) rotate(96)" fill="#d9711c"><ellipse cx="0" cy="8.4" rx="13.9" ry="11.3"/><ellipse cx="-16.4" cy="-6.3" rx="4.8" ry="6.3"/><ellipse cx="-5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="5.9" cy="-16.0" rx="4.8" ry="6.3"/><ellipse cx="16.4" cy="-6.3" rx="4.8" ry="6.3"/></g></svg></span><div class="opts" data-field="r1c"><button type="button" class="opt rm" data-v="II" aria-pressed="false">II</button><button type="button" class="opt rm" data-v="V" aria-pressed="false">V</button><button type="button" class="opt rm" data-v="I" aria-pressed="false">I</button><button type="button" class="opt rm" data-v="III" aria-pressed="false">III</button></div><span class="nowtag">Now</span></div><div class="store" aria-hidden="true"><select data-k="r1a" data-label="Roman 1. Paw prints: 3 paws" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="II">II</option><option value="III">III</option><option value="V">V</option><option value="I">I</option></select><select data-k="r1b" data-label="Roman 1. Paw prints: 5 paws" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="I">I</option><option value="III">III</option><option value="II">II</option><option value="V">V</option></select><select data-k="r1c" data-label="Roman 1. Paw prints: 2 paws" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="II">II</option><option value="V">V</option><option value="I">I</option><option value="III">III</option></select></div></div></div><div class="game task"><p class="instr">Make each number. Drag I or V into the&nbsp;box.</p><p class="note scr">You can also tap a tile. Tap a letter in the box to take it&nbsp;out.</p><p class="note pr">Write the Roman numeral in each&nbsp;box.</p><div class="gcard"><div class="ritem build model-row"><span class="mtag">Like this</span><span class="bq"><span class="bignum">1</span><span class="eq">=</span><span class="bbox done"><span class="rl">I</span></span></span></div><div class="builds"><div class="ritem build q" data-live data-field="r2a"><span class="bq"><span class="bignum">2</span><span class="eq">=</span><span class="bbox" data-store="r2a" aria-label="Make 2"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span></span><span class="nowtag">Now</span></div><div class="ritem build q" data-live data-field="r2b"><span class="bq"><span class="bignum">5</span><span class="eq">=</span><span class="bbox" data-store="r2b" aria-label="Make 5"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span></span><span class="nowtag">Now</span></div><div class="ritem build q" data-live data-field="r2c"><span class="bq"><span class="bignum">3</span><span class="eq">=</span><span class="bbox" data-store="r2c" aria-label="Make 3"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span></span><span class="nowtag">Now</span></div></div><div class="store" aria-hidden="true"><input type="text" data-k="r2a" data-label="Roman 2. Make 2 from I and V" tabindex="-1" autocomplete="off" class="hw-field"><input type="text" data-k="r2b" data-label="Roman 2. Make 5 from I and V" tabindex="-1" autocomplete="off" class="hw-field"><input type="text" data-k="r2c" data-label="Roman 2. Make 3 from I and V" tabindex="-1" autocomplete="off" class="hw-field"></div></div></div><div class="game task"><div class="stage"><span class="stg">Stage 2</span><span class="stt">V, then I</span></div><p class="instr">What number is it? Tap the&nbsp;answer.</p><p class="note pr">Circle one number for each&nbsp;numeral.</p><div class="gcard"><div class="rrule model-row"><span class="mtag">Like this</span><span class="rr"><span class="rn">VII</span> <span class="eqs">= 5 + 1 + 1 = 7</span></span><span class="rcap">Small after big: <b>add</b>.</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="rn">VI</span><span class="eq">=</span></span><div class="opts" data-field="r3a"><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="rn">VIII</span><span class="eq">=</span></span><div class="opts" data-field="r3b"><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="rn">III</span><span class="eq">=</span></span><div class="opts" data-field="r3c"><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button></div><span class="nowtag">Now</span></div><div class="store" aria-hidden="true"><select data-k="r3a" data-label="Roman 3. What number is VI?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="4">4</option><option value="3">3</option><option value="6">6</option><option value="8">8</option></select><select data-k="r3b" data-label="Roman 3. What number is VIII?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="8">8</option><option value="6">6</option><option value="3">3</option><option value="4">4</option></select><select data-k="r3c" data-label="Roman 3. What number is III?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="6">6</option><option value="8">8</option><option value="4">4</option><option value="3">3</option></select></div></div></div><div class="game task"><p class="instr">Make each number. Drag V and I into the&nbsp;box.</p><p class="note pr">Write the Roman numeral in each&nbsp;box.</p><div class="gcard"><div class="builds"><div class="ritem build q" data-live data-field="r4a"><span class="bq"><span class="bignum">6</span><span class="eq">=</span><span class="bbox" data-store="r4a" aria-label="Make 6"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span></span><span class="nowtag">Now</span></div><div class="ritem build q" data-live data-field="r4b"><span class="bq"><span class="bignum">8</span><span class="eq">=</span><span class="bbox" data-store="r4b" aria-label="Make 8"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span></span><span class="nowtag">Now</span></div></div><div class="store" aria-hidden="true"><input type="text" data-k="r4a" data-label="Roman 4. Make 6 from I and V" tabindex="-1" autocomplete="off" class="hw-field"><input type="text" data-k="r4b" data-label="Roman 4. Make 8 from I and V" tabindex="-1" autocomplete="off" class="hw-field"></div></div></div><div class="game task"><div class="stage"><span class="stg">Stage 3</span><span class="stt">Which side is the I?</span></div><div class="sides"><p class="side-r"><span class="rn">V<b class="hi">I</b></span><span>small after big: <b>add</b></span></p><p class="side-r"><span class="rn"><b class="hi">I</b>V</span><span>small before big: <b>take away</b></span></p></div><p class="instr">Smaller or bigger than 5? Drag each numeral into its&nbsp;box.</p><p class="note scr">Or tap a numeral, then tap a box. Tap it again to send it&nbsp;back.</p><p class="note pr">Write each numeral in the right&nbsp;box.</p><div class="gcard"><div class="dnd q" data-live data-mode="tile"><span class="nowtag">Now</span><p class="sortex"><span class="mtag">Like this</span><span class="tile static">VII</span><span>goes in <b>bigger than 5</b>.</span></p><div class="bank" aria-label="Numerals to sort"><span class="tile" data-v="VI" data-store="r5a" data-field="r5a">VI</span><span class="tile" data-v="IV" data-store="r5b" data-field="r5b">IV</span><span class="tile" data-v="III" data-store="r5c" data-field="r5c">III</span><span class="tile" data-v="VIII" data-store="r5d" data-field="r5d">VIII</span><span class="tile" data-v="II" data-store="r5e" data-field="r5e">II</span></div><div class="bins"><div class="bin"><p class="bin-label">smaller than&nbsp;5</p><div class="drop" data-v="smaller than 5" aria-label="smaller than 5"></div></div><div class="bin"><p class="bin-label">bigger than&nbsp;5</p><div class="drop" data-v="bigger than 5" aria-label="bigger than 5"></div></div></div></div><div class="store" aria-hidden="true"><select data-k="r5a" data-label="Roman 5. Smaller or bigger than 5: VI" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="smaller than 5">smaller than 5</option><option value="bigger than 5">bigger than 5</option></select><select data-k="r5b" data-label="Roman 5. Smaller or bigger than 5: IV" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="smaller than 5">smaller than 5</option><option value="bigger than 5">bigger than 5</option></select><select data-k="r5c" data-label="Roman 5. Smaller or bigger than 5: III" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="smaller than 5">smaller than 5</option><option value="bigger than 5">bigger than 5</option></select><select data-k="r5d" data-label="Roman 5. Smaller or bigger than 5: VIII" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="smaller than 5">smaller than 5</option><option value="bigger than 5">bigger than 5</option></select><select data-k="r5e" data-label="Roman 5. Smaller or bigger than 5: II" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="smaller than 5">smaller than 5</option><option value="bigger than 5">bigger than 5</option></select></div></div></div><div class="game task"><p class="instr">Tap the Roman numeral for each&nbsp;number.</p><p class="note pr">Circle one numeral for each&nbsp;number.</p><div class="gcard"><div class="quick"><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">6</span><span class="eq">=</span></span><div class="opts" data-field="r6a"><button type="button" class="opt rm" data-v="IV" aria-pressed="false">IV</button><button type="button" class="opt rm" data-v="VI" aria-pressed="false">VI</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">4</span><span class="eq">=</span></span><div class="opts" data-field="r6b"><button type="button" class="opt rm" data-v="VI" aria-pressed="false">VI</button><button type="button" class="opt rm" data-v="IV" aria-pressed="false">IV</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">4</span><span class="eq">=</span></span><div class="opts" data-field="r6c"><button type="button" class="opt rm" data-v="IV" aria-pressed="false">IV</button><button type="button" class="opt rm" data-v="VI" aria-pressed="false">VI</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">6</span><span class="eq">=</span></span><div class="opts" data-field="r6d"><button type="button" class="opt rm" data-v="IV" aria-pressed="false">IV</button><button type="button" class="opt rm" data-v="VI" aria-pressed="false">VI</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">4</span><span class="eq">=</span></span><div class="opts" data-field="r6e"><button type="button" class="opt rm" data-v="IV" aria-pressed="false">IV</button><button type="button" class="opt rm" data-v="VI" aria-pressed="false">VI</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">6</span><span class="eq">=</span></span><div class="opts" data-field="r6f"><button type="button" class="opt rm" data-v="VI" aria-pressed="false">VI</button><button type="button" class="opt rm" data-v="IV" aria-pressed="false">IV</button></div><span class="nowtag">Now</span></div></div><div class="store" aria-hidden="true"><select data-k="r6a" data-label="Roman 6. Which numeral is 6?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="IV">IV</option><option value="VI">VI</option></select><select data-k="r6b" data-label="Roman 6. Which numeral is 4?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="VI">VI</option><option value="IV">IV</option></select><select data-k="r6c" data-label="Roman 6. Which numeral is 4?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="IV">IV</option><option value="VI">VI</option></select><select data-k="r6d" data-label="Roman 6. Which numeral is 6?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="IV">IV</option><option value="VI">VI</option></select><select data-k="r6e" data-label="Roman 6. Which numeral is 4?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="IV">IV</option><option value="VI">VI</option></select><select data-k="r6f" data-label="Roman 6. Which numeral is 6?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="VI">VI</option><option value="IV">IV</option></select></div></div></div><div class="game task"><div class="stage"><span class="stg">Stage 4</span><span class="stt">X joins in</span><span class="rk">X = 10</span></div><div class="sides"><p class="side-r"><span class="rn">X<b class="hi">I</b></span><span>small after big: <b>add</b></span></p><p class="side-r"><span class="rn"><b class="hi">I</b>X</span><span>small before big: <b>take away</b></span></p></div><p class="instr">Tap the Roman numeral for each&nbsp;number.</p><p class="note pr">Circle one numeral for each&nbsp;number.</p><div class="gcard"><div class="quick"><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">11</span><span class="eq">=</span></span><div class="opts" data-field="r7a"><button type="button" class="opt rm" data-v="XI" aria-pressed="false">XI</button><button type="button" class="opt rm" data-v="IX" aria-pressed="false">IX</button><button type="button" class="opt rm" data-v="X" aria-pressed="false">X</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">9</span><span class="eq">=</span></span><div class="opts" data-field="r7b"><button type="button" class="opt rm" data-v="XI" aria-pressed="false">XI</button><button type="button" class="opt rm" data-v="X" aria-pressed="false">X</button><button type="button" class="opt rm" data-v="IX" aria-pressed="false">IX</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">10</span><span class="eq">=</span></span><div class="opts" data-field="r7c"><button type="button" class="opt rm" data-v="IX" aria-pressed="false">IX</button><button type="button" class="opt rm" data-v="XI" aria-pressed="false">XI</button><button type="button" class="opt rm" data-v="X" aria-pressed="false">X</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">9</span><span class="eq">=</span></span><div class="opts" data-field="r7d"><button type="button" class="opt rm" data-v="X" aria-pressed="false">X</button><button type="button" class="opt rm" data-v="IX" aria-pressed="false">IX</button><button type="button" class="opt rm" data-v="XI" aria-pressed="false">XI</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">11</span><span class="eq">=</span></span><div class="opts" data-field="r7e"><button type="button" class="opt rm" data-v="XI" aria-pressed="false">XI</button><button type="button" class="opt rm" data-v="X" aria-pressed="false">X</button><button type="button" class="opt rm" data-v="IX" aria-pressed="false">IX</button></div><span class="nowtag">Now</span></div><div class="ritem choose q" data-live><span class="prompt"><span class="bignum">9</span><span class="eq">=</span></span><div class="opts" data-field="r7f"><button type="button" class="opt rm" data-v="XI" aria-pressed="false">XI</button><button type="button" class="opt rm" data-v="IX" aria-pressed="false">IX</button><button type="button" class="opt rm" data-v="X" aria-pressed="false">X</button></div><span class="nowtag">Now</span></div></div><div class="store" aria-hidden="true"><select data-k="r7a" data-label="Roman 7. Which numeral is 11?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="XI">XI</option><option value="IX">IX</option><option value="X">X</option></select><select data-k="r7b" data-label="Roman 7. Which numeral is 9?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="XI">XI</option><option value="X">X</option><option value="IX">IX</option></select><select data-k="r7c" data-label="Roman 7. Which numeral is 10?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="IX">IX</option><option value="XI">XI</option><option value="X">X</option></select><select data-k="r7d" data-label="Roman 7. Which numeral is 9?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="X">X</option><option value="IX">IX</option><option value="XI">XI</option></select><select data-k="r7e" data-label="Roman 7. Which numeral is 11?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="XI">XI</option><option value="X">X</option><option value="IX">IX</option></select><select data-k="r7f" data-label="Roman 7. Which numeral is 9?" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="XI">XI</option><option value="IX">IX</option><option value="X">X</option></select></div></div></div><div class="game task"><p class="instr">Bigger or smaller than 10? Drag each numeral into its&nbsp;box.</p><p class="note pr">Write each numeral in the right&nbsp;box.</p><div class="gcard"><div class="dnd q" data-live data-mode="tile"><span class="nowtag">Now</span><div class="bank" aria-label="Numerals to sort"><span class="tile" data-v="XI" data-store="r8a" data-field="r8a">XI</span><span class="tile" data-v="IX" data-store="r8b" data-field="r8b">IX</span><span class="tile" data-v="VI" data-store="r8c" data-field="r8c">VI</span><span class="tile" data-v="XIV" data-store="r8d" data-field="r8d">XIV</span><span class="tile" data-v="XII" data-store="r8e" data-field="r8e">XII</span><span class="tile" data-v="IV" data-store="r8f" data-field="r8f">IV</span></div><div class="bins"><div class="bin"><p class="bin-label">bigger than&nbsp;10</p><div class="drop" data-v="bigger than 10" aria-label="bigger than 10"></div></div><div class="bin"><p class="bin-label">smaller than&nbsp;10</p><div class="drop" data-v="smaller than 10" aria-label="smaller than 10"></div></div></div></div><div class="store" aria-hidden="true"><select data-k="r8a" data-label="Roman 8. Bigger or smaller than 10: XI" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="bigger than 10">bigger than 10</option><option value="smaller than 10">smaller than 10</option></select><select data-k="r8b" data-label="Roman 8. Bigger or smaller than 10: IX" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="bigger than 10">bigger than 10</option><option value="smaller than 10">smaller than 10</option></select><select data-k="r8c" data-label="Roman 8. Bigger or smaller than 10: VI" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="bigger than 10">bigger than 10</option><option value="smaller than 10">smaller than 10</option></select><select data-k="r8d" data-label="Roman 8. Bigger or smaller than 10: XIV" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="bigger than 10">bigger than 10</option><option value="smaller than 10">smaller than 10</option></select><select data-k="r8e" data-label="Roman 8. Bigger or smaller than 10: XII" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="bigger than 10">bigger than 10</option><option value="smaller than 10">smaller than 10</option></select><select data-k="r8f" data-label="Roman 8. Bigger or smaller than 10: IV" tabindex="-1" class="hw-field"><option value="">Choose</option><option value="bigger than 10">bigger than 10</option><option value="smaller than 10">smaller than 10</option></select></div></div></div><div class="game task"><p class="instr">Make each number. Drag X, V and I into the&nbsp;box.</p><p class="note pr">Write the Roman numeral in each&nbsp;box.</p><div class="gcard"><div class="builds"><div class="ritem build q" data-live data-field="r9a"><span class="bq"><span class="bignum">12</span><span class="eq">=</span><span class="bbox" data-store="r9a" aria-label="Make 12"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span><span class="sup" data-l="X" role="button" tabindex="0" aria-label="Add X">X</span></span><span class="nowtag">Now</span></div><div class="ritem build q" data-live data-field="r9b"><span class="bq"><span class="bignum">13</span><span class="eq">=</span><span class="bbox" data-store="r9b" aria-label="Make 13"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span><span class="sup" data-l="X" role="button" tabindex="0" aria-label="Add X">X</span></span><span class="nowtag">Now</span></div><div class="ritem build q" data-live data-field="r9c"><span class="bq"><span class="bignum">15</span><span class="eq">=</span><span class="bbox" data-store="r9c" aria-label="Make 15"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span><span class="sup" data-l="X" role="button" tabindex="0" aria-label="Add X">X</span></span><span class="nowtag">Now</span></div><div class="ritem build q" data-live data-field="r9d"><span class="bq"><span class="bignum">16</span><span class="eq">=</span><span class="bbox" data-store="r9d" aria-label="Make 16"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span><span class="sup" data-l="X" role="button" tabindex="0" aria-label="Add X">X</span></span><span class="nowtag">Now</span></div><div class="ritem build q" data-live data-field="r9e"><span class="bq"><span class="bignum">14</span><span class="eq">=</span><span class="bbox" data-store="r9e" aria-label="Make 14"></span></span><span class="supply" aria-label="Tiles"><span class="sup" data-l="I" role="button" tabindex="0" aria-label="Add I">I</span><span class="sup" data-l="V" role="button" tabindex="0" aria-label="Add V">V</span><span class="sup" data-l="X" role="button" tabindex="0" aria-label="Add X">X</span></span><span class="nowtag">Now</span></div></div><div class="store" aria-hidden="true"><input type="text" data-k="r9a" data-label="Roman 9. Make 12 from X, V and I" tabindex="-1" autocomplete="off" class="hw-field"><input type="text" data-k="r9b" data-label="Roman 9. Make 13 from X, V and I" tabindex="-1" autocomplete="off" class="hw-field"><input type="text" data-k="r9c" data-label="Roman 9. Make 15 from X, V and I" tabindex="-1" autocomplete="off" class="hw-field"><input type="text" data-k="r9d" data-label="Roman 9. Make 16 from X, V and I" tabindex="-1" autocomplete="off" class="hw-field"><input type="text" data-k="r9e" data-label="Roman 9. Make 14 from X, V and I" tabindex="-1" autocomplete="off" class="hw-field"></div></div></div><div class="game task"><div class="stage"><span class="stg">Last game</span><span class="stt">Mr Pumpkin's secret message</span></div><p class="instr">Crack the code. Write the letter for each&nbsp;numeral.</p><div class="gcard"><div class="code" data-live><span class="nowtag">Now</span><div class="akey" aria-label="Letter code"><span><b>A</b><small>1</small></span><span><b>B</b><small>2</small></span><span><b>C</b><small>3</small></span><span><b>D</b><small>4</small></span><span><b>E</b><small>5</small></span><span><b>F</b><small>6</small></span><span><b>G</b><small>7</small></span><span><b>H</b><small>8</small></span><span><b>I</b><small>9</small></span><span><b>J</b><small>10</small></span><span><b>K</b><small>11</small></span><span><b>L</b><small>12</small></span><span><b>M</b><small>13</small></span><span><b>N</b><small>14</small></span><span><b>O</b><small>15</small></span><span><b>P</b><small>16</small></span></div><p class="codeex"><span class="mtag">Like this</span><span class="rn">VII</span><span class="arrow">&rarr;</span><b>7</b><span class="arrow">&rarr;</span><b class="lt">G</b></p><div class="cwords"><span class="cword"><span class="cell"><span class="rn">IX</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10a" data-label="Roman 10. Code letter 1: IX" aria-label="Letter for IX"></span></span><span class="cword"><span class="cell"><span class="rn">XII</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10b" data-label="Roman 10. Code letter 2: XII" aria-label="Letter for XII"></span><span class="cell"><span class="rn">IX</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10c" data-label="Roman 10. Code letter 3: IX" aria-label="Letter for IX"></span><span class="cell"><span class="rn">XI</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10d" data-label="Roman 10. Code letter 4: XI" aria-label="Letter for XI"></span><span class="cell"><span class="rn">V</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10e" data-label="Roman 10. Code letter 5: V" aria-label="Letter for V"></span></span><span class="cword"><span class="cell"><span class="rn">VI</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10f" data-label="Roman 10. Code letter 6: VI" aria-label="Letter for VI"></span><span class="cell"><span class="rn">XV</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10g" data-label="Roman 10. Code letter 7: XV" aria-label="Letter for XV"></span><span class="cell"><span class="rn">XV</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10h" data-label="Roman 10. Code letter 8: XV" aria-label="Letter for XV"></span><span class="cell"><span class="rn">IV</span><input class="hw-field cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" data-k="r10i" data-label="Roman 10. Code letter 9: IV" aria-label="Letter for IV"></span></span></div></div></div></div></section>
 </div>
 <script>
+/* Rounding cards: tap an answer, the number line fills in. Roman games: tap a choice, build a numeral
+   from tiles, sort tiles into two boxes, type letters. Every answer lives in a data-k field, so the
+   shared hw.js saves it, restores it after a reload, sends it and marks it next to its data-field twin. */
 (function () {
   var DOWN = "before halfway: round down", UP = "halfway or after: round UP";
+  function fire(s) { s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+  function store(k) { return document.querySelector('.store [data-k="' + k + '"]'); }
   function show(el, on) { if (el) el.setAttribute("display", on ? "inline" : "none"); }
+
   function updateNow() {
     var first = null;
-    document.querySelectorAll(".step[data-live]").forEach(function (s) {
+    document.querySelectorAll("[data-live]").forEach(function (s) {
       s.classList.remove("now");
       if (!first && !s.classList.contains("got")) first = s;
     });
     if (first) first.classList.add("now");
-    document.querySelectorAll(".card.live").forEach(function (c) { c.classList.toggle("current", !!first && c.contains(first)); });
+    document.querySelectorAll(".card.rcard, .gcard").forEach(function (c) { c.classList.toggle("current", !!first && c.contains(first)); });
   }
-  function setup(card) {
+
+  /* ---------- rounding cards (unchanged behaviour) ---------- */
+  function setupRounding(card) {
     function selFor(k) { return card.querySelector('.store select[data-k="' + k + '"]'); }
     var groups = [].slice.call(card.querySelectorAll(".opts[data-field]"));
     function paint() {
@@ -332,7 +541,6 @@ body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, n
         var st = g.closest(".step"); if (st) st.classList.toggle("got", !!v);
         if (g.dataset.show) vals[g.dataset.show] = v;
       });
-      if (!card.querySelector("svg.nl")) return;
       var r = vals.r || "", lo = card.dataset.lo, hi = card.dataset.hi;
       ["s", "h", "b"].forEach(function (k) {
         var t = card.querySelector('text.slt[data-show="' + k + '"]'), box = card.querySelector('rect.slot[data-show="' + k + '"]');
@@ -345,7 +553,7 @@ body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, n
           box.classList.toggle("empty", !v);
         }
       });
-      show(card.querySelector("g.dotg"), !!vals.h);   // the number drops onto the line once halfway is chosen
+      show(card.querySelector("g.dotg"), !!vals.h);
       show(card.querySelector('rect.band[data-side="lo"]'), vals.d === DOWN);
       show(card.querySelector('rect.band[data-side="hi"]'), vals.d === UP);
       show(card.querySelector('g.arr[data-side="lo"]'), !!r && r === lo);
@@ -355,14 +563,197 @@ body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, n
       g.querySelectorAll("button").forEach(function (b) {
         b.addEventListener("click", function () {
           var s = selFor(g.dataset.field); if (!s) return;
-          if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+          if (s.value !== b.dataset.v) { s.value = b.dataset.v; fire(s); }
           paint(); updateNow();
         });
       });
     });
-    paint();   // saved answers come back on reload
+    paint();
   }
-  function init() { document.querySelectorAll(".card.live").forEach(setup); updateNow(); }
+
+  /* ---------- Roman: tap one choice ---------- */
+  function setupChoice(row) {
+    var g = row.querySelector(".opts[data-field]"), s = store(g.dataset.field); if (!s) return;
+    var btns = [].slice.call(g.querySelectorAll("button"));
+    function paint() {
+      btns.forEach(function (b) { var on = !!s.value && b.dataset.v === s.value; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); });
+      row.classList.toggle("got", !!s.value);
+    }
+    btns.forEach(function (b) { b.addEventListener("click", function () { if (s.value !== b.dataset.v) { s.value = b.dataset.v; fire(s); } paint(); updateNow(); }); });
+    paint();
+  }
+
+  /* ---------- Roman: build a numeral from I, V, X tiles ----------
+     Drag a tile into the box (it goes where you drop it), or tap a tile to add it at the end.
+     Tap a letter in the box to take it out; drag a letter to move it, or out of the box to remove it. */
+  var MAX = 6;
+  function setupBuild(row) {
+    var box = row.querySelector(".bbox"), s = store(box.dataset.store); if (!s) return;
+    function letters() { return [].slice.call(box.querySelectorAll(".rl")); }
+    function value() { return letters().map(function (l) { return l.dataset.l; }).join(""); }
+    function sync() { var v = value(); if (s.value !== v) { s.value = v; fire(s); } row.classList.toggle("got", !!v); updateNow(); }
+    function make(l) {
+      var el = document.createElement("span"); el.className = "rl"; el.dataset.l = l; el.textContent = l;
+      el.setAttribute("role", "button"); el.setAttribute("tabindex", "0"); el.setAttribute("aria-label", "Take out " + l);
+      bindDrag(el, true); return el;
+    }
+    function indexAt(x) {
+      var ls = letters();
+      for (var i = 0; i < ls.length; i++) { var r = ls[i].getBoundingClientRect(); if (x < r.left + r.width / 2) return ls[i]; }
+      return null;
+    }
+    function inBox(x, y) { var r = box.getBoundingClientRect(), p = 18; return x >= r.left - p && x <= r.right + p && y >= r.top - p && y <= r.bottom + p; }
+    function add(l, x) {
+      if (letters().length >= MAX) return;
+      var el = make(l), before = (x == null) ? null : indexAt(x);
+      box.insertBefore(el, before); sync();
+    }
+    function bindDrag(src, inside) {
+      src.addEventListener("pointerdown", function (e) {
+        if (e.button && e.button !== 0) return;
+        e.preventDefault();
+        var sx = e.clientX, sy = e.clientY, moved = false, ghost = null, r = src.getBoundingClientRect();
+        var dx = e.clientX - r.left, dy = e.clientY - r.top;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true;
+            ghost = src.cloneNode(true); ghost.classList.add("ghost"); ghost.removeAttribute("tabindex");
+            ghost.style.width = r.width + "px"; ghost.style.height = r.height + "px";
+            document.body.appendChild(ghost);
+            if (inside) src.style.visibility = "hidden";
+          }
+          ghost.style.left = (ev.clientX - dx) + "px"; ghost.style.top = (ev.clientY - dy) + "px";
+          box.classList.toggle("over", inBox(ev.clientX, ev.clientY));
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          box.classList.remove("over");
+          if (ghost) ghost.remove();
+          var l = src.dataset.l;
+          if (!moved) {                       // a tap
+            if (inside) { src.remove(); sync(); } else add(l, null);
+            return;
+          }
+          var hit = ev.type === "pointerup" && inBox(ev.clientX, ev.clientY);
+          if (inside) { src.remove(); if (hit) add(l, ev.clientX); else sync(); }
+          else if (hit) add(l, ev.clientX);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+      src.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        if (inside) { src.remove(); sync(); } else add(src.dataset.l, null);
+      });
+    }
+    row.querySelectorAll(".sup").forEach(function (t) { bindDrag(t, false); });
+    (s.value || "").toUpperCase().replace(/[^IVX]/g, "").slice(0, MAX).split("").forEach(function (l) { if (l) box.appendChild(make(l)); });
+    row.classList.toggle("got", !!s.value);
+  }
+
+  /* ---------- Roman: sort tiles into two boxes (each tile remembers its box) ---------- */
+  var picked = null, pickedGroup = null;
+  function unpick() {
+    if (picked) picked.classList.remove("picked");
+    if (pickedGroup) pickedGroup.classList.remove("ready");
+    picked = null; pickedGroup = null;
+  }
+  function setupSort(g) {
+    var bank = g.querySelector(".bank"), drops = [].slice.call(g.querySelectorAll(".drop"));
+    var tiles = [].slice.call(bank.querySelectorAll(".tile"));
+    function done() { g.classList.toggle("got", tiles.every(function (t) { var s = store(t.dataset.store); return s && s.value; })); updateNow(); }
+    function sync() {
+      tiles.forEach(function (t) {
+        var s = store(t.dataset.store); if (!s) return;
+        var d = t.closest(".drop"), v = d ? d.dataset.v : "";
+        if (s.value !== v) { s.value = v; fire(s); }
+      });
+      done();
+    }
+    function place(t, d) { d.appendChild(t); sync(); }
+    function toBank(t) { bank.appendChild(t); sync(); }
+    function dropAt(x, y) {
+      for (var i = 0; i < drops.length; i++) {
+        var r = drops[i].getBoundingClientRect(), p = 10;
+        if (x >= r.left - p && x <= r.right + p && y >= r.top - p && y <= r.bottom + p) return drops[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var d = drops.filter(function (x) { return x.dataset.v === s.value; })[0];
+      if (d) d.appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.button && e.button !== 0) return;
+        e.preventDefault();
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, home = t.parentNode, next = t.nextSibling, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;flex:none;width:" + r.width + "px;height:" + r.height + "px";
+            home.insertBefore(ph, next);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+            document.body.appendChild(t);
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var d = dropAt(ev.clientX, ev.clientY);
+          if (d !== over) { if (over) over.classList.remove("over"); over = d; if (d) d.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          var homeDrop = home.closest ? home.closest(".drop") : null;
+          if (!moved) {
+            if (homeDrop && picked && picked !== t && pickedGroup === g) { place(picked, homeDrop); unpick(); return; }
+            if (homeDrop) { toBank(t); unpick(); return; }
+            if (picked === t) { unpick(); return; }
+            unpick(); picked = t; pickedGroup = g; t.classList.add("picked"); g.classList.add("ready"); return;
+          }
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          var d = ev.type === "pointerup" ? dropAt(ev.clientX, ev.clientY) : null;
+          if (d) { if (ph) ph.remove(); place(t, d); }
+          else if (homeDrop && ev.type === "pointerup") { if (ph) ph.remove(); toBank(t); }
+          else { if (ph) { home.insertBefore(t, ph); ph.remove(); } else home.appendChild(t); }
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+    drops.forEach(function (d) {
+      d.addEventListener("click", function (e) { if (picked && pickedGroup === g && !e.target.closest(".tile")) { place(picked, d); unpick(); } });
+    });
+    g.classList.toggle("got", tiles.every(function (t) { var s = store(t.dataset.store); return s && s.value; }));
+  }
+
+  /* ---------- Roman: the secret message ---------- */
+  function setupCode(c) {
+    var ins = [].slice.call(c.querySelectorAll("input.cl"));
+    function done() { c.classList.toggle("got", ins.every(function (i) { return i.value.trim(); })); updateNow(); }
+    ins.forEach(function (inp, i) {
+      inp.addEventListener("focus", function () { inp.select(); });
+      inp.addEventListener("input", function () {
+        var v = inp.value.replace(/[^A-Za-z]/g, "").slice(-1).toUpperCase();
+        if (inp.value !== v) { inp.value = v; fire(inp); }
+        if (v && ins[i + 1] && !ins[i + 1].value) ins[i + 1].focus();
+        done();
+      });
+    });
+    c.classList.toggle("got", ins.every(function (i) { return i.value.trim(); }));
+  }
+
+  function init() {
+    document.querySelectorAll(".card.rcard").forEach(setupRounding);
+    document.querySelectorAll(".ritem.choose").forEach(setupChoice);
+    document.querySelectorAll(".ritem.build").forEach(setupBuild);
+    document.querySelectorAll(".dnd").forEach(setupSort);
+    document.querySelectorAll(".code[data-live]").forEach(setupCode);
+    updateNow();
+  }
   if (document.readyState === "complete") init(); else window.addEventListener("load", init);
 })();
 </script>
@@ -372,6 +763,6 @@ body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, n
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJlXzFwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiJ9LCAiZV8xcyI6IHsidCI6ICJleGFjdCIsICJhIjogIjQ2MCJ9LCAiZV8xYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQ3MCJ9LCAiZV8xaCI6IHsidCI6ICJleGFjdCIsICJhIjogIjQ2NSJ9LCAiZV8xZCI6IHsidCI6ICJleGFjdCIsICJhIjogImhhbGZ3YXkgb3IgYWZ0ZXI6IHJvdW5kIFVQIn0sICJlXzFyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDcwIn0sICJlXzJwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiJ9LCAiZV8ycyI6IHsidCI6ICJleGFjdCIsICJhIjogIjMsNjAwIn0sICJlXzJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyw3MDAifSwgImVfMmgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzLDY1MCJ9LCAiZV8yZCI6IHsidCI6ICJleGFjdCIsICJhIjogImhhbGZ3YXkgb3IgYWZ0ZXI6IHJvdW5kIFVQIn0sICJlXzJyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyw3MDAifSwgImVfM3AiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4In0sICJlXzNzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTgsMDAwIn0sICJlXzNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTksMDAwIn0sICJlXzNoIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTgsNTAwIn0sICJlXzNkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYmVmb3JlIGhhbGZ3YXk6IHJvdW5kIGRvd24ifSwgImVfM3IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1OCwwMDAifSwgImVfNHAiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzIn0sICJlXzRzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzMwLDAwMCJ9LCAiZV80YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjc0MCwwMDAifSwgImVfNGgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3MzUsMDAwIn0sICJlXzRkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiaGFsZndheSBvciBhZnRlcjogcm91bmQgVVAifSwgImVfNHIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3NDAsMDAwIn0sICJlX3IxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSJ9LCAiZV9yMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjE0In0sICJlX3IzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiZV9yNCI6IHsidCI6ICJleGFjdCIsICJhIjogIjE2In19</script>
+<script type="application/json" id="hw-check">eyJlXzNwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOCJ9LCAiZV8zcyI6IHsidCI6ICJleGFjdCIsICJhIjogIjU4LDAwMCJ9LCAiZV8zYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjU5LDAwMCJ9LCAiZV8zaCI6IHsidCI6ICJleGFjdCIsICJhIjogIjU4LDUwMCJ9LCAiZV8zZCI6IHsidCI6ICJleGFjdCIsICJhIjogImJlZm9yZSBoYWxmd2F5OiByb3VuZCBkb3duIn0sICJlXzNyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTgsMDAwIn0sICJlXzRwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiZV80cyI6IHsidCI6ICJleGFjdCIsICJhIjogIjczMCwwMDAifSwgImVfNGIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3NDAsMDAwIn0sICJlXzRoIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzM1LDAwMCJ9LCAiZV80ZCI6IHsidCI6ICJleGFjdCIsICJhIjogImhhbGZ3YXkgb3IgYWZ0ZXI6IHJvdW5kIFVQIn0sICJlXzRyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzQwLDAwMCJ9LCAicjFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiSUlJIn0sICJyMWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJWIn0sICJyMWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJSSJ9LCAicjJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiSUkifSwgInIyYiI6IHsidCI6ICJleGFjdCIsICJhIjogIlYifSwgInIyYyI6IHsidCI6ICJleGFjdCIsICJhIjogIklJSSJ9LCAicjNhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiJ9LCAicjNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOCJ9LCAicjNjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAicjRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiVkkifSwgInI0YiI6IHsidCI6ICJleGFjdCIsICJhIjogIlZJSUkifSwgInI1YSI6IHsidCI6ICJleGFjdCIsICJhIjogImJpZ2dlciB0aGFuIDUifSwgInI1YiI6IHsidCI6ICJleGFjdCIsICJhIjogInNtYWxsZXIgdGhhbiA1In0sICJyNWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzbWFsbGVyIHRoYW4gNSJ9LCAicjVkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYmlnZ2VyIHRoYW4gNSJ9LCAicjVlIjogeyJ0IjogImV4YWN0IiwgImEiOiAic21hbGxlciB0aGFuIDUifSwgInI2YSI6IHsidCI6ICJleGFjdCIsICJhIjogIlZJIn0sICJyNmIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJViJ9LCAicjZjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiSVYifSwgInI2ZCI6IHsidCI6ICJleGFjdCIsICJhIjogIlZJIn0sICJyNmUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJViJ9LCAicjZmIjogeyJ0IjogImV4YWN0IiwgImEiOiAiVkkifSwgInI3YSI6IHsidCI6ICJleGFjdCIsICJhIjogIlhJIn0sICJyN2IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJWCJ9LCAicjdjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiWCJ9LCAicjdkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiSVgifSwgInI3ZSI6IHsidCI6ICJleGFjdCIsICJhIjogIlhJIn0sICJyN2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJWCJ9LCAicjhhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYmlnZ2VyIHRoYW4gMTAifSwgInI4YiI6IHsidCI6ICJleGFjdCIsICJhIjogInNtYWxsZXIgdGhhbiAxMCJ9LCAicjhjIjogeyJ0IjogImV4YWN0IiwgImEiOiAic21hbGxlciB0aGFuIDEwIn0sICJyOGQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJiaWdnZXIgdGhhbiAxMCJ9LCAicjhlIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYmlnZ2VyIHRoYW4gMTAifSwgInI4ZiI6IHsidCI6ICJleGFjdCIsICJhIjogInNtYWxsZXIgdGhhbiAxMCJ9LCAicjlhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiWElJIn0sICJyOWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJYSUlJIn0sICJyOWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJYViJ9LCAicjlkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiWFZJIn0sICJyOWUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJYSVYifSwgInIxMGEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJIn0sICJyMTBiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiTCJ9LCAicjEwYyI6IHsidCI6ICJleGFjdCIsICJhIjogIkkifSwgInIxMGQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJLIn0sICJyMTBlIjogeyJ0IjogImV4YWN0IiwgImEiOiAiRSJ9LCAicjEwZiI6IHsidCI6ICJleGFjdCIsICJhIjogIkYifSwgInIxMGciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJPIn0sICJyMTBoIjogeyJ0IjogImV4YWN0IiwgImEiOiAiTyJ9LCAicjEwaSI6IHsidCI6ICJleGFjdCIsICJhIjogIkQifX0=</script>
 <script src="../assets/hw.js?v=20261010-pdf-pages"></script>
 </body></html>

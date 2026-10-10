@@ -1,0 +1,161 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Maksim_Homework_2026-10-10.key.json -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Maksim · English · 10 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.7; }
+.wrap { max-width:900px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+a { color:var(--accent); text-underline-offset:4px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 36px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; page-break-inside:avoid; break-inside:avoid; }
+.section-heading { display:flex; gap:18px; align-items:baseline; margin-bottom:20px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:14px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:25px; line-height:1.3; letter-spacing:-.025em; }
+.section-heading p { margin:6px 0 0; font-size:15px; color:var(--muted); }
+.instruction { font-size:17px; font-weight:650; margin:0 0 8px; }
+.language-note { border-left:3px solid var(--accent); background:#f0f7f7; border-radius:0 12px 12px 0; padding:12px 20px; margin:0 0 18px; font-size:16px; }
+.language-note p { margin:4px 0; }
+.language-note .mini { color:var(--muted); }
+.prompt { margin:0; line-height:2.4; }
+.question { padding:16px 0; border-bottom:1px solid #edf1f3; page-break-inside:avoid; break-inside:avoid; }
+.question:last-child { border-bottom:0; }
+.question label { line-height:2.5; }
+.sentence-question label { display:block; line-height:1.7; margin-bottom:10px; }
+.sentence-prompt { font-weight:600; }
+.sentence-prompt.plain { font-weight:400; }
+.quote { font-weight:600; }
+.task-label { display:block; font-size:15px; color:var(--muted); }
+.rowq { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.rowq .prompt { margin:0; }
+/* Local preview only: the shared hw.css styles .hw-field on the live page and wins over these. */
+input, textarea, select { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+input.gap { width:150px; min-height:44px; margin:3px 5px; text-align:center; }
+input.gap-wide { width:190px; }
+input.line { display:block; width:100%; min-height:44px; }
+textarea { display:block; width:100%; min-height:80px; line-height:1.6; resize:vertical; }
+select { min-width:170px; min-height:44px; }
+button { font:inherit; cursor:pointer; border:0; }
+.check-button { background:#eff5f5; color:#005c58; padding:11px 18px; border-radius:8px; font-weight:650; font-size:15px; margin-top:18px; }
+.check-button:hover { background:#dceceb; }
+.check-all { background:var(--accent); color:white; padding:13px 22px; border-radius:9px; font-size:16px; font-weight:650; }
+.check-row { text-align:center; margin:6px 0 10px; }
+.feedback { margin:10px 0 0; padding:10px 16px; font-size:16px; line-height:1.6; background:#f0f5f7; border-left:3px solid #94a6b2; border-radius:0 6px 6px 0; }
+.feedback[data-result="correct"] { background:#eef8f3; border-color:#18794e; color:#155c3c; }
+.feedback[data-result="retry"] { background:#fff6e9; border-color:#b66d12; color:#754307; }
+[hidden] { display:none !important; }
+.nowrap { white-space:nowrap; }
+.print-opts { display:none; }
+.pbox { display:inline-block; width:90px; height:26px; border:1.5px solid #a4b5c0; border-radius:6px; background:#f8fafb; vertical-align:middle; }
+.hw-pdf-mode .print-opts { display:none; }
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 20px; border-radius:14px; }
+  h2 { font-size:23px; } .rowq { flex-wrap:wrap; gap:8px; } .edition { font-size:12px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  select { display:none !important; } .print-opts { display:inline !important; }
+  body { background:white; font-size:12pt; } .wrap { padding:0; max-width:none; }
+  .exercise { box-shadow:none; padding:18px 22px; margin-bottom:16px; }
+  .page-header { padding-bottom:18px; } .heading-row { margin:10px 0 14px; }
+  .language-note, .instruction, .section-heading { page-break-after:avoid; break-after:avoid; }
+  .check-button, .check-row, .feedback { display:none !important; }
+  .exercise { page-break-inside:avoid; break-inside:avoid; padding:14px 20px; margin-bottom:12px; }
+  .language-note { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .section-heading { break-after:avoid; page-break-after:avoid; }
+  .question { padding:6px 0; } .question label { line-height:2; }
+  textarea { min-height:50px; }
+  .language-note { padding:8px 16px; margin-bottom:10px; }
+  .repairs { break-inside:avoid; page-break-inside:avoid; }
+  textarea { resize:none; }
+  textarea.hw-field { min-height:0 !important; height:48px !important; }
+  textarea.hw-field[rows="3"], textarea.hw-field[rows="4"] { height:64px !important; }
+  .sentence-question label { margin-bottom:4px; }
+  body { line-height:1.45; } .question { padding:4px 0; } .sentence-question label { line-height:1.45; }
+  input.line { min-height:0; height:38px; } .page-header { padding-bottom:10px; } .page-meta { padding-top:10px; }
+  .quote { font-weight:600; }
+}
+body.hw-pdf-mode { background:white; }
+.hw-pdf-mode .check-button, .hw-pdf-mode .check-row { display:none; }
+</style>
+<style id="pair-style">
+.pair-q{display:flex;gap:12px;align-items:flex-start}
+.pair-num{font-weight:600;padding-top:12px;min-width:22px}
+.pair{display:flex;flex-direction:column;gap:8px;flex:1}
+.pair-opt{text-align:left;font:inherit;font-size:17px;line-height:1.4;padding:11px 16px;border:1.5px solid #cbd5e1;border-radius:10px;background:#fff;color:#1e293b;cursor:pointer;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pair-opt:hover{border-color:#0f766e}
+.pair-opt.picked{border-color:#0f766e;background:#e6f4f1;color:#0b3d38;font-weight:600}
+select.pair-store{display:none !important}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Maksim" data-sheet="English 2026-10-10" data-sheet-id="maksim-2026-10-10-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>English, in practice.</h1><span class="edition">10<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Maksim · 10 October · 3 exercises · about 15 minutes</span><a href="https://arsdashok.github.io/vocab/2c73e70a0550a136/">Your vocabulary ↗</a></div>
+</header>
+
+<section class="exercise" aria-labelledby="title-1">
+  <div class="section-heading"><span class="section-number">01</span><div><h2 id="title-1">Report&nbsp;it</h2><p>A statement, an instruction or a&nbsp;question.</p></div></div>
+  <div class="language-note">
+    <p>Direct speech uses the exact words in quotation marks. Reported speech has no quotation marks. <strong>told me to</strong> + verb is always reported&nbsp;speech.</p>
+    <p class="mini">Statement: My brother: “I’m tired.” → My brother <strong>said (that)</strong> he <strong>was</strong>&nbsp;tired.</p>
+    <p class="mini">Instruction: The doctor: “Drink more water.” → The doctor <strong>told me to</strong> drink more&nbsp;water.</p>
+    <p class="mini">Question: The waiter: “Is the café open?” → The waiter <strong>asked if</strong> the café <strong>was</strong>&nbsp;open.</p>
+    <p class="mini">Time words change too: <em>today</em> → <em>that&nbsp;day</em>.</p>
+  </div>
+  <p class="instruction">Write what they said in one full&nbsp;sentence.</p>
+  <div class="question sentence-question"><label><span class="task-label">1. The receptionist at the immigration centre, last&nbsp;week:</span><span class="quote">“The office is closed&nbsp;today.”</span></label><textarea class="hw-field" rows="2" data-k="t1" data-label="1. Receptionist: The office is closed today." spellcheck="false" aria-label="Report sentence 1"></textarea></div>
+  <div class="question sentence-question"><label><span class="task-label">2. Your neighbour, yesterday&nbsp;morning:</span><span class="quote">“The lift is broken&nbsp;today.”</span></label><textarea class="hw-field" rows="2" data-k="t2" data-label="2. Neighbour: The lift is broken today." spellcheck="false" aria-label="Report sentence 2"></textarea></div>
+  <div class="question sentence-question"><label><span class="task-label">3. A friend, about your&nbsp;e-book:</span><span class="quote">“Is your e-book&nbsp;ready?”</span></label><textarea class="hw-field" rows="2" data-k="t3" data-label="3. Friend: Is your e-book ready?" spellcheck="false" aria-label="Report sentence 3"></textarea></div>
+  <div class="question sentence-question"><label><span class="task-label">4. Your tattoo artist (she), after the&nbsp;session:</span><span class="quote">“Call me next&nbsp;week.”</span></label><textarea class="hw-field" rows="2" data-k="t4" data-label="4. Tattoo artist: Call me next week." spellcheck="false" aria-label="Report sentence 4"></textarea></div>
+</section>
+
+<section class="exercise" aria-labelledby="title-2">
+  <div class="section-heading"><span class="section-number">02</span><div><h2 id="title-2">Which one is&nbsp;right?</h2><p>Two sentences, choose<p>Two sentences, choose&nbsp;one.</p>nbsp;one.</p></div></div>
+  <p class="instruction">5 to 7. Click the correct&nbsp;sentence.</p>
+  <div class="question pair-q"><span class="pair-num">5.</span><div class="pair" data-field="p1"><button type="button" class="pair-opt" data-v="It needs to me to make a case for my e-book.">It needs to me to make a case for my e-book.</button><button type="button" class="pair-opt" data-v="I need it to make a case for my e-book.">I need it to make a case for my e-book.</button></div><select class="hw-field pair-store" data-k="p1" data-label="5. Choose the correct sentence" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="It needs to me to make a case for my e-book.">It needs to me to make a case for my e-book.</option><option value="I need it to make a case for my e-book.">I need it to make a case for my e-book.</option></select></div>
+  <div class="question pair-q"><span class="pair-num">6.</span><div class="pair" data-field="p2"><button type="button" class="pair-opt" data-v="Last week the internet didn&#x27;t work, so I had to go to a café.">Last week the internet didn&#x27;t work, so I had to go to a café.</button><button type="button" class="pair-opt" data-v="Last week the internet didn&#x27;t work, so I must go to a café.">Last week the internet didn&#x27;t work, so I must go to a café.</button></div><select class="hw-field pair-store" data-k="p2" data-label="6. Choose the correct sentence" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Last week the internet didn&#x27;t work, so I had to go to a café.">Last week the internet didn&#x27;t work, so I had to go to a café.</option><option value="Last week the internet didn&#x27;t work, so I must go to a café.">Last week the internet didn&#x27;t work, so I must go to a café.</option></select></div>
+  <div class="question pair-q"><span class="pair-num">7.</span><div class="pair" data-field="p3"><button type="button" class="pair-opt" data-v="In the exercise one person tells a story and other people act it out.">In the exercise one person tells a story and other people act it out.</button><button type="button" class="pair-opt" data-v="In the exercise one person tells a story and another people act it out.">In the exercise one person tells a story and another people act it out.</button></div><select class="hw-field pair-store" data-k="p3" data-label="7. Choose the correct sentence" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="In the exercise one person tells a story and other people act it out.">In the exercise one person tells a story and other people act it out.</option><option value="In the exercise one person tells a story and another people act it out.">In the exercise one person tells a story and another people act it out.</option></select></div>
+  <p class="instruction">Which one is reported&nbsp;speech?</p>
+  <div class="question pair-q"><span class="pair-num">8.</span><div class="pair" data-field="p4"><button type="button" class="pair-opt" data-v="My teacher said, “Come early tomorrow.”">My teacher said, “Come early tomorrow.”</button><button type="button" class="pair-opt" data-v="My teacher told me to come early the next day.">My teacher told me to come early the next day.</button></div><select class="hw-field pair-store" data-k="p4" data-label="8. Which one is reported speech?" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="My teacher said, “Come early tomorrow.”">My teacher said, “Come early tomorrow.”</option><option value="My teacher told me to come early the next day.">My teacher told me to come early the next day.</option></select></div>
+</section>
+
+<section class="exercise" aria-labelledby="title-3">
+  <div class="section-heading"><span class="section-number">03</span><div><h2 id="title-3">Your&nbsp;e-book</h2><p>About the reader you are&nbsp;building.</p></div></div>
+  <p class="instruction">Answer each question in one full&nbsp;sentence.</p>
+  <div class="question sentence-question"><label><span class="sentence-prompt plain">9. Why do you need the&nbsp;calipers?</span></label><textarea class="hw-field" rows="2" data-k="w1" data-label="9. Why do you need the calipers?" spellcheck="false" aria-label="Your sentence 9"></textarea></div>
+  <div class="question sentence-question"><label><span class="sentence-prompt plain">10. What will you be able to do with your e-book that you can’t do with a&nbsp;Kindle?</span></label><textarea class="hw-field" rows="2" data-k="w2" data-label="10. What will you be able to do with your e-book that you can't do with a Kindle?" spellcheck="false" aria-label="Your sentence 10"></textarea></div>
+</section>
+</main>
+<script id="pair-script">
+(function(){function sync(){document.querySelectorAll('.pair').forEach(function(p){var s=document.querySelector('select[data-k="'+p.dataset.field+'"]');if(!s)return;p.querySelectorAll('.pair-opt').forEach(function(b){b.classList.toggle('picked',b.dataset.v===s.value);});});}
+document.addEventListener('click',function(e){var b=e.target.closest('.pair-opt');if(!b)return;var p=b.closest('.pair');var s=document.querySelector('select[data-k="'+p.dataset.field+'"]');s.value=b.dataset.v;s.dispatchEvent(new Event('input',{bubbles:true}));s.dispatchEvent(new Event('change',{bubbles:true}));sync();});
+document.addEventListener('change',sync);document.addEventListener('DOMContentLoaded',sync);window.addEventListener('load',function(){sync();setTimeout(sync,300);setTimeout(sync,1200);});})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJ0MSI6IHsidCI6ICJvcGVuIn0sICJ0MiI6IHsidCI6ICJvcGVuIn0sICJ0MyI6IHsidCI6ICJvcGVuIn0sICJ0NCI6IHsidCI6ICJvcGVuIn0sICJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIkkgbmVlZCBpdCB0byBtYWtlIGEgY2FzZSBmb3IgbXkgZS1ib29rLiJ9LCAicDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJMYXN0IHdlZWsgdGhlIGludGVybmV0IGRpZG4ndCB3b3JrLCBzbyBJIGhhZCB0byBnbyB0byBhIGNhZsOpLiJ9LCAicDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJbiB0aGUgZXhlcmNpc2Ugb25lIHBlcnNvbiB0ZWxscyBhIHN0b3J5IGFuZCBvdGhlciBwZW9wbGUgYWN0IGl0IG91dC4ifSwgInA0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiTXkgdGVhY2hlciB0b2xkIG1lIHRvIGNvbWUgZWFybHkgdGhlIG5leHQgZGF5LiJ9LCAidzEiOiB7InQiOiAib3BlbiJ9LCAidzIiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script src="../assets/hw.js?v=20261010-pdf-pages"></script>
+</body>
+</html>

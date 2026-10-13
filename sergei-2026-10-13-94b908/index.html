@@ -1,0 +1,310 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Sergei_Homework_2026-10-13.key.json -->
+<!-- Lesson 13 Oct 2026. ONE shelf: question word order, as taught (no deck; envelope from the recording).
+     be / can: (question word) + am/is/are/was/were or can + subject; is there / are there.
+     normal verb: (question word) + do/does/did + subject + base verb. Two-word question words = one unit.
+     Short answers. Hanging preposition in a follow-up. NOT on the sheet: present perfect.
+     About 15 minutes.
+     01 choose the helper word (8 menus, values is/are/was/were/do/does/did; menu positions of the correct
+        answers 6,1,7,2,6,4,5,3: no run, no alternation, no cycle). A reply under each question pins the tense.
+     02 build questions from tiles, one tile extra in each row (6 rows, hidden inputs b1..b6, visible twin = .build).
+        Worked row «Where is your office?» (extra: does) answers no item.
+     03 Leila's short answers (5 menus; option positions 1,4,8,5,2; yes/no Y,N,N,Y,N).
+     04 three typed follow-up questions (open), model on swimming.
+     05 two typed questions for the bank broker (open). -->
+<!-- Look: Sergei's standing design, copied from Maksim's sheet (Inter, pale grey page, white cards, teal eyebrow). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergei · English · Questions</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.7; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction { text-wrap:pretty; }
+.wrap { max-width:1120px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 40px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; page-break-inside:avoid; break-inside:avoid; }
+/* Section name is a small label; the instruction is the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.instruction { font-size:21px; font-weight:650; line-height:1.4; letter-spacing:-.01em; margin:0 0 12px; }
+.context { font-size:18px; font-weight:400; margin:-4px 0 10px; }
+.note { font-size:15px; color:var(--muted); margin:-6px 0 14px; }
+.note b { color:var(--ink); font-weight:600; }
+.qn { display:inline-block; min-width:30px; font-size:15px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+.question { padding:10px 0; border-bottom:1px solid #edf1f3; page-break-inside:avoid; break-inside:avoid; }
+.question:last-child { border-bottom:0; }
+
+/* 01 and 03: one question per row, the menu at the right */
+.row { display:grid; grid-template-columns:1fr 190px; gap:24px; align-items:center; }
+.row .prompt { margin:0; }
+.reply { display:block; font-size:15px; color:var(--muted); padding-left:30px; }
+.gap { display:inline-block; width:58px; height:22px; border-bottom:2px solid #8fa3ae; vertical-align:baseline; margin:0 3px; }
+/* Local preview only: the shared hw.css styles .hw-field on the live page and wins over these. */
+input, textarea, select, .write { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+select { width:100%; min-height:44px; }
+.print-opts { display:none; }
+.pbox { display:inline-block; width:110px; height:26px; border:1.5px solid #a4b5c0; border-radius:6px; background:#f8fafb; vertical-align:middle; }
+
+/* 02: build a question from tiles */
+.bq-line { display:flex; align-items:center; gap:10px; }
+.build { flex:1; display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-height:56px; padding:8px 12px; border:2px dashed #a4b5c0; border-radius:14px; background:#f8fafb; }
+.build.over { border-color:var(--accent); background:#f0f7f7; }
+.qmark { font-size:26px; font-weight:700; color:var(--muted); }
+.tiles { display:flex; flex-wrap:wrap; gap:10px 12px; padding:10px 0 4px 40px; min-height:52px; }
+.wchip { font:inherit; font-size:17px; font-weight:600; color:var(--ink); background:white; border:1.5px solid #8fa3ae; border-radius:999px; padding:8px 18px; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; white-space:nowrap; box-shadow:0 2px 0 #162b3714; }
+.wchip.dragging { position:fixed; z-index:50; cursor:grabbing; pointer-events:none; transform:scale(1.05); }
+.build .wchip { color:#1d4ed8; border-color:#7d97c9; }
+.wchip.model { cursor:default; color:var(--muted); background:#eef3f5; border-style:dashed; box-shadow:none; }
+.wchip.model.spare { text-decoration:line-through; }
+.model-tag { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.example { background:#f6f9fa; border-radius:14px; padding:10px 14px 6px; margin:4px 0 8px; }
+.example .tiles { padding-left:0; }
+.store { display:none; }
+
+/* 04 and 05: typed questions */
+.dlg { margin:0 0 6px; display:flex; align-items:baseline; }
+.dlg .who, .dlg .qn { flex:none; }
+.dlg .who { display:inline-block; min-width:100px; font-size:14px; font-weight:700; color:var(--muted); }
+.own { display:grid; grid-template-columns:130px 1fr; gap:0; align-items:center; }
+.own .who, .own .qn { padding-left:30px; } .own .qn { padding-left:0; }
+.own .who { font-size:14px; font-weight:700; color:var(--accent); }
+.model-dlg { background:#f6f9fa; border-radius:14px; padding:10px 16px; margin:4px 0 8px; }
+.model-dlg .mine { color:var(--accent); font-weight:600; }
+input.write { width:100%; min-height:44px; box-sizing:border-box; }
+.prt { display:none; }
+
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 20px; border-radius:14px; }
+  .instruction { font-size:19px; } .edition { font-size:12px; }
+  .row { grid-template-columns:1fr; gap:6px; }
+  .tiles { padding-left:0; }
+  .wchip { font-size:16px; padding:8px 15px; }
+  .own { grid-template-columns:1fr; } .dlg .who { min-width:86px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  select { display:none !important; } .print-opts { display:inline-block !important; } .prt { display:block !important; } .scr { display:none !important; }
+  body { background:white; font-size:11pt; line-height:1.4; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:8px; } .heading-row { margin:6px 0 8px; } .page-meta { padding-top:6px; font-size:12px; }
+  h1 { font-size:30px; }
+  .exercise { box-shadow:none; padding:12px 20px; margin-bottom:10px; border-radius:14px; }
+  .section-heading { margin-bottom:2px; } h2, .section-number { font-size:10px; }
+  .instruction { font-size:15px; margin-bottom:6px; } .note, .context { font-size:11px; margin:-3px 0 6px; }
+  .question { padding:3px 0; } .prompt { font-size:12.5px; } .qn { font-size:11px; min-width:22px; } .reply { font-size:10.5px; padding-left:22px; }
+  .row { grid-template-columns:1fr 120px; gap:12px; } .pbox { height:20px; width:100px; }
+  .gap { width:44px; height:14px; }
+  .build { min-height:30px; padding:3px 8px; border-width:1.5px; } .qmark { font-size:16px; }
+  .tiles { padding:4px 0 2px 30px; gap:5px 7px; min-height:0; } .wchip { font-size:11px; padding:2px 10px; box-shadow:none; }
+  .dlg, .model-dlg { font-size:12px; } .own .who, .dlg .who { font-size:10.5px; }
+  input.write { min-height:28px; } .own { grid-template-columns:96px 1fr; } .dlg .who { min-width:74px; } .own .who { padding-left:22px; }
+}
+body.hw-pdf-mode { background:white; }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Sergei" data-sheet="English 2026-10-13" data-sheet-id="sergei-2026-10-13-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>How to ask a question</h1><span class="edition">One shelf:<br>questions</span></div>
+  <div class="page-meta"><span>Sergei</span><span>About 15&nbsp;minutes</span></div>
+</header>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">01</span><h2>The helper word</h2></div>
+  <p class="instruction">Choose the right word for each&nbsp;question.</p>
+  <p class="note"><b>be</b> (is, are, was, were): no helper. A normal verb (work, open, call): do, does or&nbsp;did. <span class="prt">Write is, are, was, were, do, does or&nbsp;did.</span></p>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">1.</span> <span class="gap"></span> your new neighbour work from home&nbsp;now?<span class="reply">&ldquo;Yes, three days a&nbsp;week.&rdquo;</span></p><select class="hw-field pick" data-k="h1" data-label="1. ___ your new neighbour work from home now?" aria-label="Question 1"><option value="">Choose</option><option value="is">is</option><option value="are">are</option><option value="was">was</option><option value="were">were</option><option value="do">do</option><option value="does">does</option><option value="did">did</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">2.</span> Where <span class="gap"></span> the estate agent&nbsp;from?<span class="reply">&ldquo;She&rsquo;s from India.&rdquo;</span></p><select class="hw-field pick" data-k="h2" data-label="2. Where ___ the estate agent from?" aria-label="Question 2"><option value="">Choose</option><option value="is">is</option><option value="are">are</option><option value="was">was</option><option value="were">were</option><option value="do">do</option><option value="does">does</option><option value="did">did</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">3.</span> <span class="gap"></span> the cleaners come&nbsp;yesterday?<span class="reply">&ldquo;Yes, at ten.&rdquo;</span></p><select class="hw-field pick" data-k="h3" data-label="3. ___ the cleaners come yesterday?" aria-label="Question 3"><option value="">Choose</option><option value="is">is</option><option value="are">are</option><option value="was">was</option><option value="were">were</option><option value="do">do</option><option value="does">does</option><option value="did">did</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">4.</span> How many rooms <span class="gap"></span> there in the new&nbsp;office?<span class="reply">&ldquo;Five.&rdquo;</span></p><select class="hw-field pick" data-k="h4" data-label="4. How many rooms ___ there in the new office?" aria-label="Question 4"><option value="">Choose</option><option value="is">is</option><option value="are">are</option><option value="was">was</option><option value="were">were</option><option value="do">do</option><option value="does">does</option><option value="did">did</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">5.</span> What time <span class="gap"></span> the bank open on&nbsp;Saturdays?<span class="reply">&ldquo;At nine.&rdquo;</span></p><select class="hw-field pick" data-k="h5" data-label="5. What time ___ the bank open on Saturdays?" aria-label="Question 5"><option value="">Choose</option><option value="is">is</option><option value="are">are</option><option value="was">was</option><option value="were">were</option><option value="do">do</option><option value="does">does</option><option value="did">did</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">6.</span> <span class="gap"></span> the flights to Cape Town expensive last&nbsp;year?<span class="reply">&ldquo;Yes, very.&rdquo;</span></p><select class="hw-field pick" data-k="h6" data-label="6. ___ the flights to Cape Town expensive last year?" aria-label="Question 6"><option value="">Choose</option><option value="is">is</option><option value="are">are</option><option value="was">was</option><option value="were">were</option><option value="do">do</option><option value="does">does</option><option value="did">did</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">7.</span> How often <span class="gap"></span> your clients call&nbsp;you?<span class="reply">&ldquo;Every day.&rdquo;</span></p><select class="hw-field pick" data-k="h7" data-label="7. How often ___ your clients call you?" aria-label="Question 7"><option value="">Choose</option><option value="is">is</option><option value="are">are</option><option value="was">was</option><option value="were">were</option><option value="do">do</option><option value="does">does</option><option value="did">did</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">8.</span> <span class="gap"></span> the client happy with the cleaning last&nbsp;week?<span class="reply">&ldquo;Yes, very happy.&rdquo;</span></p><select class="hw-field pick" data-k="h8" data-label="8. ___ the client happy with the cleaning last week?" aria-label="Question 8"><option value="">Choose</option><option value="is">is</option><option value="are">are</option><option value="was">was</option><option value="were">were</option><option value="do">do</option><option value="does">does</option><option value="did">did</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">02</span><h2>Word order</h2></div>
+  <p class="instruction scr">Put the words in order to make a question. One word in each row is&nbsp;extra.</p>
+  <p class="instruction prt">Write the words in order to make a question. One word in each row is&nbsp;extra.</p>
+  <p class="note scr">Tap a word to add it, or drag it into place. Tap a word in the box to send it&nbsp;back.</p>
+  <div class="example">
+    <div class="bq-line"><span class="model-tag">Like this</span><div class="build" aria-hidden="true"><span class="wchip model">where</span><span class="wchip model">is</span><span class="wchip model">your office</span></div><span class="qmark">?</span></div>
+    <div class="tiles"><span class="model-tag">Extra:</span><span class="wchip model spare">does</span></div>
+  </div>
+
+  <div class="question"><div class="bq-line"><span class="qn">1.</span><div class="build" data-b="b1" data-field="b1"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b1"><button type="button" class="wchip" data-i="0">start</button><button type="button" class="wchip" data-i="1">is</button><button type="button" class="wchip" data-i="2">what</button><button type="button" class="wchip" data-i="3">work</button><button type="button" class="wchip" data-i="4">the estate agent</button><button type="button" class="wchip" data-i="5">does</button><button type="button" class="wchip" data-i="6">time</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">2.</span><div class="build" data-b="b2" data-field="b2"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b2"><button type="button" class="wchip" data-i="0">tennis</button><button type="button" class="wchip" data-i="1">do</button><button type="button" class="wchip" data-i="2">often</button><button type="button" class="wchip" data-i="3">you</button><button type="button" class="wchip" data-i="4">are</button><button type="button" class="wchip" data-i="5">play</button><button type="button" class="wchip" data-i="6">how</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">3.</span><div class="build" data-b="b3" data-field="b3"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b3"><button type="button" class="wchip" data-i="0">a pharmacy</button><button type="button" class="wchip" data-i="1">does</button><button type="button" class="wchip" data-i="2">there</button><button type="button" class="wchip" data-i="3">your new house</button><button type="button" class="wchip" data-i="4">is</button><button type="button" class="wchip" data-i="5">near</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">4.</span><div class="build" data-b="b4" data-field="b4"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b4"><button type="button" class="wchip" data-i="0">last weekend</button><button type="button" class="wchip" data-i="1">go</button><button type="button" class="wchip" data-i="2">Max</button><button type="button" class="wchip" data-i="3">does</button><button type="button" class="wchip" data-i="4">where</button><button type="button" class="wchip" data-i="5">did</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">5.</span><div class="build" data-b="b5" data-field="b5"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b5"><button type="button" class="wchip" data-i="0">have</button><button type="button" class="wchip" data-i="1">many</button><button type="button" class="wchip" data-i="2">clients</button><button type="button" class="wchip" data-i="3">are</button><button type="button" class="wchip" data-i="4">your company</button><button type="button" class="wchip" data-i="5">does</button><button type="button" class="wchip" data-i="6">how</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">6.</span><div class="build" data-b="b6" data-field="b6"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b6"><button type="button" class="wchip" data-i="0">a SIM card</button><button type="button" class="wchip" data-i="1">buy</button><button type="button" class="wchip" data-i="2">does</button><button type="button" class="wchip" data-i="3">I</button><button type="button" class="wchip" data-i="4">where</button><button type="button" class="wchip" data-i="5">can</button></div></div>
+  <div class="store">
+    <input data-k="b1" data-label="Word order 1" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b2" data-label="Word order 2" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b3" data-label="Word order 3" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b4" data-label="Word order 4" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b5" data-label="Word order 5" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b6" data-label="Word order 6" tabindex="-1" aria-hidden="true" class="hw-field">
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">03</span><h2>Short answers</h2></div>
+  <p class="context">Leila is an estate agent. You ask her these&nbsp;questions.</p>
+  <p class="instruction">Choose Leila&rsquo;s short&nbsp;answer.</p>
+  <p class="note prt">Write: Yes, I do / No, I don&rsquo;t / Yes, I am / No, I&rsquo;m not / Yes, I can / No, I can&rsquo;t / Yes, I did / No, I&nbsp;didn&rsquo;t.</p>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">1.</span> Do you work on&nbsp;Saturdays?<span class="reply">&ldquo;<span class="gap"></span> I&rsquo;m at the office every&nbsp;Saturday.&rdquo;</span></p><select class="hw-field pick" data-k="a1" data-label="1. Do you work on Saturdays? ... I'm at the office every Saturday." aria-label="Short answer 1"><option value="">Choose</option><option value="Yes, I do">Yes, I do</option><option value="No, I don't">No, I don&rsquo;t</option><option value="Yes, I am">Yes, I am</option><option value="No, I'm not">No, I&rsquo;m not</option><option value="Yes, I can">Yes, I can</option><option value="No, I can't">No, I can&rsquo;t</option><option value="Yes, I did">Yes, I did</option><option value="No, I didn't">No, I didn&rsquo;t</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">2.</span> Are you from Abu&nbsp;Dhabi?<span class="reply">&ldquo;<span class="gap"></span> I&rsquo;m from&nbsp;Dubai.&rdquo;</span></p><select class="hw-field pick" data-k="a2" data-label="2. Are you from Abu Dhabi? ... I'm from Dubai." aria-label="Short answer 2"><option value="">Choose</option><option value="Yes, I do">Yes, I do</option><option value="No, I don't">No, I don&rsquo;t</option><option value="Yes, I am">Yes, I am</option><option value="No, I'm not">No, I&rsquo;m not</option><option value="Yes, I can">Yes, I can</option><option value="No, I can't">No, I can&rsquo;t</option><option value="Yes, I did">Yes, I did</option><option value="No, I didn't">No, I didn&rsquo;t</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">3.</span> Did you see the new villa&nbsp;yesterday?<span class="reply">&ldquo;<span class="gap"></span> I was&nbsp;ill.&rdquo;</span></p><select class="hw-field pick" data-k="a3" data-label="3. Did you see the new villa yesterday? ... I was ill." aria-label="Short answer 3"><option value="">Choose</option><option value="Yes, I do">Yes, I do</option><option value="No, I don't">No, I don&rsquo;t</option><option value="Yes, I am">Yes, I am</option><option value="No, I'm not">No, I&rsquo;m not</option><option value="Yes, I can">Yes, I can</option><option value="No, I can't">No, I can&rsquo;t</option><option value="Yes, I did">Yes, I did</option><option value="No, I didn't">No, I didn&rsquo;t</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">4.</span> Can you show us the house&nbsp;tomorrow?<span class="reply">&ldquo;<span class="gap"></span> I&rsquo;m free at&nbsp;ten.&rdquo;</span></p><select class="hw-field pick" data-k="a4" data-label="4. Can you show us the house tomorrow? ... I'm free at ten." aria-label="Short answer 4"><option value="">Choose</option><option value="Yes, I do">Yes, I do</option><option value="No, I don't">No, I don&rsquo;t</option><option value="Yes, I am">Yes, I am</option><option value="No, I'm not">No, I&rsquo;m not</option><option value="Yes, I can">Yes, I can</option><option value="No, I can't">No, I can&rsquo;t</option><option value="Yes, I did">Yes, I did</option><option value="No, I didn't">No, I didn&rsquo;t</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">5.</span> Do you have a&nbsp;car?<span class="reply">&ldquo;<span class="gap"></span> I take a taxi&nbsp;everywhere.&rdquo;</span></p><select class="hw-field pick" data-k="a5" data-label="5. Do you have a car? ... I take a taxi everywhere." aria-label="Short answer 5"><option value="">Choose</option><option value="Yes, I do">Yes, I do</option><option value="No, I don't">No, I don&rsquo;t</option><option value="Yes, I am">Yes, I am</option><option value="No, I'm not">No, I&rsquo;m not</option><option value="Yes, I can">Yes, I can</option><option value="No, I can't">No, I can&rsquo;t</option><option value="Yes, I did">Yes, I did</option><option value="No, I didn't">No, I didn&rsquo;t</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">04</span><h2>Ask one more</h2></div>
+  <p class="context">You&rsquo;re talking to a new&nbsp;colleague.</p>
+  <p class="instruction">Write one more question to find out&nbsp;more.</p>
+  <div class="model-dlg">
+    <div class="dlg"><span class="model-tag">Like this</span></div>
+    <div class="dlg"><span class="who">You</span>Do you play any&nbsp;sport?</div>
+    <div class="dlg"><span class="who">Colleague</span>Yes, I go&nbsp;swimming.</div>
+    <div class="dlg"><span class="who">You</span><span class="mine">Who do you go&nbsp;with?</span></div>
+  </div>
+  <div class="question">
+    <div class="dlg"><span class="qn">1.</span><span class="who">You</span>Do you have any&nbsp;pets?</div>
+    <div class="dlg"><span class="qn"></span><span class="who">Colleague</span>Yes, I have a&nbsp;dog.</div>
+    <div class="own"><span class="who">You</span><input class="hw-field line write" data-k="f1" data-label="1. Pets: Yes, I have a dog. My question" aria-label="Question 1" autocomplete="off" placeholder="Type your answer here"></div>
+  </div>
+  <div class="question">
+    <div class="dlg"><span class="qn">2.</span><span class="who">You</span>Did you go on holiday this&nbsp;summer?</div>
+    <div class="dlg"><span class="qn"></span><span class="who">Colleague</span>Yes, we went to&nbsp;Italy.</div>
+    <div class="own"><span class="who">You</span><input class="hw-field line write" data-k="f2" data-label="2. Holiday: Yes, we went to Italy. My question" aria-label="Question 2" autocomplete="off" placeholder="Type your answer here"></div>
+  </div>
+  <div class="question">
+    <div class="dlg"><span class="qn">3.</span><span class="who">You</span>Do you listen to&nbsp;podcasts?</div>
+    <div class="dlg"><span class="qn"></span><span class="who">Colleague</span>Yes, I listen to a lot of&nbsp;podcasts.</div>
+    <div class="own"><span class="who">You</span><input class="hw-field line write" data-k="f3" data-label="3. Podcasts: Yes, I listen to a lot of podcasts. My question" aria-label="Question 3" autocomplete="off" placeholder="Type your answer here"></div>
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">05</span><h2>Your questions</h2></div>
+  <p class="context">You&rsquo;re meeting a bank broker about a bank&nbsp;account.</p>
+  <p class="instruction">Write two questions for the bank&nbsp;broker.</p>
+  <div class="question"><div class="own"><span class="qn">1.</span><input class="hw-field line write" data-k="q1" data-label="Bank broker: question 1" aria-label="Your question 1" autocomplete="off" placeholder="Type your answer here"></div></div>
+  <div class="question"><div class="own"><span class="qn">2.</span><input class="hw-field line write" data-k="q2" data-label="Bank broker: question 2" aria-label="Your question 2" autocomplete="off" placeholder="Type your answer here"></div></div>
+</section>
+</main>
+
+<script>
+(function () {
+  function init() {
+    var store = {}; document.querySelectorAll(".store input").forEach(function (s) { store[s.dataset.k] = s; });
+    document.querySelectorAll(".build[data-b]").forEach(function (build) {
+      var k = build.dataset.b, bank = document.querySelector('.tiles[data-b="' + k + '"]'), s = store[k];
+      if (!bank || !s) return;
+      var chips = [].slice.call(bank.querySelectorAll(".wchip"));
+      function sync() {
+        var v = [].map.call(build.querySelectorAll(".wchip"), function (c) { return c.textContent; }).join(" ");
+        if (s.value !== v) { s.value = v; s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+      }
+      function toBank(chip) {
+        var n = +chip.dataset.i, after = null;
+        [].slice.call(bank.querySelectorAll(".wchip")).some(function (o) { if (+o.dataset.i > n) { after = o; return true; } return false; });
+        bank.insertBefore(chip, after); sync();
+      }
+      function insertAt(chip, x, y) {
+        var before = null;
+        [].slice.call(build.querySelectorAll(".wchip")).some(function (o) {
+          if (o === chip) return false;
+          var r = o.getBoundingClientRect();
+          if (y < r.top - 4 || (y <= r.bottom + 4 && x < r.left + r.width / 2)) { before = o; return true; }
+          return false;
+        });
+        build.insertBefore(chip, before); sync();
+      }
+      function near(el, x, y) { var r = el.getBoundingClientRect(), p = 10; return x >= r.left - p && x <= r.right + p && y >= r.top - p && y <= r.bottom + p; }
+      // restore saved answer
+      if (s.value) {
+        var rest = s.value.trim(), guard = 0;
+        while (rest && guard++ < 20) {
+          var hit = null;
+          chips.forEach(function (c) {
+            if (hit || c.parentNode === build) return;
+            var t = c.textContent;
+            if (rest === t || rest.indexOf(t + " ") === 0) hit = c;
+          });
+          if (!hit) break;
+          build.appendChild(hit); rest = rest.slice(hit.textContent.length).trim();
+        }
+      }
+      chips.forEach(function (chip) {
+        chip.addEventListener("pointerdown", function (e) {
+          e.preventDefault();
+          var r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, sx = e.clientX, sy = e.clientY, moved = false, overB = false;
+          var home = chip.parentNode, next = chip.nextSibling, ph = null;
+          try { chip.setPointerCapture(e.pointerId); } catch (err) {}
+          function move(ev) {
+            if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+            if (!moved) {
+              moved = true;
+              ph = document.createElement("span"); ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+              home.insertBefore(ph, next);
+              chip.style.width = r.width + "px"; chip.classList.add("dragging");
+            }
+            chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+            var o = near(build, ev.clientX, ev.clientY);
+            if (o !== overB) { overB = o; build.classList.toggle("over", o); }
+          }
+          function up(ev) {
+            window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+            build.classList.remove("over");
+            if (!moved) {
+              if (home === build) toBank(chip); else { build.appendChild(chip); sync(); }
+              return;
+            }
+            chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+            if (ph) ph.remove();
+            if (ev.type === "pointerup" && near(build, ev.clientX, ev.clientY)) insertAt(chip, ev.clientX, ev.clientY);
+            else if (ev.type === "pointerup" && home === build) toBank(chip);
+          }
+          window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+        });
+      });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJoMSI6IHsidCI6ICJleGFjdCIsICJhIjogImRvZXMifSwgImgyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiaXMifSwgImgzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZGlkIn0sICJoNCI6IHsidCI6ICJleGFjdCIsICJhIjogImFyZSJ9LCAiaDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkb2VzIn0sICJoNiI6IHsidCI6ICJleGFjdCIsICJhIjogIndlcmUifSwgImg3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZG8ifSwgImg4IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2FzIn0sICJiMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndoYXQgdGltZSBkb2VzIHRoZSBlc3RhdGUgYWdlbnQgc3RhcnQgd29yayJ9LCAiYjIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJob3cgb2Z0ZW4gZG8geW91IHBsYXkgdGVubmlzIn0sICJiMyI6IHsidCI6ICJ3b3JkcyIsICJhIjogImlzIHRoZXJlIGEgcGhhcm1hY3kgbmVhciB5b3VyIG5ldyBob3VzZSJ9LCAiYjQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3aGVyZSBkaWQgTWF4IGdvIGxhc3Qgd2Vla2VuZCJ9LCAiYjUiOiB7InQiOiAid29yZHMiLCAiYSI6ICJob3cgbWFueSBjbGllbnRzIGRvZXMgeW91ciBjb21wYW55IGhhdmUifSwgImI2IjogeyJ0IjogIndvcmRzIiwgImEiOiAid2hlcmUgY2FuIEkgYnV5IGEgU0lNIGNhcmQifSwgImExIjogeyJ0IjogImV4YWN0IiwgImEiOiAiWWVzLCBJIGRvIn0sICJhMiI6IHsidCI6ICJleGFjdCIsICJhIjogIk5vLCBJJ20gbm90In0sICJhMyI6IHsidCI6ICJleGFjdCIsICJhIjogIk5vLCBJIGRpZG4ndCJ9LCAiYTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJZZXMsIEkgY2FuIn0sICJhNSI6IHsidCI6ICJleGFjdCIsICJhIjogIk5vLCBJIGRvbid0In0sICJmMSI6IHsidCI6ICJvcGVuIn0sICJmMiI6IHsidCI6ICJvcGVuIn0sICJmMyI6IHsidCI6ICJvcGVuIn0sICJxMSI6IHsidCI6ICJvcGVuIn0sICJxMiI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261010-pdf-pages"></script>
+</body>
+</html>

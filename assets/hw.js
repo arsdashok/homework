@@ -187,11 +187,22 @@
               } else if (items.some(function (child) { return /^(block|flow-root|list-item|flex|grid|table)$/.test(view.getComputedStyle(child).display); })) return;
               el.classList.add("hw-pdf-lines");
             });
+            // Class names such as .task and .checks can mean either one question or
+            // a whole exercise. Keeping a multi-question section together leaves
+            // almost a blank page when that section fits on the next page (Roman,
+            // 13 Oct). Only protect atomic blocks; their questions remain protected.
+            var keepSelectors = ".q,.question,.word-q,.div-item,tr,header,.model,.task,.instr,.instruction,.checks,p,h1,h2,h3,.hw-pdf-answer,.hw-pdf-drop,.pick,.job,.comp,.pmodel,.msub,.pics,.ex-card,.handstage,.hw-mark-list,.hw-pdf-lines";
+            var questionSelectors = ".q,.question,.word-q,.div-item";
+            sheet.querySelectorAll(keepSelectors).forEach(function (el) {
+              if (el.querySelectorAll(questionSelectors).length > 1) return;
+              if (el.matches(".task,.checks,.ex-card,.comp") && el.querySelectorAll("[data-k]").length > 1 && !el.matches(questionSelectors)) return;
+              el.classList.add("hw-pdf-keep");
+            });
             var options = {
               margin: [10, 10, 10, 10], image: {type:"jpeg",quality:0.94},
               html2canvas: {scale:1.5,useCORS:true,scrollX:0,scrollY:0,windowWidth:800,windowHeight:1100},
               jsPDF: {unit:"mm",format:"a4",orientation:"portrait"},
-              pagebreak: {mode:[],avoid:[".q", ".question", ".word-q", ".div-item", "tr", "header", ".model", ".task", ".instr", ".instruction", ".checks", "p", "h1", "h2", "h3", ".hw-pdf-answer", ".hw-pdf-drop", ".pick", ".job", ".comp", ".pmodel", ".msub", ".pics", ".ex-card", ".handstage", ".hw-mark-list", ".hw-pdf-lines"]}
+              pagebreak: {mode:[],avoid:[".hw-pdf-keep"]}
             };
             // html2pdf uses instanceof Array, so option arrays must belong to its realm.
             options = frame.contentWindow.JSON.parse(JSON.stringify(options));

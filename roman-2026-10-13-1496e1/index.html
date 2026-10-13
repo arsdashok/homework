@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 13 October 2026</title>
+<!-- Lesson 11 (Choices that work), 13 Oct 2026. SHORT at his request («коротенькие»), about 10 min.
+     Part 1 = the NEW frame «I would / I wouldn't ..., but it depends on whether + NORMAL clause».
+     Shaky point: question order after whether («it depends on whether is my phone broken»).
+     Items 2-5 invite a «be» condition (whether he is ready, whether her English is good, whether the
+     sea is calm, whether the English is simple). Model = a park concert + the last metro: content in no
+     item, and none of the lesson's own items (hotel, phone battery, car, flight).
+     Part 2 = 4 dropdowns on his other slips: prefer TO + verb, I'd rather + VERB, took part (one event)
+     vs used to (habit). Correct option positions: 2, 3, 1, 3. No Spain items. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 820px; margin: auto; }
+  p, .do, .note { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 26px; letter-spacing: -0.4px;
+    margin: 8px 0 4px;
+  }
+  .lede { font-size: 14px; color: #626a62; }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 14px 22px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 21px; color: #31594b;
+    margin-bottom: 6px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 17px; font-weight: 600; color: #1f2a24; margin: 2px 0 8px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 2px; }
+  .prompt { font-size: 16px; margin-bottom: 6px; }
+  .facts { font-family: Georgia, 'Times New Roman', serif; font-size: 16.5px; color: #1f2a24; }
+  .facts .ask { font-family: Arial, Helvetica, sans-serif; font-weight: 400; color: #31594b; white-space: nowrap; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 15.5px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  .task div.resp.sent { min-height: 64px !important; white-space: pre-wrap; }
+
+  .sit { font-size: 15px; color: #4b544d; margin-bottom: 3px; }
+  .say { font-family: Georgia, 'Times New Roman', serif; font-size: 16.5px; color: #1f2a24; line-height: 2.1; margin-bottom: 0; }
+  .pick {
+    font: inherit; font-size: 15px;
+    min-width: 150px; padding: 4px 10px; margin: 0 3px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+    vertical-align: baseline;
+  }
+  .nw { white-space: nowrap; }
+  .opts { display: none; font-size: 13px; color: #626a62; }
+
+  @media print {
+    body { font-size: 12px; line-height: 1.3; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 20px; margin: 4px 0 1px; }
+    .lede { font-size: 11.5px; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 16px; margin-bottom: 2px; }
+    .do { font-size: 13px; margin-bottom: 5px; }
+    .model { font-size: 12.5px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 4px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 1px; }
+    .prompt { font-size: 12px; margin-bottom: 3px; }
+    .facts { font-size: 12.5px; }
+    .resp { font-size: 12px; padding: 3px 9px; }
+    .task div.resp.sent { min-height: 44px !important; }
+    .sit { font-size: 11.5px; margin-bottom: 1px; }
+    .say { font-size: 12.5px; line-height: 1.8; }
+    .pick { font-size: 12px; min-width: 120px; padding: 2px 8px; }
+    .pick { display: none; }
+    .opts { display: inline; font-size: 11px; }
+    .pbox { display: inline-block; width: 110px; height: 18px; border: 1.2px solid #b9c6bb; border-radius: 4px; background: #fffefa; vertical-align: middle; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-10-13" data-sheet-id="roman-2026-10-13-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>13 October 2026</span></div>
+    <h1>It depends on&nbsp;whether&hellip;</h1>
+    <div class="lede">About 10&nbsp;minutes.</div>
+  </header>
+
+  <div class="task">
+    <h2>1. Would you do it?</h2>
+    <div class="do">Answer in one sentence: <i>I would / I wouldn&rsquo;t &hellip;, but it depends on whether&nbsp;&hellip;</i></div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="facts">A concert in a big park on Friday. Tickets: 70 euros, no refunds. It ends at midnight. <span class="ask">Would you buy tickets?</span></span><br>
+      &rarr; <b>I would buy two tickets, but it depends on whether the last metro is after&nbsp;midnight.</b>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><div>
+      <p class="prompt facts">A half marathon in Lisbon is in six weeks. Entry costs 45 euros. Your longest run so far is 10&nbsp;km. <span class="ask">Would you sign up?</span></p>
+      <div class="hw-field resp sent" contenteditable="true" data-k="w1" data-label="1. Half marathon in Lisbon in six weeks, 45 euros, longest run 10 km: would you sign up?" aria-label="Answer 1"></div>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div>
+      <p class="prompt facts">Your elder son&rsquo;s school offers a five-day ski trip for beginners in February. It costs 400&nbsp;euros. <span class="ask">Would you send him?</span></p>
+      <div class="hw-field resp sent" contenteditable="true" data-k="w2" data-label="2. Five-day school ski trip for beginners, 400 euros: would you send him?" aria-label="Answer 2"></div>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div>
+      <p class="prompt facts">A strong developer wants to join your company. She lives in Kazakhstan and wants to work from home. She asks for 20% more than your&nbsp;budget. <span class="ask">Would you hire her?</span></p>
+      <div class="hw-field resp sent" contenteditable="true" data-k="w3" data-label="3. Strong developer in Kazakhstan, works from home, asks 20% above budget: would you hire her?" aria-label="Answer 3"></div>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div>
+      <p class="prompt facts">Friends invite you on a boat trip on Sunday: four hours at sea, 35 euros per person, the boat leaves at 8&nbsp;a.m. <span class="ask">Would you go?</span></p>
+      <div class="hw-field resp sent" contenteditable="true" data-k="w4" data-label="4. Sunday boat trip, four hours at sea, 35 euros, leaves at 8 a.m.: would you go?" aria-label="Answer 4"></div>
+    </div></div>
+
+    <div class="q"><span class="qnum">5.</span><div>
+      <p class="prompt facts">A new 600-page biography of Peter the Great comes out in English. It costs 28 euros. The English is quite&nbsp;academic. <span class="ask">Would you buy it?</span></p>
+      <div class="hw-field resp sent" contenteditable="true" data-k="w5" data-label="5. New 600-page biography of Peter the Great in English, 28 euros, the English is quite academic: would you buy it?" aria-label="Answer 5"></div>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>2. Choose the right words</h2>
+    <div class="do">Choose the words that fit each&nbsp;reply.</div>
+
+    <div class="q"><span class="qnum">1.</span><div>
+      <p class="sit">A colleague offers you a lift home at six, when the roads are full.</p>
+      <p class="say">&ldquo;Thanks, but in rush hour I prefer <select class="hw-field pick" data-k="r1" data-label="1. Thanks, but in rush hour I prefer ___ the metro." aria-label="Choose for reply 1"><option value="">Choose</option><option value="take">take</option><option value="to take">to take</option><option value="for taking">for taking</option></select> <span class="opts"><span class="pbox"></span> (take / to take / for taking)</span> <span class="nw">the metro.&rdquo;</span></p>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div>
+      <p class="sit">Your team is working late. Your partner asks: &ldquo;The steak house round the corner, or pizza at the office?&rdquo; You want to finish quickly.</p>
+      <p class="say">&ldquo;I&rsquo;d rather <select class="hw-field pick" data-k="r2" data-label="2. I'd rather ___ here at the office." aria-label="Choose for reply 2"><option value="">Choose</option><option value="ordering pizza">ordering pizza</option><option value="to order pizza">to order pizza</option><option value="order pizza">order pizza</option></select> <span class="opts"><span class="pbox"></span> (ordering pizza / to order pizza / order pizza)</span> here at the <span class="nw">office.&rdquo;</span></p>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div>
+      <p class="sit">Your company once took part in a big conference in Amsterdam. It happened only one&nbsp;time.</p>
+      <p class="say">&ldquo;We <select class="hw-field pick" data-k="r3" data-label="3. We ___ a big conference in Amsterdam." aria-label="Choose for reply 3"><option value="">Choose</option><option value="took part in">took part in</option><option value="used to take part in">used to take part in</option><option value="were taking part in">were taking part in</option></select> <span class="opts"><span class="pbox"></span> (took part in / used to take part in / were taking part in)</span> <span class="nw">a big conference</span> in <span class="nw">Amsterdam.&rdquo;</span></p>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div>
+      <p class="sit">Your friend Igor read his daughter a story every night when she was five. Now she reads by herself. Igor&nbsp;says:</p>
+      <p class="say">&ldquo;When she was small, I <select class="hw-field pick" data-k="r4" data-label="4. When she was small, I ___ her a story every night." aria-label="Choose for reply 4"><option value="">Choose</option><option value="use to read">use to read</option><option value="used to reading">used to reading</option><option value="used to read">used to read</option></select> <span class="opts"><span class="pbox"></span> (use to read / used to reading / used to read)</span> her a story every <span class="nw">night.&rdquo;</span></p>
+    </div></div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJ3MSI6IHsidCI6ICJvcGVuIn0sICJ3MiI6IHsidCI6ICJvcGVuIn0sICJ3MyI6IHsidCI6ICJvcGVuIn0sICJ3NCI6IHsidCI6ICJvcGVuIn0sICJ3NSI6IHsidCI6ICJvcGVuIn0sICJyMSI6IHsidCI6ICJleGFjdCIsICJhIjogInRvIHRha2UifSwgInIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAib3JkZXIgcGl6emEifSwgInIzIjogeyJ0IjogImV4YWN0IiwgImEiOiAidG9vayBwYXJ0IGluIn0sICJyNCI6IHsidCI6ICJleGFjdCIsICJhIjogInVzZWQgdG8gcmVhZCJ9fQ==</script>
+<script src="../assets/hw.js?v=20261010-pdf-pages"></script>
+</body>
+</html>

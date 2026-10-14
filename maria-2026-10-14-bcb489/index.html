@@ -73,6 +73,10 @@
   .ex-card.c1 .ex-header { background: var(--orange); }
   .ex-card.c2 .ex-header { background: var(--green); }
   .ex-card.c3 .ex-header { background: var(--purple); }
+  .ex-card.c4 .ex-header { background: var(--pink); }
+  .fr { text-decoration: line-through; text-decoration-color: #e11d48; text-decoration-thickness: 2px; color: #6b7280; }
+  .fix { width: 190px; max-width: 46vw; }
+  @media print { .ex-card.c4 { break-before: page; page-break-before: always; margin-top: 18px; } }
   .instr { font-weight: 700; font-size: 17px; margin-bottom: 10px; }
   .pos { font-size: 14px; color: #4a5560; margin: 0 0 12px; }
   .printwords { display: none; }
@@ -290,6 +294,18 @@
   </div>
 </section>
 
+<section class="ex-card c4">
+  <div class="ex-header"><span>Exercise 4: the English way,&nbsp;again</span></div>
+  <div class="ex-body">
+    <div class="example-box">
+      <div class="label">Example</div>
+      <p>Pepper <span class="fr">has four years</span> old. &rarr; Pepper <b>is four years</b>&nbsp;old.</p>
+    </div>
+    <p class="instr">Write the English way for the crossed&nbsp;words.</p>
+    <div class="q row"><span class="n">1</span><div class="rowq"><p class="prompt">My grandma <span class="fr">has seventy years</span> old.</p><input class="hw-field resp fix" type="text" data-k="e1" data-label="4.1 My grandma (has seventy years) ___ old." aria-label="Sentence 1" placeholder="Type the English way" autocomplete="off" spellcheck="false"></div></div><div class="q row"><span class="n">2</span><div class="rowq"><p class="prompt">I can&rsquo;t talk <span class="fr">in this moment</span>, I&rsquo;m at&nbsp;ballet.</p><input class="hw-field resp fix" type="text" data-k="e2" data-label="4.2 I can't talk (in this moment) ___ , I'm at ballet." aria-label="Sentence 2" placeholder="Type the English way" autocomplete="off" spellcheck="false"></div></div><div class="q row"><span class="n">3</span><div class="rowq"><p class="prompt">I want to read <span class="fr">one book more</span> before&nbsp;bed.</p><input class="hw-field resp fix" type="text" data-k="e3" data-label="4.3 I want to read (one book more) ___ before bed." aria-label="Sentence 3" placeholder="Type the English way" autocomplete="off" spellcheck="false"></div></div><div class="q row"><span class="n">4</span><div class="rowq"><p class="prompt">Dad is in the garden <span class="fr">in this moment</span>.</p><input class="hw-field resp fix" type="text" data-k="e4" data-label="4.4 Dad is in the garden (in this moment) ___ ." aria-label="Sentence 4" placeholder="Type the English way" autocomplete="off" spellcheck="false"></div></div><div class="q row"><span class="n">5</span><div class="rowq"><p class="prompt">Can I have <span class="fr">one cookie more</span>,&nbsp;please?</p><input class="hw-field resp fix" type="text" data-k="e5" data-label="4.5 Can I have (one cookie more) ___ , please?" aria-label="Sentence 5" placeholder="Type the English way" autocomplete="off" spellcheck="false"></div></div><div class="q row"><span class="n">6</span><div class="rowq"><p class="prompt">My puppy <span class="fr">has one year</span> old.</p><input class="hw-field resp fix" type="text" data-k="e6" data-label="4.6 My puppy (has one year) ___ old." aria-label="Sentence 6" placeholder="Type the English way" autocomplete="off" spellcheck="false"></div></div>
+  </div>
+</section>
+
 <script>
 (function () {
   function init() {
@@ -373,7 +389,7 @@
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJhMSI6IHsidCI6ICJleGFjdCIsICJhIjogInRoZXJlIGFyZSJ9LCAiYTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVyZSBhcmUifSwgImEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlcmUncyJ9LCAiYTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVyZSBhcmUifSwgImE1IjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlcmUncyJ9LCAiYTYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVyZSdzIn0sICJhNyI6IHsidCI6ICJleGFjdCIsICJhIjogInRoZXJlIGFyZSJ9LCAiYTgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVyZSdzIn0sICJqMSI6IHsidCI6ICJleGFjdCIsICJhIjogImRlbnRpc3QifSwgImoyIjogeyJ0IjogImV4YWN0IiwgImEiOiAicGlsb3QifSwgImozIjogeyJ0IjogImV4YWN0IiwgImEiOiAicGlyYXRlIn0sICJqNCI6IHsidCI6ICJleGFjdCIsICJhIjogImZhcm1lciJ9LCAiajUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJudXJzZSJ9LCAidzEiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script type="application/json" id="hw-check">eyJhMSI6IHsidCI6ICJleGFjdCIsICJhIjogInRoZXJlIGFyZSJ9LCAiYTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVyZSBhcmUifSwgImEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlcmUncyJ9LCAiYTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVyZSBhcmUifSwgImE1IjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlcmUncyJ9LCAiYTYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVyZSdzIn0sICJhNyI6IHsidCI6ICJleGFjdCIsICJhIjogInRoZXJlIGFyZSJ9LCAiYTgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGVyZSdzIn0sICJqMSI6IHsidCI6ICJleGFjdCIsICJhIjogImRlbnRpc3QifSwgImoyIjogeyJ0IjogImV4YWN0IiwgImEiOiAicGlsb3QifSwgImozIjogeyJ0IjogImV4YWN0IiwgImEiOiAicGlyYXRlIn0sICJqNCI6IHsidCI6ICJleGFjdCIsICJhIjogImZhcm1lciJ9LCAiajUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJudXJzZSJ9LCAidzEiOiB7InQiOiAib3BlbiJ9LCAiZTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpcyBzZXZlbnR5IHllYXJzIn0sICJlMiI6IHsidCI6ICJleGFjdCIsICJhIjogInJpZ2h0IG5vdyJ9LCAiZTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJvbmUgbW9yZSBib29rIn0sICJlNCI6IHsidCI6ICJleGFjdCIsICJhIjogInJpZ2h0IG5vdyJ9LCAiZTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJvbmUgbW9yZSBjb29raWUifSwgImU2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiaXMgb25lIHllYXIifX0=</script>
 <script src="../assets/hw.js?v=20261013-pdf-sections"></script>
 </body>
 </html>

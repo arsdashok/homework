@@ -1,0 +1,316 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Sergei_Homework_2026-10-14.key.json -->
+<!-- Lesson 14 Oct 2026. ONE shelf: saying dates (on the + ordinal + of + month), asking and answering When is / When are you...?
+     No deck for this lesson; envelope from the brief (dates, holidays, question ping-pong). About 15 minutes.
+     01 ordinal endings, 9 menus (st/nd/rd/th), correct positions 2,4,1,3,1,4,2,3,1.
+     02 six tile builds, one extra word each (at / in / do / does / is); model on the 14th of February answers no item.
+     03 diary card, five typed When answers (key type words, format On the ... of ...; the sheet pins this format, so On October 20th is marked wrong by the instant check).
+     04 two own When questions for a new colleague + his answer (open).
+     05 today's phrases, 5 menus, correct positions 3,1,5,2,4. -->
+<!-- Look: Sergei's standing design (copied from Sergei_Homework_2026-10-13.html). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergei · English · Dates</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.7; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction { text-wrap:pretty; }
+.wrap { max-width:1120px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 40px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; page-break-inside:avoid; break-inside:avoid; }
+/* Section name is a small label; the instruction is the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.instruction { font-size:21px; font-weight:650; line-height:1.4; letter-spacing:-.01em; margin:0 0 12px; }
+.context { font-size:18px; font-weight:400; margin:-4px 0 10px; }
+.note { font-size:15px; color:var(--muted); margin:-6px 0 14px; }
+.note b { color:var(--ink); font-weight:600; }
+.qn { display:inline-block; min-width:30px; font-size:15px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+.question { padding:10px 0; border-bottom:1px solid #edf1f3; page-break-inside:avoid; break-inside:avoid; }
+.question:last-child { border-bottom:0; }
+
+/* 01 and 03: one question per row, the menu at the right */
+.row { display:grid; grid-template-columns:1fr 190px; gap:24px; align-items:center; }
+.row .prompt { margin:0; }
+.reply { display:block; font-size:15px; color:var(--muted); padding-left:30px; }
+.gap { display:inline-block; width:58px; height:22px; border-bottom:2px solid #8fa3ae; vertical-align:baseline; margin:0 3px; }
+/* Local preview only: the shared hw.css styles .hw-field on the live page and wins over these. */
+input, textarea, select, .write { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+select { width:100%; min-height:44px; }
+.print-opts { display:none; }
+.pbox { display:inline-block; width:110px; height:26px; border:1.5px solid #a4b5c0; border-radius:6px; background:#f8fafb; vertical-align:middle; }
+
+/* 02: build a question from tiles */
+.bq-line { display:flex; align-items:center; gap:10px; }
+.build { flex:1; display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-height:56px; padding:8px 12px; border:2px dashed #a4b5c0; border-radius:14px; background:#f8fafb; }
+.build.over { border-color:var(--accent); background:#f0f7f7; }
+.qmark { font-size:26px; font-weight:700; color:var(--muted); }
+.tiles { display:flex; flex-wrap:wrap; gap:10px 12px; padding:10px 0 4px 40px; min-height:52px; }
+.wchip { font:inherit; font-size:17px; font-weight:600; color:var(--ink); background:white; border:1.5px solid #8fa3ae; border-radius:999px; padding:8px 18px; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; white-space:nowrap; box-shadow:0 2px 0 #162b3714; }
+.wchip.dragging { position:fixed; z-index:50; cursor:grabbing; pointer-events:none; transform:scale(1.05); }
+.build .wchip { color:#1d4ed8; border-color:#7d97c9; }
+.wchip.model { cursor:default; color:var(--muted); background:#eef3f5; border-style:dashed; box-shadow:none; }
+.wchip.model.spare { text-decoration:line-through; }
+.model-tag { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.example { background:#f6f9fa; border-radius:14px; padding:10px 14px 6px; margin:4px 0 8px; }
+.example .tiles { padding-left:0; }
+.store { display:none; }
+
+/* 04 and 05: typed questions */
+.dlg { margin:0 0 6px; display:flex; align-items:baseline; }
+.dlg .who, .dlg .qn { flex:none; }
+.dlg .who { display:inline-block; min-width:100px; font-size:14px; font-weight:700; color:var(--muted); }
+.own { display:grid; grid-template-columns:130px 1fr; gap:0; align-items:center; }
+.own .who, .own .qn { padding-left:30px; } .own .qn { padding-left:0; }
+.own .who { font-size:14px; font-weight:700; color:var(--accent); }
+.model-dlg { background:#f6f9fa; border-radius:14px; padding:10px 16px; margin:4px 0 8px; }
+.model-dlg .mine { color:var(--accent); font-weight:600; }
+input.write { width:100%; min-height:44px; box-sizing:border-box; }
+.prt { display:none; }
+
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 20px; border-radius:14px; }
+  .instruction { font-size:19px; } .edition { font-size:12px; }
+  .row { grid-template-columns:1fr; gap:6px; }
+  .tiles { padding-left:0; }
+  .wchip { font-size:16px; padding:8px 15px; }
+  .own { grid-template-columns:1fr; } .dlg .who { min-width:86px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  select { display:none !important; } .print-opts { display:inline-block !important; } .prt { display:block !important; } .scr { display:none !important; }
+  body { background:white; font-size:11pt; line-height:1.4; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:8px; } .heading-row { margin:6px 0 8px; } .page-meta { padding-top:6px; font-size:12px; }
+  h1 { font-size:30px; }
+  .exercise { box-shadow:none; padding:12px 20px; margin-bottom:10px; border-radius:14px; }
+  .section-heading { margin-bottom:2px; } h2, .section-number { font-size:10px; }
+  .instruction { font-size:15px; margin-bottom:6px; } .note, .context { font-size:11px; margin:-3px 0 6px; }
+  .question { padding:3px 0; } .prompt { font-size:12.5px; } .qn { font-size:11px; min-width:22px; } .reply { font-size:10.5px; padding-left:22px; }
+  .row { grid-template-columns:1fr 120px; gap:12px; } .pbox { height:20px; width:100px; }
+  .gap { width:44px; height:14px; }
+  .build { min-height:30px; padding:3px 8px; border-width:1.5px; } .qmark { font-size:16px; }
+  .tiles { padding:4px 0 2px 30px; gap:5px 7px; min-height:0; } .wchip { font-size:11px; padding:2px 10px; box-shadow:none; }
+  .dlg, .model-dlg { font-size:12px; } .own .who, .dlg .who { font-size:10.5px; }
+  input.write { min-height:28px; } .own { grid-template-columns:96px 1fr; } .dlg .who { min-width:74px; } .own .who { padding-left:22px; }
+}
+body.hw-pdf-mode { background:white; }
+
+/* 14 Oct additions */
+.row.wide { grid-template-columns:1fr 300px; }
+.row.wide .prompt { padding-left:30px; text-indent:-30px; } .row.wide .prompt .qn { text-indent:0; }
+@media print { .row.wide .prompt { padding-left:22px; text-indent:-22px; } }
+.ord { font-weight:650; }
+.diary { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:6px 0 14px; }
+.day { border:1.5px solid var(--line); border-radius:14px; padding:10px 14px; background:#f6f9fa; }
+.day .d { display:block; font-size:13px; font-weight:750; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+.day .e { display:block; font-size:16px; line-height:1.35; }
+.qa { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:center; }
+.qa .prompt { margin:0; }
+@media (max-width:620px) { .row.wide { grid-template-columns:1fr; } .diary { grid-template-columns:1fr 1fr; } .qa { grid-template-columns:1fr; gap:6px; } }
+@media print { .row.wide { grid-template-columns:1fr 150px; } .diary { gap:5px; margin:2px 0 6px; } .day { padding:3px 8px; } .day .d { font-size:9px; } .day .e { font-size:11px; } .qa { grid-template-columns:1fr 1fr; gap:10px; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Sergei" data-sheet="English 2026-10-14" data-sheet-id="sergei-2026-10-14-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>When is it?</h1><span class="edition">One shelf:&nbsp;dates</span></div>
+  <div class="page-meta"><span>Sergei</span><span>About 15&nbsp;minutes</span></div>
+</header>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">01</span><h2>The ending</h2></div>
+  <p class="instruction">Choose the ending for each&nbsp;number.</p>
+  <p class="note">Look at the last digit: 1st, 2nd, 3rd, then th. But <b>11, 12 and 13</b> always take&nbsp;th. <span class="prt">Write st, nd, rd or&nbsp;th.</span></p>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">1.</span> Leila&rsquo;s birthday is on the <span class="ord">22</span><span class="gap"></span> of&nbsp;May.</p><select class="hw-field pick" data-k="o1" data-label="1. Leila’s birthday is on the 22__ of May." aria-label="Ending 1"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">2.</span> The car service is on the <span class="ord">12</span><span class="gap"></span> of&nbsp;November.</p><select class="hw-field pick" data-k="o2" data-label="2. The car service is on the 12__ of November." aria-label="Ending 2"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">3.</span> We pay the rent on the <span class="ord">1</span><span class="gap"></span> of every&nbsp;month.</p><select class="hw-field pick" data-k="o3" data-label="3. We pay the rent on the 1__ of every month." aria-label="Ending 3"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">4.</span> The team starts at the new office on the <span class="ord">3</span><span class="gap"></span> of&nbsp;November.</p><select class="hw-field pick" data-k="o4" data-label="4. The team starts at the new office on the 3__ of November." aria-label="Ending 4"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">5.</span> Our office party is on the <span class="ord">31</span><span class="gap"></span> of&nbsp;December.</p><select class="hw-field pick" data-k="o5" data-label="5. Our office party is on the 31__ of December." aria-label="Ending 5"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">6.</span> Our guests&rsquo; flight lands on the <span class="ord">13</span><span class="gap"></span> of&nbsp;December.</p><select class="hw-field pick" data-k="o6" data-label="6. Our guests’ flight lands on the 13__ of December." aria-label="Ending 6"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">7.</span> UAE National Day is on the <span class="ord">2</span><span class="gap"></span> of&nbsp;December.</p><select class="hw-field pick" data-k="o7" data-label="7. UAE National Day is on the 2__ of December." aria-label="Ending 7"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">8.</span> The tennis tournament ends on the <span class="ord">23</span><span class="gap"></span> of&nbsp;January.</p><select class="hw-field pick" data-k="o8" data-label="8. The tennis tournament ends on the 23__ of January." aria-label="Ending 8"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row"><p class="prompt"><span class="qn">9.</span> Our contract with the client starts on the <span class="ord">21</span><span class="gap"></span> of&nbsp;November.</p><select class="hw-field pick" data-k="o9" data-label="9. Our contract with the client starts on the 21__ of November." aria-label="Ending 9"><option value="">Choose</option><option value="st">st</option><option value="nd">nd</option><option value="rd">rd</option><option value="th">th</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">02</span><h2>Build it</h2></div>
+  <p class="instruction scr">Put the words in order. One word in each row is&nbsp;extra.</p>
+  <p class="instruction prt">Write the words in order. One word in each row is&nbsp;extra.</p>
+  <p class="note scr">Tap a word to add it, or drag it into place. Tap a word in the box to send it back. The first word has a capital&nbsp;letter.</p>
+  <div class="example">
+    <div class="bq-line"><span class="model-tag">Like this</span><div class="build" aria-hidden="true"><span class="wchip model">The party</span><span class="wchip model">is</span><span class="wchip model">on</span><span class="wchip model">the</span><span class="wchip model">14th</span><span class="wchip model">of</span><span class="wchip model">February</span></div><span class="qmark">.</span></div>
+    <div class="tiles"><span class="model-tag">Extra:</span><span class="wchip model spare">in</span></div>
+  </div>
+
+  <div class="question"><div class="bq-line"><span class="qn">1.</span><div class="build" data-b="b1" data-field="b1"></div><span class="qmark">.</span></div>
+    <div class="tiles" data-b="b1"><button type="button" class="wchip" data-i="0">November</button><button type="button" class="wchip" data-i="1">is</button><button type="button" class="wchip" data-i="2">13th</button><button type="button" class="wchip" data-i="3">The meeting</button><button type="button" class="wchip" data-i="4">at</button><button type="button" class="wchip" data-i="5">the</button><button type="button" class="wchip" data-i="6">of</button><button type="button" class="wchip" data-i="7">on</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">2.</span><div class="build" data-b="b2" data-field="b2"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b2"><button type="button" class="wchip" data-i="0">moving</button><button type="button" class="wchip" data-i="1">do</button><button type="button" class="wchip" data-i="2">into the new house</button><button type="button" class="wchip" data-i="3">When</button><button type="button" class="wchip" data-i="4">you</button><button type="button" class="wchip" data-i="5">are</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">3.</span><div class="build" data-b="b3" data-field="b3"></div><span class="qmark">.</span></div>
+    <div class="tiles" data-b="b3"><button type="button" class="wchip" data-i="0">the</button><button type="button" class="wchip" data-i="1">in</button><button type="button" class="wchip" data-i="2">December</button><button type="button" class="wchip" data-i="3">The new sofa arrives</button><button type="button" class="wchip" data-i="4">on</button><button type="button" class="wchip" data-i="5">2nd</button><button type="button" class="wchip" data-i="6">of</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">4.</span><div class="build" data-b="b4" data-field="b4"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b4"><button type="button" class="wchip" data-i="0">does</button><button type="button" class="wchip" data-i="1">with Kristina</button><button type="button" class="wchip" data-i="2">When</button><button type="button" class="wchip" data-i="3">the tennis match</button><button type="button" class="wchip" data-i="4">is</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">5.</span><div class="build" data-b="b5" data-field="b5"></div><span class="qmark">.</span></div>
+    <div class="tiles" data-b="b5"><button type="button" class="wchip" data-i="0">of</button><button type="button" class="wchip" data-i="1">My sister</button><button type="button" class="wchip" data-i="2">at</button><button type="button" class="wchip" data-i="3">November</button><button type="button" class="wchip" data-i="4">the</button><button type="button" class="wchip" data-i="5">arrives</button><button type="button" class="wchip" data-i="6">21st</button><button type="button" class="wchip" data-i="7">on</button></div></div>
+  <div class="question"><div class="bq-line"><span class="qn">6.</span><div class="build" data-b="b6" data-field="b6"></div><span class="qmark">?</span></div>
+    <div class="tiles" data-b="b6"><button type="button" class="wchip" data-i="0">open</button><button type="button" class="wchip" data-i="1">is</button><button type="button" class="wchip" data-i="2">the gym</button><button type="button" class="wchip" data-i="3">after the holiday</button><button type="button" class="wchip" data-i="4">When</button><button type="button" class="wchip" data-i="5">does</button></div></div>
+  <div class="store">
+    <input data-k="b1" data-label="Build 1" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b2" data-label="Build 2" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b3" data-label="Build 3" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b4" data-label="Build 4" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b5" data-label="Build 5" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b6" data-label="Build 6" tabindex="-1" aria-hidden="true" class="hw-field">
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">03</span><h2>Your diary</h2></div>
+  <p class="context">This is your diary for the next few&nbsp;weeks.</p>
+  <div class="diary"><div class="day"><span class="d">25 Oct</span><span class="e">Moving into the townhouse</span></div><div class="day"><span class="d">28 Oct</span><span class="e">Dentist</span></div><div class="day"><span class="d">3 Nov</span><span class="e">The new cleaner starts</span></div><div class="day"><span class="d">9 Nov</span><span class="e">My birthday</span></div><div class="day"><span class="d">12 Nov</span><span class="e">Team dinner</span></div><div class="day"><span class="d">21 Nov</span><span class="e">Haircut</span></div></div>
+  <p class="instruction">Answer each question with the full&nbsp;date.</p>
+  <p class="note">Like this: When is Christmas? <b>On the 25th of&nbsp;December.</b> Write: On&nbsp;the&nbsp;&hellip; of&nbsp;&hellip;</p>
+  <div class="question"><div class="qa"><p class="prompt"><span class="qn">1.</span> When is your birthday?</p><input class="hw-field line write" data-k="c1" data-label="1. When is your birthday?" aria-label="Answer 1" autocomplete="off" placeholder="Type your answer here"></div></div>
+  <div class="question"><div class="qa"><p class="prompt"><span class="qn">2.</span> When is your dentist appointment?</p><input class="hw-field line write" data-k="c2" data-label="2. When is your dentist appointment?" aria-label="Answer 2" autocomplete="off" placeholder="Type your answer here"></div></div>
+  <div class="question"><div class="qa"><p class="prompt"><span class="qn">3.</span> When does the new cleaner start?</p><input class="hw-field line write" data-k="c3" data-label="3. When does the new cleaner start?" aria-label="Answer 3" autocomplete="off" placeholder="Type your answer here"></div></div>
+  <div class="question"><div class="qa"><p class="prompt"><span class="qn">4.</span> When is the team dinner?</p><input class="hw-field line write" data-k="c4" data-label="4. When is the team dinner?" aria-label="Answer 4" autocomplete="off" placeholder="Type your answer here"></div></div>
+  <div class="question"><div class="qa"><p class="prompt"><span class="qn">5.</span> When are you moving into the townhouse?</p><input class="hw-field line write" data-k="c5" data-label="5. When are you moving into the townhouse?" aria-label="Answer 5" autocomplete="off" placeholder="Type your answer here"></div></div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">04</span><h2>Your questions</h2></div>
+  <p class="context">You&rsquo;re talking to a new&nbsp;colleague.</p>
+  <p class="instruction">Write two new &ldquo;When&hellip;?&rdquo; questions. The answer is a date. Then write your own&nbsp;answer.</p>
+  <div class="model-dlg">
+    <div class="dlg"><span class="model-tag">Like this</span></div>
+    <div class="dlg"><span class="who">Question</span>When does your holiday&nbsp;start?</div>
+    <div class="dlg"><span class="who">My answer</span><span class="mine">On the 20th of&nbsp;December.</span></div>
+  </div>
+  <div class="question">
+    <div class="own"><span class="who">1. Question</span><input class="hw-field line write" data-k="w1q" data-label="1. My When question" aria-label="Question 1" autocomplete="off" placeholder="Type your answer here"></div>
+    <div class="own"><span class="who">My answer</span><input class="hw-field line write" data-k="w1a" data-label="1. My answer" aria-label="My answer 1" autocomplete="off" placeholder="Type your answer here"></div>
+  </div>
+  <div class="question">
+    <div class="own"><span class="who">2. Question</span><input class="hw-field line write" data-k="w2q" data-label="2. My When question" aria-label="Question 2" autocomplete="off" placeholder="Type your answer here"></div>
+    <div class="own"><span class="who">My answer</span><input class="hw-field line write" data-k="w2a" data-label="2. My answer" aria-label="My answer 2" autocomplete="off" placeholder="Type your answer here"></div>
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">05</span><h2>Today&rsquo;s phrases</h2></div>
+  <p class="instruction">Choose the phrase for each&nbsp;gap.</p>
+  <p class="note prt">Write: excited / birthday cards / a lucky number / Has it brought you any luck? / Who did you celebrate&nbsp;with?</p>
+  <div class="question"><div class="row wide"><p class="prompt"><span class="qn">1.</span> &ldquo;Do you have <span class="gap"></span>? Mine is&nbsp;nine.&rdquo;</p><select class="hw-field pick" data-k="p1" data-label="1. Do you have ___? Mine is nine." aria-label="Phrase 1"><option value="">Choose</option><option value="excited">excited</option><option value="birthday cards">birthday cards</option><option value="a lucky number">a lucky number</option><option value="Has it brought you any luck?">Has it brought you any luck?</option><option value="Who did you celebrate with?">Who did you celebrate with?</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row wide"><p class="prompt"><span class="qn">2.</span> We&rsquo;re moving next week, and I&rsquo;m really <span class="gap"></span> about the new&nbsp;house.</p><select class="hw-field pick" data-k="p2" data-label="2. We&#x27;re moving next week, and I&#x27;m really ___ about the new house." aria-label="Phrase 2"><option value="">Choose</option><option value="excited">excited</option><option value="birthday cards">birthday cards</option><option value="a lucky number">a lucky number</option><option value="Has it brought you any luck?">Has it brought you any luck?</option><option value="Who did you celebrate with?">Who did you celebrate with?</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row wide"><p class="prompt"><span class="qn">3.</span> &ldquo;I had a great birthday on Saturday.&rdquo; <span class="gap"></span> &ldquo;With my wife and two&nbsp;friends.&rdquo;</p><select class="hw-field pick" data-k="p3" data-label="3. I had a great birthday on Saturday. ___ With my wife and two friends." aria-label="Phrase 3"><option value="">Choose</option><option value="excited">excited</option><option value="birthday cards">birthday cards</option><option value="a lucky number">a lucky number</option><option value="Has it brought you any luck?">Has it brought you any luck?</option><option value="Who did you celebrate with?">Who did you celebrate with?</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row wide"><p class="prompt"><span class="qn">4.</span> My mum still keeps all my old <span class="gap"></span> in a&nbsp;box.</p><select class="hw-field pick" data-k="p4" data-label="4. My mum still keeps all my old ___ in a box." aria-label="Phrase 4"><option value="">Choose</option><option value="excited">excited</option><option value="birthday cards">birthday cards</option><option value="a lucky number">a lucky number</option><option value="Has it brought you any luck?">Has it brought you any luck?</option><option value="Who did you celebrate with?">Who did you celebrate with?</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+  <div class="question"><div class="row wide"><p class="prompt"><span class="qn">5.</span> &ldquo;I always wear this old watch to meetings.&rdquo; <span class="gap"></span> &ldquo;Yes! Two new clients this&nbsp;month.&rdquo;</p><select class="hw-field pick" data-k="p5" data-label="5. I always wear this old watch to meetings. ___ Yes! Two new clients this month." aria-label="Phrase 5"><option value="">Choose</option><option value="excited">excited</option><option value="birthday cards">birthday cards</option><option value="a lucky number">a lucky number</option><option value="Has it brought you any luck?">Has it brought you any luck?</option><option value="Who did you celebrate with?">Who did you celebrate with?</option></select><span class="print-opts"><span class="pbox"></span></span></div></div>
+</section>
+</main>
+
+<script>
+(function () {
+  function init() {
+    var store = {}; document.querySelectorAll(".store input").forEach(function (s) { store[s.dataset.k] = s; });
+    document.querySelectorAll(".build[data-b]").forEach(function (build) {
+      var k = build.dataset.b, bank = document.querySelector('.tiles[data-b="' + k + '"]'), s = store[k];
+      if (!bank || !s) return;
+      var chips = [].slice.call(bank.querySelectorAll(".wchip"));
+      function sync() {
+        var v = [].map.call(build.querySelectorAll(".wchip"), function (c) { return c.textContent; }).join(" ");
+        if (s.value !== v) { s.value = v; s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+      }
+      function toBank(chip) {
+        var n = +chip.dataset.i, after = null;
+        [].slice.call(bank.querySelectorAll(".wchip")).some(function (o) { if (+o.dataset.i > n) { after = o; return true; } return false; });
+        bank.insertBefore(chip, after); sync();
+      }
+      function insertAt(chip, x, y) {
+        var before = null;
+        [].slice.call(build.querySelectorAll(".wchip")).some(function (o) {
+          if (o === chip) return false;
+          var r = o.getBoundingClientRect();
+          if (y < r.top - 4 || (y <= r.bottom + 4 && x < r.left + r.width / 2)) { before = o; return true; }
+          return false;
+        });
+        build.insertBefore(chip, before); sync();
+      }
+      function near(el, x, y) { var r = el.getBoundingClientRect(), p = 10; return x >= r.left - p && x <= r.right + p && y >= r.top - p && y <= r.bottom + p; }
+      // restore saved answer
+      if (s.value) {
+        var rest = s.value.trim(), guard = 0;
+        while (rest && guard++ < 20) {
+          var hit = null;
+          chips.forEach(function (c) {
+            if (hit || c.parentNode === build) return;
+            var t = c.textContent;
+            if (rest === t || rest.indexOf(t + " ") === 0) hit = c;
+          });
+          if (!hit) break;
+          build.appendChild(hit); rest = rest.slice(hit.textContent.length).trim();
+        }
+      }
+      chips.forEach(function (chip) {
+        chip.addEventListener("pointerdown", function (e) {
+          e.preventDefault();
+          var r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, sx = e.clientX, sy = e.clientY, moved = false, overB = false;
+          var home = chip.parentNode, next = chip.nextSibling, ph = null;
+          try { chip.setPointerCapture(e.pointerId); } catch (err) {}
+          function move(ev) {
+            if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+            if (!moved) {
+              moved = true;
+              ph = document.createElement("span"); ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+              home.insertBefore(ph, next);
+              chip.style.width = r.width + "px"; chip.classList.add("dragging");
+            }
+            chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+            var o = near(build, ev.clientX, ev.clientY);
+            if (o !== overB) { overB = o; build.classList.toggle("over", o); }
+          }
+          function up(ev) {
+            window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+            build.classList.remove("over");
+            if (!moved) {
+              if (home === build) toBank(chip); else { build.appendChild(chip); sync(); }
+              return;
+            }
+            chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+            if (ph) ph.remove();
+            if (ev.type === "pointerup" && near(build, ev.clientX, ev.clientY)) insertAt(chip, ev.clientX, ev.clientY);
+            else if (ev.type === "pointerup" && home === build) toBank(chip);
+          }
+          window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+        });
+      });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJvMSI6IHsidCI6ICJleGFjdCIsICJhIjogIm5kIn0sICJvMiI6IHsidCI6ICJleGFjdCIsICJhIjogInRoIn0sICJvMyI6IHsidCI6ICJleGFjdCIsICJhIjogInN0In0sICJvNCI6IHsidCI6ICJleGFjdCIsICJhIjogInJkIn0sICJvNSI6IHsidCI6ICJleGFjdCIsICJhIjogInN0In0sICJvNiI6IHsidCI6ICJleGFjdCIsICJhIjogInRoIn0sICJvNyI6IHsidCI6ICJleGFjdCIsICJhIjogIm5kIn0sICJvOCI6IHsidCI6ICJleGFjdCIsICJhIjogInJkIn0sICJvOSI6IHsidCI6ICJleGFjdCIsICJhIjogInN0In0sICJiMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlRoZSBtZWV0aW5nIGlzIG9uIHRoZSAxM3RoIG9mIE5vdmVtYmVyIn0sICJiMiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoZW4gYXJlIHlvdSBtb3ZpbmcgaW50byB0aGUgbmV3IGhvdXNlIn0sICJiMyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlRoZSBuZXcgc29mYSBhcnJpdmVzIG9uIHRoZSAybmQgb2YgRGVjZW1iZXIifSwgImI0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hlbiBpcyB0aGUgdGVubmlzIG1hdGNoIHdpdGggS3Jpc3RpbmEifSwgImI1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiTXkgc2lzdGVyIGFycml2ZXMgb24gdGhlIDIxc3Qgb2YgTm92ZW1iZXIifSwgImI2IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hlbiBkb2VzIHRoZSBneW0gb3BlbiBhZnRlciB0aGUgaG9saWRheSJ9LCAiYzEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJPbiB0aGUgOXRoIG9mIE5vdmVtYmVyIn0sICJjMiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk9uIHRoZSAyOHRoIG9mIE9jdG9iZXIifSwgImMzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiT24gdGhlIDNyZCBvZiBOb3ZlbWJlciJ9LCAiYzQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJPbiB0aGUgMTJ0aCBvZiBOb3ZlbWJlciJ9LCAiYzUiOiB7InQiOiAid29yZHMiLCAiYSI6ICJPbiB0aGUgMjV0aCBvZiBPY3RvYmVyIn0sICJ3MXEiOiB7InQiOiAib3BlbiJ9LCAidzFhIjogeyJ0IjogIm9wZW4ifSwgIncycSI6IHsidCI6ICJvcGVuIn0sICJ3MmEiOiB7InQiOiAib3BlbiJ9LCAicDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIGx1Y2t5IG51bWJlciJ9LCAicDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJleGNpdGVkIn0sICJwMyI6IHsidCI6ICJleGFjdCIsICJhIjogIldobyBkaWQgeW91IGNlbGVicmF0ZSB3aXRoPyJ9LCAicDQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJiaXJ0aGRheSBjYXJkcyJ9LCAicDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJIYXMgaXQgYnJvdWdodCB5b3UgYW55IGx1Y2s/In19</script>
+<script src="../assets/hw.js?v=20261013-pdf-sections"></script>
+</body>
+</html>

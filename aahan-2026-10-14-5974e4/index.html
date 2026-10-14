@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aahan &middot; Maths homework &middot; 14 October 2026</title>
+<!-- 14 Oct 2026, v2 after gates (pupil-critic FIX FIRST, pedagogy RESTRUCTURE block 1, format 2 minor).
+     Taught envelope: Materials/Maths/Year 5/Lessons/2026-W42 Multiples, Factors & Common Factors/
+     Whiteboard_Cards_2026_W42_Factors_Multiples (all cards ran, exit ticket included); the always / sometimes / never
+     FORMAT ran live on the lesson's last card, the odd-number statement here is new. The lesson used ladders, written
+     factor lists and a Venn diagram drawn on the whiteboard; this sheet repeats none of those formats (the prepared
+     Homework_2026_W42 sheet is NOT used: it is ladders + lists).
+     Shaky points targeted: halving (36 -> 17 for 18), dividing by 3 beyond the tables (45 / 3 guessed 19), factor vs
+     multiple direction, where shared factors go in a Venn diagram.
+     Block 1 "Find the partner": rows printed as equations, he TYPES each partner, x when the try does not work.
+       Fresh numbers 72 (1,2,3,4,5,6,8 -> 72,36,24,18,x,12,9) and 78 (1,2,3,4,6 -> 78,39,26,x,13); halving and / 3
+       beyond the tables on both. The key comparer lowercases, so x and X both score. Model on 21: 1 x 21, 2 x [x], 3 x 7.
+     Block 2 "Venn sort": drag-and-drop, each tile stores its region. Factors of 12 and 30 (the lesson had 12/18 and
+       20/30). Regions: both 1,2,3,6 / 12 only 4,12 / 30 only 5,10,15,30 / neither 8,60 (60 is the direction trap: a
+       multiple, not a factor). Bank order 2,10,60,6,4,15,30,1,8,12,5,3 = B,30,N,B,12,30,30,B,N,12,30,B (no ABAB, no
+       cycle, no run of 3). Drop anywhere: the region is found from the circles, not from a box.
+       Model: a compact mini Venn of 14 and 21 (7 middle, 2 left, 3 right, 5 outside) beside the instruction. Copying its
+       positions onto 12/30 gets 2, 3 and 5 all wrong, so it shows the format without answering a tile.
+     Block 3 "Make it true": selects. 9/54 factor, 74/6 neither, 56/7 multiple, 6/50 neither, 4/52 factor (option
+       positions 1,3,2,3,1: no run of 3, no ABAB, no cycle). Values are the full phrases so the emailed PDF reads as a
+       sentence. Model 7/20 neither. Item 6: always/sometimes/never on "An odd number has only odd factors" (ALWAYS),
+       then he tests it on an odd number between 50 and 100 of his own choosing (none is printed on the sheet).
+     72 and 78 appear only in block 1, 74 only in block 3. No running numbering across blocks. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --teal-soft: #e3f5f4; --muted: #6b5f4e;
+}
+@page { size: A4; margin: 9mm 11mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font: 17px/1.5 'Rubik', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--cream);
+  max-width: 980px; margin: 0 auto; padding: 22px 18px 40px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.display { font-family: 'Luckiest Guy', 'Arial Black', 'Rubik', sans-serif; font-weight: 400; letter-spacing: .02em; }
+.nw { white-space: nowrap; }
+.prt { display: none; }
+.picks { display: none; }
+
+/* banner */
+.banner { position: relative; height: 150px; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px; background: var(--teal); }
+.banner .digits { position: absolute; inset: -14px -10px auto -10px; font-size: 118px; line-height: .9; color: rgba(255,255,255,.17); white-space: nowrap; letter-spacing: .14em; }
+.banner .digits.two { top: 76px; left: -50px; color: rgba(27,23,18,.12); }
+.banner .label { position: absolute; left: 18px; bottom: 16px; background: var(--paper); border: 3px solid var(--ink); border-radius: 12px; padding: 8px 16px 6px; box-shadow: 4px 4px 0 var(--ink); }
+.banner .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.banner h1 { font-size: 34px; line-height: 1.05; }
+.banner .date { position: absolute; right: 16px; top: 14px; background: var(--ink); color: var(--gold); font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+
+/* cards: three registers, items regular, instruction bold, notes small */
+section { background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 20px; margin-bottom: 28px; break-inside: avoid; page-break-inside: avoid; }
+h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 27px; line-height: 1.1; margin-bottom: 12px; break-after: avoid; page-break-after: avoid; }
+.badge { flex: none; width: 42px; height: 42px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; padding-top: 3px; }
+.instruction { font-size: 20px; line-height: 1.35; font-weight: 700; margin-bottom: 4px; text-wrap: pretty; }
+.note { font-size: 14px; line-height: 1.4; color: var(--muted); margin-bottom: 12px; text-wrap: pretty; }
+.qnum { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.model { border-left: 3px solid var(--teal); padding: 4px 0 4px 14px; color: var(--muted); font-size: 14px; line-height: 1.4; break-inside: avoid; page-break-inside: avoid; }
+.model .tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
+
+/* tiles (shared by blocks 1 and 2) */
+.bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; min-height: 56px; padding: 10px; border: 2px dashed #c9b891; border-radius: 14px; background: #fff; }
+.tile { font: inherit; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink); background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 10px; padding: 4px 13px; min-width: 50px; box-shadow: 3px 3px 0 var(--ink); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; white-space: nowrap; text-align: center; line-height: 1.3; }
+.tile.picked { outline: 3px solid var(--orange); outline-offset: 2px; }
+.tile.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; transform: scale(1.06); }
+.tile .hw-mark { display: block; margin: 1px 0 0 !important; font-size: 12px; line-height: 1.15; white-space: nowrap; }
+
+/* block 1: partners */
+.pgrid { display: grid; grid-template-columns: 170px minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; margin-top: 4px; }
+.pmodel .mbig { display: inline-block; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 20px; color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 2px 12px 0; margin: 4px 0 6px; }
+.pmodel .mrow { font-size: 17px; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; margin: 4px 0; }
+.mtile { display: inline-block; min-width: 38px; text-align: center; font-weight: 700; background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 8px; padding: 0 7px; margin: 0 3px; }
+.pcard { background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; break-inside: avoid; page-break-inside: avoid; }
+.pbig { display: inline-block; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 30px; line-height: 1; background: var(--gold); border: 2.5px solid var(--ink); border-radius: 12px; padding: 6px 14px 2px; box-shadow: 3px 3px 0 var(--ink); margin-bottom: 8px; }
+.prows { margin-bottom: 0; }
+.prow { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 21px; font-variant-numeric: tabular-nums; padding: 5px 0; border-bottom: 2px dashed #e6d6b4; }
+.prow:last-child { border-bottom: 0; }
+.prow .fac { display: inline-block; min-width: 24px; text-align: right; font-weight: 500; }
+.prow .eqr { white-space: nowrap; }
+.prow > .hw-mark.hw-mark-blk { display: inline-block; width: auto; flex-basis: auto; margin: 0 0 0 4px; }
+.pin { width: 84px; font: inherit; font-size: 20px; }
+
+/* block 2: Venn sort */
+.vtop { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 22px; align-items: start; margin-bottom: 4px; }
+.vmodel { display: grid; grid-template-columns: 170px minmax(0, 1fr); column-gap: 12px; align-items: center; }
+.vmodel .tag { grid-column: 1 / -1; }
+.vmodel svg { display: block; width: 170px; height: auto; }
+.vmodel .mcap { color: var(--ink); }
+.venn { position: relative; width: 100%; aspect-ratio: 900 / 430; margin-top: 14px; }
+.venn svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
+.venn .vv { display: none; }
+.vzone { position: absolute; display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 6px; border-radius: 14px; }
+.vzone.over { background: rgba(34, 163, 159, .22); }
+.venn.ready .vzone { outline: 2px dashed rgba(34, 163, 159, .7); outline-offset: -2px; }
+.vzone .tile { font-size: 17px; padding: 2px 9px; min-width: 40px; box-shadow: 2px 2px 0 var(--ink); }
+.z12 { left: 17.78%; top: 32.56%; width: 15.56%; height: 46.51%; }
+.zboth { left: 37.00%; top: 34.88%; width: 12.67%; height: 41.86%; }
+.z30 { left: 53.33%; top: 32.56%; width: 15.56%; height: 46.51%; }
+.zno { left: 75.56%; top: 17.44%; width: 22.78%; height: 77.91%; }
+
+/* block 3: make it true */
+.mline { margin: 6px 0 10px; font-size: 16px; }
+.mline .mtile { font-size: 15px; font-weight: 600; }
+.q { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; padding: 8px 0; border-bottom: 2px dashed #e6d6b4; break-inside: avoid; page-break-inside: avoid; }
+.q:last-child { border-bottom: 0; }
+.sent { font-size: 20px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.sent select { font: inherit; font-size: 17px; margin: 0 6px; vertical-align: middle; }
+.sent > .hw-mark.hw-mark-blk { display: inline-block; width: auto; margin: 0 0 0 10px; }
+.exl { display: block; font-size: 17px; margin-top: 8px; }
+.exin { display: block; width: 100%; max-width: 520px; margin-top: 6px; font: inherit; font-size: 17px; }
+.q.asn { align-items: start; }
+.q.asn .qnum { margin-top: 4px; }
+
+@media screen and (max-width: 900px) {
+  .pgrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .pmodel { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; }
+  .pmodel .tag { width: 100%; }
+  .vtop { grid-template-columns: minmax(0, 1fr); }
+  .vmodel { max-width: 420px; }
+}
+@media screen and (max-width: 620px) {
+  body { padding: 16px 12px 36px; }
+  .banner { height: 160px; }
+  .banner .label { right: 16px; bottom: 14px; }
+  .banner h1 { font-size: 26px; }
+  .banner .date { top: 10px; font-size: 12px; }
+  section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 23px; }
+  .instruction { font-size: 18px; }
+  .pgrid { grid-template-columns: minmax(0, 1fr); }
+  .tile { font-size: 18px; padding: 4px 11px; }
+  .venn { aspect-ratio: 360 / 660; }
+  .venn .vh { display: none; }
+  .venn .vv { display: block; }
+  .vzone .tile { font-size: 15px; padding: 2px 7px; min-width: 34px; }
+  .z12 { left: 26.39%; top: 11.36%; width: 47.22%; height: 17.42%; }
+  .zboth { left: 26.67%; top: 33.64%; width: 46.67%; height: 13.79%; }
+  .z30 { left: 26.39%; top: 52.27%; width: 47.22%; height: 17.42%; }
+  .zno { left: 4.17%; top: 86.67%; width: 91.67%; height: 11.82%; }
+  .q { grid-template-columns: 30px minmax(0, 1fr); }
+  .sent { font-size: 18px; }
+  .sent select { font-size: 15px; max-width: 100%; margin: 0 4px; }
+}
+@media print {
+  html, body { background: #fff; }
+  body { padding: 0; max-width: none; font-size: 12px; line-height: 1.3; }
+  .scr { display: none !important; }
+  .prt { display: inline; }
+  .banner { height: 58px; margin-bottom: 8px; box-shadow: 4px 4px 0 var(--ink); }
+  .banner .digits { font-size: 58px; }
+  .banner .digits.two { top: 30px; }
+  .banner .label { bottom: 6px; padding: 3px 12px 2px; }
+  .banner .kicker { font-size: 9px; }
+  .banner h1 { font-size: 19px; }
+  .banner .date { font-size: 10.5px; top: 8px; }
+  section { padding: 7px 12px 9px; margin-bottom: 9px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 17px; margin-bottom: 3px; gap: 8px; }
+  .badge { width: 25px; height: 25px; font-size: 14px; }
+  .instruction { font-size: 13.5px; margin-bottom: 1px; }
+  .note { font-size: 10px; margin-bottom: 4px; }
+  .model { font-size: 10.5px; }
+  .model .tag { font-size: 8.5px; }
+  .qnum { width: 20px; height: 20px; font-size: 10.5px; }
+  .bank { min-height: 0; padding: 5px; gap: 5px 8px; }
+  .tile { font-size: 12.5px; padding: 1px 8px; min-width: 30px; box-shadow: 2px 2px 0 var(--ink); border-width: 1.5px; }
+  .pgrid { grid-template-columns: 120px minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .pmodel .mbig { font-size: 13px; margin: 2px 0 3px; }
+  .pmodel .mrow { font-size: 11.5px; margin: 2px 0; }
+  .mtile { min-width: 26px; padding: 0 5px; border-width: 1.5px; }
+  .pcard { padding: 6px 10px 8px; border-width: 1.5px; }
+  .pbig { font-size: 17px; padding: 3px 9px 0; margin-bottom: 3px; box-shadow: 2px 2px 0 var(--ink); border-width: 2px; }
+  .prows { margin-bottom: 5px; }
+  .prow { font-size: 13.5px; padding: 2px 0; gap: 7px; }
+  .pin { width: 60px; height: 22px; font-size: 12px; }
+  .vtop { grid-template-columns: minmax(0, 1fr) 290px; gap: 12px; margin-bottom: 2px; }
+  .vmodel { grid-template-columns: 110px minmax(0, 1fr); column-gap: 8px; }
+  .vmodel svg { width: 110px; }
+  .venn { margin-top: 6px; width: 86%; margin-left: auto; margin-right: auto; }
+  .mline { font-size: 11.5px; margin: 2px 0 4px; }
+  .mline .mtile { font-size: 11px; }
+  .q { grid-template-columns: 22px minmax(0, 1fr); padding: 3px 0; gap: 6px; }
+  .sent { font-size: 13px; line-height: 1.45; }
+  .sent select { display: none; }
+  .gap { display: inline-block; width: 150px; border-bottom: 1.5px solid var(--ink); height: 1em; vertical-align: baseline; margin: 0 5px; }
+  .gap.short { width: 80px; }
+  .exl { font-size: 12px; margin-top: 3px; }
+  .exin { height: 22px; margin-top: 3px; max-width: 360px; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Aahan" data-sheet="Maths 2026-10-14" data-sheet-id="aahan-2026-10-14-maths">
+<div id="sheet">
+
+<div class="banner">
+  <div class="digits display" aria-hidden="true">&times; &divide; &times; &divide; &times; &divide;</div>
+  <div class="digits two display" aria-hidden="true">&divide; &times; &divide; &times; &divide;</div>
+  <span class="date">14 October</span>
+  <div class="label">
+    <div class="kicker">Factors and multiples</div>
+    <h1 class="display">Aahan's maths</h1>
+  </div>
+</div>
+
+<section id="partners">
+  <h2><span class="badge">1</span> Find the partner</h2>
+  <p class="instruction">Type the partner. If the try does not work, <span class="nw">type x.</span></p>
+  <div class="pgrid">
+    <aside class="model pmodel">
+      <div class="tag">Like this</div>
+      <span class="mbig">21</span>
+      <div class="mrow">1 &times; <span class="mtile">21</span> = 21</div>
+      <div class="mrow">2 &times; <span class="mtile">x</span> = 21</div>
+      <div class="mrow">3 &times; <span class="mtile">7</span> = 21</div>
+    </aside>
+
+    <div class="pcard pick">
+      <div class="pbig">72</div>
+      <div class="prows">
+        <div class="prow" data-field="p1"><span class="fac">1</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="p1" data-label="1. 1 &times; ? = 72" aria-label="Partner of 1 for 72"><span class="eqr">= 72</span></div>
+        <div class="prow" data-field="p2"><span class="fac">2</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="p2" data-label="1. 2 &times; ? = 72" aria-label="Partner of 2 for 72"><span class="eqr">= 72</span></div>
+        <div class="prow" data-field="p3"><span class="fac">3</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="p3" data-label="1. 3 &times; ? = 72" aria-label="Partner of 3 for 72"><span class="eqr">= 72</span></div>
+        <div class="prow" data-field="p4"><span class="fac">4</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="p4" data-label="1. 4 &times; ? = 72" aria-label="Partner of 4 for 72"><span class="eqr">= 72</span></div>
+        <div class="prow" data-field="p5"><span class="fac">5</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="p5" data-label="1. 5 &times; ? = 72" aria-label="Partner of 5 for 72"><span class="eqr">= 72</span></div>
+        <div class="prow" data-field="p6"><span class="fac">6</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="p6" data-label="1. 6 &times; ? = 72" aria-label="Partner of 6 for 72"><span class="eqr">= 72</span></div>
+        <div class="prow" data-field="p7"><span class="fac">8</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="p7" data-label="1. 8 &times; ? = 72" aria-label="Partner of 8 for 72"><span class="eqr">= 72</span></div>
+      </div>
+    </div>
+
+    <div class="pcard pick">
+      <div class="pbig">78</div>
+      <div class="prows">
+        <div class="prow" data-field="q1"><span class="fac">1</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="q1" data-label="1. 1 &times; ? = 78" aria-label="Partner of 1 for 78"><span class="eqr">= 78</span></div>
+        <div class="prow" data-field="q2"><span class="fac">2</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="q2" data-label="1. 2 &times; ? = 78" aria-label="Partner of 2 for 78"><span class="eqr">= 78</span></div>
+        <div class="prow" data-field="q3"><span class="fac">3</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="q3" data-label="1. 3 &times; ? = 78" aria-label="Partner of 3 for 78"><span class="eqr">= 78</span></div>
+        <div class="prow" data-field="q4"><span class="fac">4</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="q4" data-label="1. 4 &times; ? = 78" aria-label="Partner of 4 for 78"><span class="eqr">= 78</span></div>
+        <div class="prow" data-field="q5"><span class="fac">6</span> &times; <input class="hw-field pin" autocomplete="off" spellcheck="false" data-k="q5" data-label="1. 6 &times; ? = 78" aria-label="Partner of 6 for 78"><span class="eqr">= 78</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="venn" class="pick">
+  <h2><span class="badge">2</span> Venn sort</h2>
+  <div class="vtop">
+    <div>
+      <p class="instruction"><span class="scr">Drag each number into the right part of <span class="nw">the diagram.</span></span><span class="prt">Write each number in the right part of <span class="nw">the diagram.</span></span></p>
+      <p class="note scr">Tap a tile, then tap the diagram, if dragging is tricky. Tap a placed tile to send <span class="nw">it back.</span></p>
+    </div>
+    <aside class="model vmodel">
+      <div class="tag">Like this</div>
+      <svg viewBox="0 0 200 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Small Venn diagram: factors of 14 and factors of 21. 7 in the middle, 2 in the 14 circle only, 3 in the 21 circle only, 5 outside both.">
+        <rect x="2" y="2" width="196" height="108" rx="10" fill="#fff" stroke="#1b1712" stroke-width="2"/>
+        <circle cx="78" cy="64" r="40" fill="#fde3a7" fill-opacity=".6"/>
+        <circle cx="122" cy="64" r="40" fill="#bfe6e4" fill-opacity=".6"/>
+        <circle cx="78" cy="64" r="40" fill="none" stroke="#1b1712" stroke-width="2"/>
+        <circle cx="122" cy="64" r="40" fill="none" stroke="#1b1712" stroke-width="2"/>
+        <text x="40" y="22" font-family="Luckiest Guy, Arial Black, sans-serif" font-size="19" fill="#1b1712" text-anchor="middle">14</text>
+        <text x="160" y="22" font-family="Luckiest Guy, Arial Black, sans-serif" font-size="19" fill="#1b1712" text-anchor="middle">21</text>
+        <text x="100" y="71" font-family="Rubik, Segoe UI, Arial" font-size="20" font-weight="800" fill="#e2562b" text-anchor="middle">7</text>
+        <text x="58" y="71" font-family="Rubik, Segoe UI, Arial" font-size="18" font-weight="700" fill="#1b1712" text-anchor="middle">2</text>
+        <text x="142" y="71" font-family="Rubik, Segoe UI, Arial" font-size="18" font-weight="700" fill="#1b1712" text-anchor="middle">3</text>
+        <text x="182" y="100" font-family="Rubik, Segoe UI, Arial" font-size="18" font-weight="700" fill="#1b1712" text-anchor="middle">5</text>
+      </svg>
+      <div class="mcap">7 is a factor of 14 and of 21, so it goes in <span class="nw">the middle.</span></div>
+    </aside>
+  </div>
+  <div class="dnd" data-mode="tile">
+    <div class="bank vbank" aria-label="Numbers to sort">
+      <button type="button" class="tile" data-sel="v2" data-field="v2">2</button>
+      <button type="button" class="tile" data-sel="v10" data-field="v10">10</button>
+      <button type="button" class="tile" data-sel="v60" data-field="v60">60</button>
+      <button type="button" class="tile" data-sel="v6" data-field="v6">6</button>
+      <button type="button" class="tile" data-sel="v4" data-field="v4">4</button>
+      <button type="button" class="tile" data-sel="v15" data-field="v15">15</button>
+      <button type="button" class="tile" data-sel="v30" data-field="v30">30</button>
+      <button type="button" class="tile" data-sel="v1" data-field="v1">1</button>
+      <button type="button" class="tile" data-sel="v8" data-field="v8">8</button>
+      <button type="button" class="tile" data-sel="v12" data-field="v12">12</button>
+      <button type="button" class="tile" data-sel="v5" data-field="v5">5</button>
+      <button type="button" class="tile" data-sel="v3" data-field="v3">3</button>
+    </div>
+    <div class="venn">
+      <svg class="vh" viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Venn diagram: a circle for factors of 12 and a circle for factors of 30, overlapping in the middle. Outside both circles: neither.">
+        <rect x="3" y="3" width="894" height="424" rx="18" fill="#fff" stroke="#1b1712" stroke-width="3"/>
+        <circle cx="300" cy="240" r="175" fill="#fde3a7" fill-opacity=".62"/>
+        <circle cx="480" cy="240" r="175" fill="#bfe6e4" fill-opacity=".62"/>
+        <circle cx="300" cy="240" r="175" fill="none" stroke="#1b1712" stroke-width="3"/>
+        <circle cx="480" cy="240" r="175" fill="none" stroke="#1b1712" stroke-width="3"/>
+        <text x="205" y="50" font-family="Luckiest Guy, Arial Black, sans-serif" font-size="24" fill="#1b1712" text-anchor="middle">Factors of 12</text>
+        <text x="575" y="50" font-family="Luckiest Guy, Arial Black, sans-serif" font-size="24" fill="#1b1712" text-anchor="middle">Factors of 30</text>
+        <text x="782" y="50" font-family="Luckiest Guy, Arial Black, sans-serif" font-size="24" fill="#6b5f4e" text-anchor="middle">Neither</text>
+      </svg>
+      <svg class="vv" viewBox="0 0 360 660" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Venn diagram: a circle for factors of 12 on top and a circle for factors of 30 below, overlapping in the middle. Below both circles: neither.">
+        <rect x="3" y="3" width="354" height="654" rx="18" fill="#fff" stroke="#1b1712" stroke-width="3"/>
+        <circle cx="180" cy="190" r="150" fill="#fde3a7" fill-opacity=".62"/>
+        <circle cx="180" cy="345" r="150" fill="#bfe6e4" fill-opacity=".62"/>
+        <circle cx="180" cy="190" r="150" fill="none" stroke="#1b1712" stroke-width="3"/>
+        <circle cx="180" cy="345" r="150" fill="none" stroke="#1b1712" stroke-width="3"/>
+        <text x="180" y="31" font-family="Luckiest Guy, Arial Black, sans-serif" font-size="20" fill="#1b1712" text-anchor="middle">Factors of 12</text>
+        <text x="180" y="524" font-family="Luckiest Guy, Arial Black, sans-serif" font-size="20" fill="#1b1712" text-anchor="middle">Factors of 30</text>
+        <text x="180" y="562" font-family="Luckiest Guy, Arial Black, sans-serif" font-size="18" fill="#6b5f4e" text-anchor="middle">Neither</text>
+      </svg>
+      <div class="zone vzone z12" data-val="12 only" aria-label="Factors of 12 only"></div>
+      <div class="zone vzone zboth" data-val="both" aria-label="Factors of 12 and of 30"></div>
+      <div class="zone vzone z30" data-val="30 only" aria-label="Factors of 30 only"></div>
+      <div class="zone vzone zno" data-val="neither" aria-label="Neither"></div>
+    </div>
+    <div class="picks">
+      <select data-k="v2" data-label="2. Where does 2 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v10" data-label="2. Where does 10 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v60" data-label="2. Where does 60 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v6" data-label="2. Where does 6 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v4" data-label="2. Where does 4 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v15" data-label="2. Where does 15 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v30" data-label="2. Where does 30 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v1" data-label="2. Where does 1 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v8" data-label="2. Where does 8 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v12" data-label="2. Where does 12 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v5" data-label="2. Where does 5 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+      <select data-k="v3" data-label="2. Where does 3 go?" class="hw-field"><option value="">Choose</option><option value="12 only">12 only</option><option value="both">both</option><option value="30 only">30 only</option><option value="neither">neither</option></select>
+    </div>
+  </div>
+</section>
+
+<section id="words">
+  <h2><span class="badge">3</span> Make it true</h2>
+  <p class="instruction"><span class="scr">Choose the words that make each <span class="nw">sentence true.</span></span><span class="prt">Write the words that make each <span class="nw">sentence true.</span></span></p>
+  <p class="note prt">Use: a factor of &middot; a multiple of &middot; neither a factor nor a <span class="nw">multiple of</span></p>
+  <p class="model mline"><span class="tag">Like this</span>&nbsp; 7 is <span class="mtile">neither a factor nor a multiple of</span> 20.</p>
+  <div class="items3">
+    <div class="q"><span class="qnum">1</span><p class="sent" data-field="f1">9 is <select data-k="f1" data-label="3.1 9 is ... 54" class="hw-field"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="neither a factor nor a multiple of">neither a factor nor a multiple of</option></select><span class="prt gap"></span> 54.</p></div>
+    <div class="q"><span class="qnum">2</span><p class="sent" data-field="f2">74 is <select data-k="f2" data-label="3.2 74 is ... 6" class="hw-field"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="neither a factor nor a multiple of">neither a factor nor a multiple of</option></select><span class="prt gap"></span> 6.</p></div>
+    <div class="q"><span class="qnum">3</span><p class="sent" data-field="f3">56 is <select data-k="f3" data-label="3.3 56 is ... 7" class="hw-field"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="neither a factor nor a multiple of">neither a factor nor a multiple of</option></select><span class="prt gap"></span> 7.</p></div>
+    <div class="q"><span class="qnum">4</span><p class="sent" data-field="f4">6 is <select data-k="f4" data-label="3.4 6 is ... 50" class="hw-field"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="neither a factor nor a multiple of">neither a factor nor a multiple of</option></select><span class="prt gap"></span> 50.</p></div>
+    <div class="q"><span class="qnum">5</span><p class="sent" data-field="f5">4 is <select data-k="f5" data-label="3.5 4 is ... 52" class="hw-field"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="neither a factor nor a multiple of">neither a factor nor a multiple of</option></select><span class="prt gap"></span> 52.</p></div>
+    <div class="q asn"><span class="qnum">6</span><div>
+      <p class="sent" data-field="a1">An odd number has only odd factors. This is <select data-k="a1" data-label="3.6 An odd number has only odd factors: always, sometimes or never?" class="hw-field"><option value="">Choose</option><option value="always">always</option><option value="sometimes">sometimes</option><option value="never">never</option></select><span class="prt gap short"></span> true.<span class="prt"> (always &middot; sometimes &middot; never)</span></p>
+      <label class="exl">Test it: type an odd number between 50 and 100 that has more than two factors, and ALL <span class="nw">its factors.</span>
+        <input class="hw-field exin" autocomplete="off" spellcheck="false" data-k="e1" data-label="3.6 An odd number between 50 and 100 and all its factors" aria-label="An odd number between 50 and 100 and all its factors"></label>
+    </div></div>
+  </div>
+</section>
+
+<script>
+(function () {
+  function fire(s) { s.dispatchEvent(new Event("change", { bubbles: true })); s.dispatchEvent(new Event("input", { bubbles: true })); }
+  function init() {
+    document.querySelectorAll(".dnd").forEach(function (group) {
+      // mode "zone": each box stores the value of the tile in it (block 1).
+      // mode "tile": each tile stores the part of the diagram it sits in (block 2).
+      var mode = group.dataset.mode;
+      var bank = group.querySelector(".bank");
+      var zones = [].slice.call(group.querySelectorAll(".zone"));
+      var tiles = [].slice.call(group.querySelectorAll(".tile"));
+      var venn = group.querySelector(".venn");
+      var picked = null;
+      tiles.forEach(function (t, i) { t.dataset.i = i; });
+      function sel(k) { return group.querySelector('select[data-k="' + k + '"]'); }
+      function setSel(k, v) { var s = sel(k); if (s && s.value !== v) { s.value = v; fire(s); } }
+      function zoneOf(t) { var p = t.parentNode; return p && p.classList && p.classList.contains("zone") ? p : null; }
+      function mark(z) { if (z) z.classList.toggle("has", !!z.querySelector(".tile")); }
+      function home(t) {
+        var from = zoneOf(t);
+        var after = [].slice.call(bank.querySelectorAll(".tile")).filter(function (x) { return +x.dataset.i > +t.dataset.i; })[0];
+        bank.insertBefore(t, after || null);
+        if (mode === "tile") setSel(t.dataset.sel, "");
+        else if (from && !from.querySelector(".tile")) setSel(from.dataset.sel, "");
+        mark(from);
+      }
+      function place(t, z) {
+        var from = zoneOf(t);
+        if (!z || from === z) return;
+        if (mode === "zone") [].slice.call(z.querySelectorAll(".tile")).forEach(function (o) { if (o !== t) home(o); });
+        z.appendChild(t);
+        if (mode === "tile") setSel(t.dataset.sel, z.dataset.val);
+        else { setSel(z.dataset.sel, t.dataset.v); if (from && !from.querySelector(".tile")) setSel(from.dataset.sel, ""); }
+        mark(z); mark(from);
+      }
+      function unpick() {
+        if (picked) picked.classList.remove("picked"); picked = null;
+        zones.forEach(function (z) { z.classList.remove("ready"); });
+        if (venn) venn.classList.remove("ready");
+      }
+      // The Venn region comes from the circles themselves, so a tile can land anywhere in its part.
+      function vennZone(x, y) {
+        var b = venn.getBoundingClientRect();
+        if (x < b.left || x > b.right || y < b.top || y > b.bottom) return null;
+        var vv = venn.querySelector(".vv"), vert = !!vv && getComputedStyle(vv).display !== "none";
+        var W = vert ? 360 : 900, H = vert ? 660 : 430;
+        var px = (x - b.left) / b.width * W, py = (y - b.top) / b.height * H;
+        var c1 = vert ? [180, 190, 150] : [300, 240, 175], c2 = vert ? [180, 345, 150] : [480, 240, 175];
+        var in1 = Math.hypot(px - c1[0], py - c1[1]) <= c1[2], in2 = Math.hypot(px - c2[0], py - c2[1]) <= c2[2];
+        var v = in1 && in2 ? "both" : in1 ? "12 only" : in2 ? "30 only" : "neither";
+        return zones.filter(function (z) { return z.dataset.val === v; })[0] || null;
+      }
+      function zoneAt(x, y) {
+        if (venn) return vennZone(x, y);
+        for (var i = 0; i < zones.length; i++) {
+          var r = zones[i].getBoundingClientRect(), pad = 10;
+          if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return zones[i];
+        }
+        return null;
+      }
+      // restore saved answers (hw.js has already put them back into the hidden selects)
+      if (mode === "tile") {
+        tiles.forEach(function (t) {
+          var s = sel(t.dataset.sel); if (!s || !s.value) return;
+          var z = zones.filter(function (z) { return z.dataset.val === s.value; })[0];
+          if (z) { z.appendChild(t); mark(z); }
+        });
+      } else {
+        zones.forEach(function (z) {
+          var s = sel(z.dataset.sel); if (!s || !s.value) return;
+          var t = tiles.filter(function (t) { return t.dataset.v === s.value && !zoneOf(t); })[0];
+          if (t) { z.appendChild(t); mark(z); }
+        });
+      }
+      tiles.forEach(function (chip) {
+        chip.addEventListener("pointerdown", function (e) {
+          if (e.button !== undefined && e.button > 0) return;
+          e.preventDefault();
+          var r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, sx = e.clientX, sy = e.clientY, moved = false, over = null;
+          var parent = chip.parentNode, next = chip.nextSibling, ph = null;
+          function move(ev) {
+            if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+            if (!moved) {
+              moved = true; unpick();
+              ph = document.createElement("span"); ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+              parent.insertBefore(ph, next);
+              chip.style.width = r.width + "px"; chip.classList.add("dragging");
+            }
+            chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+            var z = zoneAt(ev.clientX, ev.clientY);
+            if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+          }
+          function up(ev) {
+            window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+            if (over) over.classList.remove("over");
+            var inZone = !!zoneOf(chip);
+            if (!moved) {
+              // a tile is waiting and the pupil taps a tile already placed: put the waiting tile in that part
+              if (inZone && picked && picked !== chip) { place(picked, zoneOf(chip)); unpick(); return; }
+              if (inZone) { home(chip); unpick(); return; }
+              if (picked === chip) { unpick(); return; }
+              unpick(); picked = chip; chip.classList.add("picked");
+              zones.forEach(function (z) { z.classList.add("ready"); });
+              if (venn) venn.classList.add("ready");
+              return;
+            }
+            chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+            if (ph) ph.remove();
+            var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+            if (z) place(chip, z);
+            else if (inZone && ev.type === "pointerup") home(chip);
+            else parent.insertBefore(chip, next && next.parentNode === parent ? next : null);
+          }
+          window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+        });
+      });
+      if (venn) {
+        venn.addEventListener("click", function (e) {
+          if (!picked || e.target.closest(".tile")) return;
+          var z = vennZone(e.clientX, e.clientY); if (z) place(picked, z); unpick();
+        });
+      } else {
+        zones.forEach(function (z) {
+          z.addEventListener("click", function (e) {
+            if (!picked || e.target.closest(".tile")) return;
+            place(picked, z); unpick();
+          });
+        });
+      }
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcyIn0sICJwMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjM2In0sICJwMyI6IHsidCI6ICJleGFjdCIsICJhIjogIjI0In0sICJwNCI6IHsidCI6ICJleGFjdCIsICJhIjogIjE4In0sICJwNSI6IHsidCI6ICJleGFjdCIsICJhIjogIngifSwgInA2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTIifSwgInA3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSJ9LCAicTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3OCJ9LCAicTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzOSJ9LCAicTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNiJ9LCAicTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ4In0sICJxNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjEzIn0sICJ2MiI6IHsidCI6ICJleGFjdCIsICJhIjogImJvdGgifSwgInYxMCI6IHsidCI6ICJleGFjdCIsICJhIjogIjMwIG9ubHkifSwgInY2MCI6IHsidCI6ICJleGFjdCIsICJhIjogIm5laXRoZXIifSwgInY2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYm90aCJ9LCAidjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiBvbmx5In0sICJ2MTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzMCBvbmx5In0sICJ2MzAiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzMCBvbmx5In0sICJ2MSI6IHsidCI6ICJleGFjdCIsICJhIjogImJvdGgifSwgInY4IjogeyJ0IjogImV4YWN0IiwgImEiOiAibmVpdGhlciJ9LCAidjEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTIgb25seSJ9LCAidjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzMCBvbmx5In0sICJ2MyI6IHsidCI6ICJleGFjdCIsICJhIjogImJvdGgifSwgImYxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBmYWN0b3Igb2YifSwgImYyIjogeyJ0IjogImV4YWN0IiwgImEiOiAibmVpdGhlciBhIGZhY3RvciBub3IgYSBtdWx0aXBsZSBvZiJ9LCAiZjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIG11bHRpcGxlIG9mIn0sICJmNCI6IHsidCI6ICJleGFjdCIsICJhIjogIm5laXRoZXIgYSBmYWN0b3Igbm9yIGEgbXVsdGlwbGUgb2YifSwgImY1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBmYWN0b3Igb2YifSwgImExIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYWx3YXlzIn0sICJlMSI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261013-pdf-sections"></script>
+</body>
+</html>

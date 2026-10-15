@@ -79,6 +79,13 @@ body.hw-pdf-mode .slot {display:block;min-height:0;}
 body.hw-pdf-mode .slot .wchip {display:inline-block;margin:4px;vertical-align:middle;}
 body.hw-pdf-mode .bin-cap {margin-bottom:8px;}
 body.hw-pdf-mode .wbank:empty {display:none;}
+
+/* Full-width screen header; exercises retain a readable line length. */
+@media screen {
+ body:not(.hw-pdf-mode) .wrap {max-width:none;padding-left:clamp(20px,2vw,40px);padding-right:clamp(20px,2vw,40px);}
+ body:not(.hw-pdf-mode) .page-header {width:100%;max-width:none;}
+ body:not(.hw-pdf-mode) .exercise, body:not(.hw-pdf-mode) .endnote {max-width:1276px;margin-left:auto;margin-right:auto;}
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">

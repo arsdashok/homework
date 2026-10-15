@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arina: Practice 14 October 2026</title>
+<style>
+  :root {
+    --ink: #1f2340; --muted: #6b7088; --violet: #6c63ff; --lilac: #a78bfa;
+    --soft: #f4f2ff; --line: #d9d5f5; --paper: #ffffff;
+  }
+  @page { size: A4; margin: 11mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5;
+    color: var(--ink); background: #faf9ff; max-width: 900px; margin: 0 auto; padding: 32px 22px 48px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+
+  header.top {
+    background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%); color: #fff; border-radius: 16px;
+    padding: 26px 30px; margin-bottom: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+  }
+  header.top .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .85; margin-bottom: 6px; }
+  header.top h1 { font-size: 32px; line-height: 1.1; font-weight: 700; }
+  header.top .meta { font-size: 15px; text-align: right; opacity: .95; }
+  .intro { font-size: 15px; color: var(--muted); margin: -12px 0 26px 4px; }
+
+  .part {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 28px 22px; margin-bottom: 26px;
+  }
+  .plabel { font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); margin-bottom: 6px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 4px; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+
+  .q {
+    display: flex; align-items: baseline; gap: 14px; padding: 13px 0; border-bottom: 1px solid #eeecfb;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-of-type { border-bottom: 0; }
+  .qn { flex: none; width: 22px; font-size: 15px; color: var(--muted); }
+  .q p { font-size: 18px; line-height: 2.1; }
+  .hw-gap { width: 3.6em; font: inherit; text-align: center; }
+  select { font: inherit; font-size: 16px; margin: 0 3px; vertical-align: middle; }
+  .po { display: none; }
+
+  /* drag tiles */
+  .chip {
+    font: inherit; font-size: 16px; font-weight: 600; color: var(--ink); background: #fff;
+    border: 1.5px solid var(--violet); border-radius: 999px; padding: 8px 18px; min-height: 42px;
+    cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .chip.picked { outline: 3px solid var(--lilac); outline-offset: 2px; }
+  .chip.dragging { position: fixed; z-index: 50; cursor: grabbing; pointer-events: none; box-shadow: 0 6px 18px rgba(108,99,255,.3); }
+  .bank {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; min-height: 66px;
+    margin: 6px 0 8px; padding: 12px; border: 1.5px dashed var(--line); border-radius: 12px; background: var(--soft);
+  }
+  .gap { display: inline-flex; align-items: center; vertical-align: middle; margin: 0 3px; cursor: pointer; outline: none; line-height: 1.2; }
+  .gap .dslot { display: inline-flex; align-items: center; justify-content: center; min-width: 150px; min-height: 40px; padding: 2px; border: 2px dashed #b3abf0; border-radius: 10px; background: #fff; }
+  .gap .dslot .chip { font-size: 15px; padding: 4px 12px; min-height: 0; white-space: nowrap; }
+  .dz.ready .dslot, .dz.over .dslot, .dz:focus-visible .dslot { border-color: var(--violet); background: var(--soft); }
+  .gap > .hw-mark { display: inline !important; flex: none !important; width: auto !important; margin: 0 0 0 6px !important; }
+  .store { display: none; }
+
+  @media (max-width: 620px) {
+    body { padding: 14px 10px 24px; }
+    header.top { flex-direction: column; align-items: flex-start; padding: 20px; }
+    header.top h1 { font-size: 26px; }
+    header.top .meta { text-align: left; }
+    .part { padding: 18px 14px; }
+    .instr { font-size: 19px; }
+    .q p { font-size: 16.5px; }
+    .gap .dslot { min-width: 120px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 12px; padding: 0; max-width: none; }
+    header.top { padding: 10px 18px; margin-bottom: 8px; border-radius: 10px; }
+    header.top h1 { font-size: 21px; }
+    header.top .kicker { font-size: 9.5px; margin-bottom: 2px; }
+    header.top .meta { font-size: 11px; }
+    .intro { font-size: 10.5px; margin: 0 0 8px 2px; }
+    .part { padding: 9px 16px 6px; margin-bottom: 8px; border-radius: 10px; }
+    .plabel { font-size: 9.5px; margin-bottom: 1px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 2px; }
+    .q { padding: 3px 0; gap: 8px; }
+    .qn { font-size: 11px; width: 14px; }
+    .q p { font-size: 13px; line-height: 1.9; }
+    select { display: none !important; }
+    .po { display: inline-block; min-width: 90px; border-bottom: 1px solid #8a84c9; margin: 0 3px; font-size: 11px; color: var(--muted); line-height: 1.2; padding: 0 3px; }
+    .chip { font-size: 12px; padding: 2px 10px; min-height: 0; border-width: 1.2px; }
+    .bank { margin: 3px 0 4px; padding: 4px; min-height: 0; gap: 6px; }
+    .gap .dslot { min-width: 100px; min-height: 20px; border-width: 1.2px; }
+  }
+
+.model {background:var(--soft);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:16px;}
+.q .qbody {flex:1;min-width:0;}
+section div.sent {min-height:78px!important;border:1px solid var(--line);border-radius:8px;margin-top:8px;}
+@media print {
+ .model{font-size:11px;padding:6px 9px;margin:5px 0;}
+ .q{padding:5px 0;} .q p{font-size:12px;line-height:1.65;}
+ section div.sent{min-height:35px!important;margin-top:3px;}
+ .part{break-inside:auto;} .plabel,.instr,.note{break-after:avoid;}
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Arina" data-sheet="Homework 2026-10-14" data-sheet-id="arina-2026-10-14-homework">
+<div id="sheet">
+<header class="top"><div><div class="kicker">Arina · English practice</div><h1>Plans &amp; possibilities</h1></div><div class="meta">14 October 2026</div></header>
+<p class="intro">A little practice from our conversation.</p>
+<section class="part" data-dnd="gaps"><div class="plabel">1 · Words from our lesson</div><p class="instr">Drag each word or phrase into its gap.</p><p class="note">Or tap a phrase, then a gap.</p>
+<div class="bank"><button type="button" class="chip" data-word="Truth or Dare">Truth or Dare</button><button type="button" class="chip" data-word="factories">factories</button><button type="button" class="chip" data-word="present">present</button><button type="button" class="chip" data-word="fabric">fabric</button></div>
+<div class="q"><span class="qn">1</span><p>Many people in this town work in <span class="dz gap" data-field="v1" tabindex="0" aria-label="Gap 1"><span class="dslot"></span></span>.</p></div>
+<div class="q"><span class="qn">2</span><p>I need to <span class="dz gap" data-field="v2" tabindex="0" aria-label="Gap 2"><span class="dslot"></span></span> my history project to the class tomorrow.</p></div>
+<div class="q"><span class="qn">3</span><p>We played <span class="dz gap" data-field="v3" tabindex="0" aria-label="Gap 3"><span class="dslot"></span></span> at a friend’s birthday party.</p></div>
+<div class="q"><span class="qn">4</span><p>This bag is made from recycled <span class="dz gap" data-field="v4" tabindex="0" aria-label="Gap 4"><span class="dslot"></span></span>.</p></div>
+</section><div class="store">
+<select data-k="v1" data-label="1. Many people in this town work in ___." class="hw-field"><option value="">Choose</option><option value="Truth or Dare">Truth or Dare</option><option value="factories">factories</option><option value="present">present</option><option value="fabric">fabric</option></select>
+<select data-k="v2" data-label="2. I need to ___ my history project to the class tomorrow." class="hw-field"><option value="">Choose</option><option value="Truth or Dare">Truth or Dare</option><option value="factories">factories</option><option value="present">present</option><option value="fabric">fabric</option></select>
+<select data-k="v3" data-label="3. We played ___ at a friend’s birthday party." class="hw-field"><option value="">Choose</option><option value="Truth or Dare">Truth or Dare</option><option value="factories">factories</option><option value="present">present</option><option value="fabric">fabric</option></select>
+<select data-k="v4" data-label="4. This bag is made from recycled ___." class="hw-field"><option value="">Choose</option><option value="Truth or Dare">Truth or Dare</option><option value="factories">factories</option><option value="present">present</option><option value="fabric">fabric</option></select>
+</div><section class="part"><div class="plabel">2 · I don’t know…</div><p class="instr">Choose the correct word order.</p>
+<div class="model">“Will I enjoy it?” → “I don’t know whether <strong>I will enjoy it</strong>.”<br>After <em>I don’t know</em>, use statement word order. Use <em>if</em> or <em>whether</em> for a yes/no question.</div>
+<div class="q"><span class="qn">5</span><p>I don’t know whether <select data-k="g1" data-label="5. I don’t know whether ___." aria-label="Question 5" class="hw-field"><option value="">Choose</option><option value="will my mum agree">will my mum agree</option><option value="my mum will agree">my mum will agree</option></select><span class="po">will my mum agree / my mum will agree</span>.</p></div>
+<div class="q"><span class="qn">6</span><p>I don’t know what time <select data-k="g2" data-label="6. I don’t know what time ___." aria-label="Question 6" class="hw-field"><option value="">Choose</option><option value="the workshop starts">the workshop starts</option><option value="does the workshop start">does the workshop start</option></select><span class="po">the workshop starts / does the workshop start</span>.</p></div>
+<div class="q"><span class="qn">7</span><p>I don’t know if <select data-k="g3" data-label="7. I don’t know if ___." aria-label="Question 7" class="hw-field"><option value="">Choose</option><option value="we can work in pairs">we can work in pairs</option><option value="can we work in pairs">can we work in pairs</option></select><span class="po">we can work in pairs / can we work in pairs</span>.</p></div>
+<div class="q"><span class="qn">8</span><p>I don’t know where <select data-k="g4" data-label="8. I don’t know where ___." aria-label="Question 8" class="hw-field"><option value="">Choose</option><option value="is the meeting point">is the meeting point</option><option value="the meeting point is">the meeting point is</option></select><span class="po">is the meeting point / the meeting point is</span>.</p></div>
+</section><section class="part"><div class="plabel">3 · Say it in one sentence</div><p class="instr">Rewrite each question. Begin with “I don’t know…”</p><p class="note">Write the whole sentence. Keep the same meaning.</p>
+<div class="q"><span class="qn">9</span><div class="qbody"><p>Will I have time for both activities?</p><div class="hw-field sent" contenteditable="true" data-k="w1" data-label="9. Rewrite: Will I have time for both activities? Begin I don’t know." role="textbox" aria-label="Sentence 9"></div></div></div>
+<div class="q"><span class="qn">10</span><div class="qbody"><p>What time does the presentation start?</p><div class="hw-field sent" contenteditable="true" data-k="w2" data-label="10. Rewrite: What time does the presentation start? Begin I don’t know." role="textbox" aria-label="Sentence 10"></div></div></div>
+<div class="q"><span class="qn">11</span><div class="qbody"><p>Can we choose our own topic?</p><div class="hw-field sent" contenteditable="true" data-k="w3" data-label="11. Rewrite: Can we choose our own topic? Begin I don’t know." role="textbox" aria-label="Sentence 11"></div></div></div>
+</section><script>
+(function () {
+  function init() {
+    var store = {};
+    document.querySelectorAll(".store [data-k]").forEach(function (s) { store[s.dataset.k] = s; });
+    var groups = [].slice.call(document.querySelectorAll("[data-dnd]"));
+    var picked = null;
+    function groupOf(el) { return el.closest("[data-dnd]"); }
+    function zones(g) { return [].slice.call(g.querySelectorAll(".dz")); }
+    function bank(g) { return g.querySelector(".bank"); }
+    function slotOf(z) { return z.querySelector(".dslot"); }
+    function sync(g) {
+      zones(g).forEach(function (z) {
+        var c = slotOf(z).querySelector(".chip"), s = store[z.dataset.field], v = c ? c.dataset.word : "";
+        if (s && s.value !== v) { s.value = v; s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+      });
+    }
+    function place(chip, z) {
+      var g = groupOf(z), slot = slotOf(z), old = slot.querySelector(".chip");
+      if (old && old !== chip) bank(g).appendChild(old);
+      slot.appendChild(chip); sync(g);
+    }
+    function toBank(chip) { var g = groupOf(chip); bank(g).appendChild(chip); sync(g); }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null;
+      document.querySelectorAll(".dz.ready").forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(chip) {
+      unpick(); picked = chip; chip.classList.add("picked");
+      zones(groupOf(chip)).forEach(function (z) { z.classList.add("ready"); });
+    }
+    function zoneAt(g, x, y) {
+      var zs = zones(g);
+      for (var i = 0; i < zs.length; i++) {
+        var r = zs[i].getBoundingClientRect(), pad = 10;
+        if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return zs[i];
+      }
+      return null;
+    }
+    function tap(chip) {
+      var home = chip.parentNode;
+      if (home.classList.contains("dslot")) {
+        if (picked && picked !== chip && groupOf(picked) === groupOf(chip)) { place(picked, home.closest(".dz")); unpick(); }
+        else { unpick(); toBank(chip); }
+        return;
+      }
+      if (picked === chip) { unpick(); return; }
+      pick(chip);
+    }
+    groups.forEach(function (g) {
+      zones(g).forEach(function (z) {
+        var s = store[z.dataset.field]; if (!s || !s.value) return;
+        var c = bank(g).querySelector('.chip[data-word="' + s.value + '"]');
+        if (c) slotOf(z).appendChild(c);
+      });
+    });
+    document.querySelectorAll("[data-dnd] .chip").forEach(function (chip) {
+      chip.addEventListener("pointerdown", function (e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        e.preventDefault();
+        var g = groupOf(chip), r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, home = chip.parentNode, next = chip.nextSibling, ph = null;
+        try { chip.setPointerCapture(e.pointerId); } catch (err) {}
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;flex:none;width:" + r.width + "px;height:" + r.height + "px";
+            home.insertBefore(ph, next);
+            chip.style.width = r.width + "px"; chip.classList.add("dragging");
+          }
+          chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(g, ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          if (!moved) { if (ev.type === "pointerup") tap(chip); return; }
+          chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(g, ev.clientX, ev.clientY) : null;
+          if (z) place(chip, z);
+          else if (home.classList.contains("dslot") && ev.type === "pointerup") toBank(chip);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+      chip.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tap(chip); }
+      });
+    });
+    groups.forEach(function (g) {
+      zones(g).forEach(function (z) {
+        z.addEventListener("click", function (e) {
+          if (e.target.closest(".chip")) return;
+          if (picked && groupOf(picked) === g) { place(picked, z); unpick(); }
+        });
+        z.addEventListener("keydown", function (e) {
+          if ((e.key === "Enter" || e.key === " ") && picked && groupOf(picked) === g && !e.target.closest(".chip")) { e.preventDefault(); place(picked, z); unpick(); }
+        });
+      });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script></div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJ2MSI6IHsidCI6ICJleGFjdCIsICJhIjogImZhY3RvcmllcyJ9LCAidjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmVzZW50In0sICJ2MyI6IHsidCI6ICJleGFjdCIsICJhIjogIlRydXRoIG9yIERhcmUifSwgInY0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZmFicmljIn0sICJnMSI6IHsidCI6ICJleGFjdCIsICJhIjogIm15IG11bSB3aWxsIGFncmVlIn0sICJnMiI6IHsidCI6ICJleGFjdCIsICJhIjogInRoZSB3b3Jrc2hvcCBzdGFydHMifSwgImczIjogeyJ0IjogImV4YWN0IiwgImEiOiAid2UgY2FuIHdvcmsgaW4gcGFpcnMifSwgImc0IjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIG1lZXRpbmcgcG9pbnQgaXMifSwgIncxIjogeyJ0IjogIm9wZW4ifSwgIncyIjogeyJ0IjogIm9wZW4ifSwgInczIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261013-pdf-sections"></script>
+</body></html>

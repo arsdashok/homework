@@ -86,6 +86,46 @@ body.hw-pdf-mode .wbank:empty {display:none;}
  body:not(.hw-pdf-mode) .page-header {width:100%;max-width:none;}
  body:not(.hw-pdf-mode) .exercise, body:not(.hw-pdf-mode) .endnote {max-width:1276px;margin-left:auto;margin-right:auto;}
 }
+
+/* Readable supporting text on both desktop and phone. */
+@media screen {
+ body:not(.hw-pdf-mode) .masthead,
+ body:not(.hw-pdf-mode) .hero-aside,
+ body:not(.hw-pdf-mode) .deck .byline,
+ body:not(.hw-pdf-mode) .jump a,
+ body:not(.hw-pdf-mode) .section-number,
+ body:not(.hw-pdf-mode) .qlab,
+ body:not(.hw-pdf-mode) .bin-cap,
+ body:not(.hw-pdf-mode) .model-tag,
+ body:not(.hw-pdf-mode) .sounds .h,
+ body:not(.hw-pdf-mode) .endnote {font-size:16px;line-height:1.5;}
+ body:not(.hw-pdf-mode) .masthead {gap:20px;}
+ body:not(.hw-pdf-mode) .deck,
+ body:not(.hw-pdf-mode) .note,
+ body:not(.hw-pdf-mode) .mini,
+ body:not(.hw-pdf-mode) .phrases span {font-size:18px;line-height:1.55;}
+ body:not(.hw-pdf-mode) .instruction,
+ body:not(.hw-pdf-mode) .sentence-prompt {font-size:20px;line-height:1.5;}
+ body:not(.hw-pdf-mode) .wchip {font-size:18px;line-height:1.4;}
+ body:not(.hw-pdf-mode) .wrap .hw-field {font-size:18px;}
+ body:not(.hw-pdf-mode) .wrap .hw-field::placeholder {font-size:16px;}
+ body:not(.hw-pdf-mode) .model-tag {font-size:14px;text-transform:none;letter-spacing:0;}
+ body:not(.hw-pdf-mode) .hero-aside {min-width:0;}
+ body:not(.hw-pdf-mode) .jump a {padding:14px 18px;}
+ body:not(.hw-pdf-mode) .jump a:first-child {padding-left:0;}
+ body:not(.hw-pdf-mode) .bin-cap {min-height:0;margin-bottom:16px;}
+}
+@media screen and (max-width:620px) {
+ body:not(.hw-pdf-mode) .masthead {align-items:flex-start;}
+ body:not(.hw-pdf-mode) .masthead span {text-align:right;}
+ body:not(.hw-pdf-mode) .deck {flex-direction:column;gap:16px;}
+ body:not(.hw-pdf-mode) .deck .byline {text-align:left;white-space:normal;}
+ body:not(.hw-pdf-mode) .jump a {padding:12px 14px;}
+ body:not(.hw-pdf-mode) .hero-aside {gap:16px;}
+ body:not(.hw-pdf-mode) .hero-aside svg {width:90px;}
+ body:not(.hw-pdf-mode) .phrases {grid-template-columns:1fr;}
+ body:not(.hw-pdf-mode) .endnote {flex-wrap:wrap;}
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">

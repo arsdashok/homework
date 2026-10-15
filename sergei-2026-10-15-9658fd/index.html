@@ -1,0 +1,276 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Sergei_Homework_2026-10-15.key.json -->
+<!-- Lesson 5, 15 Oct 2026. ONE shelf: be or do at the start of a question. Live today: «Do you afraid of spiders?» (afraid is an
+     adjective: Are you), «What kind of photos you take?» (a verb needs do), «is she music write?» (be + a verb).
+     01 sort 12 chips into ARE YOU / DO YOU bins (hidden selects t1..t12; models «afraid of spiders» / «like spiders» answer no item).
+        Bank order D A A D D A A D A D D A. 02 type the missing word(s) of 8 questions (two wh-frames), be/do order B B D D B D D B. 03 four own questions. -->
+<!-- Look: Sergei's standing design, copied from Maksim's sheet (Inter, pale grey page, white cards, teal eyebrow). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergei · English · 15 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.7; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction { text-wrap:pretty; }
+.wrap { max-width:1120px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 40px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; page-break-inside:avoid; break-inside:avoid; }
+/* Section name is a small label; the instruction is the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.instruction { font-size:21px; font-weight:650; line-height:1.4; letter-spacing:-.01em; margin:0 0 12px; }
+.note { font-size:15px; color:var(--muted); margin:-6px 0 14px; }
+.qn { display:inline-block; min-width:30px; font-size:15px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+.question { padding:10px 0; border-bottom:1px solid #edf1f3; page-break-inside:avoid; break-inside:avoid; }
+.question:last-child { border-bottom:0; }
+
+/* 01: sort into bins */
+.bins { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin:6px 0 16px; }
+.bin { border:2px dashed #a4b5c0; border-radius:16px; background:#f8fafb; padding:12px 14px 14px; min-height:200px; display:flex; flex-direction:column; cursor:pointer; }
+.bin.over, .bin.ready { border-color:var(--accent); background:#f0f7f7; }
+.bin-name { font-size:24px; font-weight:750; color:var(--accent); letter-spacing:.04em; line-height:1.2; }
+.bin-cap { font-size:13px; color:var(--muted); line-height:1.35; margin-bottom:10px; }
+.slot { flex:1; display:flex; flex-wrap:wrap; align-content:flex-start; gap:8px; min-height:60px; }
+.wbank { display:flex; flex-wrap:wrap; justify-content:center; gap:10px 12px; min-height:56px; padding:14px; border-radius:16px; background:#f1f5f7; }
+.wchip { font:inherit; font-size:16px; font-weight:600; color:var(--ink); background:white; border:1.5px solid #8fa3ae; border-radius:999px; padding:6px 16px; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; white-space:nowrap; box-shadow:0 2px 0 #162b3714; }
+.wchip.picked { outline:3px solid var(--accent); outline-offset:2px; }
+.wchip.dragging { position:fixed; z-index:50; cursor:grabbing; pointer-events:none; transform:scale(1.05); }
+.slot .wchip { color:#1d4ed8; border-color:#7d97c9; }
+.wchip.model { cursor:default; color:var(--muted); background:#eef3f5; border-style:dashed; box-shadow:none; }
+.model-tag { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-left:6px; align-self:center; }
+.tile-store { display:none; }
+
+/* 02: one sentence per row, the menu on a fixed second column */
+.row { display:grid; grid-template-columns:1fr 170px; gap:24px; align-items:center; }
+.row .prompt { margin:0; }
+.gap { display:inline-block; width:58px; height:22px; border-bottom:2px solid #8fa3ae; vertical-align:baseline; margin:0 3px; }
+/* Local preview only: the shared hw.css styles .hw-field on the live page and wins over these. */
+input, textarea, select, .write { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+select { width:100%; min-height:44px; }
+.print-opts { display:none; }
+.pbox { display:inline-block; width:80px; height:26px; border:1.5px solid #a4b5c0; border-radius:6px; background:#f8fafb; vertical-align:middle; }
+
+/* 03: own sentences */
+.own { display:grid; grid-template-columns:340px 1fr; gap:24px; align-items:start; }
+.own .lead { font-weight:500; padding-top:8px; }
+section div.write { min-height:64px !important; }
+input.write { width:100%; min-height:44px; box-sizing:border-box; }
+.prt { display:none; }
+
+@media (max-width:820px) {
+  .bins { grid-template-columns:1fr; } .bin { min-height:120px; }
+  .own { grid-template-columns:1fr; gap:6px; }
+}
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 20px; border-radius:14px; }
+  .instruction { font-size:19px; } .edition { font-size:12px; }
+  .row { grid-template-columns:1fr; gap:6px; }
+  .wchip { font-size:15px; padding:6px 13px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  select { display:none !important; } .print-opts { display:inline-block !important; } .prt { display:block !important; } .scr { display:none !important; }
+  body { background:white; font-size:11pt; line-height:1.4; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:8px; } .heading-row { margin:6px 0 8px; } .page-meta { padding-top:6px; font-size:12px; }
+  h1 { font-size:30px; }
+  .exercise { box-shadow:none; padding:12px 20px; margin-bottom:10px; border-radius:14px; }
+  .section-heading { margin-bottom:2px; } h2, .section-number { font-size:10px; }
+  .instruction { font-size:15px; margin-bottom:6px; } .note { font-size:11px; margin:-3px 0 6px; }
+  .bins { grid-template-columns:repeat(2,1fr); gap:10px; margin:4px 0 8px; } .bin { min-height:118px; padding:6px 10px; border-width:1.5px; }
+  .bin-name { font-size:16px; } .bin-cap { font-size:10px; margin-bottom:4px; }
+  .wbank { padding:6px; gap:6px 8px; min-height:0; } .wchip { font-size:11.5px; padding:2px 10px; box-shadow:none; }
+  .question { padding:2px 0; } .prompt { font-size:12.5px; } .qn { font-size:11px; min-width:22px; }
+  .row { grid-template-columns:1fr 90px; gap:12px; } .pbox { height:20px; width:70px; }
+  .gap { width:44px; height:14px; }
+  .own { grid-template-columns:230px 1fr; gap:12px; } .own .lead { font-size:12.5px; padding-top:2px; }
+  section div.write { min-height:34px !important; }
+}
+body.hw-pdf-mode { background:white; }
+
+.rule { display:grid; grid-template-columns:1fr 1fr; gap:14px 24px; margin:0 0 18px; padding:14px 18px; border-radius:14px; background:#f1f5f7; font-size:16.5px; line-height:1.5; }
+.rule b { color:var(--accent); }
+.rule .ex { color:var(--muted); }
+input.start { display:inline-block; width:170px; min-height:44px; font:inherit; vertical-align:middle; margin:2px 6px; }
+@media print { input::placeholder { color:transparent; } }
+@media (max-width:820px) { .rule { grid-template-columns:1fr; } }
+
+@media print { .rule { font-size:11px; padding:6px 10px; gap:4px 12px; margin-bottom:8px; } input.start { min-height:24px; width:110px; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Sergei" data-sheet="English 2026-10-15" data-sheet-id="sergei-2026-10-15-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>Are you&hellip;? or Do you&hellip;?</h1><span class="edition">15<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Sergei</span><span>About 15&nbsp;minutes</span></div>
+</header>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">01</span><h2>Sort the questions</h2></div>
+  <p class="instruction scr">Drag each ending into the right box: ARE YOU or DO&nbsp;YOU.</p>
+  <p class="instruction prt">Write each ending in the right box: ARE YOU or DO&nbsp;YOU.</p>
+  <div class="rule">
+    <div><b>Are you / Is &hellip;?</b> before an adjective, a noun or a place.<br><span class="ex">afraid of spiders &rarr; Are you afraid of spiders?</span></div>
+    <div><b>Do you / Do they / Does &hellip;?</b> before a verb (like, live, have).<br><span class="ex">like spiders &rarr; Do you like spiders?</span></div>
+  </div>
+  <p class="note scr">On a phone: tap an ending, then tap a box. Tap an ending in a box to send it&nbsp;back.</p>
+  <div class="bins" id="bins">
+    <div class="bin" data-v="are"><div class="bin-name">ARE YOU &hellip;?</div><div class="bin-cap">an adjective, a noun, a place</div><div class="slot"><span class="wchip model">afraid of spiders</span><span class="model-tag">Example</span></div></div>
+    <div class="bin" data-v="do"><div class="bin-name">DO YOU &hellip;?</div><div class="bin-cap">a verb</div><div class="slot"><span class="wchip model">like spiders</span><span class="model-tag">Example</span></div></div>
+  </div>
+  <div class="wbank" id="wbank" aria-label="Endings to sort">
+    <button type="button" class="wchip" data-t="t1" data-field="t1">listen to Sting</button>
+    <button type="button" class="wchip" data-t="t2" data-field="t2">married</button>
+    <button type="button" class="wchip" data-t="t3" data-field="t3">a music lover</button>
+    <button type="button" class="wchip" data-t="t4" data-field="t4">set an alarm</button>
+    <button type="button" class="wchip" data-t="t5" data-field="t5">play tennis</button>
+    <button type="button" class="wchip" data-t="t6" data-field="t6">tired in the morning</button>
+    <button type="button" class="wchip" data-t="t7" data-field="t7">from St Petersburg</button>
+    <button type="button" class="wchip" data-t="t8" data-field="t8">take photos of buildings</button>
+    <button type="button" class="wchip" data-t="t9" data-field="t9">good at poker</button>
+    <button type="button" class="wchip" data-t="t10" data-field="t10">live in Abu Dhabi</button>
+    <button type="button" class="wchip" data-t="t11" data-field="t11">get up early</button>
+    <button type="button" class="wchip" data-t="t12" data-field="t12">a morning person</button>
+  </div>
+  <div class="tile-store">
+    <select data-k="t1" data-label="Sort: listen to Sting" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t2" data-label="Sort: married" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t3" data-label="Sort: a music lover" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t4" data-label="Sort: set an alarm" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t5" data-label="Sort: play tennis" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t6" data-label="Sort: tired in the morning" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t7" data-label="Sort: from St Petersburg" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t8" data-label="Sort: take photos of buildings" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t9" data-label="Sort: good at poker" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t10" data-label="Sort: live in Abu Dhabi" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t11" data-label="Sort: get up early" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+    <select data-k="t12" data-label="Sort: a morning person" class="hw-field"><option value="">Choose</option><option value="are">Are you</option><option value="do">Do you</option></select>
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">02</span><h2>Start the question</h2></div>
+  <p class="instruction">Type the first word or two of each&nbsp;question.</p>
+  <p class="note">Like this: <b>Are you</b> from Russia? &nbsp;&middot;&nbsp; <b>Does</b> your wife like Abu Dhabi? &nbsp;&middot;&nbsp; Where <b>do</b> you play tennis?</p>
+  <div class="question"><p class="prompt"><span class="qn">1.</span> <input class="hw-field start write" data-k="s1" data-label="1. ___ your wife from Germany?" aria-label="Missing words in question 1" autocomplete="off" spellcheck="false" placeholder="Type here"> your wife from Germany?</p></div>
+  <div class="question"><p class="prompt"><span class="qn">2.</span> <input class="hw-field start write" data-k="s2" data-label="2. ___ happy in Abu Dhabi?" aria-label="Missing words in question 2" autocomplete="off" spellcheck="false" placeholder="Type here"> happy in Abu Dhabi?</p></div>
+  <div class="question"><p class="prompt"><span class="qn">3.</span> What kind of music <input class="hw-field start write" data-k="s3" data-label="3. What kind of music ___ you like?" aria-label="Missing words in question 3" autocomplete="off" spellcheck="false" placeholder="Type here"> you like?</p></div>
+  <div class="question"><p class="prompt"><span class="qn">4.</span> <input class="hw-field start write" data-k="s4" data-label="4. ___ have an alarm on your phone?" aria-label="Missing words in question 4" autocomplete="off" spellcheck="false" placeholder="Type here"> have an alarm on your phone?</p></div>
+  <div class="question"><p class="prompt"><span class="qn">5.</span> <input class="hw-field start write" data-k="s5" data-label="5. ___ Abu Dhabi hot in October?" aria-label="Missing words in question 5" autocomplete="off" spellcheck="false" placeholder="Type here"> Abu Dhabi hot in October?</p></div>
+  <div class="question"><p class="prompt"><span class="qn">6.</span> Where <input class="hw-field start write" data-k="s6" data-label="6. Where ___ Max live?" aria-label="Missing words in question 6" autocomplete="off" spellcheck="false" placeholder="Type here"> Max live?</p></div>
+  <div class="question"><p class="prompt"><span class="qn">7.</span> <input class="hw-field start write" data-k="s7" data-label="7. ___ your parents live in St Petersburg?" aria-label="Missing words in question 7" autocomplete="off" spellcheck="false" placeholder="Type here"> your parents live in St Petersburg?</p></div>
+  <div class="question"><p class="prompt"><span class="qn">8.</span> <input class="hw-field start write" data-k="s8" data-label="8. ___ a football fan?" aria-label="Missing words in question 8" autocomplete="off" spellcheck="false" placeholder="Type here"> a football fan?</p></div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">03</span><h2>Ask Dasha</h2></div>
+  <p class="instruction">Write four whole questions for Dasha. Not from this&nbsp;page.</p>
+  <p class="note">Like this: Do you cook at home? &nbsp;&middot;&nbsp; Are you a tea person or a coffee&nbsp;person?</p>
+  <div class="question"><div class="own"><span class="lead"><span class="qn">1.</span>starts with Are you</span><input class="hw-field line write" data-k="w1" data-label="1. starts with Are you" aria-label="Question 1" autocomplete="off" placeholder="Type your question here"></div></div>
+  <div class="question"><div class="own"><span class="lead"><span class="qn">2.</span>starts with Do you</span><input class="hw-field line write" data-k="w2" data-label="2. starts with Do you" aria-label="Question 2" autocomplete="off" placeholder="Type your question here"></div></div>
+  <div class="question"><div class="own"><span class="lead"><span class="qn">3.</span>starts with Are you</span><input class="hw-field line write" data-k="w3" data-label="3. starts with Are you" aria-label="Question 3" autocomplete="off" placeholder="Type your question here"></div></div>
+  <div class="question"><div class="own"><span class="lead"><span class="qn">4.</span>starts with Do you</span><input class="hw-field line write" data-k="w4" data-label="4. starts with Do you" aria-label="Question 4" autocomplete="off" placeholder="Type your question here"></div></div>
+</section>
+</main>
+
+<script>
+(function () {
+  function init() {
+    var binsBox = document.getElementById("bins"), bank = document.getElementById("wbank");
+    if (!binsBox || !bank) return;
+    var bins = [].slice.call(binsBox.querySelectorAll(".bin"));
+    var chips = [].slice.call(bank.querySelectorAll(".wchip"));
+    var sel = {}; document.querySelectorAll(".tile-store select").forEach(function (s) { sel[s.dataset.k] = s; });
+    var picked = null;
+    function sync() {
+      chips.forEach(function (c) {
+        var b = c.closest(".bin"), v = b ? b.dataset.v : "", s = sel[c.dataset.t];
+        if (s && s.value !== v) { s.value = v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+      });
+    }
+    function place(chip, bin) { bin.querySelector(".slot").appendChild(chip); sync(); }
+    function toBank(chip) {
+      var n = parseInt(chip.dataset.t.slice(1), 10), after = null;
+      [].slice.call(bank.querySelectorAll(".wchip")).some(function (o) { if (parseInt(o.dataset.t.slice(1), 10) > n) { after = o; return true; } return false; });
+      bank.insertBefore(chip, after); sync();
+    }
+    function unpick() { if (picked) picked.classList.remove("picked"); picked = null; bins.forEach(function (b) { b.classList.remove("ready"); }); }
+    function binAt(x, y) {
+      for (var i = 0; i < bins.length; i++) {
+        var r = bins[i].getBoundingClientRect(), pad = 10;
+        if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return bins[i];
+      }
+      return null;
+    }
+    // restore saved answers
+    chips.forEach(function (c) {
+      var s = sel[c.dataset.t], v = s ? s.value : ""; if (!v) return;
+      var b = binsBox.querySelector('.bin[data-v="' + v + '"]'); if (b) b.querySelector(".slot").appendChild(c);
+    });
+    chips.forEach(function (chip) {
+      chip.addEventListener("pointerdown", function (e) {
+        e.preventDefault();
+        var r = chip.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, sx = e.clientX, sy = e.clientY, moved = false, over = null;
+        var home = chip.parentNode, next = chip.nextSibling, ph = null;
+        try { chip.setPointerCapture(e.pointerId); } catch (err) {}
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span"); ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            home.insertBefore(ph, next);
+            chip.style.width = r.width + "px"; chip.classList.add("dragging");
+          }
+          chip.style.left = (ev.clientX - dx) + "px"; chip.style.top = (ev.clientY - dy) + "px";
+          var b = binAt(ev.clientX, ev.clientY);
+          if (b !== over) { if (over) over.classList.remove("over"); over = b; if (b) b.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          if (!moved) {
+            if (home.classList.contains("slot")) { toBank(chip); unpick(); return; }
+            if (picked === chip) { unpick(); return; }
+            unpick(); picked = chip; chip.classList.add("picked"); bins.forEach(function (b) { b.classList.add("ready"); }); return;
+          }
+          chip.classList.remove("dragging"); chip.style.left = chip.style.top = chip.style.width = "";
+          if (ph) ph.remove();
+          var b = ev.type === "pointerup" ? binAt(ev.clientX, ev.clientY) : null;
+          if (b) place(chip, b);
+          else if (home.classList.contains("slot") && ev.type === "pointerup") toBank(chip);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+    bins.forEach(function (b) {
+      b.addEventListener("click", function () { if (picked) { place(picked, b); unpick(); } });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImRvIn0sICJ0MiI6IHsidCI6ICJleGFjdCIsICJhIjogImFyZSJ9LCAidDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhcmUifSwgInQ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZG8ifSwgInQ1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZG8ifSwgInQ2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYXJlIn0sICJ0NyI6IHsidCI6ICJleGFjdCIsICJhIjogImFyZSJ9LCAidDgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkbyJ9LCAidDkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhcmUifSwgInQxMCI6IHsidCI6ICJleGFjdCIsICJhIjogImRvIn0sICJ0MTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkbyJ9LCAidDEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYXJlIn0sICJzMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImlzIn0sICJzMiI6IHsidCI6ICJ3b3JkcyIsICJhIjogImFyZSB5b3UifSwgInMzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiZG8ifSwgInM0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZG8geW91In0sICJzNSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImlzIn0sICJzNiI6IHsidCI6ICJ3b3JkcyIsICJhIjogImRvZXMifSwgInM3IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZG8ifSwgInM4IjogeyJ0IjogIndvcmRzIiwgImEiOiAiYXJlIHlvdSJ9LCAidzEiOiB7InQiOiAib3BlbiJ9LCAidzIiOiB7InQiOiAib3BlbiJ9LCAidzMiOiB7InQiOiAib3BlbiJ9LCAidzQiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script src="../assets/hw.js?v=20261013-pdf-sections"></script>
+</body>
+</html>

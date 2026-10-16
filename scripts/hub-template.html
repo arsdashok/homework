@@ -16,12 +16,12 @@ header{padding:46px 0 28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-tra
 @media(max-width:620px){.wrap{padding:20px 20px 36px}.top{gap:12px;padding-bottom:18px}.top a{font-size:12px}.brand{font-size:12px}header{padding:32px 0 24px}.intro{font-size:16px}.tools{align-items:stretch;flex-direction:column;gap:10px}.search{max-width:none}.grid{grid-template-columns:1fr;gap:16px}.card{padding:22px}.person{margin-bottom:20px}.count{font-size:13px}.actions .btn{flex:1}.foot{font-size:12px}}
 .submitted{margin-top:12px;color:#336a60;border-color:#c4dacf;background:#eff6f2}.submitted:hover{background:#e2eee7}.submission-note{font-size:12px;color:var(--muted);margin:8px 0 0;text-wrap:pretty}.history-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}.history-actions .submitted{margin:0;font-size:12px;padding:7px 10px;min-height:38px}.older>div:first-child{min-width:0}.older .label{margin:4px 0}.older{align-items:flex-start}
 
-.completion{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer;vertical-align:middle}
+.completion{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex:0 0 28px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer;vertical-align:middle}
 .completion:hover{background:#f3f1ea}
 .completion-dot{display:block;width:18px;height:18px;border-radius:50%;background:#c8cbc7;box-shadow:inset 0 0 0 1px #00000012}
 .completion[data-complete="false"] .completion-dot{background:#e1b32a}
 .completion[data-complete="true"] .completion-dot{background:#309757}
-.completion-row{margin:-12px 0 12px}.older .completion{margin-top:2px}
+.homework-meta{display:flex;align-items:center;gap:8px;margin:0 0 20px;min-height:28px}.homework-meta .date{margin:0;min-height:0}.older .homework-meta{margin:2px 0;gap:6px}.older .homework-meta .label{margin:0}.older .completion{padding:0;min-height:28px}
 </style>
 </head>
 <body>
@@ -104,8 +104,8 @@ for(const student of data.students){
   const latest=student.pages[0],card=el('article','card');card.dataset.name=student.name.toLocaleLowerCase();card.id='student-'+student.name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
   const person=el('div','person'),avatar=el('div','avatar',student.name[0]);avatar.setAttribute('aria-hidden','true');person.append(avatar);
   const heading=el('div');heading.append(el('h2','',student.name));if(latest.test)heading.append(el('span','badge','Test page'));person.append(heading);card.append(person);
-  card.append(el('p','label',latest.test?'FORMAT PREVIEW':'LATEST HOMEWORK'),el('h3','',titleFor(latest)),el('p','date',formatDate(latest.date)||'No date'));
-  const completionRow=el('div','completion-row');completionRow.append(completionButton(latest,student.name));card.append(completionRow);
+  card.append(el('p','label',latest.test?'FORMAT PREVIEW':'LATEST HOMEWORK'),el('h3','',titleFor(latest)));
+  const meta=el('div','homework-meta');meta.append(el('p','date',formatDate(latest.date)||'No date'),completionButton(latest,student.name));card.append(meta);
   const actions=el('div','actions'),open=el('a','btn primary','Open homework ↗');open.href=latest.url;open.target='_blank';open.rel='noreferrer';open.setAttribute('aria-label','Open homework: '+student.name);actions.append(open,copyButton(latest,student.name));card.append(actions);
   const submitted=submittedLink(latest,student.name);if(submitted){card.append(submitted);card.append(el('p','submission-note','Submitted answers, private answer keys and your notes. Only your teacher account can open this.'))}
   if(student.pages.length>1){
@@ -114,8 +114,8 @@ for(const student of data.students){
     for(const page of student.pages){
       const row=el('div','older'),info=el('div'),a=el('a','',titleFor(page));
       a.href=page.url;a.target='_blank';a.rel='noreferrer';
-      info.append(a,el('div','label',formatDate(page.date)||'No date'));
-      info.append(completionButton(page,student.name));
+      const meta=el('div','homework-meta');meta.append(el('span','label',formatDate(page.date)||'No date'),completionButton(page,student.name));
+      info.append(a,meta);
       if(page===latest)info.append(el('span','label','Latest'));
       if(page.test)info.append(el('span','badge','Demo'));
       const links=el('div','history-actions');links.append(copyButton(page,student.name));const saved=submittedLink(page,student.name);if(saved)links.append(saved);

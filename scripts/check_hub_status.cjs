@@ -14,7 +14,7 @@ const key='homework-hub-completion-v1';
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(url,{waitUntil:'networkidle'});
  const card=page.locator('.card').filter({has:page.locator('details')}).first();
- const first=card.locator('.completion-row .completion');
+ const first=card.locator(':scope > .homework-meta .completion');
  assert.equal(await first.getAttribute('aria-pressed'),'mixed');
  assert.equal(await first.getAttribute('data-complete'),'unknown');
  assert.equal((await first.innerText()).trim(),'');assert.equal(await page.locator('.completion-help').count(),0);
@@ -38,7 +38,7 @@ const key='homework-hub-completion-v1';
  // A denied write must never look successfully saved.
  const denied=await browser.newContext();await denied.addInitScript(()=>{Storage.prototype.setItem=function(){throw new DOMException('Blocked','SecurityError')}});
  const deniedPage=await denied.newPage();await deniedPage.goto(url,{waitUntil:'networkidle'});
- const blockedButton=deniedPage.locator('.completion-row .completion').first();await blockedButton.click();
+ const blockedButton=deniedPage.locator('.card > .homework-meta .completion').first();await blockedButton.click();
  assert.equal(await blockedButton.getAttribute('aria-pressed'),'mixed');assert.match(await deniedPage.locator('#status').innerText(),/Not saved/);
  await denied.close();
  // A separate browser profile starts with no marks (the stated storage boundary).

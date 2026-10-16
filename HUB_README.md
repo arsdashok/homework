@@ -98,7 +98,7 @@ file includes d1–d3 for the existing private-key upload workflow.
 ## Manual completion status
 
 Each assignment has an unlabelled yellow / green indicator button, in both the
-latest card and homework history. Unverified assignments start neutral grey, never yellow.
+latest card and homework history, inline beside the date with no extra status row. Unverified assignments start neutral grey, never yellow.
 Yellow requires an explicit incomplete mark; green requires a completion mark.
 Clicking changes only that assignment. The duplicate latest/history buttons stay
 in sync; English accessible labels and `aria-pressed` supplement the coloured dot.

@@ -99,6 +99,7 @@ def build(root=ROOT, site=None):
     hub = root / config['hub']
     hub.mkdir(exist_ok=True)
     (hub / 'index.html').write_text(html, encoding='utf-8')
+    (hub / 'data.json').write_text(payload, encoding='utf-8')
     if site:
         site = Path(site)
         site.mkdir(parents=True, exist_ok=True)

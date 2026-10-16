@@ -7,6 +7,7 @@ const url=process.env.HUB_TEST_URL||'http://127.0.0.1:8778/67f5f7644ece6050/';
   localStorage.setItem('homework-hub-completion-v1',JSON.stringify({'kristina-2026-10-16-english':true}));
   window.calls=[];window.google={script:{run:{withSuccessHandler(fn){this.ok=fn;return this},withFailureHandler(fn){this.fail=fn;return this},getHomeworkCompletion(ids){window.calls.push(ids)}}}};
  });
+ await context.route('https://arsdashok.github.io/homework/67f5f7644ece6050/data.json',route=>route.fulfill({contentType:'application/json',body:require('node:fs').readFileSync(path.join(__dirname,'../67f5f7644ece6050/data.json'),'utf8')}));
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(url);
  await page.waitForFunction(()=>calls.length===1);
  assert.equal(await page.locator('button.completion').count(),0);

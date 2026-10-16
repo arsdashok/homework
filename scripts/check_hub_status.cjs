@@ -15,7 +15,8 @@ const key='homework-hub-completion-v1';
  await page.goto(url,{waitUntil:'networkidle'});
  const card=page.locator('.card').filter({has:page.locator('details')}).first();
  const first=card.locator('.completion-row .completion');
- assert.equal(await first.getAttribute('aria-pressed'),'false');
+ assert.equal(await first.getAttribute('aria-pressed'),'mixed');
+ assert.equal(await first.getAttribute('data-complete'),'unknown');
  assert.equal((await first.innerText()).trim(),'');assert.equal(await page.locator('.completion-help').count(),0);
  const sheet=await first.getAttribute('data-completion-key');
  await first.click();assert.equal(await first.getAttribute('aria-pressed'),'true');
@@ -26,7 +27,7 @@ const key='homework-hub-completion-v1';
  await page.reload({waitUntil:'networkidle'});assert.equal(await first.getAttribute('aria-pressed'),'true');
  const tab=await context.newPage();await tab.goto(url,{waitUntil:'networkidle'});
  await first.click();await tab.waitForFunction(id=>[...document.querySelectorAll('.completion')].filter(e=>e.dataset.completionKey===id).every(e=>e.getAttribute('aria-pressed')==='false'),sheet);
- const stored=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key);assert.equal(stored[olderSheet],true);assert.equal(stored[sheet],undefined);
+ const stored=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key);assert.equal(stored[olderSheet],true);assert.equal(stored[sheet],false);
  // Search and status controls coexist without losing saved marks.
  await page.locator('#search').fill('Vlad');assert.equal(await page.locator('.card:visible').count(),1);
  await page.screenshot({path:path.join(os.tmpdir(),'homework-status-desktop.png')});
@@ -38,7 +39,7 @@ const key='homework-hub-completion-v1';
  const denied=await browser.newContext();await denied.addInitScript(()=>{Storage.prototype.setItem=function(){throw new DOMException('Blocked','SecurityError')}});
  const deniedPage=await denied.newPage();await deniedPage.goto(url,{waitUntil:'networkidle'});
  const blockedButton=deniedPage.locator('.completion-row .completion').first();await blockedButton.click();
- assert.equal(await blockedButton.getAttribute('aria-pressed'),'false');assert.match(await deniedPage.locator('#status').innerText(),/Not saved/);
+ assert.equal(await blockedButton.getAttribute('aria-pressed'),'mixed');assert.match(await deniedPage.locator('#status').innerText(),/Not saved/);
  await denied.close();
  // A separate browser profile starts with no marks (the stated storage boundary).
  const other=await browser.newContext();const otherPage=await other.newPage();await otherPage.goto(url,{waitUntil:'networkidle'});

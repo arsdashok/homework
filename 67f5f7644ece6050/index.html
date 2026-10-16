@@ -18,7 +18,8 @@ header{padding:46px 0 28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-tra
 
 .completion{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer;vertical-align:middle}
 .completion:hover{background:#f3f1ea}
-.completion-dot{display:block;width:18px;height:18px;border-radius:50%;background:#e1b32a;box-shadow:inset 0 0 0 1px #00000012}
+.completion-dot{display:block;width:18px;height:18px;border-radius:50%;background:#c8cbc7;box-shadow:inset 0 0 0 1px #00000012}
+.completion[data-complete="false"] .completion-dot{background:#e1b32a}
 .completion[data-complete="true"] .completion-dot{background:#309757}
 .completion-row{margin:-12px 0 12px}.older .completion{margin-top:2px}
 </style>
@@ -71,9 +72,11 @@ try{completed=readCompletion()}catch(error){document.getElementById('status').te
 function completionKey(page){return page.sheetId||page.url}
 function syncCompletion(){
   document.querySelectorAll('button.completion').forEach(button=>{
-    const done=completed[button.dataset.completionKey]===true;
-    button.dataset.complete=String(done);button.setAttribute('aria-pressed',String(done));
-    button.setAttribute('aria-label',button.dataset.assignment+': '+(done?'Completed. Mark as incomplete.':'Not completed. Mark as complete.'));
+    const value=completed[button.dataset.completionKey];
+    const known=typeof value==='boolean',done=value===true;
+    button.dataset.complete=known?String(value):'unknown';
+    button.setAttribute('aria-pressed',known?String(done):'mixed');
+    button.setAttribute('aria-label',button.dataset.assignment+': '+(done?'Completed. Mark as incomplete.':known?'Not completed. Mark as complete.':'Not yet verified. Mark as complete.'));
   });
 }
 function completionButton(page,name){
@@ -84,7 +87,7 @@ function completionButton(page,name){
     try{
       // Re-read before writing so changes in another open tab are retained.
       const next=readCompletion(),key=button.dataset.completionKey;
-      if(next[key]===true)delete next[key];else next[key]=true;
+      next[key]=next[key]!==true;
       localStorage.setItem(completionStorage,JSON.stringify(next));completed=next;syncCompletion();
       clearTimeout(feedbackTimer);document.getElementById('status').textContent='';
     }catch(error){document.getElementById('status').textContent='Not saved: browser storage is blocked. Try a regular browser window.'}

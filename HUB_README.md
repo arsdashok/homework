@@ -98,7 +98,8 @@ file includes d1–d3 for the existing private-key upload workflow.
 ## Manual completion status
 
 Each assignment has an unlabelled yellow / green indicator button, in both the
-latest card and homework history. New/unmarked assignments start yellow.
+latest card and homework history. Unverified assignments start neutral grey, never yellow.
+Yellow requires an explicit incomplete mark; green requires a completion mark.
 Clicking changes only that assignment. The duplicate latest/history buttons stay
 in sync; English accessible labels and `aria-pressed` supplement the coloured dot.
 There is no visible status label, legend, tooltip or success toast.
@@ -107,6 +108,11 @@ Marks are stored under `homework-hub-completion-v1` in localStorage, keyed by
 `sheetId` (URL fallback for legacy pages). Rebuilds and deployments preserve them.
 Other tabs in the same browser update through the storage event. Writes merge the
 latest stored map; failures are reported without falsely changing the UI.
+
+A missing key means unknown; explicit false means incomplete, true means complete.
+Previously saved true marks are preserved. Historical marks can be reconciled against
+actual submission evidence in the teacher’s browser; never infer completion from scores
+or copy private submission records into this public repository.
 
 These marks do not sync between browsers/devices, are removed if site data is
 cleared, and are not automatically set by pupil submissions. This limitation was explained to Dasha; keep the interface minimal. No completion data is committed to the public repository or sent

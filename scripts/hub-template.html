@@ -16,13 +16,11 @@ header{padding:46px 0 28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-tra
 @media(max-width:620px){.wrap{padding:20px 20px 36px}.top{gap:12px;padding-bottom:18px}.top a{font-size:12px}.brand{font-size:12px}header{padding:32px 0 24px}.intro{font-size:16px}.tools{align-items:stretch;flex-direction:column;gap:10px}.search{max-width:none}.grid{grid-template-columns:1fr;gap:16px}.card{padding:22px}.person{margin-bottom:20px}.count{font-size:13px}.actions .btn{flex:1}.foot{font-size:12px}}
 .submitted{margin-top:12px;color:#336a60;border-color:#c4dacf;background:#eff6f2}.submitted:hover{background:#e2eee7}.submission-note{font-size:12px;color:var(--muted);margin:8px 0 0;text-wrap:pretty}.history-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}.history-actions .submitted{margin:0;font-size:12px;padding:7px 10px;min-height:38px}.older>div:first-child{min-width:0}.older .label{margin:4px 0}.older{align-items:flex-start}
 
-.completion{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;min-height:42px;border:1px solid #dfc97b;border-radius:9px;background:#fff8dd;color:#655015;font:600 14px/1.35 'Avenir Next',system-ui,sans-serif;cursor:pointer;text-align:left}
-.completion[data-complete="true"]{background:#e8f5eb;border-color:#a5cfad;color:#225c35}
-.completion:hover{filter:brightness(.97)}
-.completion-dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#d5a511;flex-shrink:0}
-.completion[data-complete="true"] .completion-dot{background:#2a9752}
-.completion-row{margin:-10px 0 20px}.older .completion{margin-top:6px;font-size:13px;min-height:38px}
-.completion-help{font-size:14px;color:var(--muted);margin:-8px 0 24px;max-width:760px;text-wrap:pretty}
+.completion{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer;vertical-align:middle}
+.completion:hover{background:#f3f1ea}
+.completion-dot{display:block;width:18px;height:18px;border-radius:50%;background:#e1b32a;box-shadow:inset 0 0 0 1px #00000012}
+.completion[data-complete="true"] .completion-dot{background:#309757}
+.completion-row{margin:-12px 0 12px}.older .completion{margin-top:2px}
 </style>
 </head>
 <body>
@@ -36,7 +34,6 @@ header{padding:46px 0 28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-tra
     <label class="search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search" type="search" aria-label="Find a student" placeholder="Find a student…" autocomplete="off"></label>
     <div class="count" id="count" aria-live="polite"></div>
   </div>
-  <p class="completion-help">🟡 Ожидаем · 🟢 Выполнено. Нажмите на статус, чтобы изменить его. Отметки сохраняются в этом браузере; отправка учеником не меняет статус автоматически.</p>
   <div class="grid" id="students"></div>
   <p class="empty" id="empty" hidden>No students found. Try another name.</p>
   <p class="foot"><strong>Keep this hub link for yourself.</strong> Share the homework link with parents. Open Review work to read submitted answers, check them against your private key and save your notes. Sign in with your teacher Google account. Each submission keeps its own date and time.</p>
@@ -70,35 +67,33 @@ function readCompletion(){
   return parsed;
 }
 let completed={};
-try{completed=readCompletion()}catch(error){document.getElementById('status').textContent='Не удалось загрузить отметки. Проверьте, разрешено ли браузеру сохранять данные.'}
+try{completed=readCompletion()}catch(error){document.getElementById('status').textContent='Could not load completion marks. Please allow this browser to store site data.'}
 function completionKey(page){return page.sheetId||page.url}
 function syncCompletion(){
   document.querySelectorAll('button.completion').forEach(button=>{
     const done=completed[button.dataset.completionKey]===true;
     button.dataset.complete=String(done);button.setAttribute('aria-pressed',String(done));
-    button.querySelector('.completion-text').textContent=done?'Выполнено':'Ожидаем';
-    button.setAttribute('aria-label',button.dataset.assignment+': '+(done?'выполнено. Отметить как ожидаем.':'ожидаем. Отметить как выполнено.'));
-    button.title=done?'Нажмите, чтобы вернуть «Ожидаем»':'Нажмите, чтобы отметить «Выполнено»';
+    button.setAttribute('aria-label',button.dataset.assignment+': '+(done?'Completed. Mark as incomplete.':'Not completed. Mark as complete.'));
   });
 }
 function completionButton(page,name){
-  const button=el('button','completion');button.type='button';button.lang='ru';
+  const button=el('button','completion');button.type='button';button.lang='en';
   button.dataset.completionKey=completionKey(page);button.dataset.assignment=name+' — '+page.title;
-  const dot=el('span','completion-dot');dot.setAttribute('aria-hidden','true');button.append(dot,el('span','completion-text','Ожидаем'));
+  const dot=el('span','completion-dot');dot.setAttribute('aria-hidden','true');button.append(dot);
   button.addEventListener('click',()=>{
     try{
       // Re-read before writing so changes in another open tab are retained.
       const next=readCompletion(),key=button.dataset.completionKey;
       if(next[key]===true)delete next[key];else next[key]=true;
       localStorage.setItem(completionStorage,JSON.stringify(next));completed=next;syncCompletion();
-      const status=document.getElementById('status');status.textContent=name+': '+(completed[key]===true?'выполнено':'ожидаем');clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>status.textContent='',2400);
-    }catch(error){document.getElementById('status').textContent='Статус не сохранён: браузер не разрешил запись. Попробуйте в обычном окне браузера.'}
+      clearTimeout(feedbackTimer);document.getElementById('status').textContent='';
+    }catch(error){document.getElementById('status').textContent='Not saved: browser storage is blocked. Try a regular browser window.'}
   });
   return button;
 }
 window.addEventListener('storage',event=>{
   if(event.key!==completionStorage&&event.key!==null)return;
-  try{completed=readCompletion();syncCompletion()}catch(error){document.getElementById('status').textContent='Не удалось обновить отметки из другой вкладки.'}
+  try{completed=readCompletion();syncCompletion()}catch(error){document.getElementById('status').textContent='Could not update completion marks from another tab.'}
 });
 function formatDate(date){return date?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(date+'T12:00:00Z')):''}
 function titleFor(page){return page.title.replace(/\d{4}-\d{2}-\d{2}|\d{1,2} [A-Za-z]+ \d{4}|\(test\)/gi,'').replace(/[·|]\s*$/,'').trim()||'Homework'}

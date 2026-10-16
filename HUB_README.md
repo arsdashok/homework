@@ -97,10 +97,11 @@ file includes d1–d3 for the existing private-key upload workflow.
 
 ## Manual completion status
 
-Each assignment has a yellow **Ожидаем** / green **Выполнено** toggle, in both the
-latest card and homework history. New/unmarked assignments start at Ожидаем.
+Each assignment has an unlabelled yellow / green indicator button, in both the
+latest card and homework history. New/unmarked assignments start yellow.
 Clicking changes only that assignment. The duplicate latest/history buttons stay
-in sync; labels and `aria-pressed` supplement the coloured dot.
+in sync; English accessible labels and `aria-pressed` supplement the coloured dot.
+There is no visible status label, legend, tooltip or success toast.
 
 Marks are stored under `homework-hub-completion-v1` in localStorage, keyed by
 `sheetId` (URL fallback for legacy pages). Rebuilds and deployments preserve them.
@@ -108,8 +109,7 @@ Other tabs in the same browser update through the storage event. Writes merge th
 latest stored map; failures are reported without falsely changing the UI.
 
 These marks do not sync between browsers/devices, are removed if site data is
-cleared, and are not automatically set by pupil submissions. The interface states
-this limitation. No completion data is committed to the public repository or sent
+cleared, and are not automatically set by pupil submissions. This limitation was explained to Dasha; keep the interface minimal. No completion data is committed to the public repository or sent
 to a server. The private review app remains the source of submitted work.
 
 Test with a local server using `node scripts/check_hub_status.cjs` (set

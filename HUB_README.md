@@ -15,8 +15,8 @@ assignments appear under “All homework”. Students are ordered by their lates
 homework date, newest first, with alphabetical ties. Undated and demo-only pupils
 come last. Titles containing “test” are labelled as
 test pages and come after normal assignments. Only pupils with published pages
-are listed. No answer fields, submissions, answer keys or completion status are
-read by this index.
+are listed. No answer fields, submissions or answer keys are read by this index.
+Completion is a manual teacher note stored in the current browser (see below).
 
 To preview the generated HTML locally:
 
@@ -94,3 +94,23 @@ The original 20 September sheet ID and retained field IDs remain unchanged.
 Vocabulary answers d1–d3 are copied from the old browser draft only if missing;
 the old draft and archived submissions are preserved. The local private key
 file includes d1–d3 for the existing private-key upload workflow.
+
+## Manual completion status
+
+Each assignment has a yellow **Ожидаем** / green **Выполнено** toggle, in both the
+latest card and homework history. New/unmarked assignments start at Ожидаем.
+Clicking changes only that assignment. The duplicate latest/history buttons stay
+in sync; labels and `aria-pressed` supplement the coloured dot.
+
+Marks are stored under `homework-hub-completion-v1` in localStorage, keyed by
+`sheetId` (URL fallback for legacy pages). Rebuilds and deployments preserve them.
+Other tabs in the same browser update through the storage event. Writes merge the
+latest stored map; failures are reported without falsely changing the UI.
+
+These marks do not sync between browsers/devices, are removed if site data is
+cleared, and are not automatically set by pupil submissions. The interface states
+this limitation. No completion data is committed to the public repository or sent
+to a server. The private review app remains the source of submitted work.
+
+Test with a local server using `node scripts/check_hub_status.cjs` (set
+`HUB_TEST_URL` to the generated local hub URL when not using port 8778).

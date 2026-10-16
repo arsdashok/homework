@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vera: Homework 16 October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2a4a; --blue: #1d4e89; --line: #9db3cc; --bg: #eef3f9; --paper: #ffffff;
+    --accent: #ff7a1a; --accent-ink: #b9500a; --muted: #56677c;
+  }
+  @page { size: A4; margin: 9mm 11mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-size: 16px; line-height: 1.45;
+    color: var(--navy); background: var(--bg); max-width: 800px; margin: 0 auto; padding: 18px 14px 20px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+
+  /* header = an engineering drawing title block */
+  header.tb {
+    position: relative; overflow: hidden; background: var(--navy); color: #fff; border-radius: 12px;
+    padding: 22px 24px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  header.tb svg.grid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .tb-main, .tb-block { position: relative; z-index: 1; }
+  .kicker { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  header.tb h1 { font-size: 34px; line-height: 1.08; font-weight: 800; letter-spacing: -.01em; }
+  .tb-block { flex: none; border: 1.5px solid rgba(255,255,255,.55); border-radius: 6px; min-width: 190px; }
+  .tb-block div { padding: 5px 12px; font-size: 15px; font-weight: 500; border-top: 1px solid rgba(255,255,255,.3); }
+  .tb-block div:first-child { border-top: 0; }
+  .tb-block span { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9fc0e6; }
+
+  /* parts */
+  .part {
+    position: relative; background: var(--paper); border: 1.5px solid var(--navy); border-radius: 10px;
+    padding: 18px 22px 20px; margin-bottom: 18px; box-shadow: 4px 4px 0 rgba(11,42,74,.13);
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plabel { font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 4px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: 4px; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .q { page-break-inside: avoid; break-inside: avoid; }
+  .gn { flex: none; width: 28px; height: 28px; line-height: 28px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 14px; font-weight: 700; text-align: center; }
+  .mlabel { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
+  .filled {
+    display: inline-block; padding: 0 10px; border: 2px solid #8fa8c8; border-radius: 8px; background: #f7faff;
+    color: #1d4ed8; font-weight: 600; line-height: 1.5;
+  }
+  .filled.in { padding: 0 3px; letter-spacing: .06em; margin: 0 1px; }
+
+  /* part 1: the picture and the steps */
+  .picwrap { position: relative; width: 100%; max-width: 440px; margin: 4px auto 12px; }
+  svg.pic { display: block; width: 100%; height: auto; font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; }
+  .plabel-in {
+    position: absolute; left: 40.9%; top: 95.1%; transform: translate(-50%, -50%); white-space: nowrap;
+    font-size: 15px; font-weight: 500; color: var(--navy); background: rgba(219,232,245,.92); border-radius: 6px; padding: 0 4px;
+  }
+  .srow { display: flex; align-items: flex-start; gap: 12px; padding: 5px 0; border-top: 1px dashed var(--line); }
+  .srow.model-row { border-top: 0; background: #fff8f1; border-left: 4px solid var(--accent); border-radius: 8px; padding: 6px 12px; margin: 4px 0; }
+  .srow.model-row + .srow { border-top: 0; }
+  .srow .gn { margin-top: 6px; }
+  .srow p { font-size: 18px; line-height: 2.2; }
+  .srow .mlabel { margin-right: 4px; }
+  input.hw-gap { font-size: inherit; }
+
+  /* part 2: polite questions */
+  .model { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; background: #fff8f1; border-left: 4px solid var(--accent); border-radius: 8px; padding: 9px 16px; margin: 10px 0 10px; }
+  .model .mphrase { font-size: 18px; line-height: 1.9; }
+  .model .mfix { flex-basis: 100%; font-size: 16px; color: var(--muted); }
+  .model .mfix b { color: var(--navy); font-weight: 500; }
+  .arrow { color: var(--accent-ink); font-weight: 700; margin: 0 6px; }
+  .pq { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; border-top: 1px dashed var(--line); }
+  .model + .pq { border-top: 0; }
+  .pq .gn { margin-top: 2px; }
+  .pbody { flex: 1; min-width: 0; }
+  .pbody .direct { font-size: 16px; color: var(--muted); margin-bottom: 2px; }
+  .pbody .polite { font-size: 18px; line-height: 2.2; }
+  input.ptype { width: 17em; max-width: calc(100% - 1.5em); vertical-align: middle; font-size: 16px; }
+
+  /* part 3: catch the will */
+  .sq { display: flex; align-items: flex-start; gap: 12px; padding: 6px 0; border-top: 1px dashed var(--line); }
+  .model + .sq { border-top: 0; }
+  .sq .gn { margin-top: 8px; }
+  .crow { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 18px; }
+  .crow p { font-size: 17px; line-height: 1.5; padding: 6px 0; flex: 1 1 380px; }
+  select.pick { min-width: 140px !important; width: auto; font-size: 16px; }
+  .popt { display: none; }   /* paper version of each menu: both options, to circle */
+
+  /* part 4 */
+  .wq { display: flex; align-items: flex-start; gap: 12px; margin-top: 14px; }
+  .wq .gn { margin-top: 2px; }
+  .wbody { flex: 1; min-width: 0; }
+  .wq .winstr { font-size: 19px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+  .wq .wmodel { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
+  .wq .wmodel b { color: var(--navy); font-weight: 500; }
+  textarea.resp {
+    display: block; width: 100%; min-height: 64px; font: inherit; font-size: 16px; line-height: 1.5; color: #1d4ed8;
+    padding: 9px 12px; border: 2px solid #8fa8c8; border-radius: 8px; background: #f7faff; resize: vertical;
+  }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 8px 16px; }
+    header.tb { flex-direction: column; align-items: flex-start; padding: 18px; }
+    header.tb h1 { font-size: 28px; }
+    .tb-block { width: 100%; display: flex; }
+    .tb-block div { flex: 1; border-top: 0; border-left: 1px solid rgba(255,255,255,.3); padding: 5px 8px; font-size: 13.5px; }
+    .tb-block div:first-child { border-left: 0; }
+    .part { padding: 15px 12px 16px; }
+    .instr { font-size: 19px; }
+    .gn { width: 24px; height: 24px; line-height: 24px; font-size: 12.5px; }
+    .plabel-in { font-size: 13px; }
+    .srow, .pq, .sq, .wq { gap: 8px; }
+    .srow p, .pbody .polite { font-size: 16px; }
+    .srow.model-row { padding: 6px 8px; }
+    .model .mphrase { font-size: 16px; }
+    .crow p { font-size: 16px; flex-basis: 100%; padding-bottom: 2px; }
+    input.ptype { width: 100%; max-width: none; display: block; margin-top: 2px; }
+    .wq .winstr { font-size: 17px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 13px; padding: 0; max-width: none; }
+    header.tb { padding: 8px 16px; margin-bottom: 6px; border-radius: 8px; }
+    header.tb h1 { font-size: 22px; }
+    .kicker { font-size: 10px; margin-bottom: 3px; }
+    .tb-block { min-width: 160px; }
+    .tb-block div { padding: 2px 10px; font-size: 12px; }
+    .tb-block span { font-size: 8.5px; }
+    .part { padding: 8px 14px 9px; margin-bottom: 6px; box-shadow: none; }
+    .plabel { font-size: 10px; margin-bottom: 1px; }
+    .instr { font-size: 16px; margin-bottom: 1px; }
+    .note { font-size: 11px; margin-bottom: 4px; }
+    .gn { width: 18px; height: 18px; line-height: 18px; font-size: 10px; }
+    .mlabel { font-size: 9.5px; }
+    .picwrap { max-width: 270px; margin: 0 auto 4px; }
+    .plabel-in { font-size: 9.5px; }
+    .srow { padding: 1px 0; gap: 8px; }
+    .srow.model-row { padding: 1px 10px; margin-bottom: 2px; }
+    .srow .gn { margin-top: 4px; }
+    .srow p { font-size: 13px; line-height: 2; }
+    .filled { border-width: 1.5px; }
+    .model { padding: 3px 12px; margin: 4px 0 4px; }
+    .model .mphrase { font-size: 13px; line-height: 1.8; }
+    .model .mfix { font-size: 12px; }
+    .pq { padding: 2px 0; gap: 8px; }
+    .pbody .direct { font-size: 11.5px; margin-bottom: 0; }
+    .pbody .polite { font-size: 13px; line-height: 2; }
+    .sq { padding: 1px 0; gap: 8px; }
+    .sq .gn { margin-top: 4px; }
+    .crow p { font-size: 13px; padding: 2px 0; }
+    select.pick { display: none !important; }
+    .popt { display: inline; font-weight: 500; white-space: nowrap; }
+    .wq { margin-top: 6px; gap: 8px; }
+    .wq .winstr { font-size: 13.5px; margin-bottom: 1px; }
+    .wq .wmodel { font-size: 11.5px; margin-bottom: 3px; }
+    textarea.resp { min-height: 36px; height: 36px; resize: none; overflow: hidden; border-width: 1.5px; }
+    textarea.resp::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Vera" data-sheet="English 2026-10-16" data-sheet-id="vera-2026-10-16-english">
+<div id="sheet">
+
+
+<header class="tb">
+  <svg class="grid" aria-hidden="true"><defs><pattern id="tbgrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity=".13" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#tbgrid)"/></svg>
+  <div class="tb-main">
+    <div class="kicker">Technical English &middot; Unit&nbsp;1 &middot; Operation</div>
+    <h1>Beacon words, polite questions and&nbsp;if</h1>
+  </div>
+  <div class="tb-block">
+    <div><span>Name</span>Vera</div>
+    <div><span>Date</span>16 October 2026</div>
+    <div><span>Time</span>about 10&nbsp;minutes</div>
+  </div>
+</header>
+
+<section class="part">
+  <div class="plabel">Part 1 &middot; The free-floating beacon</div>
+  <p class="instr">Type the rest of each&nbsp;word.</p>
+  <p class="note">The first letter is already there, like step 2. One word is on the&nbsp;picture.</p>
+  <div class="picwrap q">
+    <svg class="pic" viewBox="0 0 430 355" role="img" aria-label="The beacon in its cover on the base, under the water: HRU, rod, spring, beacon, magnet, cover, and a part to name at the bottom">
+      <rect x="0" y="0" width="430" height="44" fill="#f5f8fc"/>
+      <path d="M0,40 Q15,34 30,40 T60,40 T90,40 T120,40 T150,40 T180,40 T210,40 T240,40 T270,40 T300,40 T330,40 T360,40 T390,40 T420,40 T450,40 V355 H0 Z" fill="#dbe8f5"/>
+      <path d="M0,40 Q15,34 30,40 T60,40 T90,40 T120,40 T150,40 T180,40 T210,40 T240,40 T270,40 T300,40 T330,40 T360,40 T390,40 T420,40 T450,40" fill="none" stroke="#7f9bbd" stroke-width="2"/>
+      <!-- depth arrow -->
+      <line x1="60" y1="50" x2="60" y2="129" stroke="#1d4e89" stroke-width="2.4"/>
+      <polygon points="60,43 54,54 66,54" fill="#1d4e89"/>
+      <polygon points="60,137 54,126 66,126" fill="#1d4e89"/>
+      <line x1="66" y1="137" x2="119" y2="137" stroke="#1d4e89" stroke-width="1.4" stroke-dasharray="3 4"/>
+      <text x="50" y="96" text-anchor="end" font-size="16" font-weight="700" fill="#0b2a4a">4 m</text>
+      <!-- base and cover -->
+      <rect x="120" y="88" width="14" height="226" fill="#bcd6f0" stroke="#0b2a4a" stroke-width="2"/>
+      <path d="M134,98 H250 Q332,98 332,206 Q332,314 250,314 H134 Z" fill="#ffffff" stroke="#0b2a4a" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- HRU and rod -->
+      <rect x="134" y="122" width="36" height="30" rx="3" fill="#ffe2c8" stroke="#0b2a4a" stroke-width="2"/>
+      <text x="152" y="142" text-anchor="middle" font-size="12" font-weight="700" fill="#0b2a4a">HRU</text>
+      <line x1="170" y1="137" x2="350" y2="137" stroke="#4b5d73" stroke-width="4"/>
+      <rect x="350" y="130" width="7" height="14" rx="1.5" fill="#0b2a4a"/>
+      <!-- beacon -->
+      <path d="M219,214 H291 L280,292 H230 Z" fill="#ffffff" stroke="#0b2a4a" stroke-width="2.2" stroke-linejoin="round"/>
+      <line x1="223" y1="240" x2="287" y2="240" stroke="#0b2a4a" stroke-width="1.6"/>
+      <path d="M243,200 Q255,180 267,200 Z" fill="#e63946" stroke="#0b2a4a" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="213" y="200" width="84" height="15" rx="7" fill="#ff7a1a" stroke="#0b2a4a" stroke-width="2.2"/>
+      <!-- spring: from the base to the beacon -->
+      <polyline points="134,256 140,248 148,264 156,248 164,264 172,248 180,264 188,248 196,264 204,248 212,256 218,256" fill="none" stroke="#0b2a4a" stroke-width="2.2" stroke-linejoin="round"/>
+      <line x1="221" y1="246" x2="221" y2="266" stroke="#0b2a4a" stroke-width="3.4" stroke-linecap="round"/>
+      <!-- magnet -->
+      <rect x="127" y="267" width="15" height="21" rx="2" fill="#0b2a4a"/>
+      <!-- arm at the bottom -->
+      <line x1="139" y1="298" x2="222" y2="281" stroke="#0b2a4a" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="139" cy="298" r="5.5" fill="#0b2a4a"/>
+      <!-- labels -->
+      <g stroke="#1d4e89" stroke-width="1.6" stroke-dasharray="4 3" fill="none">
+        <line x1="112" y1="200" x2="126" y2="200"/>
+        <line x1="176" y1="219" x2="176" y2="250"/>
+        <line x1="362" y1="207" x2="298" y2="207"/>
+        <line x1="112" y1="278" x2="125" y2="278"/>
+        <line x1="362" y1="317" x2="281" y2="306"/>
+        <line x1="179" y1="323" x2="180" y2="292"/>
+      </g>
+      <g fill="#1d4e89">
+        <circle cx="126" cy="200" r="3.2"/><circle cx="176" cy="256" r="3.2"/><circle cx="297" cy="207" r="3.2"/>
+        <circle cx="127" cy="278" r="3.2"/><circle cx="280" cy="306" r="3.2"/><circle cx="180" cy="290" r="3.2"/>
+      </g>
+      <g font-size="15" font-weight="500" fill="#0b2a4a">
+        <text x="108" y="205" text-anchor="end">base</text>
+        <text x="176" y="212" text-anchor="middle">spring</text>
+        <text x="364" y="142">rod</text>
+        <text x="366" y="212">beacon</text>
+        <text x="108" y="283" text-anchor="end">magnet</text>
+        <text x="366" y="322">cover</text>
+      </g>
+    </svg>
+    <span class="plabel-in">l<input type="text" class="hw-field hw-gap" style="width:3.6em" maxlength="7" autocomplete="off" spellcheck="false" data-k="la" data-label="1.0 Picture: l___ arm" aria-label="Picture: the part at the bottom, l___ arm"> arm</span>
+  </div>
+  <div class="srow q"><span class="gn">1</span><p>Water pressure a<input type="text" class="hw-field hw-gap" style="width:6.3em" maxlength="11" autocomplete="off" spellcheck="false" data-k="g1" data-label="1.1 Water pressure a___ the HRU." aria-label="Step 1: a___"> the&nbsp;HRU.</p></div>
+  <div class="srow model-row"><span class="gn">2</span><p><span class="mlabel">Like this</span> The HRU c<span class="filled in">uts</span> the&nbsp;rod.</p></div>
+  <div class="srow q"><span class="gn">3</span><p>The spring pushes the beacon a<input type="text" class="hw-field hw-gap" style="width:3em" maxlength="6" autocomplete="off" spellcheck="false" data-k="g3" data-label="1.3 The spring pushes the beacon a___." aria-label="Step 3: a___">.</p></div>
+  <div class="srow q"><span class="gn">4</span><p>The cover is e<input type="text" class="hw-field hw-gap" style="width:5em" maxlength="9" autocomplete="off" spellcheck="false" data-k="g4" data-label="1.4 The cover is e___." aria-label="Step 4: e___">.</p></div>
+  <div class="srow q"><span class="gn">5</span><p>The beacon moves out of r<input type="text" class="hw-field hw-gap" style="width:3.6em" maxlength="7" autocomplete="off" spellcheck="false" data-k="g5" data-label="1.5 The beacon moves out of r___ of the magnet." aria-label="Step 5: r___"> of the&nbsp;magnet.</p></div>
+  <div class="srow q"><span class="gn">6</span><p>The beacon s<input type="text" class="hw-field hw-gap" style="width:5.7em" maxlength="10" autocomplete="off" spellcheck="false" data-k="g6" data-label="1.6 The beacon s___ itself on." aria-label="Step 6: s___"> itself&nbsp;on.</p></div>
+  <div class="srow q"><span class="gn">7</span><p>The beacon t<input type="text" class="hw-field hw-gap" style="width:6.3em" maxlength="11" autocomplete="off" spellcheck="false" data-k="g7" data-label="1.7 The beacon t___ a signal to the satellite." aria-label="Step 7: t___"> a signal to the&nbsp;satellite.</p></div>
+</section>
+
+<section class="part">
+  <div class="plabel">Part 2 &middot; Polite questions</div>
+  <p class="instr">Finish each one: normal order, not question&nbsp;order.</p>
+  <div class="model"><span class="mlabel">Like this</span><p class="mphrase">What&rsquo;s the problem?<span class="arrow">&rarr;</span>I don&rsquo;t know <span class="filled">what the problem is.</span></p><p class="mphrase">What does this machine do?<span class="arrow">&rarr;</span>Could you explain <span class="filled">what this machine does?</span></p></div>
+  <div class="pq q"><span class="gn">1</span><div class="pbody"><p class="direct">What colour is this&nbsp;paint?</p><p class="polite">Could you tell me <input type="text" class="hw-field ptype" autocomplete="off" data-k="p1" data-label="2.1 What colour is this paint? Could you tell me ___?" aria-label="Could you tell me ..."></p></div></div>
+  <div class="pq q"><span class="gn">2</span><div class="pbody"><p class="direct">How hot does this furnace&nbsp;get?</p><p class="polite">Do you know <input type="text" class="hw-field ptype" autocomplete="off" data-k="p2" data-label="2.2 How hot does this furnace get? Do you know ___?" aria-label="Do you know ..."></p></div></div>
+  <div class="pq q"><span class="gn">3</span><div class="pbody"><p class="direct">Why was my bedroom&nbsp;blue?</p><p class="polite">Can you explain <input type="text" class="hw-field ptype" autocomplete="off" data-k="p3" data-label="2.3 Why was my bedroom blue? Can you explain ___?" aria-label="Can you explain ..."></p></div></div>
+</section>
+
+<section class="part">
+  <div class="plabel">Part 3 &middot; Catch the will</div>
+  <p class="instr">Correct or mistake? Choose for each&nbsp;sentence.</p>
+  <p class="note">Check the verb after&nbsp;if.</p>
+  <div class="model"><span class="mlabel">Like this</span><p class="mphrase">If I will tell him, he&rsquo;ll say okay. <span class="filled">Mistake</span></p><p class="mfix">Fixed: <b>If I tell him, he&rsquo;ll say&nbsp;okay.</b></p></div>
+  <div class="sq q"><span class="gn">1</span><div class="crow"><p>If the kitchen wall will be ready next week, my mum will be&nbsp;happy.</p><select class="hw-field pick" data-k="c1" data-label="3.1 If the kitchen wall will be ready next week, my mum will be happy." aria-label="Sentence 1: correct or mistake"><option value="">Choose</option><option value="Correct">Correct</option><option value="Mistake">Mistake</option></select><span class="popt">(Correct / Mistake)</span></div></div>
+  <div class="sq q"><span class="gn">2</span><div class="crow"><p>We will send the handles back if they bend&nbsp;again.</p><select class="hw-field pick" data-k="c2" data-label="3.2 We will send the handles back if they bend again." aria-label="Sentence 2: correct or mistake"><option value="">Choose</option><option value="Correct">Correct</option><option value="Mistake">Mistake</option></select><span class="popt">(Correct / Mistake)</span></div></div>
+  <div class="sq q"><span class="gn">3</span><div class="crow"><p>If the ship sinks below four metres, the HRU cuts the&nbsp;rod.</p><select class="hw-field pick" data-k="c3" data-label="3.3 If the ship sinks below four metres, the HRU cuts the rod." aria-label="Sentence 3: correct or mistake"><option value="">Choose</option><option value="Correct">Correct</option><option value="Mistake">Mistake</option></select><span class="popt">(Correct / Mistake)</span></div></div>
+  <div class="sq q"><span class="gn">4</span><div class="crow"><p>If we will move this winter, I&rsquo;ll take all my wigs with&nbsp;me.</p><select class="hw-field pick" data-k="c4" data-label="3.4 If we will move this winter, I'll take all my wigs with me." aria-label="Sentence 4: correct or mistake"><option value="">Choose</option><option value="Correct">Correct</option><option value="Mistake">Mistake</option></select><span class="popt">(Correct / Mistake)</span></div></div>
+  <div class="sq q"><span class="gn">5</span><div class="crow"><p>If the new paint will look wrong again, Mum will call another&nbsp;builder.</p><select class="hw-field pick" data-k="c5" data-label="3.5 If the new paint will look wrong again, Mum will call another builder." aria-label="Sentence 5: correct or mistake"><option value="">Choose</option><option value="Correct">Correct</option><option value="Mistake">Mistake</option></select><span class="popt">(Correct / Mistake)</span></div></div>
+  <div class="sq q"><span class="gn">6</span><div class="crow"><p>If the kitchen wall looks fine, we&rsquo;ll choose the&nbsp;furniture.</p><select class="hw-field pick" data-k="c6" data-label="3.6 If the kitchen wall looks fine, we'll choose the furniture." aria-label="Sentence 6: correct or mistake"><option value="">Choose</option><option value="Correct">Correct</option><option value="Mistake">Mistake</option></select><span class="popt">(Correct / Mistake)</span></div></div>
+</section>
+
+<section class="part">
+  <div class="plabel">Part 4 &middot; Your turn</div>
+  <div class="wq q"><span class="gn">1</span><div class="wbody"><p class="winstr">Write one sentence about your flat. The builders did the&nbsp;work.</p><p class="wmodel">Like this: <b>We had our car fixed last&nbsp;week.</b></p><textarea class="hw-field resp" rows="2" data-k="w1" data-label="4.1 Your flat: we had our ... painted / fixed" aria-label="Sentence about your flat" placeholder="Type your answer here"></textarea></div></div>
+  <div class="wq q"><span class="gn">2</span><div class="wbody"><p class="winstr">Write one sentence about your weekend with&nbsp;if.</p><p class="wmodel">Like this: <b>If the shop is closed, I&rsquo;ll buy it&nbsp;online.</b></p><textarea class="hw-field resp" rows="2" data-k="w2" data-label="4.2 Your weekend: If ..., I'll ..." aria-label="Sentence about your weekend" placeholder="Type your answer here"></textarea></div></div>
+</section>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJsYSI6IHsidCI6ICJleGFjdCIsICJhIjogImV2ZXIifSwgImcxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY3RpdmF0ZXMifSwgImczIjogeyJ0IjogImV4YWN0IiwgImEiOiAid2F5In0sICJnNCI6IHsidCI6ICJleGFjdCIsICJhIjogImplY3RlZCJ9LCAiZzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhbmdlIn0sICJnNiI6IHsidCI6ICJleGFjdCIsICJhIjogIndpdGNoZXMifSwgImc3IjogeyJ0IjogImV4YWN0IiwgImEiOiAicmFuc21pdHMifSwgInAxIjogeyJ0IjogIm9wZW4ifSwgInAyIjogeyJ0IjogIm9wZW4ifSwgInAzIjogeyJ0IjogIm9wZW4ifSwgImMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiTWlzdGFrZSJ9LCAiYzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJDb3JyZWN0In0sICJjMyI6IHsidCI6ICJleGFjdCIsICJhIjogIkNvcnJlY3QifSwgImM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiTWlzdGFrZSJ9LCAiYzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJNaXN0YWtlIn0sICJjNiI6IHsidCI6ICJleGFjdCIsICJhIjogIkNvcnJlY3QifSwgIncxIjogeyJ0IjogIm9wZW4ifSwgIncyIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261013-pdf-sections"></script>
+</body>
+</html>

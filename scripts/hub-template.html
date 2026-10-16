@@ -16,8 +16,7 @@ header{padding:46px 0 28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-tra
 @media(max-width:620px){.wrap{padding:20px 20px 36px}.top{gap:12px;padding-bottom:18px}.top a{font-size:12px}.brand{font-size:12px}header{padding:32px 0 24px}.intro{font-size:16px}.tools{align-items:stretch;flex-direction:column;gap:10px}.search{max-width:none}.grid{grid-template-columns:1fr;gap:16px}.card{padding:22px}.person{margin-bottom:20px}.count{font-size:13px}.actions .btn{flex:1}.foot{font-size:12px}}
 .submitted{margin-top:12px;color:#336a60;border-color:#c4dacf;background:#eff6f2}.submitted:hover{background:#e2eee7}.submission-note{font-size:12px;color:var(--muted);margin:8px 0 0;text-wrap:pretty}.history-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}.history-actions .submitted{margin:0;font-size:12px;padding:7px 10px;min-height:38px}.older>div:first-child{min-width:0}.older .label{margin:4px 0}.older{align-items:flex-start}
 
-.completion{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex:0 0 28px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer;vertical-align:middle}
-.completion:hover{background:#f3f1ea}
+.completion{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex:0 0 28px;padding:0;border:0;border-radius:50%;background:transparent;vertical-align:middle}
 .completion-dot{display:block;width:18px;height:18px;border-radius:50%;background:#c8cbc7;box-shadow:inset 0 0 0 1px #00000012}
 .completion[data-complete="false"] .completion-dot{background:#e1b32a}
 .completion[data-complete="true"] .completion-dot{background:#309757}
@@ -60,44 +59,37 @@ async function copyLink(url,button){
 }
 function copyButton(page,name){const b=el('button','btn copy','Copy link');b.type='button';b.setAttribute('aria-label','Copy link: '+name+' — '+page.title);b.addEventListener('click',()=>copyLink(page.url,b));return b}
 function submittedLink(page,name){if(!page.reviewUrl)return null;const a=el('a','btn submitted','Review work ↗');a.href=page.reviewUrl;a.target='_blank';a.rel='noreferrer';a.setAttribute('aria-label','Review work: '+name+' — '+page.title);return a}
-// Completion is a teacher's local note, not a claim about backend submissions.
-const completionStorage='homework-hub-completion-v1';
-function readCompletion(){
-  const parsed=JSON.parse(localStorage.getItem(completionStorage)||'{}');
-  if(!parsed||typeof parsed!=='object'||Array.isArray(parsed))throw new Error('Invalid completion data');
-  return parsed;
-}
+// Status comes only from the private submission archive, never browser marks.
 let completed={};
-try{completed=readCompletion()}catch(error){document.getElementById('status').textContent='Could not load completion marks. Please allow this browser to store site data.'}
-function completionKey(page){return page.sheetId||page.url}
 function syncCompletion(){
-  document.querySelectorAll('button.completion').forEach(button=>{
-    const value=completed[button.dataset.completionKey];
-    const known=typeof value==='boolean',done=value===true;
-    button.dataset.complete=known?String(value):'unknown';
-    button.setAttribute('aria-pressed',known?String(done):'mixed');
-    button.setAttribute('aria-label',button.dataset.assignment+': '+(done?'Completed. Mark as incomplete.':known?'Not completed. Mark as complete.':'Not yet verified. Mark as complete.'));
+  document.querySelectorAll('.completion').forEach(indicator=>{
+    const value=completed[indicator.dataset.completionKey];
+    indicator.dataset.complete=typeof value==='boolean'?String(value):'unknown';
+    indicator.setAttribute('aria-label',indicator.dataset.assignment+': '+(value===true?'Submitted':value===false?'Not submitted':'Checking submission'));
   });
 }
 function completionButton(page,name){
-  const button=el('button','completion');button.type='button';button.lang='en';
-  button.dataset.completionKey=completionKey(page);button.dataset.assignment=name+' — '+page.title;
-  const dot=el('span','completion-dot');dot.setAttribute('aria-hidden','true');button.append(dot);
-  button.addEventListener('click',()=>{
-    try{
-      // Re-read before writing so changes in another open tab are retained.
-      const next=readCompletion(),key=button.dataset.completionKey;
-      next[key]=next[key]!==true;
-      localStorage.setItem(completionStorage,JSON.stringify(next));completed=next;syncCompletion();
-      clearTimeout(feedbackTimer);document.getElementById('status').textContent='';
-    }catch(error){document.getElementById('status').textContent='Not saved: browser storage is blocked. Try a regular browser window.'}
-  });
-  return button;
+  const indicator=el('span','completion');indicator.setAttribute('role','img');indicator.lang='en';
+  indicator.dataset.completionKey=page.sheetId||page.url;indicator.dataset.assignment=name+' — '+page.title;
+  const dot=el('span','completion-dot');dot.setAttribute('aria-hidden','true');indicator.append(dot);
+  return indicator;
 }
-window.addEventListener('storage',event=>{
-  if(event.key!==completionStorage&&event.key!==null)return;
-  try{completed=readCompletion();syncCompletion()}catch(error){document.getElementById('status').textContent='Could not update completion marks from another tab.'}
-});
+let checkingCompletion=false;
+function refreshCompletion(){
+  if(checkingCompletion||document.hidden)return;
+  if(!(window.google&&google.script&&google.script.run))return;
+  checkingCompletion=true;
+  const ids=[...new Set(data.students.flatMap(s=>s.pages.map(p=>p.sheetId)).filter(Boolean))];
+  google.script.run.withSuccessHandler(result=>{
+    checkingCompletion=false;
+    if(!result||!result.states||ids.some(id=>typeof result.states[id]!=='boolean')){completionFailed();return;}
+    completed=result.states;syncCompletion();document.getElementById('status').textContent='';
+  }).withFailureHandler(()=>{checkingCompletion=false;completionFailed()}).getHomeworkCompletion(ids);
+}
+function completionFailed(){
+  completed={};syncCompletion();
+  document.getElementById('status').textContent='Could not check submissions. Retrying automatically.';
+}
 function formatDate(date){return date?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(date+'T12:00:00Z')):''}
 function titleFor(page){return page.title.replace(/\d{4}-\d{2}-\d{2}|\d{1,2} [A-Za-z]+ \d{4}|\(test\)/gi,'').replace(/[·|]\s*$/,'').trim()||'Homework'}
 for(const student of data.students){
@@ -128,6 +120,15 @@ for(const student of data.students){
 function filter(){const q=search.value.trim().toLocaleLowerCase();let visible=0;for(const card of grid.children){card.hidden=!card.dataset.name.includes(q);if(!card.hidden)visible++}document.getElementById('count').textContent=q?`Found: ${visible}`:`Students: ${data.students.length} · Assignments: ${data.students.reduce((n,s)=>n+s.pages.length,0)}`;document.getElementById('empty').hidden=visible!==0}
 syncCompletion();
 search.addEventListener('input',filter);filter();
+if(window.google&&google.script&&google.script.run){
+  refreshCompletion();setInterval(refreshCompletion,60000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshCompletion()});
+  window.addEventListener('focus',refreshCompletion);
+}else{
+  // The existing bookmark opens the same dashboard inside the private teacher app.
+  location.replace(data.reviewApp+'?hub=1'+location.hash);
+}
+
 </script>
 </body>
 </html>

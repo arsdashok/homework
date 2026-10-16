@@ -16,7 +16,7 @@ homework date, newest first, with alphabetical ties. Undated and demo-only pupil
 come last. Titles containing “test” are labelled as
 test pages and come after normal assignments. Only pupils with published pages
 are listed. No answer fields, submissions or answer keys are read by this index.
-Completion is a manual teacher note stored in the current browser (see below).
+Completion is fetched from the private submission archive (see below).
 
 To preview the generated HTML locally:
 
@@ -95,28 +95,28 @@ Vocabulary answers d1–d3 are copied from the old browser draft only if missing
 the old draft and archived submissions are preserved. The local private key
 file includes d1–d3 for the existing private-key upload workflow.
 
-## Manual completion status
+## Automatic submission status
 
-Each assignment has an unlabelled yellow / green indicator button, in both the
-latest card and homework history, inline beside the date with no extra status row. Unverified assignments start neutral grey, never yellow.
-Yellow requires an explicit incomplete mark; green requires a completion mark.
-Clicking changes only that assignment. The duplicate latest/history buttons stay
-in sync; English accessible labels and `aria-pressed` supplement the coloured dot.
-There is no visible status label, legend, tooltip or success toast.
+The existing hub bookmark opens the same dashboard inside the owner-only Apps
+Script review app (`?hub=1`). That app fetches the public assignment index and calls
+`getHomeworkCompletion` with the listed sheet IDs. Every status RPC verifies the
+active teacher identity before reading private Drive folders. No answers, keys or
+submission records are published in this repository.
 
-Marks are stored under `homework-hub-completion-v1` in localStorage, keyed by
-`sheetId` (URL fallback for legacy pages). Rebuilds and deployments preserve them.
-Other tabs in the same browser update through the storage event. Writes merge the
-latest stored map; failures are reported without falsely changing the UI.
+A non-interactive dot sits beside each assignment date: green when a real saved
+submission exists, yellow when the archive has none. Old answers.txt records and
+structured submissions both count; scores and unanswered fields do not determine
+submission status. Demo/storage-check records are excluded. Grey means loading or
+unavailable, never an assertion that the pupil has not submitted.
 
-A missing key means unknown; explicit false means incomplete, true means complete.
-Previously saved true marks are preserved. Historical marks can be reconciled against
-actual submission evidence in the teacher’s browser; never infer completion from scores
-or copy private submission records into this public repository.
+Statuses refresh on opening, every minute while visible, and when returning to
+the tab. No manual toggles or browser completion marks are used. Existing local
+marks are ignored, without deleting browser data. The same archive supplies all
+browsers/devices signed in to the teacher account.
 
-These marks do not sync between browsers/devices, are removed if site data is
-cleared, and are not automatically set by pupil submissions. This limitation was explained to Dasha; keep the interface minimal. No completion data is committed to the public repository or sent
-to a server. The private review app remains the source of submitted work.
+The private server implementation and `check_completion.cjs` live in
+`Admin/Homework backend/`. Keep both existing deployments on the tested version,
+retain Only myself for the teacher endpoint, and retain active-user authorization
+for every teacher RPC. The public pupil submission route is unchanged.
 
-Test with a local server using `node scripts/check_hub_status.cjs` (set
-`HUB_TEST_URL` to the generated local hub URL when not using port 8778).
+UI tests: `node scripts/check_hub_status.cjs` with the local hub on port 8778.

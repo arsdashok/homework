@@ -98,7 +98,7 @@ file includes d1–d3 for the existing private-key upload workflow.
 ## Automatic submission status
 
 The existing hub bookmark opens the same dashboard inside the owner-only Apps
-Script review app (`?hub=1`). That app fetches the public assignment index and calls
+Script review app (`?hub=1`). Its browser UI fetches public data.json assignment metadata and calls
 `getHomeworkCompletion` with the listed sheet IDs. Every status RPC verifies the
 active teacher identity before reading private Drive folders. No answers, keys or
 submission records are published in this repository.

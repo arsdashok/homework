@@ -263,8 +263,7 @@ div.sent.long { min-height:96px; }
 /* ===== 17 Oct additions: four tools, four bins, tap-the-digit ===== */
 .tool.span2 { grid-column:1 / -1; }
 .tool-for { font-size:12px; font-weight:400; color:#587369; }
-.nb.because, .arow .nb.because { width:420px; max-width:100%; text-align:left; padding:0 10px; }
-@media screen and (max-width:620px){ .tool.span2 { grid-column:auto; } .nb.because { width:100%; } }
+@media screen and (max-width:620px){ .tool.span2 { grid-column:auto; } }
 .yt { font-size:13px; font-weight:700; color:#285E49; margin-right:8px; }
 @media screen { .yt { font-size:16px; } }
 .tools { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; margin-top:4px; }
@@ -322,6 +321,14 @@ div.sent.long { min-height:96px; }
  .chainrow .nb { margin-left:0; }
  .digits .cn { font-size:20px; padding:2px 7px; }
 }
+
+/* Three registers (Dasha, 17 Oct 2026): theory, worked example and task must not look alike. */
+.tool { background:#F3FAF6; border:0; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; }
+.tool-ex { display:block; margin-top:6px; padding:4px 10px; background:#FFF6DC; border-radius:6px; }
+.model { background:#FFF6DC; border-left:4px solid #F2B84B; border-radius:0 8px 8px 0; }
+.model .ex-title { color:#8A5A00; }
+.tool-ex b, .model b { color:#7A4E00; }
+.claim { background:#FFFFFF; border:1.5px solid #A5DDC7; border-radius:10px; }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -349,7 +356,7 @@ div.sent.long { min-height:96px; }
       <div class="tool"><p class="tool-name">Bonds</p><p class="tool-when">The parts make a round number.</p><p class="tool-ex"><span class="nw">3,600 + 6,400</span> → 600 + 400 <span class="nw">makes a thousand → <b>10,000</b></span></p></div>
       <div class="tool"><p class="tool-name">Count up</p><p class="tool-when">The two numbers are close.</p><p class="tool-ex"><span class="nw">9,004 − 8,995</span> → 5 to 9,000, then 4 more → <b>9</b></p></div>
       <div class="tool"><p class="tool-name">Known facts</p><p class="tool-when">A small fact does the work.</p><p class="tool-ex">34 + 52 = 86, so <span class="nw">34,000 + 52,000</span> = <b class="nw">86,000</b></p></div>
-      <div class="tool span2"><p class="tool-name">Same difference <span class="tool-for">(for take away)</span></p><p class="tool-when">Move both numbers the same way. The gap stays the&nbsp;same.</p><p class="tool-ex"><span class="nw">9,005 − 3,998</span> → take 5 from both → <span class="nw">9,000 − 3,993 = <b>5,007</b></span></p></div>
+      <div class="tool span2"><p class="tool-name">Same difference <span class="tool-for">(for take away)</span></p><p class="tool-when">Change both numbers by the same amount so the number you take away is round. The gap stays the&nbsp;same.</p><p class="tool-ex"><span class="nw">9,005 − 3,998</span> → add 2 to both → <span class="nw">9,007 − 4,000 = <b>5,007</b></span></p></div>
     </div>
   </div>
 
@@ -393,44 +400,47 @@ div.sent.long { min-height:96px; }
     <div class="sec-head"><span class="subj">Maths</span><span class="note">same difference · choose a tool</span></div>
     <div class="task-label">Subtracting: move both numbers the same way</div>
     <p class="lead">Is Ava right? Then type the&nbsp;answer.</p>
-    <div class="model"><p class="ex-title">Like this</p><p><span class="nw">7,003 − 2,998</span> → I take 3 from both numbers: <span class="nw">7,000 − 2,995</span> = <b class="nw">4,005</b>. The gap between them stays the&nbsp;same.</p></div>
+    <div class="model"><p class="ex-title">Like this</p><p><span class="nw">7,003 − 2,998</span> → I add 2 to both numbers: <span class="nw">7,005 − 3,000</span> = <b class="nw">4,005</b>. The gap between them stays the&nbsp;same.</p></div>
     <div class="claim">
       <span class="who">Ava</span>
-      <p class="said">“3,004 − 1,498 = 3,000 − 1,494. I took 4 from both&nbsp;numbers.”</p>
+      <p class="said">“3,004 − 1,498 = 3,006 − 1,500. I added 2 to both&nbsp;numbers.”</p>
     </div>
     <div class="q">
       <div class="q-top"><div class="q-num">3</div><div class="arow ask tight">
-        <span class="choice-wrap is-empty"><select data-k="v_v" data-label="3. Ava: 3,004 − 1,498 = 3,000 − 1,494. Is she right?" aria-label="3. Is Ava right?" class="hw-field"><option value="">Choose</option><option value="Ava is right">Ava is right</option><option value="Ava is wrong">Ava is wrong</option></select><span class="circle-opt">right &nbsp;/&nbsp; wrong</span></span>
+        <span class="choice-wrap is-empty"><select data-k="v_v" data-label="3. Ava: 3,004 − 1,498 = 3,006 − 1,500. Is she right?" aria-label="3. Is Ava right?" class="hw-field"><option value="">Choose</option><option value="Ava is right">Ava is right</option><option value="Ava is wrong">Ava is wrong</option></select><span class="circle-opt">right &nbsp;/&nbsp; wrong</span></span>
         <span class="cap2">3,004 − 1,498&nbsp;=</span>
         <input class="hw-field nb wide" data-k="v_a" data-label="3. 3,004 − 1,498: the answer" aria-label="3. The answer" autocomplete="off" spellcheck="false">
       </div></div>
     </div>
     </div>
     <div class="q">
-      <div class="q-top"><div class="q-num">4</div><p class="prompt sum"><span class="yt">Your turn: take the same from both.</span> 6,002 − 3,497</p></div>
+      <div class="q-top"><div class="q-num">4</div><p class="prompt sum"><span class="yt">Your turn: add the same to both.</span> 6,002 − 3,497</p></div>
       <div class="arow">
-        <span class="cap2">= 6,000&nbsp;−</span>
-        <input class="hw-field nb" data-k="sd4_r" data-label="4. 6,002 − 3,497 = 6,000 − ___" aria-label="4. The new number to take away" autocomplete="off" spellcheck="false">
+        <span class="cap2">=</span>
+        <input class="hw-field nb" data-k="sd4_m" data-label="4. 6,002 − 3,497 = ___ − 3,500" aria-label="4. The new first number" autocomplete="off" spellcheck="false">
+        <span class="cap2">−&nbsp;3,500</span>
         <span class="op">=</span>
         <input class="hw-field nb wide" data-k="sd4_a" data-label="4. 6,002 − 3,497: answer" aria-label="4. Answer" autocomplete="off" spellcheck="false">
       </div>
     </div>
     <div class="q">
-      <div class="q-top"><div class="q-num">5</div><p class="prompt sum"><span class="yt">Your turn: take the same from both.</span> 8,003 − 4,996</p></div>
+      <div class="q-top"><div class="q-num">5</div><p class="prompt sum"><span class="yt">Your turn: add the same to both.</span> 8,003 − 4,996</p></div>
       <div class="arow">
-        <span class="cap2">= 8,000&nbsp;−</span>
-        <input class="hw-field nb" data-k="sd5_r" data-label="5. 8,003 − 4,996 = 8,000 − ___" aria-label="5. The new number to take away" autocomplete="off" spellcheck="false">
+        <span class="cap2">=</span>
+        <input class="hw-field nb" data-k="sd5_m" data-label="5. 8,003 − 4,996 = ___ − 5,000" aria-label="5. The new first number" autocomplete="off" spellcheck="false">
+        <span class="cap2">−&nbsp;5,000</span>
         <span class="op">=</span>
         <input class="hw-field nb wide" data-k="sd5_a" data-label="5. 8,003 − 4,996: answer" aria-label="5. Answer" autocomplete="off" spellcheck="false">
       </div>
     </div>
     <div class="q">
-      <div class="q-top"><div class="q-num">6</div><p class="prompt sum"><span class="yt">Your turn: take the same from both.</span> 5,002 − 2,348</p></div>
+      <div class="q-top"><div class="q-num">6</div><p class="prompt sum"><span class="yt">Your turn: add the same to both.</span> 5,032 − 1,297</p></div>
       <div class="arow">
-        <span class="cap2">= 5,000&nbsp;−</span>
-        <input class="hw-field nb" data-k="sd6_r" data-label="6. 5,002 − 2,348 = 5,000 − ___" aria-label="6. The new number to take away" autocomplete="off" spellcheck="false">
+        <span class="cap2">=</span>
+        <input class="hw-field nb" data-k="sd6_m" data-label="6. 5,032 − 1,297 = ___ − 1,300" aria-label="6. The new first number" autocomplete="off" spellcheck="false">
+        <span class="cap2">−&nbsp;1,300</span>
         <span class="op">=</span>
-        <input class="hw-field nb wide" data-k="sd6_a" data-label="6. 5,002 − 2,348: answer" aria-label="6. Answer" autocomplete="off" spellcheck="false">
+        <input class="hw-field nb wide" data-k="sd6_b" data-label="6. 5,032 − 1,297: answer" aria-label="6. Answer" autocomplete="off" spellcheck="false">
       </div>
     </div>
   </div>
@@ -450,7 +460,6 @@ div.sent.long { min-height:96px; }
       <div class="q-top"><div class="q-num">8</div><div class="rowq"><p class="prompt sum">210,000 + 560,000</p><span class="pick">
         <span class="choice-wrap is-empty"><select data-k="t8" data-label="8. 210,000 + 560,000: tool" aria-label="8. Tool" class="hw-field"><option value="">Tool</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select><span class="circle-opt">compensate / bonds / count up / known facts / same&nbsp;difference</span></span>
         <input class="hw-field nb wide" data-k="a8" data-label="8. 210,000 + 560,000: answer" aria-label="8. Answer" autocomplete="off" spellcheck="false"></span></div></div>
-      <div class="arow"><span class="cap">because</span><input class="hw-field nb because" data-k="why8" data-label="8. 210,000 + 560,000: why this tool" aria-label="8. Because" autocomplete="off" spellcheck="false"></div>
     </div>
     <div class="q">
       <div class="q-top"><div class="q-num">9</div><div class="rowq"><p class="prompt sum">37,999 + 25,300</p><span class="pick">
@@ -461,7 +470,6 @@ div.sent.long { min-height:96px; }
       <div class="q-top"><div class="q-num">10</div><div class="rowq"><p class="prompt sum">4,001 − 3,976</p><span class="pick">
         <span class="choice-wrap is-empty"><select data-k="t10" data-label="10. 4,001 − 3,976: tool" aria-label="10. Tool" class="hw-field"><option value="">Tool</option><option value="compensate">compensate</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select><span class="circle-opt">compensate / bonds / count up / known facts / same&nbsp;difference</span></span>
         <input class="hw-field nb wide" data-k="a10" data-label="10. 4,001 − 3,976: answer" aria-label="10. Answer" autocomplete="off" spellcheck="false"></span></div></div>
-      <div class="arow"><span class="cap">because</span><input class="hw-field nb because" data-k="why10" data-label="10. 4,001 − 3,976: why this tool" aria-label="10. Because" autocomplete="off" spellcheck="false"></div>
     </div>
     <div class="q">
       <div class="q-top"><div class="q-num">11</div><div class="rowq"><p class="prompt sum">2,750 + 4,250</p><span class="pick">
@@ -784,7 +792,7 @@ div.sent.long { min-height:96px; }
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJmX3YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJGaW5uIGlzIHdyb25nIn0sICJ5MV9yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiwwMDAifSwgInZfdiI6IHsidCI6ICJleGFjdCIsICJhIjogIkF2YSBpcyByaWdodCJ9LCAiZl9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSw0NDkifSwgInkxX2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4LDMzOSJ9LCAidl9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMSw1MDYifSwgInNkNF9yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyw0OTUifSwgInNkNF9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiw1MDUifSwgInNkNV9yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCw5OTMifSwgInNkNV9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMywwMDcifSwgInNkNl9yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiwzNDYifSwgInNkNl9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiw2NTQifSwgImE3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTcifSwgImE4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzcwLDAwMCJ9LCAiYTkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MywyOTkifSwgImExMCI6IHsidCI6ICJleGFjdCIsICJhIjogIjI1In0sICJhMTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3LDAwMCJ9LCAiYTEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzEsNDQ5In0sICJjX2FucyI6IHsidCI6ICJleGFjdCIsICJhIjogIjMzNSw3MjQifSwgInQ3IjogeyJ0IjogIm9wZW4ifSwgInQ4IjogeyJ0IjogIm9wZW4ifSwgInQ5IjogeyJ0IjogIm9wZW4ifSwgInQxMCI6IHsidCI6ICJvcGVuIn0sICJ0MTEiOiB7InQiOiAib3BlbiJ9LCAidDEyIjogeyJ0IjogIm9wZW4ifSwgIndoeTgiOiB7InQiOiAib3BlbiJ9LCAid2h5MTAiOiB7InQiOiAib3BlbiJ9LCAiZDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJodW5kcmVkcyJ9LCAicjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzNTcsMDAwIn0sICJkMiI6IHsidCI6ICJleGFjdCIsICJhIjogInRob3VzYW5kcyJ9LCAicjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NDAsMDAwIn0sICJkNSI6IHsidCI6ICJleGFjdCIsICJhIjogInRob3VzYW5kcyJ9LCAicjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyODAsMDAwIn0sICJkNiI6IHsidCI6ICJleGFjdCIsICJhIjogImh1bmRyZWRzIn0sICJyNiI6IHsidCI6ICJleGFjdCIsICJhIjogIjUyNywwMDAifSwgIm4xN19sbyI6IHsidCI6ICJleGFjdCIsICJhIjogIjYwOSwwMDAifSwgIm4xN19oaSI6IHsidCI6ICJleGFjdCIsICJhIjogIjYxMCwwMDAifSwgIm4xN19yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjEwLDAwMCJ9LCAibjE4X2xvIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTg0LDAwMCJ9LCAibjE4X2hpIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTg1LDAwMCJ9LCAibjE4X3IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxODQsMDAwIn0sICJjX3IxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjIwLDAwMCJ9LCAiY19yMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjI5MCwwMDAifSwgImNfZXN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzMwLDAwMCJ9LCAiY19jbG9zZSI6IHsidCI6ICJvcGVuIn0sICJwMSI6IHsidCI6ICJvcGVuIn0sICJ3MSI6IHsidCI6ICJleGFjdCIsICJhIjogIndobyJ9LCAidzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgInczIjogeyJ0IjogImV4YWN0IiwgImEiOiAid2hpY2gifSwgInc0IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2hpY2gifSwgInc1IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2hvIn0sICJ3NiI6IHsidCI6ICJleGFjdCIsICJhIjogIndoaWNoIn0sICJ3NyI6IHsidCI6ICJleGFjdCIsICJhIjogIndoaWNoIn0sICJ3OCI6IHsidCI6ICJleGFjdCIsICJhIjogIndobyJ9fQ==</script>
+<script type="application/json" id="hw-check">eyJmX3YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJGaW5uIGlzIHdyb25nIn0sICJ5MV9yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiwwMDAifSwgInZfdiI6IHsidCI6ICJleGFjdCIsICJhIjogIkF2YSBpcyByaWdodCJ9LCAiZl9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSw0NDkifSwgInkxX2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4LDMzOSJ9LCAidl9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMSw1MDYifSwgInNkNF9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiw1MDUifSwgInNkNV9hIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMywwMDcifSwgImE3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTcifSwgImE4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzcwLDAwMCJ9LCAiYTkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MywyOTkifSwgImExMCI6IHsidCI6ICJleGFjdCIsICJhIjogIjI1In0sICJhMTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3LDAwMCJ9LCAiYTEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzEsNDQ5In0sICJjX2FucyI6IHsidCI6ICJleGFjdCIsICJhIjogIjMzNSw3MjQifSwgInQ3IjogeyJ0IjogIm9wZW4ifSwgInQ4IjogeyJ0IjogIm9wZW4ifSwgInQ5IjogeyJ0IjogIm9wZW4ifSwgInQxMCI6IHsidCI6ICJvcGVuIn0sICJ0MTEiOiB7InQiOiAib3BlbiJ9LCAidDEyIjogeyJ0IjogIm9wZW4ifSwgImQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiaHVuZHJlZHMifSwgInIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzU3LDAwMCJ9LCAiZDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aG91c2FuZHMifSwgInIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAiZDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aG91c2FuZHMifSwgInI1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjgwLDAwMCJ9LCAiZDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJodW5kcmVkcyJ9LCAicjYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1MjcsMDAwIn0sICJuMTdfbG8iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MDksMDAwIn0sICJuMTdfaGkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MTAsMDAwIn0sICJuMTdfciI6IHsidCI6ICJleGFjdCIsICJhIjogIjYxMCwwMDAifSwgIm4xOF9sbyI6IHsidCI6ICJleGFjdCIsICJhIjogIjE4NCwwMDAifSwgIm4xOF9oaSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE4NSwwMDAifSwgIm4xOF9yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTg0LDAwMCJ9LCAiY19yMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjYyMCwwMDAifSwgImNfcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyOTAsMDAwIn0sICJjX2VzdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjMzMCwwMDAifSwgImNfY2xvc2UiOiB7InQiOiAib3BlbiJ9LCAicDEiOiB7InQiOiAib3BlbiJ9LCAidzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgIncyIjogeyJ0IjogImV4YWN0IiwgImEiOiAid2hvIn0sICJ3MyI6IHsidCI6ICJleGFjdCIsICJhIjogIndoaWNoIn0sICJ3NCI6IHsidCI6ICJleGFjdCIsICJhIjogIndoaWNoIn0sICJ3NSI6IHsidCI6ICJleGFjdCIsICJhIjogIndobyJ9LCAidzYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCJ9LCAidzciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCJ9LCAidzgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgInNkNF9tIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiwwMDUifSwgInNkNV9tIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOCwwMDcifSwgInNkNl9tIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSwwMzUifSwgInNkNl9iIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyw3MzUifX0=</script>
 <script src="../assets/hw.js?v=20261013-pdf-sections"></script>
 </body>
 </html>

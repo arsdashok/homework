@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Shaurya &middot; Maths homework &middot; 17 October 2026</title><style>
+@page{size:A4;margin:12mm 14mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Rubik','Segoe UI',Arial,sans-serif;font-size:17px;line-height:1.55;color:#1f2937;background:white;max-width:1180px;margin:0 auto;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:2px solid #8072b2;padding-bottom:12px;margin-bottom:28px}
+h1{font-size:22px;font-weight:700}
+header span{font-size:14px;color:#4b5563}
+h2{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#64518e;margin-bottom:6px}
+.instruction{font-size:21px;font-weight:700;line-height:1.35;color:#111827;margin:0 0 6px;text-wrap:pretty}
+.context{font-size:18px;font-weight:400;color:#1f2937;margin:0 0 6px;text-wrap:pretty}
+.note{font-size:14px;color:#6b7280;margin:0 0 6px}
+section{margin-bottom:34px}
+h2,.instruction{break-after:avoid;page-break-after:avoid}
+.q{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;padding:16px 0;border-bottom:1px solid #d8d9df;break-inside:avoid;page-break-inside:avoid}
+section .q:last-child{border-bottom:0}
+.qnum{font-size:18px;color:#6b7280}
+.prompt{font-size:18px;line-height:1.5;font-weight:400;margin-bottom:10px;text-wrap:pretty}
+.prompt b{font-weight:600}
+.rowq{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.rowq .prompt{margin-bottom:0}
+.subs{display:flex;flex-direction:column}
+.sub{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:10px 0;border-top:1px dashed #e2e4ea}
+.sub:first-child{border-top:0;padding-top:2px}
+.sub .lab{font-size:15px;color:#6b7280;margin-right:10px}
+.sub .num{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctrls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+.unit{font-size:16px;color:#4b5563;margin-left:6px}
+.subs.cols2 .sub,.subs.cols2 .ctrls{justify-content:flex-start}
+.fin{width:120px;max-width:100%;font:inherit;font-size:18px;min-height:40px;border:1px solid #9ca3af;border-radius:6px}
+.fin.list{width:460px}
+select{font:inherit;font-size:17px;min-height:40px;min-width:210px;border:1px solid #9ca3af;border-radius:6px;background:#fff}
+.sent{min-height:84px;border:1px solid #9ca3af;border-radius:6px;margin-top:4px}
+section div.sent{min-height:84px !important}
+.quote{font-size:19px;font-weight:500;color:#1f2937;background:#faf9fd;border-left:3px solid #8072b2;padding:6px 14px;margin:2px 0 0}
+sup{font-size:.62em;line-height:0;vertical-align:.62em}
+.print-opts{display:none}
+@media screen{body{padding:32px 20px 40px}}
+@media(max-width:620px){header{flex-direction:column;gap:4px}.instruction{font-size:19px}.rowq,.sub{flex-wrap:wrap}.fin.list{width:100%}.ctrls{justify-content:flex-start;flex-wrap:nowrap}.sub .ctrls select{min-width:140px}.sub .fin{width:80px}}
+@media print{
+body{font-size:12px;line-height:1.3;max-width:none}
+header{margin-bottom:10px;padding-bottom:6px}
+h1{font-size:18px}header span{font-size:12px}
+h2{font-size:10px;margin-bottom:2px}
+.instruction{font-size:15px;margin-bottom:3px}
+.context{font-size:13px;margin-bottom:3px}
+.note{font-size:10.5px;margin-bottom:2px}
+section{margin-bottom:16px}
+.q{padding:8px 0;gap:8px;grid-template-columns:22px minmax(0,1fr)}
+.qnum{font-size:14px}
+.prompt{font-size:13px;margin-bottom:4px}
+.unit{font-size:12px}
+.fin{font-size:13px;min-height:28px;width:90px}
+.fin.list{width:300px}
+.sent{min-height:46px}
+section div.sent{min-height:46px !important}
+.quote{font-size:13.5px;padding:3px 10px}
+.sub{padding:4px 0;gap:14px}
+.sub .lab{font-size:11px}
+.sub .num{font-size:15px}
+.subs.cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px 18px}
+.subs.cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 18px}
+.subs.cols .sub,.subs.cols2 .sub{border-top:0;padding:2px 0;justify-content:flex-start;gap:10px}
+.subs.cols .ctrls,.subs.cols .print-opts{flex-wrap:nowrap}
+.subs.cols .print-opts{gap:3px 10px}
+select{display:none !important}
+.print-opts{display:flex;flex-wrap:wrap;gap:3px 16px;font-size:12px;color:#1f2937}
+.print-opts i{display:inline-block;width:10px;height:10px;border:1px solid #6b7280;border-radius:50%;margin-right:5px;vertical-align:-1px}
+}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Shaurya" data-sheet="Maths 2026-10-17" data-sheet-id="shaurya-2026-10-17-maths">
+<div id="sheet">
+
+<header><h1>Shaurya &middot; Maths</h1><span>17 October 2026</span></header>
+
+<section><h2>Factors</h2><p class="instruction">Type the factors with a comma between&nbsp;them.</p>
+<div class="q"><span class="qnum">1.</span><div class="rowq"><p class="prompt">List all the factors of <b>42</b>.</p><input class="hw-field fin list" data-k="f1" data-label="1. List all the factors of 42" aria-label="1. All the factors of 42" autocomplete="off" spellcheck="false"></div></div>
+<div class="q"><span class="qnum">2.</span><div><p class="prompt">How do you know you have not missed any factors of&nbsp;42?</p><div class="hw-field sent" contenteditable="true" data-k="f2" data-label="2. How do you know no factors of 42 are missing?" aria-label="2. How do you know no factors of 42 are missing?"></div></div></div>
+<div class="q"><span class="qnum">3.</span><div><p class="context">Isla says: &ldquo;The factors of 48 are 1, 2, 4, 6, 8, 12, 24,&nbsp;48.&rdquo;</p><div class="rowq"><p class="prompt">Which factors of 48 has Isla missed? Type them with&nbsp;commas.</p><input class="hw-field fin list" data-k="m3" data-label="3. Factors of 48 that Isla missed" aria-label="3. Factors of 48 that Isla missed" autocomplete="off" spellcheck="false"></div></div></div>
+</section>
+
+<section><h2>Multiples of 3</h2><p class="instruction">Is each number a multiple of 3? Choose yes or&nbsp;no.</p><p class="note">Try to decide without dividing.</p>
+<div class="q"><span class="qnum">4.</span><div class="subs cols">
+<div class="sub"><span><span class="lab">a)</span><span class="num">139</span></span><span class="ctrls"><select data-k="d4a" data-label="4a. Is 139 a multiple of 3?" aria-label="4a. Is 139 a multiple of 3?" class="hw-field"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="print-opts"><span><i></i>yes</span><span><i></i>no</span></span></span></div>
+<div class="sub"><span><span class="lab">b)</span><span class="num">471</span></span><span class="ctrls"><select data-k="d4b" data-label="4b. Is 471 a multiple of 3?" aria-label="4b. Is 471 a multiple of 3?" class="hw-field"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="print-opts"><span><i></i>yes</span><span><i></i>no</span></span></span></div>
+<div class="sub"><span><span class="lab">c)</span><span class="num">2,517</span></span><span class="ctrls"><select data-k="d4c" data-label="4c. Is 2,517 a multiple of 3?" aria-label="4c. Is 2,517 a multiple of 3?" class="hw-field"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="print-opts"><span><i></i>yes</span><span><i></i>no</span></span></span></div>
+<div class="sub"><span><span class="lab">d)</span><span class="num">587</span></span><span class="ctrls"><select data-k="d4d" data-label="4d. Is 587 a multiple of 3?" aria-label="4d. Is 587 a multiple of 3?" class="hw-field"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="print-opts"><span><i></i>yes</span><span><i></i>no</span></span></span></div>
+</div></div>
+</section>
+
+<section><h2>Prime, composite or neither</h2><p class="instruction">Type how many factors each number has. Then choose prime, composite or&nbsp;neither.</p>
+<div class="q"><span class="qnum">5.</span><div class="subs">
+<div class="sub"><span><span class="lab">a)</span><span class="num">35</span></span><span class="ctrls"><span><input class="hw-field fin" data-k="n5a" data-label="5a. 35: how many factors?" aria-label="5a. How many factors does 35 have?" autocomplete="off" spellcheck="false" inputmode="numeric"> <span class="unit">factor(s)</span></span><select data-k="p5a" data-label="5a. 35: prime, composite or neither" aria-label="5a. 35: prime, composite or neither" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option><option value="neither">neither</option></select><span class="print-opts"><span><i></i>prime</span><span><i></i>composite</span><span><i></i>neither</span></span></span></div>
+<div class="sub"><span><span class="lab">b)</span><span class="num">1</span></span><span class="ctrls"><span><input class="hw-field fin" data-k="n5b" data-label="5b. 1: how many factors?" aria-label="5b. How many factors does 1 have?" autocomplete="off" spellcheck="false" inputmode="numeric"> <span class="unit">factor(s)</span></span><select data-k="p5b" data-label="5b. 1: prime, composite or neither" aria-label="5b. 1: prime, composite or neither" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option><option value="neither">neither</option></select><span class="print-opts"><span><i></i>prime</span><span><i></i>composite</span><span><i></i>neither</span></span></span></div>
+<div class="sub"><span><span class="lab">c)</span><span class="num">43</span></span><span class="ctrls"><span><input class="hw-field fin" data-k="n5c" data-label="5c. 43: how many factors?" aria-label="5c. How many factors does 43 have?" autocomplete="off" spellcheck="false" inputmode="numeric"> <span class="unit">factor(s)</span></span><select data-k="p5c" data-label="5c. 43: prime, composite or neither" aria-label="5c. 43: prime, composite or neither" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option><option value="neither">neither</option></select><span class="print-opts"><span><i></i>prime</span><span><i></i>composite</span><span><i></i>neither</span></span></span></div>
+</div></div>
+</section>
+
+<section><h2>Squares and cubes</h2><p class="instruction">Work out each&nbsp;one.</p>
+<div class="q"><span class="qnum">6.</span><div class="subs cols2">
+<div class="sub"><span><span class="lab">a)</span><span class="num">8<sup>2</sup> =</span></span><span class="ctrls"><input class="hw-field fin" data-k="s6a" data-label="6a. 8² =" aria-label="6a. 8 squared" autocomplete="off" spellcheck="false" inputmode="numeric"></span></div>
+<div class="sub"><span><span class="lab">b)</span><span class="num">8<sup>3</sup> =</span></span><span class="ctrls"><input class="hw-field fin" data-k="s6b" data-label="6b. 8³ =" aria-label="6b. 8 cubed" autocomplete="off" spellcheck="false" inputmode="numeric"></span></div>
+</div></div>
+</section>
+
+<section><h2>Always, sometimes or never</h2><p class="instruction">Is it always, sometimes or never true? Choose, then give your&nbsp;evidence.</p>
+<div class="q"><span class="qnum">7.</span><div><div class="rowq"><p class="quote">&ldquo;A multiple of 9 is also a multiple of&nbsp;3.&rdquo;</p><span class="ctrls"><select data-k="a7" data-label="7. A multiple of 9 is also a multiple of 3: always, sometimes or never" aria-label="7. A multiple of 9 is also a multiple of 3: always, sometimes or never" class="hw-field"><option value="">Choose</option><option value="always">always</option><option value="sometimes">sometimes</option><option value="never">never</option></select><span class="print-opts"><span><i></i>always</span><span><i></i>sometimes</span><span><i></i>never</span></span></span></div>
+<div class="hw-field sent" contenteditable="true" data-k="e7" data-label="7. Evidence: a multiple of 9 is also a multiple of 3" aria-label="7. Your evidence"></div></div></div>
+</section>
+
+<section><h2>Choose the answer</h2><p class="instruction">Choose the correct&nbsp;answer.</p>
+<div class="q"><span class="qnum">8.</span><div><p class="prompt">Which of these is a prime&nbsp;number?</p><select data-k="c8" data-label="8. Which of these is a prime number?" aria-label="8. Which of these is a prime number?" class="hw-field"><option value="">Choose</option><option value="57">a) 57</option><option value="121">b) 121</option><option value="1">c) 1</option><option value="59">d) 59</option><option value="111">e) 111</option></select><span class="print-opts"><span><i></i>a)&nbsp;57</span><span><i></i>b)&nbsp;121</span><span><i></i>c)&nbsp;1</span><span><i></i>d)&nbsp;59</span><span><i></i>e)&nbsp;111</span></span></div></div>
+<div class="q"><span class="qnum">9.</span><div><p class="prompt">Work out 12<sup>2</sup> + 10<sup>3</sup>.</p><select data-k="c9" data-label="9. Work out 12² + 10³" aria-label="9. Work out 12 squared plus 10 cubed" class="hw-field"><option value="">Choose</option><option value="244">a) 244</option><option value="1144">b) 1,144</option><option value="54">c) 54</option><option value="1024">d) 1,024</option><option value="174">e) 174</option></select><span class="print-opts"><span><i></i>a)&nbsp;244</span><span><i></i>b)&nbsp;1,144</span><span><i></i>c)&nbsp;54</span><span><i></i>d)&nbsp;1,024</span><span><i></i>e)&nbsp;174</span></span></div></div>
+</section>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJmMSI6IHsidCI6ICJzZXQiLCAiYSI6ICIxLCAyLCAzLCA2LCA3LCAxNCwgMjEsIDQyIn0sICJmMiI6IHsidCI6ICJvcGVuIn0sICJtMyI6IHsidCI6ICJzZXQiLCAiYSI6ICIzLCAxNiJ9LCAiZDRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAibm8ifSwgImQ0YiI6IHsidCI6ICJleGFjdCIsICJhIjogInllcyJ9LCAiZDRjIjogeyJ0IjogImV4YWN0IiwgImEiOiAieWVzIn0sICJkNGQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJubyJ9LCAibjVhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAicDVhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJuNWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxIn0sICJwNWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJuZWl0aGVyIn0sICJuNWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyIn0sICJwNWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmltZSJ9LCAiczZhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQifSwgInM2YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjUxMiJ9LCAiYTciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhbHdheXMifSwgImU3IjogeyJ0IjogIm9wZW4ifSwgImM4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTkifSwgImM5IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTE0NCJ9fQ==</script>
+<script src="../assets/hw.js?v=20261013-pdf-sections"></script>
+</body></html>

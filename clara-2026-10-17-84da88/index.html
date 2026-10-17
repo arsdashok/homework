@@ -4,335 +4,152 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clara Homework 17 October 2026</title>
-<style>
-@page { size:A4; margin:15mm 16mm; }
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:'Avenir Next', Arial, sans-serif; color:#243F37; background:white; -webkit-print-color-adjust:exact; print-color-adjust:exact; font-size:14px; line-height:1.5; }
-.sheet-head { padding:14px 22px; background:#DDF5EB; border-radius:14px; margin-bottom:16px; border-top:5px solid #91D9BC; }
-.eyebrow { font-size:10px; letter-spacing:2px; font-weight:700; text-transform:uppercase; color:#376E59; margin-bottom:3px; }
-.sheet-head h1 { font-size:27px; line-height:1.2; font-weight:700; letter-spacing:-.8px; }
-
-/* subject divider: small label, the instruction is the biggest line in each task */
-.sec-head { display:flex; align-items:center; gap:12px; padding-bottom:8px; border-bottom:2px solid #A5DDC7; margin-bottom:12px; break-after:avoid; page-break-after:avoid; }
-.sec-head .subj { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:#285E49; background:#DDF5EB; border-radius:20px; padding:3px 12px; }
-.sec-head .note { font-size:12px; color:#587369; }
-.page-label { font-size:11px; color:#597B6C; margin-bottom:12px; letter-spacing:.5px; }
-.english { break-before:page; page-break-before:always; }
-
-.block { margin-bottom:14px; }
-.task-label { font-size:10.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#376E59; margin-bottom:2px; break-after:avoid; page-break-after:avoid; }
-.lead { font-size:18px; font-weight:700; color:#1B352D; line-height:1.35; margin:0 0 4px; text-wrap:pretty; break-after:avoid; page-break-after:avoid; }
-.small { font-size:12px; color:#587369; font-weight:400; margin:0 0 6px; text-wrap:pretty; }
-.q { padding:7px 0 8px; border-bottom:1px solid #D9E8E1; break-inside:avoid; page-break-inside:avoid; }
-.q:last-child { border-bottom:0; }
-.q-top { display:flex; gap:12px; align-items:center; }
-.q-num { flex:0 0 27px; height:27px; border-radius:8px; background:#DDF5EB; color:#285E49; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; }
-.prompt { font-size:15px; font-weight:400; font-variant-numeric:tabular-nums; }
-.prompt-q { font-size:15px; font-weight:400; }
-.sum { font-size:16px; letter-spacing:.3px; }
-.rowq { display:flex; align-items:center; justify-content:space-between; gap:24px; flex:1; }
-.rowq .prompt { white-space:nowrap; }
-.nb { width:120px; height:34px; border:1.5px solid #9CB9AC; border-radius:7px; background:white; font:inherit; font-size:15px; text-align:center; font-variant-numeric:tabular-nums; }
-.nb.wide { width:150px; }
-.foot { display:flex; justify-content:space-between; font-size:10px; color:#70867C; border-top:1px solid #D9E8E1; padding-top:9px; margin-top:12px; }
-
-/* estimate and answer rows */
-.arow { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin:6px 0 0 39px; }
-.arow .cap { flex:0 0 72px; font-size:11px; color:#688176; }
-.arow .nb { width:96px; }
-.arow .nb.wide { width:130px; }
-.q-top .arow { margin:0; }
-.arow .op { font-size:15px; color:#4A6B5E; font-weight:700; }
-.arow.ask { justify-content:space-between; gap:16px; }
-
-/* closed choices: on paper an empty menu becomes words to circle */
-.circle-opt { display:none; font-size:13px; color:#243F37; letter-spacing:.2px; }
-
-/* Zoe's work */
-.claim { display:flex; align-items:center; gap:18px; margin:6px 0 2px; padding:8px 14px; background:#EFF9F4; border-left:3px solid #A5DDC7; border-radius:0 6px 6px 0; break-inside:avoid; page-break-inside:avoid; }
-.claim .who { font-size:12px; font-weight:700; color:#285E49; background:#DDF5EB; border-radius:20px; padding:2px 10px; }
-.sent { min-height:52px; border:1.5px solid #9CB9AC; border-radius:7px; background:white; padding:8px 10px; font-size:14.5px; margin:6px 0 0 39px; }
-
-/* worked model beside the two subtractions */
-.with-example { display:grid; grid-template-columns:minmax(0,1fr) 52mm; gap:6mm; align-items:start; }
-.example { border:1px solid #C5DED1; border-left:4px solid #6ee7b7; border-radius:8px; padding:8px 10px; background:#F3FAF6; break-inside:avoid; page-break-inside:avoid; }
-.ex-title { font-size:10.5px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:#376E59; margin-bottom:4px; }
-.ex-line { font-size:11.5px; line-height:1.45; color:#243F37; font-variant-numeric:tabular-nums; }
-.ex-line b { color:#285E49; }
-.nw { white-space:nowrap; }
-.colsum { border-collapse:collapse; margin:6px auto 4px; font-variant-numeric:tabular-nums; font-size:13px; }
-.colsum td { width:17px; height:19px; text-align:center; padding:0; }
-.colsum td.cm { width:6px; }
-.colsum tr.ans td { border-top:2px solid #285E49; font-weight:700; }
-.colsum tr.exch td { font-size:9.5px; height:12px; color:#C2410C; font-weight:700; vertical-align:bottom; line-height:1; }
-.colsum s { text-decoration-color:#C2410C; text-decoration-thickness:1.5px; }
-.colsum.big { margin:0; font-size:16px; }
-.colsum.big td { width:19px; height:23px; }
-.ex-note { font-size:10.5px; color:#587369; line-height:1.4; margin:2px 0 4px; }
-
-/* English */
-.chips { display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px; }
-.chip { padding:5px 14px; border-radius:22px; background:#6ee7b7; color:#123B2E; font-weight:700; font-size:14px; }
-.chip span { font-weight:400; font-size:12.5px; }
-.model { margin:4px 0 8px; padding:8px 14px; background:#F3FAF6; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; break-inside:avoid; page-break-inside:avoid; }
-.model .ex-title { margin-bottom:2px; }
-.model p { font-size:14px; }
-.model .was { color:#587369; }
-.model .now b { color:#285E49; }
-
-@media print {
- .q { padding:6px 0 7px; }
- .block { margin-bottom:11px; }
- .choice-wrap.is-empty select { display:none !important; }
- .choice-wrap.is-empty .circle-opt { display:inline-block; }
-}
-
-@media screen {
- body{max-width:1000px;margin:auto;padding:40px 40px 64px;font-size:17px;line-height:1.6}
- .sheet-head{padding:24px 28px;margin-bottom:34px}.sheet-head h1{font-size:32px}.eyebrow{font-size:12px;margin-bottom:8px}
- .sec-head{margin-bottom:24px;padding-bottom:12px;gap:16px}.sec-head .subj{font-size:13px;padding:4px 14px}.sec-head .note{font-size:14px}
- .block{margin-bottom:38px}.task-label{font-size:12.5px;margin-bottom:4px}.lead{font-size:24px;margin:0 0 8px}.small{font-size:15px;margin-bottom:10px}
- .q{padding:18px 0 20px}.q-top{gap:16px}.q-num{flex-basis:34px;height:34px;font-size:16px}
- .prompt,.prompt-q{font-size:19px}.sum{font-size:20px}
- .nb{height:46px;font-size:18px;width:150px}.nb.wide{width:190px}.arow .nb{width:125px}.arow .nb.wide{width:190px}
- .arow{margin:14px 0 0 50px;gap:10px}.arow .cap{flex-basis:100px;font-size:14px}.arow .op{font-size:19px}
- .claim{padding:14px 20px;margin:10px 0 6px;gap:24px}.claim .who{font-size:14px}
- .colsum.big{font-size:21px}.colsum.big td{width:25px;height:31px}
- section div.sent, div.sent{min-height:92px !important;margin-left:50px;font-size:17px}
- .with-example{grid-template-columns:minmax(0,1fr) 260px;gap:36px}
- .example{position:sticky;top:20px;padding:16px 18px;margin-top:14px}
- .ex-title{font-size:12.5px;margin-bottom:8px}.ex-line{font-size:15px}.ex-note{font-size:13.5px}
- .colsum{font-size:19px;margin:10px auto 8px}.colsum td{width:22px;height:28px}.colsum td.cm{width:8px}.colsum tr.exch td{font-size:13px;height:16px}
- .chip{font-size:18px;padding:8px 20px}.chip span{font-size:15px}
- .model{padding:14px 20px;margin:10px 0 14px}.model p{font-size:18px}
- .english{margin-top:90px}.page-label{font-size:12px;margin-bottom:22px}
- .foot{font-size:12px;padding-top:20px;margin-top:30px}.foot>span:last-child{display:none}
-}
-@media screen and (max-width:820px){
- .with-example{grid-template-columns:1fr}.example{position:static}
-}
-@media screen and (max-width:620px){
- body{padding:24px 18px 48px}.rowq{flex-wrap:wrap}.rowq .prompt{white-space:normal}
- .arow{margin-left:0}.q-top{align-items:flex-start}section div.sent, div.sent{margin-left:0}
- .arow{gap:6px}.arow .cap{flex-basis:100%}.nb{width:104px}.arow .nb{width:84px}.nb.wide,.arow .nb.wide{width:170px}
- .arow.ask{justify-content:flex-start}
- .claim{flex-direction:column;align-items:flex-start;gap:8px;padding:12px 14px}
- .choice-wrap select{max-width:100%}
-}
-.game-box { margin:6px 0 4px; padding:14px 16px; background:#F3FAF6; border:1px solid #C5DED1; border-left:4px solid #6ee7b7; border-radius:10px; break-inside:avoid; page-break-inside:avoid; }
-.game-btn-row { margin:2px 0 12px; }
-.game-box .small { margin:0; }
-@media print { .game-btn-row { display:none !important; } }
-.game-link { display:inline-block; margin:0; padding:10px 20px; border-radius:24px; background:#6ee7b7; color:#123B2E; font-weight:700; font-size:17px; text-decoration:none; }
-.game-link:hover { background:#4fd9a4; }
-.game-url { font-size:11px; color:#5B7A6E; word-break:break-all; }
-</style>
-<style>
-/* ===== Keep practising (added 10 Oct, Rebecca asked for more): drag, tap, type ===== */
-.more { break-before:page; page-break-before:always; }
-.store { display:none; }
-.screen-only { display:inline; }
-.print-only { display:none; }
-
-/* tiles you drag (or tap a tile, then tap a box); tap a placed tile to send it back */
-.bank { display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-height:42px; padding:7px 10px; border-radius:12px; background:#EFF9F4; }
-.tile { display:inline-block; padding:4px 12px; border-radius:8px; background:#6ee7b7; color:#123B2E; font-weight:700; font-size:15px; line-height:1.35; font-variant-numeric:tabular-nums; text-align:center; white-space:nowrap; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; }
-.tile.picked { outline:3px solid #285E49; outline-offset:2px; }
-.tile.dragging { position:fixed; z-index:50; cursor:grabbing; pointer-events:none; transform:scale(1.06); box-shadow:0 4px 10px rgba(0,0,0,.18); }
-.drop { border:1.5px dashed #7FBFA5; border-radius:8px; background:#F3FAF6; }
-.dnd.ready .drop { border-color:#285E49; background:#DDF5EB; }
-.drop.over { border-color:#285E49; border-style:solid; background:#DDF5EB; }
-
-/* sort into bins */
-.sort-top { display:flex; align-items:center; gap:12px; }
-.sort-top .bank { flex:1; }
-.bins { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:10px 0 0 39px; }
-.bin-label { text-align:center; font-size:11px; color:#587369; margin-bottom:3px; }
-.bin-label b { display:block; font-size:17px; color:#1B352D; font-variant-numeric:tabular-nums; }
-.bin .drop { min-height:84px; display:flex; flex-direction:column; align-items:center; gap:6px; padding:8px 6px; }
-
-/* counting chains: tap the wrong number */
-.step { flex:0 0 auto; font-size:12px; color:#587369; white-space:nowrap; }
-.chain { display:flex; flex-wrap:wrap; align-items:center; gap:4px 3px; }
-.cn { font:inherit; font-size:15.5px; font-variant-numeric:tabular-nums; color:#243F37; padding:2px 8px; border:2px solid transparent; border-radius:999px; background:#F3FAF6; cursor:pointer; }
-.cn:hover { background:#DDF5EB; }
-.cn.on { border-color:#C2410C; background:#FFF1E8; text-decoration:line-through; text-decoration-color:#C2410C; text-decoration-thickness:2px; }
-.chain .dot { color:#7FA394; }
-.chain-ex { display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; margin:2px 0 6px; padding:6px 12px; background:#F3FAF6; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; font-size:13px; font-variant-numeric:tabular-nums; }
-.chain-ex .ex-title { margin:0 6px 0 0; }
-.chain-ex .cn { font-size:13px; cursor:default; }
-.chain-ex .fix { font-weight:700; color:#285E49; }
-
-/* number lines: drag the right number into each box */
-.nl-item { display:flex; flex-wrap:wrap; align-items:flex-start; gap:8px 26px; margin:4px 0 0 39px; }
-.nl-stage { --bw:104px; position:relative; flex:1 1 380px; max-width:560px; height:112px; }
-.nl-line { position:absolute; left:8%; right:8%; top:74px; height:3px; background:#365f4e; }
-.nl-tick { position:absolute; top:68px; width:2px; height:14px; margin-left:-1px; background:#6f9c88; }
-.nl-tick.end { top:64px; height:22px; width:3px; margin-left:-1.5px; background:#365f4e; }
-.nl-end { position:absolute; top:90px; width:80px; margin-left:-40px; text-align:center; font-size:13px; color:#294c40; font-variant-numeric:tabular-nums; white-space:nowrap; }
-.nl-box { position:absolute; top:0; left:calc(var(--x) - var(--bw) / 2); width:var(--bw); min-height:36px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; padding:2px; }
-.nl-box .tile { padding:3px 8px; }
-.nl-lead { position:absolute; top:38px; height:30px; left:var(--x); border-left:2px dashed #9CB9AC; }
-.nl-item .bank { flex:0 1 230px; align-self:center; }
-
-/* who or which: tiles into gaps */
-.wsent { font-size:15px; line-height:2.2; }
-.gap { display:inline-flex; align-items:center; justify-content:center; min-width:74px; height:30px; margin:0 8px 0 5px; vertical-align:middle; }
-.gap .tile { padding:1px 10px; }
-.ww-bank { margin:4px 0 4px 39px; }
-
-/* tap the words */
-.tapline { font-size:16px; line-height:2.1; }
-.comma-tap .hw-w.hw-circled { border-color:transparent; background:#DDF5EB; }
-.cm-comma, .ex-comma { color:#C2410C; font-weight:800; }
-.tap-ex { margin:2px 0 6px; padding:6px 12px; background:#F3FAF6; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; font-size:14px; }
-.tap-ex .hl { background:#DDF5EB; border-radius:999px; padding:0 2px; }
-.tap-ex .ex-title { display:inline; margin-right:8px; }
-
-/* word problem */
-.story { font-size:15px; line-height:1.55; max-width:640px; }
-.opwrap select { min-width:0 !important; width:76px; }
-div.sent.long { min-height:96px; }
-.lead { break-inside:avoid; page-break-inside:avoid; }
-.block.keep, .task, .pmodel { break-inside:avoid; page-break-inside:avoid; }
-
-@media print {
- .screen-only { display:none !important; }
- .print-only { display:inline !important; }
- .ww-bank { display:none !important; }
- .cn { background:none; padding:0 4px; }
- .tile { cursor:default; }
- .bins { margin-top:8px; }
- .bin .drop { min-height:70px; }
- .pb { break-before:page; page-break-before:always; }
-}
-
-@media screen {
- .more { margin-top:90px; }
- .bank { gap:12px; padding:10px 14px; min-height:60px; }
- .tile { font-size:18px; padding:7px 16px; border-radius:10px; }
- .bins { margin:18px 0 0 50px; gap:20px; }
- .bin-label { font-size:13px; margin-bottom:6px; }
- .bin-label b { font-size:22px; }
- .bin .drop { min-height:150px; gap:10px; padding:12px 8px; }
- .step { font-size:14px; }
- .cn { font-size:19px; padding:4px 12px; }
- .chain { gap:8px 6px; }
- .chain-ex { font-size:16px; padding:10px 16px; margin:4px 0 12px; }
- .chain-ex .cn { font-size:16px; }
- .nl-item { margin:14px 0 0 50px; gap:14px 36px; }
- .nl-stage { --bw:122px; height:138px; max-width:620px; }
- .nl-line { top:92px; }
- .nl-tick { top:85px; height:17px; }
- .nl-tick.end { top:81px; height:25px; }
- .nl-end { top:112px; font-size:15px; width:96px; margin-left:-48px; }
- .nl-box { min-height:50px; }
- .nl-box .tile { padding:5px 10px; }
- .nl-lead { top:52px; height:34px; }
- .wsent { font-size:19px; line-height:2.4; }
- .gap { min-width:96px; height:42px; margin:0 5px; }
- .gap .tile { padding:3px 14px; }
- .ww-bank { margin:12px 0 10px 50px; }
- .tapline { font-size:20px; line-height:2.2; }
- .tap-ex { font-size:17px; padding:10px 16px; margin:4px 0 12px; }
- .story { font-size:19px; }
- section div.sent.long, div.sent.long { min-height:150px !important; }
-}
-@media screen and (max-width:620px){
- .bins, .nl-item, .ww-bank { margin-left:0; }
- .bins { gap:8px; }
- .bin-label b { font-size:18px; }
- .bin .drop { padding:8px 4px; }
- .tile { font-size:16px; padding:6px 10px; }
- .sort-top { align-items:flex-start; }
- .q-top.chainrow { flex-wrap:wrap; }
- .cn { font-size:17px; padding:3px 8px; }
- .nl-stage { --bw:88px; flex-basis:100%; }
- .nl-end { font-size:13px; }
- .nl-box .tile { font-size:15px; padding:4px 6px; }
- .nl-item .bank { flex-basis:100%; }
- .nl-end { width:70px; margin-left:-35px; }
- .gap { min-width:82px; }
- /* long menus (items 1 and 3) must not push the page sideways on a phone */
- .rowq, .arow.ask, .choice-wrap { min-width:0; max-width:100%; }
- .choice-wrap { display:inline-block; }
- .choice-wrap select { max-width:100%; }
-}
-</style>
-<style>
-/* ===== 17 Oct additions: four tools, four bins, tap-the-digit ===== */
-.tool.span2 { grid-column:1 / -1; }
-.tool-for { font-size:12px; font-weight:400; color:#587369; }
-@media screen and (max-width:620px){ .tool.span2 { grid-column:auto; } }
-.yt { font-size:13px; font-weight:700; color:#285E49; margin-right:8px; }
-@media screen { .yt { font-size:16px; } }
-.tools { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; margin-top:4px; }
-.tool { padding:8px 12px; background:#F3FAF6; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; break-inside:avoid; page-break-inside:avoid; }
-.tool-name { font-size:15px; font-weight:700; color:#1B352D; }
-.tool-when { font-size:12px; color:#587369; margin-bottom:2px; }
-.tool-ex { font-size:13px; font-variant-numeric:tabular-nums; }
-.tool-ex b { color:#285E49; }
-.bins.four { grid-template-columns:repeat(4,minmax(0,1fr)); }
-.bins.four .bin-label b { font-size:15px; }
-.bins.four .tile { font-size:13.5px; padding:4px 8px; }
-.pick { display:flex; align-items:center; gap:10px; flex-wrap:nowrap; }
-.cap2 { font-size:13px; color:#4A6B5E; white-space:nowrap; font-variant-numeric:tabular-nums; }
-.arow.tight { margin:0; gap:10px; }
-.said { font-size:15px; font-variant-numeric:tabular-nums; }
-.digits { gap:2px; flex-wrap:nowrap; }
-.digits .cn { padding:2px 7px; font-size:18px; font-weight:700; border-radius:999px; }
-.digits .cn.on { text-decoration:none; border-color:#285E49; background:#DDF5EB; }
-.dc { font-size:18px; color:#4A6B5E; padding:0 1px; }
-.chain-ex .digits { display:inline-flex; }
-.dg { display:inline-block; padding:0 4px; font-weight:700; border:2px solid transparent; border-radius:999px; }
-.dg.on { border-color:#285E49; background:#DDF5EB; }
-.chainrow { flex-wrap:wrap; }
-.chainrow .step { flex:0 0 150px; }
-.chainrow .nb { margin-left:auto; }
-@media print {
- .pick .nb { width:120px; }
- .q { padding:4px 0 5px; }
- .model { margin:2px 0 5px; padding:6px 12px; }
- .claim { margin:4px 0 2px; padding:6px 12px; }
- .digits .cn { background:none; font-size:16px; }
- .bins.four .drop { min-height:120px; }
-}
-@media screen {
- .tools { gap:14px 18px; }
- .tool { padding:14px 18px; }
- .tool-name { font-size:19px; } .tool-when { font-size:15px; } .tool-ex { font-size:17px; }
- .bins.four .bin-label b { font-size:19px; }
- .bins.four .tile { font-size:16px; padding:6px 10px; }
- .bins.four .drop { min-height:190px; }
- .pick { gap:14px; }
- .cap2 { font-size:17px; }
- .said { font-size:19px; }
- .digits .cn { font-size:23px; padding:3px 10px; }
- .dc { font-size:23px; }
- .chainrow .step { flex-basis:200px; }
-}
-@media screen and (max-width:820px){
- .bins.four { grid-template-columns:repeat(2,minmax(0,1fr)); }
-}
-@media screen and (max-width:620px){
- .tools { grid-template-columns:1fr; }
- .pick { flex-wrap:wrap; }
- .arow.tight { flex-wrap:wrap; }
- .chainrow .nb { margin-left:0; }
- .digits .cn { font-size:20px; padding:2px 7px; }
-}
-
-/* Three registers (Dasha, 17 Oct 2026): theory, worked example and task must not look alike. */
-.tool { background:#F3FAF6; border:0; border-left:4px solid #6ee7b7; border-radius:0 8px 8px 0; }
-.tool-ex { display:block; margin-top:6px; padding:4px 10px; background:#FFF6DC; border-radius:6px; }
-.model { background:#FFF6DC; border-left:4px solid #F2B84B; border-radius:0 8px 8px 0; }
-.model .ex-title { color:#8A5A00; }
-.tool-ex b, .model b { color:#7A4E00; }
-.claim { background:#FFFFFF; border:1.5px solid #A5DDC7; border-radius:10px; }
-</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style id="clara-mint-design">
+/* Clara mint system · 17 October 2026. Read / example / answer have distinct labels and shapes. */
+@page { size:A4; margin:15mm 16mm; }
+:root { --ink:#203e35; --muted:#536e64; --green:#286951; --mint:#dcefe5; --pale:#f0f7f3; --line:#bfd7ca; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next',Arial,sans-serif; color:var(--ink); background:white; font-size:14px; line-height:1.5; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.sheet-head { padding:18px 22px; background:var(--mint); border-radius:16px; margin-bottom:20px; }
+.eyebrow,.page-label,.task-label,.ex-title,.role-label { font-size:10px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--green); }
+.eyebrow { margin-bottom:5px; }
+h1 { font-size:28px; line-height:1.2; letter-spacing:-.8px; }
+.sec-head { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--line); margin-bottom:14px; break-after:avoid; }
+.subj { font-size:11px; text-transform:uppercase; font-weight:700; letter-spacing:1.4px; background:var(--green); color:white; border-radius:6px; padding:4px 10px; }
+.note { color:var(--muted); font-size:12px; }
+.page-label { margin-bottom:10px; color:var(--muted); }
+.block { margin-bottom:18px; }
+.task-label { margin-bottom:4px; }
+.lead { font-size:18px; line-height:1.4; font-weight:700; margin-bottom:8px; break-after:avoid; }
+.small { font-size:12px; color:var(--muted); margin-bottom:8px; }
+.tools { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+.tool { padding:10px 12px; background:var(--mint); border-radius:10px; break-inside:avoid; }
+.tool.span2 { grid-column:1/-1; }
+.tool-name { font-size:15px; font-weight:700; }
+.tool-for,.tool-when { font-size:12px; color:var(--muted); font-weight:400; }
+.tool-ex { font-size:12px; margin-top:8px; padding-top:7px; border-top:1px solid #accfbd; }
+.mini-label { display:block; font-size:9px; text-transform:uppercase; letter-spacing:1px; font-weight:700; color:var(--green); margin-bottom:3px; }
+/* Examples are a quiet inset with a dashed outline, never an answer field. */
+.model,.chain-ex { margin:10px 0 12px; padding:10px 14px; background:var(--pale); border:1px dashed #92b6a3; border-radius:4px; break-inside:avoid; }
+.ex-title { display:block; margin-bottom:5px; color:var(--muted); }
+.model p { font-size:13px; }
+.model .ex-title { font-size:10px; }
+.model .was { color:var(--muted); margin-bottom:3px; }
+.model b,.tool-ex b,.fix { color:var(--green); font-weight:700; }
+.chain-ex { display:flex; align-items:center; flex-wrap:wrap; gap:5px 8px; font-size:12px; }
+.chain-ex .ex-title { flex-basis:100%; margin:0; }
+.role-label { margin:12px 0 6px; }
+/* Tasks: white space, dark number badges, outlined fields for the pupil. */
+.q { padding:10px 0; border-bottom:1px solid #dfebe4; break-inside:avoid; }
+.q:last-child { border-bottom:0; }
+.q-top { display:flex; align-items:center; gap:12px; }
+.q-num { display:flex; align-items:center; justify-content:center; flex:0 0 26px; height:26px; border-radius:50%; color:white; background:var(--green); font-size:12px; font-weight:700; }
+.prompt,.prompt-q,.said { font-size:14px; }
+.sum,.cap2,.nb,.tool-ex,.digits { font-variant-numeric:tabular-nums; }
+.sum { font-size:16px; }
+.yt { display:block; color:var(--muted); font-size:11px; font-weight:400; margin-bottom:2px; }
+.rowq { display:flex; align-items:center; justify-content:space-between; gap:12px; flex:1; min-width:0; }
+.pick { display:flex; align-items:center; gap:8px; }
+.arow { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin:7px 0 0 38px; }
+.arow.tight,.q-top .arow { margin:0; }
+.cap { font-size:11px; color:var(--muted); flex:0 0 72px; }
+.cap2,.op { font-size:13px; }
+.op { color:var(--green); font-weight:700; }
+.nw { white-space:nowrap; }
+.nb { width:110px; height:35px; text-align:center; font:inherit; font-variant-numeric:tabular-nums; }
+.nb.wide { width:135px; }
+.sent { min-height:64px; padding:10px 12px; margin:8px 0 0 38px; }
+/* Higher specificity is deliberate: shared homework CSS must not reintroduce purple and blue. */
+body .nb,body select[data-k],body .sent,body #sheet .hw-field { background:#fff !important; color:#203e35 !important; border:1.5px solid #739d87 !important; border-radius:7px !important; font-weight:600; outline:none; }
+body input.hw-field { min-width:0; min-height:35px; padding:4px 6px; }
+body select[data-k] { font:inherit; font-size:12px; min-width:160px; max-width:100%; min-height:35px; padding:5px 8px; }
+body #sheet .hw-field:focus,body .nb:focus,body .sent:focus,body select:focus { border-color:#286951 !important; background:#f5fbf7 !important; box-shadow:0 0 0 3px #dcefe5; }
+body #sheet .hw-field:empty::before { color:#687f73; font-weight:400; }
+.claim { display:flex; align-items:flex-start; gap:12px; padding:10px 14px; border-left:3px solid #83ad96; background:white; margin:6px 0; break-inside:avoid; }
+.who { font-size:12px; font-weight:700; color:var(--green); white-space:nowrap; padding-top:2px; }
+.circle-opt { display:none; font-size:12px; }
+.choice-wrap { min-width:0; max-width:100%; }
+.chips { padding:12px 14px; background:var(--mint); border-radius:10px; margin:10px 0; display:flex; flex-wrap:wrap; gap:5px 22px; }
+.chips .role-label { flex-basis:100%; margin:0; }
+.chip { font-size:15px; font-weight:700; }
+.chip span { font-size:12px; font-weight:400; }
+.bank { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:10px 0; min-height:45px; }
+.ww-bank { margin:0 0 8px 38px; }
+.tile { display:inline-block; padding:5px 12px; border-radius:7px; background:#cce8d9; color:var(--ink); border:1px solid #8db89f; box-shadow:0 2px 0 #8db89f; font-weight:700; font-size:14px; line-height:1.35; white-space:nowrap; cursor:grab; touch-action:none; user-select:none; }
+.tile.picked { outline:3px solid var(--green); outline-offset:2px; }
+.tile.dragging { position:fixed; z-index:50; cursor:grabbing; pointer-events:none; transform:scale(1.06); }
+.drop { border:1.5px dashed #739d87; border-radius:7px; background:white; }
+.dnd.ready .drop,.drop.over { border-color:var(--green); background:var(--mint); }
+.wsent { font-size:14px; line-height:2.3; }
+.gap { display:inline-flex; align-items:center; justify-content:center; min-width:76px; height:33px; margin:0 5px; vertical-align:middle; }
+.gap .tile { padding:2px 10px; box-shadow:none; }
+.store { display:none !important; }
+.chain { display:flex; align-items:center; flex-wrap:wrap; gap:3px; }
+.digits { display:inline-flex; flex-wrap:nowrap; gap:1px; }
+.cn { font:inherit; font-size:17px; font-weight:600; border:1px solid #c0d7c9; border-radius:5px; background:white; color:var(--ink); padding:3px 6px; cursor:pointer; }
+.cn:hover { background:var(--pale); }
+.digits .cn.on,.dg.on { background:var(--green); border-color:var(--green); color:white; text-decoration:none; }
+.dg { display:inline-block; padding:1px 4px; border:1px solid transparent; border-radius:4px; }
+.dc { padding:0 1px; font-size:17px; }
+.chainrow { flex-wrap:wrap; }
+.step { color:var(--muted); font-size:11px; }
+.chainrow .step { flex:0 0 132px; }
+.chainrow .nb { margin-left:auto; }
+.foot { display:flex; justify-content:space-between; border-top:1px solid var(--line); margin:12px 0 0; padding-top:8px; font-size:10px; color:var(--muted); }
+.task,.block.keep,.pmodel { break-inside:avoid; }
+.more,.english { break-before:page; }
+.screen-only { display:inline; }.print-only { display:none; }
+body .hw-bar { border:1px solid var(--line); background:#f0f7f3; border-radius:16px; box-shadow:none; }
+body .hw-send { color:white; background:var(--green); border:0; box-shadow:none; border-radius:10px; font-family:inherit; }
+body .hw-send:hover { background:#1e5540; }
+body .hw-msg,body .hw-pdf { color:var(--muted); }
+body .hw-mark.hw-ok { color:var(--green); } body .hw-mark.hw-no { color:#9b472c; }
+@media screen {
+ body { max-width:1040px; margin:auto; padding:32px 28px 60px; background:#edf5f0; font-size:17px; }
+ #sheet { background:white; padding:36px 42px; border-radius:22px; box-shadow:0 8px 36px #1e49350a; }
+ body:not([data-sheet-id]) { background:white; }
+ .sheet-head { padding:26px 28px; margin-bottom:30px; } h1 { font-size:34px; }
+ .eyebrow,.page-label,.task-label,.ex-title,.role-label { font-size:11px; }
+ .sec-head { margin-bottom:22px; padding-bottom:14px; } .subj { font-size:12px; } .note { font-size:14px; }
+ .block { margin-bottom:34px; } .lead { font-size:23px; margin-bottom:10px; } .small { font-size:14px; }
+ .tools { gap:12px; }.tool { padding:17px 18px; border-radius:12px; }
+ .tool-name { font-size:19px; }.tool-when,.tool-for { font-size:14px; }.tool-ex { font-size:15px; margin-top:12px; padding-top:10px; }.mini-label { font-size:10px; }
+ .model,.chain-ex { padding:16px 18px; margin:14px 0 20px; }.model p { font-size:16px; }.model .ex-title { font-size:11px; }.chain-ex { font-size:15px; }
+ .role-label { margin-top:18px; }.q { padding:18px 0; }.q-top { gap:14px; }.q-num { flex-basis:30px; height:30px; font-size:14px; }
+ .prompt,.prompt-q,.said { font-size:17px; }.sum { font-size:20px; }.yt { font-size:13px; }
+ .arow { margin:12px 0 0 44px; gap:9px; }.cap { font-size:13px; flex-basis:88px; }.cap2,.op { font-size:16px; }
+ .nb { width:120px; height:45px; font-size:18px; }.nb.wide { width:150px; }
+ body input.hw-field { min-height:45px; }body select[data-k] { min-height:45px; font-size:15px; min-width:166px; }
+ .rowq { flex-wrap:wrap; }.pick { margin-left:auto; }.claim { padding:14px 18px; }.who { font-size:14px; }
+ .sent { min-height:100px; margin-left:44px; }.chips { padding:16px 18px; }.chip { font-size:18px; }.chip span { font-size:14px; }
+ .tile { font-size:17px; padding:7px 15px; }.ww-bank { margin-left:44px; gap:10px; }.wsent { font-size:17px; }.gap { height:40px; min-width:88px; }
+ .cn,.dc { font-size:21px; }.cn { padding:4px 8px; }.step { font-size:13px; }.chainrow .step { flex-basis:165px; }
+ .more,.english { margin-top:60px; }.foot { font-size:12px; padding-top:16px; margin-top:24px; }
+}
+@media screen and (max-width:650px) {
+ body { padding:12px 8px 30px; }#sheet { padding:22px 16px; border-radius:16px; }.sheet-head { padding:20px; }h1 { font-size:28px; }
+ .tools { grid-template-columns:1fr; }.tool.span2 { grid-column:auto; }.lead { font-size:21px; }
+ .q-top { align-items:flex-start; gap:10px; }.q-num { flex-basis:26px; height:26px; font-size:12px; }
+ .arow,.sent,.ww-bank { margin-left:0; }.arow { gap:7px; }.cap { flex-basis:100%; }.nb { width:100px; }.nb.wide { width:125px; }
+ .pick { flex-wrap:wrap; margin-left:0; gap:8px; }.rowq { gap:10px; }.arow.tight { flex-wrap:wrap; }
+ .claim { flex-direction:column; gap:4px; }.chainrow .step { flex-basis:calc(100% - 36px); }.chainrow .nb { margin:8px 0 0 36px; }
+ .chainrow .digits { margin-left:36px; }.cn { font-size:20px; padding:4px 7px; }.chain-ex .digits { margin-left:0; }
+ .wsent { font-size:16px; }.chip span { display:block; }.chips { flex-direction:column; }.bank { gap:9px; }
+ .nw { white-space:normal; }.sum { font-size:19px; }.hw-bar { padding:16px 10px !important; }.hw-send { font-size:16px !important; padding:12px 20px !important; }
+}
+@media print {
+ .screen-only,.ww-bank,.hw-bar { display:none !important; }.print-only { display:inline !important; }
+ .choice-wrap.is-empty select { display:none !important; }.choice-wrap.is-empty .circle-opt { display:inline-block; }
+ .foot { display:none; }.rowq .prompt { white-space:nowrap; }.pick .circle-opt { font-size:10px; }
+ .q { padding:6px 0; }.block { margin-bottom:13px; }.model,.chain-ex { margin:7px 0; padding:8px 12px; }
+ .tool { padding:8px 10px; }.tool-ex { margin-top:6px; padding-top:5px; }.claim { padding:7px 12px; }
+ .role-label { margin:8px 0 4px; }.cn { padding:1px 5px; }.sent { min-height:52px; }
+ .hw-field:empty::before { display:none; }.foot { margin-top:8px; }
+}
+</style>
 </head>
 <body data-student="Clara" data-sheet="Maths and English 2026-10-17" data-sheet-id="clara-2026-10-17-maths-and-english">
 <div id="sheet">
@@ -350,13 +167,13 @@ div.sent.long { min-height:96px; }
   </div>
 
   <div class="block keep">
-    <div class="task-label">Your tools</div>
+    <div class="task-label">Remember · your maths tools</div>
     <div class="tools">
-      <div class="tool"><p class="tool-name">Compensate</p><p class="tool-when">One number is nearly round.</p><p class="tool-ex"><span class="nw">18,999 + 24,300</span> → add 19,000, <span class="nw">take 1 back → <b>43,299</b></span></p></div>
-      <div class="tool"><p class="tool-name">Bonds</p><p class="tool-when">The parts make a round number.</p><p class="tool-ex"><span class="nw">3,600 + 6,400</span> → 600 + 400 <span class="nw">makes a thousand → <b>10,000</b></span></p></div>
-      <div class="tool"><p class="tool-name">Count up</p><p class="tool-when">The two numbers are close.</p><p class="tool-ex"><span class="nw">9,004 − 8,995</span> → 5 to 9,000, then 4 more → <b>9</b></p></div>
-      <div class="tool"><p class="tool-name">Known facts</p><p class="tool-when">A small fact does the work.</p><p class="tool-ex">34 + 52 = 86, so <span class="nw">34,000 + 52,000</span> = <b class="nw">86,000</b></p></div>
-      <div class="tool span2"><p class="tool-name">Same difference <span class="tool-for">(for take away)</span></p><p class="tool-when">Change both numbers by the same amount so the number you take away is round. The gap stays the&nbsp;same.</p><p class="tool-ex"><span class="nw">9,005 − 3,998</span> → add 2 to both → <span class="nw">9,007 − 4,000 = <b>5,007</b></span></p></div>
+      <div class="tool"><p class="tool-name">Compensate</p><p class="tool-when">One number is nearly round.</p><p class="tool-ex"><span class="mini-label">Example</span><span class="nw">18,999 + 24,300</span> → add 19,000, <span class="nw">take 1 back → <b>43,299</b></span></p></div>
+      <div class="tool"><p class="tool-name">Bonds</p><p class="tool-when">The parts make a round number.</p><p class="tool-ex"><span class="mini-label">Example</span><span class="nw">3,600 + 6,400</span> → 600 + 400 <span class="nw">makes a thousand → <b>10,000</b></span></p></div>
+      <div class="tool"><p class="tool-name">Count up</p><p class="tool-when">The two numbers are close.</p><p class="tool-ex"><span class="mini-label">Example</span><span class="nw">9,004 − 8,995</span> → 5 to 9,000, then 4 more → <b>9</b></p></div>
+      <div class="tool"><p class="tool-name">Known facts</p><p class="tool-when">A small fact does the work.</p><p class="tool-ex"><span class="mini-label">Example</span>34 + 52 = 86, so <span class="nw">34,000 + 52,000</span> = <b class="nw">86,000</b></p></div>
+      <div class="tool span2"><p class="tool-name">Same difference <span class="tool-for">(for take away)</span></p><p class="tool-when">Change both numbers by the same amount so the number you take away is round. The gap stays the&nbsp;same.</p><p class="tool-ex"><span class="mini-label">Example</span><span class="nw">9,005 − 3,998</span> → add 2 to both → <span class="nw">9,007 − 4,000 = <b>5,007</b></span></p></div>
     </div>
   </div>
 
@@ -365,7 +182,8 @@ div.sent.long { min-height:96px; }
     <div class="task">
     <div class="task-label">Adding: round up, then take it back</div>
     <p class="lead">Is Finn right? Then type the right&nbsp;answer.</p>
-    <div class="model"><p class="ex-title">Like this</p><p><span class="nw">3,999 + 2,180</span> → <span class="nw">4,000 + 2,180 = 6,180</span>. I added 1 too many, so I take 1 back: <b class="nw">6,179</b>.</p></div>
+    <div class="model"><p class="ex-title">Worked example</p><p><span class="nw">3,999 + 2,180</span> → <span class="nw">4,000 + 2,180 = 6,180</span>. I added 1 too many, so I take 1 back: <b class="nw">6,179</b>.</p></div>
+    <div class="role-label">Your turn · check the idea</div>
     <div class="claim">
       <span class="who">Finn</span>
       <p class="said">“6,999 + 2,450 = 9,450. I used 7,000 instead of&nbsp;6,999.”</p>
@@ -400,7 +218,8 @@ div.sent.long { min-height:96px; }
     <div class="sec-head"><span class="subj">Maths</span><span class="note">same difference · choose a tool</span></div>
     <div class="task-label">Subtracting: move both numbers the same way</div>
     <p class="lead">Is Ava right? Then type the&nbsp;answer.</p>
-    <div class="model"><p class="ex-title">Like this</p><p><span class="nw">7,003 − 2,998</span> → I add 2 to both numbers: <span class="nw">7,005 − 3,000</span> = <b class="nw">4,005</b>. The gap between them stays the&nbsp;same.</p></div>
+    <div class="model"><p class="ex-title">Worked example</p><p><span class="nw">7,003 − 2,998</span> → I add 2 to both numbers: <span class="nw">7,005 − 3,000</span> = <b class="nw">4,005</b>. The gap between them stays the&nbsp;same.</p></div>
+    <div class="role-label">Your turn · check the idea</div>
     <div class="claim">
       <span class="who">Ava</span>
       <p class="said">“3,004 − 1,498 = 3,006 − 1,500. I added 2 to both&nbsp;numbers.”</p>
@@ -494,7 +313,7 @@ div.sent.long { min-height:96px; }
     <div class="sec-head"><span class="subj">Maths</span><span class="note">keep practising · rounding · estimating</span></div>
     <div class="task-label">Which digit decides?</div>
     <p class="lead"><span class="screen-only">Tap the digit that decides. Then type the rounded&nbsp;number.</span><span class="print-only">Circle the digit that decides. Then write the rounded&nbsp;number.</span></p>
-    <div class="chain-ex"><span class="ex-title">Like this</span><span>438,621 to the nearest 1,000:</span><span class="digits"><span class="dg">4</span><span class="dg">3</span><span class="dg">8</span><span class="dc">,</span><span class="dg on">6</span><span class="dg">2</span><span class="dg">1</span></span><span>→</span><span class="fix">439,000</span></div>
+    <div class="chain-ex"><span class="ex-title">Worked example</span><span>438,621 to the nearest 1,000:</span><span class="digits"><span class="dg">4</span><span class="dg">3</span><span class="dg">8</span><span class="dc">,</span><span class="dg on">6</span><span class="dg">2</span><span class="dg">1</span></span><span>→</span><span class="fix">439,000</span></div>
 
     <div class="q">
       <div class="q-top chainrow"><div class="q-num">13</div><span class="step">to the nearest 1,000</span>
@@ -533,7 +352,7 @@ div.sent.long { min-height:96px; }
     <div class="task">
     <div class="task-label">Neighbours first</div>
     <p class="lead">Type both neighbours. Then type the rounded&nbsp;number.</p>
-    <div class="model"><p class="ex-title">Like this</p><p>271,350 to the nearest 1,000: neighbours <span class="nw">271,000 and 272,000</span> → <b class="nw">271,000</b></p></div>
+    <div class="model"><p class="ex-title">Worked example</p><p>271,350 to the nearest 1,000: neighbours <span class="nw">271,000 and 272,000</span> → <b class="nw">271,000</b></p></div>
     <div class="q">
       <div class="q-top"><div class="q-num">17</div><p class="prompt sum">609,712 <span class="step">to the nearest 1,000</span></p></div>
       <div class="arow">
@@ -582,7 +401,8 @@ div.sent.long { min-height:96px; }
     <div class="sec-head"><span class="subj">English</span><span class="note">who or which · parenthesis</span></div>
     <div class="task-label">Who or which?</div>
     <p class="lead"><span class="screen-only">Drag who or which into each&nbsp;gap.</span><span class="print-only">Write who or which in each&nbsp;gap.</span></p>
-    <div class="chips"><span class="chip">who <span>for a person (or a pet with a name)</span></span><span class="chip">which <span>for an animal, a thing or a&nbsp;place</span></span></div>
+    <div class="chips"><div class="role-label">Remember</div><span class="chip">who <span>for a person (or a pet with a name)</span></span><span class="chip">which <span>for an animal, a thing or a&nbsp;place</span></span></div>
+    <div class="role-label screen-only">Your turn · use these tiles</div>
     <div class="bank ww-bank" aria-label="who and which tiles"><span class="tile" data-v="which">which</span><span class="tile" data-v="who">who</span><span class="tile" data-v="who">who</span><span class="tile" data-v="which">which</span><span class="tile" data-v="who">who</span><span class="tile" data-v="which">which</span><span class="tile" data-v="which">which</span><span class="tile" data-v="who">who</span></div>
     </div>
     <div class="q"><div class="q-top"><div class="q-num">1</div><p class="wsent" data-field="w1">The boy next door,<span class="gap drop" data-store="w1" aria-label="1. Gap"></span>loves football, kicked his ball over our&nbsp;fence.</p></div></div>
@@ -610,7 +430,7 @@ div.sent.long { min-height:96px; }
     <p class="lead">Add a few words about the word in bold. Type the whole sentence with both&nbsp;commas.</p>
     <p class="small">A few words, not who or which this&nbsp;time.</p>
     <div class="model">
-      <p class="ex-title">Like this</p>
+      <p class="ex-title">Worked example</p>
       <p class="was">Our school is on the hill.</p>
       <p class="now">Our school<b>, a big red building,</b> is on the&nbsp;hill.</p>
     </div>

@@ -36,7 +36,31 @@ section div.sent{min-height:84px !important}
 sup{font-size:.62em;line-height:0;vertical-align:.62em}
 .print-opts{display:none}
 @media screen{body{padding:32px 20px 40px}}
-@media(max-width:620px){header{flex-direction:column;gap:4px}.instruction{font-size:19px}.rowq,.sub{flex-wrap:wrap}.fin.list{width:100%}.ctrls{justify-content:flex-start;flex-wrap:nowrap}.sub .ctrls select{min-width:140px}.sub .fin{width:80px}}
+@media screen{
+body{font-size:19px}
+.instruction{font-size:24px}
+.prompt,.context{font-size:20px}
+.qnum{font-size:20px}
+.rowq{justify-content:flex-start;flex-wrap:wrap;gap:12px 24px}
+.fin{font-size:20px;min-height:46px}
+.fin.list{width:420px}
+select{font-size:19px;min-height:46px}
+.sent{max-width:780px}
+.quote{font-size:22px}
+.subs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:4px}
+.subs.cols{grid-template-columns:repeat(4,minmax(0,1fr))}
+.subs.cols2{grid-template-columns:repeat(2,minmax(0,300px))}
+.subs .sub,.subs .sub:first-child{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:14px;padding:16px 18px;border:1px solid #e2e4ea;border-radius:12px;background:#faf9fd}
+.subs.cols2 .sub,.subs.cols2 .sub:first-child{flex-direction:row;align-items:center;gap:16px}
+.sub .lab{font-size:17px}
+.sub .num{font-size:32px}
+.subs .ctrls{flex-direction:column;align-items:flex-start;gap:12px;justify-content:flex-start}
+.subs.cols2 .ctrls{flex-direction:row}
+.subs .ctrls{align-self:stretch}.subs .ctrls select{min-width:0;width:100%;max-width:240px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.pair .q{border-bottom:0}
+}
+@media(max-width:620px){.subs.cols{grid-template-columns:1fr 1fr}.subs{grid-template-columns:1fr}.subs.cols2{grid-template-columns:1fr 1fr}.pair{grid-template-columns:1fr}.subs .ctrls{flex-wrap:wrap}.sub .num{font-size:26px}header{flex-direction:column;gap:4px}.instruction{font-size:19px}.rowq,.sub{flex-wrap:wrap}.fin.list{width:100%}.ctrls{justify-content:flex-start;flex-wrap:nowrap}.sub .ctrls select{min-width:140px}.sub .fin{width:80px}}
 @media print{
 body{font-size:12px;line-height:1.3;max-width:none}
 header{margin-bottom:10px;padding-bottom:6px}
@@ -111,8 +135,8 @@ select{display:none !important}
 </section>
 
 <section><h2>Choose the answer</h2><p class="instruction">Choose the correct&nbsp;answer.</p>
-<div class="q"><span class="qnum">8.</span><div><p class="prompt">Which of these is a prime&nbsp;number?</p><select data-k="c8" data-label="8. Which of these is a prime number?" aria-label="8. Which of these is a prime number?" class="hw-field"><option value="">Choose</option><option value="57">a) 57</option><option value="121">b) 121</option><option value="1">c) 1</option><option value="59">d) 59</option><option value="111">e) 111</option></select><span class="print-opts"><span><i></i>a)&nbsp;57</span><span><i></i>b)&nbsp;121</span><span><i></i>c)&nbsp;1</span><span><i></i>d)&nbsp;59</span><span><i></i>e)&nbsp;111</span></span></div></div>
-<div class="q"><span class="qnum">9.</span><div><p class="prompt">Work out 12<sup>2</sup> + 10<sup>3</sup>.</p><select data-k="c9" data-label="9. Work out 12² + 10³" aria-label="9. Work out 12 squared plus 10 cubed" class="hw-field"><option value="">Choose</option><option value="244">a) 244</option><option value="1144">b) 1,144</option><option value="54">c) 54</option><option value="1024">d) 1,024</option><option value="174">e) 174</option></select><span class="print-opts"><span><i></i>a)&nbsp;244</span><span><i></i>b)&nbsp;1,144</span><span><i></i>c)&nbsp;54</span><span><i></i>d)&nbsp;1,024</span><span><i></i>e)&nbsp;174</span></span></div></div>
+<div class="pair"><div class="q"><span class="qnum">8.</span><div><p class="prompt">Which of these is a prime&nbsp;number?</p><select data-k="c8" data-label="8. Which of these is a prime number?" aria-label="8. Which of these is a prime number?" class="hw-field"><option value="">Choose</option><option value="57">a) 57</option><option value="121">b) 121</option><option value="1">c) 1</option><option value="59">d) 59</option><option value="111">e) 111</option></select><span class="print-opts"><span><i></i>a)&nbsp;57</span><span><i></i>b)&nbsp;121</span><span><i></i>c)&nbsp;1</span><span><i></i>d)&nbsp;59</span><span><i></i>e)&nbsp;111</span></span></div></div>
+<div class="q"><span class="qnum">9.</span><div><p class="prompt">Work out 12<sup>2</sup> + 10<sup>3</sup>.</p><select data-k="c9" data-label="9. Work out 12² + 10³" aria-label="9. Work out 12 squared plus 10 cubed" class="hw-field"><option value="">Choose</option><option value="244">a) 244</option><option value="1144">b) 1,144</option><option value="54">c) 54</option><option value="1024">d) 1,024</option><option value="174">e) 174</option></select><span class="print-opts"><span><i></i>a)&nbsp;244</span><span><i></i>b)&nbsp;1,144</span><span><i></i>c)&nbsp;54</span><span><i></i>d)&nbsp;1,024</span><span><i></i>e)&nbsp;174</span></span></div></div></div>
 </section>
 </div><!-- /sheet -->
 <div class="hw-bar">

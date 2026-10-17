@@ -57,8 +57,9 @@
   svg.pic { display: block; width: 100%; height: auto; font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; }
   .plabel-in {
     position: absolute; left: 40.9%; top: 95.1%; transform: translate(-50%, -50%); white-space: nowrap;
-    font-size: 15px; font-weight: 500; color: var(--navy); background: rgba(219,232,245,.92); border-radius: 6px; padding: 0 4px;
+    font-size: 15px; font-weight: 500; color: var(--navy); background: #fff4ea; border: 2px solid var(--accent); border-radius: 8px; padding: 3px 8px;
   }
+  .plabel-in .gn { display: inline-block; width: 22px; height: 22px; line-height: 22px; font-size: 12px; margin-right: 6px; vertical-align: middle; background: var(--accent-ink); }
   .srow { display: flex; align-items: flex-start; gap: 12px; padding: 5px 0; border-top: 1px dashed var(--line); }
   .srow.model-row { border-top: 0; background: #fff8f1; border-left: 4px solid var(--accent); border-radius: 8px; padding: 6px 12px; margin: 4px 0; }
   .srow.model-row + .srow { border-top: 0; }
@@ -137,7 +138,8 @@
     .gn { width: 18px; height: 18px; line-height: 18px; font-size: 10px; }
     .mlabel { font-size: 9.5px; }
     .picwrap { max-width: 270px; margin: 0 auto 4px; }
-    .plabel-in { font-size: 9.5px; }
+    .plabel-in { font-size: 9.5px; padding: 1px 5px; border-width: 1.5px; }
+    .plabel-in .gn { width: 14px; height: 14px; line-height: 14px; font-size: 8.5px; margin-right: 3px; }
     .srow { padding: 1px 0; gap: 8px; }
     .srow.model-row { padding: 1px 10px; margin-bottom: 2px; }
     .srow .gn { margin-top: 4px; }
@@ -185,7 +187,7 @@
 <section class="part">
   <div class="plabel">Part 1 &middot; The free-floating beacon</div>
   <p class="instr">Type the rest of each&nbsp;word.</p>
-  <p class="note">The first letter is already there, like step 2. One word is on the&nbsp;picture.</p>
+  <p class="note">Start with <b>A</b> on the picture, then steps 1 to 7. The first letter is already there, like step&nbsp;2.</p>
   <div class="picwrap q">
     <svg class="pic" viewBox="0 0 430 355" role="img" aria-label="The beacon in its cover on the base, under the water: HRU, rod, spring, beacon, magnet, cover, and a part to name at the bottom">
       <rect x="0" y="0" width="430" height="44" fill="#f5f8fc"/>
@@ -240,7 +242,7 @@
         <text x="366" y="322">cover</text>
       </g>
     </svg>
-    <span class="plabel-in">l<input type="text" class="hw-field hw-gap" style="width:3.6em" maxlength="7" autocomplete="off" spellcheck="false" data-k="la" data-label="1.0 Picture: l___ arm" aria-label="Picture: the part at the bottom, l___ arm"> arm</span>
+    <span class="plabel-in"><span class="gn">A</span>l<input type="text" class="hw-field hw-gap" style="width:3.6em" maxlength="7" autocomplete="off" spellcheck="false" data-k="la" data-label="1.0 Picture: l___ arm" aria-label="Picture: the part at the bottom, l___ arm"> arm</span>
   </div>
   <div class="srow q"><span class="gn">1</span><p>Water pressure a<input type="text" class="hw-field hw-gap" style="width:6.3em" maxlength="11" autocomplete="off" spellcheck="false" data-k="g1" data-label="1.1 Water pressure a___ the HRU." aria-label="Step 1: a___"> the&nbsp;HRU.</p></div>
   <div class="srow model-row"><span class="gn">2</span><p><span class="mlabel">Like this</span> The HRU c<span class="filled in">uts</span> the&nbsp;rod.</p></div>

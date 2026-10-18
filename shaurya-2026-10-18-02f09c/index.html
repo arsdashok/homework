@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!-- hw-mode: online. English, from the 18 Oct 2026 lesson (L2 «Meaning and grammar», cards warm-up to L2·11; exit L2·12 kept for the lesson) and the review of the 4 Oct sheet. Private marking key in the .key.json beside this file, never in this page. -->
+<!-- Passage source: Kenneth Grahame, The Wind in the Willows (1908), ch. 1, Project Gutenberg eBook #289 (https://www.gutenberg.org/cache/epub/289/pg289.txt, fetched 18 Oct 2026), quoted word for word, cut marked [...]. Public domain. -->
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Shaurya &middot; English homework &middot; 18 October 2026</title><style>
+@page{size:A4;margin:9mm 12mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Rubik','Segoe UI',Arial,sans-serif;font-size:17px;line-height:1.55;color:#1f2937;background:white;max-width:1180px;margin:0 auto;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+p{text-wrap:pretty}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:2px solid #8072b2;padding-bottom:12px;margin-bottom:28px}
+h1{font-size:22px;font-weight:700}
+header span{font-size:14px;color:#4b5563}
+h2{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#64518e;margin-bottom:6px}
+.instruction{font-size:21px;font-weight:700;line-height:1.35;color:#111827;margin:0 0 6px}
+.context{font-size:18px;font-weight:400;color:#1f2937;margin:0 0 8px}
+.note{font-size:14px;color:#6b7280;margin:0 0 6px}
+.defs{font-size:15px;color:#374151;border-left:3px solid #8072b2;padding:2px 0 2px 12px;margin:2px 0 8px}
+.defs p+p{margin-top:2px}
+.defs b{color:#111827}
+section{margin-bottom:34px}
+h2,.instruction{break-after:avoid;page-break-after:avoid}
+.q,.qs{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;padding:14px 0}
+.q,.question{break-inside:avoid;page-break-inside:avoid}
+.qnum{font-size:18px;color:#6b7280}
+.prompt{font-size:18px;line-height:1.5;font-weight:400;margin-bottom:8px}
+.rowq{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:10px 24px;padding:8px 0;border-top:1px dashed #e2e4ea}
+.rowq:first-child{border-top:0;padding-top:0}
+.rowq .prompt{margin-bottom:0}
+.rowq .lab{font-size:15px;color:#6b7280;margin-right:8px}
+select{font:inherit;font-size:17px;min-height:40px;min-width:200px;border:1px solid #9ca3af;border-radius:6px;background:#fff;max-width:100%}
+.sent{min-height:84px;border:1px solid #9ca3af;border-radius:6px;margin-top:4px}
+section div.sent{min-height:84px !important}
+.nw{white-space:nowrap}
+/* item cards */
+.cards{display:grid;gap:14px}
+.cards.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cards.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.itm{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:14px 16px;border:1px solid #e2e4ea;border-radius:12px;background:#faf9fd;break-inside:avoid;page-break-inside:avoid}
+.itm .lab{font-size:15px;color:#6b7280}
+.itm .ctext{font-size:18px;line-height:1.45;color:#1f2937}
+.itm .ans{font-size:18px;font-weight:500;color:#111827;border-left:3px solid #8072b2;padding-left:10px}
+.itm select{min-width:0;width:100%;max-width:240px}
+.itm b{font-weight:700;color:#111827}
+.rowq.claim{flex-direction:column;align-items:flex-start;gap:8px}
+/* sort into two boxes */
+.bank{display:flex;flex-wrap:wrap;gap:10px;min-height:58px;padding:12px;border-radius:12px;background:#f6f5ff;margin:4px 0 14px}
+.tile{font:inherit;font-size:17px;font-weight:500;color:#111827;text-align:left;line-height:1.3;background:#fff;border:2px solid #8072b2;border-radius:12px;padding:7px 12px;cursor:grab;max-width:100%;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:0 2px 0 #ddd6fe}
+.tile .cn{font-size:13px;font-weight:700;color:#8072b2;margin-right:7px}
+.tile.picked{outline:3px solid #f59e0b;outline-offset:2px}
+.tile.ghosted{opacity:.35}
+.dragging{position:fixed;z-index:50;cursor:grabbing;pointer-events:none;transform:scale(1.04);margin:0}
+.bins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.bin{border:2px dashed #a99fd6;border-radius:14px;background:#fcfbff;min-height:150px;padding:8px 10px 12px;cursor:pointer;break-inside:avoid;page-break-inside:avoid}
+.bin h3{font-size:19px;font-weight:700;color:#111827;text-align:center;margin-bottom:8px}
+.bincards{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.bincards .tile{box-shadow:none}
+.over,.ready{border-color:#64518e !important;background:#efecfb !important}
+.store{display:none}
+/* passage */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.passage{margin-top:8px;border-left:4px solid #7552b5;background:#faf9fd;border-radius:8px;padding:16px 20px}
+.passage h3{font-size:19px;font-weight:700;color:#111827;margin-bottom:8px}
+.passage .ptext{font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.6;color:#111827}
+.gloss{font-size:13px;color:#4b5563;margin-top:8px}
+.credit{font-size:12px;color:#6b7280;margin-top:6px;line-height:1.45}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 48px}
+.print-opts{display:none}
+.print-only{display:none}
+@media screen{
+body{padding:32px 20px 40px;font-size:19px}
+.instruction{font-size:24px}
+.prompt,.context{font-size:20px}
+.qnum{font-size:20px}
+select{font-size:19px;min-height:46px}
+.itm .ctext,.itm .ans{font-size:20px}
+.sent{max-width:780px}
+}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.passage{position:static}.cards.four{grid-template-columns:repeat(2,minmax(0,1fr))}.pair{grid-template-columns:1fr}}
+@media(max-width:620px){
+body{padding:18px 12px 40px}
+header{flex-direction:column;gap:4px}
+.instruction{font-size:20px}
+.q{grid-template-columns:22px minmax(0,1fr);gap:8px}
+.cards.two,.cards.four{grid-template-columns:minmax(0,1fr)}
+.bins{grid-template-columns:minmax(0,1fr)}
+.bin{min-height:96px}
+.itm select{max-width:100%}
+select{min-width:0;width:100%}
+.rowq select{max-width:100%}
+}
+/* the PDF emailed to Dasha (hw.js renders the page at 680px): compact, two columns where the screen has them */
+body.hw-pdf-mode{font-size:15px}
+body.hw-pdf-mode .instruction{font-size:18px}
+body.hw-pdf-mode .prompt,body.hw-pdf-mode .context,body.hw-pdf-mode .itm .ctext,body.hw-pdf-mode .itm .ans{font-size:15px}
+body.hw-pdf-mode section{margin-bottom:16px}
+body.hw-pdf-mode .q,body.hw-pdf-mode .qs{padding:6px 0;gap:8px;grid-template-columns:22px minmax(0,1fr)}
+body.hw-pdf-mode .layout{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px}
+body.hw-pdf-mode .passage .ptext{font-size:13.5px;line-height:1.45}
+body.hw-pdf-mode .pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 22px}
+body.hw-pdf-mode .cards{gap:8px}
+body.hw-pdf-mode .cards.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+body.hw-pdf-mode .itm{padding:8px 10px;gap:6px}
+body.hw-pdf-mode .bin{min-height:100px}
+body.hw-pdf-mode .rowq.claim{gap:4px;padding:5px 0}
+@media print{
+body{padding-right:3px !important}
+body{font-size:12px;line-height:1.3;max-width:none}
+header{margin-bottom:8px;padding-bottom:5px}
+h1{font-size:17px}header span{font-size:11px}
+h2{font-size:9.5px;margin-bottom:1px}
+.instruction{font-size:13px;margin-bottom:2px}
+.context{font-size:12px;margin-bottom:3px}
+.note{font-size:10px;margin-bottom:2px}
+.defs{font-size:10.5px;margin:1px 0 3px;padding-left:8px}
+section{margin-bottom:7px}
+.q,.qs{padding:3px 0;gap:6px;grid-template-columns:18px minmax(0,1fr)}
+.qnum{font-size:12px}
+.prompt{font-size:12px;margin-bottom:2px}
+.rowq{padding:2px 0;gap:2px 16px}
+.rowq .lab{font-size:10.5px}
+.screen-only{display:none !important}
+.print-only{display:block}
+select{display:none !important}
+.print-opts{display:flex;flex-wrap:wrap;gap:2px 14px;font-size:11px;color:#1f2937}
+.print-opts.stack{display:grid;grid-template-columns:1fr 1fr;gap:1px 14px}
+.print-opts i{display:inline-block;width:9px;height:9px;border:1px solid #6b7280;border-radius:50%;margin-right:4px;vertical-align:-1px}
+.sent,section div.sent{min-height:34px !important}
+.cards{gap:5px 10px}
+.itm{padding:4px 8px;gap:2px;border-radius:6px}
+.itm .lab{font-size:10px}
+.itm .ctext,.itm .ans{font-size:11.5px;line-height:1.3}
+.bank{padding:5px;gap:5px;min-height:0;margin:2px 0 5px}
+.tile{font-size:11.5px;padding:2px 8px;box-shadow:none;border-width:1.5px}
+.tile .cn{font-size:10px}
+.bins{gap:10px}
+.bin{min-height:56px;padding:3px 8px 6px;border-width:1.5px}
+.bin h3{font-size:12px;margin-bottom:2px}
+.layout{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px}
+.passage{position:static;padding:5px 10px}
+.passage h3{font-size:11.5px;margin-bottom:2px}
+.passage .ptext{font-size:11px;line-height:1.35}
+.gloss{font-size:9.5px;margin-top:2px}.credit{font-size:8.5px;margin-top:2px}
+.pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 22px}
+.print-opts.stack{grid-template-columns:1fr}
+.itm{display:block}
+.itm .lab{float:left;margin-right:4px;line-height:1.3}
+.itm .lab.why{float:none;display:block;font-size:10.5px}
+.itm .ans{border-left:0;padding-left:0}
+.itm .print-opts{margin-top:1px}
+.sortgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:10px;align-items:stretch}
+.sortgrid .bank{margin:0;align-content:flex-start}
+.sortgrid .bin{min-height:0;height:100%}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 18px}
+.duo .cards.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cards.two{display:block;column-count:2;column-gap:10px}
+.cards.two .itm{margin-bottom:5px}
+.instruction{line-height:1.2}
+header{margin-bottom:6px}
+.passage .ptext{font-size:10.5px}
+.cards.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cards.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.itm .lab.why{font-size:10.5px;color:#4b5563}
+}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Shaurya" data-sheet="English 2026-10-18" data-sheet-id="shaurya-2026-10-18-english">
+<div id="sheet">
+
+<header><h1>Shaurya &middot; English</h1><span>18 October 2026</span></header>
+
+<section id="sort" class="question"><h2>Interests and aspirations</h2>
+<p class="instruction screen-only">Drag each tile into the right&nbsp;box.</p>
+<p class="instruction print-only">Write the number of each tile in the right&nbsp;box.</p>
+<div class="q"><span class="qnum">1.</span><div>
+<p class="context">Kai plays football every Saturday, builds theme parks in Roblox and reads everything he can find about sharks. When he grows up, he hopes to design real rollercoasters, and one day he would love to study sharks as a marine&nbsp;biologist.</p>
+<p class="note screen-only">Or tap a tile, then tap a box. Tap a tile in a box to send it&nbsp;back.</p>
+<div class="sortgrid">
+<div class="bank" id="bank">
+<button type="button" class="tile" data-field="t1" data-i="1"><span class="cn">1</span>designing real rollercoasters</button>
+<button type="button" class="tile" data-field="t2" data-i="2"><span class="cn">2</span>playing football on Saturdays</button>
+<button type="button" class="tile" data-field="t3" data-i="3"><span class="cn">3</span>reading about sharks</button>
+<button type="button" class="tile" data-field="t4" data-i="4"><span class="cn">4</span>becoming a marine biologist</button>
+<button type="button" class="tile" data-field="t5" data-i="5"><span class="cn">5</span>building theme parks in Roblox</button>
+</div>
+<div class="bins">
+<div class="bin" data-val="interest"><h3>Interests</h3><div class="bincards"></div></div>
+<div class="bin" data-val="aspiration"><h3>Aspirations</h3><div class="bincards"></div></div>
+</div>
+</div>
+<div class="store" aria-hidden="true">
+<select data-k="t1" data-label="1. designing real rollercoasters: interest or aspiration" class="hw-field"><option value="">Choose</option><option value="interest">interest</option><option value="aspiration">aspiration</option></select>
+<select data-k="t2" data-label="1. playing football on Saturdays: interest or aspiration" class="hw-field"><option value="">Choose</option><option value="interest">interest</option><option value="aspiration">aspiration</option></select>
+<select data-k="t3" data-label="1. reading about sharks: interest or aspiration" class="hw-field"><option value="">Choose</option><option value="interest">interest</option><option value="aspiration">aspiration</option></select>
+<select data-k="t4" data-label="1. becoming a marine biologist: interest or aspiration" class="hw-field"><option value="">Choose</option><option value="interest">interest</option><option value="aspiration">aspiration</option></select>
+<select data-k="t5" data-label="1. building theme parks in Roblox: interest or aspiration" class="hw-field"><option value="">Choose</option><option value="interest">interest</option><option value="aspiration">aspiration</option></select>
+</div>
+</div></div>
+</section>
+
+<section class="question"><h2>Idiom or allegory</h2>
+<p class="instruction">Is each one an idiom or an allegory?&nbsp;Choose.</p>
+<div class="defs"><p><b>Idiom:</b> a fixed phrase that means something different from its own&nbsp;words.</p><p><b>Allegory:</b> a whole story whose characters and events stand for bigger&nbsp;ideas.</p></div>
+<div class="qs"><span class="qnum">2.</span><div class="cards two">
+<div class="itm"><span class="lab">a)</span><p class="ctext">In the old story <i>The Boy Who Cried Wolf</i>, a shepherd boy shouts &ldquo;Wolf!&rdquo; as a joke again and again, so when a real wolf comes, nobody believes&nbsp;him.</p><select data-k="i2a" data-label="2a. The Boy Who Cried Wolf: idiom or allegory" aria-label="2a. Idiom or allegory" class="hw-field"><option value="">Choose</option><option value="idiom">idiom</option><option value="allegory">allegory</option></select><span class="print-opts"><span><i></i>idiom</span><span><i></i>allegory</span></span></div>
+<div class="itm"><span class="lab">b)</span><p class="ctext">Ella keeps her cards close to her chest, so nobody knows which club she will&nbsp;join.</p><select data-k="i2b" data-label="2b. keeps her cards close to her chest: idiom or allegory" aria-label="2b. Idiom or allegory" class="hw-field"><option value="">Choose</option><option value="idiom">idiom</option><option value="allegory">allegory</option></select><span class="print-opts"><span><i></i>idiom</span><span><i></i>allegory</span></span></div>
+<div class="itm"><span class="lab">c)</span><p class="ctext">In the story, Grandad is over the moon when his old football team wins the&nbsp;cup.</p><select data-k="i2c" data-label="2c. Grandad is over the moon: idiom or allegory" aria-label="2c. Idiom or allegory" class="hw-field"><option value="">Choose</option><option value="idiom">idiom</option><option value="allegory">allegory</option></select><span class="print-opts"><span><i></i>idiom</span><span><i></i>allegory</span></span></div>
+<div class="itm"><span class="lab">d)</span><p class="ctext">In the old story <i>The Tortoise and the Hare</i>, a slow tortoise beats a speedy hare who stops for a nap <span class="nw">mid-race</span>.</p><select data-k="i2d" data-label="2d. The Tortoise and the Hare: idiom or allegory" aria-label="2d. Idiom or allegory" class="hw-field"><option value="">Choose</option><option value="idiom">idiom</option><option value="allegory">allegory</option></select><span class="print-opts"><span><i></i>idiom</span><span><i></i>allegory</span></span></div>
+</div></div>
+</section>
+
+<div class="pair question">
+<section><h2>Worlds apart</h2>
+<p class="instruction">Explain it in plain&nbsp;English.</p>
+<div class="qs"><span class="qnum">3.</span><div><p class="prompt">The twins sit next to each other in class, but their handwriting is worlds apart. What does <i>worlds apart</i> tell us about their&nbsp;handwriting?</p><div class="hw-field sent" contenteditable="true" data-k="w3" data-label="3. Worlds apart: what does it tell us about the twins' handwriting?" aria-label="3. What does worlds apart tell us about their handwriting?"></div></div></div>
+</section>
+<section><h2>Prospective</h2>
+<p class="instruction">Choose the sentence that uses <i>prospective</i> the right&nbsp;way.</p>
+<div class="qs"><span class="qnum">4.</span><div><select data-k="p4" data-label="4. Which sentence uses prospective the right way?" aria-label="4. Which sentence uses prospective the right way?" class="hw-field"><option value="">Choose</option><option value="A">A. Our prospective coach has trained us for years.</option><option value="B">B. The club gave prospective members a free trial swim.</option><option value="C">C. The prospective champions lifted the trophy.</option><option value="D">D. The prospective doctor has treated patients for years.</option></select>
+<span class="print-opts stack"><span><i></i>A. Our prospective coach has trained us for years.</span><span><i></i>B. The club gave prospective members a free trial swim.</span><span><i></i>C. The prospective champions lifted the trophy.</span><span><i></i>D. The prospective doctor has treated patients for years.</span></span></div></div>
+</section>
+</div>
+
+<section class="readsec question">
+<div class="layout">
+<div class="lefthalf"><h2>Read precisely</h2>
+<p class="instruction">Read the passage. Then choose what it does with each&nbsp;claim.</p>
+<p class="note">Not stated: the passage does not tell us, either&nbsp;way.</p>
+<aside class="passage">
+<h3>The Wind in the Willows</h3>
+<p class="ptext">The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes, and splashes of whitewash all over his black fur, and an aching back and weary arms. [&hellip;] It was small wonder, then, that he suddenly flung down his brush on the floor, said &ldquo;Bother!&rdquo; and &ldquo;O blow!&rdquo; and also &ldquo;Hang spring-cleaning!&rdquo; and bolted out of the house without even waiting to put on his coat. [&hellip;]</p>
+<p class="gloss"><b>whitewash:</b> a kind of white paint for&nbsp;walls.</p>
+<p class="credit">From <i>The Wind in the Willows</i> by Kenneth Grahame (1908), chapter 1, &ldquo;The River Bank&rdquo;. Public domain, text from Project Gutenberg. [&hellip;] marks a&nbsp;cut.</p>
+</aside>
+</div>
+<div class="q claims"><span class="qnum">5.</span><div>
+<div class="rowq claim"><p class="prompt"><span class="lab">a)</span>Mole put on his coat before he left the&nbsp;house.</p><select data-k="c5a" data-label="5a. Mole put on his coat before he left: supported, contradicted or not stated" aria-label="5a. Supported, contradicted or not stated" class="hw-field"><option value="">Choose</option><option value="supported">supported</option><option value="contradicted">contradicted</option><option value="not stated">not stated</option></select><span class="print-opts"><span><i></i>supported</span><span><i></i>contradicted</span><span><i></i>not stated</span></span></div>
+<div class="rowq claim"><p class="prompt"><span class="lab">b)</span>Mole was spring-cleaning because visitors were&nbsp;coming.</p><select data-k="c5b" data-label="5b. Mole was cleaning because visitors were coming: supported, contradicted or not stated" aria-label="5b. Supported, contradicted or not stated" class="hw-field"><option value="">Choose</option><option value="supported">supported</option><option value="contradicted">contradicted</option><option value="not stated">not stated</option></select><span class="print-opts"><span><i></i>supported</span><span><i></i>contradicted</span><span><i></i>not stated</span></span></div>
+<div class="rowq claim"><p class="prompt"><span class="lab">c)</span>Mole lived on his&nbsp;own.</p><select data-k="c5c" data-label="5c. Mole lived on his own: supported, contradicted or not stated" aria-label="5c. Supported, contradicted or not stated" class="hw-field"><option value="">Choose</option><option value="supported">supported</option><option value="contradicted">contradicted</option><option value="not stated">not stated</option></select><span class="print-opts"><span><i></i>supported</span><span><i></i>contradicted</span><span><i></i>not stated</span></span></div>
+<div class="rowq claim"><p class="prompt"><span class="lab">d)</span>Mole&rsquo;s back was&nbsp;hurting.</p><select data-k="c5d" data-label="5d. Mole's back was hurting: supported, contradicted or not stated" aria-label="5d. Supported, contradicted or not stated" class="hw-field"><option value="">Choose</option><option value="supported">supported</option><option value="contradicted">contradicted</option><option value="not stated">not stated</option></select><span class="print-opts"><span><i></i>supported</span><span><i></i>contradicted</span><span><i></i>not stated</span></span></div>
+</div></div>
+</div>
+</section>
+
+<div class="duo">
+<section class="question"><h2>Adjective or adverb</h2>
+<p class="instruction">Ask which word it describes. Then choose adjective or&nbsp;adverb.</p>
+<div class="qs"><span class="qnum">6.</span><div class="cards four">
+<div class="itm"><span class="lab">a)</span><p class="ctext">We crossed a <b>wobbly</b> old&nbsp;bridge.</p><select data-k="l6a" data-label="6a. We crossed a wobbly old bridge: adjective or adverb" aria-label="6a. wobbly: adjective or adverb" class="hw-field"><option value="">Choose</option><option value="adjective">adjective</option><option value="adverb">adverb</option></select><span class="print-opts"><span><i></i>adjective</span><span><i></i>adverb</span></span></div>
+<div class="itm"><span class="lab">b)</span><p class="ctext">Our <b>elderly</b> neighbour waves every&nbsp;morning.</p><select data-k="l6b" data-label="6b. Our elderly neighbour waves: adjective or adverb" aria-label="6b. elderly: adjective or adverb" class="hw-field"><option value="">Choose</option><option value="adjective">adjective</option><option value="adverb">adverb</option></select><span class="print-opts"><span><i></i>adjective</span><span><i></i>adverb</span></span></div>
+<div class="itm"><span class="lab">c)</span><p class="ctext">Mia <b>gently</b> lifted the sleepy&nbsp;kitten.</p><select data-k="l6c" data-label="6c. Mia gently lifted the kitten: adjective or adverb" aria-label="6c. gently: adjective or adverb" class="hw-field"><option value="">Choose</option><option value="adjective">adjective</option><option value="adverb">adverb</option></select><span class="print-opts"><span><i></i>adjective</span><span><i></i>adverb</span></span></div>
+<div class="itm"><span class="lab">d)</span><p class="ctext">The weather on sports day was <b>lovely</b>.</p><select data-k="l6d" data-label="6d. The weather was lovely: adjective or adverb" aria-label="6d. lovely: adjective or adverb" class="hw-field"><option value="">Choose</option><option value="adjective">adjective</option><option value="adverb">adverb</option></select><span class="print-opts"><span><i></i>adjective</span><span><i></i>adverb</span></span></div>
+</div></div>
+</section>
+
+
+<section class="question"><h2>Cause or purpose</h2>
+<p class="instruction">Is each answer a cause or a purpose?&nbsp;Choose.</p>
+<p class="note">A cause is the root: what made it happen. A purpose is what it is&nbsp;for.</p>
+<div class="qs"><span class="qnum">7.</span><div class="cards four">
+<div class="itm"><span class="lab why">a) Why was the library&nbsp;closed?</span><p class="ans">A pipe had burst in the&nbsp;night.</p><select data-k="r7a" data-label="7a. The library was closed. A pipe had burst in the night: cause or purpose" aria-label="7a. Cause or purpose" class="hw-field"><option value="">Choose</option><option value="cause">cause</option><option value="purpose">purpose</option></select><span class="print-opts"><span><i></i>cause</span><span><i></i>purpose</span></span></div>
+<div class="itm"><span class="lab why">b) Why did Zara save her&nbsp;money?</span><p class="ans">For a new&nbsp;skateboard.</p><select data-k="r7b" data-label="7b. Zara saved her money. For a new skateboard: cause or purpose" aria-label="7b. Cause or purpose" class="hw-field"><option value="">Choose</option><option value="cause">cause</option><option value="purpose">purpose</option></select><span class="print-opts"><span><i></i>cause</span><span><i></i>purpose</span></span></div>
+<div class="itm"><span class="lab why">c) Why did Ben tiptoe&nbsp;upstairs?</span><p class="ans">So that he would not wake the&nbsp;baby.</p><select data-k="r7c" data-label="7c. Ben tiptoed upstairs. So that he would not wake the baby: cause or purpose" aria-label="7c. Cause or purpose" class="hw-field"><option value="">Choose</option><option value="cause">cause</option><option value="purpose">purpose</option></select><span class="print-opts"><span><i></i>cause</span><span><i></i>purpose</span></span></div>
+<div class="itm"><span class="lab why">d) Why did the referee stop the&nbsp;game?</span><p class="ans">Lightning was flashing&nbsp;nearby.</p><select data-k="r7d" data-label="7d. The referee stopped the game. Lightning was flashing nearby: cause or purpose" aria-label="7d. Cause or purpose" class="hw-field"><option value="">Choose</option><option value="cause">cause</option><option value="purpose">purpose</option></select><span class="print-opts"><span><i></i>cause</span><span><i></i>purpose</span></span></div>
+</div></div>
+</section>
+</div>
+
+<script>
+(function () {
+  function init() {
+    function field(k) { var all = document.querySelectorAll(".store [data-k]"); for (var i = 0; i < all.length; i++) if (all[i].dataset.k === k) return all[i]; return null; }
+    function setVal(f, v) { if (f && f.value !== v) { f.value = v; f.dispatchEvent(new Event("input")); f.dispatchEvent(new Event("change")); } }
+    var picked = null;
+    var bank = document.getElementById("bank"), bins = [].slice.call(document.querySelectorAll(".bin"));
+    function unpick() {
+      if (picked) picked.classList.remove("picked"); picked = null;
+      bins.forEach(function (b) { b.classList.remove("ready"); });
+    }
+    function hit(list, x, y) {
+      for (var i = 0; i < list.length; i++) {
+        var r = list[i].getBoundingClientRect(), pad = 8;
+        if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return list[i];
+      }
+      return null;
+    }
+    function dragify(tile, o) {
+      tile.addEventListener("click", function (e) { e.stopPropagation(); });
+      tile.addEventListener("pointerdown", function (e) {
+        if (e.button && e.button !== 0) return;
+        e.preventDefault();
+        var r = tile.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ghost = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ghost = tile.cloneNode(true); ghost.classList.add("dragging"); ghost.style.width = r.width + "px";
+            ghost.querySelectorAll(".hw-mark").forEach(function (m) { m.remove(); });
+            document.body.appendChild(ghost); tile.classList.add("ghosted");
+          }
+          ghost.style.left = (ev.clientX - dx) + "px"; ghost.style.top = (ev.clientY - dy) + "px";
+          if (ev.clientY < 50) window.scrollBy(0, -14); else if (ev.clientY > window.innerHeight - 50) window.scrollBy(0, 14);
+          var t = hit(o.targets(), ev.clientX, ev.clientY);
+          if (t !== over) { if (over) over.classList.remove("over"); over = t; if (t) t.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (over) over.classList.remove("over");
+          if (!moved) { o.tap(); return; }
+          ghost.remove(); tile.classList.remove("ghosted");
+          var t = ev.type === "pointerup" ? hit(o.targets(), ev.clientX, ev.clientY) : null;
+          if (t) o.drop(t); else if (o.out) o.out();
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    }
+    function home(tile) {
+      var i = +tile.dataset.i, kids = bank.querySelectorAll(".tile"), before = null;
+      for (var j = 0; j < kids.length; j++) if (kids[j] !== tile && +kids[j].dataset.i > i) { before = kids[j]; break; }
+      bank.insertBefore(tile, before); setVal(field(tile.dataset.field), "");
+    }
+    function toBin(tile, bin) { bin.querySelector(".bincards").appendChild(tile); setVal(field(tile.dataset.field), bin.dataset.val); }
+    document.querySelectorAll("#bank .tile").forEach(function (tile) {
+      dragify(tile, {
+        targets: function () { return bins; },
+        drop: function (bin) { toBin(tile, bin); },
+        out: function () { if (tile.closest(".bin")) home(tile); },
+        tap: function () {
+          if (tile.closest(".bin")) { unpick(); home(tile); return; }
+          if (picked === tile) { unpick(); return; }
+          unpick(); picked = tile; tile.classList.add("picked");
+          bins.forEach(function (b) { b.classList.add("ready"); });
+        }
+      });
+      var f = field(tile.dataset.field);
+      if (f && f.value) bins.forEach(function (b) { if (b.dataset.val === f.value) b.querySelector(".bincards").appendChild(tile); });
+    });
+    bins.forEach(function (b) { b.addEventListener("click", function () { if (picked) { toBin(picked, b); unpick(); } }); });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImFzcGlyYXRpb24ifSwgInQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiaW50ZXJlc3QifSwgInQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiaW50ZXJlc3QifSwgInQ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYXNwaXJhdGlvbiJ9LCAidDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpbnRlcmVzdCJ9LCAiaTJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYWxsZWdvcnkifSwgImkyYiI6IHsidCI6ICJleGFjdCIsICJhIjogImlkaW9tIn0sICJpMmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpZGlvbSJ9LCAiaTJkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYWxsZWdvcnkifSwgInczIjogeyJ0IjogIm9wZW4ifSwgInA0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiQiJ9LCAiYzVhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29udHJhZGljdGVkIn0sICJjNWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJub3Qgc3RhdGVkIn0sICJjNWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJub3Qgc3RhdGVkIn0sICJjNWQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzdXBwb3J0ZWQifSwgImw2YSI6IHsidCI6ICJleGFjdCIsICJhIjogImFkamVjdGl2ZSJ9LCAibDZiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYWRqZWN0aXZlIn0sICJsNmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhZHZlcmIifSwgImw2ZCI6IHsidCI6ICJleGFjdCIsICJhIjogImFkamVjdGl2ZSJ9LCAicjdhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY2F1c2UifSwgInI3YiI6IHsidCI6ICJleGFjdCIsICJhIjogInB1cnBvc2UifSwgInI3YyI6IHsidCI6ICJleGFjdCIsICJhIjogInB1cnBvc2UifSwgInI3ZCI6IHsidCI6ICJleGFjdCIsICJhIjogImNhdXNlIn19</script>
+<script src="../assets/hw.js?v=20261013-pdf-sections"></script>
+</body></html>

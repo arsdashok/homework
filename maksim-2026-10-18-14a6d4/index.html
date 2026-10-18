@@ -1,0 +1,249 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Maksim_Homework_2026-10-18.key.json -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Maksim · English · 18 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.6; }
+.wrap { max-width:900px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+a { color:var(--accent); text-underline-offset:4px; }
+
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 36px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.language-note, .example { page-break-inside:avoid; break-inside:avoid; }
+.section-heading, .language-note, .instruction, .example { page-break-after:avoid; break-after:avoid; }
+.section-heading { display:flex; gap:16px; align-items:baseline; margin-bottom:16px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:14px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:19px; line-height:1.3; letter-spacing:-.01em; font-weight:650; color:#2c4250; }
+.instruction { font-size:22px; line-height:1.35; font-weight:700; color:var(--ink); margin:20px 0 16px; }
+
+/* Rule note: what the words mean. */
+.language-note { border-left:3px solid var(--accent); background:#f0f7f7; border-radius:0 12px 12px 0; padding:12px 20px; margin:0; font-size:16px; line-height:1.6; }
+.language-note p { margin:3px 0; }
+.rule-row { display:grid; grid-template-columns:110px 1fr; gap:4px 14px; margin:3px 0; }
+.rule-row .w { font-weight:700; color:#0b4f4b; }
+.rule-row .past { color:var(--muted); }
+
+/* Worked example: same shape as an item, already done. */
+.example { border:1.5px dashed #9fb4bf; border-radius:14px; padding:14px 20px 16px; margin:0 0 8px; background:#fbfcfd; }
+.example-label { font-size:12px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 6px; }
+.example .situation { margin-bottom:4px; }
+.example .why { font-size:15px; color:var(--muted); margin:8px 0 0; }
+
+/* Items */
+.question { display:flex; gap:12px; align-items:flex-start; padding:18px 0; border-bottom:1px solid #edf1f3; page-break-inside:avoid; break-inside:avoid; }
+.question:last-child { border-bottom:0; padding-bottom:4px; }
+.qnum { font-weight:650; font-size:18px; min-width:26px; padding-top:1px; color:var(--ink); }
+.qbody { flex:1; min-width:0; }
+.situation { font-size:17px; color:#3f5562; margin:0 0 4px; }
+.sentence { font-size:20px; margin:0 0 12px; }
+.fillgap { display:inline-block; min-width:110px; min-height:1.45em; padding:0 10px; margin:0 3px; border:1.5px dashed #a4b5c0; border-radius:8px; background:#f8fafb; vertical-align:baseline; line-height:1.4; text-align:center; color:#1d4ed8; font-weight:600; }
+.fillgap.is-filled { border-style:solid; border-color:#0f766e; background:#eef8f6; }
+
+.choices { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.choices.stack { flex-direction:column; align-items:stretch; gap:8px; }
+.choice, .demo-choice { font:inherit; font-size:18px; line-height:1.35; padding:9px 18px; border:1.5px solid #b8c6ce; border-radius:10px; background:#fff; color:#1e293b; text-align:left; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.choice { cursor:pointer; }
+.choice:hover { border-color:#0f766e; }
+.choice.is-chosen, .demo-choice.is-chosen { border-color:#0f766e; background:#e6f4f1; color:#0b3d38; font-weight:600; }
+.demo-choice { display:inline-block; cursor:default; }
+.choices.stack .choice, .choices.stack .demo-choice { font-size:18px; padding:11px 16px; }
+select.pair-store { display:none !important; }
+
+.prt { display:none; }
+.nowrap { white-space:nowrap; }
+
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 18px; border-radius:14px; }
+  .instruction { font-size:20px; } .sentence { font-size:19px; } .edition { font-size:12px; }
+  .rule-row { grid-template-columns:1fr; gap:0; margin-bottom:6px; }
+  .choice { font-size:17px; padding:9px 14px; }
+}
+
+@page { size:A4; margin:11mm; }
+@media print {
+  .scr { display:none !important; } .prt { display:inline !important; }
+  body { background:white; font-size:12pt; line-height:1.45; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:10px; } .heading-row { margin:8px 0 10px; } .page-meta { padding-top:8px; }
+  h1 { font-size:24pt; }
+  .exercise { box-shadow:none; padding:14px 20px; margin-bottom:12px; page-break-inside:auto; break-inside:auto; }
+  .instruction { font-size:15pt; margin:12px 0 10px; page-break-after:avoid; break-after:avoid; }
+  .language-note { padding:8px 16px; page-break-inside:avoid; break-inside:avoid; page-break-after:avoid; break-after:avoid; }
+  .example { padding:10px 16px; page-break-inside:avoid; break-inside:avoid; }
+  .question { padding:8px 0; }
+  .sentence { font-size:13.5pt; margin-bottom:6px; }
+  .situation { font-size:11.5pt; }
+  .choice, .demo-choice { font-size:12pt; padding:4px 12px; }
+}
+body.hw-pdf-mode { background:white; }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Maksim" data-sheet="English 2026-10-18" data-sheet-id="maksim-2026-10-18-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>English, in practice.</h1><span class="edition">18<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Maksim · 18 October · 3 exercises · about 10 minutes</span><a href="https://arsdashok.github.io/vocab/2c73e70a0550a136/">Your vocabulary ↗</a></div>
+</header>
+
+<section class="exercise" aria-labelledby="title-1">
+  <div class="section-heading"><span class="section-number">01</span><h2 id="title-1">Lend, borrow or pay&nbsp;back?</h2></div>
+  <div class="language-note">
+    <div class="rule-row"><span class="w">lend</span><span>give for a time: lend something <b>to</b> someone / lend someone something <span class="past">· past: lent</span></span></div>
+    <div class="rule-row"><span class="w">borrow</span><span>take for a time: borrow something <b>from</b> someone <span class="past">· past: borrowed</span></span></div>
+    <div class="rule-row"><span class="w">pay back</span><span>return money <span class="past">· past: paid&nbsp;back</span></span></div>
+  </div>
+  <p class="instruction"><span class="scr">Click the word that fits the&nbsp;gap.</span><span class="prt">Circle the word that fits the&nbsp;gap.</span></p>
+  <div class="example">
+    <p class="example-label">Like this</p>
+    <p class="situation">Your neighbour has no drill. You have one. He&nbsp;asks:</p>
+    <p class="sentence">“Can I <span class="fillgap is-filled">borrow</span> your&nbsp;drill?”</p>
+    <div class="choices"><span class="demo-choice">lend</span><span class="demo-choice is-chosen">borrow</span><span class="demo-choice">pay back</span></div>
+    <p class="why">He takes the drill, so he&nbsp;borrows&nbsp;it.</p>
+  </div>
+
+  <div class="question"><span class="qnum">1.</span><div class="qbody">
+    <p class="situation">You're at the market and you need 500 dinars more. You ask a&nbsp;friend:</p>
+    <p class="sentence">“Could you <span class="fillgap" data-gap="b1">&nbsp;</span> me 500&nbsp;dinars?”</p>
+    <div class="choices" data-field="b1"><button type="button" class="choice" data-v="Could you borrow me 500 dinars?">borrow</button><button type="button" class="choice" data-v="Could you lend me 500 dinars?">lend</button><button type="button" class="choice" data-v="Could you pay back me 500 dinars?">pay back</button></div>
+    <select class="hw-field pair-store" data-k="b1" data-label="1. Could you ___ me 500 dinars?" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Could you borrow me 500 dinars?">borrow</option><option value="Could you lend me 500 dinars?">lend</option><option value="Could you pay back me 500 dinars?">pay back</option></select>
+  </div></div>
+
+  <div class="question"><span class="qnum">2.</span><div class="qbody">
+    <p class="situation">A colleague asks you: “Have you ever borrowed money from a friend?” You&nbsp;reply:</p>
+    <p class="sentence">“Yes, once. I <span class="fillgap" data-gap="b2">&nbsp;</span>&nbsp;3,000&nbsp;dinars.”</p>
+    <div class="choices" data-field="b2"><button type="button" class="choice" data-v="Yes, once. I borrowed 3,000 dinars.">borrowed</button><button type="button" class="choice" data-v="Yes, once. I lent 3,000 dinars.">lent</button><button type="button" class="choice" data-v="Yes, once. I paid back 3,000 dinars.">paid back</button></div>
+    <select class="hw-field pair-store" data-k="b2" data-label="2. Yes, once. I ___ 3,000 dinars." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Yes, once. I borrowed 3,000 dinars.">borrowed</option><option value="Yes, once. I lent 3,000 dinars.">lent</option><option value="Yes, once. I paid back 3,000 dinars.">paid back</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">3.</span><div class="qbody">
+    <p class="situation">Last week a friend gave you 2,000 dinars for guitar strings. You promised to return the money on Friday. You say to&nbsp;him:</p>
+    <p class="sentence">“Thanks a lot! I'll <span class="fillgap" data-gap="b3">&nbsp;</span> the money on&nbsp;Friday.”</p>
+    <div class="choices" data-field="b3"><button type="button" class="choice" data-v="Thanks a lot! I'll lend the money on Friday.">lend</button><button type="button" class="choice" data-v="Thanks a lot! I'll borrow the money on Friday.">borrow</button><button type="button" class="choice" data-v="Thanks a lot! I'll pay back the money on Friday.">pay back</button></div>
+    <select class="hw-field pair-store" data-k="b3" data-label="3. Thanks a lot! I'll ___ the money on Friday." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Thanks a lot! I'll lend the money on Friday.">lend</option><option value="Thanks a lot! I'll borrow the money on Friday.">borrow</option><option value="Thanks a lot! I'll pay back the money on Friday.">pay back</option></select>
+  </div></div>
+
+  <div class="question"><span class="qnum">4.</span><div class="qbody">
+    <p class="situation">A friend from your acting class had no money for a taxi. You gave him 1,000 dinars, and he will return it next&nbsp;week.</p>
+    <p class="sentence">“Last week I <span class="fillgap" data-gap="b4">&nbsp;</span> 1,000 dinars to a&nbsp;friend.”</p>
+    <div class="choices" data-field="b4"><button type="button" class="choice" data-v="Last week I lent 1,000 dinars to a friend.">lent</button><button type="button" class="choice" data-v="Last week I borrowed 1,000 dinars to a friend.">borrowed</button><button type="button" class="choice" data-v="Last week I paid back 1,000 dinars to a friend.">paid back</button></div>
+    <select class="hw-field pair-store" data-k="b4" data-label="4. Last week I ___ 1,000 dinars to a friend." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Last week I lent 1,000 dinars to a friend.">lent</option><option value="Last week I borrowed 1,000 dinars to a friend.">borrowed</option><option value="Last week I paid back 1,000 dinars to a friend.">paid back</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">5.</span><div class="qbody">
+    <p class="situation">Ilya asks you: “Could you lend me your soldering iron?” You&nbsp;say:</p>
+    <p class="sentence">“Sure, you can <span class="fillgap" data-gap="b5">&nbsp;</span>&nbsp;it until&nbsp;Monday.”</p>
+    <div class="choices" data-field="b5"><button type="button" class="choice" data-v="Sure, you can lend it until Monday.">lend</button><button type="button" class="choice" data-v="Sure, you can borrow it until Monday.">borrow</button><button type="button" class="choice" data-v="Sure, you can pay back it until Monday.">pay back</button></div>
+    <select class="hw-field pair-store" data-k="b5" data-label="5. Sure, you can ___ it until Monday." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Sure, you can lend it until Monday.">lend</option><option value="Sure, you can borrow it until Monday.">borrow</option><option value="Sure, you can pay back it until Monday.">pay back</option></select>
+  </div></div>
+</section>
+
+<section class="exercise" aria-labelledby="title-2">
+  <div class="section-heading"><span class="section-number">02</span><h2 id="title-2">Verb +&nbsp;back</h2></div>
+  <div class="language-note">
+    <p><strong>back</strong> = return. <span class="nowrap"><strong>give back</strong> to a person</span> · <span class="nowrap"><strong>take back</strong> to a shop</span> · <span class="nowrap"><strong>send back</strong> by post</span> · <span class="nowrap"><strong>go back</strong> to a place</span> · <span class="nowrap"><strong>call back</strong> on the phone</span></p>
+    <p><strong>it</strong>, <strong>you</strong>, him, <strong>them</strong> go in the middle: I'll call <strong>you</strong>&nbsp;back.</p>
+  </div>
+  <p class="instruction"><span class="scr">Click the words that fit the&nbsp;gap.</span><span class="prt">Circle the words that fit the&nbsp;gap.</span></p>
+  <div class="example">
+    <p class="example-label">Like this</p>
+    <p class="situation">Your tattoo artist calls, but you're in your acting&nbsp;class.</p>
+    <p class="sentence">“Sorry, I can't talk now. I'll <span class="fillgap is-filled">call you back</span> after the&nbsp;class.”</p>
+    <div class="choices"><span class="demo-choice">call back you</span><span class="demo-choice">give you back</span><span class="demo-choice is-chosen">call you back</span></div>
+  </div>
+
+  <div class="question"><span class="qnum">6.</span><div class="qbody">
+    <p class="situation">Your new guitar pickup from AliExpress arrived today, but it doesn't work. The seller is in&nbsp;China.</p>
+    <p class="sentence">“It's broken, so I'll <span class="fillgap" data-gap="k1">&nbsp;</span>.”</p>
+    <div class="choices" data-field="k1"><button type="button" class="choice" data-v="It's broken, so I'll send it back.">send it back</button><button type="button" class="choice" data-v="It's broken, so I'll send back it.">send back it</button><button type="button" class="choice" data-v="It's broken, so I'll take it back.">take it back</button></div>
+    <select class="hw-field pair-store" data-k="k1" data-label="6. It's broken, so I'll ___." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="It's broken, so I'll send it back.">send it back</option><option value="It's broken, so I'll send back it.">send back it</option><option value="It's broken, so I'll take it back.">take it back</option></select>
+  </div></div>
+
+  <div class="question"><span class="qnum">7.</span><div class="qbody">
+    <p class="situation">You still have a friend's calipers. You don't need them any&nbsp;more.</p>
+    <p class="sentence">“I'll <span class="fillgap" data-gap="k2">&nbsp;</span> to him&nbsp;tomorrow.”</p>
+    <div class="choices" data-field="k2"><button type="button" class="choice" data-v="I'll give back them to him tomorrow.">give back them</button><button type="button" class="choice" data-v="I'll call them back to him tomorrow.">call them back</button><button type="button" class="choice" data-v="I'll give them back to him tomorrow.">give them back</button></div>
+    <select class="hw-field pair-store" data-k="k2" data-label="7. I'll ___ to him tomorrow." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="I'll give back them to him tomorrow.">give back them</option><option value="I'll call them back to him tomorrow.">call them back</option><option value="I'll give them back to him tomorrow.">give them back</option></select>
+  </div></div>
+
+  <div class="question"><span class="qnum">8.</span><div class="qbody">
+    <p class="situation">You bought a guitar strap in a shop round the corner from your flat. At home you see that it's broken. You have the&nbsp;receipt.</p>
+    <p class="sentence">“Tomorrow I'll <span class="fillgap" data-gap="k3">&nbsp;</span> to the&nbsp;shop.”</p>
+    <div class="choices" data-field="k3"><button type="button" class="choice" data-v="Tomorrow I'll send it back to the shop.">send it back</button><button type="button" class="choice" data-v="Tomorrow I'll take it back to the shop.">take it back</button><button type="button" class="choice" data-v="Tomorrow I'll take back it to the shop.">take back it</button></div>
+    <select class="hw-field pair-store" data-k="k3" data-label="8. Tomorrow I'll ___ to the shop." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Tomorrow I'll send it back to the shop.">send it back</option><option value="Tomorrow I'll take it back to the shop.">take it back</option><option value="Tomorrow I'll take back it to the shop.">take back it</option></select>
+  </div></div>
+
+</section>
+
+<section class="exercise" aria-labelledby="title-3">
+  <div class="section-heading"><span class="section-number">03</span><h2 id="title-3">Which one is&nbsp;right?</h2></div>
+  <p class="instruction"><span class="scr">Click the correct&nbsp;sentence.</span><span class="prt">Circle the correct&nbsp;sentence.</span></p>
+  <div class="example">
+    <p class="example-label">Like this</p>
+    <div class="choices stack"><span class="demo-choice is-chosen">Nothing interesting happened at work today.</span><span class="demo-choice">Didn't happen anything interesting at work today.</span></div>
+  </div>
+
+  <div class="question"><span class="qnum">9.</span><div class="qbody">
+    <div class="choices stack" data-field="m1"><button type="button" class="choice" data-v="I can't finish my e-book until the new display arrives.">I can't finish my e-book until the new display arrives.</button><button type="button" class="choice" data-v="I can't to finish my e-book until the new display arrives.">I can't to finish my e-book until the new display arrives.</button></div>
+    <select class="hw-field pair-store" data-k="m1" data-label="9. Choose the correct sentence (can't + verb)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="I can't finish my e-book until the new display arrives.">I can't finish my e-book until the new display arrives.</option><option value="I can't to finish my e-book until the new display arrives.">I can't to finish my e-book until the new display arrives.</option></select>
+  </div></div>
+
+  <div class="question"><span class="qnum">10.</span><div class="qbody">
+    <div class="choices stack" data-field="m2"><button type="button" class="choice" data-v="My friend paid for my coffee, and I paid his back the next day.">My friend paid for my coffee, and I paid his back the next day.</button><button type="button" class="choice" data-v="My friend paid for my coffee, and I paid him back the next day.">My friend paid for my coffee, and I paid him back the next day.</button></div>
+    <select class="hw-field pair-store" data-k="m2" data-label="10. Choose the correct sentence (paid ___ back)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="My friend paid for my coffee, and I paid his back the next day.">My friend paid for my coffee, and I paid his back the next day.</option><option value="My friend paid for my coffee, and I paid him back the next day.">My friend paid for my coffee, and I paid him back the next day.</option></select>
+  </div></div>
+</section>
+</main>
+<script id="choice-script">
+(function(){
+  function store(k){ return document.querySelector('select[data-k="'+k+'"]'); }
+  function sync(){
+    document.querySelectorAll('.choices[data-field]').forEach(function(g){
+      var s = store(g.dataset.field); if(!s) return;
+      var chosen = null;
+      g.querySelectorAll('.choice').forEach(function(b){
+        var on = !!s.value && b.dataset.v === s.value;
+        b.classList.toggle('is-chosen', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if(on) chosen = b;
+      });
+      var gap = document.querySelector('.fillgap[data-gap="'+g.dataset.field+'"]');
+      if(gap){ gap.textContent = chosen ? chosen.textContent : '\u00a0'; gap.classList.toggle('is-filled', !!chosen); }
+    });
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.choice'); if(!b) return;
+    var g = b.closest('.choices'); var s = store(g.dataset.field); if(!s) return;
+    s.value = b.dataset.v;
+    s.dispatchEvent(new Event('input', {bubbles:true}));
+    s.dispatchEvent(new Event('change', {bubbles:true}));
+    sync();
+  });
+  document.addEventListener('change', sync);
+  document.addEventListener('DOMContentLoaded', sync);
+  window.addEventListener('load', function(){ sync(); setTimeout(sync, 300); setTimeout(sync, 1200); });
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJiMSI6IHsidCI6ICJleGFjdCIsICJhIjogIkNvdWxkIHlvdSBsZW5kIG1lIDUwMCBkaW5hcnM/In0sICJiMiI6IHsidCI6ICJleGFjdCIsICJhIjogIlllcywgb25jZS4gSSBib3Jyb3dlZCAzLDAwMCBkaW5hcnMuIn0sICJiMyI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoYW5rcyBhIGxvdCEgSSdsbCBwYXkgYmFjayB0aGUgbW9uZXkgb24gRnJpZGF5LiJ9LCAiYjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJMYXN0IHdlZWsgSSBsZW50IDEsMDAwIGRpbmFycyB0byBhIGZyaWVuZC4ifSwgImI1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiU3VyZSwgeW91IGNhbiBib3Jyb3cgaXQgdW50aWwgTW9uZGF5LiJ9LCAiazEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJdCdzIGJyb2tlbiwgc28gSSdsbCBzZW5kIGl0IGJhY2suIn0sICJrMiI6IHsidCI6ICJleGFjdCIsICJhIjogIkknbGwgZ2l2ZSB0aGVtIGJhY2sgdG8gaGltIHRvbW9ycm93LiJ9LCAiazMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJUb21vcnJvdyBJJ2xsIHRha2UgaXQgYmFjayB0byB0aGUgc2hvcC4ifSwgIm0xIjogeyJ0IjogImV4YWN0IiwgImEiOiAiSSBjYW4ndCBmaW5pc2ggbXkgZS1ib29rIHVudGlsIHRoZSBuZXcgZGlzcGxheSBhcnJpdmVzLiJ9LCAibTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJNeSBmcmllbmQgcGFpZCBmb3IgbXkgY29mZmVlLCBhbmQgSSBwYWlkIGhpbSBiYWNrIHRoZSBuZXh0IGRheS4ifX0=</script>
+<script src="../assets/hw.js?v=20261013-pdf-sections"></script>
+</body>
+</html>

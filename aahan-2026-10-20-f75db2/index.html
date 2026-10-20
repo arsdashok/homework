@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aahan &middot; Maths homework &middot; 20 October 2026</title>
+<!-- 20 Oct 2026, Y5 W43 Primes & Composites. v2 after gates (pupil-critic SHIP, pedagogy SOUND, format 10 issues).
+     Taught envelope: Materials/Maths/Year 5/Lessons/2026-W43 Primes & Composites/Whiteboard_Cards_2026_W43_Primes_Composites.html
+     (prime = exactly two factors, 1 neither, 2 the only even prime, the test = keepers 2, 3, 5, 7, stop at the first save,
+     pair then verdict; quick checks even / digit sum / 0 or 5 / 7 times table; the prime team under 20).
+     Lesson formats NOT repeated: goalkeeper ticks table, ladders, card 06 pair-then-verdict with written brackets, shirt
+     line-up, always/sometimes/never. 14 Oct formats NOT repeated: typed partner rows, Venn, factor/multiple/neither dropdowns.
+     Block 1 "Team sheet": cold typed recall FIRST, before the keepers (2, 3, 5, 7 in the block 2 menu) and the 95 model
+       (prints 5 and 19) are on screen. Key type set, any order. No list of the team is printed anywhere.
+     Block 2 "Penalty shoot-out" (biggest, the 3-check he skipped on 51 and 57): per shot a keeper select (2, 3, 5, 7, GOAL!),
+       a typed partner (x for a goal, the 14 Oct convention), a verdict select. The equation row ends with the partner box
+       ("69 = keeper x [ ]"), so the check mark follows the whole equation. Shots 59 83 41 73 prime; 69=3x23, 91=7x13 (swapped in for 94 on 20 Oct: 91 was marked prime in the lesson, uncorrected),
+       39=3x13, 81=3x27. Every composite has exactly ONE keeper among 2, 3, 5, 7. Verdict order P C P P C C P C.
+       Keeper order GOAL! 3 GOAL! GOAL! 2 3 GOAL! 3. In two-digit numbers 7 is the first keeper only for 49, 77, 91 (all
+       lesson items), so no fresh item has keeper 7; 7 is the last check on every prime. Model 95 = 5 x 19 (keeper 5, no item
+       uses it) with the tries 2, 3, 5 and the partner route 50 + 45. SAVED!/GOAL! stamp and the keeper echo reflect only
+       his own choice.
+     Block 3 "Pick two, bench one" (factor vs multiple direction): tap-to-place (Tools/hw_snippets/tap_place.html), three
+       numbers per sentence, two go in, one stays on the bench. 1 factor: 75 4 3 -> 3, 75 (bench 4) · 2 multiple: 7 98 6 ->
+       98, 7 (bench 6) · 3 multiple: 9 8 88 -> 88, 8 (bench 9) · 4 factor: 92 3 4 -> 4, 92 (bench 3). Each placement unique.
+       Model on the FACTOR frame, bridged from block 2: 95 5 3 -> 5 is a factor of 95, bench 3.
+     Banner digits 100 64 36 48 / 50 80 44: none is an item. Numbers restart inside block 3 only; no running count. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --teal-soft: #e3f5f4; --muted: #6b5f4e; --dash: #e6d6b4;
+}
+@page { size: A4; margin: 9mm 11mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font: 17px/1.5 'Rubik', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--cream);
+  max-width: 1120px; margin: 0 auto; padding: 22px 18px 40px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.display { font-family: 'Luckiest Guy', 'Arial Black', 'Rubik', sans-serif; font-weight: 400; letter-spacing: .02em; }
+.nw { white-space: nowrap; }
+.prt { display: none; }
+
+/* banner */
+.banner { position: relative; height: 150px; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px; background: var(--teal); }
+.banner .digits { position: absolute; inset: -14px -10px auto -10px; font-size: 118px; line-height: .9; color: rgba(255,255,255,.17); white-space: nowrap; letter-spacing: .14em; }
+.banner .digits.two { top: 76px; left: -50px; color: rgba(27,23,18,.12); }
+.banner .label { position: absolute; left: 18px; bottom: 16px; background: var(--paper); border: 3px solid var(--ink); border-radius: 12px; padding: 8px 16px 6px; box-shadow: 4px 4px 0 var(--ink); }
+.banner .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.banner h1 { font-size: 34px; line-height: 1.05; }
+.banner .date { position: absolute; right: 16px; top: 14px; background: var(--ink); color: var(--gold); font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+
+/* cards: three registers, items regular, instruction bold, notes small */
+section { background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 22px; margin-bottom: 28px; }
+h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 27px; line-height: 1.1; margin-bottom: 12px; break-after: avoid; page-break-after: avoid; }
+.badge { flex: none; width: 42px; height: 42px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; padding-top: 3px; }
+.instruction { font-size: 21px; line-height: 1.35; font-weight: 700; margin-bottom: 4px; text-wrap: pretty; }
+.note { font-size: 14.5px; line-height: 1.4; color: var(--muted); margin-bottom: 14px; text-wrap: pretty; }
+.qnum { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
+.mtile { display: inline-block; min-width: 38px; text-align: center; font-weight: 700; color: var(--ink); background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 8px; padding: 0 8px; margin: 0 3px; }
+
+/* ---------- block 1: team sheet ---------- */
+.team-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.team-row .tlab { font-size: 20px; }
+.team-in { font: inherit; font-size: 21px; width: 100%; max-width: 560px; }
+
+/* ---------- block 2: penalty shoot-out ---------- */
+.mshot { display: grid; grid-template-columns: 250px minmax(0, max-content); align-items: center; gap: 10px 26px; width: fit-content; max-width: 100%; margin-bottom: 18px; padding: 12px 18px 14px; border: 2px dashed var(--teal); border-radius: 16px; background: var(--teal-soft); break-inside: avoid; page-break-inside: avoid; }
+.mshot .tag { grid-column: 1 / -1; }
+.mshot .shot { width: 250px; border-style: dashed; background: #fff; }
+.tries { color: var(--muted); font-size: 17px; line-height: 1.6; }
+.tries b { color: var(--teal); }
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.shot { position: relative; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; break-inside: avoid; page-break-inside: avoid; }
+.ball { width: 66px; height: 66px; border-radius: 50%; border: 3px solid var(--ink); background: var(--gold); box-shadow: 3px 3px 0 var(--ink); display: flex; align-items: center; justify-content: center; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 32px; line-height: 1; padding-top: 4px; margin-bottom: 10px; }
+.srow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 20px; font-variant-numeric: tabular-nums; margin: 7px 0; }
+.srow .lab { font-weight: 400; }
+.kecho { color: var(--muted); }
+.kecho.on { color: var(--ink); font-weight: 700; }
+.shot .srow select { font: inherit; font-size: 17px; min-width: 118px; max-width: 100%; }
+.shot .srow input { font: inherit; font-size: 19px; width: 80px; }
+.stamp { display: none; position: absolute; top: 18px; right: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 19px; line-height: 1; padding: 5px 9px 2px; border: 3px solid currentColor; border-radius: 9px; transform: rotate(-9deg); background: #fff; }
+.shot[data-call="saved"] .stamp, .stamp.on.saved { display: inline-block; color: var(--teal); }
+.shot[data-call="goal"] .stamp { display: inline-block; color: var(--orange); }
+
+/* ---------- block 3: pick two, bench one (TAP-PLACE, restyled for the comic look) ---------- */
+/* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, colours changed) ===== */
+.tp-bank { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 8px 12px; border: 2px dashed #c9b891; border-radius: 12px; min-height: 60px; margin: 0 0 12px; background: var(--teal-soft); }
+.tp-tile {
+  font: inherit; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink);
+  background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 10px; padding: 4px 14px; min-width: 56px; min-height: 44px;
+  box-shadow: 3px 3px 0 var(--ink); cursor: pointer; text-align: center; line-height: 1.3;
+  touch-action: manipulation;            /* a touch scrolls the page; never "none" */
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+}
+.tp-tile.picked { background: #fff; outline: 3px solid var(--orange); outline-offset: 2px; }
+.tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 5px 5px 0 var(--ink); }
+.tp-zone { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; vertical-align: middle; min-width: 86px; min-height: 56px; padding: 4px 6px; margin: 0 4px; border: 2.5px dashed #c9b891; border-radius: 12px; background: #fff; cursor: pointer; }
+.tp-zone.ready { border-color: var(--teal); background: #f6fcfb; }
+.tp-zone.over { border-color: var(--teal); background: var(--teal-soft); }
+.tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: center; justify-content: center; }
+.tp-stores { display: none !important; }
+@media print { .tp-tile.picked { outline: 0; } }
+/* ===== end TAP-PLACE CSS ===== */
+.bench-tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-right: 4px; }
+.pmodel { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 2px 0 16px; padding: 10px 14px; border-left: 3px solid var(--teal); color: var(--muted); font-size: 16px; break-inside: avoid; page-break-inside: avoid; }
+.pmodel .msent { color: var(--ink); font-size: 19px; }
+.pmodel .mbench .mtile { opacity: .55; }
+.pitems { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 22px; }
+.pq { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: start; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; break-inside: avoid; page-break-inside: avoid; }
+.pq .qnum { margin-top: 14px; }
+.frame { font-size: 22px; line-height: 2.1; font-variant-numeric: tabular-nums; }
+.tp-zone > .hw-mark.hw-mark-blk { margin: 2px 0 0; text-align: center; font-size: 13px; }
+
+/* Emailed PDF only (hw.js gives the export body the class hw-pdf-mode). html2pdf keeps a card whole by
+   putting a spacer before it, and in a grid that spacer takes a cell and shifts every later card.
+   In normal flow the spacer just pushes the card to the next page. */
+body.hw-pdf-mode .shots, body.hw-pdf-mode .pitems { display: block; }
+body.hw-pdf-mode .shots > .shot { display: inline-block; vertical-align: top; width: calc(50% - 10px); margin: 0 0 14px; }
+body.hw-pdf-mode .shots > .shot:nth-child(odd) { margin-right: 12px; }
+body.hw-pdf-mode .pitems > .pq { margin-bottom: 14px; }
+
+@media screen and (min-width: 561px) {
+  .frame { white-space: nowrap; }
+}
+@media screen and (max-width: 980px) {
+  .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pitems { grid-template-columns: minmax(0, 1fr); }
+}
+@media screen and (max-width: 560px) {
+  body { padding: 16px 12px 36px; }
+  .banner { height: 160px; }
+  .banner .label { right: 16px; bottom: 14px; }
+  .banner h1 { font-size: 26px; }
+  .banner .date { top: 10px; font-size: 12px; }
+  section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 23px; }
+  .instruction { font-size: 19px; }
+  .shots { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .shot { display: grid; grid-template-columns: 70px minmax(0, 1fr); column-gap: 12px; align-items: center; }
+  .shot .ball { grid-row: 1 / span 3; align-self: start; width: 58px; height: 58px; font-size: 27px; margin: 4px 0 0; }
+  .shot .srow { grid-column: 2; margin: 4px 0; font-size: 19px; }
+  .stamp { top: 84px; left: 10px; right: auto; font-size: 14px; padding: 4px 6px 1px; border-width: 2.5px; }
+  .mshot { grid-template-columns: minmax(0, 1fr); }
+  .mshot .shot { width: 100%; }
+  .tries { font-size: 15px; }
+  .pq { display: block; position: relative; padding: 14px 10px 10px; }
+  .pq .qnum { position: absolute; top: -12px; left: -10px; margin: 0; }
+  .tp-bank { padding: 6px 8px; gap: 8px; }
+  .bench-tag { font-size: 11px; margin-right: 0; }
+  .frame { font-size: 18px; line-height: 2; }
+  .tp-zone { min-width: 64px; margin: 0 3px; }
+  .tp-tile { font-size: 20px; padding: 4px 10px; min-width: 46px; }
+}
+@media print {
+  html, body { background: #fff; }
+  body { padding: 0 8px 6px 0; max-width: none; font-size: 12px; line-height: 1.3; }
+  .scr { display: none !important; }
+  .prt { display: inline; }
+  .banner { height: 58px; margin-bottom: 8px; box-shadow: 4px 4px 0 var(--ink); }
+  .banner .digits { font-size: 58px; }
+  .banner .digits.two { top: 30px; }
+  .banner .label { bottom: 6px; padding: 3px 12px 2px; }
+  .banner .kicker { font-size: 9px; }
+  .banner h1 { font-size: 19px; }
+  .banner .date { font-size: 10.5px; top: 8px; }
+  section { padding: 7px 12px 10px; margin-bottom: 10px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 17px; margin-bottom: 3px; gap: 8px; }
+  .badge { width: 25px; height: 25px; font-size: 14px; }
+  .instruction { font-size: 13.5px; margin-bottom: 1px; }
+  .note { font-size: 10px; margin-bottom: 5px; }
+  .tag { font-size: 8.5px; }
+  .qnum { width: 20px; height: 20px; font-size: 10.5px; }
+  .mtile { min-width: 26px; padding: 0 5px; border-width: 1.5px; }
+  .team-row .tlab { font-size: 12.5px; }
+  .team-in { height: 24px; font-size: 12px; max-width: 380px; }
+  .mshot { grid-template-columns: 160px minmax(0, max-content); padding: 5px 10px; gap: 4px 16px; margin-bottom: 7px; border-width: 1.5px; }
+  .mshot .shot { width: 160px; }
+  .tries { font-size: 10.5px; line-height: 1.45; }
+  .shots { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .shot { padding: 5px 8px 7px; border-width: 1.5px; }
+  .ball { width: 32px; height: 32px; font-size: 15px; border-width: 2px; box-shadow: 2px 2px 0 var(--ink); margin-bottom: 3px; padding-top: 2px; }
+  .srow { font-size: 12px; margin: 3px 0; gap: 4px 5px; }
+  .shot .srow select { display: none; }
+  .shot .srow input { width: 46px; height: 20px; font-size: 11px; }
+  .gap { display: inline-block; width: 58px; height: 20px; border: 1.5px solid #8a7f6e; border-radius: 6px; background: #fff; vertical-align: middle; }
+  .gap.wide { width: 74px; }
+  .stamp, .shot[data-call] .stamp { display: none !important; }
+  .stamp.on.saved { display: inline-block !important; font-size: 10px; padding: 2px 5px 1px; border-width: 2px; top: 7px; right: 6px; }
+  .tp-bank { min-height: 0; padding: 4px 8px; gap: 6px; margin-bottom: 4px; border-width: 1.5px; }
+  .tp-tile { font-size: 12.5px; padding: 1px 8px; min-width: 30px; min-height: 0; box-shadow: 2px 2px 0 var(--ink); border-width: 1.5px; }
+  .tp-zone { min-width: 50px; min-height: 22px; padding: 1px 3px; border-width: 1.5px; }
+  .tp-slot { min-height: 18px; }
+  .bench-tag { font-size: 8.5px; }
+  .pmodel { padding: 3px 10px; margin: 1px 0 6px; font-size: 10.5px; gap: 3px 10px; }
+  .pmodel .msent { font-size: 12px; }
+  .pitems { gap: 7px 12px; }
+  .pq { grid-template-columns: 22px minmax(0, 1fr); gap: 6px; padding: 5px 8px 7px; border-width: 1.5px; }
+  .pq .qnum { margin-top: 4px; }
+  .frame { font-size: 13px; line-height: 1.9; white-space: nowrap; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Aahan" data-sheet="Maths 2026-10-20" data-sheet-id="aahan-2026-10-20-maths">
+<div id="sheet">
+
+<div class="banner">
+  <div class="digits display" aria-hidden="true">100 64 36 48 100</div>
+  <div class="digits two display" aria-hidden="true">50 80 44 100 64</div>
+  <span class="date">20 October</span>
+  <div class="label">
+    <div class="kicker">Primes and composites</div>
+    <h1 class="display">Aahan's maths</h1>
+  </div>
+</div>
+
+<section id="team">
+  <header>
+  <h2><span class="badge">1</span> Team sheet</h2>
+  <p class="instruction"><span class="scr">Type the whole prime team <span class="nw">under 20.</span></span><span class="prt">Write the whole prime team <span class="nw">under 20.</span></span></p>
+  <p class="note">Commas between <span class="nw">the numbers.</span></p>
+  </header>
+  <div class="team-row">
+    <span class="tlab">The prime team:</span>
+    <input class="hw-field team-in" autocomplete="off" spellcheck="false" inputmode="text" data-k="t1" data-label="1. The prime team under 20" aria-label="The prime team under 20">
+  </div>
+</section>
+
+<section id="shootout">
+  <header>
+  <h2><span class="badge">2</span> Penalty shoot-out</h2>
+  <p class="instruction"><span class="scr">Pick the keeper who saves each shot, type his partner, then give <span class="nw">the verdict.</span></span><span class="prt">Write the keeper who saves each shot, his partner, then <span class="nw">the verdict.</span></span></p>
+  <p class="note"><span class="scr">Keepers dive smallest first. Nobody saves it? Pick GOAL! and <span class="nw">type x.</span></span><span class="prt">Keepers dive smallest first. Nobody saves it? Write GOAL! and x. The verdict is prime <span class="nw">or composite.</span></span></p>
+
+  <div class="mshot model">
+    <div class="tag">Like this</div>
+    <div class="shot">
+      <div class="ball">95</div>
+      <div class="srow"><span class="lab">Keeper</span> <span class="mtile">5</span></div>
+      <div class="srow">95 = <span class="kecho on">5</span> &times; <span class="mtile">19</span></div>
+      <div class="srow"><span class="lab">95 is</span> <span class="mtile">composite</span></div>
+      <span class="stamp on saved" aria-hidden="true">SAVED!</span>
+    </div>
+    <div class="tries">
+      <div>2? 95 is odd: <span class="nw">no save.</span></div>
+      <div>3? 9 + 5 = 14, not in the 3 times <span class="nw">table: no save.</span></div>
+      <div>5? 95 ends in 5: <b>saved!</b> Stop <span class="nw">here.</span></div>
+      <div>Partner? 95 = 50 + 45, and 50 &divide; 5 = 10, 45 &divide; 5 = 9, so 10 + 9 <span class="nw">= 19.</span></div>
+    </div>
+  </div>
+  </header>
+
+  <div class="shots">
+    <div class="shot q">
+      <div class="ball">59</div>
+      <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k1" data-label="2. Shot 59: keeper" aria-label="Keeper who saves 59"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
+      <div class="srow">59 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p1" data-label="2. Shot 59: partner" aria-label="Partner for 59" class="hw-field"></div>
+      <div class="srow"><span class="lab">59 is</span> <select data-k="v1" data-label="2. Shot 59: prime or composite" aria-label="59 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
+      <span class="stamp" aria-hidden="true"></span>
+    </div>
+    <div class="shot q">
+      <div class="ball">69</div>
+      <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k2" data-label="2. Shot 69: keeper" aria-label="Keeper who saves 69"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
+      <div class="srow">69 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p2" data-label="2. Shot 69: partner" aria-label="Partner for 69" class="hw-field"></div>
+      <div class="srow"><span class="lab">69 is</span> <select data-k="v2" data-label="2. Shot 69: prime or composite" aria-label="69 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
+      <span class="stamp" aria-hidden="true"></span>
+    </div>
+    <div class="shot q">
+      <div class="ball">83</div>
+      <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k3" data-label="2. Shot 83: keeper" aria-label="Keeper who saves 83"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
+      <div class="srow">83 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p3" data-label="2. Shot 83: partner" aria-label="Partner for 83" class="hw-field"></div>
+      <div class="srow"><span class="lab">83 is</span> <select data-k="v3" data-label="2. Shot 83: prime or composite" aria-label="83 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
+      <span class="stamp" aria-hidden="true"></span>
+    </div>
+    <div class="shot q">
+      <div class="ball">41</div>
+      <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k4" data-label="2. Shot 41: keeper" aria-label="Keeper who saves 41"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
+      <div class="srow">41 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p4" data-label="2. Shot 41: partner" aria-label="Partner for 41" class="hw-field"></div>
+      <div class="srow"><span class="lab">41 is</span> <select data-k="v4" data-label="2. Shot 41: prime or composite" aria-label="41 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
+      <span class="stamp" aria-hidden="true"></span>
+    </div>
+    <div class="shot q">
+      <div class="ball">91</div>
+      <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k5" data-label="2. Shot 91: keeper" aria-label="Keeper who saves 91"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
+      <div class="srow">91 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p5" data-label="2. Shot 91: partner" aria-label="Partner for 91" class="hw-field"></div>
+      <div class="srow"><span class="lab">91 is</span> <select data-k="v5" data-label="2. Shot 91: prime or composite" aria-label="91 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
+      <span class="stamp" aria-hidden="true"></span>
+    </div>
+    <div class="shot q">
+      <div class="ball">39</div>
+      <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k6" data-label="2. Shot 39: keeper" aria-label="Keeper who saves 39"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
+      <div class="srow">39 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p6" data-label="2. Shot 39: partner" aria-label="Partner for 39" class="hw-field"></div>
+      <div class="srow"><span class="lab">39 is</span> <select data-k="v6" data-label="2. Shot 39: prime or composite" aria-label="39 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
+      <span class="stamp" aria-hidden="true"></span>
+    </div>
+    <div class="shot q">
+      <div class="ball">73</div>
+      <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k7" data-label="2. Shot 73: keeper" aria-label="Keeper who saves 73"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
+      <div class="srow">73 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p7" data-label="2. Shot 73: partner" aria-label="Partner for 73" class="hw-field"></div>
+      <div class="srow"><span class="lab">73 is</span> <select data-k="v7" data-label="2. Shot 73: prime or composite" aria-label="73 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
+      <span class="stamp" aria-hidden="true"></span>
+    </div>
+    <div class="shot q">
+      <div class="ball">81</div>
+      <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k8" data-label="2. Shot 81: keeper" aria-label="Keeper who saves 81"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
+      <div class="srow">81 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p8" data-label="2. Shot 81: partner" aria-label="Partner for 81" class="hw-field"></div>
+      <div class="srow"><span class="lab">81 is</span> <select data-k="v8" data-label="2. Shot 81: prime or composite" aria-label="81 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
+      <span class="stamp" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<section id="bench">
+  <header>
+  <h2><span class="badge">3</span> Pick two, bench one</h2>
+  <p class="instruction"><span class="scr">Make each sentence true: tap a number, then tap <span class="nw">its place.</span></span><span class="prt">Make each sentence true: write two of the numbers <span class="nw">in it.</span></span></p>
+  <p class="note">One number stays on the bench.<span class="scr"> Tap a placed number to send <span class="nw">it back.</span></span></p>
+  <div class="pmodel">
+    <span class="tag">Like this</span>
+    <span class="mbench">Bench: <span class="mtile">3</span></span>
+    <span class="msent"><span class="mtile">5</span> is a factor of <span class="mtile">95</span></span>
+    <span>Keeper 5 saves 95: 5 &times; 19 = 95, so 5 is a factor of 95. 3 stays on the bench: 9 + 5 = 14, not in the 3 times <span class="nw">table.</span></span>
+  </div>
+  </header>
+
+  <div class="pitems">
+    <div class="pq q tp">
+      <span class="qnum">1</span>
+      <div>
+        <div class="tp-bank"><span class="bench-tag">Bench</span><button type="button" class="tp-tile" data-value="75">75</button><button type="button" class="tp-tile" data-value="4">4</button><button type="button" class="tp-tile" data-value="3">3</button></div>
+        <p class="frame"><span class="tp-zone" data-store="m1a" data-field="m1a" aria-label="First number"><span class="tp-slot"></span></span> is a factor of <span class="tp-zone" data-store="m1b" data-field="m1b" aria-label="Second number"><span class="tp-slot"></span></span></p>
+        <div class="tp-stores" hidden>
+          <select data-k="m1a" data-label="3.1 ... is a factor of ...: first number" class="hw-field"><option value=""></option><option value="75">75</option><option value="4">4</option><option value="3">3</option></select>
+          <select data-k="m1b" data-label="3.1 ... is a factor of ...: second number" class="hw-field"><option value=""></option><option value="75">75</option><option value="4">4</option><option value="3">3</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="pq q tp">
+      <span class="qnum">2</span>
+      <div>
+        <div class="tp-bank"><span class="bench-tag">Bench</span><button type="button" class="tp-tile" data-value="7">7</button><button type="button" class="tp-tile" data-value="98">98</button><button type="button" class="tp-tile" data-value="6">6</button></div>
+        <p class="frame"><span class="tp-zone" data-store="m2a" data-field="m2a" aria-label="First number"><span class="tp-slot"></span></span> is a multiple of <span class="tp-zone" data-store="m2b" data-field="m2b" aria-label="Second number"><span class="tp-slot"></span></span></p>
+        <div class="tp-stores" hidden>
+          <select data-k="m2a" data-label="3.2 ... is a multiple of ...: first number" class="hw-field"><option value=""></option><option value="7">7</option><option value="98">98</option><option value="6">6</option></select>
+          <select data-k="m2b" data-label="3.2 ... is a multiple of ...: second number" class="hw-field"><option value=""></option><option value="7">7</option><option value="98">98</option><option value="6">6</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="pq q tp">
+      <span class="qnum">3</span>
+      <div>
+        <div class="tp-bank"><span class="bench-tag">Bench</span><button type="button" class="tp-tile" data-value="9">9</button><button type="button" class="tp-tile" data-value="8">8</button><button type="button" class="tp-tile" data-value="88">88</button></div>
+        <p class="frame"><span class="tp-zone" data-store="m3a" data-field="m3a" aria-label="First number"><span class="tp-slot"></span></span> is a multiple of <span class="tp-zone" data-store="m3b" data-field="m3b" aria-label="Second number"><span class="tp-slot"></span></span></p>
+        <div class="tp-stores" hidden>
+          <select data-k="m3a" data-label="3.3 ... is a multiple of ...: first number" class="hw-field"><option value=""></option><option value="9">9</option><option value="8">8</option><option value="88">88</option></select>
+          <select data-k="m3b" data-label="3.3 ... is a multiple of ...: second number" class="hw-field"><option value=""></option><option value="9">9</option><option value="8">8</option><option value="88">88</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="pq q tp">
+      <span class="qnum">4</span>
+      <div>
+        <div class="tp-bank"><span class="bench-tag">Bench</span><button type="button" class="tp-tile" data-value="92">92</button><button type="button" class="tp-tile" data-value="3">3</button><button type="button" class="tp-tile" data-value="4">4</button></div>
+        <p class="frame"><span class="tp-zone" data-store="m4a" data-field="m4a" aria-label="First number"><span class="tp-slot"></span></span> is a factor of <span class="tp-zone" data-store="m4b" data-field="m4b" aria-label="Second number"><span class="tp-slot"></span></span></p>
+        <div class="tp-stores" hidden>
+          <select data-k="m4a" data-label="3.4 ... is a factor of ...: first number" class="hw-field"><option value=""></option><option value="92">92</option><option value="3">3</option><option value="4">4</option></select>
+          <select data-k="m4b" data-label="3.4 ... is a factor of ...: second number" class="hw-field"><option value=""></option><option value="92">92</option><option value="3">3</option><option value="4">4</option></select>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* SAVED! / GOAL! stamp and the keeper echo in the equation: they show only what he picked, never whether it is right. */
+(function () {
+  function initShots() {
+    document.querySelectorAll(".shots .shot").forEach(function (card) {
+      var s = card.querySelector("select.ksel"), st = card.querySelector(".stamp"), echo = card.querySelector(".kecho");
+      if (!s || !st) return;
+      function upd() {
+        var v = s.value, goal = /^goal/i.test(v);
+        if (echo) { echo.textContent = v && !goal ? v : "keeper"; echo.classList.toggle("on", !!v && !goal); }
+        if (!v) { card.removeAttribute("data-call"); st.textContent = ""; return; }
+        card.setAttribute("data-call", goal ? "goal" : "saved");
+        st.textContent = goal ? "GOAL!" : "SAVED!";
+      }
+      s.addEventListener("change", upd); s.addEventListener("input", upd); upd();
+    });
+  }
+  if (document.readyState === "complete") initShots(); else window.addEventListener("load", initShots);
+})();
+
+/* ===== TAP-PLACE JS (copied from Tools/hw_snippets/tap_place.html, unchanged) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJrMSI6IHsidCI6ICJleGFjdCIsICJhIjogIkdPQUwhIn0sICJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIngifSwgInYxIjogeyJ0IjogImV4YWN0IiwgImEiOiAicHJpbWUifSwgImsyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAicDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMyJ9LCAidjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wb3NpdGUifSwgImszIjogeyJ0IjogImV4YWN0IiwgImEiOiAiR09BTCEifSwgInAzIjogeyJ0IjogImV4YWN0IiwgImEiOiAieCJ9LCAidjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmltZSJ9LCAiazQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJHT0FMISJ9LCAicDQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ4In0sICJ2NCI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJrNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgInA1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgInY1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJrNiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgInA2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgInY2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJrNyI6IHsidCI6ICJleGFjdCIsICJhIjogIkdPQUwhIn0sICJwNyI6IHsidCI6ICJleGFjdCIsICJhIjogIngifSwgInY3IjogeyJ0IjogImV4YWN0IiwgImEiOiAicHJpbWUifSwgIms4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAicDgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNyJ9LCAidjgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wb3NpdGUifSwgIm0xYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgIm0xYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjc1In0sICJtMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5OCJ9LCAibTJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAibTNhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiODgifSwgIm0zYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjgifSwgIm00YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQifSwgIm00YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjkyIn0sICJ0MSI6IHsidCI6ICJzZXQiLCAiYSI6ICIyLCAzLCA1LCA3LCAxMSwgMTMsIDE3LCAxOSJ9fQ==</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

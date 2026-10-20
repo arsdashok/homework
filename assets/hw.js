@@ -109,16 +109,28 @@
       sheet.querySelectorAll(".dragging, .picked, .over, .ready").forEach(function (node) {
         node.classList.remove("dragging", "picked", "over", "ready");
       });
-      sheet.querySelectorAll(".tile, .chip").forEach(function (node) {
+      sheet.querySelectorAll(".tile, .chip, .tp-tile").forEach(function (node) {
         // The same class also names picture cards; preserve their grid layout.
         if (node.querySelector("img, svg, [data-k]")) return;
         node.classList.add("hw-pdf-tile");
       });
-      sheet.querySelectorAll(".slot, .drop, .dz, .pslot, .dslot").forEach(function (node) {
-        if (node.querySelector(".tile, .chip")) {
+      sheet.querySelectorAll(".slot, .drop, .dz, .pslot, .dslot, .tp-zone").forEach(function (node) {
+        // Tap-to-place places (Tools/hw_snippets/tap_place.html, 20 Oct 2026) are inline-flex
+        // columns holding a flex .tp-slot: html2canvas drew neither the tile nor the mark in
+        // them, so they always become plain flow boxes, filled or not.
+        if (node.querySelector(".tile, .chip, .tp-tile") || node.classList.contains("tp-zone")) {
           node.classList.add("hw-pdf-drop");
           if (node.tagName === "SPAN") node.classList.add("hw-pdf-drop-inline");
         }
+      });
+      // html2canvas drops a text node that sits straight inside a block inside an inline-block place:
+      // the ✓ / ✗ vanished while the right answer, in its own span, printed. Give the glyph a span.
+      sheet.querySelectorAll(".tp-zone .hw-mark").forEach(function (mark) {
+        [].slice.call(mark.childNodes).forEach(function (n) {
+          if (n.nodeType !== 3 || !n.textContent.trim()) return;
+          var wrap = doc.createElement("span");
+          n.parentNode.replaceChild(wrap, n); wrap.appendChild(n);
+        });
       });
       var fixes = doc.createElement("style");
       fixes.textContent = [
@@ -140,6 +152,10 @@
         "#sheet .hw-pdf-drop>.hw-mark{display:block!important;width:auto!important;margin:4px 0 0!important;white-space:normal!important;}" ,
         "#sheet .hw-pdf-drop-inline{display:inline-block!important;max-width:100%!important;vertical-align:middle!important;}",
         "#sheet .hw-pdf-drop-inline>.hw-pdf-tile{display:inline-block!important;width:auto!important;}",
+        // Tap-to-place: the tile sits one level down, inside .tp-slot. Only these pages have it.
+        "#sheet .hw-pdf-drop>.tp-slot{display:block!important;min-height:0!important;text-align:center!important;}",
+        "#sheet .hw-pdf-drop>.tp-slot>.hw-pdf-tile{display:inline-block!important;width:auto!important;margin:0!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-drop-inline.tp-zone{text-align:center!important;}",
         // In Dasha's PDF the marks stay; the pupil-facing «Feedback in the lesson» note is noise there.
         "#sheet .hw-mark.hw-open{display:none!important;}",
         "#sheet .hw-mark{max-width:100%!important;overflow-wrap:anywhere!important;}"

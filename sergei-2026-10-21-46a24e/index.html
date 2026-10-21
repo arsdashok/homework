@@ -1,0 +1,420 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Sergei_Homework_2026-10-21.key.json -->
+<!-- Lesson 21 Oct 2026. ONE shelf: describing people. He asked for this homework himself («I want homework about this topic»).
+     Shaky: he IS vs he HAS in a description («He is look like», «He has medium height», «He has a good form»); the two questions
+     (What does he look like? / What is he like?). New: appearance + personality words, adjective order (size, style, colour).
+     Fix round 1 (pupil-critic): the third two-box sort in a row was replaced by a connected text with typed gaps.
+     01 one text, 8 hw-gap gaps (g1..g8), he types is / has. Key I H I I H H I H. Traps: medium height, in good shape, an extrovert,
+        a bit overweight (is); short curly hair, no hair, a beard, green eyes (has). Model «Sara is pretty, and she has a lovely smile» answers no gap.
+     02 word order, 3 fresh rows, tap-to-place (r1a..r3c): long wavy dark / short straight red / long curly black hair. Example: big blue eyes.
+     03 choose the question for 6 answers (selects q1..q6), key P L L P P L (L = looks, P = personality); every answer starts He's / She's.
+     04 typed: looks (height or body + hair or eyes), personality, about someone in his family or at work (not Max); two questions about my friends Anna and Tom (they). Open.
+     Tiles use Tools/hw_snippets/tap_place.html: on touch a tile moves only by TAP, a finger sliding over a tile scrolls the page. -->
+<!-- Look: Sergei's standing design, copied from Maksim's sheet (Inter, pale grey page, white cards, teal eyebrow). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergei · English · 21 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.7; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction, .note { text-wrap:pretty; }
+.wrap { max-width:1120px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 40px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; page-break-inside:avoid; break-inside:avoid; }
+/* Section name is a small label; the instruction is the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.instruction { font-size:23px; font-weight:650; line-height:1.35; letter-spacing:-.01em; margin:0 0 12px; break-after:avoid; page-break-after:avoid; }
+.note { font-size:15px; color:var(--muted); margin:-4px 0 14px; }
+.qn { display:inline-block; min-width:30px; font-size:15px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+.question { page-break-inside:avoid; break-inside:avoid; }
+.part { margin-top:30px; padding-top:24px; border-top:1px solid #edf1f3; }
+.model-tag { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+/* reminder boxes */
+.rule { display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; margin:0 0 18px; padding:14px 18px; border-radius:14px; background:#f1f5f7; font-size:17px; line-height:1.5; }
+.rule b { color:var(--accent); }
+
+/* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, Sergei's colours) ===== */
+.tp-bank { display:flex; flex-wrap:wrap; justify-content:center; gap:10px 12px; padding:14px; border-radius:16px; background:#f1f5f7; min-height:64px; margin:6px 0 14px; }
+.tp-tile {
+  font:inherit; font-size:17px; font-weight:600; color:var(--ink); background:#fff;
+  border:1.5px solid #8fa3ae; border-radius:999px; padding:7px 16px; min-height:44px;
+  cursor:pointer; text-align:left; line-height:1.35; white-space:nowrap; box-shadow:0 2px 0 #162b3714;
+  touch-action:manipulation;            /* a touch scrolls the page; never "none" */
+  -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none;
+}
+.tp-tile.picked { background:#e6f3f2; border-color:var(--accent); box-shadow:0 0 0 3px #b9e0dd; }
+.tp-tile.dragging { position:fixed; z-index:1000; pointer-events:none; box-shadow:0 6px 18px rgba(0,0,0,.18); }
+.tp-zone { border:2px dashed #a4b5c0; border-radius:14px; background:#f8fafb; padding:8px; min-height:56px; cursor:pointer;  -webkit-tap-highlight-color:transparent; }
+.tp-zone.ready { border-color:var(--accent); background:#f0f7f7; }
+.tp-zone.over { border-color:var(--accent); background:#e6f3f2; }
+.tp-slot { display:flex; flex-wrap:wrap; gap:8px; min-height:44px; align-items:flex-start; align-content:flex-start; }
+.tp-zone .tp-tile { color:#1d4ed8; border-color:#7d97c9; }
+.tp-stores { display:none !important; }
+@media print { .tp-tile.picked { box-shadow:none; } }
+/* ===== end TAP-PLACE CSS ===== */
+
+/* 01: the text with gaps */
+.like { font-size:17px; color:var(--muted); margin:-2px 0 16px; }
+.like b { color:var(--ink); }
+.story { font-size:20px; line-height:2.25; margin:0; padding:12px 20px; border-radius:14px; background:#fbfcfd; border:1px solid var(--line); max-width:900px; }
+.story p { margin:0 0 4px; }
+.gw { white-space:nowrap; }
+.gn { font-size:12px; font-weight:750; color:var(--accent); vertical-align:super; margin:0 1px 0 2px; }
+/* Local preview only: on the live page the shared hw.css styles input.hw-field.hw-gap. */
+input.hw-gap { width:3.4em; height:1.6em; padding:0 4px; text-align:center; vertical-align:baseline; }
+
+/* 02: answer cards */
+.qcards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.qcard { border:1px solid var(--line); border-radius:16px; padding:16px 18px 18px; background:#fbfcfd; display:flex; flex-direction:column; }
+.qcard .reply { flex:1; }
+.reply { font-size:20px; line-height:1.4; margin:2px 0 12px; }
+.qcard select { width:100%; }
+.print-opts { display:none; }
+.popt { display:block; font-size:12px; line-height:1.5; }
+.pbox { display:inline-block; width:11px; height:11px; border:1.2px solid #8fa3ae; border-radius:3px; vertical-align:-1px; margin-right:6px; }
+/* 02: word order rows */
+.orders { display:grid; gap:14px; }
+.order-card { display:flex; flex-wrap:wrap; align-items:center; gap:10px 20px; border:1px solid var(--line); border-radius:16px; padding:12px 18px; background:#fbfcfd; }
+.order-card .tp-bank { justify-content:flex-start; margin:0; padding:8px 10px; min-height:0; }
+.order-line { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+.order-line .tp-zone { min-width:112px; min-height:56px; padding:5px; display:flex; align-items:center; }
+.order-line .noun { font-size:20px; font-weight:600; }
+
+/* 04: own sentences */
+.own { display:grid; grid-template-columns:280px minmax(0,1fr); gap:20px; align-items:start; padding:10px 0; border-bottom:1px solid #edf1f3; }
+.own:last-child { border-bottom:0; }
+.instruction.ask { margin:26px 0 4px; font-size:21px; }
+.own .lead { font-size:19px; font-weight:500; padding-top:8px; line-height:1.4; }
+.own .lead small { display:block; font-size:14px; color:var(--muted); font-weight:400; }
+.model { margin:0 0 14px; padding:12px 18px; border-left:4px solid #b9d6d4; background:#f6fafa; border-radius:0 12px 12px 0; font-size:17px; line-height:1.55; }
+.model .model-tag { display:block; margin-bottom:2px; }
+/* Local preview only: the shared hw.css styles .hw-field on the live page. */
+input, textarea, select { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+select { min-height:46px; font-size:17px; }
+textarea { display:block; width:100%; min-height:96px; line-height:1.6; resize:vertical; }
+input.line { width:100%; min-height:46px; }
+.prt { display:none; }
+
+@media (max-width:820px) {
+  .qcards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .own { grid-template-columns:1fr; gap:6px; }
+  .rule { grid-template-columns:1fr; }
+}
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 14px 16px; } .exercise { padding:22px 16px; border-radius:14px; }
+  .instruction { font-size:20px; } .edition { font-size:12px; }
+  .qcards { grid-template-columns:1fr; gap:12px; }
+  .story { font-size:18px; padding:10px 12px; }
+  .tp-tile { font-size:15px; padding:6px 12px; }
+  .reply { font-size:18px; }
+  .order-line { flex-wrap:nowrap; gap:6px; } .order-line .tp-zone { min-width:68px; min-height:48px; padding:3px; }
+  .order-line .tp-tile { padding:4px 9px; min-height:38px; } .order-line .noun { font-size:18px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  select { display:none !important; } .print-opts { display:block !important; } .prt { display:block !important; } .scr { display:none !important; }
+  body { background:white; font-size:11pt; line-height:1.4; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:8px; } .heading-row { margin:6px 0 8px; } .page-meta { padding-top:6px; font-size:12px; }
+  h1 { font-size:30px; }
+  .exercise { box-shadow:none; padding:12px 20px; margin-bottom:10px; border-radius:14px; }
+  .section-heading { margin-bottom:2px; } h2, .section-number { font-size:10px; }
+  .instruction { font-size:15px; margin-bottom:6px; } .note, .like { font-size:11px; margin:-2px 0 6px; }
+  .rule { font-size:11px; padding:6px 10px; gap:2px 12px; margin-bottom:8px; }
+  .tp-bank { padding:6px; gap:6px 8px; min-height:0; margin:4px 0 8px; }
+  .tp-tile { font-size:11.5px; padding:2px 10px; min-height:0; box-shadow:none; }
+  .story { font-size:12.5px; line-height:2.1; padding:6px 12px; max-width:none; } .gn { font-size:8px; } .like { font-size:11px; margin:-2px 0 6px; }
+  .qcards { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; } .qcard { padding:6px 10px 8px; }
+  .reply { font-size:12.5px; margin:0 0 4px; } .qn { font-size:11px; min-width:20px; }
+  .part { margin-top:10px; padding-top:8px; }
+  .orders { gap:6px; } .order-card { padding:4px 10px; gap:4px 12px; }
+  .order-line .tp-zone { min-width:70px; min-height:26px; padding:2px; } .order-line .noun { font-size:12.5px; }
+  .own { grid-template-columns:200px minmax(0,1fr); gap:10px; padding:4px 0; } .own .lead { font-size:12px; padding-top:2px; } .own .lead small { font-size:10px; }
+  .model { font-size:11.5px; padding:5px 10px; margin-bottom:6px; } .instruction.ask { font-size:13px; margin:8px 0 2px; }
+  textarea { min-height:56px !important; resize:none; } input.line { min-height:26px; }
+  input::placeholder, textarea::placeholder { color:transparent; }
+  .rule { grid-template-columns:1fr 1fr; }
+  .tp-slot { min-height:0; gap:5px; } .tp-zone { min-height:0; }
+  .order-card .tp-bank { margin:0; padding:4px 8px; }
+  .order-line .tp-zone { height:24px; min-width:62px; }
+  .heading-row { margin:2px 0 6px; } h1 { font-size:26px; }
+}
+body.hw-pdf-mode { background:white; }
+  .nw { white-space: nowrap; }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Sergei" data-sheet="English 2026-10-21" data-sheet-id="sergei-2026-10-21-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>Describing people</h1><span class="edition">21<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Sergei</span><span>About 10&nbsp;minutes</span></div>
+</header>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">01</span><h2>He is or he has?</h2></div>
+  <p class="instruction">Type <i>is</i> or <i>has</i> in each&nbsp;gap.</p>
+  <p class="like"><span class="model-tag">Like this</span>&nbsp; Sara <b>is</b> pretty, and she <b>has</b> a lovely&nbsp;smile.</p>
+  <div class="story question">
+    <p>Our office is next to a small caf&eacute;. Omar and his dad, Karim, run&nbsp;it.</p>
+    <p>Omar <span class="gw"><sup class="gn">1</sup><input class="hw-field hw-gap" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="g1" data-label="1. Omar ___ medium height" aria-label="Gap 1: is or has"></span> medium height, and he <span class="gw"><sup class="gn">2</sup><input class="hw-field hw-gap" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="g2" data-label="2. he ___ short curly hair" aria-label="Gap 2: is or has"></span> short curly&nbsp;hair. He <span class="gw"><sup class="gn">3</sup><input class="hw-field hw-gap" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="g3" data-label="3. He ___ in good shape" aria-label="Gap 3: is or has"></span> in good shape: he plays football every&nbsp;weekend. He <span class="gw"><sup class="gn">4</sup><input class="hw-field hw-gap" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="g4" data-label="4. He ___ an extrovert" aria-label="Gap 4: is or has"></span> an extrovert, and he talks to every&nbsp;customer.</p>
+    <p>Karim <span class="gw"><sup class="gn">5</sup><input class="hw-field hw-gap" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="g5" data-label="5. Karim ___ no hair" aria-label="Gap 5: is or has"></span> no hair, but he <span class="gw"><sup class="gn">6</sup><input class="hw-field hw-gap" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="g6" data-label="6. he ___ a big beard" aria-label="Gap 6: is or has"></span> a big&nbsp;beard. He <span class="gw"><sup class="gn">7</sup><input class="hw-field hw-gap" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="g7" data-label="7. He ___ a bit overweight" aria-label="Gap 7: is or has"></span> a bit overweight, and <span class="nw">he <span class="gw"><sup class="gn">8</sup><input class="hw-field hw-gap" maxlength="3" autocomplete="off" autocapitalize="off" spellcheck="false" data-k="g8" data-label="8. he ___ green eyes" aria-label="Gap 8: is or has"></span> green&nbsp;eyes.</span></p>
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">02</span><h2>Word order</h2></div>
+  <p class="instruction scr">Put the words in order. Tap a word, then tap a&nbsp;box.</p>
+  <p class="instruction prt">Write the words in the right&nbsp;order.</p>
+  <p class="like"><span class="model-tag">Like this</span>&nbsp; size, then style, then colour: <b>big</b> &middot; <b>blue</b>&nbsp;eyes</p>
+  <div class="orders">
+      <div class="order-card tp question" id="order1">
+        <span class="qn">1.</span>
+        <div class="tp-bank" aria-label="Words for row 1">
+          <button type="button" class="tp-tile" data-value="dark">dark</button>
+          <button type="button" class="tp-tile" data-value="long">long</button>
+          <button type="button" class="tp-tile" data-value="wavy">wavy</button>
+        </div>
+        <div class="order-line">
+          <div class="tp-zone" data-store="r1a" data-field="r1a"><span class="tp-slot"></span></div>
+          <div class="tp-zone" data-store="r1b" data-field="r1b"><span class="tp-slot"></span></div>
+          <div class="tp-zone" data-store="r1c" data-field="r1c"><span class="tp-slot"></span></div>
+          <span class="noun">hair</span>
+        </div>
+        <div class="tp-stores" hidden>
+          <select data-k="r1a" data-label="1. ___ ___ ___ hair: word 1" class="hw-field"><option value=""></option><option value="dark">dark</option><option value="long">long</option><option value="wavy">wavy</option></select>
+          <select data-k="r1b" data-label="1. ___ ___ ___ hair: word 2" class="hw-field"><option value=""></option><option value="dark">dark</option><option value="long">long</option><option value="wavy">wavy</option></select>
+          <select data-k="r1c" data-label="1. ___ ___ ___ hair: word 3" class="hw-field"><option value=""></option><option value="dark">dark</option><option value="long">long</option><option value="wavy">wavy</option></select>
+        </div>
+      </div>
+      <div class="order-card tp question" id="order2">
+        <span class="qn">2.</span>
+        <div class="tp-bank" aria-label="Words for row 2">
+          <button type="button" class="tp-tile" data-value="straight">straight</button>
+          <button type="button" class="tp-tile" data-value="red">red</button>
+          <button type="button" class="tp-tile" data-value="short">short</button>
+        </div>
+        <div class="order-line">
+          <div class="tp-zone" data-store="r2a" data-field="r2a"><span class="tp-slot"></span></div>
+          <div class="tp-zone" data-store="r2b" data-field="r2b"><span class="tp-slot"></span></div>
+          <div class="tp-zone" data-store="r2c" data-field="r2c"><span class="tp-slot"></span></div>
+          <span class="noun">hair</span>
+        </div>
+        <div class="tp-stores" hidden>
+          <select data-k="r2a" data-label="2. ___ ___ ___ hair: word 1" class="hw-field"><option value=""></option><option value="straight">straight</option><option value="red">red</option><option value="short">short</option></select>
+          <select data-k="r2b" data-label="2. ___ ___ ___ hair: word 2" class="hw-field"><option value=""></option><option value="straight">straight</option><option value="red">red</option><option value="short">short</option></select>
+          <select data-k="r2c" data-label="2. ___ ___ ___ hair: word 3" class="hw-field"><option value=""></option><option value="straight">straight</option><option value="red">red</option><option value="short">short</option></select>
+        </div>
+      </div>
+      <div class="order-card tp question" id="order3">
+        <span class="qn">3.</span>
+        <div class="tp-bank" aria-label="Words for row 3">
+          <button type="button" class="tp-tile" data-value="black">black</button>
+          <button type="button" class="tp-tile" data-value="curly">curly</button>
+          <button type="button" class="tp-tile" data-value="long">long</button>
+        </div>
+        <div class="order-line">
+          <div class="tp-zone" data-store="r3a" data-field="r3a"><span class="tp-slot"></span></div>
+          <div class="tp-zone" data-store="r3b" data-field="r3b"><span class="tp-slot"></span></div>
+          <div class="tp-zone" data-store="r3c" data-field="r3c"><span class="tp-slot"></span></div>
+          <span class="noun">hair</span>
+        </div>
+        <div class="tp-stores" hidden>
+          <select data-k="r3a" data-label="3. ___ ___ ___ hair: word 1" class="hw-field"><option value=""></option><option value="black">black</option><option value="curly">curly</option><option value="long">long</option></select>
+          <select data-k="r3b" data-label="3. ___ ___ ___ hair: word 2" class="hw-field"><option value=""></option><option value="black">black</option><option value="curly">curly</option><option value="long">long</option></select>
+          <select data-k="r3c" data-label="3. ___ ___ ___ hair: word 3" class="hw-field"><option value=""></option><option value="black">black</option><option value="curly">curly</option><option value="long">long</option></select>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">03</span><h2>Which question?</h2></div>
+  <p class="instruction">Choose the question for each&nbsp;answer.</p>
+  <div class="rule">
+    <div><b>What does he look like?</b> His face, hair, eyes, height and&nbsp;body.</div>
+    <div><b>What is he like?</b> His personality: what kind of person he&nbsp;is.</div>
+  </div>
+  <div class="qcards">
+    <div class="qcard question"><span class="qn">1.</span><p class="reply">&ldquo;He&rsquo;s really kind, but a bit&nbsp;shy.&rdquo;</p>
+      <select data-k="q1" data-label="1. He's really kind, but a bit shy." aria-label="Question for answer 1" class="hw-field"><option value="">Choose the question</option><option value="What does he look like?">What does he look like?</option><option value="What is he like?">What is he like?</option></select>
+      <span class="print-opts"><span class="popt"><span class="pbox"></span>What does he look like?</span><span class="popt"><span class="pbox"></span>What is he like?</span></span></div>
+    <div class="qcard question"><span class="qn">2.</span><p class="reply">&ldquo;She&rsquo;s slim, with dark&nbsp;eyes.&rdquo;</p>
+      <select data-k="q2" data-label="2. She's slim, with dark eyes." aria-label="Question for answer 2" class="hw-field"><option value="">Choose the question</option><option value="What does she look like?">What does she look like?</option><option value="What is she like?">What is she like?</option></select>
+      <span class="print-opts"><span class="popt"><span class="pbox"></span>What does she look like?</span><span class="popt"><span class="pbox"></span>What is she like?</span></span></div>
+    <div class="qcard question"><span class="qn">3.</span><p class="reply">&ldquo;He&rsquo;s handsome and very&nbsp;tall.&rdquo;</p>
+      <select data-k="q3" data-label="3. He's handsome and very tall." aria-label="Question for answer 3" class="hw-field"><option value="">Choose the question</option><option value="What does he look like?">What does he look like?</option><option value="What is he like?">What is he like?</option></select>
+      <span class="print-opts"><span class="popt"><span class="pbox"></span>What does he look like?</span><span class="popt"><span class="pbox"></span>What is he like?</span></span></div>
+    <div class="qcard question"><span class="qn">4.</span><p class="reply">&ldquo;She&rsquo;s clever and <span class="nw">very hard&#8209;working.&rdquo;</span></p>
+      <select data-k="q4" data-label="4. She's clever and very hardworking." aria-label="Question for answer 4" class="hw-field"><option value="">Choose the question</option><option value="What does she look like?">What does she look like?</option><option value="What is she like?">What is she like?</option></select>
+      <span class="print-opts"><span class="popt"><span class="pbox"></span>What does she look like?</span><span class="popt"><span class="pbox"></span>What is she like?</span></span></div>
+    <div class="qcard question"><span class="qn">5.</span><p class="reply">&ldquo;She&rsquo;s very generous and really&nbsp;funny.&rdquo;</p>
+      <select data-k="q5" data-label="5. She's very generous and really funny." aria-label="Question for answer 5" class="hw-field"><option value="">Choose the question</option><option value="What does she look like?">What does she look like?</option><option value="What is she like?">What is she like?</option></select>
+      <span class="print-opts"><span class="popt"><span class="pbox"></span>What does she look like?</span><span class="popt"><span class="pbox"></span>What is she like?</span></span></div>
+    <div class="qcard question"><span class="qn">6.</span><p class="reply">&ldquo;He&rsquo;s good-looking, with grey&nbsp;hair.&rdquo;</p>
+      <select data-k="q6" data-label="6. He's good-looking, with grey hair." aria-label="Question for answer 6" class="hw-field"><option value="">Choose the question</option><option value="What does he look like?">What does he look like?</option><option value="What is he like?">What is he like?</option></select>
+      <span class="print-opts"><span class="popt"><span class="pbox"></span>What does he look like?</span><span class="popt"><span class="pbox"></span>What is he like?</span></span></div>
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">04</span><h2>A real person</h2></div>
+  <p class="instruction">Describe someone in your family or someone you work with (not&nbsp;Max).</p>
+  <div class="model"><span class="model-tag">Like this</span>My cousin Mila is quite tall, and she has big brown&nbsp;eyes.</div>
+  <div class="question own"><span class="lead"><span class="qn">1.</span>Looks<small>one sentence about height or body, one about hair or&nbsp;eyes</small></span><textarea data-k="w1" data-label="1. Looks: height or body, then hair or eyes" aria-label="Looks, two sentences" rows="3" placeholder="Type your answer here" class="hw-field"></textarea></div>
+  <div class="question own"><span class="lead"><span class="qn">2.</span>Personality<small>two sentences</small></span><textarea data-k="w2" data-label="2. Personality: two sentences" aria-label="Personality, two sentences" rows="3" placeholder="Type your answer here" class="hw-field"></textarea></div>
+  <p class="instruction ask">My friends Anna and Tom are coming to dinner. Ask me two questions about&nbsp;them.</p>
+  <div class="question own"><span class="lead"><span class="qn">3.</span>About their&nbsp;looks</span><input class="hw-field line" data-k="w3" data-label="3. A question about Anna and Tom's looks" aria-label="Your question about their looks" autocomplete="off" placeholder="Type your question here"></div>
+  <div class="question own"><span class="lead"><span class="qn">4.</span>About their&nbsp;personality</span><input class="hw-field line" data-k="w4" data-label="4. A question about Anna and Tom's personality" aria-label="Your question about their personality" autocomplete="off" placeholder="Type your question here"></div>
+</section>
+</main>
+
+<script>
+/* ===== TAP-PLACE JS (copied from Tools/hw_snippets/tap_place.html, unchanged) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJnMSI6IHsidCI6ICJleGFjdCIsICJhIjogImlzIn0sICJnMiI6IHsidCI6ICJleGFjdCIsICJhIjogImhhcyJ9LCAiZzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpcyJ9LCAiZzQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpcyJ9LCAiZzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoYXMifSwgImc2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiaGFzIn0sICJnNyI6IHsidCI6ICJleGFjdCIsICJhIjogImlzIn0sICJnOCI6IHsidCI6ICJleGFjdCIsICJhIjogImhhcyJ9LCAicjFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAibG9uZyJ9LCAicjFiIjogeyJ0IjogImV4YWN0IiwgImEiOiAid2F2eSJ9LCAicjFjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZGFyayJ9LCAicjJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2hvcnQifSwgInIyYiI6IHsidCI6ICJleGFjdCIsICJhIjogInN0cmFpZ2h0In0sICJyMmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyZWQifSwgInIzYSI6IHsidCI6ICJleGFjdCIsICJhIjogImxvbmcifSwgInIzYiI6IHsidCI6ICJleGFjdCIsICJhIjogImN1cmx5In0sICJyM2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJibGFjayJ9LCAicTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGF0IGlzIGhlIGxpa2U/In0sICJxMiI6IHsidCI6ICJleGFjdCIsICJhIjogIldoYXQgZG9lcyBzaGUgbG9vayBsaWtlPyJ9LCAicTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGF0IGRvZXMgaGUgbG9vayBsaWtlPyJ9LCAicTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGF0IGlzIHNoZSBsaWtlPyJ9LCAicTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGF0IGlzIHNoZSBsaWtlPyJ9LCAicTYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGF0IGRvZXMgaGUgbG9vayBsaWtlPyJ9LCAidzEiOiB7InQiOiAib3BlbiJ9LCAidzIiOiB7InQiOiAib3BlbiJ9LCAidzMiOiB7InQiOiAib3BlbiJ9LCAidzQiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

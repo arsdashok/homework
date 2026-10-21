@@ -79,6 +79,10 @@ h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy',
 .srow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 20px; font-variant-numeric: tabular-nums; margin: 7px 0; }
 .srow .lab { font-weight: 400; }
 .kecho { color: var(--muted); }
+.nopart { display: none; font-size: 18px; color: var(--muted); margin: 7px 0; }
+.shot[data-call="goal"] .eqrow { display: none; }
+.shot[data-call="goal"] .nopart { display: block; }
+@media print { .nopart { display: none !important; } .shot .eqrow { display: flex !important; } }
 .kecho.on { color: var(--ink); font-weight: 700; }
 .shot .srow select { font: inherit; font-size: 17px; min-width: 118px; max-width: 100%; }
 .shot .srow input { font: inherit; font-size: 19px; width: 80px; }
@@ -236,7 +240,7 @@ body.hw-pdf-mode .pitems > .pq { margin-bottom: 14px; }
   <header>
   <h2><span class="badge">2</span> Penalty shoot-out</h2>
   <p class="instruction"><span class="scr">Pick the keeper who saves each shot, type his partner, then give <span class="nw">the verdict.</span></span><span class="prt">Write the keeper who saves each shot, his partner, then <span class="nw">the verdict.</span></span></p>
-  <p class="note"><span class="scr">Keepers dive smallest first. Nobody saves it? Pick GOAL! and <span class="nw">type x.</span></span><span class="prt">Keepers dive smallest first. Nobody saves it? Write GOAL! and x. The verdict is prime <span class="nw">or composite.</span></span></p>
+  <p class="note"><span class="scr">Keepers dive smallest first. Nobody saves it? Pick GOAL!: then there is no partner to <span class="nw">look for.</span></span><span class="prt">Keepers dive smallest first. Nobody saves it? Write GOAL! and leave the partner empty. The verdict is prime <span class="nw">or composite.</span></span></p>
 
   <div class="mshot model">
     <div class="tag">Like this</div>
@@ -260,56 +264,64 @@ body.hw-pdf-mode .pitems > .pq { margin-bottom: 14px; }
     <div class="shot q">
       <div class="ball">59</div>
       <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k1" data-label="2. Shot 59: keeper" aria-label="Keeper who saves 59"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
-      <div class="srow">59 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p1" data-label="2. Shot 59: partner" aria-label="Partner for 59" class="hw-field"></div>
+      <div class="srow eqrow">59 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p1" data-label="2. Shot 59: partner" aria-label="Partner for 59" class="hw-field"></div>
+      <div class="nopart">Nobody saves 59: it has no partner.</div>
       <div class="srow"><span class="lab">59 is</span> <select data-k="v1" data-label="2. Shot 59: prime or composite" aria-label="59 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
       <span class="stamp" aria-hidden="true"></span>
     </div>
     <div class="shot q">
       <div class="ball">69</div>
       <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k2" data-label="2. Shot 69: keeper" aria-label="Keeper who saves 69"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
-      <div class="srow">69 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p2" data-label="2. Shot 69: partner" aria-label="Partner for 69" class="hw-field"></div>
+      <div class="srow eqrow">69 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p2" data-label="2. Shot 69: partner" aria-label="Partner for 69" class="hw-field"></div>
+      <div class="nopart">Nobody saves 69: it has no partner.</div>
       <div class="srow"><span class="lab">69 is</span> <select data-k="v2" data-label="2. Shot 69: prime or composite" aria-label="69 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
       <span class="stamp" aria-hidden="true"></span>
     </div>
     <div class="shot q">
       <div class="ball">83</div>
       <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k3" data-label="2. Shot 83: keeper" aria-label="Keeper who saves 83"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
-      <div class="srow">83 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p3" data-label="2. Shot 83: partner" aria-label="Partner for 83" class="hw-field"></div>
+      <div class="srow eqrow">83 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p3" data-label="2. Shot 83: partner" aria-label="Partner for 83" class="hw-field"></div>
+      <div class="nopart">Nobody saves 83: it has no partner.</div>
       <div class="srow"><span class="lab">83 is</span> <select data-k="v3" data-label="2. Shot 83: prime or composite" aria-label="83 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
       <span class="stamp" aria-hidden="true"></span>
     </div>
     <div class="shot q">
       <div class="ball">41</div>
       <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k4" data-label="2. Shot 41: keeper" aria-label="Keeper who saves 41"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
-      <div class="srow">41 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p4" data-label="2. Shot 41: partner" aria-label="Partner for 41" class="hw-field"></div>
+      <div class="srow eqrow">41 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p4" data-label="2. Shot 41: partner" aria-label="Partner for 41" class="hw-field"></div>
+      <div class="nopart">Nobody saves 41: it has no partner.</div>
       <div class="srow"><span class="lab">41 is</span> <select data-k="v4" data-label="2. Shot 41: prime or composite" aria-label="41 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
       <span class="stamp" aria-hidden="true"></span>
     </div>
     <div class="shot q">
       <div class="ball">91</div>
       <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k5" data-label="2. Shot 91: keeper" aria-label="Keeper who saves 91"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
-      <div class="srow">91 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p5" data-label="2. Shot 91: partner" aria-label="Partner for 91" class="hw-field"></div>
+      <div class="srow eqrow">91 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p5" data-label="2. Shot 91: partner" aria-label="Partner for 91" class="hw-field"></div>
+      <div class="nopart">Nobody saves 91: it has no partner.</div>
       <div class="srow"><span class="lab">91 is</span> <select data-k="v5" data-label="2. Shot 91: prime or composite" aria-label="91 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
       <span class="stamp" aria-hidden="true"></span>
     </div>
     <div class="shot q">
       <div class="ball">39</div>
       <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k6" data-label="2. Shot 39: keeper" aria-label="Keeper who saves 39"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
-      <div class="srow">39 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p6" data-label="2. Shot 39: partner" aria-label="Partner for 39" class="hw-field"></div>
+      <div class="srow eqrow">39 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p6" data-label="2. Shot 39: partner" aria-label="Partner for 39" class="hw-field"></div>
+      <div class="nopart">Nobody saves 39: it has no partner.</div>
       <div class="srow"><span class="lab">39 is</span> <select data-k="v6" data-label="2. Shot 39: prime or composite" aria-label="39 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
       <span class="stamp" aria-hidden="true"></span>
     </div>
     <div class="shot q">
       <div class="ball">73</div>
       <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k7" data-label="2. Shot 73: keeper" aria-label="Keeper who saves 73"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
-      <div class="srow">73 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p7" data-label="2. Shot 73: partner" aria-label="Partner for 73" class="hw-field"></div>
+      <div class="srow eqrow">73 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p7" data-label="2. Shot 73: partner" aria-label="Partner for 73" class="hw-field"></div>
+      <div class="nopart">Nobody saves 73: it has no partner.</div>
       <div class="srow"><span class="lab">73 is</span> <select data-k="v7" data-label="2. Shot 73: prime or composite" aria-label="73 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
       <span class="stamp" aria-hidden="true"></span>
     </div>
     <div class="shot q">
       <div class="ball">81</div>
       <div class="srow"><span class="lab">Keeper</span> <select class="hw-field ksel" data-k="k8" data-label="2. Shot 81: keeper" aria-label="Keeper who saves 81"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="prt gap"></span></div>
-      <div class="srow">81 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p8" data-label="2. Shot 81: partner" aria-label="Partner for 81" class="hw-field"></div>
+      <div class="srow eqrow">81 = <span class="kecho">keeper</span> &times; <input autocomplete="off" spellcheck="false" inputmode="text" data-k="p8" data-label="2. Shot 81: partner" aria-label="Partner for 81" class="hw-field"></div>
+      <div class="nopart">Nobody saves 81: it has no partner.</div>
       <div class="srow"><span class="lab">81 is</span> <select data-k="v8" data-label="2. Shot 81: prime or composite" aria-label="81 is prime or composite" class="hw-field"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="prt gap wide"></span></div>
       <span class="stamp" aria-hidden="true"></span>
     </div>
@@ -389,6 +401,11 @@ body.hw-pdf-mode .pitems > .pq { margin-bottom: 14px; }
         if (echo) { echo.textContent = v && !goal ? v : "keeper"; echo.classList.toggle("on", !!v && !goal); }
         if (!v) { card.removeAttribute("data-call"); st.textContent = ""; return; }
         card.setAttribute("data-call", goal ? "goal" : "saved");
+        var pin = card.querySelector('.eqrow input[data-k]');
+        if (pin) {
+          if (goal && pin.value !== "no partner") { pin.value = "no partner"; pin.dispatchEvent(new Event("input", {bubbles: true})); }
+          else if (!goal && pin.value === "no partner") { pin.value = ""; pin.dispatchEvent(new Event("input", {bubbles: true})); }
+        }
         st.textContent = goal ? "GOAL!" : "SAVED!";
       }
       s.addEventListener("change", upd); s.addEventListener("input", upd); upd();
@@ -525,7 +542,7 @@ body.hw-pdf-mode .pitems > .pq { margin-bottom: 14px; }
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJrMSI6IHsidCI6ICJleGFjdCIsICJhIjogIkdPQUwhIn0sICJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIngifSwgInYxIjogeyJ0IjogImV4YWN0IiwgImEiOiAicHJpbWUifSwgImsyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAicDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMyJ9LCAidjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wb3NpdGUifSwgImszIjogeyJ0IjogImV4YWN0IiwgImEiOiAiR09BTCEifSwgInAzIjogeyJ0IjogImV4YWN0IiwgImEiOiAieCJ9LCAidjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmltZSJ9LCAiazQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJHT0FMISJ9LCAicDQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ4In0sICJ2NCI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJrNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgInA1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgInY1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJrNiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgInA2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgInY2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJrNyI6IHsidCI6ICJleGFjdCIsICJhIjogIkdPQUwhIn0sICJwNyI6IHsidCI6ICJleGFjdCIsICJhIjogIngifSwgInY3IjogeyJ0IjogImV4YWN0IiwgImEiOiAicHJpbWUifSwgIms4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAicDgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNyJ9LCAidjgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wb3NpdGUifSwgIm0xYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgIm0xYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjc1In0sICJtMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5OCJ9LCAibTJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAibTNhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiODgifSwgIm0zYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjgifSwgIm00YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQifSwgIm00YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjkyIn0sICJ0MSI6IHsidCI6ICJzZXQiLCAiYSI6ICIyLCAzLCA1LCA3LCAxMSwgMTMsIDE3LCAxOSJ9fQ==</script>
+<script type="application/json" id="hw-check">eyJrMSI6IHsidCI6ICJleGFjdCIsICJhIjogIkdPQUwhIn0sICJwMSI6IHsidCI6ICJvcGVuIn0sICJ2MSI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJrMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgInAyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjMifSwgInYyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJrMyI6IHsidCI6ICJleGFjdCIsICJhIjogIkdPQUwhIn0sICJwMyI6IHsidCI6ICJvcGVuIn0sICJ2MyI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJrNCI6IHsidCI6ICJleGFjdCIsICJhIjogIkdPQUwhIn0sICJwNCI6IHsidCI6ICJvcGVuIn0sICJ2NCI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJrNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgInA1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgInY1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJrNiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgInA2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgInY2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJrNyI6IHsidCI6ICJleGFjdCIsICJhIjogIkdPQUwhIn0sICJwNyI6IHsidCI6ICJvcGVuIn0sICJ2NyI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJrOCI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgInA4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjcifSwgInY4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJtMWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzIn0sICJtMWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3NSJ9LCAibTJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOTgifSwgIm0yYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgIm0zYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjg4In0sICJtM2IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4In0sICJtNGEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0In0sICJtNGIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5MiJ9LCAidDEiOiB7InQiOiAic2V0IiwgImEiOiAiMiwgMywgNSwgNywgMTEsIDEzLCAxNywgMTkifX0=</script>
 <script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
 </body>
 </html>

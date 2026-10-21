@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arina: Practice 21 October 2026</title>
+<style>
+  :root {
+    --ink: #1f2340; --muted: #6b7088; --violet: #6c63ff; --lilac: #a78bfa;
+    --soft: #f4f2ff; --line: #d9d5f5; --paper: #ffffff;
+  }
+  @page { size: A4; margin: 11mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5;
+    color: var(--ink); background: #faf9ff; max-width: 900px; margin: 0 auto; padding: 32px 22px 48px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+
+  header.top {
+    background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%); color: #fff; border-radius: 16px;
+    padding: 26px 30px; margin-bottom: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+  }
+  header.top .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .85; margin-bottom: 6px; }
+  header.top h1 { font-size: 32px; line-height: 1.1; font-weight: 700; }
+  header.top .meta { font-size: 15px; text-align: right; opacity: .95; }
+  .intro { font-size: 15px; color: var(--muted); margin: -12px 0 26px 4px; }
+
+  .part {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 28px 22px; margin-bottom: 26px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plabel { font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); margin-bottom: 6px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 4px; text-wrap: balance; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .model { background: var(--soft); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 16px; }
+  .model .lt { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--violet); margin-right: 8px; }
+  .model .fill { color: #2546c8; font-weight: 600; border-bottom: 1.5px solid #b3abf0; padding: 0 2px 0 0; margin-left: 0; }
+
+  .q {
+    display: flex; align-items: baseline; gap: 14px; padding: 13px 0; border-bottom: 1px solid #eeecfb;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-of-type { border-bottom: 0; }
+  .qn { flex: none; width: 22px; font-size: 15px; color: var(--muted); }
+  .q p { font-size: 18px; line-height: 2.1; }
+  .q .qbody { flex: 1; min-width: 0; }
+  .q .qbody p { line-height: 1.6; }
+  section div.sent { min-height: 78px !important; border: 1px solid var(--line); border-radius: 8px; margin-top: 8px; }
+  .hw-gap { width: 3.6em; font: inherit; text-align: left; }
+  .q input.hw-gap.g3 { width: 3.4em; }
+  .q input.hw-gap.g7 { width: 5.6em; }
+  .q input.hw-gap.g9 { width: 6.6em; }
+
+  /* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, recoloured) ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; padding: 12px; border: 1.5px dashed var(--line); border-radius: 12px; background: var(--soft); min-height: 66px; margin: 10px 0 14px; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 600; color: var(--ink); background: #fff;
+    border: 1.5px solid var(--violet); border-radius: 999px; padding: 8px 20px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.35;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: var(--soft); border-color: var(--violet); box-shadow: 0 0 0 3px #d4ccfb; }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(108,99,255,.3); }
+  .tp-zone { border: 2px dashed #c9c2f4; border-radius: 14px; padding: 10px 14px 12px; min-height: 120px; cursor: pointer; background: #fff; -webkit-tap-highlight-color: transparent; }
+  .tp-zone.ready { border-color: var(--violet); background: #fbfaff; }
+  .tp-zone.over { border-color: var(--violet); background: var(--soft); }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: flex-start; }
+  .tp-says { display: block; font-size: 14px; font-weight: 400; color: var(--ink); margin-top: 4px; }
+  .tp-bank .tp-says { display: none; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== end TAP-PLACE CSS ===== */
+
+  .bins { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .bin-head { display: block; font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .bin-sub { display: block; font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+
+  @media (max-width: 620px) {
+    body { padding: 14px 10px 24px; }
+    header.top { flex-direction: column; align-items: flex-start; padding: 20px; }
+    header.top h1 { font-size: 26px; }
+    header.top .meta { text-align: left; }
+    .part { padding: 18px 14px; }
+    .instr { font-size: 19px; }
+    .q p { font-size: 16.5px; }
+    .bins { grid-template-columns: 1fr; }
+    .tp-zone { min-height: 96px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 12px; padding: 0; max-width: none; }
+    header.top { padding: 10px 18px; margin-bottom: 8px; border-radius: 10px; }
+    header.top h1 { font-size: 21px; }
+    header.top .kicker { font-size: 9.5px; margin-bottom: 2px; }
+    header.top .meta { font-size: 11px; }
+    .intro { font-size: 10.5px; margin: 0 0 8px 2px; }
+    .part { padding: 9px 16px 8px; margin-bottom: 8px; border-radius: 10px; }
+    .plabel { font-size: 9.5px; margin-bottom: 1px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 2px; }
+    .model { font-size: 11.5px; padding: 6px 10px; margin: 5px 0; }
+    .model .lt { font-size: 9px; }
+    .q { padding: 5px 0; gap: 8px; }
+    .qn { font-size: 11px; width: 14px; }
+    .q p { font-size: 12.5px; line-height: 1.75; }
+    section div.sent { min-height: 30px !important; margin-top: 3px; }
+    .tp-bank { margin: 4px 0 6px; padding: 5px; min-height: 0; gap: 6px; }
+    .tp-tile { font-size: 12px; padding: 2px 12px; min-height: 0; border-width: 1.2px; }
+    .tp-zone { min-height: 62px; padding: 5px 10px; border-width: 1.2px; }
+    .bin-head { font-size: 13px; margin-bottom: 0; }
+    .bin-sub { font-size: 10px; margin-bottom: 3px; }
+    .bins { gap: 10px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Arina" data-sheet="English 2026-10-21" data-sheet-id="arina-2026-10-21-english">
+<div id="sheet">
+<header class="top"><div><div class="kicker">Arina · English practice</div><h1>Verb patterns &amp; new&nbsp;words</h1></div><div class="meta">21 October 2026</div></header>
+<p class="intro">A little practice from our conversation. About 10&nbsp;minutes.</p>
+
+<section class="part tp" id="sort">
+  <div class="plabel">1 · What comes after the verb?</div>
+  <p class="instr">Tap a verb, then tap the pattern that <span class="nw">follows it.</span></p>
+  <p class="note">With a mouse you can also drag. Tap a placed verb to send it <span class="nw">back.</span></p>
+  <div class="model"><span class="lt">Like this</span><strong>practise</strong> → verb + -ing &nbsp;<span class="nw">(I practise speaking every day.)</span></div>
+  <div class="tp-bank">
+    <button type="button" class="tp-tile" data-value="1" data-store="s1" data-field="s1">suggest</button>
+    <button type="button" class="tp-tile" data-value="2" data-store="s2" data-field="s2">refuse</button>
+    <button type="button" class="tp-tile" data-value="3" data-store="s3" data-field="s3">afford</button>
+    <button type="button" class="tp-tile" data-value="4" data-store="s4" data-field="s4">finish</button>
+    <button type="button" class="tp-tile" data-value="5" data-store="s5" data-field="s5">avoid</button>
+    <button type="button" class="tp-tile" data-value="6" data-store="s6" data-field="s6">hope</button>
+  </div>
+  <div class="bins">
+    <div class="tp-zone tp-multi" data-value="-ing" aria-label="verb + -ing"><span class="bin-head">verb + -ing</span><span class="bin-sub">doing</span><div class="tp-slot"></div></div>
+    <div class="tp-zone tp-multi" data-value="to + infinitive" aria-label="verb + to + infinitive"><span class="bin-head">verb + to + infinitive</span><span class="bin-sub">to do</span><div class="tp-slot"></div></div>
+  </div>
+  <div class="tp-stores" hidden>
+    <select data-k="s1" data-label="1.1 suggest: which pattern?" class="hw-field"><option value=""></option><option value="-ing">-ing</option><option value="to + infinitive">to + infinitive</option></select>
+    <select data-k="s2" data-label="1.2 refuse: which pattern?" class="hw-field"><option value=""></option><option value="-ing">-ing</option><option value="to + infinitive">to + infinitive</option></select>
+    <select data-k="s3" data-label="1.3 afford: which pattern?" class="hw-field"><option value=""></option><option value="-ing">-ing</option><option value="to + infinitive">to + infinitive</option></select>
+    <select data-k="s4" data-label="1.4 finish: which pattern?" class="hw-field"><option value=""></option><option value="-ing">-ing</option><option value="to + infinitive">to + infinitive</option></select>
+    <select data-k="s5" data-label="1.5 avoid: which pattern?" class="hw-field"><option value=""></option><option value="-ing">-ing</option><option value="to + infinitive">to + infinitive</option></select>
+    <select data-k="s6" data-label="1.6 hope: which pattern?" class="hw-field"><option value=""></option><option value="-ing">-ing</option><option value="to + infinitive">to + infinitive</option></select>
+  </div>
+</section>
+
+<section class="part">
+  <div class="plabel">2 · Fix the verb</div>
+  <p class="instr">Type each sentence again, <span class="nw">correctly.</span></p>
+  <p class="note">One verb in each sentence is <span class="nw">wrong.</span></p>
+  <div class="model"><span class="lt">Like this</span>She promised calling me. → <span class="nw">She promised <span class="fill">to call</span> me.</span></div>
+  <div class="q"><span class="qn">1</span><div class="qbody"><p>Last week my sister decided to joined the school <span class="nw">choir.</span></p><div class="hw-field sent" contenteditable="true" data-k="f1" data-label="2.1 Fix: Last week my sister decided to joined the school choir." role="textbox" aria-label="Sentence 1" autocorrect="off" autocapitalize="sentences"></div></div></div>
+  <div class="q"><span class="qn">2</span><div class="qbody"><p>Our IT teacher suggested to use a free app for the <span class="nw">project.</span></p><div class="hw-field sent" contenteditable="true" data-k="f2" data-label="2.2 Fix: Our IT teacher suggested to use a free app for the project." role="textbox" aria-label="Sentence 2" autocorrect="off" autocapitalize="sentences"></div></div></div>
+  <div class="q"><span class="qn">3</span><div class="qbody"><p>Our history teacher did not explained the homework, so nobody <span class="nw">did it.</span></p><div class="hw-field sent" contenteditable="true" data-k="f3" data-label="2.3 Fix: Our history teacher did not explained the homework, so nobody did it." role="textbox" aria-label="Sentence 3" autocorrect="off" autocapitalize="sentences"></div></div></div>
+</section>
+
+<section class="part">
+  <div class="plabel">3 · New words</div>
+  <p class="instr">Type the rest of each <span class="nw">word.</span></p>
+  <div class="model"><span class="lt">Like this</span>A brave f<span class="fill">irefighter</span> carried the old dog out of the burning <span class="nw">house.</span></div>
+  <div class="q"><span class="qn">1</span><p>“What are you looking for?” “Nothing in <span class="nw">p<input class="hw-field hw-gap g9" maxlength="9" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="n1" data-label="3.1 Nothing in p___ (nothing special)">.</span> I’m just <span class="nw">looking.”</span></p></div>
+  <div class="q"><span class="qn">2</span><p>My cousin hid behind the door to <span class="nw">sp<input class="hw-field hw-gap g3" maxlength="3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="n2" data-label="3.2 hid behind the door to sp___ me"></span> me, and I dropped my <span class="nw">phone.</span></p></div>
+  <div class="q"><span class="qn">3</span><p>Lena is a very <span class="nw">det<input class="hw-field hw-gap g7" maxlength="7" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="n3" data-label="3.3 a very det___ person: nothing can stop her"></span> person: once she starts something, nothing can <span class="nw">stop her.</span></p></div>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (copied unchanged from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script></div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJzMSI6IHsidCI6ICJleGFjdCIsICJhIjogIi1pbmcifSwgInMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidG8gKyBpbmZpbml0aXZlIn0sICJzMyI6IHsidCI6ICJleGFjdCIsICJhIjogInRvICsgaW5maW5pdGl2ZSJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICItaW5nIn0sICJzNSI6IHsidCI6ICJleGFjdCIsICJhIjogIi1pbmcifSwgInM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAidG8gKyBpbmZpbml0aXZlIn0sICJmMSI6IHsidCI6ICJvcGVuIn0sICJmMiI6IHsidCI6ICJvcGVuIn0sICJmMyI6IHsidCI6ICJvcGVuIn0sICJuMSI6IHsidCI6ICJleGFjdCIsICJhIjogImFydGljdWxhciJ9LCAibjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJvb2sifSwgIm4zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZXJtaW5lZCJ9fQ==</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body></html>

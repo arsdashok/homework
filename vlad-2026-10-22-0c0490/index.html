@@ -1,0 +1,366 @@
+<!doctype html>
+<!-- hw-mode: online. Private marking key: Vlad_Homework_2026-10-22.key.json -->
+<!-- Lesson 3 (22 Oct 2026). ONE idea, taught in the last minutes of the lesson from his own «I don't track how bad is my vision»:
+     inside a bigger sentence a question goes back to statement order. 01 six direct questions from his week (roadmap, prescription,
+     pitch to leadership, moving in, lenses, release), each with a given opener; types: be (how + adjective, his own slip), be, modal, modal, be, passive be.
+     Only be / modal / passive, as modelled in the lesson. Model on content
+     that answers no item (headphones). 02 a Slack message to his head of department with two order mistakes and one correct embedded clause as a foil; he retypes the two.
+     03 two named situations (optician, Markus), he asks politely in his own words. ~10 min. Small inline script below tidies typed answers (curly apostrophes,
+     a repeated opener, a doubled end mark) so the instant check does not mark a right answer wrong. Design = 15 Oct editorial sheet. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Vlad · English · 22 October 2026</title>
+<style>
+/* Vlad / editorial worksheet, same system as 15 Oct: white paper, vermilion, oversized grotesk, fine rules. */
+:root{color-scheme:light;--ink:#20201d;--muted:#5f5f58;--accent:#cc3024;--line:#d4d4ca;--paper:#fff;--mono:'Courier New',monospace;--blue:#233d8b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.55 Arial,Helvetica,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.wrap{margin:0 auto;padding:28px clamp(20px,2vw,40px) 40px}
+p{margin:0 0 16px;text-wrap:pretty}
+.nowrap{white-space:nowrap}
+
+/* Header: spans the whole viewport with small gutters */
+.page-header{margin-bottom:60px}
+.masthead{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:5px solid var(--ink);border-bottom:1px solid var(--ink);padding:12px 0;font:16px/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.masthead b{font-family:Arial,sans-serif;font-size:17px;letter-spacing:-.02em}
+.hero{display:grid;grid-template-columns:1fr 260px;gap:30px;align-items:end;padding:50px 0 35px}
+.hero h1{font-size:clamp(74px,10.6vw,146px);line-height:.9;letter-spacing:-.07em;font-weight:800;margin:0}
+.hero h1 span{display:block;color:var(--accent);margin-top:12px}
+.hero-aside{font:16px/1.5 var(--mono);padding-bottom:8px;min-width:0}
+.hero-aside p{margin:14px 0 0}
+.flip-art{display:block;width:100%;max-width:240px;height:auto}
+.deck{display:flex;gap:20px;justify-content:space-between;border-top:1px solid var(--ink);padding-top:16px;font-size:18px;line-height:1.5}
+.deck p{margin:0}
+.deck .byline{font:16px/1.6 var(--mono);text-align:right;white-space:nowrap}
+.jump{display:flex;flex-wrap:wrap;margin-top:28px;border-bottom:1px solid var(--line)}
+.jump a{color:var(--ink);font:16px/1.3 var(--mono);text-decoration:none;padding:14px 18px;border-right:1px solid var(--line)}
+.jump a:first-child{padding-left:0}
+.jump a:hover{color:var(--accent)}
+
+/* Exercises: readable max width */
+.exercise{display:grid;grid-template-columns:minmax(260px,.7fr) minmax(0,1.3fr);gap:64px;max-width:1276px;margin:0 auto;padding:36px 0 48px;border-top:2px solid var(--ink);scroll-margin-top:24px;break-inside:auto}
+.brief,.work{min-width:0}
+.section-heading{display:flex;align-items:flex-start;gap:12px;margin:0 0 26px}
+.section-number{font:16px var(--mono);color:var(--accent);padding-top:9px}
+h2{font-size:34px;line-height:1.05;letter-spacing:-.045em;margin:0;font-weight:700}
+.instruction{font-size:20px;line-height:1.45;font-weight:700;margin:0 0 22px}
+.note{border-top:1px solid var(--line);padding:16px 0 0;font-size:18px;line-height:1.55}
+.note p{margin:0 0 14px}
+.note strong{color:var(--accent)}
+.mini{color:var(--muted);font-size:18px;line-height:1.55}
+.openers{list-style:none;margin:0 0 18px;padding:2px 0 2px 16px;border-left:5px solid var(--accent)}
+.openers li{font-size:22px;line-height:1.4;letter-spacing:-.02em;font-weight:700;color:var(--accent)}
+
+/* Items: one per row across the work column */
+.item{display:grid;grid-template-columns:36px minmax(0,1fr);gap:0 12px;padding:20px 0;border-bottom:1px solid var(--line);break-inside:avoid;page-break-inside:avoid}
+.item:first-child{padding-top:0}
+.item:last-child{border-bottom:0}
+.qlab{font:16px/1.5 var(--mono);color:var(--accent);padding-top:2px}
+.ctx{font:16px/1.4 var(--mono);color:var(--muted);margin:0 0 6px}
+.ctx b{color:var(--accent);font-weight:400}
+.direct{font-size:20px;line-height:1.4;margin:0 0 12px}
+.polite{display:flex;align-items:flex-start;flex-wrap:wrap;gap:8px 12px;font-size:20px;line-height:1.4}
+.opener{font-weight:700;white-space:nowrap;padding-top:10px}
+.fill{display:flex;align-items:center;flex-wrap:wrap;gap:8px;flex:1 1 320px;max-width:620px;min-width:0}
+/* the box and its end mark stay on one line; the instant-check mark (and the PDF copy of it) drops to its own line below */
+.fill > input,.fill > .done,.fill > .hw-pdf-answer,.fill > .hw-pdf-response{order:1;flex:1 1 200px;min-width:0}
+.fill > .end{order:2}
+.fill > .hw-mark{order:3;flex:0 0 100%;margin:4px 0 0;white-space:normal}
+.end{font-size:24px;font-weight:700;line-height:1}
+.model .done{display:block;color:var(--blue);background:#fafaf6;border:1px dashed #9a9a90;padding:10px 14px;font-size:18px;line-height:1.5}
+.label{font-size:18px;line-height:1.45;color:var(--muted);margin:0 0 8px}
+
+/* Slack message */
+.slack{border-left:5px solid var(--ink);padding:2px 0 2px 22px;margin:0 0 30px}
+.slack .from{font:16px/1.4 var(--mono);color:var(--muted);margin:0 0 12px}
+.slack .msg{font-size:20px;line-height:1.5;margin:0 0 10px}
+.slack .msg:last-child{margin-bottom:0}
+
+/* Answer fields: boxed, square, blue answers */
+body .wrap .hw-field{font:18px/1.5 Arial,sans-serif;color:var(--blue)!important;background:#fafaf6!important;border:1px solid #9a9a90!important;border-radius:0!important;box-shadow:none;padding:10px 14px;width:100%;min-width:0}
+body .wrap input.hw-field{height:48px;text-align:left}
+body .wrap textarea.hw-field{display:block;min-height:86px;resize:vertical;box-sizing:border-box!important;width:100%!important;max-width:100%!important}
+.item > div{min-width:0}
+body .wrap .hw-field:focus{outline:2px solid var(--ink);outline-offset:2px;background:#fff!important;box-shadow:none}
+body .wrap .hw-field::placeholder{color:#76766f;font-size:16px;font-weight:400}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
+.endnote{display:flex;justify-content:space-between;gap:20px;max-width:1276px;margin:0 auto;border-top:5px solid var(--ink);padding-top:15px;font:16px var(--mono);color:var(--muted)}
+body .hw-bar{border:0;border-top:1px solid var(--ink);border-radius:0;max-width:1276px;font-family:Arial,sans-serif}
+body .hw-send{border-radius:0;background:var(--accent);color:#fff;border:0;box-shadow:none;padding:15px 32px}
+body .hw-send:hover{background:#a5271e}
+
+@media(max-width:1000px){.exercise{gap:36px;grid-template-columns:minmax(220px,.62fr) minmax(0,1.38fr)}}
+@media(max-width:820px){.exercise{display:block;padding:28px 0 38px}.brief{margin-bottom:26px}}
+@media(max-width:620px){
+ .wrap{padding:16px 18px 30px}
+ .page-header{margin-bottom:30px}
+ .masthead{align-items:flex-start}
+ .masthead span{text-align:right}
+ .hero{grid-template-columns:1fr;gap:24px;padding:34px 0 26px}
+ .hero h1{font-size:clamp(56px,15vw,100px);letter-spacing:-.065em}
+ .hero-aside{display:block}
+ .hero-aside svg{width:220px}
+ .hero-aside p{margin:12px 0 0}
+ .deck{flex-direction:column;gap:14px}
+ .deck .byline{text-align:left;white-space:normal}
+ .jump{border-bottom:1px solid var(--line)}
+ .jump a{padding:10px 18px 10px 0;border-right:0}
+ .section-heading h2{font-size:32px}
+ .item{grid-template-columns:28px minmax(0,1fr)}
+ .fill{flex-basis:100%;max-width:none}
+ .opener{padding-top:0}
+ body .wrap textarea.hw-field{min-height:128px}
+ .endnote{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+@page{size:A4;margin:12mm}
+@media print{
+ body{font-size:11pt;line-height:1.4}
+ .wrap{padding:0}
+ .page-header{margin-bottom:10px}
+ .masthead{padding:6px 0;font-size:9pt;border-top-width:3px}
+ .masthead b{font-size:11pt}
+ .hero{grid-template-columns:1fr 160px;gap:20px;padding:12px 0 12px}
+ .hero h1{font-size:54px}
+ .hero h1 span{margin-top:4px}
+ .hero-aside{font-size:9pt}
+ .hero-aside p{margin-top:6px}
+ .deck{font-size:10pt;padding-top:8px}
+ .deck .byline{font-size:9pt}
+ .jump{display:none}
+ .exercise{display:block;max-width:none;padding:12px 0 8px}
+ .section-heading{margin-bottom:8px;break-after:avoid;page-break-after:avoid}
+ .section-number{font-size:9pt;padding-top:4px}
+ h2{font-size:22px}
+ .brief{margin-bottom:10px;break-inside:avoid;break-after:avoid;page-break-after:avoid}
+ .instruction{font-size:12pt;margin-bottom:8px}
+ .note{padding-top:8px}
+ .note p{margin-bottom:6px}
+ .note,.mini,.label{font-size:10pt}
+ .openers{margin-bottom:8px}
+ .openers li{font-size:12pt}
+ .item{padding:5px 0}
+ .qlab{font-size:9pt}
+ .ctx{font-size:9pt;margin-bottom:2px}
+ .direct{font-size:11.5pt;margin-bottom:5px}
+ .polite{font-size:11.5pt}
+ .opener{padding-top:5px}
+ .end{font-size:13pt}
+ .model .done{font-size:11pt;padding:5px 8px}
+ .slack{margin-bottom:12px}
+ .slack .from{font-size:9pt;margin-bottom:6px}
+ .slack .msg{font-size:11pt;margin-bottom:4px}
+ body .wrap input.hw-field{height:32px;font-size:11pt;padding:4px 8px}
+ body .wrap textarea.hw-field{min-height:0!important;height:44px!important;font-size:11pt;padding:6px 8px;resize:none;box-sizing:border-box!important;width:100%!important;max-width:100%!important}
+ body .wrap .hw-field::placeholder{color:transparent!important}
+ .endnote{font-size:8pt;padding-top:8px;border-top-width:3px}
+ .hw-bar{display:none!important}
+}
+
+/* Dasha's emailed PDF (hw.js renders the page in an 800px frame with body.hw-pdf-mode) */
+body.hw-pdf-mode .wrap{padding:24px 24px 0}
+body.hw-pdf-mode .jump{display:none}
+body.hw-pdf-mode .page-header{margin-bottom:20px}
+body.hw-pdf-mode .hero{grid-template-columns:1fr 150px;padding:16px 0}
+body.hw-pdf-mode .hero h1{font-size:60px}
+body.hw-pdf-mode .hero-aside{display:block;font-size:11px}
+body.hw-pdf-mode .exercise{display:block;padding:18px 0}
+body.hw-pdf-mode .brief{margin-bottom:14px}
+body.hw-pdf-mode h2{font-size:24px}
+body.hw-pdf-mode .instruction{font-size:16px;margin-bottom:10px}
+body.hw-pdf-mode .note,body.hw-pdf-mode .mini,body.hw-pdf-mode .label,body.hw-pdf-mode .deck{font-size:13px}
+body.hw-pdf-mode .openers li{font-size:16px}
+body.hw-pdf-mode .ctx,body.hw-pdf-mode .qlab,body.hw-pdf-mode .slack .from,body.hw-pdf-mode .masthead,body.hw-pdf-mode .deck .byline{font-size:12px}
+body.hw-pdf-mode .direct,body.hw-pdf-mode .polite,body.hw-pdf-mode .slack .msg{font-size:15px}
+body.hw-pdf-mode .item{padding:8px 0}
+body.hw-pdf-mode .opener{padding-top:10px}
+body.hw-pdf-mode .wrap .hw-field{font-size:14px}
+body.hw-pdf-mode .model .done{font-size:14px;padding:8px 12px}
+body.hw-pdf-mode .hw-field::placeholder{color:transparent}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Vlad" data-sheet="English 2026-10-22" data-sheet-id="vlad-2026-10-22-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+<div class="masthead"><b>VLAD / ENGLISH</b><span>A working copy.</span></div>
+<div class="hero"><h1>Where is it?<span>where it&nbsp;is.</span></h1><aside class="hero-aside">
+<svg class="flip-art" viewBox="0 0 230 112" role="img" aria-label="where is it, then where it is: the verb moves to the end">
+<g font-family="Arial, Helvetica, sans-serif" font-size="16" text-anchor="middle">
+<rect x="1" y="4" width="78" height="30" fill="none" stroke="#20201d" stroke-width="1.5"/><text x="40" y="25" fill="#20201d">where</text>
+<rect x="87" y="4" width="44" height="30" fill="#cc3024"/><text x="109" y="25" fill="#fff" font-weight="700">is</text>
+<rect x="139" y="4" width="44" height="30" fill="none" stroke="#20201d" stroke-width="1.5"/><text x="161" y="25" fill="#20201d">it</text>
+<text x="200" y="27" fill="#20201d" font-size="22" font-weight="700">?</text>
+<rect x="1" y="78" width="78" height="30" fill="none" stroke="#20201d" stroke-width="1.5"/><text x="40" y="99" fill="#20201d">where</text>
+<rect x="87" y="78" width="44" height="30" fill="none" stroke="#20201d" stroke-width="1.5"/><text x="109" y="99" fill="#20201d">it</text>
+<rect x="139" y="78" width="44" height="30" fill="#cc3024"/><text x="161" y="99" fill="#fff" font-weight="700">is</text>
+<text x="200" y="101" fill="#20201d" font-size="22" font-weight="700">.</text>
+</g>
+<path d="M109 37 C109 56 161 54 161 68" fill="none" stroke="#cc3024" stroke-width="2"/>
+<polygon points="155,66 161,76 167,66" fill="#cc3024"/>
+</svg>
+<p>A question inside<br>a sentence is not<br>a question any more.<br>Normal sentence order.</p></aside></div>
+<div class="deck"><p>Questions inside bigger sentences, from your week:<br>work, the flat search and the&nbsp;optician.</p><p class="byline">22 OCTOBER 2026<br>THREE PARTS / ~10 MIN</p></div>
+<nav class="jump" aria-label="Exercises"><a href="#t1">Inside a sentence</a><a href="#t2">Fix the Slack message</a><a href="#t3">Your turn</a></nav>
+</header>
+
+<section class="exercise" aria-labelledby="t1">
+<div class="brief">
+  <div class="section-heading"><span class="section-number">01</span><h2 id="t1">Inside a bigger sentence</h2></div>
+  <p class="instruction">Finish each sentence after the opener, using the question above&nbsp;it.</p>
+  <div class="note">
+    <p>After these openers, the question is not a question any more. Normal sentence order: <strong>subject first, then the&nbsp;verb</strong>.</p>
+    <ul class="openers" aria-label="Openers"><li>Do you know &hellip;</li><li>Could you tell me &hellip;</li><li>I'm not sure &hellip;</li><li>I don't know &hellip;</li></ul>
+  </div>
+</div>
+<div class="work">
+  <div class="item model">
+    <span class="qlab"></span>
+    <div>
+      <p class="ctx"><b>Like this</b> · looking for your things</p>
+      <p class="direct">Where are my headphones?</p>
+      <div class="polite"><span class="opener">I don't know</span><span class="fill"><span class="done">where my headphones are</span><span class="end">.</span></span></div>
+    </div>
+  </div>
+  <div class="item">
+    <span class="qlab">1.</span>
+    <div>
+      <p class="ctx">Slack, to a colleague</p>
+      <p class="direct">Where is the latest roadmap?</p>
+      <div class="polite"><span class="opener">Do you know</span><span class="fill"><input type="text" class="hw-field norm" data-opener="Do you know" data-k="q1" data-label="1. Do you know (Where is the latest roadmap?)" aria-label="1. Do you know, then the rest of: Where is the latest roadmap?" placeholder="Type the rest here" autocomplete="off" spellcheck="false"><span class="end">?</span></span></div>
+    </div>
+  </div>
+  <div class="item">
+    <span class="qlab">2.</span>
+    <div>
+      <p class="ctx">Your eyes, to a friend</p>
+      <p class="direct">How strong is my new prescription?</p>
+      <div class="polite"><span class="opener">I'm not sure</span><span class="fill"><input type="text" class="hw-field norm" data-opener="I'm not sure" data-k="q2" data-label="2. I'm not sure (How strong is my new prescription?)" aria-label="2. I'm not sure, then the rest of: How strong is my new prescription?" placeholder="Type the rest here" autocomplete="off" spellcheck="false"><span class="end">.</span></span></div>
+    </div>
+  </div>
+  <div class="item">
+    <span class="qlab">3.</span>
+    <div>
+      <p class="ctx">To your head of department</p>
+      <p class="direct">When should we pitch the new design to leadership?</p>
+      <div class="polite"><span class="opener">Could you tell me</span><span class="fill"><input type="text" class="hw-field norm" data-opener="Could you tell me" data-k="q3" data-label="3. Could you tell me (When should we pitch the new design to leadership?)" aria-label="3. Could you tell me, then the rest of: When should we pitch the new design to leadership?" placeholder="Type the rest here" autocomplete="off" spellcheck="false"><span class="end">?</span></span></div>
+    </div>
+  </div>
+  <div class="item">
+    <span class="qlab">4.</span>
+    <div>
+      <p class="ctx">The flat search, to a friend</p>
+      <p class="direct">When can I move in?</p>
+      <div class="polite"><span class="opener">I don't know</span><span class="fill"><input type="text" class="hw-field norm" data-opener="I don't know" data-k="q4" data-label="4. I don't know (When can I move in?)" aria-label="4. I don't know, then the rest of: When can I move in?" placeholder="Type the rest here" autocomplete="off" spellcheck="false"><span class="end">.</span></span></div>
+    </div>
+  </div>
+  <div class="item">
+    <span class="qlab">5.</span>
+    <div>
+      <p class="ctx">At the optician</p>
+      <p class="direct">How much are the lenses?</p>
+      <div class="polite"><span class="opener">Could you tell me</span><span class="fill"><input type="text" class="hw-field norm" data-opener="Could you tell me" data-k="q5" data-label="5. Could you tell me (How much are the lenses?)" aria-label="5. Could you tell me, then the rest of: How much are the lenses?" placeholder="Type the rest here" autocomplete="off" spellcheck="false"><span class="end">?</span></span></div>
+    </div>
+  </div>
+  <div class="item">
+    <span class="qlab">6.</span>
+    <div>
+      <p class="ctx">Slack, to a colleague</p>
+      <p class="direct">Why was the release moved to Friday?</p>
+      <div class="polite"><span class="opener">Do you know</span><span class="fill"><input type="text" class="hw-field norm" data-opener="Do you know" data-k="q6" data-label="6. Do you know (Why was the release moved to Friday?)" aria-label="6. Do you know, then the rest of: Why was the release moved to Friday?" placeholder="Type the rest here" autocomplete="off" spellcheck="false"><span class="end">?</span></span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="exercise" aria-labelledby="t2">
+<div class="brief">
+  <div class="section-heading"><span class="section-number">02</span><h2 id="t2">Fix the Slack message</h2></div>
+  <p class="instruction">Two sentences have the wrong word order. Type those two again,&nbsp;corrected.</p>
+  <p class="mini">Change only the word order. Keep everything else as it&nbsp;is.</p>
+</div>
+<div class="work">
+  <div class="slack">
+    <p class="from">Slack · to Markus, head of department</p>
+    <p class="msg">Hi Markus, quick update on the onboarding redesign: the prototype is ready, and leadership wants a demo next week.</p>
+    <p class="msg">They want to know what the biggest change for new users is.</p>
+    <p class="msg">I still don't know when will the designers have time for the final screens.</p>
+    <p class="msg">I would also like to know how big is this quarter's design budget.</p>
+    <p class="msg">Do you have ten minutes for a call on Thursday?</p>
+  </div>
+  <div class="item">
+    <span class="qlab">7.</span>
+    <div><p class="label">The first sentence to fix</p><textarea class="hw-field norm" rows="2" data-k="s1" data-label="7. Slack message, first sentence corrected" aria-label="7. Slack message, first sentence corrected" placeholder="Type the corrected sentence here" spellcheck="false"></textarea></div>
+  </div>
+  <div class="item">
+    <span class="qlab">8.</span>
+    <div><p class="label">The second sentence to fix</p><textarea class="hw-field norm" rows="2" data-k="s2" data-label="8. Slack message, second sentence corrected" aria-label="8. Slack message, second sentence corrected" placeholder="Type the corrected sentence here" spellcheck="false"></textarea></div>
+  </div>
+</div>
+</section>
+
+<section class="exercise" aria-labelledby="t3">
+<div class="brief">
+  <div class="section-heading"><span class="section-number">03</span><h2 id="t3">Your turn</h2></div>
+  <p class="instruction">Ask about these two things politely, in one full sentence&nbsp;each.</p>
+  <p class="mini">Start with Do you know or Could you tell&nbsp;me.</p>
+</div>
+<div class="work">
+  <div class="item">
+    <span class="qlab">9.</span>
+    <div><p class="ctx">At the optician</p><p class="direct">Your new glasses: ready when?</p><textarea class="hw-field" rows="2" data-k="y1" data-label="9. At the optician (Your new glasses: ready when?)" aria-label="9. At the optician. Your new glasses: ready when? Your polite question" placeholder="Type your question here"></textarea></div>
+  </div>
+  <div class="item">
+    <span class="qlab">10.</span>
+    <div><p class="ctx">To Markus</p><p class="direct">Friday's demo: what time?</p><textarea class="hw-field" rows="2" data-k="y2" data-label="10. To Markus (Friday's demo: what time?)" aria-label="10. To Markus. Friday's demo: what time? Your polite question" placeholder="Type your question here"></textarea></div>
+  </div>
+</div>
+</section>
+
+<footer class="endnote"><span>END OF PRACTICE</span><span>English / Practice notes</span></footer>
+</main>
+<script>
+/* Tidy a typed answer when the field is left: straight apostrophes, single spaces; in part 01 also drop
+   a repeated opener and an end mark the sheet already prints after the box. */
+(function () {
+  function tidy(el) {
+    var v = el.value, t = v.replace(/[‘’ʼ]/g, "'").replace(/\s+/g, " ").trim(), o = el.getAttribute("data-opener");
+    if (o) {
+      if (t.toLowerCase().indexOf(o.toLowerCase()) === 0) t = t.slice(o.length).trim();
+      t = t.replace(/^[,\s]+/, "").replace(/[\s?.!]+$/, "");
+    }
+    if (t !== v) { el.value = t; el.dispatchEvent(new Event("input", { bubbles: true })); }
+  }
+  document.querySelectorAll(".norm[data-k]").forEach(function (el) {
+    // curly apostrophes (phone keyboards) straightened as he types; same length, so the caret stays put
+    el.addEventListener("input", function () {
+      if (!/[\u2018\u2019\u02BC]/.test(el.value)) return;
+      var a = el.selectionStart, z = el.selectionEnd;
+      el.value = el.value.replace(/[\u2018\u2019\u02BC]/g, "'");
+      try { el.setSelectionRange(a, z); } catch (e) {}
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+    el.addEventListener("change", function () { tidy(el); });
+  });
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJxMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndoZXJlIHRoZSBsYXRlc3Qgcm9hZG1hcCBpcyJ9LCAicTIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJob3cgc3Ryb25nIG15IG5ldyBwcmVzY3JpcHRpb24gaXMifSwgInEzIjogeyJ0IjogIndvcmRzIiwgImEiOiAid2hlbiB3ZSBzaG91bGQgcGl0Y2ggdGhlIG5ldyBkZXNpZ24gdG8gbGVhZGVyc2hpcCJ9LCAicTQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3aGVuIEkgY2FuIG1vdmUgaW4ifSwgInE1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiaG93IG11Y2ggdGhlIGxlbnNlcyBhcmUifSwgInE2IjogeyJ0IjogIndvcmRzIiwgImEiOiAid2h5IHRoZSByZWxlYXNlIHdhcyBtb3ZlZCB0byBGcmlkYXkifSwgInMxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiSSBzdGlsbCBkb24ndCBrbm93IHdoZW4gdGhlIGRlc2lnbmVycyB3aWxsIGhhdmUgdGltZSBmb3IgdGhlIGZpbmFsIHNjcmVlbnMuIn0sICJzMiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIkkgd291bGQgYWxzbyBsaWtlIHRvIGtub3cgaG93IGJpZyB0aGlzIHF1YXJ0ZXIncyBkZXNpZ24gYnVkZ2V0IGlzLiJ9LCAieTEiOiB7InQiOiAib3BlbiJ9LCAieTIiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

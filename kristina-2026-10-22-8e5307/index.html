@@ -210,6 +210,81 @@ body div.hw-field:empty::before, body span.hw-field:empty::before { color:#86a8a
 body textarea.hw-field::placeholder { color:#86a8a3; }
 body .hw-bar { border-color:#4fb3a9; border-radius:16px; }
 body .hw-send { background:#4fb3a9; color:#fff; border-color:#1d4f4a; box-shadow:3px 3px 0 #1d4f4a; }
+
+/* Kristina: one reading direction, one chat, explicit steps. */
+html { scroll-behavior:smooth; }
+.lesson-nav { display:flex; gap:6px; position:sticky; top:0; z-index:5; background:#fff; padding:10px 0; margin:0 0 16px; border-bottom:1px solid #cdeee9; }
+.lesson-nav a { flex:1; padding:10px 8px; text-align:center; color:#1d4f4a; background:#eefaf8; border:1px solid #b6ded8; border-radius:8px; font-size:17px; font-weight:700; text-decoration:none; }
+.lesson-nav a[aria-current="step"] { background:#1d7a71; color:white; border-color:#1d7a71; }
+.lesson-nav a:hover, .lesson-nav a:focus-visible { background:#d6f1ed; outline:2px solid #1d7a71; }
+section[id] { scroll-margin-top:82px; }
+.ex-header { font-size:15px; padding:10px 18px; text-transform:none; letter-spacing:0; }
+.note, .rnote { font-size:17px; color:#486660; }
+.p1grid { display:block; }
+.chat, .message-bank { max-width:800px; margin:auto; }
+.chat:has(.set) { margin-bottom:20px; }
+.message-bank { display:flex; flex-direction:column; gap:10px; }
+.message-bank .bub { width:100%; max-width:none; align-self:stretch; border-radius:10px; background:#fff; }
+.message-bank .badge { display:none; }
+.chat .bub { max-width:90%; }
+.chat .bub.set { cursor:pointer; }
+.chat-controls { max-width:800px; margin:18px auto 12px; padding-top:16px; border-top:1px solid #cdeee9; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; }
+.p1status { font-size:19px; margin:0; }
+.undo-chat { font:inherit; font-size:16px; color:#1d4f4a; background:#fff; border:1px solid #7ccdc3; border-radius:8px; padding:8px 12px; min-height:44px; cursor:pointer; }
+.undo-chat:disabled { opacity:.4; cursor:default; }
+.part-next { display:flex; justify-content:flex-end; padding:16px 20px; border-top:1px solid #d6f1ed; }
+.part-next a { color:#1d4f4a; font-size:17px; font-weight:700; text-decoration:none; padding:8px 12px; background:#eefaf8; border-radius:8px; }
+.ritem, .ritem.example { display:block; max-width:860px; margin:0 auto; padding:24px 0; }
+.ritem.example { margin:12px auto 4px; padding:16px; }
+.rleft { gap:12px; }
+.rchat { gap:10px; }
+.fmsg { max-width:100%; font-size:20px; }
+.rnote { background:#f3f8f7; padding:8px 12px; border-left:3px solid #4fb3a9; }
+.rright { padding:12px 0 0 38px; }
+.choice-label, .reply-label { font-size:16px; font-weight:700; color:#1d7a71; margin:12px 0 8px; }
+.chiprow + .chiprow { border:0; margin-top:0; padding-top:0; }
+.chiprow, .chiprow.g2 { display:flex; flex-wrap:wrap; gap:8px; }
+.opt { font-size:18px; min-height:48px; padding:10px 14px; }
+.reply { align-self:auto; max-width:100%; margin:0; padding:12px 14px; min-height:50px; font-size:19px; }
+.reply-label { margin-top:20px; }
+.p3grid { grid-template-columns:1fr; max-width:860px; margin:auto; gap:28px; }
+.like { font-size:17px; }
+@media(max-width:620px) {
+ .lesson-nav a { font-size:16px; padding:10px 3px; }
+ .bub, .fmsg, .reply { font-size:18px; }
+ .who { font-size:14px; }
+ .rright { padding-left:0; }
+ .ritem { padding:20px 0; }
+ .ritem.example { margin:12px 0 4px; padding:12px; }
+ .opt { width:100%; }
+ .chat .bub { max-width:96%; }
+ .instruction, .instruction.sub { font-size:20px; }
+}
+body.hw-pdf-mode .lesson-nav, body.hw-pdf-mode .part-next, body.hw-pdf-mode .chat-controls, body.hw-pdf-mode .screen-only { display:none!important; }
+body.hw-pdf-mode .message-bank { gap:5px; }
+body.hw-pdf-mode .message-bank .badge { display:block; }
+body.hw-pdf-mode .ritem, body.hw-pdf-mode .ritem.example { display:block; padding:8px 0; }
+body.hw-pdf-mode .rright { padding:4px 0 0 30px; }
+body.hw-pdf-mode .choice-label, body.hw-pdf-mode .reply-label { font-size:12px; margin:5px 0 3px; }
+body.hw-pdf-mode .reply { display:block; }
+body.hw-pdf-mode .opt:not(.on) { display:none; }
+@media print {
+ .lesson-nav, .part-next, .chat-controls, .screen-only, .reply-label { display:none!important; }
+ section[id] { scroll-margin-top:0; }
+ .message-bank { gap:4px; }
+ .message-bank .badge { display:block; }
+ .ritem, .ritem.example { display:block; padding:7px 0; }
+ .rright { padding:3px 0 0 26px; }
+ .choice-label, .reply-label { font-size:11px; margin:5px 0 2px; }
+ .opt { font-size:11px; min-height:0; padding:2px 6px; width:auto; }
+ .fmsg, .reply { font-size:12px; }
+ .rnote { font-size:11px; padding:3px 8px; }
+ .bub { font-size:12px; }
+ .p3grid { gap:12px; }
+ .like { font-size:12px; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -223,20 +298,21 @@ body .hw-send { background:#4fb3a9; color:#fff; border-color:#1d4f4a; box-shadow
   <h1>Homework: Kristina</h1>
   <div class="sub">22 October 2026 &middot; Are you free on&nbsp;Friday?</div>
 </header>
+<nav class="lesson-nav" aria-label="Homework parts"><a href="#part1">1 · Chat</a><a href="#part2">2 · Replies</a><a href="#part3">3 · Write</a></nav>
 <p class="vocablink">&#128218; Your words from our lessons: <a href="https://arsdashok.github.io/vocab/c7c5a89559e3a09e/" target="_blank" rel="noopener">open your vocabulary&nbsp;page</a></p>
 
-<section class="ex-card">
+<section class="ex-card" id="words">
   <div class="ex-header">Words from today</div>
   <div class="ex-body">
     <div class="words"><div><b>Sorry, I can’t make it.</b><span class="say" role="button" tabindex="0" data-say="Sorry, I can’t make it." aria-label="Listen" title="Listen">&#128264;</span> I can’t&nbsp;come.</div><div><b>Can we make it two instead?</b><span class="say" role="button" tabindex="0" data-say="Can we make it two instead?" aria-label="Listen" title="Listen">&#128264;</span> Can we change it to&nbsp;two?</div><div><b>That works for me.</b><span class="say" role="button" tabindex="0" data-say="That works for me." aria-label="Listen" title="Listen">&#128264;</span> That time is good for&nbsp;me.</div><div><b>I’ll let you know.</b><span class="say" role="button" tabindex="0" data-say="I’ll let you know." aria-label="Listen" title="Listen">&#128264;</span> I’ll tell you later, when I&nbsp;know.</div><div><b>Shall we sit outside?</b><span class="say" role="button" tabindex="0" data-say="Shall we sit outside?" aria-label="Listen" title="Listen">&#128264;</span> Let’s sit outside,&nbsp;OK?</div></div>
   </div>
 </section>
 
-<section class="ex-card">
+<section class="ex-card" id="part1">
   <div class="model"><div class="ex-header">Part 1 &middot; Two friends make a plan</div>
   <div class="ex-top">
     <p class="instruction">Put the chat in&nbsp;order.</p>
-    <p class="note screen">Message 1 is done. Tap the other messages in order: 2, 3, 4&hellip; Tap a number again to take it&nbsp;off.</p>
+    <p class="note screen">Read message 1. Choose what comes next from the messages below. Your choices join the chat. Use “Undo last choice” to go back.</p>
     <p class="note paper">Message 1 is done. Write 2 to 7 in the&nbsp;circles.</p>
   </div></div>
   <div class="ex-body">
@@ -249,23 +325,25 @@ body .hw-send { background:#4fb3a9; color:#fff; border-color:#1d4f4a; box-shadow
     </div>
     <div class="store" aria-hidden="true"><input type="text" data-k="m1" data-label="1. Nina: Seven? It isn’t too hot then." class="hw-field"><input type="text" data-k="m2" data-label="1. Kate: Sounds great! See you on Friday at eight." class="hw-field"><input type="text" data-k="m3" data-label="1. Kate: Friday? I’m not sure yet. I’ll let you know tonight." class="hw-field"><input type="text" data-k="m4" data-label="1. Nina: That works for me. Shall we have breakfast after the walk?" class="hw-field"><input type="text" data-k="m5" data-label="1. Kate: Hi again! Friday works for me. What time works for you?" class="hw-field"><input type="text" data-k="m6" data-label="1. Kate: Sorry, I can’t make it at seven. Can we make it eight instead?" class="hw-field"></div>
   </div>
+  <div class="part-next"><a href="#part2">Next: build your replies →</a></div>
 </section>
 
-<section class="ex-card">
+<section class="ex-card" id="part2">
   <div class="model"><div class="ex-header">Part 2 &middot; Build your reply</div>
   <div class="ex-top">
-    <p class="instruction">Build each reply: one half from the top, one half from the&nbsp;bottom.</p>
-    <p class="note screen">Tap to choose. The grey note says what is true for you, and your reply says both parts of&nbsp;it.</p>
-    <p class="note paper">Circle one at the top and one at the bottom. The grey note says what is true for you, and your reply says both parts of&nbsp;it.</p>
+    <p class="instruction">Read the message. Build your reply in two steps.</p>
+    <p class="note screen">Read “Your situation”, then choose a beginning and an ending. Your complete reply appears underneath.</p>
+    <p class="note paper">Read “Your situation”. Circle one beginning and one ending.</p>
     <div class="ritem example" aria-label="Example"><div class="rleft"><span class="num">Example</span><div class="rchat"><p class="fmsg">How about a picnic in the park on Friday at&nbsp;five?</p><p class="rnote">(yes &middot; you want to sit in the&nbsp;shade)</p><p class="reply exreply">That works for me. Shall we sit in the&nbsp;shade?</p></div></div><div class="rright"><div class="chiprow"><span class="opt one on">That works for me.</span></div><div class="chiprow"><span class="opt two on">Shall we sit in the shade?</span></div></div></div>
   </div></div>
   <div class="ex-body">
     <div class="ritem q" data-n="1"><div class="rleft"><span class="num">1</span><div class="rchat"><p class="fmsg">How about dinner at Novikov on Wednesday? Seven or&nbsp;eight?</p><p class="rnote">(yes · seven is too&nbsp;early)</p><p class="reply" data-for="1"><span class="ph">Your reply</span><span class="h1"></span> <span class="h2"></span></p></div></div><div class="rright"><div class="chiprow choice" data-field="r1a" role="group" aria-label="Message 1: first half"><button type="button" class="opt one" data-val="I’m not sure yet.">I’m not sure yet.</button><button type="button" class="opt one" data-val="Sorry, I can’t make it on Wednesday.">Sorry, I can’t make it on Wednesday.</button><button type="button" class="opt one" data-val="Sounds great!">Sounds great!</button></div><div class="chiprow choice g2" data-field="r1b" role="group" aria-label="Message 1: second half"><button type="button" class="opt two" data-val="Seven works for me.">Seven works for me.</button><button type="button" class="opt two" data-val="Eight works for me.">Eight works for me.</button><button type="button" class="opt two" data-val="What time works for you?">What time works for you?</button><button type="button" class="opt two" data-val="I’ll let you know.">I’ll let you know.</button></div></div></div><div class="ritem q" data-n="2"><div class="rleft"><span class="num">2</span><div class="rchat"><p class="fmsg">How about tennis on Monday at&nbsp;six?</p><p class="rnote">(not at six · seven is&nbsp;good)</p><p class="reply" data-for="2"><span class="ph">Your reply</span><span class="h1"></span> <span class="h2"></span></p></div></div><div class="rright"><div class="chiprow choice" data-field="r2a" role="group" aria-label="Message 2: first half"><button type="button" class="opt one" data-val="Sorry, I can’t make it at six.">Sorry, I can’t make it at six.</button><button type="button" class="opt one" data-val="I’m not sure yet.">I’m not sure yet.</button><button type="button" class="opt one" data-val="Sorry, I can’t make it at seven.">Sorry, I can’t make it at seven.</button></div><div class="chiprow choice g2" data-field="r2b" role="group" aria-label="Message 2: second half"><button type="button" class="opt two" data-val="Can we make it six instead?">Can we make it six instead?</button><button type="button" class="opt two" data-val="I’ll let you know.">I’ll let you know.</button><button type="button" class="opt two" data-val="What time works for you?">What time works for you?</button><button type="button" class="opt two" data-val="Can we make it seven instead?">Can we make it seven instead?</button></div></div></div><div class="ritem q" data-n="3"><div class="rleft"><span class="num">3</span><div class="rchat"><p class="fmsg">Let’s go to the nail salon together on Tuesday at&nbsp;four!</p><p class="rnote">(four is too early · five is&nbsp;fine)</p><p class="reply" data-for="3"><span class="ph">Your reply</span><span class="h1"></span> <span class="h2"></span></p></div></div><div class="rright"><div class="chiprow choice" data-field="r3a" role="group" aria-label="Message 3: first half"><button type="button" class="opt one" data-val="Sorry, I can’t make it at five.">Sorry, I can’t make it at five.</button><button type="button" class="opt one" data-val="Sorry, I can’t make it at four.">Sorry, I can’t make it at four.</button><button type="button" class="opt one" data-val="I’m not sure yet.">I’m not sure yet.</button></div><div class="chiprow choice g2" data-field="r3b" role="group" aria-label="Message 3: second half"><button type="button" class="opt two" data-val="Can we make it five instead?">Can we make it five instead?</button><button type="button" class="opt two" data-val="What time works for you?">What time works for you?</button><button type="button" class="opt two" data-val="Can we make it four instead?">Can we make it four instead?</button><button type="button" class="opt two" data-val="I’ll let you know.">I’ll let you know.</button></div></div></div><div class="ritem q" data-n="4"><div class="rleft"><span class="num">4</span><div class="rchat"><p class="fmsg">Are you free for the beach on Sunday at&nbsp;ten?</p><p class="rnote">(you don’t know yet · you’ll write to her&nbsp;tomorrow)</p><p class="reply" data-for="4"><span class="ph">Your reply</span><span class="h1"></span> <span class="h2"></span></p></div></div><div class="rright"><div class="chiprow choice" data-field="r4a" role="group" aria-label="Message 4: first half"><button type="button" class="opt one" data-val="Sounds great!">Sounds great!</button><button type="button" class="opt one" data-val="I’m not sure yet.">I’m not sure yet.</button><button type="button" class="opt one" data-val="Sorry, I can’t make it at ten.">Sorry, I can’t make it at ten.</button></div><div class="chiprow choice g2" data-field="r4b" role="group" aria-label="Message 4: second half"><button type="button" class="opt two" data-val="What time works for you?">What time works for you?</button><button type="button" class="opt two" data-val="Ten works for me.">Ten works for me.</button><button type="button" class="opt two" data-val="I’ll let you know.">I’ll let you know.</button><button type="button" class="opt two" data-val="Can we make it eleven instead?">Can we make it eleven instead?</button></div></div></div><div class="ritem q" data-n="5"><div class="rleft"><span class="num">5</span><div class="rchat"><p class="fmsg">How about the cinema on&nbsp;Saturday?</p><p class="rnote">(yes! · let her decide&nbsp;when)</p><p class="reply" data-for="5"><span class="ph">Your reply</span><span class="h1"></span> <span class="h2"></span></p></div></div><div class="rright"><div class="chiprow choice" data-field="r5a" role="group" aria-label="Message 5: first half"><button type="button" class="opt one" data-val="Sorry, I can’t make it on Saturday.">Sorry, I can’t make it on Saturday.</button><button type="button" class="opt one" data-val="I’m not sure yet.">I’m not sure yet.</button><button type="button" class="opt one" data-val="Sounds great!">Sounds great!</button></div><div class="chiprow choice g2" data-field="r5b" role="group" aria-label="Message 5: second half"><button type="button" class="opt two" data-val="Seven works for me.">Seven works for me.</button><button type="button" class="opt two" data-val="Can we make it Sunday instead?">Can we make it Sunday instead?</button><button type="button" class="opt two" data-val="What time works for you?">What time works for you?</button><button type="button" class="opt two" data-val="I’ll let you know.">I’ll let you know.</button></div></div></div><div class="ritem q" data-n="6"><div class="rleft"><span class="num">6</span><div class="rchat"><p class="fmsg">How about the gym together on&nbsp;Thursday?</p><p class="rnote">(busy on Thursday · Friday is&nbsp;fine)</p><p class="reply" data-for="6"><span class="ph">Your reply</span><span class="h1"></span> <span class="h2"></span></p></div></div><div class="rright"><div class="chiprow choice" data-field="r6a" role="group" aria-label="Message 6: first half"><button type="button" class="opt one" data-val="Sorry, I can’t make it on Thursday.">Sorry, I can’t make it on Thursday.</button><button type="button" class="opt one" data-val="Sorry, I can’t make it on Friday.">Sorry, I can’t make it on Friday.</button><button type="button" class="opt one" data-val="I’m not sure yet.">I’m not sure yet.</button></div><div class="chiprow choice g2" data-field="r6b" role="group" aria-label="Message 6: second half"><button type="button" class="opt two" data-val="What time works for you?">What time works for you?</button><button type="button" class="opt two" data-val="Can we make it Friday instead?">Can we make it Friday instead?</button><button type="button" class="opt two" data-val="I’ll let you know.">I’ll let you know.</button><button type="button" class="opt two" data-val="Can we make it Thursday instead?">Can we make it Thursday instead?</button></div></div></div>
     <div class="store" aria-hidden="true"><select data-k="r1a" data-label="2.1 Dinner at Novikov, seven or eight: first half" class="hw-field"><option value="">Choose</option><option value="I’m not sure yet.">I’m not sure yet.</option><option value="Sorry, I can’t make it on Wednesday.">Sorry, I can’t make it on Wednesday.</option><option value="Sounds great!">Sounds great!</option></select><select data-k="r1b" data-label="2.1 Dinner at Novikov, seven or eight: second half" class="hw-field"><option value="">Choose</option><option value="Seven works for me.">Seven works for me.</option><option value="Eight works for me.">Eight works for me.</option><option value="What time works for you?">What time works for you?</option><option value="I’ll let you know.">I’ll let you know.</option></select><select data-k="r2a" data-label="2.2 Tennis on Monday at six: first half" class="hw-field"><option value="">Choose</option><option value="Sorry, I can’t make it at six.">Sorry, I can’t make it at six.</option><option value="I’m not sure yet.">I’m not sure yet.</option><option value="Sorry, I can’t make it at seven.">Sorry, I can’t make it at seven.</option></select><select data-k="r2b" data-label="2.2 Tennis on Monday at six: second half" class="hw-field"><option value="">Choose</option><option value="Can we make it six instead?">Can we make it six instead?</option><option value="I’ll let you know.">I’ll let you know.</option><option value="What time works for you?">What time works for you?</option><option value="Can we make it seven instead?">Can we make it seven instead?</option></select><select data-k="r3a" data-label="2.3 Nail salon on Tuesday at four: first half" class="hw-field"><option value="">Choose</option><option value="Sorry, I can’t make it at five.">Sorry, I can’t make it at five.</option><option value="Sorry, I can’t make it at four.">Sorry, I can’t make it at four.</option><option value="I’m not sure yet.">I’m not sure yet.</option></select><select data-k="r3b" data-label="2.3 Nail salon on Tuesday at four: second half" class="hw-field"><option value="">Choose</option><option value="Can we make it five instead?">Can we make it five instead?</option><option value="What time works for you?">What time works for you?</option><option value="Can we make it four instead?">Can we make it four instead?</option><option value="I’ll let you know.">I’ll let you know.</option></select><select data-k="r4a" data-label="2.4 The beach on Sunday at ten: first half" class="hw-field"><option value="">Choose</option><option value="Sounds great!">Sounds great!</option><option value="I’m not sure yet.">I’m not sure yet.</option><option value="Sorry, I can’t make it at ten.">Sorry, I can’t make it at ten.</option></select><select data-k="r4b" data-label="2.4 The beach on Sunday at ten: second half" class="hw-field"><option value="">Choose</option><option value="What time works for you?">What time works for you?</option><option value="Ten works for me.">Ten works for me.</option><option value="I’ll let you know.">I’ll let you know.</option><option value="Can we make it eleven instead?">Can we make it eleven instead?</option></select><select data-k="r5a" data-label="2.5 The cinema on Saturday: first half" class="hw-field"><option value="">Choose</option><option value="Sorry, I can’t make it on Saturday.">Sorry, I can’t make it on Saturday.</option><option value="I’m not sure yet.">I’m not sure yet.</option><option value="Sounds great!">Sounds great!</option></select><select data-k="r5b" data-label="2.5 The cinema on Saturday: second half" class="hw-field"><option value="">Choose</option><option value="Seven works for me.">Seven works for me.</option><option value="Can we make it Sunday instead?">Can we make it Sunday instead?</option><option value="What time works for you?">What time works for you?</option><option value="I’ll let you know.">I’ll let you know.</option></select><select data-k="r6a" data-label="2.6 The gym on Thursday: first half" class="hw-field"><option value="">Choose</option><option value="Sorry, I can’t make it on Thursday.">Sorry, I can’t make it on Thursday.</option><option value="Sorry, I can’t make it on Friday.">Sorry, I can’t make it on Friday.</option><option value="I’m not sure yet.">I’m not sure yet.</option></select><select data-k="r6b" data-label="2.6 The gym on Thursday: second half" class="hw-field"><option value="">Choose</option><option value="What time works for you?">What time works for you?</option><option value="Can we make it Friday instead?">Can we make it Friday instead?</option><option value="I’ll let you know.">I’ll let you know.</option><option value="Can we make it Thursday instead?">Can we make it Thursday instead?</option></select></div>
   </div>
+  <div class="part-next"><a href="#part3">Next: write your messages →</a></div>
 </section>
 
-<section class="ex-card pw">
+<section class="ex-card pw" id="part3">
   <div class="model"><div class="ex-header">Part 3 &middot; Your turn to write</div>
   <div class="ex-top">
     <p class="instruction">Write two messages to&nbsp;friends.</p>
@@ -305,49 +383,61 @@ body .hw-send { background:#4fb3a9; color:#fff; border-color:#1d4f4a; box-shadow
       b.addEventListener("keydown", function (ev) { if (ev.key === "Enter" || ev.key === " ") go(ev); });
     });
 
-    // ---------- PART 1: tap the messages in order. TAP only, nothing moves (she works on a phone) ----------
-    var bubs = [].slice.call(document.querySelectorAll("#chat .bub[data-field]"));
-    var given = document.querySelector("#chat .bub.given");
-    function numOf(b) { var f = field(b.dataset.field); return f && f.value ? +f.value : 0; }
-    function nextFree() {
-      var used = bubs.map(numOf);
-      for (var n = 2; n <= 7; n++) if (used.indexOf(n) < 0) return n;
-      return 0;
-    }
-    function textOf(b) { var t = b.querySelector(".btext").cloneNode(true); var w = t.querySelector(".who"); var who = w.textContent; w.remove(); return [who, t.textContent.replace(/\s+/g, " ").trim()]; }
+    // One conversation: chosen messages above, remaining choices below.
+    var chat = document.getElementById("chat");
+    var bubs = [].slice.call(chat.querySelectorAll(".bub[data-field]"));
+    var preview = document.querySelector(".preview");
+    if (preview) preview.remove();
+    chat.parentElement.classList.remove("q");
+    var controls = document.createElement("div"); controls.className="chat-controls screen-only";
+    var status=document.getElementById("p1status"); controls.appendChild(status);
+    var undo=document.createElement("button"); undo.type="button"; undo.className="undo-chat"; undo.textContent="Undo last choice"; controls.appendChild(undo);
+    chat.after(controls);
+    var bank=document.createElement("div"); bank.className="message-bank"; bank.id="message-bank";
+    controls.after(bank);
+    function numOf(b) { var f=field(b.dataset.field); return f && f.value ? +f.value : 0; }
     function draw() {
-      bubs.forEach(function (b) {
-        var n = numOf(b), badge = b.querySelector(".badge");
-        badge.textContent = n ? String(n) : "";
-        b.classList.toggle("set", !!n);
-        b.setAttribute("aria-pressed", n ? "true" : "false");
+      var selected=bubs.filter(function(b){return numOf(b)>0;}).sort(function(a,b){return numOf(a)-numOf(b);});
+      selected.forEach(function(b){chat.appendChild(b);});
+      bubs.filter(function(b){return !numOf(b);}).forEach(function(b){bank.appendChild(b);});
+      bubs.forEach(function(b){
+        var n=numOf(b); b.querySelector(".badge").textContent=n ? String(n) : "";
+        b.classList.toggle("set",!!n); b.setAttribute("aria-pressed",n ? "true":"false");
+        b.setAttribute("aria-label",(n ? "Remove message "+n+": " : "Choose next message: ")+b.querySelector(".who").textContent+": "+b.querySelector(".btext").lastChild.textContent);
       });
-      var nx = nextFree();
-      document.getElementById("p1status").textContent = nx ? "Next: " + nx : "All in order? Read your chat once more.";
-      var rows = [textOf(given)];
-      for (var n = 2; n <= 7; n++) {
-        var hit = bubs.filter(function (b) { return numOf(b) === n; })[0];
-        rows.push(hit ? textOf(hit) : null);
-      }
-      var box = document.getElementById("prows"); box.textContent = "";
-      rows.forEach(function (r, i) {
-        var d = document.createElement("div"); d.className = "prow" + (r ? "" : " empty");
-        var a = document.createElement("span"); a.className = "pn"; a.textContent = String(i + 1);
-        var t = document.createElement("span");
-        if (r) { var w = document.createElement("span"); w.className = "pw"; w.textContent = r[0] + ": "; t.appendChild(w); t.appendChild(document.createTextNode(r[1])); }
-        else t.textContent = "…";
-        d.appendChild(a); d.appendChild(t); box.appendChild(d);
-      });
+      status.textContent=selected.length<6 ? "Choose message "+(selected.length+2)+" below" : "Your chat is complete. Read it through.";
+      undo.disabled=!selected.length;
+      bank.hidden=selected.length===6;
     }
-    bubs.forEach(function (b) {
-      b.addEventListener("click", function () {
-        var f = field(b.dataset.field);
-        if (numOf(b)) setVal(f, "");
-        else { var n = nextFree(); if (n) setVal(f, String(n)); }
-        draw();
-      });
+    function remove(b) {
+      var old=numOf(b); setVal(field(b.dataset.field),"");
+      bubs.forEach(function(other){var n=numOf(other); if(n>old) setVal(field(other.dataset.field),String(n-1));});
+    }
+    bubs.forEach(function(b){b.addEventListener("click",function(){
+      if(numOf(b)) remove(b);
+      else setVal(field(b.dataset.field),String(bubs.filter(function(x){return numOf(x)>0;}).length+2));
+      draw();
+    });});
+    undo.addEventListener("click",function(){
+      var selected=bubs.filter(function(b){return numOf(b)>0;}).sort(function(a,b){return numOf(b)-numOf(a);});
+      if(selected.length) remove(selected[0]); draw();
     });
+    bubs.filter(function(b){return numOf(b)>0;}).sort(function(a,b){return numOf(a)-numOf(b);}).forEach(function(b,i){setVal(field(b.dataset.field),String(i+2));});
     draw();
+
+    // Each reply follows the same reading order: situation, beginning, ending, result.
+    document.querySelectorAll(".ritem").forEach(function(item){
+      var right=item.querySelector(".rright"), reply=item.querySelector(".reply"), note=item.querySelector(".rnote");
+      if(note) note.textContent="Your situation: "+note.textContent.replace(/^\(|\)$/g,"");
+      if(item.classList.contains("example")) { right.remove(); return; }
+      right.querySelectorAll(".choice").forEach(function(group,i){
+        var label=document.createElement("p"); label.className="choice-label";
+        label.textContent=i===0 ? "1. Choose a beginning" : "2. Choose an ending";
+        group.before(label);
+      });
+      var label=document.createElement("p"); label.className="reply-label"; label.textContent="Your complete reply";
+      right.appendChild(label); right.appendChild(reply);
+    });
 
     // ---------- PART 2: tap one first half and one second half ----------
     document.querySelectorAll(".ritem[data-n]").forEach(function (item) {
@@ -371,13 +461,25 @@ body .hw-send { background:#4fb3a9; color:#fff; border-color:#1d4f4a; box-shadow
       });
       show();
     });
+    var parts=[1,2,3].map(function(n){return document.getElementById("part"+n);});
+    var navLinks=document.querySelectorAll(".lesson-nav a");
+    function navPosition(){
+      var current=0;
+      parts.forEach(function(p,i){if(p.getBoundingClientRect().top<160) current=i;});
+      navLinks.forEach(function(a,i){if(i===current) a.setAttribute("aria-current","step"); else a.removeAttribute("aria-current");});
+    }
+    window.addEventListener("scroll",navPosition,{passive:true});
+    requestAnimationFrame(function(){
+      if(/^#part[123]$/.test(location.hash)) document.querySelector(location.hash).scrollIntoView({behavior:"instant"});
+      navPosition();
+    });
   }
   if (document.readyState === "complete") init(); else window.addEventListener("load", init);
 })();
 </script>
 
 </div><!-- /sheet -->
-<div class="hw-bar">
+<div class="hw-bar" id="send">
   <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>

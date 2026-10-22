@@ -1,0 +1,226 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Maksim_Homework_2026-10-22.key.json -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Maksim · English · 22 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.6; }
+.wrap { max-width:900px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+a { color:var(--accent); text-underline-offset:4px; }
+
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 36px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.language-note, .example { page-break-inside:avoid; break-inside:avoid; }
+.section-heading, .language-note, .instruction, .example { page-break-after:avoid; break-after:avoid; }
+.section-heading { display:flex; gap:16px; align-items:baseline; margin-bottom:16px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:14px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:19px; line-height:1.3; letter-spacing:-.01em; font-weight:650; color:#2c4250; }
+.instruction { font-size:22px; line-height:1.35; font-weight:700; color:var(--ink); margin:20px 0 16px; }
+
+/* Rule note: what the words mean. */
+.language-note { border-left:3px solid var(--accent); background:#f0f7f7; border-radius:0 12px 12px 0; padding:12px 20px; margin:0; font-size:16px; line-height:1.6; }
+.language-note p { margin:3px 0; }
+.rule-row { display:grid; grid-template-columns:110px 1fr; gap:4px 14px; margin:3px 0; }
+.rule-row .w { font-weight:700; color:#0b4f4b; }
+.rule-row .past { color:var(--muted); }
+
+/* Worked example: same shape as an item, already done. */
+.example { border:1.5px dashed #9fb4bf; border-radius:14px; padding:14px 20px 16px; margin:0 0 8px; background:#fbfcfd; }
+.example-label { font-size:12px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 6px; }
+.example .situation { margin-bottom:4px; }
+.example .why { font-size:15px; color:var(--muted); margin:8px 0 0; }
+
+/* Items */
+.question { display:flex; gap:12px; align-items:flex-start; padding:18px 0; border-bottom:1px solid #edf1f3; page-break-inside:avoid; break-inside:avoid; }
+.question:last-child { border-bottom:0; padding-bottom:4px; }
+.qnum { font-weight:650; font-size:18px; min-width:26px; padding-top:1px; color:var(--ink); }
+.qbody { flex:1; min-width:0; }
+.situation { font-size:17px; color:#3f5562; margin:0 0 4px; }
+.sentence { font-size:20px; margin:0 0 12px; }
+.fillgap { display:inline-block; min-width:110px; min-height:1.45em; padding:0 10px; margin:0 3px; border:1.5px dashed #a4b5c0; border-radius:8px; background:#f8fafb; vertical-align:baseline; line-height:1.4; text-align:center; color:#1d4ed8; font-weight:600; }
+.fillgap.is-filled { border-style:solid; border-color:#0f766e; background:#eef8f6; }
+
+.choices { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.choices.stack { flex-direction:column; align-items:stretch; gap:8px; }
+.choice, .demo-choice { font:inherit; font-size:18px; line-height:1.35; padding:9px 18px; border:1.5px solid #b8c6ce; border-radius:10px; background:#fff; color:#1e293b; text-align:left; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.choice { cursor:pointer; }
+.choice:hover { border-color:#0f766e; }
+.choice.is-chosen, .demo-choice.is-chosen { border-color:#0f766e; background:#e6f4f1; color:#0b3d38; font-weight:600; }
+.demo-choice { display:inline-block; cursor:default; }
+.choices.stack .choice, .choices.stack .demo-choice { font-size:18px; padding:11px 16px; }
+select.pair-store { display:none !important; }
+
+.prt { display:none; }
+.nowrap { white-space:nowrap; }
+
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 18px; border-radius:14px; }
+  .instruction { font-size:20px; } .sentence { font-size:19px; } .edition { font-size:12px; }
+  .rule-row { grid-template-columns:1fr; gap:0; margin-bottom:6px; }
+  .choice { font-size:17px; padding:9px 14px; }
+}
+
+@page { size:A4; margin:11mm; }
+@media print {
+  .scr { display:none !important; } .prt { display:inline !important; }
+  body { background:white; font-size:12pt; line-height:1.45; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:10px; } .heading-row { margin:8px 0 10px; } .page-meta { padding-top:8px; }
+  h1 { font-size:24pt; }
+  .exercise { box-shadow:none; padding:14px 20px; margin-bottom:12px; page-break-inside:auto; break-inside:auto; }
+  .instruction { font-size:15pt; margin:12px 0 10px; page-break-after:avoid; break-after:avoid; }
+  .language-note { padding:8px 16px; page-break-inside:avoid; break-inside:avoid; page-break-after:avoid; break-after:avoid; }
+  .example { padding:10px 16px; page-break-inside:avoid; break-inside:avoid; }
+  .question { padding:8px 0; }
+  .sentence { font-size:13.5pt; margin-bottom:6px; }
+  .situation { font-size:11.5pt; }
+  .choice, .demo-choice { font-size:12pt; padding:4px 12px; }
+}
+body.hw-pdf-mode { background:white; }
+/* Typed answers (local preview; the shared hw.css wins on the live page). */
+textarea.hw-field { display:block; width:100%; box-sizing:border-box; font:inherit; font-size:18px; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:10px; padding:10px 14px; min-height:84px; line-height:1.5; resize:vertical; }
+.ask { font-size:20px; margin:0 0 10px; }
+.note-small { font-size:15px; color:var(--muted); margin:-6px 0 6px; }
+@media print { textarea.hw-field { min-height:0 !important; height:52px !important; resize:none; font-size:12pt; } textarea.hw-field::placeholder { color:transparent !important; } .ask { font-size:13.5pt; margin-bottom:6px; } .exercise.keep { page-break-inside:avoid !important; break-inside:avoid !important; } .page-header { padding-bottom:6px; } .heading-row { margin:4px 0 6px; } .exercise { margin-bottom:8px; padding:12px 18px; } }
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Maksim" data-sheet="Homework 2026-10-22" data-sheet-id="maksim-2026-10-22-homework">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>English, in practice.</h1><span class="edition">22<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Maksim · 22 October · 3 exercises · about 10 minutes</span><a href="https://arsdashok.github.io/vocab/2c73e70a0550a136/">Your vocabulary ↗</a></div>
+</header>
+
+<section class="exercise" aria-labelledby="title-1">
+  <div class="section-heading"><span class="section-number">01</span><h2 id="title-1">Two kinds of&nbsp;dream</h2></div>
+  <div class="language-note">
+    <div class="rule-row"><span class="w">at night</span><span>the story in your head while you sleep <span class="past">· сон</span></span></div>
+    <div class="rule-row"><span class="w">in life</span><span>something you really want for your future <span class="past">· мечта</span></span></div>
+  </div>
+  <p class="instruction"><span class="scr">Which dream is it? Click at night or in&nbsp;life.</span><span class="prt">Which dream is it? Circle at night or in&nbsp;life.</span></p>
+  <div class="example">
+    <p class="example-label">Like this</p>
+    <p class="sentence">When I was a child, my dream was to become a&nbsp;footballer.</p>
+    <div class="choices"><span class="demo-choice">at night</span><span class="demo-choice is-chosen">in life</span></div>
+    <p class="why">It's something I wanted for my future, so it's the «in life»&nbsp;kind.</p>
+  </div>
+
+  <div class="question"><span class="qnum">1.</span><div class="qbody">
+    <p class="sentence">Her dream came true: she opened her own&nbsp;café.</p>
+    <div class="choices" data-field="d1"><button type="button" class="choice" data-v="at night">at night</button><button type="button" class="choice" data-v="in life">in life</button></div>
+    <select class="hw-field pair-store" data-k="d1" data-label="1. Her dream came true: she opened her own café." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="at night">at night</option><option value="in life">in life</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">2.</span><div class="qbody">
+    <p class="sentence">I woke up in the middle of a really scary&nbsp;dream.</p>
+    <div class="choices" data-field="d2"><button type="button" class="choice" data-v="at night">at night</button><button type="button" class="choice" data-v="in life">in life</button></div>
+    <select class="hw-field pair-store" data-k="d2" data-label="2. I woke up in the middle of a really scary dream." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="at night">at night</option><option value="in life">in life</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">3.</span><div class="qbody">
+    <p class="sentence">I often forget my dreams in the&nbsp;morning.</p>
+    <div class="choices" data-field="d3"><button type="button" class="choice" data-v="at night">at night</button><button type="button" class="choice" data-v="in life">in life</button></div>
+    <select class="hw-field pair-store" data-k="d3" data-label="3. I often forget my dreams in the morning." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="at night">at night</option><option value="in life">in life</option></select>
+  </div></div>
+</section>
+
+<section class="exercise" aria-labelledby="title-2">
+  <div class="section-heading"><span class="section-number">02</span><h2 id="title-2">Which one is&nbsp;right?</h2></div>
+  <p class="instruction"><span class="scr">Click the correct&nbsp;sentence.</span><span class="prt">Circle the correct&nbsp;sentence.</span></p>
+  <div class="example">
+    <p class="example-label">Like this</p>
+    <div class="choices stack"><span class="demo-choice">There is ten sentences in my monologue.</span><span class="demo-choice is-chosen">There are ten sentences in my monologue.</span></div>
+  </div>
+
+  <div class="question"><span class="qnum">4.</span><div class="qbody">
+    <div class="choices stack" data-field="p1"><button type="button" class="choice" data-v="Last night I saw a really strange dream.">Last night I saw a really strange dream.</button><button type="button" class="choice" data-v="Last night I had a really strange dream.">Last night I had a really strange dream.</button></div>
+    <select class="hw-field pair-store" data-k="p1" data-label="4. Choose the correct sentence (last night's dream)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Last night I saw a really strange dream.">Last night I saw a really strange dream.</option><option value="Last night I had a really strange dream.">Last night I had a really strange dream.</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">5.</span><div class="qbody">
+    <div class="choices stack" data-field="p2"><button type="button" class="choice" data-v="Something happened in my dream, but I don't remember what it was.">Something happened in my dream, but I don't remember what it was.</button><button type="button" class="choice" data-v="Something happened in my dream, but I don't remember what was it.">Something happened in my dream, but I don't remember what was it.</button></div>
+    <select class="hw-field pair-store" data-k="p2" data-label="5. Choose the correct sentence (I don't remember …)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Something happened in my dream, but I don't remember what it was.">Something happened in my dream, but I don't remember what it was.</option><option value="Something happened in my dream, but I don't remember what was it.">Something happened in my dream, but I don't remember what was it.</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">6.</span><div class="qbody">
+    <div class="choices stack" data-field="p3"><button type="button" class="choice" data-v="In my dream, I was at a party with old friends.">In my dream, I was at a party with old friends.</button><button type="button" class="choice" data-v="In my dream, I was on a party with old friends.">In my dream, I was on a party with old friends.</button></div>
+    <select class="hw-field pair-store" data-k="p3" data-label="6. Choose the correct sentence (a party)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="In my dream, I was at a party with old friends.">In my dream, I was at a party with old friends.</option><option value="In my dream, I was on a party with old friends.">In my dream, I was on a party with old friends.</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">7.</span><div class="qbody">
+    <div class="choices stack" data-field="p4"><button type="button" class="choice" data-v="I often see weird dreams.">I often see weird dreams.</button><button type="button" class="choice" data-v="I often have weird dreams.">I often have weird dreams.</button></div>
+    <select class="hw-field pair-store" data-k="p4" data-label="7. Choose the correct sentence (weird dreams)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="I often see weird dreams.">I often see weird dreams.</option><option value="I often have weird dreams.">I often have weird dreams.</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">8.</span><div class="qbody">
+    <div class="choices stack" data-field="p5"><button type="button" class="choice" data-v="Our next lesson is on the twenty-fourth of October.">Our next lesson is on the twenty-fourth of October.</button><button type="button" class="choice" data-v="Our next lesson is on twenty-fourth of October.">Our next lesson is on twenty-fourth of October.</button></div>
+    <select class="hw-field pair-store" data-k="p5" data-label="8. Choose the correct sentence (the date)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Our next lesson is on the twenty-fourth of October.">Our next lesson is on the twenty-fourth of October.</option><option value="Our next lesson is on twenty-fourth of October.">Our next lesson is on twenty-fourth of October.</option></select>
+  </div></div>
+</section>
+
+<section class="exercise keep" aria-labelledby="title-3">
+  <div class="section-heading"><span class="section-number">03</span><h2 id="title-3">Your&nbsp;dreams</h2></div>
+  <p class="instruction">Answer about your real dreams, one or two sentences&nbsp;each.</p>
+  <p class="note-small">We'll check these together in the&nbsp;lesson.</p>
+
+  <div class="question"><span class="qnum">9.</span><div class="qbody">
+    <p class="ask">Describe a dream you remember. Where were you, and what&nbsp;happened?</p>
+    <textarea class="hw-field" rows="2" data-k="y1" data-label="9. Describe a dream you remember. Where were you, and what happened?" aria-label="9. Describe a dream you remember. Your answer" placeholder="Type your answer here"></textarea>
+  </div></div>
+
+  <div class="question"><span class="qnum">10.</span><div class="qbody">
+    <p class="ask">What's your biggest&nbsp;dream?</p>
+    <textarea class="hw-field" rows="2" data-k="y2" data-label="10. What's your biggest dream?" aria-label="10. What's your biggest dream? Your answer" placeholder="Type your answer here"></textarea>
+  </div></div>
+</section>
+</main>
+<script id="choice-script">
+(function(){
+  function store(k){ return document.querySelector('select[data-k="'+k+'"]'); }
+  function sync(){
+    document.querySelectorAll('.choices[data-field]').forEach(function(g){
+      var s = store(g.dataset.field); if(!s) return;
+      var chosen = null;
+      g.querySelectorAll('.choice').forEach(function(b){
+        var on = !!s.value && b.dataset.v === s.value;
+        b.classList.toggle('is-chosen', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if(on) chosen = b;
+      });
+      var gap = document.querySelector('.fillgap[data-gap="'+g.dataset.field+'"]');
+      if(gap){ gap.textContent = chosen ? chosen.textContent : '\u00a0'; gap.classList.toggle('is-filled', !!chosen); }
+    });
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.choice'); if(!b) return;
+    var g = b.closest('.choices'); var s = store(g.dataset.field); if(!s) return;
+    s.value = b.dataset.v;
+    s.dispatchEvent(new Event('input', {bubbles:true}));
+    s.dispatchEvent(new Event('change', {bubbles:true}));
+    sync();
+  });
+  document.addEventListener('change', sync);
+  document.addEventListener('DOMContentLoaded', sync);
+  window.addEventListener('load', function(){ sync(); setTimeout(sync, 300); setTimeout(sync, 1200); });
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJkMSI6IHsidCI6ICJleGFjdCIsICJhIjogImluIGxpZmUifSwgImQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYXQgbmlnaHQifSwgImQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYXQgbmlnaHQifSwgInAxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiTGFzdCBuaWdodCBJIGhhZCBhIHJlYWxseSBzdHJhbmdlIGRyZWFtLiJ9LCAicDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJTb21ldGhpbmcgaGFwcGVuZWQgaW4gbXkgZHJlYW0sIGJ1dCBJIGRvbid0IHJlbWVtYmVyIHdoYXQgaXQgd2FzLiJ9LCAicDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJbiBteSBkcmVhbSwgSSB3YXMgYXQgYSBwYXJ0eSB3aXRoIG9sZCBmcmllbmRzLiJ9LCAicDQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJIG9mdGVuIGhhdmUgd2VpcmQgZHJlYW1zLiJ9LCAicDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJPdXIgbmV4dCBsZXNzb24gaXMgb24gdGhlIHR3ZW50eS1mb3VydGggb2YgT2N0b2Jlci4ifSwgInkxIjogeyJ0IjogIm9wZW4ifSwgInkyIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

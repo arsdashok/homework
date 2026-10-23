@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vera: Homework 23 October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2a4a; --blue: #1d4e89; --line: #9db3cc; --bg: #eef3f9; --paper: #ffffff;
+    --accent: #ff7a1a; --accent-ink: #b9500a; --muted: #56677c; --ans: #1d4ed8;
+  }
+  @page { size: A4; margin: 9mm 11mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-size: 17px; line-height: 1.45;
+    color: var(--navy); background: var(--bg); max-width: 1120px; margin: 0 auto; padding: 22px 18px 24px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .prt { display: none; }
+
+  /* header = an engineering drawing title block */
+  header.tb {
+    position: relative; overflow: hidden; background: var(--navy); color: #fff; border-radius: 12px;
+    padding: 24px 28px; margin-bottom: 22px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  header.tb svg.grid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .tb-main, .tb-block { position: relative; z-index: 1; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  header.tb h1 { font-size: 38px; line-height: 1.08; font-weight: 800; letter-spacing: -.01em; }
+  .tb-block { flex: none; border: 1.5px solid rgba(255,255,255,.55); border-radius: 6px; min-width: 200px; }
+  .tb-block div { padding: 5px 12px; font-size: 15px; font-weight: 500; border-top: 1px solid rgba(255,255,255,.3); }
+  .tb-block div:first-child { border-top: 0; }
+  .tb-block span { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9fc0e6; }
+
+  /* parts */
+  .part {
+    position: relative; background: var(--paper); border: 1.5px solid var(--navy); border-radius: 10px;
+    padding: 22px 28px 24px; margin-bottom: 22px; box-shadow: 4px 4px 0 rgba(11,42,74,.13);
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plabel { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 6px; }
+  .instr { font-size: 24px; font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: 4px; }
+  .note { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+  .q { page-break-inside: avoid; break-inside: avoid; }
+  .gn { flex: none; width: 30px; height: 30px; line-height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 14px; font-weight: 700; text-align: center; }
+  .mlabel { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
+  .filled {
+    display: inline-block; padding: 0 10px; border: 2px solid #8fa8c8; border-radius: 8px; background: #f7faff;
+    color: var(--ans); font-weight: 500; line-height: 1.6;
+  }
+  .model { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; background: #fff8f1; border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 18px; margin: 6px 0 16px; }
+  .model .mphrase { font-size: 20px; line-height: 1.9; }
+  .arrow { color: var(--accent-ink); font-weight: 700; margin: 0 2px; }
+
+  /* ===== TAP-PLACE CSS (Tools/hw_snippets/tap_place.html, navy palette) ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 2px dashed var(--line); border-radius: 12px; min-height: 64px; margin: 0; background: #f7faff; align-content: flex-start; }
+  .tp-tile {
+    font: inherit; font-size: 18px; font-weight: 500; color: var(--navy); background: #fff;
+    border: 2px solid #8fa8c8; border-radius: 10px; padding: 7px 14px; min-height: 44px;
+    box-shadow: 2px 2px 0 var(--navy); cursor: pointer; text-align: left; line-height: 1.35; white-space: nowrap;
+    touch-action: manipulation;            /* a touch scrolls the page; never "none" */
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: #fff4ea; border-color: var(--accent); box-shadow: 0 0 0 3px #ffd9bd; }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(11,42,74,.25); }
+  .tp-zone { border: 2px dashed #8fa8c8; border-radius: 10px; min-height: 48px; cursor: pointer; background: #f7faff; -webkit-tap-highlight-color: transparent; }
+  .tp-zone.ready { border-color: var(--accent); background: #fffaf5; }
+  .tp-zone.over { border-color: var(--accent); background: #fff4ea; }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: flex-start; }
+  .tp-says { display: block; font-size: 14px; font-weight: 400; color: var(--navy); margin-top: 4px; }
+  .tp-bank .tp-says { display: none; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== end TAP-PLACE CSS ===== */
+
+  /* part 1: gaps inside the sentences, bank beside them */
+  .p1grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 14px 32px; align-items: start; }
+  .p1items { grid-column: 1; grid-row: 1; }
+  .p1grid .tp-bank { grid-column: 2; grid-row: 1; }
+  .gq { display: flex; align-items: flex-start; gap: 14px; padding: 6px 0; border-top: 1px dashed var(--line); }
+  .gq:first-child { border-top: 0; padding-top: 0; }
+  .gq .gn { margin-top: 10px; }
+  .gq p { font-size: 20px; line-height: 2.5; }
+  .tp-zone.gapz { display: inline-flex; align-items: center; vertical-align: middle; min-width: 9.6em; padding: 0 3px; margin: 0 4px; }
+  .gapz .tp-slot { display: inline-flex; min-height: 44px; align-items: center; }
+  .gapz .tp-tile { color: var(--ans); box-shadow: none; padding: 5px 12px; min-height: 40px; }
+  .p1 .gapz > .hw-mark.hw-mark-blk { display: inline-block; width: auto; flex-basis: auto; margin: 0 4px 0 6px; line-height: 1.3; white-space: nowrap; }
+
+  /* part 2: notes into sentences */
+  .nthing { font-size: 20px; line-height: 1.4; }
+  .nspec { display: flex; align-items: center; flex-wrap: wrap; gap: 3px 12px; font-size: 18px; line-height: 1.5; margin-top: 3px; }
+  .nmat { white-space: nowrap; }
+  .dot { color: var(--line); font-weight: 700; }
+  .tag { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); border: 1.5px solid var(--navy); border-radius: 999px; padding: 2px 10px; line-height: 1.4; white-space: nowrap; }
+  .model .nbox { margin-bottom: 0; background: #fff; }
+  .model .msent { font-size: 20px; line-height: 1.9; }
+  .ngrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, auto); grid-auto-flow: column; gap: 18px 26px; }
+  .nq { display: flex; align-items: flex-start; gap: 14px; }
+  .nq .gn { margin-top: 10px; }
+  .nbody { flex: 1; min-width: 0; }
+  .nbox { background: var(--bg); border: 1.5px dashed var(--line); border-radius: 10px; padding: 8px 14px; margin-bottom: 8px; }
+  .tp-zone.gapz:has(.tp-tile) { min-width: 0; border-color: transparent; background: transparent; padding: 0; }
+
+  /* part 3 */
+  .wmodel { font-size: 16px; color: var(--muted); margin-bottom: 10px; }
+  .wq { font-size: 18px; font-weight: 400; color: var(--navy); margin: 12px 0 6px; }
+  .wmodel b { color: var(--navy); font-weight: 500; }
+
+  textarea.resp {
+    display: block; width: 100%; min-height: 64px; font: inherit; font-size: 18px; line-height: 1.5; color: var(--ans);
+    padding: 9px 12px; border: 2px solid #8fa8c8; border-radius: 8px; background: #f7faff; resize: vertical;
+  }
+  textarea.resp.tall { min-height: 96px; }
+
+  @media (max-width: 760px) {
+    .p1grid { grid-template-columns: 1fr; }
+    .p1grid .tp-bank { grid-column: 1; grid-row: 1; }
+    .p1items { grid-column: 1; grid-row: 2; }
+    .ngrid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    body { padding: 10px 8px 16px; font-size: 16px; }
+    header.tb { flex-direction: column; align-items: flex-start; padding: 18px; }
+    header.tb h1 { font-size: 29px; }
+    .tb-block { width: 100%; display: flex; }
+    .tb-block div { flex: 1; border-top: 0; border-left: 1px solid rgba(255,255,255,.3); padding: 5px 8px; font-size: 13.5px; }
+    .tb-block div:first-child { border-left: 0; }
+    .part { padding: 16px 12px 18px; }
+    .instr { font-size: 20px; }
+    .gn { width: 24px; height: 24px; line-height: 24px; font-size: 12.5px; }
+    .gq, .nq { gap: 8px; }
+    .gq p { font-size: 17px; line-height: 2.5; }
+    .gq .gn { margin-top: 12px; }
+    .tp-tile { font-size: 16px; padding: 6px 12px; }
+    .tp-zone.gapz { min-width: 8.6em; }
+    .model { padding: 8px 10px; }
+    .model .mphrase, .model .msent { font-size: 17px; }
+    .nthing { font-size: 17px; }
+    .nspec { font-size: 16px; }
+    .model .arrow { display: none; }
+    .nq .gn { margin-top: 8px; }
+    textarea.resp { font-size: 16px; }
+  }
+
+  @media print {
+    .scr { display: none; }
+    .prt { display: inline; }
+    body { background: #fff; font-size: 13px; padding: 0; max-width: none; }
+    header.tb { padding: 9px 16px; margin-bottom: 8px; border-radius: 8px; }
+    header.tb h1 { font-size: 23px; }
+    .kicker { font-size: 10px; margin-bottom: 3px; }
+    .tb-block { min-width: 160px; }
+    .tb-block div { padding: 2px 10px; font-size: 12px; }
+    .tb-block span { font-size: 8.5px; }
+    .part { padding: 10px 16px 12px; margin-bottom: 9px; box-shadow: none; }
+    .plabel { font-size: 10px; margin-bottom: 2px; }
+    .instr { font-size: 16.5px; margin-bottom: 2px; }
+    .note { font-size: 11.5px; margin-bottom: 6px; }
+    .gn { width: 19px; height: 19px; line-height: 19px; font-size: 10px; }
+    .mlabel { font-size: 9.5px; }
+    .model { padding: 4px 12px; margin: 3px 0 8px; gap: 3px 10px; }
+    .model .mphrase, .model .msent { font-size: 13.5px; line-height: 1.8; }
+    .model .arrow { display: none; }
+    .filled { border-width: 1.5px; }
+    .p1grid { grid-template-columns: minmax(0, 1fr) 190px; gap: 8px 18px; }
+    .gq { padding: 2px 0; gap: 9px; }
+    .gq .gn { margin-top: 7px; }
+    .gq p { font-size: 13.5px; line-height: 2.2; }
+    .tp-bank { padding: 6px; gap: 6px; min-height: 0; }
+    .tp-tile { font-size: 12px; padding: 2px 9px; min-height: 0; border-width: 1.2px; box-shadow: 1px 1px 0 var(--navy); }
+    .tp-zone { min-height: 0; border-width: 1.2px; }
+    .tp-zone.gapz { min-width: 8.5em; height: 26px; }
+    .gapz .tp-slot { min-height: 22px; }
+    .nthing { font-size: 13px; }
+    .nspec { font-size: 12.5px; margin-top: 1px; }
+    .tag { font-size: 9px; padding: 0 7px; border-width: 1.2px; }
+    .ngrid { gap: 9px 18px; }
+    .nq { gap: 9px; }
+    .nq .gn { margin-top: 5px; }
+    .nbox { padding: 3px 10px; margin-bottom: 4px; border-width: 1.2px; }
+    .wmodel { font-size: 11.5px; margin-bottom: 5px; }
+    .wq { font-size: 13.5px; margin: 4px 0 2px; }
+    .p3 textarea.resp { min-height: 38px; height: 38px; }
+    textarea.resp { min-height: 44px; height: 44px; resize: none; overflow: hidden; border-width: 1.5px; font-size: 13px; }
+    textarea.resp.tall { min-height: 64px; height: 64px; }
+    textarea.resp::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Vera" data-sheet="English 2026-10-23" data-sheet-id="vera-2026-10-23-english">
+<div id="sheet">
+
+
+<header class="tb">
+  <svg class="grid" aria-hidden="true"><defs><pattern id="tbgrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity=".13" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#tbgrid)"/></svg>
+  <div class="tb-main">
+    <div class="kicker">Technical English &middot; Unit&nbsp;2&nbsp;&middot;&nbsp;Materials</div>
+    <h1>What is it made&nbsp;of?</h1>
+  </div>
+  <div class="tb-block">
+    <div><span>Name</span>Vera</div>
+    <div><span>Date</span>23 October 2026</div>
+    <div><span>Time</span>about 10&nbsp;minutes</div>
+  </div>
+</header>
+
+<section class="part p1">
+  <div class="plabel">Part 1 &middot; Things around us</div>
+  <p class="instr">Put the right words in each&nbsp;gap.</p>
+  <p class="note"><span class="scr">Tap a card, then tap the gap. Look at the time in each sentence. Two cards are&nbsp;extra.</span><span class="prt">Write the words from one card in each gap. Look at the time in each sentence. Two cards are&nbsp;extra.</span></p>
+  <div class="model"><span class="mlabel">Like this</span><p class="mphrase">The legs of this table <span class="filled">are made of</span> wood.</p></div>
+  <div class="tp p1grid">
+    <div class="tp-bank" aria-label="Cards">
+      <button type="button" class="tp-tile" data-value="will be made of">will be made of</button>
+      <button type="button" class="tp-tile" data-value="are made of">are made of</button>
+      <button type="button" class="tp-tile" data-value="made of">made of</button>
+      <button type="button" class="tp-tile" data-value="is made of">is made of</button>
+      <button type="button" class="tp-tile" data-value="will made of">will made of</button>
+      <button type="button" class="tp-tile" data-value="are made of">are made of</button>
+      <button type="button" class="tp-tile" data-value="will be made of">will be made of</button>
+    </div>
+    <div class="p1items">
+      <div class="gq q"><span class="gn">1</span><p>By 2040, many new houses <span class="tp-zone gapz" data-store="m1" data-field="m1" aria-label="Gap 1"><span class="tp-slot"></span></span> 3D-printed concrete.</p></div>
+      <div class="gq q"><span class="gn">2</span><p>Today, most phone cases <span class="tp-zone gapz" data-store="m2" data-field="m2" aria-label="Gap 2"><span class="tp-slot"></span></span> plastic.</p></div>
+      <div class="gq q"><span class="gn">3</span><p>The frame of these glasses <span class="tp-zone gapz" data-store="m3" data-field="m3" aria-label="Gap 3"><span class="tp-slot"></span></span> metal.</p></div>
+      <div class="gq q"><span class="gn">4</span><p>In 2030, the new metro trains <span class="tp-zone gapz" data-store="m4" data-field="m4" aria-label="Gap 4"><span class="tp-slot"></span></span> aluminium.</p></div>
+      <div class="gq q"><span class="gn">5</span><p>Many dental crowns <span class="tp-zone gapz" data-store="m5" data-field="m5" aria-label="Gap 5"><span class="tp-slot"></span></span> zirconia.</p></div>
+    </div>
+    <div class="tp-stores" hidden>
+      <select data-k="m1" data-label="1.1 By 2040, many new houses ___ 3D-printed concrete." aria-label="Gap 1" class="hw-field"><option value=""></option><option value="is made of">is made of</option><option value="are made of">are made of</option><option value="will be made of">will be made of</option><option value="made of">made of</option><option value="will made of">will made of</option></select>
+      <select data-k="m2" data-label="1.2 Today, most phone cases ___ plastic." aria-label="Gap 2" class="hw-field"><option value=""></option><option value="is made of">is made of</option><option value="are made of">are made of</option><option value="will be made of">will be made of</option><option value="made of">made of</option><option value="will made of">will made of</option></select>
+      <select data-k="m3" data-label="1.3 The frame of these glasses ___ metal." aria-label="Gap 3" class="hw-field"><option value=""></option><option value="is made of">is made of</option><option value="are made of">are made of</option><option value="will be made of">will be made of</option><option value="made of">made of</option><option value="will made of">will made of</option></select>
+      <select data-k="m4" data-label="1.4 In 2030, the new metro trains ___ aluminium." aria-label="Gap 4" class="hw-field"><option value=""></option><option value="is made of">is made of</option><option value="are made of">are made of</option><option value="will be made of">will be made of</option><option value="made of">made of</option><option value="will made of">will made of</option></select>
+      <select data-k="m5" data-label="1.5 Many dental crowns ___ zirconia." aria-label="Gap 5" class="hw-field"><option value=""></option><option value="is made of">is made of</option><option value="are made of">are made of</option><option value="will be made of">will be made of</option><option value="made of">made of</option><option value="will made of">will made of</option></select>
+    </div>
+  </div>
+</section>
+
+<section class="part p2">
+  <div class="plabel">Part 2 &middot; Now or later?</div>
+  <p class="instr">Write each note as a full&nbsp;sentence.</p>
+  <p class="note">Notes leave out small words. Put them&nbsp;back.</p>
+  <div class="model"><span class="mlabel">Like this</span><div class="nbox"><div class="nthing">new library</div><div class="nspec"><span class="tag">Planned for 2031</span> <span class="nmat">glass and wood</span></div></div><span class="arrow">&rarr;</span><span class="msent"><span class="filled">The new library will be made of glass and&nbsp;wood.</span></span></div>
+  <div class="ngrid">
+    <div class="nq q"><span class="gn">1</span><div class="nbody"><div class="nbox"><div class="nthing">wind turbine blades</div><div class="nspec"><span class="tag">Now</span> <span class="nmat">fibreglass</span></div></div><textarea class="hw-field resp" rows="2" data-k="n1" data-label="2.1 wind turbine blades · now · fibreglass" aria-label="Sentence 1" placeholder="Type your answer here"></textarea></div></div>
+    <div class="nq q"><span class="gn">2</span><div class="nbody"><div class="nbox"><div class="nthing">new electric scooter</div><div class="nspec"><span class="tag">Designed, made from next year</span> <span class="nmat">composite plastic</span></div></div><textarea class="hw-field resp" rows="2" data-k="n2" data-label="2.2 new electric scooter · designed, made from next year · composite plastic" aria-label="Sentence 2" placeholder="Type your answer here"></textarea></div></div>
+    <div class="nq q"><span class="gn">3</span><div class="nbody"><div class="nbox"><div class="nthing">seats in new stadium</div><div class="nspec"><span class="tag">Opens in 2029</span> <span class="nmat">plastic</span></div></div><textarea class="hw-field resp" rows="2" data-k="n3" data-label="2.3 seats in new stadium · opens in 2029 · plastic" aria-label="Sentence 3" placeholder="Type your answer here"></textarea></div></div>
+    <div class="nq q"><span class="gn">4</span><div class="nbody"><div class="nbox"><div class="nthing">handle of this knife</div><div class="nspec"><span class="tag">Now</span> <span class="nmat">wood</span></div></div><textarea class="hw-field resp" rows="2" data-k="n4" data-label="2.4 handle of this knife · now · wood" aria-label="Sentence 4" placeholder="Type your answer here"></textarea></div></div>
+  </div>
+</section>
+
+<section class="part p3">
+  <div class="plabel">Part 3 &middot; Your turn</div>
+  <p class="instr">Answer the two questions in full&nbsp;sentences.</p>
+  <p class="wq">What is something in your flat or your Halloween costume made&nbsp;of?</p>
+  <p class="wmodel">Like this: <b>My headphones are made of plastic and&nbsp;metal.</b></p>
+  <textarea class="hw-field resp" rows="2" data-k="w1" data-label="3.1 What is something in your flat or your Halloween costume made of?" aria-label="Your flat or your costume" placeholder="Type your answer here"></textarea>
+  <p class="wq">What do you think cars will be made of in&nbsp;2040?</p>
+  <textarea class="hw-field resp" rows="2" data-k="w2" data-label="3.2 What do you think cars will be made of in 2040?" aria-label="Cars in 2040" placeholder="Type your answer here"></textarea>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (copied from Tools/hw_snippets/tap_place.html, unchanged) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtMSI6IHsidCI6ICJleGFjdCIsICJhIjogIndpbGwgYmUgbWFkZSBvZiJ9LCAibTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhcmUgbWFkZSBvZiJ9LCAibTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpcyBtYWRlIG9mIn0sICJtNCI6IHsidCI6ICJleGFjdCIsICJhIjogIndpbGwgYmUgbWFkZSBvZiJ9LCAibjEiOiB7InQiOiAib3BlbiJ9LCAibjIiOiB7InQiOiAib3BlbiJ9LCAibjMiOiB7InQiOiAib3BlbiJ9LCAibjQiOiB7InQiOiAib3BlbiJ9LCAidzEiOiB7InQiOiAib3BlbiJ9LCAibTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhcmUgbWFkZSBvZiJ9LCAidzIiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

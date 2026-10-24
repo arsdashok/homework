@@ -450,12 +450,12 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
 <div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span></div>
 <div class="section maths more rounding">
 
-<div class="sec-head"><span class="subj">Maths</span><span class="note">Rounding · to the nearest 10,000</span></div>
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Rounding · mixed place values</span></div>
 <div class="task">
 <div class="task-label">Remember</div>
-<p class="lead">To the nearest <span class="big10">10,000</span>: the <u>thousands</u> digit&nbsp;decides.</p>
-<p class="small">5 or more, round up. 4 or less, round&nbsp;down. (To the nearest 1,000, it is the hundreds digit that&nbsp;decides.)</p>
-<div class="chain-ex"><span class="ex-title">Worked example</span><span>273,650 to the nearest 10,000:</span><span class="digits"><span class="dg">2</span><span class="dg">7</span><span class="dg on">3</span><span class="dc">,</span><span class="dg">6</span><span class="dg">5</span><span class="dg">0</span></span><span>→</span><span class="fix">270,000</span></div>
+<p class="lead">Find the place you are rounding to. Look one digit to its right.</p>
+<p class="small">0–4: keep the rounding digit. 5–9: round up. Replace the digits to its right with zeros.</p>
+<div class="model"><p class="ex-title">Same number, different places</p><p>28,463 → nearest <b>100</b>: look at the <b>6</b> → <b>28,500</b></p><p>28,463 → nearest <b>1,000</b>: look at the <b>4</b> → <b>28,000</b></p></div>
 </div>
 <div class="task">
 <div class="role-label">Your turn · sort</div>
@@ -482,14 +482,7 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
 <select data-k="s6" data-label="10. 635,000 to the nearest 10,000" tabindex="-1" class="hw-field"><option value=""></option><option value="640,000">640,000</option><option value="650,000">650,000</option></select>
 </div></div></div>
 </div>
-<div class="task keep">
-<div class="role-label">Your turn · type</div>
-<p class="lead">Round each number to the nearest <span class="big10">10,000</span>.</p>
-<div class="r-grid">
-<div class="q r-card"><div class="r-top"><div class="q-num">11</div><span class="chip10">to the nearest 10,000</span></div><p class="r-num">386,540</p><input class="hw-field nb num wide" data-k="r11" data-label="11. Round 386,540 to the nearest 10,000" aria-label="11. Round 386,540 to the nearest 10,000" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
-<div class="q r-card"><div class="r-top"><div class="q-num">12</div><span class="chip10">to the nearest 10,000</span></div><p class="r-num">723,180</p><input class="hw-field nb num wide" data-k="r12" data-label="12. Round 723,180 to the nearest 10,000" aria-label="12. Round 723,180 to the nearest 10,000" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
-<div class="q r-card"><div class="r-top"><div class="q-num">13</div><span class="chip10">to the nearest 10,000</span></div><p class="r-num">496,300</p><input class="hw-field nb num wide" data-k="r13" data-label="13. Round 496,300 to the nearest 10,000" aria-label="13. Round 496,300 to the nearest 10,000" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
-</div></div>
+<div class="task keep"><div class="role-label">Your turn · type</div><p class="lead">Check the rounding place on each card.</p><div class="r-grid"><div class="q r-card"><div class="r-top"><div class="q-num">11</div><span class="chip10">to the nearest 100</span></div><p class="r-num">386,540</p><input class="hw-field nb num wide" data-k="mix11" data-label="11. Round 386,540 to the nearest 100" aria-label="11. Round 386,540 to the nearest 100" autocomplete="off" inputmode="text" spellcheck="false"></div><div class="q r-card"><div class="r-top"><div class="q-num">12</div><span class="chip10">to the nearest 100,000</span></div><p class="r-num">723,180</p><input class="hw-field nb num wide" data-k="mix12" data-label="12. Round 723,180 to the nearest 100,000" aria-label="12. Round 723,180 to the nearest 100,000" autocomplete="off" inputmode="text" spellcheck="false"></div><div class="q r-card"><div class="r-top"><div class="q-num">13</div><span class="chip10">to the nearest 1,000</span></div><p class="r-num">496,300</p><input class="hw-field nb num wide" data-k="mix13" data-label="13. Round 496,300 to the nearest 1,000" aria-label="13. Round 496,300 to the nearest 1,000" autocomplete="off" inputmode="text" spellcheck="false"></div><div class="q r-card"><div class="r-top"><div class="q-num">14</div><span class="chip10">to the nearest 10</span></div><p class="r-num">8,476</p><input class="hw-field nb num wide" data-k="mix14" data-label="14. Round 8,476 to the nearest 10" aria-label="14. Round 8,476 to the nearest 10" autocomplete="off" inputmode="text" spellcheck="false"></div></div></div>
 </div>
 <div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span></div>
 <div class="section english more">
@@ -720,7 +713,7 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJiYXIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIGJvdHRvbSBiYXIgaXMgbG9uZ2VyIn0sICJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMwLDE3MCJ9LCAiYjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNiwzMjAifSwgImJhcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgYm90dG9tIGJhciBpcyBzaG9ydGVyIn0sICJ0MiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQyLDM1MCJ9LCAiYjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNyw3NTAifSwgImJhcjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgYm90dG9tIGJhciBpcyBzaG9ydGVyIn0sICJ0MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjgwLDg1MCJ9LCAicDRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjgsNTAwIn0sICJwNHMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLiiJIifSwgInA0YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQsNzUwIn0sICJwNGMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyOCw1MDAifSwgInA0dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgInA1YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjksNjQwIn0sICJwNXMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIrIn0sICJwNWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxLDM4MCJ9LCAicDVjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSw2NDAifSwgInA1dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgInA2YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE3LDM1MCJ9LCAicDZzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiKyJ9LCAicDZiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjEsOTAwIn0sICJwNmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1MCwwMDAifSwgInA2dCI6IHsidCI6ICJleGFjdCIsICJhIjogIuKIkiJ9LCAicDdhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTIsODAwIn0sICJwN3MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLiiJIifSwgInA3YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMsOTUwIn0sICJwN2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiw4MDAifSwgInA3dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgImM4YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE0LDc3MCJ9LCAiYzhiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTEsNzcyIn0sICJjOWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNyw2MDUifSwgImM4dCI6IHsidCI6ICJvcGVuIn0sICJjOXQiOiB7InQiOiAib3BlbiJ9LCAiczEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NTAsMDAwIn0sICJzMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjY0MCwwMDAifSwgInMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NTAsMDAwIn0sICJzNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjY1MCwwMDAifSwgInM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAicjExIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzkwLDAwMCJ9LCAicjEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzIwLDAwMCJ9LCAicjEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTAwLDAwMCJ9LCAiZTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCJ9LCAiZTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgImUzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiT3VyIG5laWdoYm91ciwgYSBmaXJlZmlnaHRlciwgY2FtZSB0byB0ZWEuIn0sICJlNCI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoZSBtdXNldW0sIGEgaHVnZSBvbGQgYnVpbGRpbmcsIGlzIG5lYXIgdGhlIHJpdmVyLiJ9LCAiZTUiOiB7InQiOiAib3BlbiJ9LCAiZTYiOiB7InQiOiAib3BlbiJ9LCAiZTciOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script type="application/json" id="hw-check">eyJiYXIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIGJvdHRvbSBiYXIgaXMgbG9uZ2VyIn0sICJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMwLDE3MCJ9LCAiYjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNiwzMjAifSwgImJhcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgYm90dG9tIGJhciBpcyBzaG9ydGVyIn0sICJ0MiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQyLDM1MCJ9LCAiYjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNyw3NTAifSwgImJhcjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgYm90dG9tIGJhciBpcyBzaG9ydGVyIn0sICJ0MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjgwLDg1MCJ9LCAicDRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjgsNTAwIn0sICJwNHMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJcdTIyMTIifSwgInA0YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQsNzUwIn0sICJwNGMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyOCw1MDAifSwgInA0dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgInA1YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjksNjQwIn0sICJwNXMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIrIn0sICJwNWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxLDM4MCJ9LCAicDVjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSw2NDAifSwgInA1dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgInA2YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE3LDM1MCJ9LCAicDZzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiKyJ9LCAicDZiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjEsOTAwIn0sICJwNmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1MCwwMDAifSwgInA2dCI6IHsidCI6ICJleGFjdCIsICJhIjogIlx1MjIxMiJ9LCAicDdhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTIsODAwIn0sICJwN3MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJcdTIyMTIifSwgInA3YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMsOTUwIn0sICJwN2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiw4MDAifSwgInA3dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgImM4YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE0LDc3MCJ9LCAiYzhiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTEsNzcyIn0sICJjOWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNyw2MDUifSwgImM4dCI6IHsidCI6ICJvcGVuIn0sICJjOXQiOiB7InQiOiAib3BlbiJ9LCAiczEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NTAsMDAwIn0sICJzMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjY0MCwwMDAifSwgInMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NTAsMDAwIn0sICJzNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjY1MCwwMDAifSwgInM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAiZTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCJ9LCAiZTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgImUzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiT3VyIG5laWdoYm91ciwgYSBmaXJlZmlnaHRlciwgY2FtZSB0byB0ZWEuIn0sICJlNCI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoZSBtdXNldW0sIGEgaHVnZSBvbGQgYnVpbGRpbmcsIGlzIG5lYXIgdGhlIHJpdmVyLiJ9LCAiZTUiOiB7InQiOiAib3BlbiJ9LCAiZTYiOiB7InQiOiAib3BlbiJ9LCAiZTciOiB7InQiOiAib3BlbiJ9LCAibWl4MTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzODYsNTAwIn0sICJtaXgxMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjcwMCwwMDAifSwgIm1peDEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDk2LDAwMCJ9LCAibWl4MTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4LDQ4MCJ9fQ==</script>
 <script id="clara-homework-runtime">/* Shared behaviour for online homework pages. Page supplies <body data-student data-sheet data-sheet-id>. */
 (function () {
   var SEND_URL = "https://script.google.com/macros/s/AKfycbwtEVGXzip6vzoLC7oY_wzfmHGe31Vm2uFB9FMwHsSyVHdbyMOKpu16z-a6SdQXXVg/exec";
@@ -1027,7 +1020,7 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
     var ce = document.getElementById("hw-check");
     if (ce) CHECK = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(ce.textContent.trim()), function (c) { return c.charCodeAt(0); })));
   } catch (e) { CHECK = null; }
-  function cNorm(s) { return String(s || "").toLowerCase().replace(/[\s,]/g, ""); }
+  function cNorm(s) { var v=String(s || "").toLowerCase().replace(/[\s,]/g, ""); var m=v.match(/^(\d+(?:\.\d+)?)k$/); return m ? String(Number(m[1])*1000) : v; }
   function cWords(s) { return String(s || "").toLowerCase().replace(/[,.]/g, " ").replace(/\s+/g, " ").trim(); }
   function cSet(s) { return String(s || "").toLowerCase().split(/[\s,]+/).filter(String).sort().join(","); }
   function seen(el) { return !!el && !el.closest("[hidden], .store, .tp-stores"); }
@@ -1120,6 +1113,7 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
     var btn = document.getElementById("hwSend"), msg = document.getElementById("hwMsg"), answers = [];
     document.querySelectorAll("[data-k]").forEach(function (el) {
       var answer = answerOf(el), punctuationKey = CHECK && CHECK[el.dataset.k];
+      if(el.classList.contains("num") && /^\d+(?:\.\d+)?\s*k$/i.test(answer.trim())) answer=cNorm(answer);
       if ((el.dataset.k === "e3" || el.dataset.k === "e4") && punctuationKey && cNorm(answer) === cNorm(punctuationKey.a) && answer.replace(/\s+/g," ").trim() !== punctuationKey.a.replace(/\s+/g," ").trim()) {
         answer += " [Selected sentence contains " + (answer.match(/,/g)||[]).length + " comma(s).]";
       }
@@ -1165,7 +1159,7 @@ const value=el=>('value' in el?el.value:el.innerText).trim();
 const fieldLists=sections.map(section=>[...section.querySelectorAll('[data-k]')]);
 const fields=i=>fieldLists[i];
 const decks=[], pageNumbers=Array.isArray(saved.pages)?saved.pages.slice(0,4):[0,0,0,0];
-const norm=s=>String(s||'').toLowerCase().replace(/[\s,]/g,'');
+const norm=s=>{const v=String(s||'').toLowerCase().replace(/[\s,]/g,'');const m=v.match(/^(\d+(?:\.\d+)?)k$/);return m?String(Number(m[1])*1000):v};
 const summary=i=>{let right=0,total=0,open=0;fields(i).forEach(el=>{const k=key[el.dataset.k];if(!k||k.t==='open'){open++;return}total++;if(value(el)&&(['e3','e4'].includes(el.dataset.k)?value(el).toLowerCase().replace(/\s+/g,' ')===k.a.toLowerCase().replace(/\s+/g,' '):norm(value(el))===norm(k.a)))right++});return {right,total,open}};
 const snapshot=i=>fields(i).map(el=>value(el));
 // A checked block is a final attempt. Restore the saved attempt before locking it,

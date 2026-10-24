@@ -354,6 +354,13 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  .mint-game .finish-panel>h2{font-size:18px}
  .mint-game .tree-scene svg{max-height:190px}
 }
+
+/* The forward action should be immediately obvious. */
+.mint-game .block-actions .next-button{background:#256b57;color:#fff;border:2px solid #174b3d;border-bottom-width:4px;box-shadow:0 4px 0 #c8ddd2;font-size:22px;font-weight:800;min-width:176px;min-height:56px;padding:12px 28px;border-radius:16px;cursor:pointer;transition:background .15s,transform .15s}
+.mint-game .block-actions .next-button:hover{background:#195540;transform:translateY(-1px)}
+.mint-game .block-actions .next-button:focus-visible{outline:4px solid #e6ab48;outline-offset:4px}
+.mint-game .block-actions .next-button:active{transform:translateY(2px);box-shadow:0 1px 0 #c8ddd2}
+@media(max-width:600px){.mint-game .block-actions .next-button{min-width:128px;min-height:48px;font-size:18px;padding:9px 15px;border-radius:13px}}
 </style>
 </head>
 <body data-student="Clara" data-sheet="Maths and English 2026-10-24" data-sheet-id="clara-2026-10-24-maths-and-english">
@@ -1275,7 +1282,7 @@ sections.forEach((section,i)=>{
  const actions=document.createElement('div');actions.className='game-ui block-actions';
  const back=document.createElement('button');back.className='garden-button';back.textContent='← Back';back.onclick=()=>showPage(i,pageNumbers[i]-1);
  const check=document.createElement('button');check.className='garden-button primary';check.textContent='Finish & check block';
- const next=document.createElement('button');next.className='garden-button';next.onclick=()=>{if(pageNumbers[i]<deck.pages.length-1)showPage(i,pageNumbers[i]+1);else if(i<3)show(i+1);else {showOverview(i);}};
+ const next=document.createElement('button');next.className='garden-button next-button';next.onclick=()=>{if(pageNumbers[i]<deck.pages.length-1)showPage(i,pageNumbers[i]+1);else if(i<3)show(i+1);else {showOverview(i);}};
  actions.append(back,check,next);Object.assign(deck,{back,check,next});
  const result=document.createElement('div');result.className='game-ui block-result';result.setAttribute('role','status');
  const caution=document.createElement('p');caution.className='game-ui final-attempt-note';caution.textContent='Ready? Check your answers first. Once you finish this block, your answers are final.';deck.review.append(caution,result);section.append(actions);

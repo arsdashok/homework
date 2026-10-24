@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clara Homework 24 October 2026</title>
+<style id="clara-mint-design">
+/* Clara mint system (17 October 2026 design), sheet of 24 October 2026.
+   Remember = mint card, Worked example = pale dashed inset, tasks on white with green number badges
+   and solid green-outline fields. Locally scoped so shared homework CSS cannot recolour it. */
+@page { size:A4; margin:14mm 15mm; }
+:root { --ink:#203e35; --muted:#536e64; --green:#286951; --mint:#dcefe5; --pale:#f0f7f3; --line:#bfd7ca; --red:#9b472c; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next',Arial,sans-serif; color:var(--ink); background:white; font-size:14px; line-height:1.5; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.sheet-head { padding:18px 22px; background:var(--mint); border-radius:16px; margin-bottom:18px; }
+.eyebrow,.page-label,.task-label,.ex-title,.role-label { font-size:10px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--green); }
+.eyebrow { margin-bottom:5px; }
+h1 { font-size:28px; line-height:1.2; letter-spacing:-.8px; }
+.sec-head { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--line); margin-bottom:14px; break-after:avoid; }
+.subj { font-size:11px; text-transform:uppercase; font-weight:700; letter-spacing:1.4px; background:var(--green); color:white; border-radius:6px; padding:4px 10px; }
+.note { color:var(--muted); font-size:12px; font-weight:400; }
+.page-label { margin-bottom:10px; color:var(--muted); }
+.task { margin-bottom:6px; }
+.task.gapt { margin-top:16px; }
+.task-label { margin-bottom:4px; }
+.lead { font-size:18px; line-height:1.4; font-weight:700; margin-bottom:6px; break-after:avoid; text-wrap:pretty; }
+.small { font-size:12px; color:var(--muted); margin-bottom:8px; }
+.small.inl { margin:0; }
+.role-label { margin:12px 0 6px; }
+.model,.chain-ex { margin:10px 0 12px; padding:10px 14px; background:var(--pale); border:1px dashed #92b6a3; border-radius:4px; break-inside:avoid; }
+.ex-title { display:block; margin-bottom:5px; color:var(--muted); }
+.model p { font-size:13px; }
+.model .was { color:var(--muted); margin-bottom:3px; }
+.model b,.fix { color:var(--green); font-weight:700; }
+.ex-prob { margin-bottom:6px; }
+.wex-row { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.wex-fig { flex:0 1 330px; min-width:240px; }
+.wex-steps p,.plan-rows p { margin:3px 0; font-variant-numeric:tabular-nums; }
+.st { display:inline-block; min-width:58px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--green); }
+.chain-ex { display:flex; align-items:center; flex-wrap:wrap; gap:5px 8px; font-size:13px; }
+.chain-ex .ex-title { flex-basis:100%; margin:0; }
+.digits { display:inline-flex; gap:1px; font-variant-numeric:tabular-nums; }
+.dg { display:inline-block; padding:1px 4px; border:1px solid transparent; border-radius:4px; font-size:16px; font-weight:600; }
+.dg.on { background:var(--green); border-color:var(--green); color:white; }
+.dc { padding:0 1px; font-size:16px; }
+.big10,.chip10,.zone-chip { font-variant-numeric:tabular-nums; }
+.big10 { display:inline-block; padding:0 8px; border-radius:7px; background:var(--green); color:white; }
+
+/* Tasks */
+.q { padding:10px 0; border-bottom:1px solid #dfebe4; break-inside:avoid; page-break-inside:avoid; }
+.q-top { display:flex; align-items:flex-start; gap:12px; }
+.q-num { display:flex; align-items:center; justify-content:center; flex:0 0 26px; height:26px; border-radius:50%; color:white; background:var(--green); font-size:12px; font-weight:700; }
+.prompt,.prompt-q,.wsent { font-size:14px; font-weight:400; padding-top:2px; }
+.prompt b,.prompt-q b { font-weight:700; }
+.arow { display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-start; gap:7px; margin:8px 0 0 38px; }
+.cap2 { font-size:13px; white-space:nowrap; }
+.gapl { margin-left:18px; }
+.cur { font-size:14px; font-weight:700; margin-right:-3px; }
+.star { font-size:16px; font-weight:700; color:var(--green); white-space:nowrap; }
+.nb { width:110px; height:35px; text-align:center; font:inherit; font-variant-numeric:tabular-nums; }
+.nb.wide { width:135px; }
+.np { width:260px; max-width:100%; height:35px; padding:4px 8px; font:inherit; vertical-align:middle; }
+.sent { min-height:64px; padding:10px 12px; margin:8px 0 0 38px; }
+body .nb,body .np,body select[data-k],body .sent,body #sheet .hw-field { background:#fff !important; color:#203e35 !important; border:1.5px solid #739d87 !important; border-radius:7px !important; font-weight:600; outline:none; }
+body input.hw-field { min-width:0; min-height:35px; padding:4px 6px; }
+body select[data-k] { font:inherit; font-size:12px; min-height:35px; padding:5px 8px; max-width:100%; }
+body select.sign { min-width:78px; font-size:15px; text-align:center; }
+body select.tool { min-width:170px; }
+body select.ww { min-width:110px; }
+body div.sent,body #sheet div.sent.hw-field { min-height:84px !important; }
+body #sheet .hw-field:focus,body .nb:focus,body .np:focus,body .sent:focus,body select:focus { border-color:#286951 !important; background:#f5fbf7 !important; box-shadow:0 0 0 3px #dcefe5; }
+body #sheet .hw-field:empty::before { color:#687f73; font-weight:400; }
+.circle-opt { display:none; font-size:12px; }
+.store,.tp-stores { display:none !important; }
+
+/* Pick a bar picture */
+.pic-pick { display:grid; grid-template-columns:repeat(2,minmax(0,330px)); gap:12px; margin:10px 0 0 38px; }
+.pic-opt { display:block; width:100%; padding:8px 10px 4px; background:white; border:1.5px solid #c0d7c9; border-radius:10px; cursor:pointer; text-align:left; font:inherit; color:var(--ink); touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.pic-opt:hover { background:var(--pale); }
+.pic-opt.on { border:2.5px solid var(--green); background:#f2faf5; box-shadow:0 0 0 3px #dcefe5; }
+.pic-cap { display:block; font-size:11px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+.pic-opt.on .pic-cap { color:var(--green); }
+.bar-svg { display:block; width:100%; height:auto; }
+.bar-svg text { font-family:'Avenir Next',Arial,sans-serif; }
+
+/* Plans */
+.plan-rows.in { margin-top:4px; }
+.arow.plan .st { min-width:62px; }
+
+/* Text options */
+.opt-pick { display:grid; gap:8px; flex:1; min-width:0; }
+.txt-opt { display:flex; align-items:center; gap:10px; width:100%; padding:8px 12px; background:white; border:1.5px solid #c0d7c9; border-radius:9px; cursor:pointer; text-align:left; font:inherit; font-size:14px; color:var(--ink); touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.txt-opt:hover { background:var(--pale); }
+.txt-opt.on { border:2.5px solid var(--green); background:#f2faf5; font-weight:600; }
+.tick-box { flex:0 0 18px; height:18px; border:1.5px solid #739d87; border-radius:4px; background:white; }
+.txt-opt.on .tick-box { background:var(--green); border-color:var(--green); }
+.wsent { line-height:2.1; }
+
+/* Rounding */
+.r-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:6px; }
+.r-card { border:1px solid #cfe2d6; border-radius:12px; padding:10px 12px 12px; }
+.r-top { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.chip10 { display:inline-block; padding:3px 10px; border-radius:7px; background:var(--green); color:white; font-weight:700; font-size:13px; white-space:nowrap; }
+.r-num { font-size:26px; font-weight:700; font-variant-numeric:tabular-nums; margin:4px 0 8px; letter-spacing:.5px; }
+.sortq .tp { margin-left:38px; }
+.sortq .lead { margin:0; }
+.sort-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.zone-head { font-size:15px; margin-bottom:6px; }
+.zone-head b { font-size:22px; font-variant-numeric:tabular-nums; }
+.zone-chip { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.8px; font-weight:700; }
+
+/* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, mint palette) ===== */
+.tp-bank { display:flex; flex-wrap:wrap; gap:10px; padding:12px; border:2px dashed #a9cdb9; border-radius:14px; min-height:64px; margin:10px 0 14px; }
+.tp-tile {
+  font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:#fff; font-variant-numeric:tabular-nums;
+  border:2px solid #8db89f; border-radius:12px; padding:8px 14px; min-height:44px;
+  cursor:pointer; text-align:left; line-height:1.35;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none;
+}
+.tp-tile.picked { background:#e6f4ec; border-color:var(--green); box-shadow:0 0 0 3px #cfe9db; }
+.tp-tile.dragging { position:fixed; z-index:1000; pointer-events:none; box-shadow:0 6px 18px rgba(0,0,0,.18); }
+.tp-zone { border:2px solid #cfe2d6; border-radius:14px; padding:10px 12px; min-height:150px; cursor:pointer; background:white; }
+.tp-zone.ready { border-color:#8db89f; background:#f6fbf8; }
+.tp-zone.over { border-color:var(--green); background:#e6f4ec; }
+.tp-slot { display:flex; flex-wrap:wrap; gap:8px; min-height:44px; align-items:flex-start; }
+.tp-multi .tp-slot { flex-direction:row; }
+/* ===== end TAP-PLACE CSS ===== */
+
+.foot { display:flex; justify-content:space-between; border-top:1px solid var(--line); margin:12px 0 0; padding-top:8px; font-size:10px; color:var(--muted); }
+.more,.english { break-before:page; }
+.screen-only { display:inline; } .print-only { display:none; }
+body .hw-bar { border:1px solid var(--line); background:#f0f7f3; border-radius:16px; box-shadow:none; }
+body .hw-send { color:white; background:var(--green); border:0; box-shadow:none; border-radius:10px; font-family:inherit; }
+body .hw-send:hover { background:#1e5540; }
+body .hw-msg,body .hw-pdf { color:var(--muted); }
+body .hw-mark.hw-ok { color:var(--green); } body .hw-mark.hw-no { color:#9b472c; }
+.pic-pick > .hw-mark,.opt-pick > .hw-mark { grid-column:1/-1; }
+
+@media screen {
+ body { max-width:1240px; margin:auto; padding:28px 24px 60px; background:#edf5f0; font-size:18px; }
+ #sheet { background:white; padding:36px 42px; border-radius:22px; box-shadow:0 8px 36px #1e49350a; }
+ body:not([data-sheet-id]) { background:white; }
+ .sheet-head { padding:26px 28px; margin-bottom:30px; } h1 { font-size:34px; }
+ .eyebrow,.page-label,.task-label,.ex-title,.role-label { font-size:12px; }
+ .sec-head { margin-bottom:22px; padding-bottom:14px; } .subj { font-size:12px; } .note { font-size:15px; }
+ .lead { font-size:24px; margin-bottom:10px; } .small { font-size:16px; }
+ .task.gapt { margin-top:34px; }
+ .model,.chain-ex { padding:16px 20px; margin:14px 0 22px; } .model p { font-size:19px; } .chain-ex { font-size:18px; }
+ .dg,.dc { font-size:22px; } .st { font-size:13px; min-width:72px; }
+ .role-label { margin-top:22px; } .q { padding:22px 0; } .q-top { gap:14px; } .q-num { flex-basis:32px; height:32px; font-size:15px; }
+ .prompt,.prompt-q,.wsent { font-size:20px; }
+ .arow { margin:14px 0 0 46px; gap:10px; } .cap2 { font-size:19px; } .cur { font-size:19px; } .star { font-size:22px; }
+ .nb { width:128px; height:46px; font-size:19px; } .nb.wide { width:160px; } .np { height:46px; width:320px; font-size:19px; }
+ body input.hw-field { min-height:46px; } body select[data-k] { min-height:46px; font-size:17px; } body select.sign { font-size:20px; min-width:96px; }
+ .sent { min-height:100px; margin-left:46px; }
+ .pic-pick { margin-left:46px; grid-template-columns:repeat(2,minmax(0,480px)); gap:22px; }
+ .wex-fig { flex:0 1 460px; }
+ .pic-cap { font-size:12px; }
+ .txt-opt { font-size:19px; padding:12px 16px; } .opt-pick { gap:10px; }
+ .r-grid { gap:18px; } .r-card { padding:16px 18px 18px; } .chip10 { font-size:16px; } .r-num { font-size:34px; }
+ .zone-head b { font-size:28px; } .tp-zone { min-height:180px; }
+ .tp-tile { font-size:20px; padding:10px 18px; }
+ .more,.english { margin-top:60px; } .foot { font-size:13px; padding-top:16px; margin-top:24px; }
+}
+@media screen and (max-width:700px) {
+ body { padding:10px 6px 30px; } #sheet { padding:22px 14px; border-radius:16px; } .sheet-head { padding:20px; } h1 { font-size:28px; }
+ .lead { font-size:21px; } .prompt,.prompt-q,.wsent { font-size:18px; }
+ .q-top { gap:10px; } .q-num { flex-basis:28px; height:28px; font-size:13px; }
+ .arow,.sent,.pic-pick { margin-left:0; } .gapl { margin-left:0; }
+ .pic-pick { grid-template-columns:1fr; }
+ .r-grid,.sort-grid { grid-template-columns:1fr; }
+ .np { width:100%; }
+ .wex-fig { flex-basis:100%; }
+ .tp-zone { min-height:110px; } .sortq .tp { margin-left:0; }
+}
+@media print {
+ .screen-only,.hw-bar { display:none !important; } .print-only { display:inline !important; }
+ .choice-wrap.is-empty select { display:none !important; } .choice-wrap.is-empty .circle-opt { display:inline-block; }
+ .foot { display:none; }
+ .q { padding:7px 0; } .model,.chain-ex { margin:7px 0; padding:8px 12px; }
+ .pic-pick { grid-template-columns:repeat(2,minmax(0,300px)); gap:10px; margin-top:6px; }
+ .pic-opt { padding:5px 8px 2px; }
+ .sent { min-height:56px; } .tp-zone { min-height:120px; }
+ .hw-field:empty::before { display:none; }
+ .r-num { font-size:24px; }
+ .keep { break-inside:avoid; page-break-inside:avoid; }
+ .plans { break-before:auto; page-break-before:auto; margin-top:18px; } .plans .page-label { display:none; }
+ .english { break-before:auto; page-break-before:auto; margin-top:22px; } .english .page-label { display:none; }
+ .rounding { break-before:auto; page-break-before:auto; margin-top:18px; } .rounding .page-label { display:none; }
+ .pic-pick { grid-template-columns:repeat(2,minmax(0,245px)); }
+ .wex-fig { flex:0 0 250px; min-width:0; }
+ .q.card-q { padding:6px 0; }
+ .arow { margin-top:5px; }
+ .txt-opt { padding:4px 10px; font-size:13px; } .opt-pick { gap:5px; }
+ .tick-box { flex-basis:14px; height:14px; }
+ .lead { font-size:16px; } .task.gapt { margin-top:10px; }
+ .role-label { margin:8px 0 4px; }
+ .sent { min-height:52px; }
+ .english { margin-top:12px; } .english .q { padding:4px 0; } .english .model { margin:5px 0; padding:6px 12px; }
+ .txt-opt { padding:2px 10px; } .english .wsent { line-height:1.9; }
+ body div.sent,body #sheet div.sent.hw-field { min-height:46px !important; } .english .sent { margin-top:4px; }
+ .r-card.q { padding:6px 10px 8px; } .r-num { font-size:20px; margin:2px 0 5px; }
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Clara" data-sheet="Maths and English 2026-10-24" data-sheet-id="clara-2026-10-24-maths-and-english">
+<div id="sheet">
+
+
+<div class="sheet-head">
+  <div class="eyebrow">Saturday 24 October 2026</div><h1>Clara · Homework</h1>
+</div>
+
+<div class="section maths">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">More or fewer, then altogether</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<p class="lead">“More” or “fewer” finds the second amount. “Altogether” needs one more&nbsp;step.</p>
+<p class="small">Step 1 finds the second amount, ★. Step 2 adds both amounts&nbsp;together.</p>
+<div class="model wex"><p class="ex-title">Worked example</p>
+<p class="ex-prob">Farm A has 2,600 sheep. Farm B has 850 fewer. How many sheep are there&nbsp;altogether?</p>
+<div class="wex-row"><div class="wex-fig"><svg class="bar-svg" viewBox="0 0 420 122" role="img" aria-label="Farm B&#x27;s bar stops 850 short of Farm A&#x27;s bar" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="230" height="30" rx="3" fill="#cfe9db" stroke="#286951" stroke-width="2"/><text x="17" y="30" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Farm A · 2,600</text><rect x="8" y="52" width="168" height="30" rx="3" fill="#ffffff" stroke="#286951" stroke-width="2"/><text x="17" y="72" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Farm B · ?</text><line x1="176" y1="6" x2="176" y2="90" stroke="#9b472c" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="176" y1="94" x2="238" y2="94" stroke="#9b472c" stroke-width="2"/><line x1="176" y1="89" x2="176" y2="99" stroke="#9b472c" stroke-width="2"/><line x1="238" y1="89" x2="238" y2="99" stroke="#9b472c" stroke-width="2"/><text x="207.0" y="113" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9b472c">850 fewer</text><line x1="254" y1="10" x2="254" y2="82" stroke="#286951" stroke-width="2.4"/><line x1="248" y1="10" x2="254" y2="10" stroke="#286951" stroke-width="2.4"/><line x1="248" y1="82" x2="254" y2="82" stroke="#286951" stroke-width="2.4"/><text x="262" y="51.0" font-size="14" font-weight="700" fill="#286951">altogether</text></svg></div><div class="wex-steps"><p><span class="st">Step 1</span> Farm B = 2,600 − 850 = <b>1,750</b> ★</p><p><span class="st">Step 2</span> Altogether = 2,600 + 1,750 = <b>4,350</b></p></div></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap the bar picture that fits. Then find the second amount and the&nbsp;total.</span><span class="print-only">Circle the bar picture that fits. Then find the second amount and the&nbsp;total.</span></p>
+<p class="small">Work the sums out on paper if you like. Type only the&nbsp;answers.</p>
+</div>
+<div class="q card-q"><div class="q-top"><div class="q-num">1</div><p class="prompt">The Hilly Fields fair had <b>13,850</b> visitors on Saturday. On Sunday it had <b>2,470 more</b>. How many visitors came altogether?</p></div>
+<div class="pic-pick" data-store="bar1" data-field="bar1" role="group" aria-label="1. Which bar picture fits?">
+<button type="button" class="pic-opt" data-v="the bottom bar is longer" aria-pressed="false"><span class="pic-cap">Picture 1</span><svg class="bar-svg" viewBox="0 0 330 122" role="img" aria-label="Picture 1" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="230" height="30" rx="3" fill="#cfe9db" stroke="#286951" stroke-width="2"/><text x="17" y="30" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Saturday · 13,850</text><rect x="8" y="52" width="292" height="30" rx="3" fill="#ffffff" stroke="#286951" stroke-width="2"/><text x="17" y="72" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Sunday · ?</text><line x1="238" y1="6" x2="238" y2="90" stroke="#9b472c" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="238" y1="94" x2="300" y2="94" stroke="#9b472c" stroke-width="2"/><line x1="238" y1="89" x2="238" y2="99" stroke="#9b472c" stroke-width="2"/><line x1="300" y1="89" x2="300" y2="99" stroke="#9b472c" stroke-width="2"/><text x="269.0" y="113" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9b472c">2,470</text></svg></button>
+<button type="button" class="pic-opt" data-v="the bottom bar is shorter" aria-pressed="false"><span class="pic-cap">Picture 2</span><svg class="bar-svg" viewBox="0 0 330 122" role="img" aria-label="Picture 2" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="230" height="30" rx="3" fill="#cfe9db" stroke="#286951" stroke-width="2"/><text x="17" y="30" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Saturday · 13,850</text><rect x="8" y="52" width="168" height="30" rx="3" fill="#ffffff" stroke="#286951" stroke-width="2"/><text x="17" y="72" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Sunday · ?</text><line x1="176" y1="6" x2="176" y2="90" stroke="#9b472c" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="176" y1="94" x2="238" y2="94" stroke="#9b472c" stroke-width="2"/><line x1="176" y1="89" x2="176" y2="99" stroke="#9b472c" stroke-width="2"/><line x1="238" y1="89" x2="238" y2="99" stroke="#9b472c" stroke-width="2"/><text x="207.0" y="113" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9b472c">2,470</text></svg></button>
+</div>
+<div class="arow"><span class="cap2">Sunday&nbsp;=</span><input class="hw-field nb num wide" data-k="b1" data-label="1. Sunday" aria-label="1. Sunday" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2 gapl">Altogether&nbsp;=</span><input class="hw-field nb num wide" data-k="t1" data-label="1. Altogether" aria-label="1. Altogether" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+</div>
+<div class="q card-q"><div class="q-top"><div class="q-num">2</div><p class="prompt">A cheer competition sold <b>24,600</b> tickets in London. In Bristol it sold <b>6,850 fewer</b>. How many tickets did it sell altogether?</p></div>
+<div class="pic-pick" data-store="bar2" data-field="bar2" role="group" aria-label="2. Which bar picture fits?">
+<button type="button" class="pic-opt" data-v="the bottom bar is shorter" aria-pressed="false"><span class="pic-cap">Picture 1</span><svg class="bar-svg" viewBox="0 0 330 122" role="img" aria-label="Picture 1" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="230" height="30" rx="3" fill="#cfe9db" stroke="#286951" stroke-width="2"/><text x="17" y="30" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">London · 24,600</text><rect x="8" y="52" width="168" height="30" rx="3" fill="#ffffff" stroke="#286951" stroke-width="2"/><text x="17" y="72" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Bristol · ?</text><line x1="176" y1="6" x2="176" y2="90" stroke="#9b472c" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="176" y1="94" x2="238" y2="94" stroke="#9b472c" stroke-width="2"/><line x1="176" y1="89" x2="176" y2="99" stroke="#9b472c" stroke-width="2"/><line x1="238" y1="89" x2="238" y2="99" stroke="#9b472c" stroke-width="2"/><text x="207.0" y="113" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9b472c">6,850</text></svg></button>
+<button type="button" class="pic-opt" data-v="the bottom bar is longer" aria-pressed="false"><span class="pic-cap">Picture 2</span><svg class="bar-svg" viewBox="0 0 330 122" role="img" aria-label="Picture 2" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="230" height="30" rx="3" fill="#cfe9db" stroke="#286951" stroke-width="2"/><text x="17" y="30" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">London · 24,600</text><rect x="8" y="52" width="292" height="30" rx="3" fill="#ffffff" stroke="#286951" stroke-width="2"/><text x="17" y="72" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Bristol · ?</text><line x1="238" y1="6" x2="238" y2="90" stroke="#9b472c" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="238" y1="94" x2="300" y2="94" stroke="#9b472c" stroke-width="2"/><line x1="238" y1="89" x2="238" y2="99" stroke="#9b472c" stroke-width="2"/><line x1="300" y1="89" x2="300" y2="99" stroke="#9b472c" stroke-width="2"/><text x="269.0" y="113" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9b472c">6,850</text></svg></button>
+</div>
+<div class="arow"><span class="cap2">Bristol&nbsp;=</span><input class="hw-field nb num wide" data-k="b2" data-label="2. Bristol" aria-label="2. Bristol" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2 gapl">Altogether&nbsp;=</span><input class="hw-field nb num wide" data-k="t2" data-label="2. Altogether" aria-label="2. Altogether" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+</div>
+<div class="q card-q"><div class="q-top"><div class="q-num">3</div><p class="prompt">A park planted <b>45,300</b> bulbs in autumn and <b>9,750 fewer</b> in spring. How many bulbs did it plant altogether?</p></div>
+<div class="pic-pick" data-store="bar3" data-field="bar3" role="group" aria-label="3. Which bar picture fits?">
+<button type="button" class="pic-opt" data-v="the bottom bar is longer" aria-pressed="false"><span class="pic-cap">Picture 1</span><svg class="bar-svg" viewBox="0 0 330 122" role="img" aria-label="Picture 1" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="230" height="30" rx="3" fill="#cfe9db" stroke="#286951" stroke-width="2"/><text x="17" y="30" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Autumn · 45,300</text><rect x="8" y="52" width="292" height="30" rx="3" fill="#ffffff" stroke="#286951" stroke-width="2"/><text x="17" y="72" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Spring · ?</text><line x1="238" y1="6" x2="238" y2="90" stroke="#9b472c" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="238" y1="94" x2="300" y2="94" stroke="#9b472c" stroke-width="2"/><line x1="238" y1="89" x2="238" y2="99" stroke="#9b472c" stroke-width="2"/><line x1="300" y1="89" x2="300" y2="99" stroke="#9b472c" stroke-width="2"/><text x="269.0" y="113" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9b472c">9,750</text></svg></button>
+<button type="button" class="pic-opt" data-v="the bottom bar is shorter" aria-pressed="false"><span class="pic-cap">Picture 2</span><svg class="bar-svg" viewBox="0 0 330 122" role="img" aria-label="Picture 2" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="230" height="30" rx="3" fill="#cfe9db" stroke="#286951" stroke-width="2"/><text x="17" y="30" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Autumn · 45,300</text><rect x="8" y="52" width="168" height="30" rx="3" fill="#ffffff" stroke="#286951" stroke-width="2"/><text x="17" y="72" text-anchor="start" font-size="14" font-weight="700" fill="#203e35">Spring · ?</text><line x1="176" y1="6" x2="176" y2="90" stroke="#9b472c" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="176" y1="94" x2="238" y2="94" stroke="#9b472c" stroke-width="2"/><line x1="176" y1="89" x2="176" y2="99" stroke="#9b472c" stroke-width="2"/><line x1="238" y1="89" x2="238" y2="99" stroke="#9b472c" stroke-width="2"/><text x="207.0" y="113" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9b472c">9,750</text></svg></button>
+</div>
+<div class="arow"><span class="cap2">Altogether&nbsp;=</span><input class="hw-field nb num wide" data-k="t3" data-label="3. Altogether" aria-label="3. Altogether" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2 gapl small">Work out the steps on paper. Type only the&nbsp;total.</span></div>
+</div>
+<div class="store" aria-hidden="true">
+<select data-k="bar1" data-label="1. Which bar picture fits?" tabindex="-1" class="hw-field"><option value=""></option><option value="the bottom bar is longer">the bottom bar is longer</option><option value="the bottom bar is shorter">the bottom bar is shorter</option></select>
+<select data-k="bar2" data-label="2. Which bar picture fits?" tabindex="-1" class="hw-field"><option value=""></option><option value="the bottom bar is longer">the bottom bar is longer</option><option value="the bottom bar is shorter">the bottom bar is shorter</option></select>
+<select data-k="bar3" data-label="3. Which bar picture fits?" tabindex="-1" class="hw-field"><option value=""></option><option value="the bottom bar is longer">the bottom bar is longer</option><option value="the bottom bar is shorter">the bottom bar is shorter</option></select>
+</div>
+</div>
+<div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span></div>
+<div class="section maths more plans">
+<div class="page-label">CLARA’S HOMEWORK · 24 OCTOBER 2026</div>
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Plans only · then two problems</span></div>
+<div class="task">
+<div class="task-label">Plans only</div>
+<p class="lead">Write the two steps for each problem. Do not work them&nbsp;out.</p>
+<p class="small">★ stands for the answer to Step 1. Start Step 1 with the first number in the&nbsp;problem.</p>
+<div class="model plan-ex"><p class="ex-title">Like this</p><p class="ex-prob">A library has 5,000 books. It gives away 1,200, then buys 800 new ones. How many books does it have&nbsp;now?</p><div class="plan-rows"><p><span class="st">Step 1</span> 5,000 − 1,200 = ★</p><p><span class="st">Step 2</span> 800 + ★</p></div></div>
+</div>
+<div class="q card-q"><div class="q-top"><div class="q-num">4</div><p class="prompt">Train A carries <b>28,500</b> people a week. Train B carries <b>4,750 fewer</b>. How many people do the two trains carry altogether?</p></div>
+<div class="plan-rows in"><div class="arow plan"><span class="st">Step 1</span><input class="hw-field nb num" data-k="p4a" data-label="4. Step 1: first number" aria-label="4. Step 1: first number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field sign" data-k="p4s" data-label="4. Step 1: + or −" aria-label="4. Step 1: + or −"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ / −</span></span><input class="hw-field nb num" data-k="p4b" data-label="4. Step 1: second number" aria-label="4. Step 1: second number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="star">=&nbsp;★</span></div>
+<div class="arow plan"><span class="st">Step 2</span><input class="hw-field nb num" data-k="p4c" data-label="4. Step 2: number" aria-label="4. Step 2: number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field sign" data-k="p4t" data-label="4. Step 2: + or −" aria-label="4. Step 2: + or −"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ / −</span></span><span class="star">★</span></div></div>
+</div>
+<div class="q card-q"><div class="q-top"><div class="q-num">5</div><p class="prompt">A bakery sold <b>9,640</b> croissants in May and <b>1,380 more</b> in June. How many croissants did it sell in the two months?</p></div>
+<div class="plan-rows in"><div class="arow plan"><span class="st">Step 1</span><input class="hw-field nb num" data-k="p5a" data-label="5. Step 1: first number" aria-label="5. Step 1: first number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field sign" data-k="p5s" data-label="5. Step 1: + or −" aria-label="5. Step 1: + or −"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ / −</span></span><input class="hw-field nb num" data-k="p5b" data-label="5. Step 1: second number" aria-label="5. Step 1: second number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="star">=&nbsp;★</span></div>
+<div class="arow plan"><span class="st">Step 2</span><input class="hw-field nb num" data-k="p5c" data-label="5. Step 2: number" aria-label="5. Step 2: number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field sign" data-k="p5t" data-label="5. Step 2: + or −" aria-label="5. Step 2: + or −"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ / −</span></span><span class="star">★</span></div></div>
+</div>
+<div class="q card-q"><div class="q-top"><div class="q-num">6</div><p class="prompt">Two schools collected <b>17,350</b> and <b>21,900</b> bottle tops. Their target was <b>50,000</b>. How far short of the target are they?</p></div>
+<div class="plan-rows in"><div class="arow plan"><span class="st">Step 1</span><input class="hw-field nb num" data-k="p6a" data-label="6. Step 1: first number" aria-label="6. Step 1: first number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field sign" data-k="p6s" data-label="6. Step 1: + or −" aria-label="6. Step 1: + or −"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ / −</span></span><input class="hw-field nb num" data-k="p6b" data-label="6. Step 1: second number" aria-label="6. Step 1: second number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="star">=&nbsp;★</span></div>
+<div class="arow plan"><span class="st">Step 2</span><input class="hw-field nb num" data-k="p6c" data-label="6. Step 2: number" aria-label="6. Step 2: number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field sign" data-k="p6t" data-label="6. Step 2: + or −" aria-label="6. Step 2: + or −"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ / −</span></span><span class="star">★</span></div></div>
+</div>
+<div class="q card-q"><div class="q-top"><div class="q-num">7</div><p class="prompt">A swimming pool had <b>12,800</b> swimmers in July and <b>3,950 fewer</b> in August. How many swimmers came in the two months?</p></div>
+<div class="plan-rows in"><div class="arow plan"><span class="st">Step 1</span><input class="hw-field nb num" data-k="p7a" data-label="7. Step 1: first number" aria-label="7. Step 1: first number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field sign" data-k="p7s" data-label="7. Step 1: + or −" aria-label="7. Step 1: + or −"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ / −</span></span><input class="hw-field nb num" data-k="p7b" data-label="7. Step 1: second number" aria-label="7. Step 1: second number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="star">=&nbsp;★</span></div>
+<div class="arow plan"><span class="st">Step 2</span><input class="hw-field nb num" data-k="p7c" data-label="7. Step 2: number" aria-label="7. Step 2: number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field sign" data-k="p7t" data-label="7. Step 2: + or −" aria-label="7. Step 2: + or −"><option value="">+ or −</option><option value="+">+</option><option value="−">−</option></select><span class="circle-opt">+ / −</span></span><span class="star">★</span></div></div>
+</div>
+<div class="keep">
+<div class="task gapt">
+<div class="task-label">Choose a tool</div>
+<p class="lead">Choose a tool for the take-away. Then type the&nbsp;answers.</p>
+<p class="small">Look at the numbers first, then pick your&nbsp;tool.</p>
+</div>
+<div class="q card-q"><div class="q-top"><div class="q-num">8</div><p class="prompt">The school fair took <b>£8,450</b> on Saturday and <b>£6,320</b> on Sunday. The costs were <b>£2,998</b>. How much profit did the fair&nbsp;make?</p></div><div class="arow"><span class="cap2">Takings ★ =</span><span class="cur">£</span><input class="hw-field nb num wide" data-k="c8a" data-label="8. Takings" aria-label="8. Takings" autocomplete="off" inputmode="decimal" spellcheck="false"></div><div class="arow"><span class="cap2">Tool</span><span class="choice-wrap is-empty"><select class="hw-field tool" data-k="c8t" data-label="8. Tool for the take-away" aria-label="8. Tool for the take-away"><option value="">Choose a tool</option><option value="column">column</option><option value="same difference">same difference</option><option value="compensate">compensate</option><option value="count up">count up</option></select><span class="circle-opt">column / same difference / compensate / count&nbsp;up</span></span><span class="cap2 gapl">Profit =</span><span class="cur">£</span><input class="hw-field nb num wide" data-k="c8b" data-label="8. Profit" aria-label="8. Profit" autocomplete="off" inputmode="decimal" spellcheck="false"></div></div>
+<div class="q card-q"><div class="q-top"><div class="q-num">9</div><p class="prompt">A cinema took <b>£23,604</b> in May. It spent <b>£5,999</b> on new seats. How much money was&nbsp;left?</p></div><div class="arow"><span class="cap2">Tool</span><span class="choice-wrap is-empty"><select class="hw-field tool" data-k="c9t" data-label="9. Tool for the take-away" aria-label="9. Tool for the take-away"><option value="">Choose a tool</option><option value="column">column</option><option value="same difference">same difference</option><option value="compensate">compensate</option><option value="count up">count up</option></select><span class="circle-opt">column / same difference / compensate / count&nbsp;up</span></span><span class="cap2 gapl">Left =</span><span class="cur">£</span><input class="hw-field nb num wide" data-k="c9b" data-label="9. Money left" aria-label="9. Money left" autocomplete="off" inputmode="decimal" spellcheck="false"></div></div>
+</div>
+</div>
+<div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span></div>
+<div class="section maths more rounding">
+<div class="page-label">CLARA’S HOMEWORK · 24 OCTOBER 2026</div>
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Rounding · to the nearest 10,000</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<p class="lead">To the nearest <span class="big10">10,000</span>: the <u>thousands</u> digit&nbsp;decides.</p>
+<p class="small">5 or more, round up. 4 or less, round&nbsp;down. (To the nearest 1,000, it is the hundreds digit that&nbsp;decides.)</p>
+<div class="chain-ex"><span class="ex-title">Worked example</span><span>273,650 to the nearest 10,000:</span><span class="digits"><span class="dg">2</span><span class="dg">7</span><span class="dg on">3</span><span class="dc">,</span><span class="dg">6</span><span class="dg">5</span><span class="dg">0</span></span><span>→</span><span class="fix">270,000</span></div>
+</div>
+<div class="task">
+<div class="role-label">Your turn · sort</div>
+<div class="q sortq"><div class="q-top"><div class="q-num">10</div><p class="lead"><span class="screen-only">Round each number to the nearest 10,000. Tap a number, then tap its&nbsp;box.</span><span class="print-only">Round each number to the nearest 10,000. Write it in its&nbsp;box.</span></p></div>
+<div class="tp sortset">
+<div class="tp-bank" aria-label="Numbers to sort">
+<button type="button" class="tp-tile" data-value="646,310" data-store="s1" data-field="s1">646,310</button>
+<button type="button" class="tp-tile" data-value="638,200" data-store="s2" data-field="s2">638,200</button>
+<button type="button" class="tp-tile" data-value="644,800" data-store="s3" data-field="s3">644,800</button>
+<button type="button" class="tp-tile" data-value="645,200" data-store="s4" data-field="s4">645,200</button>
+<button type="button" class="tp-tile" data-value="652,900" data-store="s5" data-field="s5">652,900</button>
+<button type="button" class="tp-tile" data-value="635,000" data-store="s6" data-field="s6">635,000</button>
+</div>
+<div class="sort-grid">
+<div class="tp-zone tp-multi" data-value="640,000"><div class="zone-head"><span class="zone-chip">rounds to</span> <b>640,000</b></div><div class="tp-slot"></div></div>
+<div class="tp-zone tp-multi" data-value="650,000"><div class="zone-head"><span class="zone-chip">rounds to</span> <b>650,000</b></div><div class="tp-slot"></div></div>
+</div>
+<div class="tp-stores" hidden>
+<select data-k="s1" data-label="10. 646,310 to the nearest 10,000" tabindex="-1" class="hw-field"><option value=""></option><option value="640,000">640,000</option><option value="650,000">650,000</option></select>
+<select data-k="s2" data-label="10. 638,200 to the nearest 10,000" tabindex="-1" class="hw-field"><option value=""></option><option value="640,000">640,000</option><option value="650,000">650,000</option></select>
+<select data-k="s3" data-label="10. 644,800 to the nearest 10,000" tabindex="-1" class="hw-field"><option value=""></option><option value="640,000">640,000</option><option value="650,000">650,000</option></select>
+<select data-k="s4" data-label="10. 645,200 to the nearest 10,000" tabindex="-1" class="hw-field"><option value=""></option><option value="640,000">640,000</option><option value="650,000">650,000</option></select>
+<select data-k="s5" data-label="10. 652,900 to the nearest 10,000" tabindex="-1" class="hw-field"><option value=""></option><option value="640,000">640,000</option><option value="650,000">650,000</option></select>
+<select data-k="s6" data-label="10. 635,000 to the nearest 10,000" tabindex="-1" class="hw-field"><option value=""></option><option value="640,000">640,000</option><option value="650,000">650,000</option></select>
+</div></div></div>
+</div>
+<div class="task keep">
+<div class="role-label">Your turn · type</div>
+<p class="lead">Round each number to the nearest <span class="big10">10,000</span>.</p>
+<div class="r-grid">
+<div class="q r-card"><div class="r-top"><div class="q-num">11</div><span class="chip10">to the nearest 10,000</span></div><p class="r-num">386,540</p><input class="hw-field nb num wide" data-k="r11" data-label="11. Round 386,540 to the nearest 10,000" aria-label="11. Round 386,540 to the nearest 10,000" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+<div class="q r-card"><div class="r-top"><div class="q-num">12</div><span class="chip10">to the nearest 10,000</span></div><p class="r-num">723,180</p><input class="hw-field nb num wide" data-k="r12" data-label="12. Round 723,180 to the nearest 10,000" aria-label="12. Round 723,180 to the nearest 10,000" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+<div class="q r-card"><div class="r-top"><div class="q-num">13</div><span class="chip10">to the nearest 10,000</span></div><p class="r-num">496,300</p><input class="hw-field nb num wide" data-k="r13" data-label="13. Round 496,300 to the nearest 10,000" aria-label="13. Round 496,300 to the nearest 10,000" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+</div></div>
+</div>
+<div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span></div>
+<div class="section english more">
+<div class="page-label">CLARA’S HOMEWORK · 24 OCTOBER 2026</div>
+<div class="sec-head"><span class="subj">English</span><span class="note">Parenthesis · a few words between two commas</span></div>
+<div class="task">
+<div class="role-label">Warm-up · who or which</div>
+<p class="lead">Choose who or which for each&nbsp;gap.</p>
+</div>
+<div class="q"><div class="q-top"><div class="q-num">1</div><p class="wsent">The 185 bus, <span class="choice-wrap is-empty"><select class="hw-field ww" data-k="e1" data-label="1. The 185 bus, ___ goes past our house, was late again." aria-label="1. who or which"><option value="">Choose</option><option value="who">who</option><option value="which">which</option></select><span class="circle-opt">who / which</span></span> goes past our house, was late&nbsp;again.</p></div></div>
+<div class="q"><div class="q-top"><div class="q-num">2</div><p class="wsent">My swimming teacher, <span class="choice-wrap is-empty"><select class="hw-field ww" data-k="e2" data-label="2. My swimming teacher, ___ always wears a red cap, says I am getting faster." aria-label="2. who or which"><option value="">Choose</option><option value="who">who</option><option value="which">which</option></select><span class="circle-opt">who / which</span></span> always wears a red cap, says I am getting&nbsp;faster.</p></div></div>
+<div class="task gapt">
+<div class="task-label">Remember</div>
+<p class="lead">A parenthesis adds extra information between two commas. This time it is a few words, with no who or&nbsp;which.</p>
+<div class="model"><p class="ex-title">Worked example</p><p class="was">My aunt made my birthday cake.</p><p class="now">My aunt<b>, a brilliant baker,</b> made my birthday&nbsp;cake.</p></div>
+</div>
+<div class="task">
+<div class="role-label">Your turn · choose</div>
+<p class="lead"><span class="screen-only">Tap the sentence with a few words between two commas and no who or&nbsp;which.</span><span class="print-only">Tick the sentence with a few words between two commas and no who or&nbsp;which.</span></p>
+</div>
+<div class="q"><div class="q-top"><div class="q-num">3</div><div class="opt-pick" data-store="e3" data-field="e3" role="group" aria-label="3. Choose a sentence">
+<button type="button" class="txt-opt" data-v="Our neighbour, who is a firefighter, came to tea." aria-pressed="false"><span class="tick-box"></span>Our neighbour, who is a firefighter, came to tea.</button>
+<button type="button" class="txt-opt" data-v="Our neighbour, a firefighter, came to tea." aria-pressed="false"><span class="tick-box"></span>Our neighbour, a firefighter, came to tea.</button>
+<button type="button" class="txt-opt" data-v="Our neighbour a firefighter, came to tea." aria-pressed="false"><span class="tick-box"></span>Our neighbour a firefighter, came to tea.</button>
+</div></div></div>
+<div class="q"><div class="q-top"><div class="q-num">4</div><div class="opt-pick" data-store="e4" data-field="e4" role="group" aria-label="4. Choose a sentence">
+<button type="button" class="txt-opt" data-v="The museum, a huge old building, is near the river." aria-pressed="false"><span class="tick-box"></span>The museum, a huge old building, is near the river.</button>
+<button type="button" class="txt-opt" data-v="The museum a huge old building is near the river." aria-pressed="false"><span class="tick-box"></span>The museum a huge old building is near the river.</button>
+<button type="button" class="txt-opt" data-v="The museum, which is a huge old building, is near the river." aria-pressed="false"><span class="tick-box"></span>The museum, which is a huge old building, is near the river.</button>
+</div></div></div>
+<div class="store" aria-hidden="true">
+<select data-k="e3" data-label="3. Which sentence has a few words between two commas?" tabindex="-1" class="hw-field"><option value=""></option><option value="Our neighbour, who is a firefighter, came to tea.">Our neighbour, who is a firefighter, came to tea.</option><option value="Our neighbour, a firefighter, came to tea.">Our neighbour, a firefighter, came to tea.</option><option value="Our neighbour a firefighter, came to tea.">Our neighbour a firefighter, came to tea.</option></select>
+<select data-k="e4" data-label="4. Which sentence has a few words between two commas?" tabindex="-1" class="hw-field"><option value=""></option><option value="The museum, a huge old building, is near the river.">The museum, a huge old building, is near the river.</option><option value="The museum a huge old building is near the river.">The museum a huge old building is near the river.</option><option value="The museum, which is a huge old building, is near the river.">The museum, which is a huge old building, is near the river.</option></select>
+</div>
+<div class="task gapt">
+<div class="role-label">Your turn · write</div>
+<p class="lead">Add a few words between the commas. No who or&nbsp;which.</p>
+</div>
+<div class="q"><div class="q-top"><div class="q-num">5</div><p class="wsent inl-sent">Poppy, <input class="hw-field np" data-k="e5" data-label="5. Poppy, ___ sleeps on my bed. (a few words)" aria-label="5. A few words" autocomplete="off" spellcheck="true">, sleeps on my&nbsp;bed.</p></div></div>
+<div class="q"><div class="q-top"><div class="q-num">6</div><p class="wsent inl-sent">Hilly Fields, <input class="hw-field np" data-k="e6" data-label="6. Hilly Fields, ___ is near my house. (a few words)" aria-label="6. A few words" autocomplete="off" spellcheck="true">, is near my&nbsp;house.</p></div></div>
+<div class="q"><div class="q-top"><div class="q-num">7</div><p class="prompt-q"><b>My best friend</b> is good at drawing. <span class="note">Type the whole sentence with both&nbsp;commas.</span></p></div><div class="hw-field sent" contenteditable="true" data-k="e7" data-label="7. My best friend is good at drawing. (add a few words between two commas)" aria-label="7. My sentence"></div></div>
+</div>
+<div class="foot"><span>We’ll talk about your sentences next&nbsp;lesson.</span></div>
+
+<script>
+/* An empty menu prints as words to circle; a chosen one prints as it is. */
+(function () {
+  function sync() {
+    var wraps = document.querySelectorAll('.choice-wrap');
+    for (var i = 0; i < wraps.length; i++) {
+      var s = wraps[i].querySelector('select');
+      wraps[i].classList.toggle('is-empty', !(s && s.value));
+    }
+  }
+  document.addEventListener('change', sync, true);
+  window.addEventListener('beforeprint', sync);
+  window.addEventListener('load', function () { sync(); setTimeout(sync, 500); setTimeout(sync, 1500); });
+  sync();
+})();
+
+/* Number boxes: Dasha accepts "k" (770k = 770,000). The key compares exact numbers, so a typed
+   "770k" or "£1,234" is turned into "770,000" / "1,234" when she leaves the box, before saving
+   and checking. The value is the same; only the way it is written changes. */
+(function () {
+  function tidy(el) {
+    var v = String(el.value || '').trim().replace(/^£\s*/, '');
+    var m = v.match(/^(\d+(?:\.\d+)?)\s*k$/i);
+    if (m) v = Math.round(parseFloat(m[1]) * 1000).toLocaleString('en-GB');
+    if (v !== el.value) { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); }
+  }
+  document.addEventListener('change', function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains('num')) tidy(e.target);
+  }, true);
+  document.addEventListener('click', function (e) {
+    if (e.target && e.target.closest && e.target.closest('.hw-send')) {
+      [].forEach.call(document.querySelectorAll('input.num'), tidy);
+    }
+  }, true);
+})();
+
+/* Tap one choice (a bar picture or a sentence). The answer lives in a hidden select (data-k)
+   inside .store, so hw.js saves, restores, sends and marks it on the data-field twin.
+   Tap the chosen one again to clear it. These are buttons, nothing moves under a finger. */
+(function () {
+  function store(k) { return document.querySelector(".store [data-k='" + k + "']"); }
+  function init() {
+    [].forEach.call(document.querySelectorAll('.pic-pick[data-store], .opt-pick[data-store]'), function (g) {
+      var s = store(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.pic-opt, .txt-opt'));
+      function paint() { btns.forEach(function (b) { var on = s.value === b.dataset.v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }); }
+      paint();
+      s.addEventListener('change', paint);
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          s.value = s.value === b.dataset.v ? '' : b.dataset.v;
+          s.dispatchEvent(new Event('input', { bubbles: true }));
+          s.dispatchEvent(new Event('change', { bubbles: true }));
+          paint();
+        });
+      });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html, unchanged) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }
+          else { unpick(); home(t); }
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJiYXIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIGJvdHRvbSBiYXIgaXMgbG9uZ2VyIn0sICJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMwLDE3MCJ9LCAiYjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNiwzMjAifSwgImJhcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgYm90dG9tIGJhciBpcyBzaG9ydGVyIn0sICJ0MiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQyLDM1MCJ9LCAiYjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNyw3NTAifSwgImJhcjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgYm90dG9tIGJhciBpcyBzaG9ydGVyIn0sICJ0MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjgwLDg1MCJ9LCAicDRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjgsNTAwIn0sICJwNHMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLiiJIifSwgInA0YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQsNzUwIn0sICJwNGMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyOCw1MDAifSwgInA0dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgInA1YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjksNjQwIn0sICJwNXMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIrIn0sICJwNWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxLDM4MCJ9LCAicDVjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSw2NDAifSwgInA1dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgInA2YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE3LDM1MCJ9LCAicDZzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiKyJ9LCAicDZiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjEsOTAwIn0sICJwNmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1MCwwMDAifSwgInA2dCI6IHsidCI6ICJleGFjdCIsICJhIjogIuKIkiJ9LCAicDdhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTIsODAwIn0sICJwN3MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLiiJIifSwgInA3YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMsOTUwIn0sICJwN2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiw4MDAifSwgInA3dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgImM4YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE0LDc3MCJ9LCAiYzhiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTEsNzcyIn0sICJjOWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNyw2MDUifSwgImM4dCI6IHsidCI6ICJvcGVuIn0sICJjOXQiOiB7InQiOiAib3BlbiJ9LCAiczEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NTAsMDAwIn0sICJzMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjY0MCwwMDAifSwgInMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NTAsMDAwIn0sICJzNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjY1MCwwMDAifSwgInM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAicjExIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzkwLDAwMCJ9LCAicjEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzIwLDAwMCJ9LCAicjEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTAwLDAwMCJ9LCAiZTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCJ9LCAiZTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgImUzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiT3VyIG5laWdoYm91ciwgYSBmaXJlZmlnaHRlciwgY2FtZSB0byB0ZWEuIn0sICJlNCI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoZSBtdXNldW0sIGEgaHVnZSBvbGQgYnVpbGRpbmcsIGlzIG5lYXIgdGhlIHJpdmVyLiJ9LCAiZTUiOiB7InQiOiAib3BlbiJ9LCAiZTYiOiB7InQiOiAib3BlbiJ9LCAiZTciOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

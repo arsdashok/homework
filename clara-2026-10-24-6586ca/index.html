@@ -361,6 +361,15 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
 .mint-game .block-actions .next-button:focus-visible{outline:4px solid #e6ab48;outline-offset:4px}
 .mint-game .block-actions .next-button:active{transform:translateY(2px);box-shadow:0 1px 0 #c8ddd2}
 @media(max-width:600px){.mint-game .block-actions .next-button{min-width:128px;min-height:48px;font-size:18px;padding:9px 15px;border-radius:13px}}
+
+/* Small illustrated companions, kept outside the exercises. */
+.mint-game .garden-pal{display:none}
+.mint-game .sheet-head{padding-right:170px}
+.mint-game .friend-parade{position:absolute;right:15px;top:0;width:145px;height:60px;pointer-events:none}
+.mint-game .tree-scene{background:#fbf5ec;border:1px solid #eee1cf}
+.mint-game .tree-scene svg{max-height:clamp(210px,34vh,360px)}
+@media(min-width:801px) and (max-height:800px){.mint-game .tree-scene svg{max-height:225px}}
+@media(max-width:600px){.mint-game .sheet-head{padding-right:90px}.mint-game .friend-parade{width:85px;height:43px;right:4px;top:0}.mint-game .tree-scene svg{height:83px;max-height:83px}.mint-game .sheet-head h1{font-size:20px}}
 </style>
 </head>
 <body data-student="Clara" data-sheet="Maths 2026-10-24" data-sheet-id="clara-2026-10-24-maths-and-english">
@@ -1104,7 +1113,30 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
   };
 })();
 </script>
-<script id="clara-block-flow">(function(){
+<script id="clara-block-flow">/* Decorative friends are separate from the exact earned-leaf count. */
+window.claraTreeArt=(()=>{
+ const face=(x,y)=>`<g fill="#59483f"><circle cx="${x-5}" cy="${y}" r="1.8"/><circle cx="${x+5}" cy="${y}" r="1.8"/><path d="M${x-3} ${y+5}q3 3 6 0" fill="none" stroke="#59483f" stroke-width="1.6" stroke-linecap="round"/></g><g fill="#efa8a0"><ellipse cx="${x-10}" cy="${y+4}" rx="3" ry="2"/><ellipse cx="${x+10}" cy="${y+4}" rx="3" ry="2"/></g>`;
+ const rabbit=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><ellipse cx="-8" cy="-24" rx="6" ry="18" fill="#fff8e9" stroke="#c5a88e" stroke-width="2" transform="rotate(-12 -8 -24)"/><ellipse cx="9" cy="-25" rx="6" ry="19" fill="#fff8e9" stroke="#c5a88e" stroke-width="2" transform="rotate(12 9 -25)"/><path d="M-8 -35v19M9 -37v20" stroke="#f1bdba" stroke-width="3" stroke-linecap="round"/><ellipse cy="10" rx="23" ry="25" fill="#fff8e9" stroke="#c5a88e" stroke-width="2"/><ellipse cx="-12" cy="32" rx="9" ry="4" fill="#f6e5d2"/><ellipse cx="12" cy="32" rx="9" ry="4" fill="#f6e5d2"/>${face(0,5)}</g>`;
+ const berry=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-22 -4Q-26 -23 0 -20Q26 -23 22 -4Q12 25 0 29Q-12 25-22-4Z" fill="#efaaa8" stroke="#bf7b79" stroke-width="2"/><path d="M0-17l-15-10 7 0-1-10 10 12 10-11-1 11 14-1-13 10" fill="#87af8a" stroke="#658c6b" stroke-width="1.5"/><g fill="#fff1cc"><ellipse cx="-14" cy="-4" rx="1.4" ry="2"/><ellipse cx="14" cy="-4" rx="1.4" ry="2"/><ellipse cx="-10" cy="15" rx="1.4" ry="2"/><ellipse cx="10" cy="15" rx="1.4" ry="2"/><ellipse cy="23" rx="1.4" ry="2"/></g>${face(0,1)}</g>`;
+ const pear=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-11-14Q-10-30 1-28Q13-27 12-11Q33 15 16 26Q0 37-18 25Q-33 12-11-14Z" fill="#e6d491" stroke="#b5a86e" stroke-width="2"/><path d="M1-28q-1-10 5-14" fill="none" stroke="#99734e" stroke-width="3" stroke-linecap="round"/><path d="M4-32q5-15 17-10Q17-30 4-32" fill="#8eb89a"/>${face(0,8)}</g>`;
+ const cat=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-20 8Q-31-5-22-24L-8-15Q0-19 9-15L23-25Q31-3 20 8Q24 31 0 33Q-25 31-20 8Z" fill="#d5c7e8" stroke="#a898bc" stroke-width="2"/><path d="M-20-17l8 5-8 1M21-18l-8 6 9 1" fill="#edb9ce"/><path d="M19 24q19 2 15-13" fill="none" stroke="#a898bc" stroke-width="6" stroke-linecap="round"/>${face(0,0)}</g>`;
+ const crown=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-51 22C-77 12-68-20-46-24C-53-51-17-64 1-46C22-66 57-45 49-22C76-13 69 22 47 27C36 51 4 48-8 39C-28 52-54 42-51 22Z" fill="#f4dfbd" stroke="#d9bd92" stroke-width="2.3"/><path d="M-42-15q-14 7-11 19M-14-41q11-9 22 0" fill="none" stroke="#fff4dc" stroke-width="6" stroke-linecap="round"/></g>`;
+ function render(count,leaves){
+  const centres=count===3?[[127,177],[273,177],[200,109]]:count===2?[[127,177],[273,177]]:[[200,203]];
+  let earned='';
+  for(let n=0;n<leaves;n++){
+   const cluster=n%centres.length,slot=Math.floor(n/centres.length),angle=slot*2.39996,radius=9+Math.sqrt(slot)*12;
+   const x=centres[cluster][0]+Math.cos(angle)*radius,y=centres[cluster][1]+Math.sin(angle)*radius*.74;
+   earned+=`<g class="earned-leaf" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(slot*47+cluster*65)%180})"><path d="M0 10Q-17-1-9-17Q8-22 9-6Q8 3 0 10Z" fill="${['#639e7b','#83b590','#447f63'][n%3]}" stroke="#44725a" stroke-width="1.2"/><path d="M0 7L-2-12" stroke="#cde3b6" stroke-width="1.2" stroke-linecap="round"/></g>`;
+  }
+  const wood=count?`<path d="M179 324Q190 266 184 216Q197 201 213 216Q207 273 224 324Z" fill="#ce9b73" stroke="#9e7153" stroke-width="2.8"/><path d="M194 307q-5-30 2-61" fill="none" stroke="#eac29b" stroke-width="5" stroke-linecap="round"/>${count>=2?'<path d="M196 252Q164 226 128 185M205 248Q244 219 272 181" fill="none" stroke="#9e7153" stroke-width="16" stroke-linecap="round"/><path d="M196 252Q164 226 128 185M205 248Q244 219 272 181" fill="none" stroke="#ce9b73" stroke-width="11" stroke-linecap="round"/>':''}${count===3?'<path d="M200 224V116" stroke="#b98562" stroke-width="15" stroke-linecap="round"/>':''}${face(201,282)}`:'';
+  const foliage=count===3?crown(127,177,.95)+crown(273,177,.95)+crown(200,109,1.1):count===2?crown(127,177,.95)+crown(273,177,.95):count===1?crown(200,203,.78):'';
+  return `<svg viewBox="0 0 400 390" role="img" aria-label="Your tree: ${count} of 3 parts grown and ${leaves} green leaves"><rect width="400" height="390" rx="28" fill="#fbf5ec"/><circle cx="331" cy="57" r="23" fill="#f4d88a"/>${face(331,55)}<path d="M38 70q5-17 21-8q9-20 24-4q20-1 20 13H38" fill="#fffdf8"/><ellipse cx="202" cy="336" rx="156" ry="23" fill="#e9e6cf"/>${wood}${foliage}${earned}${count===0?'<ellipse cx="200" cy="323" rx="17" ry="11" fill="#bd8964" stroke="#966746" stroke-width="2"/><path d="M199 319l6-7" stroke="#e8bf96" stroke-width="3" stroke-linecap="round"/>':''}${rabbit(68,303,.8)}${cat(328,307,.83)}${berry(122,343,.55)}${pear(278,342,.53)}<g fill="#e6b7cb"><path d="M46 204q-18-20-23-3q-5 13 17 17q-18 10-8 18q11 9 17-13q10 16 18 7q9-13-13-15q19-12 8-20q-12-8-16 9Z" transform="translate(0 -25) scale(.7)"/></g><g fill="#eac67c"><circle cx="168" cy="352" r="3"/><circle cx="236" cy="350" r="3"/></g></svg>`;
+ }
+ return {render,header:`<svg class="friend-parade game-ui" viewBox="0 0 210 80" aria-hidden="true">${berry(32,42,.7)}${cat(102,38,.85)}${pear(173,42,.7)}</svg>`};
+})();
+
+(function(){
 'use strict';
 const sections=[...document.querySelectorAll('#sheet > .section')];
 const titles=['Bar models','Two-step plans','Rounding'];
@@ -1129,6 +1161,7 @@ sections.forEach((section,i)=>{if(!done[i])return;fields(i).forEach((el,j)=>{if(
 let sending=false, sent=!!saved.sent&&done.every(Boolean);
 const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,sent,pages:pageNumbers}))}catch(e){}};
 document.body.classList.add('mint-game');
+document.querySelector('.sheet-head').insertAdjacentHTML('beforeend',window.claraTreeArt.header);
 const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="3" value="0" aria-label="Completed blocks"></progress><nav class="block-nav" aria-label="Homework blocks"></nav><p class="save-note">Your work is saved on this device. Check carefully: a checked block cannot be changed.</p>';
 document.querySelector('.sheet-head').after(dashboard);
 const nav=dashboard.querySelector('nav');
@@ -1141,19 +1174,7 @@ window.hwSend=function(){if(done.filter(Boolean).length!==blockCount||sending||s
 window.claraSubmissionDone=function(){sending=false;sent=true;document.getElementById('sheet').inert=false;update()};
 window.claraSubmissionFailed=function(){sending=false;sent=false;document.getElementById('sheet').inert=false;update()};
 function growTree(count,leaves){
- const parts=[
-  '<path class="tree-part" d="M200 310Q192 259 200 207" stroke-width="17"/>',
-  '<path class="tree-part" d="M199 264Q159 246 117 193M156 238L147 202" stroke-width="11"/><path class="tree-part" d="M200 249Q246 225 282 181M248 221L258 184" stroke-width="11"/>',
-  '<path class="tree-part" d="M200 216L200 117M200 161L169 131M200 149L229 113" stroke-width="10"/>'
- ];
- const centres=[[199,203],[118,185],[280,177],[199,112]].slice(0,count===3?4:count===2?3:1);
- let leafShapes='';
- for(let n=0;n<leaves;n++){
-  const cluster=n%centres.length, slot=Math.floor(n/centres.length),angle=slot*2.399963, radius=10+Math.sqrt(slot)*12;
-  const x=centres[cluster][0]+Math.cos(angle)*radius,y=centres[cluster][1]+Math.sin(angle)*radius*.82;
-  leafShapes+='<g class="earned-leaf" transform="translate('+x.toFixed(1)+' '+y.toFixed(1)+') rotate('+(slot*47+cluster*55)%170+')"><path d="M0 0Q-17 -19 0 -29Q17 -19 0 0" fill="'+['#55976a','#72ae7d','#3e805a'][n%3]+'" stroke="#386d4a" stroke-width="1.2"/><path d="M0 -3V-23" stroke="#d6eccd" stroke-width="1.1"/></g>';
- }
- finish.querySelector('.tree-scene').innerHTML='<svg viewBox="0 0 400 350" role="img" aria-label="Your tree: '+count+' of 3 parts grown and '+leaves+' green leaves"><ellipse cx="202" cy="321" rx="135" ry="17" fill="#eee3d4"/><circle cx="322" cy="62" r="23" fill="#f6d99a"/><g fill="none" stroke="#906b50" stroke-linecap="round" stroke-linejoin="round">'+parts.slice(0,count).join('')+'</g>'+leafShapes+(count?'<circle cx="194" cy="283" r="2.5" fill="#624d3d"/><circle cx="206" cy="283" r="2.5" fill="#624d3d"/><path d="M196 291q4 4 8 0" fill="none" stroke="#624d3d" stroke-width="2"/>':'<ellipse cx="200" cy="311" rx="10" ry="7" fill="#906b50"/><path d="M198 311L203 305" stroke="#c9a383" stroke-width="2"/>')+'<path d="M70 321q-2 -12-9 -15M70 321q3-16 11-17M322 323q-2-9-8-12" fill="none" stroke="#9caf82" stroke-width="3" stroke-linecap="round"/></svg>';
+ finish.querySelector('.tree-scene').innerHTML=window.claraTreeArt.render(count,leaves);
  finish.querySelector('.tree-count').textContent=leaves+' green '+(leaves===1?'leaf':'leaves')+' · '+count+'/3 tree parts';
  finish.querySelector('.tree-stages').innerHTML=['A little trunk','Two branches','The treetop'].map((name,i)=>'<li class="'+(i<count?'grown':'')+'"><span>'+(i<count?'✓':i+1)+'</span>'+name+'</li>').join('');
 }

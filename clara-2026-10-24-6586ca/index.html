@@ -1122,15 +1122,16 @@ window.claraTreeArt=(()=>{
  const cat=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-20 8Q-31-5-22-24L-8-15Q0-19 9-15L23-25Q31-3 20 8Q24 31 0 33Q-25 31-20 8Z" fill="#d5c7e8" stroke="#a898bc" stroke-width="2"/><path d="M-20-17l8 5-8 1M21-18l-8 6 9 1" fill="#edb9ce"/><path d="M19 24q19 2 15-13" fill="none" stroke="#a898bc" stroke-width="6" stroke-linecap="round"/>${face(0,0)}</g>`;
  const crown=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-51 22C-77 12-68-20-46-24C-53-51-17-64 1-46C22-66 57-45 49-22C76-13 69 22 47 27C36 51 4 48-8 39C-28 52-54 42-51 22Z" fill="#f4dfbd" stroke="#d9bd92" stroke-width="2.3"/><path d="M-42-15q-14 7-11 19M-14-41q11-9 22 0" fill="none" stroke="#fff4dc" stroke-width="6" stroke-linecap="round"/></g>`;
  function render(count,leaves){
-  const centres=count===3?[[127,177],[273,177],[200,109]]:count===2?[[127,177],[273,177]]:[[200,203]];
+  const centres=count===3?[[157,170],[244,170],[200,122]]:count===2?[[166,201],[234,201]]:[[200,236]];
   let earned='';
   for(let n=0;n<leaves;n++){
-   const cluster=n%centres.length,slot=Math.floor(n/centres.length),angle=slot*2.39996,radius=9+Math.sqrt(slot)*12;
+   const cluster=n%centres.length,slot=Math.floor(n/centres.length),angle=slot*2.39996,radius=9+Math.sqrt(slot)*10;
    const x=centres[cluster][0]+Math.cos(angle)*radius,y=centres[cluster][1]+Math.sin(angle)*radius*.74;
    earned+=`<g class="earned-leaf" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(slot*47+cluster*65)%180})"><path d="M0 10Q-17-1-9-17Q8-22 9-6Q8 3 0 10Z" fill="${['#639e7b','#83b590','#447f63'][n%3]}" stroke="#44725a" stroke-width="1.2"/><path d="M0 7L-2-12" stroke="#cde3b6" stroke-width="1.2" stroke-linecap="round"/></g>`;
   }
-  const wood=count?`<path d="M179 324Q190 266 184 216Q197 201 213 216Q207 273 224 324Z" fill="#ce9b73" stroke="#9e7153" stroke-width="2.8"/><path d="M194 307q-5-30 2-61" fill="none" stroke="#eac29b" stroke-width="5" stroke-linecap="round"/>${count>=2?'<path d="M196 252Q164 226 128 185M205 248Q244 219 272 181" fill="none" stroke="#9e7153" stroke-width="16" stroke-linecap="round"/><path d="M196 252Q164 226 128 185M205 248Q244 219 272 181" fill="none" stroke="#ce9b73" stroke-width="11" stroke-linecap="round"/>':''}${count===3?'<path d="M200 224V116" stroke="#b98562" stroke-width="15" stroke-linecap="round"/>':''}${face(201,282)}`:'';
-  const foliage=count===3?crown(127,177,.95)+crown(273,177,.95)+crown(200,109,1.1):count===2?crown(127,177,.95)+crown(273,177,.95):count===1?crown(200,203,.78):'';
+  // A single continuous canopy covers the branch joins at every growth stage.
+  const wood=count?`<path d="M177 329Q188 293 187 248L208 244Q207 291 225 329Q210 325 201 327Q189 324 177 329Z" fill="#c99a78" stroke="#a47b5b" stroke-width="2.5" stroke-linejoin="round"/><path d="M190 314q4-18 2-36" fill="none" stroke="#e9c9a8" stroke-width="4" stroke-linecap="round"/>${face(200,292)}`:'';
+  const foliage=count===3?crown(200,174,1.65):count===2?crown(200,203,1.19):count===1?crown(200,236,.64):'';
   return `<svg viewBox="0 0 400 390" role="img" aria-label="Your tree: ${count} of 3 parts grown and ${leaves} green leaves"><rect width="400" height="390" rx="28" fill="#fbf5ec"/><circle cx="331" cy="57" r="23" fill="#f4d88a"/>${face(331,55)}<path d="M38 70q5-17 21-8q9-20 24-4q20-1 20 13H38" fill="#fffdf8"/><ellipse cx="202" cy="336" rx="156" ry="23" fill="#e9e6cf"/>${wood}${foliage}${earned}${count===0?'<ellipse cx="200" cy="323" rx="17" ry="11" fill="#bd8964" stroke="#966746" stroke-width="2"/><path d="M199 319l6-7" stroke="#e8bf96" stroke-width="3" stroke-linecap="round"/>':''}${rabbit(68,303,.8)}${cat(328,307,.83)}${berry(122,343,.55)}${pear(278,342,.53)}<g fill="#e6b7cb"><path d="M46 204q-18-20-23-3q-5 13 17 17q-18 10-8 18q11 9 17-13q10 16 18 7q9-13-13-15q19-12 8-20q-12-8-16 9Z" transform="translate(0 -25) scale(.7)"/></g><g fill="#eac67c"><circle cx="168" cy="352" r="3"/><circle cx="236" cy="350" r="3"/></g></svg>`;
  }
  return {render,header:`<svg class="friend-parade game-ui" viewBox="0 0 210 80" aria-hidden="true">${berry(32,42,.7)}${cat(102,38,.85)}${pear(173,42,.7)}</svg>`};
@@ -1176,7 +1177,7 @@ window.claraSubmissionFailed=function(){sending=false;sent=false;document.getEle
 function growTree(count,leaves){
  finish.querySelector('.tree-scene').innerHTML=window.claraTreeArt.render(count,leaves);
  finish.querySelector('.tree-count').textContent=leaves+' green '+(leaves===1?'leaf':'leaves')+' · '+count+'/3 tree parts';
- finish.querySelector('.tree-stages').innerHTML=['A little trunk','Two branches','The treetop'].map((name,i)=>'<li class="'+(i<count?'grown':'')+'"><span>'+(i<count?'✓':i+1)+'</span>'+name+'</li>').join('');
+ finish.querySelector('.tree-stages').innerHTML=['A little sapling','A growing crown','A full-grown tree'].map((name,i)=>'<li class="'+(i<count?'grown':'')+'"><span>'+(i<count?'✓':i+1)+'</span>'+name+'</li>').join('');
 }
 function lockBlock(section){
  section.classList.add('locked');

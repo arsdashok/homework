@@ -1266,7 +1266,7 @@ function paginate(section,i){
  });
  if(pending.length)add(pending,'Instructions');
  const review=add([],'Finish this block');review.classList.add('game-ui','review-page');
- review.innerHTML='<h3>Ready to finish this block?</h3><p>You can use Back to check your answers first. Once you finish, they are saved and cannot be changed.</p>';
+ review.innerHTML='<h3>Ready to finish this block?</h3><p>Use Back to check your answers first.</p>';
  const position=document.createElement('div');position.className='game-ui exercise-position';
  const label=document.createElement('span');label.tabIndex=-1;label.setAttribute('aria-live','polite');position.append(label);
  const reminder=pages.findIndex(p=>p.dataset.title==='Remember');
@@ -1285,9 +1285,10 @@ sections.forEach((section,i)=>{
  const next=document.createElement('button');next.className='garden-button next-button';next.onclick=()=>{if(pageNumbers[i]<deck.pages.length-1)showPage(i,pageNumbers[i]+1);else if(i<3)show(i+1);else {showOverview(i);}};
  actions.append(back,check,next);Object.assign(deck,{back,check,next});
  const result=document.createElement('div');result.className='game-ui block-result';result.setAttribute('role','status');
- const caution=document.createElement('p');caution.className='game-ui final-attempt-note';caution.textContent='Ready? Check your answers first. Once you finish this block, your answers are final.';deck.review.append(caution,result);section.append(actions);
+ deck.review.append(result);section.append(actions);
  ['click','pointerdown','keydown'].forEach(type=>section.addEventListener(type,event=>{if(done[i]&&!event.target.closest('.game-ui')&&event.target.closest('button,input,select,textarea,[data-k],.tp-zone')){event.preventDefault();event.stopImmediatePropagation()}},true));
- function report(){const a=done[i].score;result.replaceChildren();const title=document.createElement('strong');title.textContent='Block checked — well done for trying!';const score=document.createElement('p');score.textContent=a.right+' of '+a.total+' answer checks correct. '+(a.right<a.total?'Look at the corrections beside your answers. We’ll talk about them in the lesson.':'Lovely work!');result.append(title,score);if(a.open){const note=document.createElement('p');note.textContent='Your own writing and method choices: feedback from Dasha in the lesson.';result.append(note)}deck.review.querySelector('h3').textContent='Block finished!';deck.review.querySelector('p').textContent='Your first attempt is saved. Use Back to look at your answers and the corrections.';check.textContent='Block finished ✓';check.disabled=true;caution.textContent='Answers saved. You can look back at this block, but you cannot change it.';}
+ function report(){const a=done[i].score;result.replaceChildren();const score=document.createElement('strong');score.textContent=a.right+' of '+a.total+' correct';const hint=document.createElement('p');hint.textContent='Use Back to see the correct answers.';result.append(score,hint);deck.review.querySelector('h3').hidden=true;deck.review.querySelector('p').hidden=true;check.textContent='Block finished ✓';check.disabled=true;}
+
  check.onclick=()=>{
  if(done[i])return;
  const missing=fields(i).filter(el=>!value(el));

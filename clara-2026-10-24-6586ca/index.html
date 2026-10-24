@@ -276,6 +276,30 @@ body.mint-game{background-color:#faf7f1;background-image:radial-gradient(#e8dfd3
 .mint-game .tree-stages .grown{color:#514e46}.mint-game .tree-stages .grown span{background:#e5f1e5;border-color:#a4b99b;color:#4f744e}
 .mint-game .leaf-note{font-size:13px!important;color:#786d5c;margin-top:18px!important;max-width:320px}
 @media(max-width:700px){.mint-game .tree-layout{grid-template-columns:1fr;gap:12px}.tree-scene svg{max-height:290px}.mint-game .tree-count{font-size:19px}.mint-game .tree-stages{grid-template-columns:1fr 1fr;font-size:13px;gap:12px}.mint-game .tree-stages li{gap:7px}.mint-game .tree-stages li span{flex-shrink:0}.mint-game .leaf-note{max-width:none}}
+/* One exercise screen at a time, with the tree always in view. */
+body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;display:grid;grid-template-columns:minmax(0,1fr) 255px;grid-template-rows:auto auto minmax(0,1fr);gap:10px 16px}
+.mint-game #sheet{display:contents}.mint-game .sheet-head{grid-column:1/-1;grid-row:1;min-height:0;padding:12px 80px 12px 20px;margin:0;border-radius:18px;border-bottom-width:3px;display:flex;align-items:center;gap:18px}
+.mint-game .sheet-head h1{font-size:25px;letter-spacing:-.4px}.mint-game .sheet-head .eyebrow{font-size:10px;margin:0}.mint-game .hero-copy{display:none}.mint-game .garden-pal{height:48px;width:48px;top:3px;right:14px}
+.mint-game #sheet>.game-ui{grid-column:1/-1;grid-row:2}.mint-game .progress-head{font-size:12px;margin:0 0 4px}.mint-game progress{height:6px}.mint-game .block-nav{margin:7px 0 0;gap:8px}.mint-game .block-tab{padding:7px 12px;font-size:14px;border-radius:12px;border-bottom-width:3px}.mint-game .block-tab small{display:none}.mint-game .step-badge{height:24px;width:24px}.mint-game .save-note{display:none}
+.mint-game #sheet>.section.active{display:flex;flex-direction:column;grid-column:1;grid-row:3;min-height:0;min-width:0;padding:14px 18px;overflow:hidden;border-radius:20px;box-shadow:none}
+.mint-game .sec-head{flex-shrink:0;gap:8px;padding-bottom:7px;margin-bottom:7px}.mint-game .sec-head .note{font-size:13px}.mint-game .subj{font-size:10px;padding:3px 8px}
+.mint-game .exercise-position{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-shrink:0;margin-bottom:8px;font-size:13px;color:#786d5c}.mint-game .reminder-button{background:#f5f0e7;border:1px solid #d9cdbb;padding:5px 12px;border-radius:12px;font:inherit;color:#66563d;cursor:pointer}
+.mint-game .exercise-viewport{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:2px 4px 8px;scrollbar-gutter:stable}.mint-game .exercise-page{display:none}.mint-game .exercise-page.current-page{display:block}.mint-game .exercise-page .task{margin:0 0 10px}.mint-game .exercise-page .task.gapt{margin-top:0}
+.mint-game .exercise-page .lead{font-size:20px;line-height:1.4}.mint-game .exercise-page .small{font-size:14px}.mint-game .exercise-page .q{margin:0;padding:14px;border-radius:16px}.mint-game .exercise-page .prompt,.mint-game .exercise-page .prompt-q,.mint-game .exercise-page .wsent{font-size:19px;line-height:1.55}
+.mint-game .exercise-page .model,.mint-game .exercise-page .chain-ex{padding:12px 14px;margin:10px 0}.mint-game .exercise-page .model p{font-size:17px}.mint-game .exercise-page .wex-row{gap:12px}.mint-game .exercise-page .wex-fig{flex:0 1 280px}.mint-game .exercise-page .pic-pick{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.mint-game .exercise-page .pic-opt{padding:8px}.mint-game .exercise-page .bar-svg{max-height:135px}
+.mint-game .exercise-page .arow{margin-left:0;margin-top:12px}.mint-game .exercise-page .txt-opt{font-size:18px;padding:10px 12px}.mint-game .exercise-page .sent{margin-left:0;min-height:110px!important}.mint-game .exercise-hint{font-size:16px;line-height:1.45;margin:0 0 12px;color:#6e6252}.mint-game .exercise-page .role-label{margin:0 0 5px}
+.mint-game .block-actions{flex-shrink:0;margin:10px 0 0;border-top:1px solid #eee5d9;padding-top:10px;justify-content:space-between;gap:8px}.mint-game .garden-button{padding:9px 16px;font-size:15px;border-radius:13px}.mint-game .garden-button[hidden]{display:none!important}
+.mint-game .exercise-notice{font-size:13px;color:#8b532e;margin:0 0 8px}.mint-game .exercise-notice:empty{display:none}.mint-game .review-page h3{font-size:24px;margin:8px 0 12px}.mint-game .review-page>p{font-size:17px;line-height:1.6}.mint-game .final-attempt-note{font-size:14px;margin-top:18px}.mint-game .block-result{padding:14px;margin-top:16px}
+.mint-game .finish-panel{grid-column:2;grid-row:3;min-height:0;overflow:auto;margin:0;padding:14px;border-radius:20px;display:flex;flex-direction:column;align-self:stretch;overscroll-behavior:contain;gap:8px}.mint-game .finish-panel>h2{font-size:17px;margin:0;flex-shrink:0}.mint-game .finish-panel>p{display:none}.mint-game .tree-layout{display:block;margin:0;flex-shrink:0}.mint-game .tree-scene{border-radius:18px}.mint-game .tree-scene svg{max-height:clamp(120px,27vh,220px);width:100%}.mint-game .tree-count{font-size:14px;line-height:1.4;margin:8px 0}.mint-game .tree-stages{display:none}.mint-game .leaf-note{font-size:11px!important;margin:0!important;line-height:1.5}
+.mint-game .results-details{font-size:13px;min-height:0;overflow:auto}.mint-game .results-details summary{cursor:pointer;padding:7px 0;color:#70624e}.mint-game .finish-list{gap:5px;margin:4px 0}.mint-game .finish-row{font-size:11px;line-height:1.4;padding:7px}.mint-game .hw-bar{margin:auto 0 0;padding:10px;border-radius:14px;flex-shrink:0}.mint-game .hw-send{font-size:14px;padding:10px 9px;border-radius:12px;width:100%}.mint-game .hw-msg{font-size:11px;margin:6px 0}.mint-game .hw-pdf{font-size:11px;margin:0}
+@media(max-width:800px){body.mint-game{grid-template-columns:minmax(0,1fr) 190px;padding:8px;gap:8px}.mint-game .sheet-head{padding:9px 60px 9px 12px}.mint-game .sheet-head .eyebrow{display:none}.mint-game .sheet-head h1{font-size:22px}.mint-game #sheet>.section.active{padding:10px}.mint-game .finish-panel{padding:10px}.mint-game .block-tab{padding:6px;font-size:12px;gap:6px}.mint-game .block-nav{grid-template-columns:repeat(4,1fr)}.mint-game .step-badge{display:none}.mint-game .exercise-page .pic-pick{grid-template-columns:1fr}.mint-game .exercise-page .wex-fig{min-width:0}}
+@media(max-width:600px){body.mint-game{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr);gap:7px;padding:7px}.mint-game .sheet-head{grid-row:1;min-height:42px;padding:7px 55px 7px 12px}.mint-game .garden-pal{height:37px;width:37px}.mint-game .sheet-head h1{font-size:21px}.mint-game #sheet>.game-ui{grid-row:2}.mint-game .progress-head{font-size:11px}.mint-game .block-nav{gap:5px;margin-top:5px}.mint-game .block-tab{font-size:11px;padding:7px 5px;justify-content:center;text-align:center}.mint-game .finish-panel{grid-column:1;grid-row:3;max-height:160px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;padding:5px 10px;gap:6px;border-radius:15px}.mint-game .finish-panel>h2,.mint-game .results-details{display:none}.mint-game .tree-layout{display:grid;grid-template-columns:95px minmax(0,1fr);align-items:center;gap:10px}.mint-game .tree-scene svg{height:83px;max-height:83px}.mint-game .tree-count{font-size:13px;margin:0;max-width:180px}.mint-game .leaf-note{display:none}.mint-game .hw-bar{max-width:142px;padding:6px;margin:0;border:0;background:none}.mint-game .hw-msg{font-size:10px;max-height:34px;overflow:auto}.mint-game .hw-send{font-size:12px;padding:7px}.mint-game .hw-pdf{display:none}.mint-game #sheet>.section.active{grid-column:1;grid-row:4;padding:10px;min-height:0}.mint-game .sec-head .note{font-size:11px}.mint-game .subj{display:none}.mint-game .sec-head{margin-bottom:5px;padding-bottom:5px}.mint-game .exercise-position{font-size:12px;margin-bottom:5px}.mint-game .exercise-page .prompt,.mint-game .exercise-page .prompt-q,.mint-game .exercise-page .wsent{font-size:17px}.mint-game .exercise-page .q{padding:10px}.mint-game .exercise-page .lead{font-size:18px}.mint-game .exercise-page .txt-opt{font-size:16px}.mint-game .exercise-page .model p{font-size:15px}.mint-game .garden-button{padding:8px 10px;font-size:13px}.mint-game .block-actions{flex-wrap:nowrap}.mint-game .exercise-page .pic-pick{grid-template-columns:repeat(2,minmax(0,1fr))}.mint-game .exercise-page .pic-cap{font-size:10px}.mint-game .exercise-page .pic-opt{padding:3px}.mint-game .exercise-page .arow{gap:5px}.mint-game .exercise-page .bar-svg{max-height:100px}}
+@media print{body.mint-game{display:block;height:auto;overflow:visible}.mint-game #sheet{display:block}.mint-game .exercise-page,.mint-game .exercise-viewport{display:block!important;overflow:visible!important;height:auto!important}.game-ui{display:none!important}}
+.mint-game .finish-panel{overflow:hidden}.mint-game .results-details{flex:1;min-height:28px}
+.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .lead{font-size:16px;margin-bottom:4px}.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .small{font-size:12px;margin-bottom:4px}.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .role-label{font-size:10px}
+.mint-game .exercise-page .pic-opt .bar-svg{max-height:105px}.mint-game .exercise-page .pic-pick{margin:8px 0}.mint-game .exercise-page .pic-cap{font-size:11px}
+.mint-game .exercise-page .arow .cap2{font-size:16px}.mint-game .exercise-page .arow .hw-field.nb{height:38px;min-height:38px!important;font-size:18px}
+.mint-game .all-block-results{display:none}.mint-game .overview-mode>:not(.all-block-results){display:none!important}.mint-game .overview-mode>.all-block-results{display:block}.mint-game .all-block-results .finish-list{margin:16px 0}.mint-game .all-block-results .finish-row{font-size:15px;padding:10px}.mint-game .all-block-results>p{font-size:16px}
 </style>
 </head>
 <body data-student="Clara" data-sheet="Maths and English 2026-10-24" data-sheet-id="clara-2026-10-24-maths-and-english">
@@ -708,7 +732,7 @@ body.mint-game{background-color:#faf7f1;background-image:radial-gradient(#e8dfd3
         }
         doc.head.appendChild(copy);
       });
-      var sheet = doc.importNode(document.getElementById("sheet"), true);
+      var sheet = doc.importNode(document.getElementById("sheet"), true); sheet.querySelectorAll(".exercise-page:not(.game-ui), .exercise-viewport").forEach(function(node){node.replaceWith.apply(node,Array.from(node.childNodes));});
       sheet.querySelectorAll("script, .hw-bar, .save-bar, .game-ui").forEach(function (node) { node.remove(); });
       // Read current field properties, not HTML attributes or only the visible portion
       // of a textarea. Plain wrapping blocks preserve every line, including long words.
@@ -810,6 +834,11 @@ body.mint-game{background-color:#faf7f1;background-image:radial-gradient(#e8dfd3
           })); })
           .then(function () {
             frame.contentWindow.scrollTo(0, 0);
+            sheet.querySelectorAll(".task").forEach(function(task){
+              var question=task.nextElementSibling;if(!question || !question.matches(".q"))return;
+              var group=doc.createElement("div");task.parentNode.insertBefore(group,task);group.appendChild(task);group.appendChild(question);
+              if(group.getBoundingClientRect().height<920)group.classList.add("hw-pdf-keep");
+            });
             sheet.querySelectorAll(".section, .keep").forEach(function(section) {
               var children = Array.from(section.children), firstQuestion = children.findIndex(function(el){return el.matches(".q") || !!el.querySelector(".q");});
               if (firstQuestion < 1) return;
@@ -1072,7 +1101,9 @@ let current=Number.isInteger(saved.current)?Math.max(0,Math.min(3,saved.current)
 let done=Array.isArray(saved.done)?saved.done.slice(0,4):[];
 const key=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(document.getElementById('hw-check').textContent.trim()),c=>c.charCodeAt(0))));
 const value=el=>('value' in el?el.value:el.innerText).trim();
-const fields=i=>[...sections[i].querySelectorAll('[data-k]')];
+const fieldLists=sections.map(section=>[...section.querySelectorAll('[data-k]')]);
+const fields=i=>fieldLists[i];
+const decks=[], pageNumbers=Array.isArray(saved.pages)?saved.pages.slice(0,4):[0,0,0,0];
 const norm=s=>String(s||'').toLowerCase().replace(/[\s,]/g,'');
 const summary=i=>{let right=0,total=0,open=0;fields(i).forEach(el=>{const k=key[el.dataset.k];if(!k||k.t==='open'){open++;return}total++;if(value(el)&&(['e3','e4'].includes(el.dataset.k)?value(el).toLowerCase().replace(/\s+/g,' ')===k.a.toLowerCase().replace(/\s+/g,' '):norm(value(el))===norm(k.a)))right++});return {right,total,open}};
 const snapshot=i=>fields(i).map(el=>value(el));
@@ -1081,13 +1112,14 @@ const snapshot=i=>fields(i).map(el=>value(el));
 done=sections.map((s,i)=>done[i]&&Array.isArray(done[i].answers)&&done[i].answers.length===fields(i).length?done[i]:null);
 sections.forEach((section,i)=>{if(!done[i])return;fields(i).forEach((el,j)=>{if('value' in el)el.value=done[i].answers[j];else el.textContent=done[i].answers[j];el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));});done[i].score=summary(i)});
 let sending=false, sent=!!saved.sent&&done.every(Boolean);
-const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,sent}))}catch(e){}};
+const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,sent,pages:pageNumbers}))}catch(e){}};
 document.body.classList.add('mint-game');
 const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="4" value="0" aria-label="Completed blocks"></progress><nav class="block-nav" aria-label="Homework blocks"></nav><p class="save-note">Your work is saved on this device. Check carefully: a checked block cannot be changed.</p>';
 document.querySelector('.sheet-head').after(dashboard);
 const nav=dashboard.querySelector('nav');
 const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your tree is growing! 🌱</h2><p>Check all four blocks to unlock the final button. You can review any block before sending.</p><div class="tree-layout"><div class="tree-scene"></div><div class="tree-story"><div class="tree-count" aria-live="polite"></div><ol class="tree-stages"></ol><p class="leaf-note">One green leaf for each correct answer. Dasha will review your own writing separately.</p></div></div><div class="finish-list"></div>';
 document.getElementById('sheet').after(finish);
+const details=document.createElement('details');details.className='results-details';details.innerHTML='<summary>Results by block</summary>';details.append(finish.querySelector('.finish-list'));finish.append(details);
 const bar=document.querySelector('.hw-bar');finish.append(bar);
 const send=document.getElementById('hwSend');const nativeSend=window.hwSend;
 window.hwSend=function(){if(done.filter(Boolean).length!==4||sending||sent)return;sending=true;document.getElementById('sheet').inert=true;update();nativeSend()};
@@ -1127,26 +1159,82 @@ function update(){
  finish.querySelector('p').textContent=sent?'Your homework has been submitted. You can still explore the blocks and review your work.':count===4?'All four parts have grown! Send your answers and a marked copy to Dasha.':'Each completed block grows a new part of your tree. Each correct answer adds a green leaf.';
  save();
 }
-function show(i,scroll=true){current=i;sections.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',i===j?'false':'true')});update();if(scroll){sections[i].scrollIntoView({block:'start',behavior:'instant'});sections[i].querySelector('.sec-head').focus({preventScroll:true})}}
+function show(i,focus=true){current=i;sections.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',i===j?'false':'true')});showPage(i,pageNumbers[i]||0,focus);update()}
+function showPage(i,n,focus=true){
+ const deck=decks[i];if(!deck)return;
+ n=Math.max(0,Math.min(deck.pages.length-1,n));pageNumbers[i]=n;deck.review.classList.remove('overview-mode');
+ deck.pages.forEach((page,j)=>{page.classList.toggle('current-page',j===n);page.setAttribute('aria-hidden',j===n?'false':'true')});
+ deck.label.textContent=(n+1)+' / '+deck.pages.length+' · '+deck.pages[n].dataset.title;
+ deck.back.disabled=n===0;deck.check.hidden=n!==deck.pages.length-1;
+ deck.next.textContent=n<deck.pages.length-1?'Next →':i<3?'Next block →':'My results';
+ deck.viewport.scrollTop=0;
+ if(focus){deck.label.focus({preventScroll:true})}save();
+}
+function showOverview(i){
+ const deck=decks[i];showPage(i,deck.pages.length-1);
+ let overview=deck.review.querySelector('.all-block-results');
+ if(!overview){overview=document.createElement('div');overview.className='all-block-results';deck.review.append(overview)}
+ overview.innerHTML='<h3>Your results</h3><p>'+ (done.every(Boolean)?'All four blocks are finished. Your final send button is beside the tree.':'Finish the unchecked blocks before sending your work.')+'</p>';
+ overview.append(finish.querySelector('.finish-list').cloneNode(true));
+ const back=document.createElement('button');back.className='garden-button';back.textContent='Back to block check';back.onclick=()=>deck.review.classList.remove('overview-mode');overview.append(back);
+ deck.review.classList.add('overview-mode');
+}
+function paginate(section,i){
+ // Flatten layout-only wrappers, retaining every original question and field.
+ section.querySelectorAll('.keep:not(.task),.r-grid').forEach(el=>el.replaceWith(...el.childNodes));
+ section.querySelectorAll('.task').forEach(task=>{
+  const questions=[...task.querySelectorAll('.q')];if(questions.length){let after=task;questions.forEach(q=>{after.after(q);after=q});}
+  const label=task.querySelector(':scope > .role-label');
+  if(task.querySelector('.model')&&label){const tail=document.createElement('div');tail.className='task';let node=label;while(node){const next=node.nextSibling;tail.append(node);node=next}task.after(tail);}
+ });
+ const viewport=document.createElement('div');viewport.className='exercise-viewport';
+ const pages=[];let pending=[],hint='';
+ function add(nodes,title){const page=document.createElement('div');page.className='exercise-page';page.dataset.title=title;nodes.forEach(node=>page.append(node));pages.push(page);viewport.append(page);return page}
+ [...section.children].forEach(node=>{
+  if(node.matches('.sec-head,.store,.tp-stores'))return;
+  if(node.matches('.task')){
+   if(node.querySelector('.model,.chain-ex')){add([...pending,node],'Remember');pending=[];}
+   else{pending.push(node);hint=[...node.querySelectorAll('.lead,.small')].map(el=>{const copy=el.cloneNode(true);copy.querySelectorAll('.print-only').forEach(n=>n.remove());return copy.textContent}).join(' ').trim();}
+  }else if(node.matches('.q')){
+   const number=node.querySelector('.q-num')?.textContent||'';
+   const nodes=pending.length?[...pending,node]:[node];
+   const page=add(nodes,'Question '+number);
+   if(!pending.length&&hint){const help=document.createElement('p');help.className='game-ui exercise-hint';help.textContent=hint;page.prepend(help);}
+   pending=[];
+  }
+ });
+ if(pending.length)add(pending,'Instructions');
+ const review=add([],'Finish this block');review.classList.add('game-ui','review-page');
+ review.innerHTML='<h3>Ready to finish this block?</h3><p>You can use Back to check your answers first. Once you finish, they are saved and cannot be changed.</p>';
+ const position=document.createElement('div');position.className='game-ui exercise-position';
+ const label=document.createElement('span');label.tabIndex=-1;label.setAttribute('aria-live','polite');position.append(label);
+ const reminder=pages.findIndex(p=>p.dataset.title==='Remember');
+ if(reminder>=0){const help=document.createElement('button');help.type='button';help.className='reminder-button';help.textContent='Remember';help.onclick=()=>showPage(i,reminder);position.append(help);}
+ const notice=document.createElement('p');notice.className='game-ui exercise-notice';notice.setAttribute('role','status');
+ section.append(position,notice,viewport);
+ return {pages,viewport,label,review,notice};
+}
 sections.forEach((section,i)=>{
  const tab=document.createElement('button');tab.className='block-tab';tab.type='button';tab.innerHTML='<span class="step-badge"></span><span>'+titles[i]+'<small></small></span>';tab.onclick=()=>show(i);nav.append(tab);
  const heading=section.querySelector('.sec-head');heading.tabIndex=-1;
+ const deck=paginate(section,i);decks[i]=deck;
  const actions=document.createElement('div');actions.className='game-ui block-actions';
- const back=document.createElement('button');back.className='garden-button';back.textContent='← Back';back.disabled=i===0;back.onclick=()=>show(i-1);
+ const back=document.createElement('button');back.className='garden-button';back.textContent='← Back';back.onclick=()=>showPage(i,pageNumbers[i]-1);
  const check=document.createElement('button');check.className='garden-button primary';check.textContent='Finish & check block';
- const next=document.createElement('button');next.className='garden-button';next.textContent=i===3?'My results ↓':'Next block →';next.onclick=()=>i===3?finish.scrollIntoView({block:'start',behavior:'instant'}):show(i+1);
- actions.append(back,check,next);
+ const next=document.createElement('button');next.className='garden-button';next.onclick=()=>{if(pageNumbers[i]<deck.pages.length-1)showPage(i,pageNumbers[i]+1);else if(i<3)show(i+1);else {showOverview(i);}};
+ actions.append(back,check,next);Object.assign(deck,{back,check,next});
  const result=document.createElement('div');result.className='game-ui block-result';result.setAttribute('role','status');
- const caution=document.createElement('p');caution.className='game-ui final-attempt-note';caution.textContent='Ready? Check your answers first. Once you finish this block, your answers are final.';section.append(caution,actions,result);
+ const caution=document.createElement('p');caution.className='game-ui final-attempt-note';caution.textContent='Ready? Check your answers first. Once you finish this block, your answers are final.';deck.review.append(caution,result);section.append(actions);
  ['click','pointerdown','keydown'].forEach(type=>section.addEventListener(type,event=>{if(done[i]&&!event.target.closest('.game-ui')&&event.target.closest('button,input,select,textarea,[data-k],.tp-zone')){event.preventDefault();event.stopImmediatePropagation()}},true));
- function report(){const a=done[i].score;result.replaceChildren();const title=document.createElement('strong');title.textContent='Block checked — well done for trying!';const score=document.createElement('p');score.textContent=a.right+' of '+a.total+' answer checks correct. '+(a.right<a.total?'Look at the corrections beside your answers. We’ll talk about them in the lesson.':'Lovely work!');result.append(title,score);if(a.open){const note=document.createElement('p');note.textContent='Your own writing and method choices: feedback from Dasha in the lesson.';result.append(note)}check.textContent='Block finished ✓';check.disabled=true;caution.textContent='Answers saved. You can look back at this block, but you cannot change it.';}
+ function report(){const a=done[i].score;result.replaceChildren();const title=document.createElement('strong');title.textContent='Block checked — well done for trying!';const score=document.createElement('p');score.textContent=a.right+' of '+a.total+' answer checks correct. '+(a.right<a.total?'Look at the corrections beside your answers. We’ll talk about them in the lesson.':'Lovely work!');result.append(title,score);if(a.open){const note=document.createElement('p');note.textContent='Your own writing and method choices: feedback from Dasha in the lesson.';result.append(note)}deck.review.querySelector('h3').textContent='Block finished!';deck.review.querySelector('p').textContent='Your first attempt is saved. Use Back to look at your answers and the corrections.';check.textContent='Block finished ✓';check.disabled=true;caution.textContent='Answers saved. You can look back at this block, but you cannot change it.';}
  check.onclick=()=>{
  if(done[i])return;
  const missing=fields(i).filter(el=>!value(el));
- if(missing.length){result.textContent='There '+(missing.length===1?'is 1 answer':'are '+missing.length+' answers')+' still to try in this block. Fill them in, then check again.';const el=missing[0],twin=section.querySelector('[data-field="'+el.dataset.k+'"]');const target=twin||el;target.scrollIntoView({block:'center',behavior:'instant'});if(target.matches('input,select,textarea,[contenteditable]'))target.focus({preventScroll:true});return}
- done[i]={answers:snapshot(i),score:summary(i)};window.hwShowChecks(section);lockBlock(section);report();update();result.scrollIntoView({block:'center',behavior:'instant'});
+ if(missing.length){result.textContent='There '+(missing.length===1?'is 1 answer':'are '+missing.length+' answers')+' still to try in this block. Fill them in, then check again.';const el=missing[0],twin=section.querySelector('[data-field="'+el.dataset.k+'"]');const target=twin||el;deck.notice.textContent=result.textContent;const page=target.closest('.exercise-page');if(page)showPage(i,deck.pages.indexOf(page),false);target.scrollIntoView({block:'nearest',behavior:'instant'});if(target.matches('input,select,textarea,[contenteditable]'))target.focus({preventScroll:true});return}
+ done[i]={answers:snapshot(i),score:summary(i)};window.hwShowChecks(section);lockBlock(section);report();deck.notice.textContent='';update();showPage(i,deck.pages.length-1,false);
  };
  if(done[i]){window.hwShowChecks(section);lockBlock(section);report()}
+ showPage(i,pageNumbers[i]||0,false);
 });
 show(current,false);if(sent)document.getElementById('hwMsg').textContent='Your final answers have been submitted to Dasha. You can still look back at your work.';
 })();

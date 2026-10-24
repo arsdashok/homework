@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evie · Maths homework · 24 October 2026</title>
+<style>
+@page {size:A4; margin:11mm 11mm;}
+* {box-sizing:border-box;}
+html {-webkit-text-size-adjust:100%;}
+body {font-family:'Segoe UI',Arial,sans-serif; color:#252333; margin:0; font-size:18px; background:#fbfaff;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+.wrap {max-width:1180px; margin:0 auto; padding:0 28px 48px;}
+header {background:linear-gradient(135deg,#6c63ff,#a78bfa); color:#fff; border-radius:18px; padding:18px 30px; margin:26px 0 36px;}
+h1 {font-size:25px; margin:0 0 4px;}
+.meta {font-size:15px; opacity:.95;}
+section {margin:0 0 48px;}
+.lbl {font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#6d4fc2; margin:0 0 8px;}
+.instr {font-size:32px; font-weight:800; color:#1f1b2e; line-height:1.25; margin:0 0 8px; text-wrap:balance;}
+.note {font-size:17px; color:#6b6280; margin:0 0 26px;}
+.note.pr {display:none;}
+
+/* one card per number */
+.card {background:#fff; border:2px solid #e6e0fa; border-radius:22px; padding:28px 34px 30px; margin:0 0 34px;
+  transition:border-color .15s, box-shadow .15s;}
+.card.current {border-color:#a78bfa; box-shadow:0 10px 30px rgba(108,99,255,.13);}
+.card.model {background:#f7f5ff; border-color:#d9cff7;}
+.mtag {display:inline-block; margin:0 0 14px; padding:5px 14px; border-radius:999px; background:#6c63ff; color:#fff;
+  font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;}
+.ctitle {font-size:22px; margin:0 0 20px; color:#3f3752;}
+.big {font-size:31px; font-weight:800; color:#5b32b5; letter-spacing:.01em;}
+.cbody {display:grid; grid-template-columns:minmax(0,1fr) 500px; gap:40px;}
+.side .linebox {position:sticky; top:24px;}
+svg.nl {display:block; width:100%; height:auto;}
+.store {display:none;}
+
+/* steps */
+.steps {display:flex; flex-direction:column; gap:10px;}
+.step {border:3px solid transparent; border-radius:16px; padding:12px 16px 15px; transition:background .15s, border-color .15s;}
+.step.now {border-color:#f59e0b; background:#fffbeb;}
+.shead {display:flex; align-items:center; gap:14px; margin:0 0 12px;}
+.badge {flex:0 0 36px; width:36px; height:36px; border-radius:50%; border:2px solid #c9bdf0; background:#fff; color:#5b32b5;
+  display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700;}
+.step.got .badge {background:#6c63ff; border-color:#6c63ff; color:#fff;}
+.sq {font-size:20px; line-height:1.35;}
+.nowtag {display:none; margin-left:auto; flex:0 0 auto; padding:3px 13px; border-radius:999px; background:#f59e0b; color:#fff;
+  font-size:15px; font-weight:700; letter-spacing:.03em;}
+.step.now .nowtag {display:inline-block;}
+.how {margin:10px 0 0 50px; font-size:16px; color:#6b6280; line-height:1.4;}
+.hl {color:#6c63ff; font-weight:800;}
+
+/* answer buttons: every answer on this sheet is a choice */
+.opts {display:flex; flex-wrap:wrap; align-items:center; gap:14px; padding-left:50px;}
+.opt {font:inherit; font-size:22px; font-weight:700; color:#3f3752; background:#fff; border:2px solid #c9bdf0; border-radius:14px;
+  padding:12px 20px; min-width:124px; min-height:58px; line-height:1.2; text-align:center; cursor:pointer;
+  display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+  transition:background .12s, border-color .12s, box-shadow .12s;}
+span.opt {cursor:default;}
+.opt.dg {min-width:66px; font-size:26px; padding:8px 0;}
+.opt.two {min-width:200px; font-size:19px; padding:9px 18px;}
+.opt.two small {font-size:16px; font-weight:600; opacity:.85; margin-top:2px;}
+button.opt:hover {background:#f3f0ff; border-color:#a78bfa;}
+button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
+.opts .opt.on {background:#6c63ff; border-color:#6c63ff; color:#fff; box-shadow:0 0 0 4px #ddd6fe;}
+.opts > .hw-mark.hw-mark-blk {font-size:19px; margin:2px 0 0;}
+
+/* Evie's digit-count pairs */
+.pair .psteps {display:flex; flex-direction:column; gap:8px;}
+.pair .step {display:flex; flex-wrap:wrap; align-items:center; column-gap:28px; row-gap:10px;}
+.pair .shead {flex:0 1 450px; margin:0;}
+.pair .opts {flex:0 1 auto; padding-left:0;}
+.pair .opts > .hw-mark.hw-mark-blk {display:inline-block; flex:0 0 auto; width:auto; margin:0 0 0 4px; white-space:nowrap;}
+.instr + .note.pr + .card {margin-top:24px;}
+.pn {font-size:26px; font-weight:800; color:#5b32b5; white-space:nowrap;}
+
+@media (max-width:900px) {
+  .cbody {grid-template-columns:minmax(0,1fr); gap:14px;}
+  .side {order:-1;}
+  .side .linebox {position:sticky; top:0; z-index:2; background:#fff; padding:6px 0 8px; box-shadow:0 10px 10px -10px rgba(40,30,80,.25);}
+  .card.model .side .linebox {background:#f7f5ff;}
+  svg.nl {max-width:480px; margin:0 auto;}
+  .pair .shead {flex-basis:100%;}
+  .pair .opts {padding-left:50px;}
+}
+@media (max-width:600px) {
+  body {font-size:17px;}
+  .wrap {padding:0 12px 40px;}
+  header {padding:14px 18px; margin:14px 0 26px; border-radius:14px;}
+  h1 {font-size:22px;}
+  .instr {font-size:25px;}
+  .card {padding:18px 14px 20px; border-radius:18px;}
+  .ctitle {font-size:19px;}
+  .big {font-size:27px;}
+  .step {padding:10px 8px 12px;}
+  .sq {font-size:18px;}
+  .badge {flex-basis:32px; width:32px; height:32px; font-size:15px;}
+  .opts {padding-left:0; gap:10px;}
+  .opt {font-size:19px; min-width:0; padding:10px 12px; min-height:52px;}
+  .opt.dg {min-width:58px; font-size:24px;}
+  .opt.two {min-width:0; flex:1 1 140px; font-size:16px; padding:8px 10px;}
+  .opt.two small {font-size:14px;}
+  .how {margin-left:0;}
+  .pn {font-size:23px;}
+  .pair .opts {padding-left:0;}
+}
+
+@media print {
+
+body {font-size:13px; background:#fff;}
+.wrap {max-width:none; padding:0;}
+header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+h1 {font-size:19px; margin:0;}
+.meta {font-size:11.5px;}
+section {margin:0 0 14px;}
+.lbl {font-size:10.5px; margin:0 0 3px;}
+.instr {font-size:19px; margin:0 0 3px;}
+.note {font-size:12px; margin:0 0 10px;}
+.note.scr {display:none;}
+.note.pr {display:block;}
+.card {padding:11px 16px 13px; margin:0 0 12px; border-width:1.5px; border-radius:12px; box-shadow:none; break-inside:avoid; page-break-inside:avoid;}
+.card.current {border-color:#e6e0fa; box-shadow:none;}
+.card.model {border-color:#d9cff7;}
+.mtag {font-size:10px; padding:2px 9px; margin:0 0 6px;}
+.ctitle {font-size:14px; margin:0 0 7px;}
+.big {font-size:19px;}
+.cbody {grid-template-columns:minmax(0,1fr) 320px; gap:14px;}
+.lead {break-inside:avoid; page-break-inside:avoid;}
+.side {order:0;}
+.side .linebox {position:static; box-shadow:none; padding:4px 0 0; background:none;}
+.steps {gap:3px;}
+.step, .step.now {padding:3px 4px 5px; border:0; background:none;}
+.shead {gap:8px; margin:0 0 4px;}
+.badge {flex-basis:21px; width:21px; height:21px; font-size:11.5px; border-width:1.5px;}
+.sq {font-size:13px;}
+.nowtag {display:none !important;}
+.how {font-size:11px; margin:3px 0 0 29px;}
+.opts {gap:7px; padding-left:29px;}
+.opt {font-size:14px; padding:3px 10px; min-width:70px; min-height:0; border-width:1.5px; border-radius:8px; box-shadow:none;}
+.opts .opt.on {box-shadow:none;}
+.opt.dg {min-width:32px; font-size:15px; padding:2px 0;}
+.opt.two {min-width:0; flex:0 0 auto; font-size:12px; padding:3px 9px;}
+.opt.two small {font-size:10.5px; margin-top:0;}
+.pair .psteps {gap:2px;}
+.pair .step {column-gap:16px; row-gap:4px;}
+.pair .shead {flex:0 1 290px;}
+.instr + .note.pr + .card {margin-top:0;}
+.pair .opts {padding-left:0;}
+.pn {font-size:15px;}
+
+  .nl .dotg {display:inline;}
+  .nl .slot.empty {display:none;}
+}
+
+body.hw-pdf-mode body {font-size:13px; background:#fff;}
+body.hw-pdf-mode .wrap {max-width:none; padding:0;}
+body.hw-pdf-mode header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+body.hw-pdf-mode h1 {font-size:19px; margin:0;}
+body.hw-pdf-mode .meta {font-size:11.5px;}
+body.hw-pdf-mode section {margin:0 0 14px;}
+body.hw-pdf-mode .lbl {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .instr {font-size:19px; margin:0 0 3px;}
+body.hw-pdf-mode .note {font-size:12px; margin:0 0 10px;}
+body.hw-pdf-mode .note.scr {display:none;}
+body.hw-pdf-mode .note.pr {display:block;}
+body.hw-pdf-mode .card {padding:11px 16px 13px; margin:0 0 12px; border-width:1.5px; border-radius:12px; box-shadow:none; break-inside:avoid; page-break-inside:avoid;}
+body.hw-pdf-mode .card.current {border-color:#e6e0fa; box-shadow:none;}
+body.hw-pdf-mode .card.model {border-color:#d9cff7;}
+body.hw-pdf-mode .mtag {font-size:10px; padding:2px 9px; margin:0 0 6px;}
+body.hw-pdf-mode .ctitle {font-size:14px; margin:0 0 7px;}
+body.hw-pdf-mode .big {font-size:19px;}
+body.hw-pdf-mode .cbody {grid-template-columns:minmax(0,1fr) 320px; gap:14px;}
+body.hw-pdf-mode .lead {break-inside:avoid; page-break-inside:avoid;}
+body.hw-pdf-mode .side {order:0;}
+body.hw-pdf-mode .side .linebox {position:static; box-shadow:none; padding:4px 0 0; background:none;}
+body.hw-pdf-mode .steps {gap:3px;}
+body.hw-pdf-mode .step, body.hw-pdf-mode .step.now {padding:3px 4px 5px; border:0; background:none;}
+body.hw-pdf-mode .shead {gap:8px; margin:0 0 4px;}
+body.hw-pdf-mode .badge {flex-basis:21px; width:21px; height:21px; font-size:11.5px; border-width:1.5px;}
+body.hw-pdf-mode .sq {font-size:13px;}
+body.hw-pdf-mode .nowtag {display:none !important;}
+body.hw-pdf-mode .how {font-size:11px; margin:3px 0 0 29px;}
+body.hw-pdf-mode .opts {gap:7px; padding-left:29px;}
+body.hw-pdf-mode .opt {font-size:14px; padding:3px 10px; min-width:70px; min-height:0; border-width:1.5px; border-radius:8px; box-shadow:none;}
+body.hw-pdf-mode .opts .opt.on {box-shadow:none;}
+body.hw-pdf-mode .opt.dg {min-width:32px; font-size:15px; padding:2px 0;}
+body.hw-pdf-mode .opt.two {min-width:0; flex:0 0 auto; font-size:12px; padding:3px 9px;}
+body.hw-pdf-mode .opt.two small {font-size:10.5px; margin-top:0;}
+body.hw-pdf-mode .pair .psteps {gap:2px;}
+body.hw-pdf-mode .pair .step {column-gap:16px; row-gap:4px;}
+body.hw-pdf-mode .pair .shead {flex:0 1 290px;}
+body.hw-pdf-mode .instr + .note.pr + .card {margin-top:0;}
+body.hw-pdf-mode .pair .opts {padding-left:0;}
+body.hw-pdf-mode .pn {font-size:15px;}
+
+
+
+/* Megan v2: estimate steps, then a real column layout to type into */
+.mcbody {display:grid; grid-template-columns:minmax(0,1fr) 520px; grid-template-areas:"a f" "a b"; column-gap:40px; row-gap:10px; align-items:start;}
+.mcbody > .stA {grid-area:a;}
+.mcbody > .colstep {grid-area:f;}
+.mcbody > .stB {grid-area:b;}
+.colframe {background:#fff; border:2px solid #e6e0fa; border-radius:16px; padding:16px 14px 18px; margin:0 0 0 50px;}
+.card.model .colframe {background:#fbfaff;}
+.estline {font-size:20px; color:#3f3752; margin:0 0 14px; display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.estline .elbl {font-weight:700; color:#6d4fc2; flex:0 0 100%;}
+.eslot {display:inline-flex; align-items:center; justify-content:center; min-width:104px; height:42px; padding:0 10px;
+  border:2px dashed #c9bdf0; border-radius:10px; background:#faf9ff; font-weight:800; color:#5b32b5; font-size:21px;}
+.eslot.full {border-style:solid; border-color:#a78bfa; background:#f3f0ff;}
+table.cols {border-collapse:collapse; margin:0 auto; font-variant-numeric:tabular-nums;}
+table.cols td {width:50px; height:54px; padding:3px; text-align:center; vertical-align:middle; font-size:30px; font-weight:700; color:#252333;}
+table.cols td.cm {width:14px; padding:0;}
+table.cols td.sg {width:34px; color:#6b6280;}
+table.cols tr.car td {height:40px; padding:2px 4px;}
+table.cols tr.bot td {border-bottom:3px solid #374151;}
+table.cols tr.ans td {padding-top:9px;}
+table.cols tr.ans td.cm {color:#9ca3af;}
+input.dig, .pd, .mdig {box-sizing:border-box; display:flex; align-items:center; justify-content:center; width:100%; height:48px; margin:0;
+  font:inherit; font-size:28px; font-weight:700; text-align:center; color:#1d4ed8; background:#f6f5ff;
+  border:2px solid #8072b2; border-radius:8px; padding:0; outline:none;}
+input.dig {display:block;}
+input.dig:focus {background:#fff; box-shadow:0 0 0 3px #fbbf24;}
+input.dig.car, .pd.car, .mdig.car {height:34px; font-size:19px; background:#fffbeb; border:2px dashed #f59e0b; border-radius:7px;}
+input.dig.car:focus {background:#fff;}
+.mdig {color:#5b32b5;}
+.mdig.car {color:#ea580c;}
+.mdig.car:not(.full) {background:#fff;}
+.pd {display:none;}
+.ansmark {min-height:1px; text-align:center;}
+.colframe .ansmark .hw-mark.hw-mark-blk {text-align:center; font-size:19px; margin:8px 0 0;}
+@media (max-width:900px) {
+  .mcbody {grid-template-columns:minmax(0,1fr); grid-template-areas:"a" "f" "b";}
+  .colframe {margin-left:0;}
+}
+@media (max-width:600px) {
+  .colframe {padding:12px 6px 14px;}
+  .estline {font-size:16px; gap:6px;}
+  .eslot {min-width:0; padding:0 7px; font-size:16px; height:36px;}
+  table.cols td {width:40px; height:46px; padding:2px; font-size:24px;}
+  table.cols td.cm {width:9px;}
+  table.cols td.sg {width:20px;}
+  table.cols tr.car td {height:36px; padding:2px 3px;}
+  input.dig, .pd, .mdig {height:42px; font-size:23px;}
+  input.dig.car, .pd.car, .mdig.car {height:32px; font-size:17px;}
+}
+@media print {
+  .mcbody {grid-template-columns:minmax(0,1fr) 300px; grid-template-areas:"a f" "a b"; column-gap:14px; row-gap:3px;}
+  .colframe {padding:6px 8px 8px; margin:0; border-width:1.5px; border-radius:10px;}
+  .estline {font-size:12.5px; margin:0 0 4px; gap:4px;}
+  .eslot {min-width:62px; height:24px; font-size:13px; border-width:1.5px; border-radius:6px;}
+  table.cols td {width:28px; height:28px; padding:1px; font-size:16px;}
+  table.cols td.cm {width:8px;}
+  table.cols td.sg {width:18px;}
+  table.cols tr.car td {height:20px; padding:1px 4px;}
+  table.cols tr.bot td {border-bottom-width:2px;}
+  table.cols tr.ans td {padding-top:4px;}
+  input.dig, .pd, .mdig {height:24px; font-size:15px; border-width:1.5px; border-radius:5px;}
+  input.dig.car, .pd.car, .mdig.car {height:17px; font-size:11px; border-width:1.2px; border-radius:4px;}
+  input.dig:focus {box-shadow:none;}
+}
+body.hw-pdf-mode .mcbody {grid-template-columns:minmax(0,1fr) 300px; grid-template-areas:"a f" "a b"; column-gap:14px; row-gap:3px;}
+body.hw-pdf-mode .colframe {padding:6px 8px 8px; margin:0; border-width:1.5px; border-radius:10px;}
+body.hw-pdf-mode .estline {font-size:12.5px; margin:0 0 4px; gap:4px;}
+body.hw-pdf-mode .eslot {min-width:62px; height:24px; font-size:13px; border-width:1.5px; border-radius:6px;}
+body.hw-pdf-mode table.cols td {width:28px; height:28px; padding:1px; font-size:16px;}
+body.hw-pdf-mode table.cols td.cm {width:8px;}
+body.hw-pdf-mode table.cols td.sg {width:18px;}
+body.hw-pdf-mode table.cols tr.car td {height:20px; padding:1px 4px;}
+body.hw-pdf-mode table.cols tr.bot td {border-bottom-width:2px;}
+body.hw-pdf-mode table.cols tr.ans td {padding-top:4px;}
+body.hw-pdf-mode input.dig {display:none !important;}
+body.hw-pdf-mode .pd {display:flex !important;}
+body.hw-pdf-mode .pd, body.hw-pdf-mode .mdig {height:24px; font-size:15px; border-width:1.5px; border-radius:5px;}
+body.hw-pdf-mode .pd.car, body.hw-pdf-mode .mdig.car {height:17px; font-size:11px; border-width:1.2px; border-radius:4px;}
+body.hw-pdf-mode .colframe .ansmark .hw-mark.hw-mark-blk {font-size:14px; margin:4px 0 0;}
+body.hw-pdf-mode .opts > .hw-mark.hw-mark-blk {font-size:14px; margin:2px 0 0;}
+body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, not a paper instruction */
+
+/* 17 Oct additions */
+.opt.two small {display:block;}
+.rgrid {display:grid; grid-template-columns:1fr 1fr; gap:0 30px;}
+.rgrid .card {margin-bottom:30px;}
+table.cols td s {text-decoration-thickness:2px; color:#6b6280;}
+table.cols tr.car td {width:50px;}
+.howc {margin:12px 0 0; text-align:left;}
+.rows .steps {gap:6px;}
+.step.rowq {display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; column-gap:24px; row-gap:10px;}
+.step.rowq .shead {margin:0; flex:0 0 auto;}
+.step.rowq .opts {padding-left:0;}
+.step.rowq .pn {white-space:nowrap;}
+.gapbox {display:inline-block; width:44px; height:40px; vertical-align:middle; border:2px dashed #a78bfa; border-radius:8px; background:#faf9ff;}
+@media (max-width:900px) { .rgrid {grid-template-columns:1fr;} }
+@media (max-width:620px) { .step.rowq .opts {padding-left:46px;} .step.rowq .pn {white-space:normal;} }
+@media print {
+  .rgrid {grid-template-columns:1fr 1fr; gap:0 12px;}
+  .rgrid .card {margin-bottom:10px;}
+  .howc {margin:4px 0 0;}
+  .rows .steps {display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:2px;}
+  .gapbox {width:26px; height:20px; border-width:1.5px;}
+  .step.rowq {justify-content:flex-start;}
+  section.q, .card {break-inside:avoid; page-break-inside:avoid;}
+  .step {break-inside:avoid; page-break-inside:avoid;}
+}
+body.hw-pdf-mode .rgrid {grid-template-columns:1fr 1fr; gap:0 12px;}
+body.hw-pdf-mode .rgrid .card {margin-bottom:10px;}
+body.hw-pdf-mode .howc {margin:4px 0 0;}
+body.hw-pdf-mode .rows .steps {display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:2px;}
+body.hw-pdf-mode .gapbox {width:26px; height:20px; border-width:1.5px;}
+body.hw-pdf-mode .step.rowq {justify-content:flex-start;}
+.q, .problem, .exercise {page-break-inside:avoid; break-inside:avoid;}
+
+.famex {display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:0 0 14px; padding:12px 16px; font-size:21px; color:#3f3752; background:#f7f5ff; border:2px solid #e3dcfa; border-radius:16px;}
+.famex .mtag {margin:0;}
+@media (max-width:600px) { .famex {font-size:18px;} }
+@media print { .famex {font-size:13px; padding:4px 9px; margin:0 0 4px; border-width:1.5px; border-radius:10px;} }
+body.hw-pdf-mode .famex {font-size:13px; padding:4px 9px; margin:0 0 4px; border-width:1.5px; border-radius:10px;}
+
+/* number families: ALWAYS the part-whole picture (Dasha, 17 Oct 2026) */
+.pwtiles {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px 18px;}
+.step.pwq {display:flex; flex-direction:column; align-items:center; text-align:center; padding:14px 10px 16px;}
+.step.pwq .shead {margin:0 0 8px; align-self:stretch; justify-content:center;}
+.step.pwq .opts {padding-left:0; justify-content:center;}
+.step.pwq .opt.dg {min-width:66px;}
+svg.pw {display:block; width:170px; max-width:100%; height:auto; margin:0 0 12px;}
+svg.pwmini {display:block; width:112px; height:auto;}
+.opt.pwopt {padding:6px 10px; min-width:0;}
+.opts .opt.pwopt.on {background:#ede9fe; border-color:#6c63ff; color:#252333; box-shadow:0 0 0 4px #c4b5fd;}
+.famex svg.pw {width:116px; margin:0;}
+.famex .facts {display:grid; grid-template-columns:auto auto; gap:4px 28px;}
+.gapbox {display:inline-flex; align-items:center; justify-content:center; width:46px; height:40px; vertical-align:middle;
+  border:2px dashed #a78bfa; border-radius:8px; background:#faf9ff; color:#1d4ed8; font-size:24px; font-weight:800;}
+.gapbox.full {border-style:solid;}
+.pwrows {margin-top:18px;}
+@media (max-width:900px) { .pwtiles {grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (max-width:600px) {
+  .pwtiles {gap:8px;}
+  .step.pwq {padding:10px 2px 12px;}
+  .step.pwq .shead {gap:6px;}
+  .step.pwq .badge {flex-basis:26px; width:26px; height:26px; font-size:13px;}
+  .step.pwq .pn {font-size:18px;}
+  .step.pwq .gapbox {width:32px; height:30px; font-size:18px;}
+  svg.pw {width:128px;}
+  .step.pwq .opts {gap:5px; flex-wrap:nowrap;}
+  .step.pwq .opt.dg {min-width:42px; min-height:44px; font-size:20px; padding:6px 0;}
+  .famex svg.pw {width:100px;}
+  .famex .facts {gap:2px 18px;}
+  svg.pwmini {width:78px;}
+  .opt.pwopt {padding:4px 5px;}
+}
+@media print {
+  .pwtiles {grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px 10px;}
+  .step.pwq {padding:3px 4px 5px;}
+  .step.pwq .shead {margin:0 0 3px;}
+  svg.pw {width:92px; margin:0 0 4px;}
+  .step.pwq .opt.dg {min-width:32px;}
+  svg.pwmini {width:66px;}
+  .opt.pwopt {padding:2px 5px;}
+  .famex svg.pw {width:66px;}
+  .famex .facts {gap:0 14px;}
+  .gapbox {width:26px; height:20px; border-width:1.5px; font-size:14px;}
+  .pwrows {margin-top:4px;}
+}
+body.hw-pdf-mode .pwtiles {grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px 10px;}
+body.hw-pdf-mode .step.pwq {padding:3px 4px 5px;}
+body.hw-pdf-mode .step.pwq .shead {margin:0 0 3px;}
+body.hw-pdf-mode svg.pw {width:92px; margin:0 0 4px;}
+body.hw-pdf-mode .step.pwq .opt.dg {min-width:32px;}
+body.hw-pdf-mode svg.pwmini {width:66px;}
+body.hw-pdf-mode .opt.pwopt {padding:2px 5px;}
+body.hw-pdf-mode .famex svg.pw {width:66px;}
+body.hw-pdf-mode .famex .facts {gap:0 14px;}
+body.hw-pdf-mode .gapbox {width:26px; height:20px; border-width:1.5px; font-size:14px;}
+body.hw-pdf-mode .pwrows {margin-top:4px;}
+
+/* typed answers: Megan writes her own rounding, estimate and add-one answers (Dasha, 17 Oct 2026) */
+.tin {padding-left:50px;}
+input.hw-field.tnum {width:210px; min-height:54px; font-size:24px; font-weight:700; border-radius:12px !important; letter-spacing:.02em;}
+input.hw-field.tnum::placeholder {font-size:16px; font-weight:400; color:#a09bb8; letter-spacing:0;}
+.step.rowq input.hw-field.tnum {width:190px;}
+.mfield {display:inline-flex; align-items:center; justify-content:center; width:210px; height:54px; border:2px solid #8072b2; border-radius:12px;
+  background:#f6f5ff; color:#1d4ed8; font-size:24px; font-weight:700;}
+@media (max-width:600px) { .tin {padding-left:0;} input.hw-field.tnum, .mfield {width:170px;} .step.rowq input.hw-field.tnum {width:150px;} }
+@media print {
+  .tin {padding-left:29px;}
+  input.hw-field.tnum, .mfield, .step.rowq input.hw-field.tnum {width:110px; min-height:0; height:24px; font-size:14px; border-width:1.5px !important; border-radius:6px !important;}
+  input.hw-field.tnum::placeholder {color:transparent;}
+}
+body.hw-pdf-mode .tin {padding-left:29px;}
+body.hw-pdf-mode .mfield {width:110px; height:24px; font-size:14px; border-width:1.5px; border-radius:6px;}
+body.hw-pdf-mode .hw-pdf-answer.tnum {width:auto !important; min-width:110px !important; font-size:15px !important; text-align:center;}
+
+/* the place we round to sits next to every number (Dasha, 17 Oct 2026) */
+.ctitle .tgt {font-size:22px; font-weight:600; color:#6d4fc2; white-space:nowrap;}
+@media (max-width:600px) { .ctitle .tgt {font-size:18px;} }
+@media print { .ctitle .tgt {font-size:13px;} }
+body.hw-pdf-mode .ctitle .tgt {font-size:13px;}
+
+/* Evie 24 Oct: tap a digit inside the number */
+.opts.numtap {gap:8px;}
+.numtap .sep {font-size:30px; font-weight:800; color:#6b6280; align-self:flex-end; margin:0 -2px 6px;}
+.quote {font-size:21px; line-height:1.4; color:#3f3752; background:#f7f5ff; border-left:4px solid #a78bfa; border-radius:10px; padding:12px 18px; margin:0 0 18px;}
+.quote b {color:#5b32b5;}
+.card.wide {max-width:820px;}
+@media (max-width:600px) { .opts.numtap {gap:5px;} .numtap .opt.dg {min-width:44px;} .numtap .sep {font-size:24px;} .quote {font-size:18px;} }
+@media print {
+  .opts.numtap {gap:4px;}
+  .numtap .sep {font-size:15px; margin:0 0 1px;}
+  .quote {font-size:13px; padding:4px 10px; margin:0 0 5px; border-left-width:3px;}
+  .card.wide {max-width:none;}
+}
+body.hw-pdf-mode .opts.numtap {gap:4px;}
+body.hw-pdf-mode .numtap .sep {font-size:15px; margin:0 0 1px;}
+body.hw-pdf-mode .quote {font-size:13px; padding:4px 10px; margin:0 0 5px; border-left-width:3px;}
+body.hw-pdf-mode .card.wide {max-width:none;}
+/* a column that changed twice: the first new number crossed out above the box */
+.was {display:block; font-size:15px; font-weight:700; line-height:1; color:#9a8fb5; margin:0 0 3px;}
+.was s {text-decoration-thickness:2px;}
+@media print { .was {font-size:11.5px; margin:0 0 1px;} }
+body.hw-pdf-mode .was {font-size:11.5px; margin:0 0 1px;}
+/* on a laptop: one rounding card per row, steps 1-2 down the left, 3-4 down the right */
+@media screen { .rgrid {grid-template-columns:minmax(0,1fr);} }
+@media screen and (min-width:601px) { .opts.numtap {gap:6px;} .numtap .opt.dg {min-width:58px;} }
+@media screen and (min-width:900px) { .rcard .steps {display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:auto auto; grid-auto-flow:column; column-gap:36px; row-gap:10px; align-items:start;} }
+body.hw-pdf-mode .rcard .steps {display:flex; flex-direction:column; gap:3px;}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Evie" data-sheet="Maths 2026-10-24" data-sheet-id="evie-2026-10-24-maths">
+<div id="sheet">
+
+<div class="wrap">
+<header><h1>Evie · Maths</h1><div class="meta">24 October 2026 · Round to the nearest 1,000, subtract across&nbsp;zeros</div></header>
+<section class="lead q"><p class="lbl">1 · Round to the nearest 1,000</p><p class="instr">Round each number to the nearest&nbsp;1,000.</p><p class="note scr">Tap one answer at each step. Look at the next digit&nbsp;along.</p><p class="note pr">Circle one answer at each step. Look at the next digit&nbsp;along.</p><div class="card model rcard"><p class="mtag">Like this</p><p class="ctitle"><span class="big">471,862</span> <span class="tgt">to the nearest&nbsp;1,000</span></p><div class="steps"><div class="step got"><div class="shead"><span class="badge">1</span><span class="sq">Tap the thousands&nbsp;digit.</span><span class="nowtag">Now</span></div><div class="opts numtap"><span class="opt dg">4</span><span class="opt dg">7</span><span class="opt dg on">1</span><span class="sep" aria-hidden="true">,</span><span class="opt dg">8</span><span class="opt dg">6</span><span class="opt dg">2</span></div><p class="how">Nearest 1,000: find the <span class="hl">thousands</span> digit&nbsp;first.</p></div><div class="step got"><div class="shead"><span class="badge">2</span><span class="sq">Tap the digit that&nbsp;decides.</span><span class="nowtag">Now</span></div><div class="opts numtap"><span class="opt dg">4</span><span class="opt dg">7</span><span class="opt dg">1</span><span class="sep" aria-hidden="true">,</span><span class="opt dg on">8</span><span class="opt dg">6</span><span class="opt dg">2</span></div><p class="how">Look at the next digit along, the <span class="hl">hundreds</span>. The tens and ones do not&nbsp;count.</p></div><div class="step got"><div class="shead"><span class="badge">3</span><span class="sq">Up or&nbsp;down?</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt two on">round up</span><span class="opt two">round down</span></div><p class="how">8 is 5 or more, so&nbsp;up.</p></div><div class="step got"><div class="shead"><span class="badge">4</span><span class="sq">471,862 to the nearest 1,000&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt on">472,000</span><span class="opt">471,000</span></div><p class="how">The thousands go up by one, the rest become&nbsp;zeros.</p></div></div></div></section><section><div class="rgrid"><div class="card q item live rcard" data-card="e_r1"><p class="ctitle"><span class="qn">1.</span> <span class="big">62,795</span> <span class="tgt">to the nearest&nbsp;1,000</span></p><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Tap the thousands&nbsp;digit.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r1t"><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><button type="button" class="opt dg" data-v="2" aria-pressed="false">2</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button><button type="button" class="opt dg" data-v="9" aria-pressed="false">9</button><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Tap the digit that&nbsp;decides.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r1d"><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><button type="button" class="opt dg" data-v="2" aria-pressed="false">2</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button><button type="button" class="opt dg" data-v="9" aria-pressed="false">9</button><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Up or&nbsp;down?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r1u"><button type="button" class="opt two" data-v="round up" aria-pressed="false">round up</button><button type="button" class="opt two" data-v="round down" aria-pressed="false">round down</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">62,795 to the nearest 1,000&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r1n"><button type="button" class="opt" data-v="62,800" aria-pressed="false">62,800</button><button type="button" class="opt" data-v="62,000" aria-pressed="false">62,000</button><button type="button" class="opt" data-v="63,000" aria-pressed="false">63,000</button></div></div></div><div class="store"><select data-k="e_r1t" data-label="R1. 62,795 to the nearest 1,000: the thousands digit" class="hw-field"><option value="">Choose</option><option value="2">2</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="9">9</option></select><select data-k="e_r1d" data-label="R1. 62,795 to the nearest 1,000: the digit that decides" class="hw-field"><option value="">Choose</option><option value="2">2</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="9">9</option></select><select data-k="e_r1u" data-label="R1. 62,795 to the nearest 1,000: up or down?" class="hw-field"><option value="">Choose</option><option value="round up">round up</option><option value="round down">round down</option></select><select data-k="e_r1n" data-label="R1. 62,795 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="62,800">62,800</option><option value="62,000">62,000</option><option value="63,000">63,000</option></select></div></div><div class="card q item live rcard" data-card="e_r2"><p class="ctitle"><span class="qn">2.</span> <span class="big">538,174</span> <span class="tgt">to the nearest&nbsp;1,000</span></p><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Tap the thousands&nbsp;digit.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r2t"><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="1" aria-pressed="false">1</button><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Tap the digit that&nbsp;decides.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r2d"><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="1" aria-pressed="false">1</button><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Up or&nbsp;down?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r2u"><button type="button" class="opt two" data-v="round up" aria-pressed="false">round up</button><button type="button" class="opt two" data-v="round down" aria-pressed="false">round down</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">538,174 to the nearest 1,000&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r2n"><button type="button" class="opt" data-v="538,000" aria-pressed="false">538,000</button><button type="button" class="opt" data-v="540,000" aria-pressed="false">540,000</button><button type="button" class="opt" data-v="539,000" aria-pressed="false">539,000</button></div></div></div><div class="store"><select data-k="e_r2t" data-label="R2. 538,174 to the nearest 1,000: the thousands digit" class="hw-field"><option value="">Choose</option><option value="1">1</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="7">7</option><option value="8">8</option></select><select data-k="e_r2d" data-label="R2. 538,174 to the nearest 1,000: the digit that decides" class="hw-field"><option value="">Choose</option><option value="1">1</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="7">7</option><option value="8">8</option></select><select data-k="e_r2u" data-label="R2. 538,174 to the nearest 1,000: up or down?" class="hw-field"><option value="">Choose</option><option value="round up">round up</option><option value="round down">round down</option></select><select data-k="e_r2n" data-label="R2. 538,174 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="538,000">538,000</option><option value="540,000">540,000</option><option value="539,000">539,000</option></select></div></div><div class="card q item live rcard" data-card="e_r3"><p class="ctitle"><span class="qn">3.</span> <span class="big">409,386</span> <span class="tgt">to the nearest&nbsp;1,000</span></p><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Tap the thousands&nbsp;digit.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r3t"><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button><button type="button" class="opt dg" data-v="0" aria-pressed="false">0</button><button type="button" class="opt dg" data-v="9" aria-pressed="false">9</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Tap the digit that&nbsp;decides.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r3d"><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button><button type="button" class="opt dg" data-v="0" aria-pressed="false">0</button><button type="button" class="opt dg" data-v="9" aria-pressed="false">9</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="3" aria-pressed="false">3</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Up or&nbsp;down?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r3u"><button type="button" class="opt two" data-v="round up" aria-pressed="false">round up</button><button type="button" class="opt two" data-v="round down" aria-pressed="false">round down</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">409,386 to the nearest 1,000&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r3n"><button type="button" class="opt" data-v="410,000" aria-pressed="false">410,000</button><button type="button" class="opt" data-v="409,000" aria-pressed="false">409,000</button><button type="button" class="opt" data-v="409,400" aria-pressed="false">409,400</button></div></div></div><div class="store"><select data-k="e_r3t" data-label="R3. 409,386 to the nearest 1,000: the thousands digit" class="hw-field"><option value="">Choose</option><option value="0">0</option><option value="3">3</option><option value="4">4</option><option value="6">6</option><option value="8">8</option><option value="9">9</option></select><select data-k="e_r3d" data-label="R3. 409,386 to the nearest 1,000: the digit that decides" class="hw-field"><option value="">Choose</option><option value="0">0</option><option value="3">3</option><option value="4">4</option><option value="6">6</option><option value="8">8</option><option value="9">9</option></select><select data-k="e_r3u" data-label="R3. 409,386 to the nearest 1,000: up or down?" class="hw-field"><option value="">Choose</option><option value="round up">round up</option><option value="round down">round down</option></select><select data-k="e_r3n" data-label="R3. 409,386 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="410,000">410,000</option><option value="409,000">409,000</option><option value="409,400">409,400</option></select></div></div><div class="card q item live rcard" data-card="e_r4"><p class="ctitle"><span class="qn">4.</span> <span class="big">26,508</span> <span class="tgt">to the nearest&nbsp;1,000</span></p><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Tap the thousands&nbsp;digit.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r4t"><button type="button" class="opt dg" data-v="2" aria-pressed="false">2</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button><button type="button" class="opt dg" data-v="0" aria-pressed="false">0</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Tap the digit that&nbsp;decides.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r4d"><button type="button" class="opt dg" data-v="2" aria-pressed="false">2</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="5" aria-pressed="false">5</button><button type="button" class="opt dg" data-v="0" aria-pressed="false">0</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Up or&nbsp;down?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r4u"><button type="button" class="opt two" data-v="round up" aria-pressed="false">round up</button><button type="button" class="opt two" data-v="round down" aria-pressed="false">round down</button></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">26,508 to the nearest 1,000&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r4n"><button type="button" class="opt" data-v="27,000" aria-pressed="false">27,000</button><button type="button" class="opt" data-v="26,500" aria-pressed="false">26,500</button><button type="button" class="opt" data-v="26,000" aria-pressed="false">26,000</button></div></div></div><div class="store"><select data-k="e_r4t" data-label="R4. 26,508 to the nearest 1,000: the thousands digit" class="hw-field"><option value="">Choose</option><option value="0">0</option><option value="2">2</option><option value="5">5</option><option value="6">6</option><option value="8">8</option></select><select data-k="e_r4d" data-label="R4. 26,508 to the nearest 1,000: the digit that decides" class="hw-field"><option value="">Choose</option><option value="0">0</option><option value="2">2</option><option value="5">5</option><option value="6">6</option><option value="8">8</option></select><select data-k="e_r4u" data-label="R4. 26,508 to the nearest 1,000: up or down?" class="hw-field"><option value="">Choose</option><option value="round up">round up</option><option value="round down">round down</option></select><select data-k="e_r4n" data-label="R4. 26,508 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="27,000">27,000</option><option value="26,500">26,500</option><option value="26,000">26,000</option></select></div></div></div><div class="card q item live wide" data-card="e_r5"><p class="ctitle"><span class="qn">5.</span> Ruby rounded <span class="big">284,716</span> <span class="tgt">to the nearest&nbsp;1,000</span></p><p class="quote">Ruby: &ldquo;I looked at the <b>8</b> and the <b>4</b>. 4 is lower than 5, so it stays: <b>284,000</b>.&rdquo;</p><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Is Ruby&nbsp;right?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r5v"><button type="button" class="opt two" data-v="Yes, she is right" aria-pressed="false">Yes, she is right</button><button type="button" class="opt two" data-v="No, she is not" aria-pressed="false">No, she is not</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Tap the digit that&nbsp;decides.</span><span class="nowtag">Now</span></div><div class="opts numtap" data-field="e_r5d"><button type="button" class="opt dg" data-v="2" aria-pressed="false">2</button><button type="button" class="opt dg" data-v="8" aria-pressed="false">8</button><button type="button" class="opt dg" data-v="4" aria-pressed="false">4</button><span class="sep" aria-hidden="true">,</span><button type="button" class="opt dg" data-v="7" aria-pressed="false">7</button><button type="button" class="opt dg" data-v="1" aria-pressed="false">1</button><button type="button" class="opt dg" data-v="6" aria-pressed="false">6</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">284,716 to the nearest 1,000&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_r5n"><button type="button" class="opt" data-v="284,000" aria-pressed="false">284,000</button><button type="button" class="opt" data-v="280,000" aria-pressed="false">280,000</button><button type="button" class="opt" data-v="285,000" aria-pressed="false">285,000</button></div></div></div><div class="store"><select data-k="e_r5v" data-label="R5. Ruby: 284,716 to the nearest 1,000: is Ruby right?" class="hw-field"><option value="">Choose</option><option value="Yes, she is right">Yes, she is right</option><option value="No, she is not">No, she is not</option></select><select data-k="e_r5d" data-label="R5. Ruby: 284,716 to the nearest 1,000: the digit that decides" class="hw-field"><option value="">Choose</option><option value="1">1</option><option value="2">2</option><option value="4">4</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select><select data-k="e_r5n" data-label="R5. Ruby: 284,716 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="284,000">284,000</option><option value="280,000">280,000</option><option value="285,000">285,000</option></select></div></div></section>
+<div class="lead q"><section><p class="lbl">2 · Column subtraction with zeros</p><p class="instr">Estimate first. Then subtract in columns and check your answer is&nbsp;close.</p><p class="note scr">Tap an answer at each step. Type the answer in the boxes under the line, one digit in each&nbsp;box.</p><p class="note pr">Circle one answer at each step. Write the answer in the&nbsp;columns.</p><div class="card model"><p class="mtag">Like this</p><p class="ctitle"><span class="big">7,305 &minus; 2,468</span></p><div class="mcbody"><div class="steps stA"><div class="step got"><div class="shead"><span class="badge">1</span><span class="sq">Round <b>7,305</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt on">7,000</span><span class="opt">8,000</span></div><p class="how">The hundreds digit is 3, so&nbsp;down.</p></div><div class="step got"><div class="shead"><span class="badge">2</span><span class="sq">Round <b>2,468</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt">3,000</span><span class="opt on">2,000</span></div><p class="how">The hundreds digit is 4, so&nbsp;down.</p></div><div class="step got"><div class="shead"><span class="badge">3</span><span class="sq">Take away your rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt on">5,000</span><span class="opt">4,000</span></div><p class="how">7,000 &minus; 2,000 =&nbsp;5,000</p></div></div><div class="step colstep got"><div class="shead"><span class="badge">4</span><span class="sq">Subtract in columns, ones first. Each time you exchange, type the new number in the small box on top. If a column changes twice, type the last&nbsp;number.</span><span class="nowtag">Now</span></div><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot full">7,000</span> &minus; <span class="eslot full">2,000</span> = <span class="eslot full">5,000</span></p><table class="cols" aria-label="Column subtraction"><tr class="car"><td class="sg"></td><td><span class="mdig car full">6</span></td><td class="cm"></td><td><span class="was"><s>2</s></span><span class="mdig car full">12</span></td><td><span class="was"><s>10</s></span><span class="mdig car full">9</span></td><td><span class="mdig car full">15</span></td></tr><tr><td class="sg"></td><td><s>7</s></td><td class="cm">,</td><td><s>3</s></td><td><s>0</s></td><td><s>5</s></td></tr><tr class="bot"><td class="sg">&minus;</td><td>2</td><td class="cm">,</td><td>4</td><td>6</td><td>8</td></tr><tr class="ans"><td class="sg"></td><td><span class="mdig full">4</span></td><td class="cm">,</td><td><span class="mdig full">8</span></td><td><span class="mdig full">3</span></td><td><span class="mdig full">7</span></td></tr></table><p class="how howc">5 &minus; 8? Knock next door; if that neighbour has nothing, knock&nbsp;further.</p></div></div><div class="steps stB"><div class="step got"><div class="shead"><span class="badge">5</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt two on">Yes, close</span><span class="opt two">No, far away</span></div><p class="how">4,837 is close to&nbsp;5,000.</p></div></div></div></div></section></div><section><div class="card q item live" data-card="e_s1"><p class="ctitle"><span class="qn">1.</span> <span class="big">83,406 &minus; 27,159</span></p><div class="mcbody"><div class="steps stA"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Round <b>83,406</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s1a" data-fill="a"><button type="button" class="opt" data-v="83,400" aria-pressed="false">83,400</button><button type="button" class="opt" data-v="83,000" aria-pressed="false">83,000</button><button type="button" class="opt" data-v="84,000" aria-pressed="false">84,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Round <b>27,159</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s1b" data-fill="b"><button type="button" class="opt" data-v="28,000" aria-pressed="false">28,000</button><button type="button" class="opt" data-v="27,200" aria-pressed="false">27,200</button><button type="button" class="opt" data-v="27,000" aria-pressed="false">27,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Take away your rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s1e" data-fill="e"><button type="button" class="opt" data-v="64,000" aria-pressed="false">64,000</button><button type="button" class="opt" data-v="55,000" aria-pressed="false">55,000</button><button type="button" class="opt" data-v="56,000" aria-pressed="false">56,000</button></div></div></div><div class="step colstep" data-live><div class="shead"><span class="badge">4</span><span class="sq">Subtract in columns, ones first. Each time you exchange, type the new number in the small box on top. If a column changes twice, type the last&nbsp;number.</span><span class="nowtag">Now</span></div><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot" data-fill="a"></span> &minus; <span class="eslot" data-fill="b"></span> = <span class="eslot" data-fill="e"></span></p><table class="cols" aria-label="Column subtraction"><tr class="car"><td class="sg"></td><td><input class="dig car" data-ccol="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, ten thousands column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, thousands column"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-ccol="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, hundreds column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, tens column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, ones column"><span class="pd car" aria-hidden="true"></span></td></tr><tr><td class="sg"></td><td>8</td><td>3</td><td class="cm">,</td><td>4</td><td>0</td><td>6</td></tr><tr class="bot"><td class="sg">&minus;</td><td>2</td><td>7</td><td class="cm">,</td><td>1</td><td>5</td><td>9</td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-col="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, ten thousands column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, thousands column"><span class="pd" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-col="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, hundreds column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, tens column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, ones column"><span class="pd" aria-hidden="true"></span></td></tr></table><div class="ansmark" data-field="e_s1ans"></div></div></div><div class="steps stB"><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s1z"><button type="button" class="opt two" data-v="Yes, close" aria-pressed="false">Yes, close</button><button type="button" class="opt two" data-v="No, far away" aria-pressed="false">No, far away</button></div></div></div></div><div class="store"><select data-k="e_s1a" data-label="S1. 83,406 - 27,159: round 83,406 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="83,400">83,400</option><option value="83,000">83,000</option><option value="84,000">84,000</option></select><select data-k="e_s1b" data-label="S1. 83,406 - 27,159: round 27,159 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="28,000">28,000</option><option value="27,200">27,200</option><option value="27,000">27,000</option></select><select data-k="e_s1e" data-label="S1. 83,406 - 27,159: estimate" class="hw-field"><option value="">Choose</option><option value="64,000">64,000</option><option value="55,000">55,000</option><option value="56,000">56,000</option></select><input type="hidden" data-k="e_s1ans" data-label="S1. 83,406 - 27,159: the answer" class="hw-field"><select data-k="e_s1z" data-label="S1. 83,406 - 27,159: close to the estimate?" class="hw-field"><option value="">Choose</option><option value="Yes, close">Yes, close</option><option value="No, far away">No, far away</option></select></div></div><div class="card q item live" data-card="e_s2"><p class="ctitle"><span class="qn">2.</span> <span class="big">507,214 &minus; 68,859</span></p><div class="mcbody"><div class="steps stA"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Round <b>507,214</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s2a" data-fill="a"><button type="button" class="opt" data-v="507,000" aria-pressed="false">507,000</button><button type="button" class="opt" data-v="508,000" aria-pressed="false">508,000</button><button type="button" class="opt" data-v="507,200" aria-pressed="false">507,200</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Round <b>68,859</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s2b" data-fill="b"><button type="button" class="opt" data-v="68,000" aria-pressed="false">68,000</button><button type="button" class="opt" data-v="69,000" aria-pressed="false">69,000</button><button type="button" class="opt" data-v="68,900" aria-pressed="false">68,900</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Take away your rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s2e" data-fill="e"><button type="button" class="opt" data-v="438,000" aria-pressed="false">438,000</button><button type="button" class="opt" data-v="439,000" aria-pressed="false">439,000</button><button type="button" class="opt" data-v="448,000" aria-pressed="false">448,000</button></div></div></div><div class="step colstep" data-live><div class="shead"><span class="badge">4</span><span class="sq">Subtract in columns, ones first. Each time you exchange, type the new number in the small box on top. If a column changes twice, type the last&nbsp;number.</span><span class="nowtag">Now</span></div><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot" data-fill="a"></span> &minus; <span class="eslot" data-fill="b"></span> = <span class="eslot" data-fill="e"></span></p><table class="cols" aria-label="Column subtraction"><tr class="car"><td class="sg"></td><td><input class="dig car" data-ccol="5" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, hundred thousands column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, ten thousands column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, thousands column"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-ccol="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, hundreds column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, tens column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, ones column"><span class="pd car" aria-hidden="true"></span></td></tr><tr><td class="sg"></td><td>5</td><td>0</td><td>7</td><td class="cm">,</td><td>2</td><td>1</td><td>4</td></tr><tr class="bot"><td class="sg">&minus;</td><td></td><td>6</td><td>8</td><td class="cm">,</td><td>8</td><td>5</td><td>9</td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-col="5" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, hundred thousands column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, ten thousands column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, thousands column"><span class="pd" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-col="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, hundreds column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, tens column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, ones column"><span class="pd" aria-hidden="true"></span></td></tr></table><div class="ansmark" data-field="e_s2ans"></div></div></div><div class="steps stB"><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s2z"><button type="button" class="opt two" data-v="No, far away" aria-pressed="false">No, far away</button><button type="button" class="opt two" data-v="Yes, close" aria-pressed="false">Yes, close</button></div></div></div></div><div class="store"><select data-k="e_s2a" data-label="S2. 507,214 - 68,859: round 507,214 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="507,000">507,000</option><option value="508,000">508,000</option><option value="507,200">507,200</option></select><select data-k="e_s2b" data-label="S2. 507,214 - 68,859: round 68,859 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="68,000">68,000</option><option value="69,000">69,000</option><option value="68,900">68,900</option></select><select data-k="e_s2e" data-label="S2. 507,214 - 68,859: estimate" class="hw-field"><option value="">Choose</option><option value="438,000">438,000</option><option value="439,000">439,000</option><option value="448,000">448,000</option></select><input type="hidden" data-k="e_s2ans" data-label="S2. 507,214 - 68,859: the answer" class="hw-field"><select data-k="e_s2z" data-label="S2. 507,214 - 68,859: close to the estimate?" class="hw-field"><option value="">Choose</option><option value="No, far away">No, far away</option><option value="Yes, close">Yes, close</option></select></div></div><div class="card q item live" data-card="e_s3"><p class="ctitle"><span class="qn">3.</span> <span class="big">640,215 &minus; 87,368</span></p><div class="mcbody"><div class="steps stA"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Round <b>640,215</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s3a" data-fill="a"><button type="button" class="opt" data-v="640,000" aria-pressed="false">640,000</button><button type="button" class="opt" data-v="641,000" aria-pressed="false">641,000</button><button type="button" class="opt" data-v="600,000" aria-pressed="false">600,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Round <b>87,368</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s3b" data-fill="b"><button type="button" class="opt" data-v="88,000" aria-pressed="false">88,000</button><button type="button" class="opt" data-v="87,400" aria-pressed="false">87,400</button><button type="button" class="opt" data-v="87,000" aria-pressed="false">87,000</button></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Take away your rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s3e" data-fill="e"><button type="button" class="opt" data-v="563,000" aria-pressed="false">563,000</button><button type="button" class="opt" data-v="553,000" aria-pressed="false">553,000</button><button type="button" class="opt" data-v="552,000" aria-pressed="false">552,000</button></div></div></div><div class="step colstep" data-live><div class="shead"><span class="badge">4</span><span class="sq">Subtract in columns, ones first. Each time you exchange, type the new number in the small box on top. If a column changes twice, type the last&nbsp;number.</span><span class="nowtag">Now</span></div><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot" data-fill="a"></span> &minus; <span class="eslot" data-fill="b"></span> = <span class="eslot" data-fill="e"></span></p><table class="cols" aria-label="Column subtraction"><tr class="car"><td class="sg"></td><td><input class="dig car" data-ccol="5" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, hundred thousands column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, ten thousands column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, thousands column"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-ccol="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, hundreds column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, tens column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new number after exchange, ones column"><span class="pd car" aria-hidden="true"></span></td></tr><tr><td class="sg"></td><td>6</td><td>4</td><td>0</td><td class="cm">,</td><td>2</td><td>1</td><td>5</td></tr><tr class="bot"><td class="sg">&minus;</td><td></td><td>8</td><td>7</td><td class="cm">,</td><td>3</td><td>6</td><td>8</td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-col="5" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, hundred thousands column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, ten thousands column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, thousands column"><span class="pd" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-col="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, hundreds column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, tens column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, ones column"><span class="pd" aria-hidden="true"></span></td></tr></table><div class="ansmark" data-field="e_s3ans"></div></div></div><div class="steps stB"><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts" data-field="e_s3z"><button type="button" class="opt two" data-v="No, far away" aria-pressed="false">No, far away</button><button type="button" class="opt two" data-v="Yes, close" aria-pressed="false">Yes, close</button></div></div></div></div><div class="store"><select data-k="e_s3a" data-label="S3. 640,215 - 87,368: round 640,215 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="640,000">640,000</option><option value="641,000">641,000</option><option value="600,000">600,000</option></select><select data-k="e_s3b" data-label="S3. 640,215 - 87,368: round 87,368 to the nearest 1,000" class="hw-field"><option value="">Choose</option><option value="88,000">88,000</option><option value="87,400">87,400</option><option value="87,000">87,000</option></select><select data-k="e_s3e" data-label="S3. 640,215 - 87,368: estimate" class="hw-field"><option value="">Choose</option><option value="563,000">563,000</option><option value="553,000">553,000</option><option value="552,000">552,000</option></select><input type="hidden" data-k="e_s3ans" data-label="S3. 640,215 - 87,368: the answer" class="hw-field"><select data-k="e_s3z" data-label="S3. 640,215 - 87,368: close to the estimate?" class="hw-field"><option value="">Choose</option><option value="No, far away">No, far away</option><option value="Yes, close">Yes, close</option></select></div></div></section>
+</div>
+<script>
+(function () {
+  var CARRY_STORE = "hwcarry-" + (document.body.dataset.sheetId || location.pathname);
+  function loadCarries() { try { return JSON.parse(localStorage.getItem(CARRY_STORE) || "{}"); } catch (e) { return {}; } }
+  function saveCarries(o) { try { localStorage.setItem(CARRY_STORE, JSON.stringify(o)); } catch (e) {} }
+  // the typed digit is mirrored into the value ATTRIBUTE and into a twin span, so the emailed PDF
+  // (built from a copy of the page) shows it inside its column
+  function setBox(inp, v) {
+    inp.value = v; inp.setAttribute("value", v);
+    var m = inp.nextElementSibling; if (m && m.classList.contains("pd")) m.textContent = v;
+  }
+  function updateNow() {
+    var first = null;
+    document.querySelectorAll(".step[data-live]").forEach(function (s) {
+      s.classList.remove("now");
+      if (!first && !s.classList.contains("got")) first = s;
+    });
+    if (first) first.classList.add("now");
+    document.querySelectorAll(".card.live").forEach(function (c) { c.classList.toggle("current", !!first && c.contains(first)); });
+  }
+  function setup(card) {
+    var id = card.dataset.card;
+    function selFor(k) { return card.querySelector('.store [data-k=' + JSON.stringify(k) + ']'); }
+    var groups = [].slice.call(card.querySelectorAll(".opts[data-field]"));
+    function fillSlots(name, v) {   // estimate line, family picture and equation gap all show the same answer
+      card.querySelectorAll('.eslot[data-fill="' + name + '"], .pwfill[data-fill="' + name + '"]').forEach(function (t) {
+        t.textContent = v; t.classList.toggle("full", !!v);
+      });
+    }
+    var typed = [].slice.call(card.querySelectorAll("input.tnum[data-k]"));
+    function paintTyped() {
+      typed.forEach(function (inp) {
+        var v = inp.value.trim();
+        var st = inp.closest(".step"); if (st) st.classList.toggle("got", !!v);
+        if (inp.dataset.fill) fillSlots(inp.dataset.fill, v);
+      });
+    }
+    typed.forEach(function (inp) { inp.addEventListener("input", function () { paintTyped(); updateNow(); }); });
+    function paint() {
+      groups.forEach(function (g) {
+        var s = selFor(g.dataset.field), v = s ? s.value : "";
+        g.querySelectorAll("button").forEach(function (b) {
+          var on = !!v && b.dataset.v === v;
+          b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        var st = g.closest(".step"); if (st) st.classList.toggle("got", !!v);
+        if (g.dataset.fill) fillSlots(g.dataset.fill, v);
+      });
+    }
+    groups.forEach(function (g) {
+      g.querySelectorAll("button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var s = selFor(g.dataset.field); if (!s) return;
+          if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+          paint(); updateNow();
+        });
+      });
+    });
+    // ---- the column sum ----
+    var ans = [].slice.call(card.querySelectorAll("input.dig.ans")).sort(function (x, y) { return x.dataset.col - y.dataset.col; });
+    var car = [].slice.call(card.querySelectorAll("input.dig.car"));
+    var store = card.querySelector('.store input[type="hidden"]');
+    var colStep = card.querySelector(".colstep");
+    function compose() {   // left to right; a gap inside the number shows as _
+      var ds = ans.slice().reverse().map(function (i) { return i.value; });
+      var first = ds.findIndex(function (d) { return d !== ""; });
+      if (first < 0) return "";
+      return ds.slice(first).map(function (d) { return d || "_"; }).join("");
+    }
+    function pushAnswer() {
+      var v = compose();
+      if (store && store.value !== v) {
+        store.value = v;
+        store.dispatchEvent(new Event("input", { bubbles: true }));
+        store.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      if (colStep) colStep.classList.toggle("got", ans.every(function (i) { return i.value !== ""; }));
+      updateNow();
+    }
+    function pushCarries() {
+      var o = loadCarries(); o[id] = car.map(function (i) { return i.value; }); saveCarries(o);
+    }
+    function ansAt(c) { return ans.filter(function (i) { return +i.dataset.col === c; })[0]; }
+    function onType(inp) {
+      var all = (inp.value.match(/\d/g) || []).join("");
+      var d = inp.classList.contains("car") ? all.slice(-2) : all.slice(-1);
+      setBox(inp, d);
+      if (inp.classList.contains("ans")) {
+        pushAnswer();
+        var next = ansAt(+inp.dataset.col + 1);   // columns are worked from the ones: next box is to the LEFT
+        if (d && next) next.focus();
+      } else {
+        pushCarries();
+        var below = ansAt(+inp.dataset.ccol);       // a carry is added in its own column next
+        if (d && below && (d.length > 1 || +d > 1)) below.focus();
+      }
+    }
+    ans.concat(car).forEach(function (inp) {
+      inp.addEventListener("input", function () { onType(inp); });
+      inp.addEventListener("focus", function () { inp.select(); });
+      inp.addEventListener("keydown", function (e) {
+        if (e.key === "Backspace" && !inp.value && inp.classList.contains("ans")) {
+          var right = ansAt(+inp.dataset.col - 1); if (right) { e.preventDefault(); right.focus(); }
+        }
+      });
+    });
+    // answers come back on reload (hw.js has already restored the hidden field)
+    if (store && store.value) {
+      var s = store.value.replace(/[^0-9_]/g, "");
+      for (var c = 0; c < ans.length; c++) {
+        var ch = s.charAt(s.length - 1 - c);
+        setBox(ansAt(c), /\d/.test(ch) ? ch : "");
+      }
+    }
+    var saved = loadCarries()[id];
+    if (saved) car.forEach(function (inp, i) { setBox(inp, saved[i] || ""); });
+    if (colStep) colStep.classList.toggle("got", ans.every(function (i) { return i.value !== ""; }));
+    paint(); paintTyped();
+  }
+  function init() { document.querySelectorAll(".card.live").forEach(setup); updateNow(); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJlX3IxdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjIifSwgImVfcjFkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiZV9yMXUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyb3VuZCB1cCJ9LCAiZV9yMW4iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MywwMDAifSwgImVfcjJ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiOCJ9LCAiZV9yMmQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxIn0sICJlX3IydSI6IHsidCI6ICJleGFjdCIsICJhIjogInJvdW5kIGRvd24ifSwgImVfcjJuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTM4LDAwMCJ9LCAiZV9yM3QiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5In0sICJlX3IzZCI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgImVfcjN1IjogeyJ0IjogImV4YWN0IiwgImEiOiAicm91bmQgZG93biJ9LCAiZV9yM24iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MDksMDAwIn0sICJlX3I0dCI6IHsidCI6ICJleGFjdCIsICJhIjogIjYifSwgImVfcjRkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiZV9yNHUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyb3VuZCB1cCJ9LCAiZV9yNG4iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNywwMDAifSwgImVfcjV2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiTm8sIHNoZSBpcyBub3QifSwgImVfcjVkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiZV9yNW4iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyODUsMDAwIn0sICJlX3MxYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjgzLDAwMCJ9LCAiZV9zMWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNywwMDAifSwgImVfczFlIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTYsMDAwIn0sICJlX3MxYW5zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTYsMjQ3In0sICJlX3MxeiI6IHsidCI6ICJvcGVuIn0sICJlX3MyYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjUwNywwMDAifSwgImVfczJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjksMDAwIn0sICJlX3MyZSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQzOCwwMDAifSwgImVfczJhbnMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MzgsMzU1In0sICJlX3MyeiI6IHsidCI6ICJvcGVuIn0sICJlX3MzYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjY0MCwwMDAifSwgImVfczNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiODcsMDAwIn0sICJlX3MzZSI6IHsidCI6ICJleGFjdCIsICJhIjogIjU1MywwMDAifSwgImVfczNhbnMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1NTIsODQ3In0sICJlX3MzeiI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body></html>

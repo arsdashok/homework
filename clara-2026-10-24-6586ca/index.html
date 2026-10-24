@@ -207,13 +207,56 @@ body .hw-mark.hw-ok { color:var(--green); } body .hw-mark.hw-no { color:#9b472c;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style id="clara-block-style">.game-ui{display:none}
+body.mint-game{max-width:1150px;background:#edf9f2;background-image:radial-gradient(#b8ddca 1px,transparent 1px);background-size:22px 22px;font-family:'Trebuchet MS','Avenir Next',sans-serif;padding:24px 22px 60px}
+.mint-game #sheet{padding:0;background:transparent;box-shadow:none}
+.mint-game .sheet-head{position:relative;padding:28px 140px 28px 28px;background:#d8f3e5;border:2px solid #9ccdb4;border-bottom:6px solid #9ccdb4;border-radius:28px;margin-bottom:20px;min-height:140px}
+.garden-pal{position:absolute;width:110px;height:110px;right:20px;top:18px}.hero-copy{font-size:17px;margin-top:10px;color:#426b59}
+.mint-game .game-ui{display:block}.mint-game .block-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 20px}
+.mint-game .block-tab,.mint-game .garden-button{font-size:16px;font-weight:700;line-height:1.3;color:#245b45;background:white;border:2px solid #a4cdb7;border-bottom-width:5px;border-radius:18px;padding:12px;cursor:pointer;font-family:inherit}
+.mint-game .block-tab{font-size:15px;text-align:left;display:flex;gap:10px;align-items:center}
+.mint-game button:focus-visible,.mint-game [tabindex]:focus-visible{outline:3px solid #276b51;outline-offset:4px}
+.mint-game .block-tab[aria-current="step"]{background:#c5edda;border-color:#42896b}.mint-game .block-tab small{display:block;font-size:12px;font-weight:400;margin-top:3px}
+.step-badge{background:#e6f7ef;border-radius:50%;width:29px;height:29px;display:grid;place-items:center;flex-shrink:0}.block-tab.done .step-badge{background:#286951;color:white}
+.mint-game .progress-head{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#426b59;margin-bottom:8px}.mint-game progress{display:block;width:100%;height:12px;border:none;border-radius:10px;overflow:hidden;background:#d5e9df;accent-color:#42896b}.mint-game progress::-webkit-progress-bar{background:#d5e9df}.mint-game progress::-webkit-progress-value{background:#42896b;border-radius:10px}
+.mint-game #sheet>.section{display:none;background:#fff;border:2px solid #c0dfce;border-radius:26px;padding:28px;margin:0;box-shadow:0 6px 0 #d3eade}
+.mint-game #sheet>.section.active{display:block}.mint-game #sheet>.foot{display:none}.mint-game .sec-head{border-bottom:2px dashed #c8e2d4}
+.mint-game .section>.task:has(>.task-label){padding:18px;background:#e6f6ee;border-radius:18px;margin-bottom:20px}.mint-game .model,.mint-game .chain-ex{border-radius:14px;background:#f7fcf9;border:2px dashed #b1d6c1}
+.mint-game .q{border:1px solid #d5e7dc;border-radius:18px;padding:18px;margin:14px 0;background:#fff}.mint-game .q-num{background:#d2efdf;color:#245b45;font-weight:800}.mint-game .q.sortq{border:0;padding:0}
+.mint-game .pic-opt,.mint-game .txt-opt,.mint-game .tp-tile{border-radius:15px;border-bottom-width:4px}.mint-game .txt-opt.on,.mint-game .pic-opt.on{background:#ddf4e7}.mint-game .tp-zone{background:#f3fbf6;border-style:dashed}
+.mint-game .block-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}.mint-game .garden-button.primary{background:#286951;border-color:#1d4d3a;color:white}.mint-game .garden-button:disabled{opacity:.55;cursor:default}.mint-game .block-result{background:#e8f7ef;border:2px dashed #aacfb9;border-radius:18px;padding:18px;margin-top:18px;font-size:16px}.mint-game .block-result:empty{display:none}.mint-game .block-result strong{display:block;font-size:20px;margin-bottom:6px}.mint-game .block-result p{margin-top:5px}
+.mint-game .finish-panel{margin-top:20px;background:#fff;border:2px solid #a4cdb7;border-radius:24px;padding:24px}.mint-game .finish-panel h2{font-size:24px}.mint-game .finish-panel p{font-size:16px;margin:8px 0}.mint-game .finish-list{display:grid;gap:8px;margin:18px 0}.mint-game .finish-row{padding:12px;background:#edf8f2;border-radius:12px;font-size:15px}
+.mint-game .hw-bar{position:static;width:auto;max-width:none;display:none;margin:18px 0 0;padding:18px;border-radius:20px}.mint-game .hw-bar.available{display:block}.mint-game .hw-send{padding:14px 20px;border-bottom:5px solid #174a35;border-radius:16px;font-size:18px}.mint-game .hw-send:disabled{opacity:.65}.mint-game .hw-msg{margin:10px 0;line-height:1.5}.mint-game .hw-pdf{margin-top:8px}
+.mint-game .save-note{font-size:12px;color:#526e61;margin:10px 0 18px}.mint-game .hw-mark-list{font-size:14px}.mint-game .hw-mark{white-space:normal;overflow-wrap:anywhere}.mint-game .hw-mark-in{display:block}
+@media(max-width:700px){body.mint-game{padding:12px 10px 35px}.mint-game .sheet-head{padding:22px 100px 22px 18px;border-radius:22px}.mint-game h1{font-size:27px}.mint-game .garden-pal{width:80px;height:80px;right:10px;top:28px}.mint-game .hero-copy{font-size:15px}.mint-game .eyebrow{font-size:10px}.mint-game .block-nav{grid-template-columns:repeat(2,1fr);gap:8px}.mint-game .block-tab{padding:10px 8px;font-size:13px;border-radius:14px}.mint-game #sheet>.section{padding:18px 14px}.mint-game .q{padding:14px 10px}.mint-game .wex-fig{min-width:0}.mint-game .arow{gap:8px}.mint-game .lead{font-size:21px}.mint-game .garden-button{font-size:15px}.mint-game .r-grid{gap:8px}.mint-game .block-actions>button{flex:1}.mint-game .finish-panel{padding:20px 16px}}
+@media print{.game-ui,.garden-pal,.hero-copy{display:none!important}body.mint-game #sheet>.section{display:block!important;border:0;box-shadow:none;padding:0}.hw-bar{display:none!important}}
+/* Compact, complete attachment: every block renders, without the game controls. */
+body.hw-pdf-mode #sheet{font-size:14px!important;line-height:1.5!important}
+body.hw-pdf-mode .sheet-head{padding:14px 18px!important;margin-bottom:16px!important}
+body.hw-pdf-mode h1{font-size:27px!important}body.hw-pdf-mode .hero-copy{font-size:13px!important}
+body.hw-pdf-mode .garden-pal,body.hw-pdf-mode .foot{display:none!important}
+body.hw-pdf-mode .sec-head{margin:14px 0 10px!important;padding-bottom:8px!important}
+body.hw-pdf-mode .lead{font-size:17px!important;margin-bottom:6px!important}
+body.hw-pdf-mode .small,body.hw-pdf-mode .note{font-size:12px!important}
+body.hw-pdf-mode .prompt,body.hw-pdf-mode .prompt-q,body.hw-pdf-mode .wsent,body.hw-pdf-mode .model p{font-size:14px!important}
+body.hw-pdf-mode .model,body.hw-pdf-mode .chain-ex{padding:10px 12px!important;margin:8px 0 12px!important;font-size:13px!important}
+body.hw-pdf-mode .wex-row{gap:10px!important;flex-wrap:nowrap!important}body.hw-pdf-mode .wex-fig{flex:0 0 290px!important;min-width:0!important}
+body.hw-pdf-mode .q{padding:9px 0!important}body.hw-pdf-mode .task.gapt{margin-top:12px!important}
+body.hw-pdf-mode .role-label{margin:10px 0 5px!important}body.hw-pdf-mode .q-num{width:24px!important;height:24px!important;flex-basis:24px!important;font-size:12px!important}
+body.hw-pdf-mode .arow{margin-top:6px!important;gap:6px!important}body.hw-pdf-mode .cap2{font-size:13px!important}
+body.hw-pdf-mode .txt-opt{font-size:13px!important;padding:6px 10px!important}body.hw-pdf-mode .opt-pick{gap:5px!important}
+body.hw-pdf-mode .r-card{padding:8px!important}body.hw-pdf-mode .r-top{gap:5px!important;flex-wrap:wrap!important}body.hw-pdf-mode .chip10{font-size:10px!important;white-space:normal!important;padding:3px 5px!important}body.hw-pdf-mode .r-num{font-size:24px!important;margin:8px 0!important}
+body.hw-pdf-mode .tp-bank:empty{display:none!important}body.hw-pdf-mode .tp-zone{min-height:90px!important}body.hw-pdf-mode .tp-tile{font-size:15px!important}
+
+.mint-game .tp-bank:empty{display:none}
+</style>
 </head>
 <body data-student="Clara" data-sheet="Maths and English 2026-10-24" data-sheet-id="clara-2026-10-24-maths-and-english">
 <div id="sheet">
 
 
 <div class="sheet-head">
-  <div class="eyebrow">Saturday 24 October 2026</div><h1>Clara · Homework</h1>
+  <div class="eyebrow">A little learning adventure</div><h1>Clara’s mint garden</h1><p class="hero-copy">One block at a time. Let’s see what grows!</p><svg class="garden-pal" viewBox="0 0 120 110" aria-hidden="true"><path d="M58 28Q31 25 31 8Q56 5 62 26Q69 4 94 8Q90 29 65 29" fill="#42896b"/><path d="M23 59Q22 29 61 30Q98 29 99 62L103 83Q99 100 83 94Q60 108 38 95Q16 99 19 81Z" fill="#99d9bb" stroke="#286951" stroke-width="3"/><circle cx="44" cy="61" r="4" fill="#203e35"/><circle cx="78" cy="61" r="4" fill="#203e35"/><path d="M54 72q7 8 14 0" fill="none" stroke="#203e35" stroke-width="3" stroke-linecap="round"/><ellipse cx="33" cy="72" rx="7" ry="4" fill="#efc2bb"/><ellipse cx="88" cy="72" rx="7" ry="4" fill="#efc2bb"/></svg>
 </div>
 
 <div class="section maths">
@@ -258,7 +301,7 @@ body .hw-mark.hw-ok { color:var(--green); } body .hw-mark.hw-no { color:#9b472c;
 </div>
 <div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span></div>
 <div class="section maths more plans">
-<div class="page-label">CLARA’S HOMEWORK · 24 OCTOBER 2026</div>
+
 <div class="sec-head"><span class="subj">Maths</span><span class="note">Plans only · then two problems</span></div>
 <div class="task">
 <div class="task-label">Plans only</div>
@@ -294,7 +337,7 @@ body .hw-mark.hw-ok { color:var(--green); } body .hw-mark.hw-no { color:#9b472c;
 </div>
 <div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span></div>
 <div class="section maths more rounding">
-<div class="page-label">CLARA’S HOMEWORK · 24 OCTOBER 2026</div>
+
 <div class="sec-head"><span class="subj">Maths</span><span class="note">Rounding · to the nearest 10,000</span></div>
 <div class="task">
 <div class="task-label">Remember</div>
@@ -338,7 +381,7 @@ body .hw-mark.hw-ok { color:var(--green); } body .hw-mark.hw-no { color:#9b472c;
 </div>
 <div class="foot"><span>Take your time. You can do the tasks in any&nbsp;order.</span></div>
 <div class="section english more">
-<div class="page-label">CLARA’S HOMEWORK · 24 OCTOBER 2026</div>
+
 <div class="sec-head"><span class="subj">English</span><span class="note">Parenthesis · a few words between two commas</span></div>
 <div class="task">
 <div class="role-label">Warm-up · who or which</div>
@@ -561,11 +604,500 @@ body .hw-mark.hw-ok { color:var(--green); } body .hw-mark.hw-no { color:#9b472c;
 </script>
 </div><!-- /sheet -->
 <div class="hw-bar">
-  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send my results to Dasha</button>
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
 <script type="application/json" id="hw-check">eyJiYXIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIGJvdHRvbSBiYXIgaXMgbG9uZ2VyIn0sICJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMwLDE3MCJ9LCAiYjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNiwzMjAifSwgImJhcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgYm90dG9tIGJhciBpcyBzaG9ydGVyIn0sICJ0MiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQyLDM1MCJ9LCAiYjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNyw3NTAifSwgImJhcjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgYm90dG9tIGJhciBpcyBzaG9ydGVyIn0sICJ0MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjgwLDg1MCJ9LCAicDRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjgsNTAwIn0sICJwNHMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLiiJIifSwgInA0YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQsNzUwIn0sICJwNGMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyOCw1MDAifSwgInA0dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgInA1YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjksNjQwIn0sICJwNXMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIrIn0sICJwNWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxLDM4MCJ9LCAicDVjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSw2NDAifSwgInA1dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgInA2YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE3LDM1MCJ9LCAicDZzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiKyJ9LCAicDZiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjEsOTAwIn0sICJwNmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1MCwwMDAifSwgInA2dCI6IHsidCI6ICJleGFjdCIsICJhIjogIuKIkiJ9LCAicDdhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTIsODAwIn0sICJwN3MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLiiJIifSwgInA3YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMsOTUwIn0sICJwN2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiw4MDAifSwgInA3dCI6IHsidCI6ICJleGFjdCIsICJhIjogIisifSwgImM4YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE0LDc3MCJ9LCAiYzhiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTEsNzcyIn0sICJjOWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNyw2MDUifSwgImM4dCI6IHsidCI6ICJvcGVuIn0sICJjOXQiOiB7InQiOiAib3BlbiJ9LCAiczEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NTAsMDAwIn0sICJzMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjY0MCwwMDAifSwgInMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NTAsMDAwIn0sICJzNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjY1MCwwMDAifSwgInM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQwLDAwMCJ9LCAicjExIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzkwLDAwMCJ9LCAicjEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzIwLDAwMCJ9LCAicjEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTAwLDAwMCJ9LCAiZTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCJ9LCAiZTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aG8ifSwgImUzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiT3VyIG5laWdoYm91ciwgYSBmaXJlZmlnaHRlciwgY2FtZSB0byB0ZWEuIn0sICJlNCI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoZSBtdXNldW0sIGEgaHVnZSBvbGQgYnVpbGRpbmcsIGlzIG5lYXIgdGhlIHJpdmVyLiJ9LCAiZTUiOiB7InQiOiAib3BlbiJ9LCAiZTYiOiB7InQiOiAib3BlbiJ9LCAiZTciOiB7InQiOiAib3BlbiJ9fQ==</script>
-<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+<script id="clara-homework-runtime">/* Shared behaviour for online homework pages. Page supplies <body data-student data-sheet data-sheet-id>. */
+(function () {
+  var SEND_URL = "https://script.google.com/macros/s/AKfycbwtEVGXzip6vzoLC7oY_wzfmHGe31Vm2uFB9FMwHsSyVHdbyMOKpu16z-a6SdQXXVg/exec";
+  var SEND_KEY = "89949615279890a2";
+  var B = document.body, META = { student: B.dataset.student || "", sheet: B.dataset.sheet || "", sheetId: B.dataset.sheetId || "" };
+  var STORE = "hw-" + META.sheetId, state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} }
+
+  // click-to-circle: any element with class "circle-words" gets its words wrapped
+  var n = 0;
+  document.querySelectorAll(".circle-words").forEach(function (el) {
+    el.innerHTML = el.textContent.replace(/([A-Za-z']+)/g, function (m) { n++; return '<span class="hw-w" data-w="w' + n + '">' + m + "</span>"; });
+  });
+  // "circle-words break-lines" (Dasha, 7 Oct 2026): a tapped word ends its line, so the text breaks
+  // after it (and after its own comma or full stop); tapping it again joins the line back.
+  // The words are still marked by the same key ("set" of the tapped words).
+  function syncBreaks(box) {
+    box.querySelectorAll("br.hw-br").forEach(function (b) { b.remove(); });
+    box.querySelectorAll(".hw-w.hw-circled").forEach(function (w) {
+      var at = w, nx = w.nextSibling;
+      if (nx && nx.nodeType === 3) {
+        var p = nx.textContent.match(/^[^\sA-Za-z']*/)[0].length;
+        if (p) { if (p < nx.textContent.length) nx.splitText(p); at = nx; }
+      }
+      var br = document.createElement("br"); br.className = "hw-br";
+      at.parentNode.insertBefore(br, at.nextSibling);
+    });
+  }
+  document.querySelectorAll(".hw-w").forEach(function (w) {
+    if (state[w.dataset.w]) w.classList.add("hw-circled");
+    w.addEventListener("click", function () {
+      w.classList.toggle("hw-circled"); state[w.dataset.w] = w.classList.contains("hw-circled"); save();
+      var box = w.closest(".break-lines"); if (box) syncBreaks(box);
+    });
+  });
+  document.querySelectorAll(".circle-words.break-lines").forEach(syncBreaks);
+  function isCtl(el) { return /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName); }
+  function val(el) { return isCtl(el) ? el.value : el.innerText; }
+  document.querySelectorAll("[data-k]").forEach(function (el) {
+    if (el.classList.contains("circle-words")) return;
+    if (state[el.dataset.k]) { if (isCtl(el)) el.value = state[el.dataset.k]; else el.textContent = state[el.dataset.k]; }
+    function keep() { state[el.dataset.k] = val(el); save(); }
+    el.addEventListener("input", keep); el.addEventListener("change", keep);
+  });
+
+  var pdfPending = null;
+  function makePDF() {
+    if (pdfPending) return pdfPending;
+    // html2pdf measures page breaks with getBoundingClientRect. Rendering the live,
+    // scrolled document mixed viewport coordinates with PDF coordinates, adding huge
+    // blank areas and losing the tail. A separate, unscrolled document has one origin.
+    var frame = document.createElement("iframe"), timer;
+    frame.title = "Preparing homework PDF";
+    frame.setAttribute("aria-hidden", "true");
+    frame.tabIndex = -1;
+    frame.style.cssText = "position:fixed;left:-10000px;top:0;width:800px;height:1100px;border:0;pointer-events:none;";
+    var job = new Promise(function (resolve, reject) {
+      timer = setTimeout(function () { reject(new Error("PDF export timed out. Please try again.")); }, 60000);
+      B.appendChild(frame);
+      var doc = frame.contentDocument;
+      doc.open(); doc.write("<!doctype html><html><head></head><body></body></html>"); doc.close();
+      var base = doc.createElement("base"); base.href = document.baseURI; doc.head.appendChild(base);
+      var styles = [];
+      document.querySelectorAll('style, link[rel="stylesheet"]').forEach(function (node) {
+        var copy = doc.importNode(node, true);
+        if (node.tagName === "LINK") {
+          copy.href = node.href;
+          styles.push(new Promise(function (ok, fail) { copy.onload = ok; copy.onerror = function () { fail(new Error("PDF stylesheet failed to load")); }; }));
+        }
+        doc.head.appendChild(copy);
+      });
+      var sheet = doc.importNode(document.getElementById("sheet"), true);
+      sheet.querySelectorAll("script, .hw-bar, .save-bar, .game-ui").forEach(function (node) { node.remove(); });
+      // Read current field properties, not HTML attributes or only the visible portion
+      // of a textarea. Plain wrapping blocks preserve every line, including long words.
+      var originals = document.getElementById("sheet").querySelectorAll("[data-k]");
+      sheet.querySelectorAll("[data-k]").forEach(function (copy, i) {
+        var original = originals[i];
+        if (copy.classList.contains("circle-words")) return;
+        // A hidden select/input is the saved value behind a visible drop zone or
+        // choice group. Printing that storage field again duplicates the answer.
+        var twin = [].find.call(document.getElementById("sheet").querySelectorAll("[data-field]"), function (node) {
+          return node.dataset.field === original.dataset.k;
+        });
+        if (!seen(original) && seen(twin)) { copy.remove(); return; }
+        var answer = doc.createElement("span");
+        answer.className = copy.className + " hw-pdf-answer";
+        answer.dataset.k = original.dataset.k;
+        if (original.tagName === "INPUT" || original.tagName === "SELECT") answer.classList.add("hw-pdf-inline");
+        if (original.classList.contains("hw-gap")) answer.classList.add("hw-pdf-gap");
+        answer.textContent = val(original) || "\u00a0";
+        copy.replaceWith(answer);
+      });
+      // Keep each wrong response with its correction. Putting extra inline text
+      // into an equation row can otherwise push the last answer off the page.
+      sheet.querySelectorAll(".hw-pdf-answer").forEach(function (answer) {
+        var mark = answer.nextElementSibling;
+        if (!answer.classList.contains("hw-pdf-inline") || !mark || !mark.classList.contains("hw-no")) return;
+        var group = doc.createElement("span");
+        group.className = "hw-pdf-response";
+        answer.parentNode.insertBefore(group, answer);
+        group.appendChild(answer); group.appendChild(mark);
+      });
+      doc.body.className = "hw-pdf-mode";
+      doc.body.appendChild(sheet);
+      // Dragging belongs only to the live page. Use ordinary flow boxes in the
+      // export: html2canvas misplaces inline flex children in centred drop zones.
+      sheet.querySelectorAll(".dragging, .picked, .over, .ready").forEach(function (node) {
+        node.classList.remove("dragging", "picked", "over", "ready");
+      });
+      sheet.querySelectorAll(".tile, .chip, .tp-tile").forEach(function (node) {
+        // The same class also names picture cards; preserve their grid layout.
+        if (node.querySelector("img, svg, [data-k]")) return;
+        node.classList.add("hw-pdf-tile");
+      });
+      sheet.querySelectorAll(".slot, .drop, .dz, .pslot, .dslot, .tp-zone").forEach(function (node) {
+        // Tap-to-place places (Tools/hw_snippets/tap_place.html, 20 Oct 2026) are inline-flex
+        // columns holding a flex .tp-slot: html2canvas drew neither the tile nor the mark in
+        // them, so they always become plain flow boxes, filled or not.
+        if (node.querySelector(".tile, .chip, .tp-tile") || node.classList.contains("tp-zone")) {
+          node.classList.add("hw-pdf-drop");
+          if (node.tagName === "SPAN") node.classList.add("hw-pdf-drop-inline");
+        }
+      });
+      // html2canvas drops a text node that sits straight inside a block inside an inline-block place:
+      // the ✓ / ✗ vanished while the right answer, in its own span, printed. Give the glyph a span.
+      sheet.querySelectorAll(".tp-zone .hw-mark").forEach(function (mark) {
+        [].slice.call(mark.childNodes).forEach(function (n) {
+          if (n.nodeType !== 3 || !n.textContent.trim()) return;
+          var wrap = doc.createElement("span");
+          n.parentNode.replaceChild(wrap, n); wrap.appendChild(n);
+        });
+      });
+      var fixes = doc.createElement("style");
+      fixes.textContent = [
+        // Leave a small horizontal safety gutter inside html2pdf's rounded A4 container.
+        "html,body{margin:0!important;padding:0!important;max-width:none!important;width:680px!important;height:auto!important;min-height:0!important;overflow:visible!important;background:white!important;}",
+        "#sheet{margin:0!important;padding:0!important;width:680px!important;max-width:none!important;transform:none!important;}",
+        "#sheet .sheet{margin:0!important;max-width:none!important;}",
+        // Avoid moving whole sections to a new page; keep individual questions intact.
+        "#sheet *{break-before:auto!important;break-after:auto!important;break-inside:auto!important;page-break-before:auto!important;page-break-after:auto!important;page-break-inside:auto!important;}",
+        "#sheet .hw-pdf-answer{display:block!important;height:auto!important;max-height:none!important;min-height:38px!important;overflow:visible!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:break-word!important;text-wrap:wrap!important;padding:8px 10px!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-inline{display:inline-block!important;vertical-align:middle;min-width:80px;max-width:100%!important;}",
+        "#sheet .hw-pdf-gap{min-width:0!important;min-height:0!important;padding:0 3px!important;}",
+        "#sheet .hw-pdf-response{display:inline-flex!important;flex-direction:column!important;align-items:flex-start!important;vertical-align:top!important;min-width:0!important;max-width:100%!important;}",
+        "#sheet .hw-pdf-response>.hw-mark{display:block!important;margin:4px 0 0!important;white-space:normal!important;width:100%!important;font-size:13px!important;}" ,
+        "#sheet img,#sheet svg{max-width:100%;}",
+        "#sheet .hw-pdf-drop{display:block!important;min-width:0!important;text-align:left!important;}",
+        "#sheet .hw-pdf-tile{position:static!important;inset:auto!important;transform:none!important;display:inline-block!important;max-width:100%!important;min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;box-sizing:border-box!important;vertical-align:middle!important;}",
+        "#sheet .hw-pdf-drop>.hw-pdf-tile{display:block!important;width:100%!important;margin:0!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-drop>.hw-mark{display:block!important;width:auto!important;margin:4px 0 0!important;white-space:normal!important;}" ,
+        "#sheet .hw-pdf-drop-inline{display:inline-block!important;max-width:100%!important;vertical-align:middle!important;}",
+        "#sheet .hw-pdf-drop-inline>.hw-pdf-tile{display:inline-block!important;width:auto!important;}",
+        // Tap-to-place: the tile sits one level down, inside .tp-slot. Only these pages have it.
+        "#sheet .hw-pdf-drop>.tp-slot{display:block!important;min-height:0!important;text-align:center!important;}",
+        "#sheet .hw-pdf-drop>.tp-slot>.hw-pdf-tile{display:inline-block!important;width:auto!important;margin:0!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-drop-inline.tp-zone{text-align:center!important;}",
+        // In Dasha's PDF the marks stay; the pupil-facing «Feedback in the lesson» note is noise there.
+        "#sheet .hw-mark.hw-open{display:none!important;}",
+        "#sheet .hw-mark{max-width:100%!important;overflow-wrap:anywhere!important;}"
+      ].join("\n");
+      doc.head.appendChild(fixes);
+      var script = doc.createElement("script");
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+      script.onerror = function () { reject(new Error("PDF library failed to load")); };
+      script.onload = function () {
+        Promise.all(styles).then(function () { return doc.fonts ? doc.fonts.ready : null; })
+          .then(function () { return Promise.all([].map.call(sheet.querySelectorAll("img"), function (img) {
+            if (img.complete) return img.naturalWidth ? Promise.resolve() : Promise.reject(new Error("PDF image failed to load"));
+            return new Promise(function (ok, fail) { img.onload = ok; img.onerror = function () { fail(new Error("PDF image failed to load")); }; });
+          })); })
+          .then(function () {
+            frame.contentWindow.scrollTo(0, 0);
+            sheet.querySelectorAll(".section, .keep").forEach(function(section) {
+              var children = Array.from(section.children), firstQuestion = children.findIndex(function(el){return el.matches(".q") || !!el.querySelector(".q");});
+              if (firstQuestion < 1) return;
+              var group = doc.createElement("div");section.insertBefore(group,children[0]);
+              children.slice(0,firstQuestion+1).forEach(function(el){group.appendChild(el);});
+              if(group.getBoundingClientRect().height < 920) group.classList.add("hw-pdf-keep");
+            });
+            // SVGs with only CSS width:100% / height:auto lose their intrinsic
+            // size when html2canvas serialises them. Freeze the export dimensions
+            // after the fonts and responsive layout have settled.
+            sheet.querySelectorAll("svg").forEach(function (svg) {
+              var bounds = svg.getBoundingClientRect();
+              if (!bounds.width || !bounds.height) return;
+              svg.setAttribute("width", bounds.width);
+              svg.setAttribute("height", bounds.height);
+              svg.style.width = bounds.width + "px";
+              svg.style.height = bounds.height + "px";
+            });
+            // Never slice a line of text. html2pdf moves a block by putting a spacer before it,
+            // which only works in ordinary block flow, so keep whole every such block that holds
+            // lines itself (no block children) or one row of flex/grid items, like a footer.
+            var view = frame.contentWindow;
+            sheet.querySelectorAll("*").forEach(function (el) {
+              var cs = view.getComputedStyle(el), up = el.parentElement;
+              if (!up || !/^(block|flow-root|list-item)$/.test(view.getComputedStyle(up).display)) return;
+              if (!/^(block|flow-root|list-item|flex|grid)$/.test(cs.display) || /^(absolute|fixed)$/.test(cs.position) || cs.cssFloat !== "none") return;
+              if (!el.textContent.trim()) return;
+              var items = [].filter.call(el.children, function (child) {
+                var c = view.getComputedStyle(child);
+                return c.display !== "none" && !/^(absolute|fixed)$/.test(c.position);
+              });
+              if (/^(flex|grid)$/.test(cs.display)) {
+                // only a single row: a grid of stacked cells may still break between its rows
+                var rows = items.map(function (child) { return child.getBoundingClientRect(); });
+                if (rows.length && Math.max.apply(null, rows.map(function (r) { return r.top; })) >= Math.min.apply(null, rows.map(function (r) { return r.bottom; }))) return;
+              } else if (items.some(function (child) { return /^(block|flow-root|list-item|flex|grid|table)$/.test(view.getComputedStyle(child).display); })) return;
+              el.classList.add("hw-pdf-lines");
+            });
+            // Class names such as .task and .checks can mean either one question or
+            // a whole exercise. Keeping a multi-question section together leaves
+            // almost a blank page when that section fits on the next page (Roman,
+            // 13 Oct). Only protect atomic blocks; their questions remain protected.
+            var keepSelectors = ".q,.question,.word-q,.div-item,tr,header,.model,.task,.instr,.instruction,.checks,p,h1,h2,h3,.hw-pdf-answer,.hw-pdf-drop,.pick,.job,.comp,.pmodel,.msub,.pics,.ex-card,.handstage,.hw-mark-list,.hw-pdf-lines";
+            var questionSelectors = ".q,.question,.word-q,.div-item";
+            sheet.querySelectorAll(keepSelectors).forEach(function (el) {
+              if (el.querySelectorAll(questionSelectors).length > 1) return;
+              if (el.matches(".task,.checks,.ex-card,.comp") && el.querySelectorAll("[data-k]").length > 1 && !el.matches(questionSelectors)) return;
+              el.classList.add("hw-pdf-keep");
+            });
+            var options = {
+              margin: [10, 10, 10, 10], image: {type:"jpeg",quality:0.94},
+              html2canvas: {scale:1.5,useCORS:true,scrollX:0,scrollY:0,windowWidth:800,windowHeight:1100},
+              jsPDF: {unit:"mm",format:"a4",orientation:"portrait"},
+              pagebreak: {mode:[],avoid:[".hw-pdf-keep"]}
+            };
+            // html2pdf uses instanceof Array, so option arrays must belong to its realm.
+            options = frame.contentWindow.JSON.parse(JSON.stringify(options));
+            var scale = options.html2canvas.scale;
+            // html2pdf moves a block to a new page at multiples of inner.px.height (A4 floored
+            // to 1046 CSS px), but cuts the canvas every floor(canvas.width * ratio) canvas px
+            // (1047.33 CSS px). The 1.33 px gap added up page by page until the first line
+            // of a moved block was sliced. Use ONE page height for both, a whole number of
+            // canvas pixels, and draw each slice at its true height (no stretching).
+            return frame.contentWindow.html2pdf().set(options).from(sheet)
+              .then(function () {
+                var px = this.prop.pageSize.inner.px;
+                px.height = Math.floor(px.height * scale) / scale;
+              })
+              .toCanvas()
+              .then(function () {
+                var inner = this.prop.pageSize.inner, width = this.prop.canvas.width;
+                var slice = Math.round(inner.px.height * scale);
+                inner.height = slice * inner.width / width;
+                inner.ratio = (slice + 0.5) / width;   // toPdf floors canvas.width * ratio back to slice
+              })
+              .outputPdf("datauristring");
+          }).then(function (uri) {
+            var result = uri.split(",")[1];
+            if (!result) throw new Error("PDF export produced no attachment");
+            resolve(result);
+          }).catch(reject);
+      };
+      doc.head.appendChild(script);
+    });
+    function cleanup() { clearTimeout(timer); frame.remove(); pdfPending = null; }
+    pdfPending = job.then(function (result) { cleanup(); return result; }, function (error) { cleanup(); throw error; });
+    return pdfPending;
+  }
+
+  window.hwMakePDF = makePDF;
+  // Use the same complete-answer export for downloads, not the browser's print
+  // view, which can clip the contents of scrolling textareas again.
+  document.querySelectorAll(".hw-pdf").forEach(function (button) {
+    button.onclick = function () {
+      var label = button.textContent;
+      button.disabled = true; button.textContent = "Preparing PDF…";
+      makePDF().then(function (data) {
+        var bytes = Uint8Array.from(atob(data), function (c) { return c.charCodeAt(0); });
+        var url = URL.createObjectURL(new Blob([bytes], {type:"application/pdf"}));
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = (META.student + " - " + META.sheet).replace(/[\\/:*?"<>|]/g, "-") + ".pdf";
+        B.appendChild(link); link.click(); link.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      }).catch(function () {
+        var msg = document.getElementById("hwMsg");
+        if (msg) msg.textContent = "The PDF could not be created. Your answers are still here. Please try again.";
+      }).then(function () { button.disabled = false; button.textContent = label; });
+    };
+  });
+
+  // ---------- instant check after sending (Dasha, 2 Oct 2026) ----------
+  // Items with one clear answer get a tick, or a cross with the right answer, NEXT TO THE TASK.
+  // Items the pupil writes in her own words get "Feedback in the lesson".
+  // Answers come from <script id="hw-check"> (base64 JSON, written by publish_online_hw.py from the
+  // sheet's key: only exact / words / set answers, never the private open-answer guidance).
+  // The comparison mirrors the Homework mailer (Admin/Homework backend/Code.gs), so the page and
+  // Dasha's email always agree.
+  function answerOf(el) {
+    if (el.classList.contains("circle-words")) return [].map.call(el.querySelectorAll(".hw-circled"), function (w) { return w.textContent; }).join(", ");
+    return val(el).trim();
+  }
+  var CHECK = null, CHECKED = "hw-checked-" + META.sheetId;
+  try {
+    var ce = document.getElementById("hw-check");
+    if (ce) CHECK = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(ce.textContent.trim()), function (c) { return c.charCodeAt(0); })));
+  } catch (e) { CHECK = null; }
+  function cNorm(s) { return String(s || "").toLowerCase().replace(/[\s,]/g, ""); }
+  function cWords(s) { return String(s || "").toLowerCase().replace(/[,.]/g, " ").replace(/\s+/g, " ").trim(); }
+  function cSet(s) { return String(s || "").toLowerCase().split(/[\s,]+/).filter(String).sort().join(","); }
+  function seen(el) { return !!el && !el.closest("[hidden], .store, .tp-stores"); }
+  function writable(el) { return /^(TEXTAREA|INPUT)$/.test(el.tagName) || el.isContentEditable || el.classList.contains("circle-words"); }
+  var checking = false;
+  function showChecks(scope) {
+    scope = scope && scope.querySelectorAll ? scope : document;
+    if (!CHECK) return "";
+    checking = true;
+    scope.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
+    var right = 0, marked = 0, open = 0, lists = [];
+    scope.querySelectorAll(scope === document ? "#sheet [data-k]" : "[data-k]").forEach(function (el) {
+      var k = el.dataset.k, key = CHECK[k];
+      var vis = document.querySelector('[data-field="' + k + '"]');
+      var anchor = seen(vis) ? vis : (seen(el) ? el : null);
+      var node;
+      if (key && key.t && key.t !== "open") {
+        var mine = answerOf(el), f = key.t === "exact" ? cNorm : key.t === "words" ? cWords : cSet;
+        var ok = !!mine && ((k === "e3" || k === "e4") ? mine.toLowerCase().replace(/\s+/g," ").trim() === key.a.toLowerCase().replace(/\s+/g," ").trim() : f(mine) === f(key.a));
+        marked++; if (ok) right++;
+        node = document.createElement("span");
+        node.className = "hw-mark " + (ok ? "hw-ok" : "hw-no");
+        if (ok) node.textContent = "✓";
+        else { node.textContent = "✗ "; var r = document.createElement("span"); r.className = "hw-right"; r.textContent = key.a; node.appendChild(r); }
+      } else {
+        if (!anchor || anchor !== el || !writable(el)) return;   // hidden helpers and print-only boxes get nothing
+        open++;
+        node = document.createElement("span");
+        node.className = "hw-mark hw-open";
+        node.textContent = "Feedback in the lesson";
+      }
+      if (!anchor) {   // a hidden data store with no visible twin: list it under the task it belongs to
+        var host = el.parentElement; while (host && !seen(host)) host = host.parentElement;
+        if (!host) return;
+        var list = host.querySelector(":scope > .hw-mark-list");
+        if (!list) { list = document.createElement("div"); list.className = "hw-mark-list"; host.appendChild(list); }
+        var row = document.createElement("div");
+        row.textContent = (el.dataset.label || k).replace(/:.*$/, "") + ": ";
+        row.appendChild(node); list.appendChild(row);
+        return;
+      }
+      if (anchor.tagName === "BUTTON") { node.classList.add("hw-mark-in"); anchor.appendChild(node); return; }
+      if (node.textContent.length < 28) node.classList.add("hw-short");
+      if (anchor === el && el.classList.contains("hw-gap")) {   // letters typed inside a word: mark after the WHOLE word
+        var at = el, nx = el.nextSibling;
+        while (nx) {
+          if (nx.nodeType === 3) {
+            var cut = nx.textContent.search(/\s/);
+            if (cut === -1) { at = nx; nx = nx.nextSibling; continue; }
+            if (cut > 0) { nx.splitText(cut); at = nx; }
+            break;
+          }
+          if (nx.nodeType === 1 && !nx.matches("[data-k]") && !/^\s/.test(nx.textContent) && getComputedStyle(nx).display.indexOf("inline") === 0) {
+            at = nx; if (/\s/.test(nx.textContent)) break; nx = nx.nextSibling; continue;
+          }
+          break;
+        }
+        at.parentNode.insertBefore(node, at.nextSibling); return;
+      }
+      if (anchor === el && (/^(INPUT|SELECT)$/.test(el.tagName) || getComputedStyle(el).display.indexOf("inline") === 0)) {
+        anchor.parentNode.insertBefore(node, anchor.nextSibling); return;   // inline: right after the box or menu
+      }
+      node.classList.add("hw-mark-blk");
+      if (anchor !== el) { anchor.appendChild(node); return; }   // inside the visible card, tile bank or reply group
+      var below = el;   // under a writing box, but never squeezed into a side-by-side row with it
+      while (below.parentElement && below.parentElement.id !== "sheet") {
+        var cs = getComputedStyle(below.parentElement);
+        if (cs.display.indexOf("grid") >= 0 || (cs.display.indexOf("flex") >= 0 && cs.flexDirection.indexOf("row") === 0)) below = below.parentElement; else break;
+      }
+      below.parentNode.insertBefore(node, below.nextSibling);
+    });
+    checking = false;
+    if (!marked) return open ? "Dasha will read it. Your own writing: feedback in the lesson." : "";
+    return right + " of " + marked + " right. ✗ shows the right answer." + (open ? " Your own writing: feedback in the lesson." : "");
+  }
+  window.hwShowChecks = showChecks;
+  function recheck() { return; // Blocks are explicitly rechecked after edits.
+    var t = null;
+    document.addEventListener("input", function () { if (checking) return; clearTimeout(t); t = setTimeout(showChecks, 150); }, true);
+    document.addEventListener("change", function () { if (checking) return; clearTimeout(t); t = setTimeout(showChecks, 150); }, true);
+  }
+  if (CHECK) {
+    var wasChecked = false; try { wasChecked = localStorage.getItem(CHECKED) === "1"; } catch (e) {}
+    if (false) { // Block flow restores checked state instead.
+      var later = function () { setTimeout(function () { var sc = showChecks(); if (!recheck.on) { recheck.on = true; recheck(); } var msg = document.getElementById("hwMsg"); if (msg && sc) msg.textContent = "Sent! " + sc; }, 600); };
+      if (document.readyState === "complete") later(); else window.addEventListener("load", later);
+    }
+  }
+  window.hwSend = function () {
+    var btn = document.getElementById("hwSend"), msg = document.getElementById("hwMsg"), answers = [];
+    document.querySelectorAll("[data-k]").forEach(function (el) {
+      var answer = answerOf(el), punctuationKey = CHECK && CHECK[el.dataset.k];
+      if ((el.dataset.k === "e3" || el.dataset.k === "e4") && punctuationKey && cNorm(answer) === cNorm(punctuationKey.a) && answer.replace(/\s+/g," ").trim() !== punctuationKey.a.replace(/\s+/g," ").trim()) {
+        answer += " [Selected sentence contains " + (answer.match(/,/g)||[]).length + " comma(s).]";
+      }
+      answers.push({ k: el.dataset.k, q: el.dataset.label || el.dataset.k, a: answer });
+    });
+    var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q); }).length;
+    if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return;
+    btn.disabled = true; msg.textContent = "Sending… (this takes a few seconds)";
+    // Mark FIRST, so the PDF Dasha receives shows the ticks, crosses and right answers too
+    // (Dasha, 7 Oct 2026: «чтобы в пдф которая мне приходит тоже были видны правильные ответы»).
+    var score = showChecks();
+    try { if (typeof window.hwShowExtra === "function") window.hwShowExtra(); } catch (e) {}
+    makePDF()
+      .then(function (pdf) {
+        return fetch(SEND_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ key: SEND_KEY, student: META.student, sheet: META.sheet, sheetId: META.sheetId, answers: answers, pdf: pdf }) });
+      })
+      .then(function () {
+        if (!recheck.on) { recheck.on = true; recheck(); }
+        try { localStorage.setItem(CHECKED, "1"); } catch (e) {}
+        msg.textContent = "Submitted to Dasha. " + (score || "Dasha will check it. ✓");
+        btn.textContent = "Submitted ✓";
+        if (window.claraSubmissionDone) window.claraSubmissionDone();
+      })
+      .catch(function () {
+        document.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
+        if (window.claraSubmissionFailed) window.claraSubmissionFailed(); btn.disabled = false; msg.textContent = "It did not send. Check the internet and try again, or save a copy as a PDF.";
+      });
+  };
+})();
+</script>
+<script id="clara-block-flow">(function(){
+'use strict';
+const sections=[...document.querySelectorAll('#sheet > .section')];
+const titles=['Bar models','Two-step plans','Rounding garden','Sentence studio'];
+const icons=['1','2','3','4'];
+const storage='clara-blocks-v2-'+document.body.dataset.sheetId;
+let saved={};try{saved=JSON.parse(localStorage.getItem(storage)||'{}')}catch(e){}
+let current=Number.isInteger(saved.current)?Math.max(0,Math.min(3,saved.current)):0;
+let done=Array.isArray(saved.done)?saved.done.slice(0,4):[];
+const key=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(document.getElementById('hw-check').textContent.trim()),c=>c.charCodeAt(0))));
+const value=el=>('value' in el?el.value:el.innerText).trim();
+const fields=i=>[...sections[i].querySelectorAll('[data-k]')];
+const norm=s=>String(s||'').toLowerCase().replace(/[\s,]/g,'');
+const summary=i=>{let right=0,total=0,open=0;fields(i).forEach(el=>{const k=key[el.dataset.k];if(!k||k.t==='open'){open++;return}total++;if(value(el)&&(['e3','e4'].includes(el.dataset.k)?value(el).toLowerCase().replace(/\s+/g,' ')===k.a.toLowerCase().replace(/\s+/g,' '):norm(value(el))===norm(k.a)))right++});return {right,total,open}};
+const snapshot=i=>fields(i).map(el=>value(el));
+// Reopening or editing a completed block must not leave a stale completion badge.
+done=sections.map((s,i)=>done[i]&&JSON.stringify(done[i].answers)===JSON.stringify(snapshot(i))?done[i]:null);
+let sending=false, sent=!!saved.sent&&done.every(Boolean);
+const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,sent}))}catch(e){}};
+document.body.classList.add('mint-game');
+const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="4" value="0" aria-label="Completed blocks"></progress><nav class="block-nav" aria-label="Homework blocks"></nav><p class="save-note">Your answers are saved on this device. You can take a break and come back.</p>';
+document.querySelector('.sheet-head').after(dashboard);
+const nav=dashboard.querySelector('nav');
+const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your garden is growing! 🌱</h2><p>Check all four blocks to unlock the final button. You can review any block before sending.</p><div class="finish-list"></div>';
+document.getElementById('sheet').after(finish);
+const bar=document.querySelector('.hw-bar');finish.append(bar);
+const send=document.getElementById('hwSend');const nativeSend=window.hwSend;
+window.hwSend=function(){if(done.filter(Boolean).length!==4||sending||sent)return;sending=true;document.getElementById('sheet').inert=true;update();nativeSend()};
+window.claraSubmissionDone=function(){sending=false;sent=true;document.getElementById('sheet').inert=false;update()};
+window.claraSubmissionFailed=function(){sending=false;sent=false;document.getElementById('sheet').inert=false;update()};
+function update(){
+ const count=done.filter(Boolean).length;
+ dashboard.querySelector('#gardenProgressText').textContent=count+' of 4 blocks checked';
+ dashboard.querySelector('progress').value=count;
+ nav.querySelectorAll('button').forEach((b,i)=>{b.classList.toggle('done',!!done[i]);b.setAttribute('aria-current',i===current?'step':'false');b.querySelector('.step-badge').textContent=done[i]?'✓':icons[i];b.querySelector('small').textContent=done[i]?'Checked':i===current?'You are here':'Explore this block'});
+ finish.querySelector('.finish-list').replaceChildren(...sections.map((s,i)=>{const row=document.createElement('div');row.className='finish-row';let text=titles[i]+': ';if(done[i]){const a=done[i].score;text+=a.right+' / '+a.total+' checks correct'+(a.open?' · '+a.open+' for Dasha to review':'')}else text+='not checked yet';row.textContent=text;return row}));
+ bar.classList.toggle('available',count===4);send.disabled=count!==4||sending||sent;send.textContent=sending?'Sending…':sent?'Submitted ✓':'Send my results to Dasha';
+ finish.querySelector('h2').textContent=sent?'All sent — lovely work! 🌿':count===4?'Your garden is ready! 🌿':'Your garden is growing! 🌱';
+ finish.querySelector('p').textContent=sent?'Your homework has been submitted. You can still explore the blocks and review your work.':count===4?'You’ve checked every block. Send your answers and a marked copy to Dasha when you’re ready.':'Check all four blocks to unlock the final button. You can review any block before sending.';
+ save();
+}
+function show(i,scroll=true){current=i;sections.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',i===j?'false':'true')});update();if(scroll){sections[i].scrollIntoView({block:'start',behavior:'instant'});sections[i].querySelector('.sec-head').focus({preventScroll:true})}}
+sections.forEach((section,i)=>{
+ const tab=document.createElement('button');tab.className='block-tab';tab.type='button';tab.innerHTML='<span class="step-badge"></span><span>'+titles[i]+'<small></small></span>';tab.onclick=()=>show(i);nav.append(tab);
+ const heading=section.querySelector('.sec-head');heading.tabIndex=-1;
+ const actions=document.createElement('div');actions.className='game-ui block-actions';
+ const back=document.createElement('button');back.className='garden-button';back.textContent='← Back';back.disabled=i===0;back.onclick=()=>show(i-1);
+ const check=document.createElement('button');check.className='garden-button primary';check.textContent='Check this block';
+ const next=document.createElement('button');next.className='garden-button';next.textContent=i===3?'My results ↓':'Next block →';next.onclick=()=>i===3?finish.scrollIntoView({block:'start',behavior:'instant'}):show(i+1);
+ actions.append(back,check,next);
+ const result=document.createElement('div');result.className='game-ui block-result';result.setAttribute('role','status');
+ section.append(actions,result);
+ function report(){const a=summary(i);result.replaceChildren();const title=document.createElement('strong');title.textContent='Block checked — well done for trying!';const score=document.createElement('p');score.textContent=a.right+' of '+a.total+' answer checks correct. '+(a.right<a.total?'Look for the corrections beside your answers. You can have another go.':'Lovely work!');result.append(title,score);if(a.open){const note=document.createElement('p');note.textContent='Your own writing and method choices: feedback from Dasha in the lesson.';result.append(note)}check.textContent='Check again';}
+ check.onclick=()=>{
+ const missing=fields(i).filter(el=>!value(el));
+ if(missing.length){result.textContent='There '+(missing.length===1?'is 1 answer':'are '+missing.length+' answers')+' still to try in this block. Fill them in, then check again.';const el=missing[0],twin=section.querySelector('[data-field="'+el.dataset.k+'"]');const target=twin||el;target.scrollIntoView({block:'center',behavior:'instant'});if(target.matches('input,select,textarea,[contenteditable]'))target.focus({preventScroll:true});return}
+ window.hwShowChecks(section);report();done[i]={answers:snapshot(i),score:summary(i)};update();result.scrollIntoView({block:'center',behavior:'instant'});
+ };
+ function edited(){sent=false;if(!done[i])return;done[i]=null;section.querySelectorAll('.hw-mark,.hw-mark-list').forEach(m=>m.remove());result.textContent='You’ve changed an answer. Check this block again when you’re ready.';check.textContent='Check this block';document.getElementById('hwMsg').textContent='Your changes have not been sent yet.';send.textContent='Send my results to Dasha';update()}
+ section.addEventListener('input',edited);section.addEventListener('change',edited);
+ if(done[i]){window.hwShowChecks(section);report()}
+});
+show(current,false);if(sent)document.getElementById('hwMsg').textContent='Your checked homework has been submitted to Dasha. Edit an answer if you need to send an updated copy.';
+})();
+</script>
 </body>
 </html>

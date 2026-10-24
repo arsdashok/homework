@@ -283,7 +283,7 @@ body.mint-game{background-color:#faf7f1;background-image:radial-gradient(#e8dfd3
 
 
 <div class="sheet-head">
-  <div class="eyebrow">A little learning adventure</div><h1>Clara’s mint garden</h1><p class="hero-copy">One block at a time. Let’s see what grows!</p><svg class="garden-pal" viewBox="0 0 120 110" aria-hidden="true"><path d="M58 28Q31 25 31 8Q56 5 62 26Q69 4 94 8Q90 29 65 29" fill="#42896b"/><path d="M23 59Q22 29 61 30Q98 29 99 62L103 83Q99 100 83 94Q60 108 38 95Q16 99 19 81Z" fill="#99d9bb" stroke="#286951" stroke-width="3"/><circle cx="44" cy="61" r="4" fill="#203e35"/><circle cx="78" cy="61" r="4" fill="#203e35"/><path d="M54 72q7 8 14 0" fill="none" stroke="#203e35" stroke-width="3" stroke-linecap="round"/><ellipse cx="33" cy="72" rx="7" ry="4" fill="#efc2bb"/><ellipse cx="88" cy="72" rx="7" ry="4" fill="#efc2bb"/></svg>
+  <div class="eyebrow">Maths &amp; English</div><h1>Clara’s homework</h1><p class="hero-copy">One block at a time.</p><svg class="garden-pal" viewBox="0 0 120 110" aria-hidden="true"><path d="M58 28Q31 25 31 8Q56 5 62 26Q69 4 94 8Q90 29 65 29" fill="#42896b"/><path d="M23 59Q22 29 61 30Q98 29 99 62L103 83Q99 100 83 94Q60 108 38 95Q16 99 19 81Z" fill="#99d9bb" stroke="#286951" stroke-width="3"/><circle cx="44" cy="61" r="4" fill="#203e35"/><circle cx="78" cy="61" r="4" fill="#203e35"/><path d="M54 72q7 8 14 0" fill="none" stroke="#203e35" stroke-width="3" stroke-linecap="round"/><ellipse cx="33" cy="72" rx="7" ry="4" fill="#efc2bb"/><ellipse cx="88" cy="72" rx="7" ry="4" fill="#efc2bb"/></svg>
 </div>
 
 <div class="section maths">
@@ -1064,7 +1064,7 @@ body.mint-game{background-color:#faf7f1;background-image:radial-gradient(#e8dfd3
 <script id="clara-block-flow">(function(){
 'use strict';
 const sections=[...document.querySelectorAll('#sheet > .section')];
-const titles=['Bar models','Two-step plans','Rounding garden','Sentence studio'];
+const titles=['Bar models','Two-step plans','Rounding','Sentence studio'];
 const icons=['1','2','3','4'];
 const storage='clara-blocks-v2-'+document.body.dataset.sheetId;
 let saved={};try{saved=JSON.parse(localStorage.getItem(storage)||'{}')}catch(e){}
@@ -1086,7 +1086,7 @@ document.body.classList.add('mint-game');
 const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="4" value="0" aria-label="Completed blocks"></progress><nav class="block-nav" aria-label="Homework blocks"></nav><p class="save-note">Your work is saved on this device. Check carefully: a checked block cannot be changed.</p>';
 document.querySelector('.sheet-head').after(dashboard);
 const nav=dashboard.querySelector('nav');
-const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your garden is growing! 🌱</h2><p>Check all four blocks to unlock the final button. You can review any block before sending.</p><div class="tree-layout"><div class="tree-scene"></div><div class="tree-story"><div class="tree-count" aria-live="polite"></div><ol class="tree-stages"></ol><p class="leaf-note">One green leaf for each correct answer. Dasha will review your own writing separately.</p></div></div><div class="finish-list"></div>';
+const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your tree is growing! 🌱</h2><p>Check all four blocks to unlock the final button. You can review any block before sending.</p><div class="tree-layout"><div class="tree-scene"></div><div class="tree-story"><div class="tree-count" aria-live="polite"></div><ol class="tree-stages"></ol><p class="leaf-note">One green leaf for each correct answer. Dasha will review your own writing separately.</p></div></div><div class="finish-list"></div>';
 document.getElementById('sheet').after(finish);
 const bar=document.querySelector('.hw-bar');finish.append(bar);
 const send=document.getElementById('hwSend');const nativeSend=window.hwSend;
@@ -1123,7 +1123,7 @@ function update(){
  nav.querySelectorAll('button').forEach((b,i)=>{b.classList.toggle('done',!!done[i]);b.setAttribute('aria-current',i===current?'step':'false');b.querySelector('.step-badge').textContent=done[i]?'✓':icons[i];b.querySelector('small').textContent=done[i]?'Checked':i===current?'You are here':'Explore this block'});
  finish.querySelector('.finish-list').replaceChildren(...sections.map((s,i)=>{const row=document.createElement('div');row.className='finish-row';let text=titles[i]+': ';if(done[i]){const a=done[i].score;text+=a.right+' / '+a.total+' checks correct'+(a.open?' · '+a.open+' for Dasha to review':'')}else text+='not checked yet';row.textContent=text;return row}));
  bar.classList.toggle('available',count===4);send.disabled=count!==4||sending||sent;send.textContent=sending?'Sending…':sent?'Submitted ✓':'Send my results to Dasha';
- finish.querySelector('h2').textContent=sent?'All sent — lovely work! 🌿':count===4?'Your garden is ready! 🌿':'Your garden is growing! 🌱';
+ finish.querySelector('h2').textContent=sent?'All sent — lovely work! 🌿':count===4?'Your tree is complete! 🌿':'Your tree is growing! 🌱';
  finish.querySelector('p').textContent=sent?'Your homework has been submitted. You can still explore the blocks and review your work.':count===4?'All four parts have grown! Send your answers and a marked copy to Dasha.':'Each completed block grows a new part of your tree. Each correct answer adds a green leaf.';
  save();
 }

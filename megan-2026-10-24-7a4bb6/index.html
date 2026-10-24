@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megan · Maths homework · 24 October 2026</title>
+<style>
+@page {size:A4; margin:11mm 11mm;}
+* {box-sizing:border-box;}
+html {-webkit-text-size-adjust:100%;}
+body {font-family:'Segoe UI',Arial,sans-serif; color:#252333; margin:0; font-size:18px; background:#fbfaff;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+.wrap {max-width:1180px; margin:0 auto; padding:0 28px 48px;}
+header {background:linear-gradient(135deg,#6c63ff,#a78bfa); color:#fff; border-radius:18px; padding:18px 30px; margin:26px 0 36px;}
+h1 {font-size:25px; margin:0 0 4px;}
+.meta {font-size:15px; opacity:.95;}
+section {margin:0 0 48px;}
+.lbl {font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#6d4fc2; margin:0 0 8px;}
+.instr {font-size:32px; font-weight:800; color:#1f1b2e; line-height:1.25; margin:0 0 8px; text-wrap:balance;}
+.note {font-size:17px; color:#6b6280; margin:0 0 26px;}
+.note.pr {display:none;}
+
+/* one card per number */
+.card {background:#fff; border:2px solid #e6e0fa; border-radius:22px; padding:28px 34px 30px; margin:0 0 34px;
+  transition:border-color .15s, box-shadow .15s;}
+.card.current {border-color:#a78bfa; box-shadow:0 10px 30px rgba(108,99,255,.13);}
+.card.model {background:#f7f5ff; border-color:#d9cff7;}
+.mtag {display:inline-block; margin:0 0 14px; padding:5px 14px; border-radius:999px; background:#6c63ff; color:#fff;
+  font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;}
+.ctitle {font-size:22px; margin:0 0 20px; color:#3f3752;}
+.big {font-size:31px; font-weight:800; color:#5b32b5; letter-spacing:.01em;}
+.cbody {display:grid; grid-template-columns:minmax(0,1fr) 500px; gap:40px;}
+.side .linebox {position:sticky; top:24px;}
+svg.nl {display:block; width:100%; height:auto;}
+.store {display:none;}
+
+/* steps */
+.steps {display:flex; flex-direction:column; gap:10px;}
+.step {border:3px solid transparent; border-radius:16px; padding:12px 16px 15px; transition:background .15s, border-color .15s;}
+.step.now {border-color:#f59e0b; background:#fffbeb;}
+.shead {display:flex; align-items:center; gap:14px; margin:0 0 12px;}
+.badge {flex:0 0 36px; width:36px; height:36px; border-radius:50%; border:2px solid #c9bdf0; background:#fff; color:#5b32b5;
+  display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700;}
+.step.got .badge {background:#6c63ff; border-color:#6c63ff; color:#fff;}
+.sq {font-size:20px; line-height:1.35;}
+.nowtag {display:none; margin-left:auto; flex:0 0 auto; padding:3px 13px; border-radius:999px; background:#f59e0b; color:#fff;
+  font-size:15px; font-weight:700; letter-spacing:.03em;}
+.step.now .nowtag {display:inline-block;}
+.how {margin:10px 0 0 50px; font-size:16px; color:#6b6280; line-height:1.4;}
+.hl {color:#6c63ff; font-weight:800;}
+
+/* answer buttons: every answer on this sheet is a choice */
+.opts {display:flex; flex-wrap:wrap; align-items:center; gap:14px; padding-left:50px;}
+.opt {font:inherit; font-size:22px; font-weight:700; color:#3f3752; background:#fff; border:2px solid #c9bdf0; border-radius:14px;
+  padding:12px 20px; min-width:124px; min-height:58px; line-height:1.2; text-align:center; cursor:pointer;
+  display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+  transition:background .12s, border-color .12s, box-shadow .12s;}
+span.opt {cursor:default;}
+.opt.dg {min-width:66px; font-size:26px; padding:8px 0;}
+.opt.two {min-width:200px; font-size:19px; padding:9px 18px;}
+.opt.two small {font-size:16px; font-weight:600; opacity:.85; margin-top:2px;}
+button.opt:hover {background:#f3f0ff; border-color:#a78bfa;}
+button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
+.opts .opt.on {background:#6c63ff; border-color:#6c63ff; color:#fff; box-shadow:0 0 0 4px #ddd6fe;}
+.opts > .hw-mark.hw-mark-blk {font-size:19px; margin:2px 0 0;}
+
+/* Evie's digit-count pairs */
+.pair .psteps {display:flex; flex-direction:column; gap:8px;}
+.pair .step {display:flex; flex-wrap:wrap; align-items:center; column-gap:28px; row-gap:10px;}
+.pair .shead {flex:0 1 450px; margin:0;}
+.pair .opts {flex:0 1 auto; padding-left:0;}
+.pair .opts > .hw-mark.hw-mark-blk {display:inline-block; flex:0 0 auto; width:auto; margin:0 0 0 4px; white-space:nowrap;}
+.instr + .note.pr + .card {margin-top:24px;}
+.pn {font-size:26px; font-weight:800; color:#5b32b5; white-space:nowrap;}
+
+@media (max-width:900px) {
+  .cbody {grid-template-columns:minmax(0,1fr); gap:14px;}
+  .side {order:-1;}
+  .side .linebox {position:sticky; top:0; z-index:2; background:#fff; padding:6px 0 8px; box-shadow:0 10px 10px -10px rgba(40,30,80,.25);}
+  .card.model .side .linebox {background:#f7f5ff;}
+  svg.nl {max-width:480px; margin:0 auto;}
+  .pair .shead {flex-basis:100%;}
+  .pair .opts {padding-left:50px;}
+}
+@media (max-width:600px) {
+  body {font-size:17px;}
+  .wrap {padding:0 12px 40px;}
+  header {padding:14px 18px; margin:14px 0 26px; border-radius:14px;}
+  h1 {font-size:22px;}
+  .instr {font-size:25px;}
+  .card {padding:18px 14px 20px; border-radius:18px;}
+  .ctitle {font-size:19px;}
+  .big {font-size:27px;}
+  .step {padding:10px 8px 12px;}
+  .sq {font-size:18px;}
+  .badge {flex-basis:32px; width:32px; height:32px; font-size:15px;}
+  .opts {padding-left:0; gap:10px;}
+  .opt {font-size:19px; min-width:0; padding:10px 12px; min-height:52px;}
+  .opt.dg {min-width:58px; font-size:24px;}
+  .opt.two {min-width:0; flex:1 1 140px; font-size:16px; padding:8px 10px;}
+  .opt.two small {font-size:14px;}
+  .how {margin-left:0;}
+  .pn {font-size:23px;}
+  .pair .opts {padding-left:0;}
+}
+
+@media print {
+
+body {font-size:13px; background:#fff;}
+.wrap {max-width:none; padding:0;}
+header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+h1 {font-size:19px; margin:0;}
+.meta {font-size:11.5px;}
+section {margin:0 0 14px;}
+.lbl {font-size:10.5px; margin:0 0 3px;}
+.instr {font-size:19px; margin:0 0 3px;}
+.note {font-size:12px; margin:0 0 10px;}
+.note.scr {display:none;}
+.note.pr {display:block;}
+.card {padding:11px 16px 13px; margin:0 0 12px; border-width:1.5px; border-radius:12px; box-shadow:none; break-inside:avoid; page-break-inside:avoid;}
+.card.current {border-color:#e6e0fa; box-shadow:none;}
+.card.model {border-color:#d9cff7;}
+.mtag {font-size:10px; padding:2px 9px; margin:0 0 6px;}
+.ctitle {font-size:14px; margin:0 0 7px;}
+.big {font-size:19px;}
+.cbody {grid-template-columns:minmax(0,1fr) 320px; gap:14px;}
+.lead {break-inside:avoid; page-break-inside:avoid;}
+.side {order:0;}
+.side .linebox {position:static; box-shadow:none; padding:4px 0 0; background:none;}
+.steps {gap:3px;}
+.step, .step.now {padding:3px 4px 5px; border:0; background:none;}
+.shead {gap:8px; margin:0 0 4px;}
+.badge {flex-basis:21px; width:21px; height:21px; font-size:11.5px; border-width:1.5px;}
+.sq {font-size:13px;}
+.nowtag {display:none !important;}
+.how {font-size:11px; margin:3px 0 0 29px;}
+.opts {gap:7px; padding-left:29px;}
+.opt {font-size:14px; padding:3px 10px; min-width:70px; min-height:0; border-width:1.5px; border-radius:8px; box-shadow:none;}
+.opts .opt.on {box-shadow:none;}
+.opt.dg {min-width:32px; font-size:15px; padding:2px 0;}
+.opt.two {min-width:0; flex:0 0 auto; font-size:12px; padding:3px 9px;}
+.opt.two small {font-size:10.5px; margin-top:0;}
+.pair .psteps {gap:2px;}
+.pair .step {column-gap:16px; row-gap:4px;}
+.pair .shead {flex:0 1 290px;}
+.instr + .note.pr + .card {margin-top:0;}
+.pair .opts {padding-left:0;}
+.pn {font-size:15px;}
+
+  .nl .dotg {display:inline;}
+  .nl .slot.empty {display:none;}
+}
+
+body.hw-pdf-mode body {font-size:13px; background:#fff;}
+body.hw-pdf-mode .wrap {max-width:none; padding:0;}
+body.hw-pdf-mode header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+body.hw-pdf-mode h1 {font-size:19px; margin:0;}
+body.hw-pdf-mode .meta {font-size:11.5px;}
+body.hw-pdf-mode section {margin:0 0 14px;}
+body.hw-pdf-mode .lbl {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .instr {font-size:19px; margin:0 0 3px;}
+body.hw-pdf-mode .note {font-size:12px; margin:0 0 10px;}
+body.hw-pdf-mode .note.scr {display:none;}
+body.hw-pdf-mode .note.pr {display:block;}
+body.hw-pdf-mode .card {padding:11px 16px 13px; margin:0 0 12px; border-width:1.5px; border-radius:12px; box-shadow:none; break-inside:avoid; page-break-inside:avoid;}
+body.hw-pdf-mode .card.current {border-color:#e6e0fa; box-shadow:none;}
+body.hw-pdf-mode .card.model {border-color:#d9cff7;}
+body.hw-pdf-mode .mtag {font-size:10px; padding:2px 9px; margin:0 0 6px;}
+body.hw-pdf-mode .ctitle {font-size:14px; margin:0 0 7px;}
+body.hw-pdf-mode .big {font-size:19px;}
+body.hw-pdf-mode .cbody {grid-template-columns:minmax(0,1fr) 320px; gap:14px;}
+body.hw-pdf-mode .lead {break-inside:avoid; page-break-inside:avoid;}
+body.hw-pdf-mode .side {order:0;}
+body.hw-pdf-mode .side .linebox {position:static; box-shadow:none; padding:4px 0 0; background:none;}
+body.hw-pdf-mode .steps {gap:3px;}
+body.hw-pdf-mode .step, body.hw-pdf-mode .step.now {padding:3px 4px 5px; border:0; background:none;}
+body.hw-pdf-mode .shead {gap:8px; margin:0 0 4px;}
+body.hw-pdf-mode .badge {flex-basis:21px; width:21px; height:21px; font-size:11.5px; border-width:1.5px;}
+body.hw-pdf-mode .sq {font-size:13px;}
+body.hw-pdf-mode .nowtag {display:none !important;}
+body.hw-pdf-mode .how {font-size:11px; margin:3px 0 0 29px;}
+body.hw-pdf-mode .opts {gap:7px; padding-left:29px;}
+body.hw-pdf-mode .opt {font-size:14px; padding:3px 10px; min-width:70px; min-height:0; border-width:1.5px; border-radius:8px; box-shadow:none;}
+body.hw-pdf-mode .opts .opt.on {box-shadow:none;}
+body.hw-pdf-mode .opt.dg {min-width:32px; font-size:15px; padding:2px 0;}
+body.hw-pdf-mode .opt.two {min-width:0; flex:0 0 auto; font-size:12px; padding:3px 9px;}
+body.hw-pdf-mode .opt.two small {font-size:10.5px; margin-top:0;}
+body.hw-pdf-mode .pair .psteps {gap:2px;}
+body.hw-pdf-mode .pair .step {column-gap:16px; row-gap:4px;}
+body.hw-pdf-mode .pair .shead {flex:0 1 290px;}
+body.hw-pdf-mode .instr + .note.pr + .card {margin-top:0;}
+body.hw-pdf-mode .pair .opts {padding-left:0;}
+body.hw-pdf-mode .pn {font-size:15px;}
+
+
+
+/* Megan v2: estimate steps, then a real column layout to type into */
+.mcbody {display:grid; grid-template-columns:minmax(0,1fr) 520px; grid-template-areas:"a f" "a b"; column-gap:40px; row-gap:10px; align-items:start;}
+.mcbody > .stA {grid-area:a;}
+.mcbody > .colstep {grid-area:f;}
+.mcbody > .stB {grid-area:b;}
+.colframe {background:#fff; border:2px solid #e6e0fa; border-radius:16px; padding:16px 14px 18px; margin:0 0 0 50px;}
+.card.model .colframe {background:#fbfaff;}
+.estline {font-size:20px; color:#3f3752; margin:0 0 14px; display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.estline .elbl {font-weight:700; color:#6d4fc2; flex:0 0 100%;}
+.eslot {display:inline-flex; align-items:center; justify-content:center; min-width:104px; height:42px; padding:0 10px;
+  border:2px dashed #c9bdf0; border-radius:10px; background:#faf9ff; font-weight:800; color:#5b32b5; font-size:21px;}
+.eslot.full {border-style:solid; border-color:#a78bfa; background:#f3f0ff;}
+table.cols {border-collapse:collapse; margin:0 auto; font-variant-numeric:tabular-nums;}
+table.cols td {width:50px; height:54px; padding:3px; text-align:center; vertical-align:middle; font-size:30px; font-weight:700; color:#252333;}
+table.cols td.cm {width:14px; padding:0;}
+table.cols td.sg {width:34px; color:#6b6280;}
+table.cols tr.car td {height:40px; padding:2px 4px;}
+table.cols tr.bot td {border-bottom:3px solid #374151;}
+table.cols tr.ans td {padding-top:9px;}
+table.cols tr.ans td.cm {color:#9ca3af;}
+input.dig, .pd, .mdig {box-sizing:border-box; display:flex; align-items:center; justify-content:center; width:100%; height:48px; margin:0;
+  font:inherit; font-size:28px; font-weight:700; text-align:center; color:#1d4ed8; background:#f6f5ff;
+  border:2px solid #8072b2; border-radius:8px; padding:0; outline:none;}
+input.dig {display:block;}
+input.dig:focus {background:#fff; box-shadow:0 0 0 3px #fbbf24;}
+input.dig.car, .pd.car, .mdig.car {height:34px; font-size:19px; background:#fffbeb; border:2px dashed #f59e0b; border-radius:7px;}
+input.dig.car:focus {background:#fff;}
+.mdig {color:#5b32b5;}
+.mdig.car {color:#ea580c;}
+.mdig.car:not(.full) {background:#fff;}
+.pd {display:none;}
+.ansmark {min-height:1px; text-align:center;}
+.colframe .ansmark .hw-mark.hw-mark-blk {text-align:center; font-size:19px; margin:8px 0 0;}
+@media (max-width:900px) {
+  .mcbody {grid-template-columns:minmax(0,1fr); grid-template-areas:"a" "f" "b";}
+  .colframe {margin-left:0;}
+}
+@media (max-width:600px) {
+  .colframe {padding:12px 6px 14px;}
+  .estline {font-size:16px; gap:6px;}
+  .eslot {min-width:0; padding:0 7px; font-size:16px; height:36px;}
+  table.cols td {width:40px; height:46px; padding:2px; font-size:24px;}
+  table.cols td.cm {width:9px;}
+  table.cols td.sg {width:20px;}
+  table.cols tr.car td {height:36px; padding:2px 3px;}
+  input.dig, .pd, .mdig {height:42px; font-size:23px;}
+  input.dig.car, .pd.car, .mdig.car {height:32px; font-size:17px;}
+}
+@media print {
+  .mcbody {grid-template-columns:minmax(0,1fr) 300px; grid-template-areas:"a f" "a b"; column-gap:14px; row-gap:3px;}
+  .colframe {padding:6px 8px 8px; margin:0; border-width:1.5px; border-radius:10px;}
+  .estline {font-size:12.5px; margin:0 0 4px; gap:4px;}
+  .eslot {min-width:62px; height:24px; font-size:13px; border-width:1.5px; border-radius:6px;}
+  table.cols td {width:28px; height:28px; padding:1px; font-size:16px;}
+  table.cols td.cm {width:8px;}
+  table.cols td.sg {width:18px;}
+  table.cols tr.car td {height:20px; padding:1px 4px;}
+  table.cols tr.bot td {border-bottom-width:2px;}
+  table.cols tr.ans td {padding-top:4px;}
+  input.dig, .pd, .mdig {height:24px; font-size:15px; border-width:1.5px; border-radius:5px;}
+  input.dig.car, .pd.car, .mdig.car {height:17px; font-size:11px; border-width:1.2px; border-radius:4px;}
+  input.dig:focus {box-shadow:none;}
+}
+body.hw-pdf-mode .mcbody {grid-template-columns:minmax(0,1fr) 300px; grid-template-areas:"a f" "a b"; column-gap:14px; row-gap:3px;}
+body.hw-pdf-mode .colframe {padding:6px 8px 8px; margin:0; border-width:1.5px; border-radius:10px;}
+body.hw-pdf-mode .estline {font-size:12.5px; margin:0 0 4px; gap:4px;}
+body.hw-pdf-mode .eslot {min-width:62px; height:24px; font-size:13px; border-width:1.5px; border-radius:6px;}
+body.hw-pdf-mode table.cols td {width:28px; height:28px; padding:1px; font-size:16px;}
+body.hw-pdf-mode table.cols td.cm {width:8px;}
+body.hw-pdf-mode table.cols td.sg {width:18px;}
+body.hw-pdf-mode table.cols tr.car td {height:20px; padding:1px 4px;}
+body.hw-pdf-mode table.cols tr.bot td {border-bottom-width:2px;}
+body.hw-pdf-mode table.cols tr.ans td {padding-top:4px;}
+body.hw-pdf-mode input.dig {display:none !important;}
+body.hw-pdf-mode .pd {display:flex !important;}
+body.hw-pdf-mode .pd, body.hw-pdf-mode .mdig {height:24px; font-size:15px; border-width:1.5px; border-radius:5px;}
+body.hw-pdf-mode .pd.car, body.hw-pdf-mode .mdig.car {height:17px; font-size:11px; border-width:1.2px; border-radius:4px;}
+body.hw-pdf-mode .colframe .ansmark .hw-mark.hw-mark-blk {font-size:14px; margin:4px 0 0;}
+body.hw-pdf-mode .opts > .hw-mark.hw-mark-blk {font-size:14px; margin:2px 0 0;}
+body.hw-pdf-mode .note.pr {display:none;}  /* the emailed copy shows her taps, not a paper instruction */
+
+/* 17 Oct additions */
+.opt.two small {display:block;}
+.rgrid {display:grid; grid-template-columns:1fr 1fr; gap:0 30px;}
+.rgrid .card {margin-bottom:30px;}
+table.cols td s {text-decoration-thickness:2px; color:#6b6280;}
+table.cols tr.car td {width:50px;}
+.howc {margin:12px 0 0; text-align:left;}
+.rows .steps {gap:6px;}
+.step.rowq {display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; column-gap:24px; row-gap:10px;}
+.step.rowq .shead {margin:0; flex:0 0 auto;}
+.step.rowq .opts {padding-left:0;}
+.step.rowq .pn {white-space:nowrap;}
+.gapbox {display:inline-block; width:44px; height:40px; vertical-align:middle; border:2px dashed #a78bfa; border-radius:8px; background:#faf9ff;}
+@media (max-width:900px) { .rgrid {grid-template-columns:1fr;} }
+@media (max-width:620px) { .step.rowq .opts {padding-left:46px;} .step.rowq .pn {white-space:normal;} }
+@media print {
+  .rgrid {grid-template-columns:1fr 1fr; gap:0 12px;}
+  .rgrid .card {margin-bottom:10px;}
+  .howc {margin:4px 0 0;}
+  .rows .steps {display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:2px;}
+  .gapbox {width:26px; height:20px; border-width:1.5px;}
+  .step.rowq {justify-content:flex-start;}
+  section.q, .card {break-inside:avoid; page-break-inside:avoid;}
+  .step {break-inside:avoid; page-break-inside:avoid;}
+}
+body.hw-pdf-mode .rgrid {grid-template-columns:1fr 1fr; gap:0 12px;}
+body.hw-pdf-mode .rgrid .card {margin-bottom:10px;}
+body.hw-pdf-mode .howc {margin:4px 0 0;}
+body.hw-pdf-mode .rows .steps {display:grid; grid-template-columns:1fr 1fr; column-gap:24px; row-gap:2px;}
+body.hw-pdf-mode .gapbox {width:26px; height:20px; border-width:1.5px;}
+body.hw-pdf-mode .step.rowq {justify-content:flex-start;}
+.q, .problem, .exercise {page-break-inside:avoid; break-inside:avoid;}
+
+.famex {display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:0 0 14px; padding:12px 16px; font-size:21px; color:#3f3752; background:#f7f5ff; border:2px solid #e3dcfa; border-radius:16px;}
+.famex .mtag {margin:0;}
+@media (max-width:600px) { .famex {font-size:18px;} }
+@media print { .famex {font-size:13px; padding:4px 9px; margin:0 0 4px; border-width:1.5px; border-radius:10px;} }
+body.hw-pdf-mode .famex {font-size:13px; padding:4px 9px; margin:0 0 4px; border-width:1.5px; border-radius:10px;}
+
+/* number families: ALWAYS the part-whole picture (Dasha, 17 Oct 2026) */
+.pwtiles {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px 18px;}
+.step.pwq {display:flex; flex-direction:column; align-items:center; text-align:center; padding:14px 10px 16px;}
+.step.pwq .shead {margin:0 0 8px; align-self:stretch; justify-content:center;}
+.step.pwq .opts {padding-left:0; justify-content:center;}
+.step.pwq .opt.dg {min-width:66px;}
+svg.pw {display:block; width:170px; max-width:100%; height:auto; margin:0 0 12px;}
+svg.pwmini {display:block; width:112px; height:auto;}
+.opt.pwopt {padding:6px 10px; min-width:0;}
+.opts .opt.pwopt.on {background:#ede9fe; border-color:#6c63ff; color:#252333; box-shadow:0 0 0 4px #c4b5fd;}
+.famex svg.pw {width:116px; margin:0;}
+.famex .facts {display:grid; grid-template-columns:auto auto; gap:4px 28px;}
+.gapbox {display:inline-flex; align-items:center; justify-content:center; width:46px; height:40px; vertical-align:middle;
+  border:2px dashed #a78bfa; border-radius:8px; background:#faf9ff; color:#1d4ed8; font-size:24px; font-weight:800;}
+.gapbox.full {border-style:solid;}
+.pwrows {margin-top:18px;}
+@media (max-width:900px) { .pwtiles {grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (max-width:600px) {
+  .pwtiles {gap:8px;}
+  .step.pwq {padding:10px 2px 12px;}
+  .step.pwq .shead {gap:6px;}
+  .step.pwq .badge {flex-basis:26px; width:26px; height:26px; font-size:13px;}
+  .step.pwq .pn {font-size:18px;}
+  .step.pwq .gapbox {width:32px; height:30px; font-size:18px;}
+  svg.pw {width:128px;}
+  .step.pwq .opts {gap:5px; flex-wrap:nowrap;}
+  .step.pwq .opt.dg {min-width:42px; min-height:44px; font-size:20px; padding:6px 0;}
+  .famex svg.pw {width:100px;}
+  .famex .facts {gap:2px 18px;}
+  svg.pwmini {width:78px;}
+  .opt.pwopt {padding:4px 5px;}
+}
+@media print {
+  .pwtiles {grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px 10px;}
+  .step.pwq {padding:3px 4px 5px;}
+  .step.pwq .shead {margin:0 0 3px;}
+  svg.pw {width:92px; margin:0 0 4px;}
+  .step.pwq .opt.dg {min-width:32px;}
+  svg.pwmini {width:66px;}
+  .opt.pwopt {padding:2px 5px;}
+  .famex svg.pw {width:66px;}
+  .famex .facts {gap:0 14px;}
+  .gapbox {width:26px; height:20px; border-width:1.5px; font-size:14px;}
+  .pwrows {margin-top:4px;}
+}
+body.hw-pdf-mode .pwtiles {grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px 10px;}
+body.hw-pdf-mode .step.pwq {padding:3px 4px 5px;}
+body.hw-pdf-mode .step.pwq .shead {margin:0 0 3px;}
+body.hw-pdf-mode svg.pw {width:92px; margin:0 0 4px;}
+body.hw-pdf-mode .step.pwq .opt.dg {min-width:32px;}
+body.hw-pdf-mode svg.pwmini {width:66px;}
+body.hw-pdf-mode .opt.pwopt {padding:2px 5px;}
+body.hw-pdf-mode .famex svg.pw {width:66px;}
+body.hw-pdf-mode .famex .facts {gap:0 14px;}
+body.hw-pdf-mode .gapbox {width:26px; height:20px; border-width:1.5px; font-size:14px;}
+body.hw-pdf-mode .pwrows {margin-top:4px;}
+
+/* typed answers: Megan writes her own rounding, estimate and add-one answers (Dasha, 17 Oct 2026) */
+.tin {padding-left:50px;}
+input.hw-field.tnum {width:210px; min-height:54px; font-size:24px; font-weight:700; border-radius:12px !important; letter-spacing:.02em;}
+input.hw-field.tnum::placeholder {font-size:16px; font-weight:400; color:#a09bb8; letter-spacing:0;}
+.step.rowq input.hw-field.tnum {width:190px;}
+.mfield {display:inline-flex; align-items:center; justify-content:center; width:210px; height:54px; border:2px solid #8072b2; border-radius:12px;
+  background:#f6f5ff; color:#1d4ed8; font-size:24px; font-weight:700;}
+@media (max-width:600px) { .tin {padding-left:0;} input.hw-field.tnum, .mfield {width:170px;} .step.rowq input.hw-field.tnum {width:150px;} }
+@media print {
+  .tin {padding-left:29px;}
+  input.hw-field.tnum, .mfield, .step.rowq input.hw-field.tnum {width:110px; min-height:0; height:24px; font-size:14px; border-width:1.5px !important; border-radius:6px !important;}
+  input.hw-field.tnum::placeholder {color:transparent;}
+}
+body.hw-pdf-mode .tin {padding-left:29px;}
+body.hw-pdf-mode .mfield {width:110px; height:24px; font-size:14px; border-width:1.5px; border-radius:6px;}
+body.hw-pdf-mode .hw-pdf-answer.tnum {width:auto !important; min-width:110px !important; font-size:15px !important; text-align:center;}
+
+/* the place we round to sits next to every number (Dasha, 17 Oct 2026) */
+.ctitle .tgt {font-size:22px; font-weight:600; color:#6d4fc2; white-space:nowrap;}
+@media (max-width:600px) { .ctitle .tgt {font-size:18px;} }
+@media print { .ctitle .tgt {font-size:13px;} }
+body.hw-pdf-mode .ctitle .tgt {font-size:13px;}
+
+/* 24 Oct 2026: take-one-back tiles, jump picture, be the teacher */
+.famex .fx {font-size:18px; color:#6b6280;}
+.tgrid {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px 22px;}
+.step.tq {display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:14px 16px 16px; border:2px solid #eee9fb;}
+.step.tq.now {border:3px solid #f59e0b;}
+.step.tq .shead {margin:0;}
+.step.tq .opts {padding-left:0; gap:8px; flex-wrap:nowrap;}
+.step.tq .opt {min-width:0; font-size:19px; padding:10px 11px; min-height:52px;}
+.step.tq input.hw-field.tnum {width:200px;}
+svg.jl {display:block; width:100%; height:auto;}
+.jgrid {display:grid; grid-template-columns:1fr 1fr; gap:22px 40px;}
+.pupil .pclaim {font-size:21px; line-height:1.4; margin:0 0 12px; color:#3f3752;}
+.pname {display:inline-block; margin-right:8px; padding:3px 13px; border-radius:999px; background:#ede9fe; color:#5b32b5; font-weight:800; font-size:18px;}
+.pupil .opts .opt {min-width:150px;}
+@media (max-width:900px) { .tgrid {grid-template-columns:1fr 1fr;} .jgrid {grid-template-columns:1fr;} }
+@media (max-width:600px) {
+  .tgrid {grid-template-columns:1fr;}
+  .step.tq .opt {font-size:18px; padding:8px 10px;}
+  .famex .fx {font-size:16px;}
+  .pupil .pclaim {font-size:18px;}
+  .pupil .opts .opt {min-width:0; flex:1 1 120px;}
+}
+@media print {
+  .famex .fx {font-size:12px;}
+  .tgrid {grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px 10px;}
+  .step.tq, .step.tq.now {padding:4px 6px 6px; border:1.2px solid #eee9fb; gap:4px;}
+  .step.tq .opt {font-size:13px; padding:2px 8px; min-height:0;}
+  .step.tq input.hw-field.tnum {width:110px;}
+  .jgrid {gap:6px 16px;}
+  .pupil .pclaim {font-size:13px; margin:0 0 4px;}
+  .pname {font-size:11.5px; padding:1px 8px;}
+  .pupil .opts .opt {min-width:70px;}
+  .tgrid .step, .pupil, .card {break-inside:avoid; page-break-inside:avoid;}
+  .comp .cbody {grid-template-columns:minmax(0,1fr) 340px;}
+  .comp .steps {display:grid; grid-template-columns:1fr 1fr; gap:4px 12px;}
+  .jgrid {grid-template-columns:1fr 1fr;}
+  .pupil .steps {gap:2px;}
+}
+body.hw-pdf-mode .famex .fx {font-size:12px;}
+body.hw-pdf-mode .tgrid {grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px 10px;}
+body.hw-pdf-mode .step.tq, body.hw-pdf-mode .step.tq.now {padding:4px 6px 6px; border:1.2px solid #eee9fb; gap:4px;}
+body.hw-pdf-mode .step.tq .opt {font-size:13px; padding:2px 8px; min-height:0;}
+body.hw-pdf-mode .jgrid {gap:6px 16px;}
+body.hw-pdf-mode .pupil .pclaim {font-size:13px; margin:0 0 4px;}
+body.hw-pdf-mode .pname {font-size:11.5px; padding:1px 8px;}
+body.hw-pdf-mode .pupil .opts .opt {min-width:70px;}
+body.hw-pdf-mode .comp .cbody {grid-template-columns:minmax(0,1fr) 340px;}
+body.hw-pdf-mode .comp .steps {display:grid; grid-template-columns:1fr 1fr; gap:4px 12px;}
+body.hw-pdf-mode .jgrid {grid-template-columns:1fr 1fr;}
+body.hw-pdf-mode .pupil .steps {gap:2px;}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Megan" data-sheet="Maths 2026-10-24" data-sheet-id="megan-2026-10-24-maths">
+<div id="sheet">
+
+<div class="wrap">
+<header><h1>Megan · Maths</h1><div class="meta">24 October 2026 · Subtract, take one back, nearly round numbers</div></header>
+<div class="lead q"><section><p class="lbl">1 · Column subtraction with zeros</p><p class="instr">Estimate first. Then subtract in columns and check your answer is&nbsp;close.</p><p class="note scr">Type your rounded numbers and your estimate. Type the answer in the boxes under the line, one digit in each&nbsp;box.</p><p class="note pr">Write your rounded numbers and your estimate. Write the answer in the&nbsp;columns.</p><div class="card model"><p class="mtag">Like this</p><p class="ctitle"><span class="big">7,004 &minus; 2,358</span></p><div class="mcbody"><div class="steps stA"><div class="step got"><div class="shead"><span class="badge">1</span><span class="sq">Round <b>7,004</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="tin"><span class="mfield">7,000</span></div><p class="how">The hundreds digit is 0, so&nbsp;down.</p></div><div class="step got"><div class="shead"><span class="badge">2</span><span class="sq">Round <b>2,358</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="tin"><span class="mfield">2,000</span></div><p class="how">The hundreds digit is 3, so&nbsp;down.</p></div><div class="step got"><div class="shead"><span class="badge">3</span><span class="sq">Take away your rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="tin"><span class="mfield">5,000</span></div><p class="how">7,000 &minus; 2,000 =&nbsp;5,000</p></div></div><div class="step colstep got"><div class="shead"><span class="badge">4</span><span class="sq">Subtract in columns, ones first. Each time you exchange, type the new number in the small box on top. If a column changes twice, type the last&nbsp;number.</span><span class="nowtag">Now</span></div><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot full">7,000</span> &minus; <span class="eslot full">2,000</span> = <span class="eslot full">5,000</span></p><table class="cols" aria-label="Column subtraction"><tr class="car"><td class="sg"></td><td><span class="mdig car full">6</span></td><td class="cm"></td><td><span class="mdig car full">9</span></td><td><span class="mdig car full">9</span></td><td><span class="mdig car full">14</span></td></tr><tr class=""><td class="sg"></td><td><s>7</s></td><td class="cm">,</td><td><s>0</s></td><td><s>0</s></td><td><s>4</s></td></tr><tr class="bot"><td class="sg">&minus;</td><td>2</td><td class="cm">,</td><td>3</td><td>5</td><td>8</td></tr><tr class="ans"><td class="sg"></td><td><span class="mdig full">4</span></td><td class="cm">,</td><td><span class="mdig full">6</span></td><td><span class="mdig full">4</span></td><td><span class="mdig full">6</span></td></tr></table><p class="how howc">4 &minus; 8? Go next door: the tens are 0. Next door again: the hundreds are 0. Next door again: 7 thousands become 6, so 10 hundreds, then 9 hundreds and 10 tens, then 9 tens and 14&nbsp;ones.</p></div></div><div class="steps stB"><div class="step got"><div class="shead"><span class="badge">5</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt two on">Yes, close</span><span class="opt two">No, far away</span></div><p class="how">4,646 is close to&nbsp;5,000.</p></div></div></div></div></section></div><section><div class="card q item live" data-card="m_s1"><p class="ctitle"><span class="qn">1.</span> <span class="big">500,407 &minus; 238,659</span></p><div class="mcbody"><div class="steps stA"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Round <b>500,407</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_s1a" data-fill="a" data-label="S1. 500,407 - 238,659: round 500,407 to the nearest 1,000" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Round <b>238,659</b> to the nearest&nbsp;1,000.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_s1b" data-fill="b" data-label="S1. 500,407 - 238,659: round 238,659 to the nearest 1,000" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Take away your rounded numbers. My estimate&nbsp;is…</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_s1e" data-fill="e" data-label="S1. 500,407 - 238,659: estimate" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div></div><div class="step colstep" data-live><div class="shead"><span class="badge">4</span><span class="sq">Subtract in columns, ones first. Each time you exchange, type the new number in the small box on top. If a column changes twice, type the last&nbsp;number.</span><span class="nowtag">Now</span></div><div class="colframe"><p class="estline"><span class="elbl">Estimate:</span><span class="eslot" data-fill="a"></span> &minus; <span class="eslot" data-fill="b"></span> = <span class="eslot" data-fill="e"></span></p><table class="cols" aria-label="Column subtraction"><tr class="car"><td class="sg"></td><td><input class="dig car" data-ccol="5" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new digit after exchange, hundred thousands column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new digit after exchange, ten thousands column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new digit after exchange, thousands column"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-ccol="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new digit after exchange, hundreds column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new digit after exchange, tens column"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-ccol="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="new digit after exchange, ones column"><span class="pd car" aria-hidden="true"></span></td></tr><tr class=""><td class="sg"></td><td>5</td><td>0</td><td>0</td><td class="cm">,</td><td>4</td><td>0</td><td>7</td></tr><tr class="bot"><td class="sg">&minus;</td><td>2</td><td>3</td><td>8</td><td class="cm">,</td><td>6</td><td>5</td><td>9</td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-col="5" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, hundred thousands column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, ten thousands column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, thousands column"><span class="pd" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-col="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, hundreds column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, tens column"><span class="pd" aria-hidden="true"></span></td><td><input class="dig ans" data-col="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="answer, ones column"><span class="pd" aria-hidden="true"></span></td></tr></table><div class="ansmark" data-field="m_s1ans"></div></div></div><div class="steps stB"><div class="step" data-live><div class="shead"><span class="badge">5</span><span class="sq">Is your answer close to your&nbsp;estimate?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_s1z"><button type="button" class="opt two" data-v="yes, close" aria-pressed="false">yes, close</button><button type="button" class="opt two" data-v="no, far away" aria-pressed="false">no, far away</button></div></div></div></div><div class="store"><input type="hidden" data-k="m_s1ans" data-label="S1. 500,407 - 238,659: the answer" class="hw-field"><select data-k="m_s1z" data-label="S1. 500,407 - 238,659: close to the estimate?" class="hw-field"><option value="">Choose</option><option value="yes, close">yes, close</option><option value="no, far away">no, far away</option></select></div></div></section>
+<section class="q lead"><p class="lbl">2 · Take one back</p><p class="instr">Take 1 away from each&nbsp;number.</p>
+<p class="note scr">Tap the answer for 1 and 2. Type the answer for 3 to&nbsp;6.</p><p class="note pr">Circle the answer for 1 and 2. Write the answer for 3 to&nbsp;6.</p>
+<div class="famex"><span class="mtag">Like this</span><span><b>52,700 &minus; 1 = 52,699</b></span><span><b>40,000 &minus; 1 = 39,999</b></span><span class="fx">The zeros at the end become 9s, and the digit before them goes down by&nbsp;1.</span></div>
+<div class="card q item live" data-card="m_t"><div class="tgrid"><div class="step tq" data-live><div class="shead"><span class="badge">1</span><span class="sq pn">35,200 &minus; 1 =</span></div><div class="opts" data-field="m_t1"><button type="button" class="opt" data-v="35,299" aria-pressed="false">35,299</button><button type="button" class="opt" data-v="35,199" aria-pressed="false">35,199</button><button type="button" class="opt" data-v="34,199" aria-pressed="false">34,199</button></div></div><div class="step tq" data-live><div class="shead"><span class="badge">2</span><span class="sq pn">70,000 &minus; 1 =</span></div><div class="opts" data-field="m_t2"><button type="button" class="opt" data-v="69,999" aria-pressed="false">69,999</button><button type="button" class="opt" data-v="70,999" aria-pressed="false">70,999</button><button type="button" class="opt" data-v="69,000" aria-pressed="false">69,000</button></div></div><div class="step tq" data-live><div class="shead"><span class="badge">3</span><span class="sq pn">58,400 &minus; 1 =</span></div><input class="hw-field tnum" data-k="m_t3" data-label="T3. 58,400 - 1 =" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div><div class="step tq" data-live><div class="shead"><span class="badge">4</span><span class="sq pn">90,500 &minus; 1 =</span></div><input class="hw-field tnum" data-k="m_t4" data-label="T4. 90,500 - 1 =" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div><div class="step tq" data-live><div class="shead"><span class="badge">5</span><span class="sq pn">80,100 &minus; 1 =</span></div><input class="hw-field tnum" data-k="m_t5" data-label="T5. 80,100 - 1 =" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div><div class="step tq" data-live><div class="shead"><span class="badge">6</span><span class="sq pn">140,000 &minus; 1 =</span></div><input class="hw-field tnum" data-k="m_t6" data-label="T6. 140,000 - 1 =" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="store"><select data-k="m_t1" data-label="T1. 35,200 - 1 =" class="hw-field"><option value="">Choose</option><option value="35,299">35,299</option><option value="35,199">35,199</option><option value="34,199">34,199</option></select><select data-k="m_t2" data-label="T2. 70,000 - 1 =" class="hw-field"><option value="">Choose</option><option value="69,999">69,999</option><option value="70,999">70,999</option><option value="69,000">69,000</option></select></div></div></section>
+<div class="lead q"><section><p class="lbl">3 · Nearly round numbers</p><p class="instr">Make one number round, add, then take the 1&nbsp;back.</p>
+<p class="note scr">Tap the nearly round number. Type the rest. The picture fills in as you&nbsp;go.</p><p class="note pr">Circle the nearly round number. Write the&nbsp;rest.</p>
+<div class="card model comp"><p class="mtag">Like this</p><p class="ctitle"><span class="big">18,999 + 26,300</span></p><div class="cbody"><div class="steps"><div class="step got"><div class="shead"><span class="badge">1</span><span class="sq">Which number is nearly&nbsp;round?</span><span class="nowtag">Now</span></div><div class="opts"><span class="opt on">18,999</span><span class="opt">26,300</span></div><p class="how">18,999 is just 1 away from&nbsp;19,000.</p></div><div class="step got"><div class="shead"><span class="badge">2</span><span class="sq">Make it round: add 1 to&nbsp;it.</span><span class="nowtag">Now</span></div><div class="tin"><span class="mfield">19,000</span></div><p class="how">18,999 + 1 =&nbsp;19,000</p></div><div class="step got"><div class="shead"><span class="badge">3</span><span class="sq">Add the other&nbsp;number.</span><span class="nowtag">Now</span></div><div class="tin"><span class="mfield">45,300</span></div><p class="how">19,000 + 26,300 =&nbsp;45,300</p></div><div class="step got"><div class="shead"><span class="badge">4</span><span class="sq">Take the 1 back. The total&nbsp;is…</span><span class="nowtag">Now</span></div><div class="tin"><span class="mfield">45,299</span></div><p class="how">We added 1 too many, so 45,300 &minus; 1 =&nbsp;45,299.</p></div></div><div class="side"><div class="linebox"><svg class="jl" viewBox="0 0 560 150" role="img" aria-label="Jump picture: add 1, add the other number, take the 1 back" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="100" x2="544" y2="100" stroke="#374151" stroke-width="2.4"/><path d="M 50 92 Q 90 56 130 92" fill="none" stroke="#d97706" stroke-width="2.6"/><polygon points="130.0,92.0 119.2,89.0 125.9,81.6" fill="#d97706"/><path d="M 130 92 Q 320 -14 510 92" fill="none" stroke="#2563eb" stroke-width="2.6"/><polygon points="510.0,92.0 498.8,91.5 503.7,82.8" fill="#2563eb"/><path d="M 510 92 Q 440 64 370 92" fill="none" stroke="#dc2626" stroke-width="2.6"/><polygon points="370.0,92.0 377.4,83.6 381.1,92.9" fill="#dc2626"/><text x="90" y="66" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#d97706">+1</text><text x="320" y="30" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#2563eb">+26,300</text><text x="440" y="122" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">take the</text><text x="440" y="139" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">1 back</text><circle cx="50" cy="100" r="5.5" fill="#6c63ff"/><text x="50" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#252333">18,999</text><circle cx="130" cy="100" r="5.5" fill="#6c63ff"/><text x="130" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#252333">19,000</text><circle cx="510" cy="100" r="5.5" fill="#6c63ff"/><text x="510" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#252333">45,300</text><circle cx="370" cy="100" r="5.5" fill="#16a34a"/><text x="370" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#16a34a">45,299</text></svg></div></div></div></div></section></div><section><div class="card q item live comp" data-card="m_c1"><p class="ctitle"><span class="qn">1.</span> <span class="big">24,999 + 13,400</span></p><div class="cbody"><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Which number is nearly&nbsp;round?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_c1n" data-fill="n" data-other="o"><button type="button" class="opt" data-v="24,999" data-o="13,400" aria-pressed="false">24,999</button><button type="button" class="opt" data-v="13,400" data-o="24,999" aria-pressed="false">13,400</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Make it round: add 1 to&nbsp;it.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c1f" data-fill="f" data-label="C1. 24,999 + 13,400: make it round" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Add the other&nbsp;number.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c1t" data-fill="t" data-label="C1. 24,999 + 13,400: add the other number" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">Take the 1 back. The total&nbsp;is…</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c1a" data-fill="a" data-label="C1. 24,999 + 13,400: take the 1 back" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div></div><div class="side"><div class="linebox"><svg class="jl" viewBox="0 0 560 150" role="img" aria-label="Jump picture: add 1, add the other number, take the 1 back" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="100" x2="544" y2="100" stroke="#374151" stroke-width="2.4"/><path d="M 50 92 Q 90 56 130 92" fill="none" stroke="#d97706" stroke-width="2.6"/><polygon points="130.0,92.0 119.2,89.0 125.9,81.6" fill="#d97706"/><path d="M 130 92 Q 320 -14 510 92" fill="none" stroke="#2563eb" stroke-width="2.6"/><polygon points="510.0,92.0 498.8,91.5 503.7,82.8" fill="#2563eb"/><path d="M 510 92 Q 440 64 370 92" fill="none" stroke="#dc2626" stroke-width="2.6"/><polygon points="370.0,92.0 377.4,83.6 381.1,92.9" fill="#dc2626"/><text x="90" y="66" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#d97706">+1</text><text class="pwfill" data-fill="o" x="320" y="30" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#2563eb">+ ?</text><text x="440" y="122" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">take the</text><text x="440" y="139" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">1 back</text><circle cx="50" cy="100" r="5.5" fill="#6c63ff"/><rect x="17" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="n" x="50" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="130" cy="100" r="5.5" fill="#6c63ff"/><rect x="97" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="f" x="130" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="510" cy="100" r="5.5" fill="#6c63ff"/><rect x="477" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="t" x="510" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="370" cy="100" r="5.5" fill="#16a34a"/><rect x="337" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="a" x="370" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text></svg></div></div></div><div class="store"><select data-k="m_c1n" data-label="C1. 24,999 + 13,400: which number is nearly round?" class="hw-field"><option value="">Choose</option><option value="24,999">24,999</option><option value="13,400">13,400</option></select></div></div><div class="card q item live comp" data-card="m_c2"><p class="ctitle"><span class="qn">2.</span> <span class="big">21,300 + 59,999</span></p><div class="cbody"><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Which number is nearly&nbsp;round?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_c2n" data-fill="n" data-other="o"><button type="button" class="opt" data-v="21,300" data-o="59,999" aria-pressed="false">21,300</button><button type="button" class="opt" data-v="59,999" data-o="21,300" aria-pressed="false">59,999</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Make it round: add 1 to&nbsp;it.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c2f" data-fill="f" data-label="C2. 21,300 + 59,999: make it round" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Add the other&nbsp;number.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c2t" data-fill="t" data-label="C2. 21,300 + 59,999: add the other number" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">Take the 1 back. The total&nbsp;is…</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c2a" data-fill="a" data-label="C2. 21,300 + 59,999: take the 1 back" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div></div><div class="side"><div class="linebox"><svg class="jl" viewBox="0 0 560 150" role="img" aria-label="Jump picture: add 1, add the other number, take the 1 back" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="100" x2="544" y2="100" stroke="#374151" stroke-width="2.4"/><path d="M 50 92 Q 90 56 130 92" fill="none" stroke="#d97706" stroke-width="2.6"/><polygon points="130.0,92.0 119.2,89.0 125.9,81.6" fill="#d97706"/><path d="M 130 92 Q 320 -14 510 92" fill="none" stroke="#2563eb" stroke-width="2.6"/><polygon points="510.0,92.0 498.8,91.5 503.7,82.8" fill="#2563eb"/><path d="M 510 92 Q 440 64 370 92" fill="none" stroke="#dc2626" stroke-width="2.6"/><polygon points="370.0,92.0 377.4,83.6 381.1,92.9" fill="#dc2626"/><text x="90" y="66" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#d97706">+1</text><text class="pwfill" data-fill="o" x="320" y="30" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#2563eb">+ ?</text><text x="440" y="122" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">take the</text><text x="440" y="139" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">1 back</text><circle cx="50" cy="100" r="5.5" fill="#6c63ff"/><rect x="17" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="n" x="50" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="130" cy="100" r="5.5" fill="#6c63ff"/><rect x="97" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="f" x="130" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="510" cy="100" r="5.5" fill="#6c63ff"/><rect x="477" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="t" x="510" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="370" cy="100" r="5.5" fill="#16a34a"/><rect x="337" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="a" x="370" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text></svg></div></div></div><div class="store"><select data-k="m_c2n" data-label="C2. 21,300 + 59,999: which number is nearly round?" class="hw-field"><option value="">Choose</option><option value="21,300">21,300</option><option value="59,999">59,999</option></select></div></div><div class="card q item live comp" data-card="m_c3"><p class="ctitle"><span class="qn">3.</span> <span class="big">15,200 + 39,999</span></p><div class="cbody"><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Which number is nearly&nbsp;round?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_c3n" data-fill="n" data-other="o"><button type="button" class="opt" data-v="15,200" data-o="39,999" aria-pressed="false">15,200</button><button type="button" class="opt" data-v="39,999" data-o="15,200" aria-pressed="false">39,999</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Make it round: add 1 to&nbsp;it.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c3f" data-fill="f" data-label="C3. 15,200 + 39,999: make it round" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Add the other&nbsp;number.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c3t" data-fill="t" data-label="C3. 15,200 + 39,999: add the other number" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">Take the 1 back. The total&nbsp;is…</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c3a" data-fill="a" data-label="C3. 15,200 + 39,999: take the 1 back" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div></div><div class="side"><div class="linebox"><svg class="jl" viewBox="0 0 560 150" role="img" aria-label="Jump picture: add 1, add the other number, take the 1 back" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="100" x2="544" y2="100" stroke="#374151" stroke-width="2.4"/><path d="M 50 92 Q 90 56 130 92" fill="none" stroke="#d97706" stroke-width="2.6"/><polygon points="130.0,92.0 119.2,89.0 125.9,81.6" fill="#d97706"/><path d="M 130 92 Q 320 -14 510 92" fill="none" stroke="#2563eb" stroke-width="2.6"/><polygon points="510.0,92.0 498.8,91.5 503.7,82.8" fill="#2563eb"/><path d="M 510 92 Q 440 64 370 92" fill="none" stroke="#dc2626" stroke-width="2.6"/><polygon points="370.0,92.0 377.4,83.6 381.1,92.9" fill="#dc2626"/><text x="90" y="66" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#d97706">+1</text><text class="pwfill" data-fill="o" x="320" y="30" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#2563eb">+ ?</text><text x="440" y="122" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">take the</text><text x="440" y="139" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">1 back</text><circle cx="50" cy="100" r="5.5" fill="#6c63ff"/><rect x="17" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="n" x="50" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="130" cy="100" r="5.5" fill="#6c63ff"/><rect x="97" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="f" x="130" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="510" cy="100" r="5.5" fill="#6c63ff"/><rect x="477" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="t" x="510" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="370" cy="100" r="5.5" fill="#16a34a"/><rect x="337" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="a" x="370" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text></svg></div></div></div><div class="store"><select data-k="m_c3n" data-label="C3. 15,200 + 39,999: which number is nearly round?" class="hw-field"><option value="">Choose</option><option value="15,200">15,200</option><option value="39,999">39,999</option></select></div></div><div class="card q item live comp" data-card="m_c4"><p class="ctitle"><span class="qn">4.</span> <span class="big">6,999 + 2,450</span></p><div class="cbody"><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Which number is nearly&nbsp;round?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_c4n" data-fill="n" data-other="o"><button type="button" class="opt" data-v="6,999" data-o="2,450" aria-pressed="false">6,999</button><button type="button" class="opt" data-v="2,450" data-o="6,999" aria-pressed="false">2,450</button></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Make it round: add 1 to&nbsp;it.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c4f" data-fill="f" data-label="C4. 6,999 + 2,450: make it round" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">3</span><span class="sq">Add the other&nbsp;number.</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c4t" data-fill="t" data-label="C4. 6,999 + 2,450: add the other number" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">4</span><span class="sq">Take the 1 back. The total&nbsp;is…</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_c4a" data-fill="a" data-label="C4. 6,999 + 2,450: take the 1 back" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div></div><div class="side"><div class="linebox"><svg class="jl" viewBox="0 0 560 150" role="img" aria-label="Jump picture: add 1, add the other number, take the 1 back" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="100" x2="544" y2="100" stroke="#374151" stroke-width="2.4"/><path d="M 50 92 Q 90 56 130 92" fill="none" stroke="#d97706" stroke-width="2.6"/><polygon points="130.0,92.0 119.2,89.0 125.9,81.6" fill="#d97706"/><path d="M 130 92 Q 320 -14 510 92" fill="none" stroke="#2563eb" stroke-width="2.6"/><polygon points="510.0,92.0 498.8,91.5 503.7,82.8" fill="#2563eb"/><path d="M 510 92 Q 440 64 370 92" fill="none" stroke="#dc2626" stroke-width="2.6"/><polygon points="370.0,92.0 377.4,83.6 381.1,92.9" fill="#dc2626"/><text x="90" y="66" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#d97706">+1</text><text class="pwfill" data-fill="o" x="320" y="30" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800" fill="#2563eb">+ ?</text><text x="440" y="122" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">take the</text><text x="440" y="139" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#dc2626">1 back</text><circle cx="50" cy="100" r="5.5" fill="#6c63ff"/><rect x="17" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="n" x="50" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="130" cy="100" r="5.5" fill="#6c63ff"/><rect x="97" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="f" x="130" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="510" cy="100" r="5.5" fill="#6c63ff"/><rect x="477" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="t" x="510" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text><circle cx="370" cy="100" r="5.5" fill="#16a34a"/><rect x="337" y="111" width="66" height="25" rx="6" fill="#faf9ff" stroke="#c9bdf0" stroke-width="1.6" stroke-dasharray="5 4"/><text class="pwfill" data-fill="a" x="370" y="128.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8"></text></svg></div></div></div><div class="store"><select data-k="m_c4n" data-label="C4. 6,999 + 2,450: which number is nearly round?" class="hw-field"><option value="">Choose</option><option value="6,999">6,999</option><option value="2,450">2,450</option></select></div></div></section>
+<section class="q"><p class="lbl">4 · Be the teacher</p><p class="instr">Is each pupil&nbsp;right?</p>
+<p class="note scr">Work it out yourself first. Then tap right or not&nbsp;right.</p><p class="note pr">Work it out yourself first. Then circle right or not&nbsp;right.</p>
+<div class="card q item live" data-card="m_j"><div class="jgrid"><div class="pupil"><p class="pclaim"><span class="pname">Ava</span> “27,999 + 14,200 = 42,200. I used 28,000 instead of 27,999 and stopped&nbsp;there.”</p><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Work it out yourself: 27,999 + 14,200&nbsp;=</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_j1" data-label="J1. Ava: 27,999 + 14,200 =" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Is Ava&nbsp;right?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_j1v"><button type="button" class="opt" data-v="right" aria-pressed="false">right</button><button type="button" class="opt" data-v="not right" aria-pressed="false">not right</button></div></div></div></div><div class="pupil"><p class="pclaim"><span class="pname">Ben</span> “51,999 + 6,300 = 58,299. I used 52,000, then I took the 1&nbsp;back.”</p><div class="steps"><div class="step" data-live><div class="shead"><span class="badge">1</span><span class="sq">Work it out yourself: 51,999 + 6,300&nbsp;=</span><span class="nowtag">Now</span></div><div class="tin"><input class="hw-field tnum" data-k="m_j2" data-label="J2. Ben: 51,999 + 6,300 =" inputmode="numeric" autocomplete="off" placeholder="Type your answer"></div></div><div class="step" data-live><div class="shead"><span class="badge">2</span><span class="sq">Is Ben&nbsp;right?</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_j2v"><button type="button" class="opt" data-v="right" aria-pressed="false">right</button><button type="button" class="opt" data-v="not right" aria-pressed="false">not right</button></div></div></div></div></div><div class="store"><select data-k="m_j1v" data-label="J1. Is Ava right? (27,999 + 14,200 = 42,200)" class="hw-field"><option value="">Choose</option><option value="right">right</option><option value="not right">not right</option></select><select data-k="m_j2v" data-label="J2. Is Ben right? (51,999 + 6,300 = 58,299)" class="hw-field"><option value="">Choose</option><option value="right">right</option><option value="not right">not right</option></select></div></div></section>
+</div>
+<script>
+(function () {
+  var CARRY_STORE = "hwcarry-" + (document.body.dataset.sheetId || location.pathname);
+  function loadCarries() { try { return JSON.parse(localStorage.getItem(CARRY_STORE) || "{}"); } catch (e) { return {}; } }
+  function saveCarries(o) { try { localStorage.setItem(CARRY_STORE, JSON.stringify(o)); } catch (e) {} }
+  // the typed digit is mirrored into the value ATTRIBUTE and into a twin span, so the emailed PDF
+  // (built from a copy of the page) shows it inside its column
+  function setBox(inp, v) {
+    inp.value = v; inp.setAttribute("value", v);
+    var m = inp.nextElementSibling; if (m && m.classList.contains("pd")) m.textContent = v;
+  }
+  function updateNow() {
+    var first = null;
+    document.querySelectorAll(".step[data-live]").forEach(function (s) {
+      s.classList.remove("now");
+      if (!first && !s.classList.contains("got")) first = s;
+    });
+    if (first) first.classList.add("now");
+    document.querySelectorAll(".card.live").forEach(function (c) { c.classList.toggle("current", !!first && c.contains(first)); });
+  }
+  function setup(card) {
+    var id = card.dataset.card;
+    function selFor(k) { return card.querySelector('.store [data-k=' + JSON.stringify(k) + ']'); }
+    var groups = [].slice.call(card.querySelectorAll(".opts[data-field]"));
+    function fillSlots(name, v) {   // estimate line, family picture and equation gap all show the same answer
+      card.querySelectorAll('.eslot[data-fill="' + name + '"], .pwfill[data-fill="' + name + '"]').forEach(function (t) {
+        t.textContent = v; t.classList.toggle("full", !!v);
+      });
+    }
+    var typed = [].slice.call(card.querySelectorAll("input.tnum[data-k]"));
+    function paintTyped() {
+      typed.forEach(function (inp) {
+        var v = inp.value.trim();
+        var st = inp.closest(".step"); if (st) st.classList.toggle("got", !!v);
+        if (inp.dataset.fill) fillSlots(inp.dataset.fill, v);
+      });
+    }
+    typed.forEach(function (inp) { inp.addEventListener("input", function () { paintTyped(); updateNow(); }); });
+    function paint() {
+      groups.forEach(function (g) {
+        var s = selFor(g.dataset.field), v = s ? s.value : "";
+        g.querySelectorAll("button").forEach(function (b) {
+          var on = !!v && b.dataset.v === v;
+          b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        var st = g.closest(".step"); if (st) st.classList.toggle("got", !!v);
+        if (g.dataset.fill) fillSlots(g.dataset.fill, v);
+        if (g.dataset.other) {
+          var pick = v ? g.querySelector('button[data-v=' + JSON.stringify(v) + ']') : null;
+          fillSlots(g.dataset.other, pick ? "+" + pick.dataset.o : "+ ?");
+        }
+      });
+    }
+    groups.forEach(function (g) {
+      g.querySelectorAll("button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var s = selFor(g.dataset.field); if (!s) return;
+          if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+          paint(); updateNow();
+        });
+      });
+    });
+    // ---- the column sum ----
+    var ans = [].slice.call(card.querySelectorAll("input.dig.ans")).sort(function (x, y) { return x.dataset.col - y.dataset.col; });
+    var car = [].slice.call(card.querySelectorAll("input.dig.car"));
+    var store = card.querySelector('.store input[type="hidden"]');
+    var colStep = card.querySelector(".colstep");
+    if (!colStep) { paint(); paintTyped(); return; }
+    function compose() {   // left to right; a gap inside the number shows as _
+      var ds = ans.slice().reverse().map(function (i) { return i.value; });
+      var first = ds.findIndex(function (d) { return d !== ""; });
+      if (first < 0) return "";
+      return ds.slice(first).map(function (d) { return d || "_"; }).join("");
+    }
+    function pushAnswer() {
+      var v = compose();
+      if (store && store.value !== v) {
+        store.value = v;
+        store.dispatchEvent(new Event("input", { bubbles: true }));
+        store.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      colStep.classList.toggle("got", ans.every(function (i) { return i.value !== ""; }));
+      updateNow();
+    }
+    function pushCarries() {
+      var o = loadCarries(); o[id] = car.map(function (i) { return i.value; }); saveCarries(o);
+    }
+    function ansAt(c) { return ans.filter(function (i) { return +i.dataset.col === c; })[0]; }
+    function onType(inp) {
+      var all = (inp.value.match(/\d/g) || []).join("");
+      var d = inp.classList.contains("car") ? all.slice(-2) : all.slice(-1);
+      setBox(inp, d);
+      if (inp.classList.contains("ans")) {
+        pushAnswer();
+        var next = ansAt(+inp.dataset.col + 1);   // columns are worked from the ones: next box is to the LEFT
+        if (d && next) next.focus();
+      } else {
+        pushCarries();
+        var below = ansAt(+inp.dataset.ccol);       // a carry is added in its own column next
+        if (d && below && (d.length > 1 || +d > 1)) below.focus();
+      }
+    }
+    ans.concat(car).forEach(function (inp) {
+      inp.addEventListener("input", function () { onType(inp); });
+      inp.addEventListener("focus", function () { inp.select(); });
+      inp.addEventListener("keydown", function (e) {
+        if (e.key === "Backspace" && !inp.value && inp.classList.contains("ans")) {
+          var right = ansAt(+inp.dataset.col - 1); if (right) { e.preventDefault(); right.focus(); }
+        }
+      });
+    });
+    // answers come back on reload (hw.js has already restored the hidden field)
+    if (store && store.value) {
+      var s = store.value.replace(/[^0-9_]/g, "");
+      for (var c = 0; c < ans.length; c++) {
+        var ch = s.charAt(s.length - 1 - c);
+        setBox(ansAt(c), /\d/.test(ch) ? ch : "");
+      }
+    }
+    var saved = loadCarries()[id];
+    if (saved) car.forEach(function (inp, i) { setBox(inp, saved[i] || ""); });
+    colStep.classList.toggle("got", ans.every(function (i) { return i.value !== ""; }));
+    paint(); paintTyped();
+  }
+  function init() { document.querySelectorAll(".card.live").forEach(setup); updateNow(); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtX3QxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzUsMTk5In0sICJtX3QyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjksOTk5In0sICJtX3QzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTgsMzk5In0sICJtX3Q0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiOTAsNDk5In0sICJtX3Q1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiODAsMDk5In0sICJtX3Q2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTM5LDk5OSJ9LCAibV9jMW4iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNCw5OTkifSwgIm1fYzFmIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjUsMDAwIn0sICJtX2MxdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjM4LDQwMCJ9LCAibV9jMWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzOCwzOTkifSwgIm1fYzJuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTksOTk5In0sICJtX2MyZiI6IHsidCI6ICJleGFjdCIsICJhIjogIjYwLDAwMCJ9LCAibV9jMnQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4MSwzMDAifSwgIm1fYzJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiODEsMjk5In0sICJtX2MzbiI6IHsidCI6ICJleGFjdCIsICJhIjogIjM5LDk5OSJ9LCAibV9jM2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MCwwMDAifSwgIm1fYzN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTUsMjAwIn0sICJtX2MzYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjU1LDE5OSJ9LCAibV9jNG4iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2LDk5OSJ9LCAibV9jNGYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3LDAwMCJ9LCAibV9jNHQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5LDQ1MCJ9LCAibV9jNGEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5LDQ0OSJ9LCAibV9qMXYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJub3QgcmlnaHQifSwgIm1fajEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MiwxOTkifSwgIm1fajJ2IjogeyJ0IjogImV4YWN0IiwgImEiOiAicmlnaHQifSwgIm1fajIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1OCwyOTkifSwgIm1fczFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTAwLDAwMCJ9LCAibV9zMWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMzksMDAwIn0sICJtX3MxZSI6IHsidCI6ICJleGFjdCIsICJhIjogIjI2MSwwMDAifSwgIm1fczFhbnMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNjEsNzQ4In0sICJtX3MxeiI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body></html>

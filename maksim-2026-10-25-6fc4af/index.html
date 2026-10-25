@@ -1,0 +1,248 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Maksim_Homework_2026-10-25_Week.key.json -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Maksim · English · 25 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.6; }
+.wrap { max-width:900px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+a { color:var(--accent); text-underline-offset:4px; }
+
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 36px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.language-note, .example { page-break-inside:avoid; break-inside:avoid; }
+.section-heading, .language-note, .instruction, .example { page-break-after:avoid; break-after:avoid; }
+.section-heading { display:flex; gap:16px; align-items:baseline; margin-bottom:16px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:14px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:19px; line-height:1.3; letter-spacing:-.01em; font-weight:650; color:#2c4250; }
+.instruction { font-size:22px; line-height:1.35; font-weight:700; color:var(--ink); margin:20px 0 16px; }
+
+/* Rule note: what the words mean. */
+.language-note { border-left:3px solid var(--accent); background:#f0f7f7; border-radius:0 12px 12px 0; padding:12px 20px; margin:0; font-size:16px; line-height:1.6; }
+.language-note p { margin:3px 0; }
+.rule-row { display:grid; grid-template-columns:190px 1fr; gap:4px 14px; margin:3px 0; }
+.rule-row .w { font-weight:700; color:#0b4f4b; }
+.rule-row .past { color:var(--muted); }
+
+/* Worked example: same shape as an item, already done. */
+.example { border:1.5px dashed #9fb4bf; border-radius:14px; padding:14px 20px 16px; margin:0 0 8px; background:#fbfcfd; }
+.example-label { font-size:12px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 6px; }
+.example .situation { margin-bottom:4px; }
+.example .why { font-size:15px; color:var(--muted); margin:8px 0 0; }
+
+/* Items */
+.question { display:flex; gap:12px; align-items:flex-start; padding:18px 0; border-bottom:1px solid #edf1f3; page-break-inside:avoid; break-inside:avoid; }
+.question:last-child { border-bottom:0; padding-bottom:4px; }
+.qnum { font-weight:650; font-size:18px; min-width:26px; padding-top:1px; color:var(--ink); }
+.qbody { flex:1; min-width:0; }
+.situation { font-size:17px; color:#3f5562; margin:0 0 4px; }
+.sentence { font-size:20px; margin:0 0 12px; }
+.fillgap { display:inline-block; min-width:110px; min-height:1.45em; padding:0 10px; margin:0 3px; border:1.5px dashed #a4b5c0; border-radius:8px; background:#f8fafb; vertical-align:baseline; line-height:1.4; text-align:center; color:#1d4ed8; font-weight:600; }
+.fillgap.is-filled { border-style:solid; border-color:#0f766e; background:#eef8f6; }
+
+.choices { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.choices.stack { flex-direction:column; align-items:stretch; gap:8px; }
+.choice, .demo-choice { font:inherit; font-size:18px; line-height:1.35; padding:9px 18px; border:1.5px solid #b8c6ce; border-radius:10px; background:#fff; color:#1e293b; text-align:left; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.choice { cursor:pointer; }
+.choice:hover { border-color:#0f766e; }
+.choice.is-chosen, .demo-choice.is-chosen { border-color:#0f766e; background:#e6f4f1; color:#0b3d38; font-weight:600; }
+.demo-choice { display:inline-block; cursor:default; }
+.choices.stack .choice, .choices.stack .demo-choice { font-size:18px; padding:11px 16px; }
+select.pair-store { display:none !important; }
+
+.prt { display:none; }
+.nowrap { white-space:nowrap; }
+
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 16px 16px; } .exercise { padding:24px 18px; border-radius:14px; }
+  .instruction { font-size:20px; } .sentence { font-size:19px; } .edition { font-size:12px; }
+  .rule-row { grid-template-columns:1fr; gap:0; margin-bottom:6px; }
+  .choice { font-size:17px; padding:9px 14px; }
+}
+
+@page { size:A4; margin:11mm; }
+@media print {
+  .scr { display:none !important; } .prt { display:inline !important; }
+  body { background:white; font-size:12pt; line-height:1.45; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:10px; } .heading-row { margin:8px 0 10px; } .page-meta { padding-top:8px; }
+  h1 { font-size:24pt; }
+  .exercise { box-shadow:none; padding:14px 20px; margin-bottom:12px; page-break-inside:auto; break-inside:auto; }
+  .instruction { font-size:15pt; margin:12px 0 10px; page-break-after:avoid; break-after:avoid; }
+  .language-note { padding:8px 16px; page-break-inside:avoid; break-inside:avoid; page-break-after:avoid; break-after:avoid; }
+  .example { padding:10px 16px; page-break-inside:avoid; break-inside:avoid; }
+  .question { padding:8px 0; }
+  .sentence { font-size:13.5pt; margin-bottom:6px; }
+  .situation { font-size:11.5pt; }
+  .choice, .demo-choice { font-size:12pt; padding:4px 12px; }
+}
+body.hw-pdf-mode { background:white; }
+.language-note + .example { margin-top:14px; }
+@media print { .choices.stack .choice, .choices.stack .demo-choice { padding:5px 14px; font-size:12pt; } .choices.stack { gap:5px; } }
+@media print { .question { padding:5px 0 !important; } .exercise { padding:10px 18px !important; } .instruction { margin:8px 0 6px !important; } .language-note { padding:6px 14px !important; } .example { padding:6px 14px !important; } .example-label { margin:0 0 2px; } .example .why { margin:3px 0 0; } textarea.hw-field { height:38px !important; } .section-heading { margin-bottom:6px !important; } .exercise { margin-bottom:6px !important; } .note-small { margin:-2px 0 2px; } }
+/* Print: in exercise 2 the two forms sit on the same line as the sentence. */
+@media print { .inline-print .question .qbody { display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; } .inline-print .choice { padding:3px 10px; } .inline-print .question .sentence { margin:0; } }
+/* Typed answers (local preview; the shared hw.css wins on the live page). */
+textarea.hw-field { display:block; width:100%; box-sizing:border-box; font:inherit; font-size:18px; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:10px; padding:10px 14px; min-height:84px; line-height:1.5; resize:vertical; }
+.ask { font-size:20px; margin:0 0 10px; }
+.note-small { font-size:15px; color:var(--muted); margin:-6px 0 6px; }
+@media print { textarea.hw-field { min-height:0 !important; height:52px !important; resize:none; font-size:12pt; } textarea.hw-field::placeholder { color:transparent !important; } .ask { font-size:13.5pt; margin-bottom:6px; } .exercise.keep { page-break-inside:avoid !important; break-inside:avoid !important; } .page-header { padding-bottom:6px; } .heading-row { margin:4px 0 6px; } .exercise { margin-bottom:8px; padding:12px 18px; } }
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Maksim" data-sheet="Homework 2026-10-25" data-sheet-id="maksim-2026-10-25-homework">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>English, in practice.</h1><span class="edition">25<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Maksim · 25 October · 3 exercises · about 15 minutes</span><a href="https://arsdashok.github.io/vocab/2c73e70a0550a136/">Your vocabulary ↗</a></div>
+</header>
+
+<section class="exercise" aria-labelledby="title-1">
+  <div class="section-heading"><span class="section-number">01</span><h2 id="title-1">One small word in a&nbsp;question</h2></div>
+  <div class="language-note">
+    <div class="rule-row"><span class="w">Have / Has</span><span>+ been, finished, had… (with yet, ever, just). With been, use have or has, never was, were or&nbsp;did. <span class="past">Has with he, she,&nbsp;it.</span></span></div>
+    <div class="rule-row"><span class="w">Did</span><span>+ a verb, for a finished time (yesterday, on&nbsp;Monday)</span></div>
+    <div class="rule-row"><span class="w">Was / Were</span><span>+ an -ing verb or an adjective (working,&nbsp;late)</span></div>
+    <div class="rule-row"><span class="w">Do / Does</span><span>+ a verb: habits&nbsp;now</span></div>
+  </div>
+  <p class="instruction"><span class="scr">Click the correct&nbsp;question.</span><span class="prt">Circle the correct&nbsp;question.</span></p>
+  <div class="example">
+    <p class="example-label">Like this</p>
+    <div class="choices stack"><span class="demo-choice is-chosen">Do you usually practise the guitar in the evening?</span><span class="demo-choice">You usually practise the guitar in the evening?</span></div>
+    <p class="why">«Usually» means a habit now, so the question needs&nbsp;Do.</p>
+  </div>
+
+  <div class="question"><span class="qnum">1.</span><div class="qbody">
+    <div class="choices stack" data-field="p1"><button type="button" class="choice" data-v="Did you sleep well last night?">Did you sleep well last night?</button><button type="button" class="choice" data-v="Have you slept well last night?">Have you slept well last night?</button></div>
+    <select class="hw-field pair-store" data-k="p1" data-label="1. Choose the correct question (sleep, last night)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Did you sleep well last night?">Did you sleep well last night?</option><option value="Have you slept well last night?">Have you slept well last night?</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">2.</span><div class="qbody">
+    <div class="choices stack" data-field="p2"><button type="button" class="choice" data-v="Where were you been? Your phone was off all day.">Where were you been? Your phone was off all day.</button><button type="button" class="choice" data-v="Where have you been? Your phone was off all day.">Where have you been? Your phone was off all day.</button></div>
+    <select class="hw-field pair-store" data-k="p2" data-label="2. Choose the correct question (where … been)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Where were you been? Your phone was off all day.">Where were you been? Your phone was off all day.</option><option value="Where have you been? Your phone was off all day.">Where have you been? Your phone was off all day.</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">3.</span><div class="qbody">
+    <div class="choices stack" data-field="p3"><button type="button" class="choice" data-v="Did it raining when you left your acting class?">Did it raining when you left your acting class?</button><button type="button" class="choice" data-v="Was it raining when you left your acting class?">Was it raining when you left your acting class?</button></div>
+    <select class="hw-field pair-store" data-k="p3" data-label="3. Choose the correct question (raining)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Did it raining when you left your acting class?">Did it raining when you left your acting class?</option><option value="Was it raining when you left your acting class?">Was it raining when you left your acting class?</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">4.</span><div class="qbody">
+    <div class="choices stack" data-field="p4"><button type="button" class="choice" data-v="Has the new display arrived yet?">Has the new display arrived yet?</button><button type="button" class="choice" data-v="The new display arrived yet?">The new display arrived yet?</button></div>
+    <select class="hw-field pair-store" data-k="p4" data-label="4. Choose the correct question (the new display)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="Has the new display arrived yet?">Has the new display arrived yet?</option><option value="The new display arrived yet?">The new display arrived yet?</option></select>
+  </div></div>
+</section>
+
+<section class="exercise inline-print" aria-labelledby="title-2">
+  <div class="section-heading"><span class="section-number">02</span><h2 id="title-2">am / is / are + -ing, or&nbsp;not?</h2></div>
+  <div class="language-note">
+    <div class="rule-row"><span class="w">want, need, love, know</span><span>never am / is / are + -ing, even right&nbsp;now</span></div>
+    <div class="rule-row"><span class="w">a plan with a time</span><span>am / is / are + -ing: <b>I'm meeting</b> a friend&nbsp;tomorrow.</span></div>
+  </div>
+  <p class="instruction"><span class="scr">Click the right form of the&nbsp;verb.</span><span class="prt">Circle the right form of the&nbsp;verb.</span></p>
+  <div class="example">
+    <p class="example-label">Like this</p>
+    <p class="sentence">Sorry, I <span class="fillgap is-filled">don't know</span> his&nbsp;name.</p>
+    <div class="choices"><span class="demo-choice">'m not knowing</span><span class="demo-choice is-chosen">don't know</span></div>
+    <p class="why">Know is never am / is / are&nbsp;+&nbsp;-ing.</p>
+  </div>
+
+  <div class="question"><span class="qnum">5.</span><div class="qbody">
+    <p class="sentence">I <span class="fillgap" data-gap="s1">&nbsp;</span> to get a pilot's licence one&nbsp;day.</p>
+    <div class="choices" data-field="s1"><button type="button" class="choice" data-v="want">want</button><button type="button" class="choice" data-v="&#x27;m wanting">&#x27;m wanting</button></div>
+    <select class="hw-field pair-store" data-k="s1" data-label="5. I ___ to get a pilot&#x27;s licence one day." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="want">want</option><option value="&#x27;m wanting">&#x27;m wanting</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">6.</span><div class="qbody">
+    <p class="sentence">We <span class="fillgap" data-gap="s2">&nbsp;</span> dinner with friends at eight&nbsp;tonight.</p>
+    <div class="choices" data-field="s2"><button type="button" class="choice" data-v="have">have</button><button type="button" class="choice" data-v="are having">are having</button></div>
+    <select class="hw-field pair-store" data-k="s2" data-label="6. We ___ dinner with friends at eight tonight." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="have">have</option><option value="are having">are having</option></select>
+  </div></div>
+  <div class="question"><span class="qnum">7.</span><div class="qbody">
+    <p class="sentence">My e-book reader <span class="fillgap" data-gap="s3">&nbsp;</span> a new&nbsp;display.</p>
+    <div class="choices" data-field="s3"><button type="button" class="choice" data-v="is needing">is needing</button><button type="button" class="choice" data-v="needs">needs</button></div>
+    <select class="hw-field pair-store" data-k="s3" data-label="7. My e-book reader ___ a new display." tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="is needing">is needing</option><option value="needs">needs</option></select>
+  </div></div>
+</section>
+
+<section class="exercise" aria-labelledby="title-3">
+  <div class="section-heading"><span class="section-number">03</span><h2 id="title-3">A moment from your&nbsp;week</h2></div>
+  <div class="language-note">
+    <div class="rule-row"><span class="w">was / were + -ing</span><span>the longer action in the&nbsp;background</span></div>
+    <div class="rule-row"><span class="w">past simple</span><span>the short thing that happened in the&nbsp;middle</span></div>
+  </div>
+  <p class="instruction"><span class="scr">Click the correct&nbsp;sentence.</span><span class="prt">Circle the correct&nbsp;sentence.</span></p>
+  <div class="question"><span class="qnum">8.</span><div class="qbody">
+    <div class="choices stack" data-field="c1"><button type="button" class="choice" data-v="When I was walking home from my guitar lesson, I decided to buy new strings.">When I was walking home from my guitar lesson, I decided to buy new strings.</button><button type="button" class="choice" data-v="When I walked home from my guitar lesson, I was deciding to buy new strings.">When I walked home from my guitar lesson, I was deciding to buy new strings.</button></div>
+    <select class="hw-field pair-store" data-k="c1" data-label="8. Choose the correct sentence (walking home, new strings)" tabindex="-1" aria-hidden="true"><option value="">Choose</option><option value="When I was walking home from my guitar lesson, I decided to buy new strings.">When I was walking home from my guitar lesson, I decided to buy new strings.</option><option value="When I walked home from my guitar lesson, I was deciding to buy new strings.">When I walked home from my guitar lesson, I was deciding to buy new strings.</option></select>
+  </div></div>
+
+  <p class="instruction">Now write one or two true sentences for each&nbsp;question.</p>
+  <div class="example">
+    <p class="example-label">Like this, for questions 9 and&nbsp;10</p>
+    <p class="sentence">I <b>was waiting</b> for the bus when it <b>started</b> to&nbsp;rain.</p>
+  </div>
+  <p class="note-small">We'll check these together in the&nbsp;lesson.</p>
+
+  <div class="question"><span class="qnum">9.</span><div class="qbody">
+    <p class="ask">What was happening when your e-book display&nbsp;broke?</p>
+    <textarea class="hw-field" rows="2" data-k="y1" data-label="9. What was happening when your e-book display broke?" aria-label="9. What was happening when your e-book display broke? Your answer" placeholder="Type your answer here"></textarea>
+  </div></div>
+
+  <div class="question"><span class="qnum">10.</span><div class="qbody">
+    <p class="ask">Think of your last acting class or guitar lesson. What were you doing when something unexpected&nbsp;happened?</p>
+    <textarea class="hw-field" rows="2" data-k="y2" data-label="10. Your last acting class or guitar lesson: what were you doing when something unexpected happened?" aria-label="10. What were you doing when something unexpected happened? Your answer" placeholder="Type your answer here"></textarea>
+  </div></div>
+</section>
+</main>
+<script id="choice-script">
+(function(){
+  function store(k){ return document.querySelector('select[data-k="'+k+'"]'); }
+  function sync(){
+    document.querySelectorAll('.choices[data-field]').forEach(function(g){
+      var s = store(g.dataset.field); if(!s) return;
+      var chosen = null;
+      g.querySelectorAll('.choice').forEach(function(b){
+        var on = !!s.value && b.dataset.v === s.value;
+        b.classList.toggle('is-chosen', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if(on) chosen = b;
+      });
+      var gap = document.querySelector('.fillgap[data-gap="'+g.dataset.field+'"]');
+      if(gap){ gap.textContent = chosen ? chosen.textContent : '\u00a0'; gap.classList.toggle('is-filled', !!chosen); }
+    });
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.choice'); if(!b) return;
+    var g = b.closest('.choices'); var s = store(g.dataset.field); if(!s) return;
+    s.value = b.dataset.v;
+    s.dispatchEvent(new Event('input', {bubbles:true}));
+    s.dispatchEvent(new Event('change', {bubbles:true}));
+    sync();
+  });
+  document.addEventListener('change', sync);
+  document.addEventListener('DOMContentLoaded', sync);
+  window.addEventListener('load', function(){ sync(); setTimeout(sync, 300); setTimeout(sync, 1200); });
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIkRpZCB5b3Ugc2xlZXAgd2VsbCBsYXN0IG5pZ2h0PyJ9LCAicDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGVyZSBoYXZlIHlvdSBiZWVuPyBZb3VyIHBob25lIHdhcyBvZmYgYWxsIGRheS4ifSwgInAzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiV2FzIGl0IHJhaW5pbmcgd2hlbiB5b3UgbGVmdCB5b3VyIGFjdGluZyBjbGFzcz8ifSwgInA0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiSGFzIHRoZSBuZXcgZGlzcGxheSBhcnJpdmVkIHlldD8ifSwgInMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAid2FudCJ9LCAiczIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhcmUgaGF2aW5nIn0sICJzMyI6IHsidCI6ICJleGFjdCIsICJhIjogIm5lZWRzIn0sICJjMSI6IHsidCI6ICJleGFjdCIsICJhIjogIldoZW4gSSB3YXMgd2Fsa2luZyBob21lIGZyb20gbXkgZ3VpdGFyIGxlc3NvbiwgSSBkZWNpZGVkIHRvIGJ1eSBuZXcgc3RyaW5ncy4ifSwgInkxIjogeyJ0IjogIm9wZW4ifSwgInkyIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

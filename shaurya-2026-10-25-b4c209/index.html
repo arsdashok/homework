@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <!-- hw-mode: online. English, from the 25 Oct 2026 lesson (L3 «Edit precisely»: L3·01-03 allusion / allegory / idiom, the editing cards, L3·11-12 had + past participle, verb-form drill). Half-term follows, so this sheet covers two weeks. Private marking key in the .key.json beside this file, never in this page. All items are fresh: none of the lesson cards' stories, sentences or verbs except the target spellings. -->
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Shaurya &middot; English homework &middot; 25 October 2026</title><style>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Shaurya &middot; English homework &middot; 25 October 2026</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Creepster&amp;display=swap" rel="stylesheet"><style>
 @page{size:A4;margin:9mm 12mm}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Rubik','Segoe UI',Arial,sans-serif;font-size:17px;line-height:1.55;color:#1f2937;background:white;max-width:1180px;margin:0 auto;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 p{text-wrap:pretty}
-header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:2px solid #8072b2;padding-bottom:12px;margin-bottom:28px}
-h1{font-size:22px;font-weight:700}
-header span{font-size:14px;color:#4b5563}
-h2{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#64518e;margin-bottom:6px}
+header{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px 20px;flex-wrap:wrap;background:linear-gradient(120deg,#160b26 0%,#2a1245 60%,#3b1760 100%);border-radius:16px;padding:18px 84px 18px 24px;margin-bottom:30px;overflow:hidden}
+header .ttl{display:flex;align-items:center;gap:12px;min-width:0}
+header .pumpkin{width:40px;height:38px;flex:none}
+h1{font-family:'Creepster','Rubik','Segoe UI',Arial,sans-serif;font-size:34px;font-weight:400;letter-spacing:.04em;line-height:1.1;color:#ff8a1f}
+header .sky{display:flex;align-items:center;gap:12px}
+header span{font-size:14px;color:#e9d5ff}
+header .moon{width:96px;height:46px;flex:none}
+header .web{position:absolute;top:0;right:0;width:62px;height:62px;opacity:.55;pointer-events:none}
+h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c2410c;margin-bottom:6px}
 .instruction{font-size:21px;font-weight:700;line-height:1.35;color:#111827;margin:0 0 6px}
 .note{font-size:14px;color:#6b7280;margin:0 0 6px}
-.defs{font-size:15px;color:#374151;border-left:3px solid #8072b2;padding:2px 0 2px 12px;margin:2px 0 8px}
+.defs{font-size:15px;color:#374151;border-left:3px solid #f97316;padding:2px 0 2px 12px;margin:2px 0 8px}
 .defs p+p{margin-top:2px}
 .defs b{color:#111827}
 .model{font-size:15px;color:#374151;margin:0 0 6px}
@@ -20,12 +25,12 @@ section{margin-bottom:34px}
 h2,.instruction{break-after:avoid;page-break-after:avoid}
 .q,.qs{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;padding:14px 0}
 .q,.question{break-inside:avoid;page-break-inside:avoid}
-.qnum{font-size:18px;color:#6b7280}
+.qnum{font-size:18px;font-weight:700;color:#6b21a8}
 .prompt{font-size:18px;line-height:1.5;font-weight:400;margin-bottom:8px}
-.rowq{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:10px 24px;padding:8px 0;border-top:1px dashed #e2e4ea}
+.rowq{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:10px 24px;padding:8px 0;border-top:1px dashed #ecd9bd}
 .rowq:first-child{border-top:0;padding-top:0}
 .rowq .prompt{margin-bottom:0}
-.lab{font-size:15px;color:#6b7280;margin-right:8px}
+.lab{font-size:15px;color:#7c3aed;margin-right:8px}
 select{font:inherit;font-size:17px;min-height:40px;min-width:200px;border:1px solid #9ca3af;border-radius:6px;background:#fff;max-width:100%}
 input.word{width:170px}
 input.verb{width:130px}
@@ -35,13 +40,13 @@ section div.sent{min-height:84px !important}
 .cards{display:grid;gap:14px}
 .cards.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .cards.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.itm{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:14px 16px;border:1px solid #e2e4ea;border-radius:12px;background:#faf9fd;break-inside:avoid;page-break-inside:avoid}
+.itm{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:14px 16px;border:1px solid #efd9b8;border-radius:12px;background:#fffaf0;break-inside:avoid;page-break-inside:avoid}
 .itm .ctext{font-size:18px;line-height:1.45;color:#1f2937}
 .itm .ctext b{font-weight:700;color:#111827}
 .itm select{min-width:0;width:100%;max-width:240px}
 .itm .sab{font-size:18px;line-height:1.45;color:#1f2937}
 .itm .sab span{display:block}
-.itm .sab b{color:#64518e;font-weight:700;margin-right:6px}
+.itm .sab b{color:#c2410c;font-weight:700;margin-right:6px}
 .pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 48px}
 .print-opts{display:none}
 .print-only{display:none}
@@ -57,7 +62,10 @@ select{font-size:19px;min-height:46px}
 @media(max-width:900px){.cards.three{grid-template-columns:repeat(2,minmax(0,1fr))}.pair{grid-template-columns:1fr}}
 @media(max-width:620px){
 body{padding:18px 12px 40px}
-header{flex-direction:column;gap:4px}
+header{flex-direction:column;align-items:flex-start;gap:6px;padding:14px 16px}
+h1{font-size:28px}
+header .web{width:46px;height:46px}
+header .moon{width:80px;height:38px}
 .instruction{font-size:20px}
 .q,.qs{grid-template-columns:22px minmax(0,1fr);gap:8px}
 .cards.two,.cards.three{grid-template-columns:minmax(0,1fr)}
@@ -77,8 +85,11 @@ body.hw-pdf-mode .itm{padding:8px 10px;gap:6px}
 @media print{
 body{padding-right:3px !important}
 body{font-size:12px;line-height:1.3;max-width:none}
-header{margin-bottom:6px;padding-bottom:5px}
-h1{font-size:17px}header span{font-size:11px}
+header{margin-bottom:7px;padding:6px 60px 6px 12px;border-radius:8px}
+h1{font-size:21px}header span{font-size:11px}
+header .pumpkin{width:24px;height:23px}
+header .moon{width:62px;height:30px}
+header .web{width:40px;height:40px}
 h2{font-size:9.5px;margin-bottom:1px}
 .instruction{font-size:13px;margin-bottom:2px;line-height:1.2}
 .note,.model{font-size:10.5px;margin-bottom:2px}
@@ -119,7 +130,7 @@ section{margin-bottom:6px}
 </head><body data-student="Shaurya" data-sheet="English 2026-10-25" data-sheet-id="shaurya-2026-10-25-english">
 <div id="sheet">
 
-<header><h1>Shaurya &middot; English</h1><span>25 October 2026</span></header>
+<header><svg class="web" viewBox="0 0 62 62" aria-hidden="true" fill="none" stroke="#e9d5ff" stroke-width="1"><path d="M62 0 L0 0 M62 0 L10 30 M62 0 L32 52 M62 0 L62 62"/><path d="M50 0 Q52 6 56 7 Q59 10 62 12"/><path d="M36 0 Q40 10 46 13 Q52 18 54 24 Q58 25 62 26"/><path d="M20 0 Q26 14 34 19 Q42 26 44 36 Q53 38 62 40"/><path d="M47 30 v8" /><circle cx="47" cy="40" r="2.5" fill="#e9d5ff"/></svg><div class="ttl"><svg class="pumpkin" viewBox="0 0 40 38" aria-hidden="true"><path d="M19 9 C19 5 21 2 24 1" stroke="#4d7c0f" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="11" cy="23" rx="10" ry="13" fill="#ea580c"/><ellipse cx="29" cy="23" rx="10" ry="13" fill="#ea580c"/><ellipse cx="20" cy="23" rx="10" ry="14" fill="#f97316"/><path d="M13 19 l4 4 h-6z M27 19 l2 4 h-6z" fill="#3b1760"/><path d="M11 28 q9 6 18 0 q-2 4 -9 4 q-7 0 -9 -4z" fill="#3b1760"/></svg><h1>Shaurya &middot; English</h1></div><div class="sky"><span>25 October 2026</span><svg class="moon" viewBox="0 0 96 46" aria-hidden="true"><circle cx="74" cy="23" r="19" fill="#fde68a"/><circle cx="68" cy="17" r="3.5" fill="#fcd34d"/><circle cx="80" cy="29" r="4.5" fill="#fcd34d"/><circle cx="79" cy="14" r="2" fill="#fcd34d"/><path d="M8 16 C12 10 16 12 18 16 C20 12 24 10 28 16 C25 15 23 17 22 19 C21 17 19 17 18 19 C17 17 15 17 14 19 C13 17 11 15 8 16Z" fill="#0f0618"/><path d="M36 32 C39 28 42 29 43 32 C44 29 47 28 50 32 C48 31 46 33 46 34 C45 33 44 33 43 34 C42 33 41 33 40 34 C40 33 38 31 36 32Z" fill="#0f0618"/></svg></div></header>
 
 <section class="question"><h2>Allusion, allegory or idiom</h2>
 <p class="instruction">Is each one an allusion, an allegory or an idiom?&nbsp;Choose.</p>

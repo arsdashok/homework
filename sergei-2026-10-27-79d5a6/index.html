@@ -1,0 +1,322 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Sergei_Homework_2026-10-27.key.json -->
+<!-- Lesson 27 Oct 2026 (coursebook page on screen, ~40 min). ONE shelf: WHERE frequency words go.
+     Landed (token only): a frequency word before an ordinary main verb («We often go to the cinema»).
+     Shaky (the sheet): after BE («Sam often work is late»), after doesn't («John often doesn't go»), starting with «Always I…»,
+     usually above often on the scale. «listen to» appears once (03.7), not as its own task.
+     Format: not a two-box sort, not a tile build (both done three times already). 02 is a new mechanic: tap the place in the sentence.
+     01 the scale, two selects sc1 sc2: often, usually.
+     02 tap the place (p1..p8, hidden select stores, value = the whole sentence; data-field on the card). Correct slot numbers
+        1,3,2,2,1,3,1,2. Types: doesn't, be, verb, be, verb, be, doesn't, be.
+        Slots are only offered where the wrong ones are wrong in real English: no start or end slot for usually / often / sometimes
+        (both are possible there), no slot BEFORE doesn't (Swan / Cambridge allow «He often doesn't…» with another meaning).
+        Model «We clean the windows twice a month» is the end-expression type, which no 02 item uses.
+     03 right or fix, 7 typed rows f1..f7, key type words: F F O F O F F; f2 keyed open (doesn't / usually doesn't / does not usually are all right). No answer contains an apostrophe (phone smart quotes).
+     04 own sentences w1..w4 (open): am/is/are, don't + usually, an expression at the end, sometimes + never.
+     Look: Sergei's standing design (copied from Maksim's sheet: Inter, pale grey page, white cards, teal eyebrow). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergei · English · 27 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.7; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction, .note { text-wrap:pretty; }
+.wrap { max-width:1120px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 40px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; page-break-inside:avoid; break-inside:avoid; }
+/* Section name is a small label; the instruction is the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.instruction { font-size:23px; font-weight:650; line-height:1.35; letter-spacing:-.01em; margin:0 0 12px; break-after:avoid; page-break-after:avoid; }
+.note { font-size:15px; color:var(--muted); margin:-4px 0 14px; }
+.qn { display:inline-block; min-width:30px; font-size:15px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+.question { page-break-inside:avoid; break-inside:avoid; }
+.model-tag { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.like { font-size:17px; color:var(--muted); margin:-2px 0 16px; }
+.like b { color:var(--ink); }
+.tp-stores { display:none !important; }
+
+/* 01: the scale */
+.scale { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; max-width:980px; }
+.sc-cell { border:1px solid var(--line); border-radius:14px; background:#fbfcfd; padding:12px 10px; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:4px; min-height:92px; }
+.sc-cell b { font-size:19px; font-weight:600; line-height:1.25; }
+.sc-cell small { font-size:13px; color:var(--muted); }
+.sc-gap { border:2px dashed #a4b5c0; background:#fff; }
+.sc-gap select { width:100%; max-width:150px; }
+.sc-arrow { max-width:980px; margin:10px 0 0; display:flex; align-items:center; gap:12px; font-size:14px; color:var(--muted); }
+.sc-arrow .bar { flex:1; height:3px; border-radius:3px; background:linear-gradient(90deg,#d9e2e7,var(--accent)); }
+.prt-box { display:none; }
+
+/* 02: tap the place */
+.rule { display:grid; grid-template-columns:1fr 1fr; gap:8px 28px; margin:0 0 16px; padding:14px 18px; border-radius:14px; background:#f1f5f7; font-size:16.5px; line-height:1.45; }
+.rule b { color:var(--accent); font-weight:700; }
+.rule .ex { display:block; color:var(--ink); }
+.rule .ex i { font-style:normal; font-weight:700; }
+.rule .wide { grid-column:1 / -1; }
+.pcards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.pcard { border:1px solid var(--line); border-radius:16px; padding:14px 18px 16px; background:#fbfcfd; }
+.ptop { display:flex; align-items:center; gap:8px; margin-bottom:2px; }
+.fw { display:inline-block; font-size:16px; font-weight:700; color:var(--accent); background:#e6f3f2; border-radius:999px; padding:2px 14px; }
+.sent { font-size:21px; line-height:2.35; margin:0; }
+.slot { display:inline-flex; align-items:center; justify-content:center; min-width:34px; height:34px; padding:0 8px; margin:0 3px; vertical-align:middle;
+  border:1.5px dashed #a4b5c0; border-radius:10px; background:#fff; font:inherit; font-size:13px; font-weight:700; line-height:1; color:#8fa3ae;
+  cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; }
+.slot:hover { border-color:var(--accent); color:var(--accent); }
+.slot.on { border:1.5px solid #7d97c9; background:#eef3fd; color:#1d4ed8; font-size:19px; font-weight:600; padding:0 10px; }
+.model { margin:0 0 16px; padding:10px 18px; border-left:4px solid #b9d6d4; background:#f6fafa; border-radius:0 12px 12px 0; }
+.model .sent { font-size:19px; line-height:2.2; }
+.model .slot { cursor:default; pointer-events:none; border-style:dotted; background:transparent; box-shadow:none; }
+
+/* 03: right or fix */
+.fixes { display:grid; gap:0; }
+.fix { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px 26px; align-items:center; padding:10px 0; border-bottom:1px solid #edf1f3; }
+.fix:last-child { border-bottom:0; }
+.fix .said { font-size:20px; line-height:1.45; margin:0; }
+
+/* 04: own sentences */
+.own { display:grid; grid-template-columns:300px minmax(0,1fr); gap:20px; align-items:start; padding:10px 0; border-bottom:1px solid #edf1f3; }
+.own:last-child { border-bottom:0; }
+.own .lead { font-size:19px; font-weight:500; padding-top:8px; line-height:1.4; }
+.own .lead small { display:block; font-size:14px; color:var(--muted); font-weight:400; margin-top:2px; }
+.model2 { margin:0 0 10px; padding:10px 18px; border-left:4px solid #b9d6d4; background:#f6fafa; border-radius:0 12px 12px 0; font-size:17px; line-height:1.55; }
+.model2 .model-tag { display:block; margin-bottom:2px; }
+
+/* Local preview only: the shared hw.css styles .hw-field on the live page. */
+input, textarea, select { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+select { min-height:46px; font-size:17px; }
+textarea { display:block; width:100%; min-height:96px; line-height:1.6; resize:vertical; }
+input.line, textarea.line { width:100%; min-height:46px; }
+.fix textarea.line { min-height:72px; resize:vertical; }
+.prt { display:none; }
+.nw { white-space:nowrap; }
+
+@media (max-width:820px) {
+  .pcards { grid-template-columns:1fr; }
+  .own { grid-template-columns:1fr; gap:6px; }
+  .fix { grid-template-columns:1fr; gap:6px; }
+  .rule { grid-template-columns:1fr; }
+  .scale { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .sc-arrow { display:none; }
+}
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 14px 16px; } .exercise { padding:22px 16px; border-radius:14px; }
+  .instruction { font-size:20px; } .edition { font-size:12px; }
+  .scale { grid-template-columns:1fr; gap:6px; }
+  .sc-cell { flex-direction:row; justify-content:space-between; min-height:52px; padding:8px 14px; text-align:left; }
+  .sc-cell b { font-size:18px; }
+  .sc-gap select { max-width:180px; }
+  .sent { font-size:19px; line-height:2.4; }
+  .slot { min-width:32px; height:34px; margin:0 2px; }
+  .slot.on { font-size:17px; padding:0 8px; }
+  .pcard { padding:12px 14px 14px; }
+  .fix .said { font-size:18px; }
+  .rule { font-size:15.5px; padding:12px 14px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  select { display:none !important; } .prt { display:block !important; } .scr { display:none !important; }
+  body { background:white; font-size:11pt; line-height:1.4; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:6px; } .heading-row { margin:2px 0 6px; } .page-meta { padding-top:6px; font-size:12px; }
+  h1 { font-size:26px; }
+  .exercise { box-shadow:none; padding:10px 18px; margin-bottom:8px; border-radius:14px; }
+  .section-heading { margin-bottom:2px; } h2, .section-number { font-size:10px; }
+  .instruction { font-size:15px; margin-bottom:5px; } .note, .like { font-size:11px; margin:-2px 0 5px; }
+  .scale { gap:5px; max-width:none; } .sc-cell { min-height:40px; padding:4px 6px; gap:0; } .sc-cell b { font-size:12px; } .sc-cell small { font-size:9px; }
+  .sc-gap { flex-direction:row; gap:4px; } .prt-box { display:block; width:70%; height:20px; border-bottom:1.2px solid #8fa3ae; }
+  .sc-arrow { max-width:none; margin-top:4px; font-size:10px; }
+  .rule { font-size:10.5px; padding:5px 10px; gap:2px 14px; margin-bottom:6px; }
+  .model { padding:3px 10px; margin-bottom:6px; } .model .sent { font-size:12px; line-height:1.9; }
+  .pcards { gap:6px; } .pcard { padding:3px 10px 4px; } .ptop { margin:0; } .fw { font-size:10.5px; padding:0 8px; }
+  .sent { font-size:12.5px; line-height:1.95; } .qn { font-size:11px; min-width:20px; }
+  .slot { min-width:20px; height:18px; font-size:9px; padding:0 4px; margin:0 2px; }
+  .slot.on { font-size:12px; }
+  .fix { padding:3px 0; gap:4px 16px; } .fix .said { font-size:12.5px; }
+  .own { grid-template-columns:230px minmax(0,1fr); gap:10px; padding:3px 0; } .own .lead { font-size:12px; padding-top:2px; } .own .lead small { font-size:10px; }
+  .model2 { font-size:11.5px; padding:4px 10px; margin-bottom:5px; }
+  textarea { min-height:48px !important; resize:none; } input.line { min-height:24px; padding:2px 8px; }
+  input::placeholder, textarea::placeholder { color:transparent; }
+  /* print is narrower than 820px: undo the phone layout */
+  .scale { grid-template-columns:repeat(6,minmax(0,1fr)); } .sc-arrow { display:flex; }
+  .sc-cell { flex-direction:column; justify-content:center; text-align:center; }
+  .rule { grid-template-columns:1fr 1fr; } .pcards { grid-template-columns:1fr 1fr; }
+  .fix { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+}
+body.hw-pdf-mode { background:white; }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Sergei" data-sheet="English 2026-10-27" data-sheet-id="sergei-2026-10-27-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>Always, often, never</h1><span class="edition">27<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Sergei</span><span>About 15&nbsp;minutes</span></div>
+</header>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">01</span><h2>The scale</h2></div>
+  <p class="instruction scr">Put <i>often</i> and <i>usually</i> on the&nbsp;scale.</p>
+  <p class="instruction prt">Write <i>often</i> and <i>usually</i> in the empty&nbsp;boxes.</p>
+  <div class="scale question">
+    <div class="sc-cell"><b>never</b><small>0%</small></div>
+    <div class="sc-cell"><b>hardly ever</b></div>
+    <div class="sc-cell"><b>sometimes</b></div>
+    <div class="sc-cell sc-gap"><span class="qn">1.</span>
+      <select data-k="sc1" data-label="1. The scale: after sometimes" aria-label="Box 1, after sometimes" class="hw-field"><option value="">Choose</option><option value="often">often</option><option value="usually">usually</option></select><span class="prt-box"></span></div>
+    <div class="sc-cell sc-gap"><span class="qn">2.</span>
+      <select data-k="sc2" data-label="2. The scale: before always" aria-label="Box 2, before always" class="hw-field"><option value="">Choose</option><option value="often">often</option><option value="usually">usually</option></select><span class="prt-box"></span></div>
+    <div class="sc-cell"><b>always</b><small>100%</small></div>
+  </div>
+  <div class="sc-arrow"><span>less&nbsp;often</span><span class="bar"></span><span>more&nbsp;often</span></div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">02</span><h2>Where does it go?</h2></div>
+  <p class="instruction scr">Tap the place where the word&nbsp;goes.</p>
+  <p class="instruction prt">Circle the number where the word&nbsp;goes.</p>
+  <div class="rule">
+    <div><b>before the verb</b><span class="ex">We <i>often</i> go to the&nbsp;cinema.</span></div>
+    <div><b>after am / is / are</b><span class="ex">Sam is <i>often</i> late for&nbsp;work.</span></div>
+    <div><b>after don't / doesn't</b><span class="ex">John doesn't <i>often</i> go to the&nbsp;theatre.</span></div>
+    <div><b>every day, once a month: at the end</b><span class="ex">I visit my mum <i>once a&nbsp;month</i>.</span></div>
+    <div class="wide"><b>Don't start a sentence with always or&nbsp;never.</b></div>
+  </div>
+  <div class="model"><span class="model-tag">Like this</span>&nbsp; <span class="fw">twice a month</span>
+    <p class="sent">We <span class="slot">1</span> clean <span class="slot">2</span> the windows <span class="slot on">twice a month</span>.</p>
+  </div>
+  <div class="pcards">
+
+    <div class="pcard question" data-field="p1">
+      <div class="ptop"><span class="qn">1.</span><span class="fw">often</span></div>
+      <p class="sent" data-store="p1" data-word="often">Nadia doesn't <button type="button" class="slot" data-v="Nadia doesn't often work at the weekend.">1</button> work <button type="button" class="slot" data-v="Nadia doesn't work often at the weekend.">2</button> at the&nbsp;weekend.</p>
+      <div class="tp-stores" hidden><select data-k="p1" data-label="1. often: Nadia doesn't work at the weekend." class="hw-field"><option value=""></option><option value="Nadia doesn't often work at the weekend.">Nadia doesn't often work at the weekend.</option><option value="Nadia doesn't work often at the weekend.">Nadia doesn't work often at the weekend.</option></select></div>
+    </div>
+
+    <div class="pcard question" data-field="p2">
+      <div class="ptop"><span class="qn">2.</span><span class="fw">hardly ever</span></div>
+      <p class="sent" data-store="p2" data-word="hardly ever"><button type="button" class="slot" data-v="Hardly ever the courier is on time.">1</button> The courier <button type="button" class="slot" data-v="The courier hardly ever is on time.">2</button> is <button type="button" class="slot" data-v="The courier is hardly ever on time.">3</button> on time <button type="button" class="slot" data-v="The courier is on time hardly ever.">4</button>.</p>
+      <div class="tp-stores" hidden><select data-k="p2" data-label="2. hardly ever: The courier is on time." class="hw-field"><option value=""></option><option value="Hardly ever the courier is on time.">Hardly ever the courier is on time.</option><option value="The courier hardly ever is on time.">The courier hardly ever is on time.</option><option value="The courier is hardly ever on time.">The courier is hardly ever on time.</option><option value="The courier is on time hardly ever.">The courier is on time hardly ever.</option></select></div>
+    </div>
+
+    <div class="pcard question" data-field="p3">
+      <div class="ptop"><span class="qn">3.</span><span class="fw">always</span></div>
+      <p class="sent" data-store="p3" data-word="always"><button type="button" class="slot" data-v="Always Omar checks his email before breakfast.">1</button> Omar <button type="button" class="slot" data-v="Omar always checks his email before breakfast.">2</button> checks <button type="button" class="slot" data-v="Omar checks always his email before breakfast.">3</button> his email <button type="button" class="slot" data-v="Omar checks his email always before breakfast.">4</button> before&nbsp;breakfast.</p>
+      <div class="tp-stores" hidden><select data-k="p3" data-label="3. always: Omar checks his email before breakfast." class="hw-field"><option value=""></option><option value="Always Omar checks his email before breakfast.">Always Omar checks his email before breakfast.</option><option value="Omar always checks his email before breakfast.">Omar always checks his email before breakfast.</option><option value="Omar checks always his email before breakfast.">Omar checks always his email before breakfast.</option><option value="Omar checks his email always before breakfast.">Omar checks his email always before breakfast.</option></select></div>
+    </div>
+
+    <div class="pcard question" data-field="p4">
+      <div class="ptop"><span class="qn">4.</span><span class="fw">usually</span></div>
+      <p class="sent" data-store="p4" data-word="usually">The beach <button type="button" class="slot" data-v="The beach usually is empty in the morning.">1</button> is <button type="button" class="slot" data-v="The beach is usually empty in the morning.">2</button> empty <button type="button" class="slot" data-v="The beach is empty usually in the morning.">3</button> in the&nbsp;morning.</p>
+      <div class="tp-stores" hidden><select data-k="p4" data-label="4. usually: The beach is empty in the morning." class="hw-field"><option value=""></option><option value="The beach usually is empty in the morning.">The beach usually is empty in the morning.</option><option value="The beach is usually empty in the morning.">The beach is usually empty in the morning.</option><option value="The beach is empty usually in the morning.">The beach is empty usually in the morning.</option></select></div>
+    </div>
+
+    <div class="pcard question" data-field="p5">
+      <div class="ptop"><span class="qn">5.</span><span class="fw">never</span></div>
+      <p class="sent" data-store="p5" data-word="never">Karim <button type="button" class="slot" data-v="Karim never drinks coffee after six.">1</button> drinks <button type="button" class="slot" data-v="Karim drinks never coffee after six.">2</button> coffee <button type="button" class="slot" data-v="Karim drinks coffee never after six.">3</button> after&nbsp;six.</p>
+      <div class="tp-stores" hidden><select data-k="p5" data-label="5. never: Karim drinks coffee after six." class="hw-field"><option value=""></option><option value="Karim never drinks coffee after six.">Karim never drinks coffee after six.</option><option value="Karim drinks never coffee after six.">Karim drinks never coffee after six.</option><option value="Karim drinks coffee never after six.">Karim drinks coffee never after six.</option></select></div>
+    </div>
+
+    <div class="pcard question" data-field="p6">
+      <div class="ptop"><span class="qn">6.</span><span class="fw">always</span></div>
+      <p class="sent" data-store="p6" data-word="always">On Mondays <button type="button" class="slot" data-v="On Mondays always the roads are busy.">1</button> the roads <button type="button" class="slot" data-v="On Mondays the roads always are busy.">2</button> are <button type="button" class="slot" data-v="On Mondays the roads are always busy.">3</button>&nbsp;busy.</p>
+      <div class="tp-stores" hidden><select data-k="p6" data-label="6. always: On Mondays the roads are busy." class="hw-field"><option value=""></option><option value="On Mondays always the roads are busy.">On Mondays always the roads are busy.</option><option value="On Mondays the roads always are busy.">On Mondays the roads always are busy.</option><option value="On Mondays the roads are always busy.">On Mondays the roads are always busy.</option></select></div>
+    </div>
+
+    <div class="pcard question" data-field="p7">
+      <div class="ptop"><span class="qn">7.</span><span class="fw">usually</span></div>
+      <p class="sent" data-store="p7" data-word="usually">The bank doesn't <button type="button" class="slot" data-v="The bank doesn't usually answer emails quickly.">1</button> answer <button type="button" class="slot" data-v="The bank doesn't answer usually emails quickly.">2</button> emails <button type="button" class="slot" data-v="The bank doesn't answer emails usually quickly.">3</button>&nbsp;quickly.</p>
+      <div class="tp-stores" hidden><select data-k="p7" data-label="7. usually: The bank doesn't answer emails quickly." class="hw-field"><option value=""></option><option value="The bank doesn't usually answer emails quickly.">The bank doesn't usually answer emails quickly.</option><option value="The bank doesn't answer usually emails quickly.">The bank doesn't answer usually emails quickly.</option><option value="The bank doesn't answer emails usually quickly.">The bank doesn't answer emails usually quickly.</option></select></div>
+    </div>
+
+    <div class="pcard question" data-field="p8">
+      <div class="ptop"><span class="qn">8.</span><span class="fw">often</span></div>
+      <p class="sent" data-store="p8" data-word="often">The malls <button type="button" class="slot" data-v="The malls often are full on Friday evenings.">1</button> are <button type="button" class="slot" data-v="The malls are often full on Friday evenings.">2</button> full <button type="button" class="slot" data-v="The malls are full often on Friday evenings.">3</button> on Friday&nbsp;evenings.</p>
+      <div class="tp-stores" hidden><select data-k="p8" data-label="8. often: The malls are full on Friday evenings." class="hw-field"><option value=""></option><option value="The malls often are full on Friday evenings.">The malls often are full on Friday evenings.</option><option value="The malls are often full on Friday evenings.">The malls are often full on Friday evenings.</option><option value="The malls are full often on Friday evenings.">The malls are full often on Friday evenings.</option></select></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">03</span><h2>Right or wrong?</h2></div>
+  <p class="instruction scr">If it's right, type OK. If not, write the right&nbsp;sentence.</p>
+  <p class="instruction prt">If it's right, write OK. If not, write the right&nbsp;sentence.</p>
+  <p class="note">Look at where <i>always, often, never</i> and the other words&nbsp;are.</p>
+  <div class="fixes">
+    <div class="fix question"><p class="said"><span class="qn">1.</span>Always we clean the kitchen&nbsp;first.</p><textarea class="hw-field line" rows="2" data-k="f1" data-label="1. Always we clean the kitchen first." aria-label="Sentence 1: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">2.</span>Our team does not work usually on&nbsp;Fridays.</p><textarea class="hw-field line" rows="2" data-k="f2" data-label="2. Our team does not work usually on Fridays." aria-label="Sentence 2: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">3.</span>We meet the team once a&nbsp;week.</p><textarea class="hw-field line" rows="2" data-k="f3" data-label="3. We meet the team once a week." aria-label="Sentence 3: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">4.</span>Our cleaners never are&nbsp;late.</p><textarea class="hw-field line" rows="2" data-k="f4" data-label="4. Our cleaners never are late." aria-label="Sentence 4: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">5.</span>Karim doesn't often cook at&nbsp;home.</p><textarea class="hw-field line" rows="2" data-k="f5" data-label="5. Karim doesn't often cook at home." aria-label="Sentence 5: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">6.</span>This restaurant is busy always at&nbsp;lunchtime.</p><textarea class="hw-field line" rows="2" data-k="f6" data-label="6. This restaurant is busy always at lunchtime." aria-label="Sentence 6: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">7.</span>Omar listens often to the radio in the&nbsp;car.</p><textarea class="hw-field line" rows="2" data-k="f7" data-label="7. Omar listens often to the radio in the car." aria-label="Sentence 7: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">04</span><h2>Your life now</h2></div>
+  <p class="instruction">Answer about your life in Abu&nbsp;Dhabi.</p>
+  <div class="model2"><span class="model-tag">Like this</span>Do you drink coffee in the evening? &nbsp;I hardly ever drink coffee in the&nbsp;evening.</div>
+  <div class="question own"><span class="lead"><span class="qn">1.</span>Are you tired after a long day at&nbsp;work?<small>Use usually, often or&nbsp;sometimes.</small></span><textarea data-k="w1" data-label="1. Are you tired after a long day at work?" aria-label="Your answer to question 1" rows="2" placeholder="Type your answer here" class="hw-field"></textarea></div>
+  <div class="question own"><span class="lead"><span class="qn">2.</span>Do you set an alarm in the&nbsp;morning?<small>Use these two words: usually,&nbsp;don't.</small></span><textarea data-k="w2" data-label="2. Do you set an alarm in the morning?" aria-label="Your answer to question 2" rows="2" placeholder="Type your answer here" class="hw-field"></textarea></div>
+  <div class="question own"><span class="lead"><span class="qn">3.</span>How often do you go to the gym or play&nbsp;tennis?<small>Use once a week, twice a week, every&nbsp;day…</small></span><textarea data-k="w3" data-label="3. How often do you go to the gym or play tennis?" aria-label="Your answer to question 3" rows="2" placeholder="Type your answer here" class="hw-field"></textarea></div>
+  <div class="question own"><span class="lead"><span class="qn">4.</span>What do you do at the&nbsp;weekend?<small>Two sentences: one with sometimes, one with&nbsp;never.</small></span><textarea data-k="w4" data-label="4. What do you do at the weekend?" aria-label="Your answer to question 4, two sentences" rows="3" placeholder="Type your answer here" class="hw-field"></textarea></div>
+</section>
+</main>
+
+<script>
+/* Tap the place: a slot is a button, so a finger that scrolls across it never selects it (click does not
+   fire after a scroll). Tap a slot: the word goes there. Tap another: it moves. Tap the same one: it goes.
+   The answer lives in the hidden <select data-k> (value = the whole sentence), so hw.js saving, the key,
+   the marks and the emailed PDF work as for any other field. */
+(function () {
+  function setup(sent) {
+    var k = sent.dataset.store, word = sent.dataset.word;
+    var sel = document.querySelector("select[data-k='" + k + "']");
+    var slots = [].slice.call(sent.querySelectorAll("button.slot"));
+    slots.forEach(function (b, i) { b.dataset.n = String(i + 1); b.setAttribute("aria-label", "Place " + (i + 1)); });
+    function show(v) {
+      slots.forEach(function (b) {
+        var on = !!v && b.dataset.v === v;
+        b.classList.toggle("on", on);
+        b.textContent = on ? word : b.dataset.n;
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+    function save(v) {
+      if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); }
+      show(v);
+    }
+    slots.forEach(function (b) {
+      b.addEventListener("click", function () { save(b.classList.contains("on") ? "" : b.dataset.v); });
+    });
+    show(sel ? sel.value : "");
+  }
+  function init() { document.querySelectorAll("p.sent[data-store]").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJzYzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJvZnRlbiJ9LCAic2MyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidXN1YWxseSJ9LCAicDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJOYWRpYSBkb2Vzbid0IG9mdGVuIHdvcmsgYXQgdGhlIHdlZWtlbmQuIn0sICJwMiI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoZSBjb3VyaWVyIGlzIGhhcmRseSBldmVyIG9uIHRpbWUuIn0sICJwMyI6IHsidCI6ICJleGFjdCIsICJhIjogIk9tYXIgYWx3YXlzIGNoZWNrcyBoaXMgZW1haWwgYmVmb3JlIGJyZWFrZmFzdC4ifSwgInA0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiVGhlIGJlYWNoIGlzIHVzdWFsbHkgZW1wdHkgaW4gdGhlIG1vcm5pbmcuIn0sICJwNSI6IHsidCI6ICJleGFjdCIsICJhIjogIkthcmltIG5ldmVyIGRyaW5rcyBjb2ZmZWUgYWZ0ZXIgc2l4LiJ9LCAicDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJPbiBNb25kYXlzIHRoZSByb2FkcyBhcmUgYWx3YXlzIGJ1c3kuIn0sICJwNyI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoZSBiYW5rIGRvZXNuJ3QgdXN1YWxseSBhbnN3ZXIgZW1haWxzIHF1aWNrbHkuIn0sICJwOCI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoZSBtYWxscyBhcmUgb2Z0ZW4gZnVsbCBvbiBGcmlkYXkgZXZlbmluZ3MuIn0sICJmMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldlIGFsd2F5cyBjbGVhbiB0aGUga2l0Y2hlbiBmaXJzdC4ifSwgImYyIjogeyJ0IjogIm9wZW4ifSwgImYzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiT0sifSwgImY0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiT3VyIGNsZWFuZXJzIGFyZSBuZXZlciBsYXRlLiJ9LCAiZjUiOiB7InQiOiAid29yZHMiLCAiYSI6ICJPSyJ9LCAiZjYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJUaGlzIHJlc3RhdXJhbnQgaXMgYWx3YXlzIGJ1c3kgYXQgbHVuY2h0aW1lLiJ9LCAiZjciOiB7InQiOiAid29yZHMiLCAiYSI6ICJPbWFyIG9mdGVuIGxpc3RlbnMgdG8gdGhlIHJhZGlvIGluIHRoZSBjYXIuIn0sICJ3MSI6IHsidCI6ICJvcGVuIn0sICJ3MiI6IHsidCI6ICJvcGVuIn0sICJ3MyI6IHsidCI6ICJvcGVuIn0sICJ3NCI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

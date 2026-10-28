@@ -1,0 +1,231 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Sergei_Homework_2026-10-28.key.json -->
+<!-- Lesson 28 Oct 2026. ONE shelf: a verb and the little word that always goes with it (taught set only:
+     wait for, listen to, go to + a place, work from home). Two plain tasks (Dasha, 27 Oct): 01 word order,
+     TAP only, no extra word; 02 right or fix.
+     01 b1..b7, hidden inputs, visible twin = .build[data-field]. Time and place phrases glued to their chunk,
+        subject+be glued where a question order would otherwise fit, so only one order is right. Little-word
+        tile position in the bank: 0,2,2,3,1,3,0. Tenses: continuous (1,5,7), simple (2,3,6), going to (4).
+     02 right or fix f1..f7: F F O F O F F. f6 keyed open (works from home / at home are both English).
+        No closed answer contains an apostrophe. Model (go + missing to) answers no item: the go items are
+        a wrong word (2) and an OK (6).
+     Look: Sergei's standing design (copied from his 27 Oct sheet). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergei · English · 28 October 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.7; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction, .note { text-wrap:pretty; }
+.wrap { max-width:1120px; margin:0 auto; padding:56px 36px 24px; }
+.page-header { padding:0 0 32px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:20px 0 26px; }
+h1 { font-size:clamp(30px,4.5vw,46px); line-height:1.14; letter-spacing:-.045em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:32px 40px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; }
+/* Section name is a small label; the instruction is the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.instruction { font-size:23px; font-weight:650; line-height:1.35; letter-spacing:-.01em; margin:0 0 12px; break-after:avoid; page-break-after:avoid; }
+.note { font-size:15px; color:var(--muted); margin:-4px 0 14px; }
+.qn { display:inline-block; min-width:30px; font-size:15px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+.question { page-break-inside:avoid; break-inside:avoid; }
+.model-tag { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.like { font-size:17px; color:var(--muted); margin:-2px 0 16px; }
+.like b { color:var(--ink); }
+.tp-stores { display:none !important; }
+
+/* 01: word order, tap only */
+.rule { margin:0 0 16px; padding:14px 18px; border-radius:14px; background:#f1f5f7; font-size:16.5px; line-height:1.45; }
+.rule .what { margin:0 0 4px; }
+.rule .ex { margin:0 0 10px; color:var(--ink); }
+.rule .ex i { font-style:normal; font-weight:700; }
+.keys { display:flex; flex-wrap:wrap; gap:8px 10px; }
+.key { display:inline-block; background:var(--accent); color:white; font-weight:700; border-radius:999px; padding:5px 16px; font-size:17px; white-space:nowrap; }
+.bq { padding:10px 0 12px; border-bottom:1px solid #edf1f3; }
+.bq:last-of-type { border-bottom:0; }
+.bq-line { display:flex; align-items:center; gap:10px; }
+.build { flex:1; display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-height:56px; padding:8px 12px; border:2px dashed #a4b5c0; border-radius:14px; background:#f8fafb; }
+.dot { font-size:26px; font-weight:700; color:var(--muted); }
+.tiles { display:flex; flex-wrap:wrap; gap:10px 12px; padding:10px 0 2px 40px; min-height:52px; }
+.wchip { font:inherit; font-size:18px; font-weight:600; color:var(--ink); background:white; border:1.5px solid #8fa3ae; border-radius:999px; padding:8px 18px; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; white-space:nowrap; box-shadow:0 2px 0 #162b3714; }
+.build .wchip { color:#1d4ed8; border-color:#7d97c9; }
+.wchip.model { cursor:default; color:var(--muted); background:#eef3f5; border-style:dashed; box-shadow:none; }
+.example { background:#f6f9fa; border-radius:14px; padding:10px 14px; margin:4px 0 8px; }
+.store { display:none; }
+.wline { height:22px; border-bottom:1.2px solid #8fa3ae; margin:2px 0 0 30px; }
+
+/* 02: right or fix */
+.fixes { display:grid; gap:0; }
+.fix { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px 26px; align-items:center; padding:10px 0; border-bottom:1px solid #edf1f3; }
+.fix:last-child { border-bottom:0; }
+.fix .said { font-size:20px; line-height:1.45; margin:0; }
+
+/* Local preview only: the shared hw.css styles .hw-field on the live page. */
+input, textarea, select { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+select { min-height:46px; font-size:17px; }
+textarea { display:block; width:100%; min-height:96px; line-height:1.6; resize:vertical; }
+input.line, textarea.line { width:100%; min-height:46px; }
+.fix textarea.line { min-height:72px; resize:vertical; }
+.prt { display:none; }
+.nw { white-space:nowrap; }
+
+@media (max-width:820px) {
+  .fix { grid-template-columns:1fr; gap:6px; }
+}
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:30px 14px 16px; } .exercise { padding:22px 16px; border-radius:14px; }
+  .instruction { font-size:20px; } .edition { font-size:12px; }
+  .tiles { padding-left:0; gap:8px; } .wchip { font-size:17px; padding:7px 14px; white-space:normal; }
+  .example .bq-line { flex-wrap:wrap; } .example .model-tag { width:100%; } .example .dot { display:none; }
+  .build { min-height:52px; padding:6px 8px; }
+  .fix .said { font-size:18px; }
+  .rule { font-size:15.5px; padding:12px 14px; } .key { font-size:15.5px; padding:4px 12px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  .prt { display:block !important; } .scr { display:none !important; }
+  body { background:white; font-size:11pt; line-height:1.4; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:6px; } .heading-row { margin:2px 0 6px; } .page-meta { padding-top:6px; font-size:12px; }
+  h1 { font-size:26px; }
+  .exercise { box-shadow:none; padding:10px 18px; margin-bottom:8px; border-radius:14px; }
+  .section-heading { margin-bottom:2px; } h2, .section-number { font-size:10px; }
+  .instruction { font-size:15px; margin-bottom:5px; } .note, .like { font-size:11px; margin:-2px 0 5px; }
+  .rule { font-size:10.5px; padding:5px 10px; margin-bottom:6px; } .rule .ex { margin-bottom:4px; } .key { font-size:10.5px; padding:1px 10px; }
+  .example { padding:3px 10px; margin-bottom:5px; } .qn { font-size:11px; min-width:20px; }
+  .bq { padding:3px 0 4px; } .build { min-height:26px; padding:2px 8px; border-width:1.2px; } .bq .bq-line .build { display:none; } .bq .dot { display:none; }
+  .tiles { padding:2px 0 0 26px; gap:4px 6px; min-height:0; } .wchip { font-size:11px; padding:1px 9px; box-shadow:none; }
+  .fix { padding:3px 0; gap:4px 16px; } .fix .said { font-size:12.5px; }
+  textarea { min-height:48px !important; resize:none; } input.line { min-height:24px; padding:2px 8px; }
+  input::placeholder, textarea::placeholder { color:transparent; }
+  .fix textarea.line { resize:none; min-height:40px; }
+  /* print is narrower than 820px: undo the phone layout */
+  .fix { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+}
+body.hw-pdf-mode { background:white; }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Sergei" data-sheet="English 2026-10-28" data-sheet-id="sergei-2026-10-28-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>Wait for, listen&nbsp;to</h1><span class="edition">28<br>OCT 2026</span></div>
+  <div class="page-meta"><span>Sergei</span><span>About 10&nbsp;minutes</span></div>
+</header>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">01</span><h2>Word order</h2></div>
+  <p class="instruction scr">Put the words in the right&nbsp;order.</p>
+  <p class="instruction prt">Write the words in the right&nbsp;order.</p>
+  <p class="note scr">Tap the words one by one. Tap a word in the box to send it&nbsp;back.</p>
+  <div class="rule">
+    <p class="what">These verbs go together with their little&nbsp;word.</p>
+    <p class="ex">Our cleaners wait <i>for</i> the client at the&nbsp;door.</p>
+    <div class="keys"><span class="key">wait for</span><span class="key">listen to</span><span class="key">go to + a place</span><span class="key">work from home</span></div>
+  </div>
+  <div class="question bq"><div class="bq-line"><span class="qn">1.</span><div class="build" data-b="b1" data-field="b1"></div><span class="dot">.</span></div>
+    <div class="tiles" data-b="b1"><button type="button" class="wchip" data-i="0">for</button><button type="button" class="wchip" data-i="1">the new chairs</button><button type="button" class="wchip" data-i="2">is waiting</button><button type="button" class="wchip" data-i="3">Leila</button></div><div class="prt wline"></div></div>
+  <div class="question bq"><div class="bq-line"><span class="qn">2.</span><div class="build" data-b="b2" data-field="b2"></div><span class="dot">.</span></div>
+    <div class="tiles" data-b="b2"><button type="button" class="wchip" data-i="0">music in the car</button><button type="button" class="wchip" data-i="1">Nadia</button><button type="button" class="wchip" data-i="2">to</button><button type="button" class="wchip" data-i="3">listens</button></div><div class="prt wline"></div></div>
+  <div class="question bq"><div class="bq-line"><span class="qn">3.</span><div class="build" data-b="b3" data-field="b3"></div><span class="dot">.</span></div>
+    <div class="tiles" data-b="b3"><button type="button" class="wchip" data-i="0">home on Fridays</button><button type="button" class="wchip" data-i="1">works</button><button type="button" class="wchip" data-i="2">from</button><button type="button" class="wchip" data-i="3">our manager</button></div><div class="prt wline"></div></div>
+  <div class="question bq"><div class="bq-line"><span class="qn">4.</span><div class="build" data-b="b4" data-field="b4"></div><span class="dot">.</span></div>
+    <div class="tiles" data-b="b4"><button type="button" class="wchip" data-i="0">wait</button><button type="button" class="wchip" data-i="1">the courier at the villa</button><button type="button" class="wchip" data-i="2">we&#x27;re going to</button><button type="button" class="wchip" data-i="3">for</button></div><div class="prt wline"></div></div>
+  <div class="question bq"><div class="bq-line"><span class="qn">5.</span><div class="build" data-b="b5" data-field="b5"></div><span class="dot">.</span></div>
+    <div class="tiles" data-b="b5"><button type="button" class="wchip" data-i="0">a podcast about tennis</button><button type="button" class="wchip" data-i="1">to</button><button type="button" class="wchip" data-i="2">Omar</button><button type="button" class="wchip" data-i="3">is listening</button></div><div class="prt wline"></div></div>
+  <div class="question bq"><div class="bq-line"><span class="qn">6.</span><div class="build" data-b="b6" data-field="b6"></div><span class="dot">.</span></div>
+    <div class="tiles" data-b="b6"><button type="button" class="wchip" data-i="0">the office every day</button><button type="button" class="wchip" data-i="1">goes</button><button type="button" class="wchip" data-i="2">Max</button><button type="button" class="wchip" data-i="3">to</button></div><div class="prt wline"></div></div>
+  <div class="question bq"><div class="bq-line"><span class="qn">7.</span><div class="build" data-b="b7" data-field="b7"></div><span class="dot">.</span></div>
+    <div class="tiles" data-b="b7"><button type="button" class="wchip" data-i="0">to</button><button type="button" class="wchip" data-i="1">going</button><button type="button" class="wchip" data-i="2">the gym after work</button><button type="button" class="wchip" data-i="3">we are</button></div><div class="prt wline"></div></div>
+  <div class="store">
+    <input data-k="b1" data-label="Word order 1" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b2" data-label="Word order 2" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b3" data-label="Word order 3" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b4" data-label="Word order 4" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b5" data-label="Word order 5" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b6" data-label="Word order 6" tabindex="-1" aria-hidden="true" class="hw-field">
+    <input data-k="b7" data-label="Word order 7" tabindex="-1" aria-hidden="true" class="hw-field">
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">02</span><h2>Right or wrong?</h2></div>
+  <p class="instruction scr">If it's right, type OK. If not, write the right&nbsp;sentence.</p>
+  <p class="instruction prt">If it's right, write OK. If not, write the right&nbsp;sentence.</p>
+  <p class="like"><span class="model-tag">Like this</span>&nbsp; My sister goes the cinema on Fridays. → <b>My sister goes to the cinema on&nbsp;Fridays.</b></p>
+  <div class="fixes">
+    <div class="fix question"><p class="said"><span class="qn">1.</span>Anna listens music at the&nbsp;gym.</p><textarea class="hw-field line" rows="2" data-k="f1" data-label="1. Anna listens music at the gym." aria-label="Sentence 1: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">2.</span>Daniel and his wife go in Dubai every&nbsp;weekend.</p><textarea class="hw-field line" rows="2" data-k="f2" data-label="2. Daniel and his wife go in Dubai every weekend." aria-label="Sentence 2: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">3.</span>Our neighbours are waiting for the&nbsp;lift.</p><textarea class="hw-field line" rows="2" data-k="f3" data-label="3. Our neighbours are waiting for the lift." aria-label="Sentence 3: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">4.</span>The cleaners are waiting the delivery&nbsp;today.</p><textarea class="hw-field line" rows="2" data-k="f4" data-label="4. The cleaners are waiting the delivery today." aria-label="Sentence 4: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">5.</span>Karim is going to the tennis club&nbsp;tonight.</p><textarea class="hw-field line" rows="2" data-k="f5" data-label="5. Karim is going to the tennis club tonight." aria-label="Sentence 5: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">6.</span>Sam works home on&nbsp;Tuesdays.</p><textarea class="hw-field line" rows="2" data-k="f6" data-label="6. Sam works home on Tuesdays." aria-label="Sentence 6: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+    <div class="fix question"><p class="said"><span class="qn">7.</span>Ali is waiting to his brother outside the&nbsp;mall.</p><textarea class="hw-field line" rows="2" data-k="f7" data-label="7. Ali is waiting to his brother outside the mall." aria-label="Sentence 7: OK or the right sentence" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type OK or the right sentence"></textarea></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* Word order by TAP only (Dasha, 20 Oct 2026: on a phone a tile never moves under the finger).
+   Tap a word in the bank: it goes to the end of the box. Tap a word in the box: it goes back.
+   The answer lives in a hidden <input data-k> (value = the words joined by spaces), so hw.js saving,
+   the key, the marks (shown on the .build twin via data-field) and the emailed PDF work as usual. */
+(function () {
+  function init() {
+    var store = {}; document.querySelectorAll(".store input").forEach(function (s) { store[s.dataset.k] = s; });
+    document.querySelectorAll(".build[data-b]").forEach(function (build) {
+      var k = build.dataset.b, bank = document.querySelector('.tiles[data-b="' + k + '"]'), s = store[k];
+      if (!bank || !s) return;
+      var chips = [].slice.call(bank.querySelectorAll(".wchip"));
+      function sync() {
+        var v = [].map.call(build.querySelectorAll(".wchip"), function (c) { return c.textContent; }).join(" ");
+        if (s.value !== v) { s.value = v; s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+      }
+      function toBank(chip) {
+        var n = +chip.dataset.i, after = null;
+        [].slice.call(bank.querySelectorAll(".wchip")).some(function (o) { if (+o.dataset.i > n) { after = o; return true; } return false; });
+        bank.insertBefore(chip, after);
+      }
+      if (s.value) {
+        var rest = s.value.trim(), guard = 0;
+        while (rest && guard++ < 20) {
+          var hit = null;
+          chips.forEach(function (c) { if (!hit && c.parentNode !== build && (rest === c.textContent || rest.indexOf(c.textContent + " ") === 0)) hit = c; });
+          if (!hit) break;
+          build.appendChild(hit); rest = rest.slice(hit.textContent.length).trim();
+        }
+      }
+      chips.forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          if (chip.parentNode === build) toBank(chip); else build.appendChild(chip);
+          sync();
+        });
+      });
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJiMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIkxlaWxhIGlzIHdhaXRpbmcgZm9yIHRoZSBuZXcgY2hhaXJzLiJ9LCAiYjIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJOYWRpYSBsaXN0ZW5zIHRvIG11c2ljIGluIHRoZSBjYXIuIn0sICJiMyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk91ciBtYW5hZ2VyIHdvcmtzIGZyb20gaG9tZSBvbiBGcmlkYXlzLiJ9LCAiYjQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJXZSdyZSBnb2luZyB0byB3YWl0IGZvciB0aGUgY291cmllciBhdCB0aGUgdmlsbGEuIn0sICJiNSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk9tYXIgaXMgbGlzdGVuaW5nIHRvIGEgcG9kY2FzdCBhYm91dCB0ZW5uaXMuIn0sICJiNiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk1heCBnb2VzIHRvIHRoZSBvZmZpY2UgZXZlcnkgZGF5LiJ9LCAiYjciOiB7InQiOiAid29yZHMiLCAiYSI6ICJXZSBhcmUgZ29pbmcgdG8gdGhlIGd5bSBhZnRlciB3b3JrLiJ9LCAiZjEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJBbm5hIGxpc3RlbnMgdG8gbXVzaWMgYXQgdGhlIGd5bS4ifSwgImYyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiRGFuaWVsIGFuZCBoaXMgd2lmZSBnbyB0byBEdWJhaSBldmVyeSB3ZWVrZW5kLiJ9LCAiZjMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJPSyJ9LCAiZjQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJUaGUgY2xlYW5lcnMgYXJlIHdhaXRpbmcgZm9yIHRoZSBkZWxpdmVyeSB0b2RheS4ifSwgImY1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiT0sifSwgImY2IjogeyJ0IjogIm9wZW4ifSwgImY3IjogeyJ0IjogIndvcmRzIiwgImEiOiAiQWxpIGlzIHdhaXRpbmcgZm9yIGhpcyBicm90aGVyIG91dHNpZGUgdGhlIG1hbGwuIn19</script>
+<script src="../assets/hw.js?v=20261020-tap-place-pdf"></script>
+</body>
+</html>

@@ -120,3 +120,14 @@ retain Only myself for the teacher endpoint, and retain active-user authorizatio
 for every teacher RPC. The public pupil submission route is unchanged.
 
 UI tests: `node scripts/check_hub_status.cjs` with the local hub on port 8778.
+
+## Interchangeable answer fields
+
+When an exercise asks for several corrections in either order, add the same
+`group` string to those fields in its private key JSON. The publisher preserves
+this as `g` in the pupil check data. Keep field IDs stable. The shared matcher
+accepts each expected answer once across the group and shows unmatched targets
+for missing/incorrect repairs. Do not group independent numbered questions.
+The original key remains attached to its field in the teacher key editor.
+Run `node check_answer_groups.cjs` in the private backend directory when changing
+the matcher; it also checks the browser score and server/browser parity.

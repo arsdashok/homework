@@ -298,24 +298,80 @@
   function seen(el) { return !!(el && el.getClientRects().length) && !el.closest("[hidden]"); }
   function writable(el) { return /^(TEXTAREA|INPUT)$/.test(el.tagName) || el.isContentEditable || el.classList.contains("circle-words"); }
   var checking = false;
+// BEGIN UNORDERED ANSWER MATCHER — shared by pupil and teacher checks.
+function matchHomeworkAnswers_(answers, keys) {
+  var result = Object.create(null), groups = Object.create(null);
+  function typeOf(key) { return key && (key.type || key.t); }
+  function matches(value, key) {
+    var type = typeOf(key);
+    if (!String(value || '').trim() || ['exact', 'words', 'set'].indexOf(type) < 0) return false;
+    function normalize(s) {
+      s = String(s || '').toLowerCase();
+      if (type === 'words') return s.replace(/[,.]/g, ' ').replace(/\s+/g, ' ').trim();
+      if (type === 'set') return s.split(/[\s,]+/).filter(String).sort().join(',');
+      return s.replace(/[\s,]/g, '');
+    }
+    return normalize(value) === normalize(key.a);
+  }
+  answers.forEach(function(answer) {
+    var key = keys[answer.k], type = typeOf(key);
+    result[answer.k] = {
+      result: !String(answer.a || '').trim() ? 'blank' : !key || !key.a ? 'missing' : type === 'open' ? 'manual' : matches(answer.a, key) ? 'correct' : 'incorrect',
+      expected: key ? key.a : ''
+    };
+    var group = key && (key.group || key.g);
+    if (group && ['exact', 'words', 'set'].indexOf(type) >= 0) {
+      if (!groups[group]) groups[group] = [];
+      groups[group].push(answer);
+    }
+  });
+  Object.keys(groups).forEach(function(group) {
+    var rows = groups[group], targets = Object.keys(keys).filter(function(k) {
+      return (keys[k].group || keys[k].g) === group && ['exact', 'words', 'set'].indexOf(typeOf(keys[k])) >= 0;
+    }), owners = Object.create(null), matched = Object.create(null);
+    // One expected answer can satisfy only one field, even if entered twice.
+    rows.forEach(function(row) {
+      var ordered = targets.filter(function(k) { return k === row.k; }).concat(targets.filter(function(k) { return k !== row.k; }));
+      for (var i = 0; i < ordered.length; i++) {
+        var k = ordered[i];
+        if (!owners[k] && matches(row.a, keys[k])) {
+          owners[k] = row.k; matched[row.k] = k; break;
+        }
+      }
+    });
+    var remaining = targets.filter(function(k) { return !owners[k]; });
+    rows.forEach(function(row) {
+      var target = matched[row.k];
+      if (target) result[row.k] = {result: 'correct', expected: keys[target].a};
+      else {
+        target = remaining.shift();
+        result[row.k] = {result: String(row.a || '').trim() ? 'incorrect' : 'blank', expected: target ? keys[target].a : ''};
+      }
+    });
+  });
+  return result;
+}
+// END UNORDERED ANSWER MATCHER
+
   function showChecks() {
     if (!CHECK) return "";
     checking = true;
     document.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
     var right = 0, marked = 0, open = 0, lists = [];
+    var answers = Array.from(document.querySelectorAll("#sheet [data-k]"), function(el) { return {k: el.dataset.k, a: answerOf(el)}; });
+    var graded = matchHomeworkAnswers_(answers, CHECK);
     document.querySelectorAll("#sheet [data-k]").forEach(function (el) {
       var k = el.dataset.k, key = CHECK[k];
       var vis = document.querySelector('[data-field="' + k + '"]');
       var anchor = seen(vis) ? vis : (seen(el) ? el : null);
       var node;
       if (key && key.t && key.t !== "open") {
-        var mine = answerOf(el), f = key.t === "exact" ? cNorm : key.t === "words" ? cWords : cSet;
-        var ok = !!mine && f(mine) === f(key.a);
+        var ok = graded[k].result === "correct";
         marked++; if (ok) right++;
         node = document.createElement("span");
         node.className = "hw-mark " + (ok ? "hw-ok" : "hw-no");
         if (ok) node.textContent = "✓";
-        else { node.textContent = "✗ "; var r = document.createElement("span"); r.className = "hw-right"; r.textContent = key.a; node.appendChild(r); }
+        else { node.textContent = "✗ "; var r = document.createElement("span"); r.className = "hw-right"; r.textContent = graded[k].expected; node.appendChild(r); }
       } else {
         if (!anchor || anchor !== el || !writable(el)) return;   // hidden helpers and print-only boxes get nothing
         open++;

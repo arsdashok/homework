@@ -71,7 +71,11 @@ Private source, HTML, local question catalogue and tests are in
 `Admin/Homework backend/`. Never copy them into this public repository.
 
 When adding or changing teacher code, update both deployments to the same tested
-version, keeping the teacher deployment restricted and the pupil deployment open.
+code, keeping the teacher deployment restricted and the pupil deployment open.
+Apps Script API deploys access from the version manifest: teacher needs a version
+with `webapp.access: MYSELF`; pupil needs `ANYONE_ANONYMOUS`. These are separate
+version numbers with identical server/UI code. Verify each deployment access after
+updating it, then restore the public manifest in project HEAD.
 Run `node check_teacher.cjs` and `node check_storage.cjs` in the backend folder.
 
 ## Maksim: merged homework, 19–20 September

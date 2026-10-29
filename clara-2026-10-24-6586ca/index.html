@@ -1088,16 +1088,29 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
       answers.push({ k: el.dataset.k, q: el.dataset.label || el.dataset.k, a: answer });
     });
     var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q); }).length;
-    if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return;
+    if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return false;
     btn.disabled = true; msg.textContent = "Sending… (this takes a few seconds)";
     // Mark FIRST, so the PDF Dasha receives shows the ticks, crosses and right answers too
     // (Dasha, 7 Oct 2026: «чтобы в пдф которая мне приходит тоже были видны правильные ответы»).
     var score = showChecks();
     try { if (typeof window.hwShowExtra === "function") window.hwShowExtra(); } catch (e) {}
-    makePDF()
+    // clara-confirmed-delivery-v1: a PDF failure must not prevent answer delivery.
+    return makePDF().catch(function () { return null; })
       .then(function (pdf) {
-        return fetch(SEND_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({ key: SEND_KEY, student: META.student, sheet: META.sheet, sheetId: META.sheetId, answers: answers, pdf: pdf }) });
+        msg.textContent = "Sending your answers… Please keep this page open.";
+        var controller = new AbortController();
+        var timeout = setTimeout(function () { controller.abort(); }, 45000);
+        return fetch(SEND_URL, {
+          method: "POST", mode: "cors", credentials: "omit", signal: controller.signal,
+          headers: {"Content-Type": "text/plain;charset=utf-8"},
+          body: JSON.stringify({key: SEND_KEY, student: META.student, sheet: META.sheet,
+            sheetId: META.sheetId, answers: answers, pdf: pdf})
+        }).then(function (response) {
+          if (!response.ok || response.type === "opaque") throw new Error("No delivery confirmation");
+          return response.text();
+        }).then(function (reply) {
+          if (reply.trim() !== "ok") throw new Error("Submission was not accepted");
+        }).finally(function () { clearTimeout(timeout); });
       })
       .then(function () {
         if (!recheck.on) { recheck.on = true; recheck(); }
@@ -1105,10 +1118,14 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
         msg.textContent = "Submitted to Dasha. " + (score || "Dasha will check it. ✓");
         btn.textContent = "Submitted ✓";
         if (window.claraSubmissionDone) window.claraSubmissionDone();
+        return true;
       })
       .catch(function () {
-        document.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
-        if (window.claraSubmissionFailed) window.claraSubmissionFailed(); btn.disabled = false; msg.textContent = "It did not send. Check the internet and try again, or save a copy as a PDF.";
+        // Keep the marked, locked first attempt available for another delivery attempt.
+        if (window.claraSubmissionFailed) window.claraSubmissionFailed();
+        btn.disabled = false;
+        msg.textContent = "We could not confirm delivery. Your answers are still saved here. Please try sending again, or save a PDF to share with Dasha.";
+        return false;
       });
   };
 })();
@@ -1159,8 +1176,8 @@ const snapshot=i=>fields(i).map(el=>value(el));
 // including previously checked blocks from the earlier edition.
 done=sections.map((s,i)=>done[i]&&Array.isArray(done[i].answers)&&done[i].answers.length===fields(i).length?done[i]:null);
 sections.forEach((section,i)=>{if(!done[i])return;fields(i).forEach((el,j)=>{if('value' in el)el.value=done[i].answers[j];else el.textContent=done[i].answers[j];el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));});done[i].score=summary(i)});
-let sending=false, sent=!!saved.sent&&done.every(Boolean);
-const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,sent,pages:pageNumbers}))}catch(e){}};
+let sending=false, sent=!!saved.sent&&saved.deliveryConfirmed===1&&done.every(Boolean);
+const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,sent,deliveryConfirmed:sent?1:0,pages:pageNumbers}))}catch(e){}};
 document.body.classList.add('mint-game');
 document.querySelector('.sheet-head').insertAdjacentHTML('beforeend',window.claraTreeArt.header);
 const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="3" value="0" aria-label="Completed blocks"></progress><nav class="block-nav" aria-label="Homework blocks"></nav><p class="save-note">Your work is saved on this device. Check carefully: a checked block cannot be changed.</p>';
@@ -1171,7 +1188,7 @@ document.getElementById('sheet').after(finish);
 const details=document.createElement('details');details.className='results-details';details.innerHTML='<summary>Results by block</summary>';details.append(finish.querySelector('.finish-list'));finish.append(details);
 const bar=document.querySelector('.hw-bar');finish.append(bar);
 const send=document.getElementById('hwSend');const nativeSend=window.hwSend;
-window.hwSend=function(){if(done.filter(Boolean).length!==blockCount||sending||sent)return;sending=true;document.getElementById('sheet').inert=true;update();nativeSend()};
+window.hwSend=function(){if(done.filter(Boolean).length!==blockCount||sending||sent)return;sending=true;document.getElementById('sheet').inert=true;update();try{const result=nativeSend();if(result===false){window.claraSubmissionFailed();document.getElementById('hwMsg').textContent='Not sent. Your checked answers are still saved.'}return result}catch(error){window.claraSubmissionFailed();document.getElementById('hwMsg').textContent='Could not send. Your answers are still saved. Please try again.'}};
 window.claraSubmissionDone=function(){sending=false;sent=true;document.getElementById('sheet').inert=false;update()};
 window.claraSubmissionFailed=function(){sending=false;sent=false;document.getElementById('sheet').inert=false;update()};
 function growTree(count,leaves){
@@ -1190,7 +1207,7 @@ function update(){
  dashboard.querySelector('progress').value=count;
  nav.querySelectorAll('button').forEach((b,i)=>{b.classList.toggle('done',!!done[i]);b.setAttribute('aria-current',i===current?'step':'false');b.querySelector('.step-badge').textContent=done[i]?'✓':icons[i];b.querySelector('small').textContent=done[i]?'Checked':i===current?'You are here':'Explore this block'});
  finish.querySelector('.finish-list').replaceChildren(...sections.map((s,i)=>{const row=document.createElement('div');row.className='finish-row';let text=titles[i]+': ';if(done[i]){const a=done[i].score;text+=a.right+' / '+a.total+' checks correct'+(a.open?' · '+a.open+' for Dasha to review':'')}else text+='not checked yet';row.textContent=text;return row}));
- bar.classList.toggle('available',count===blockCount);send.disabled=count!==blockCount||sending||sent;send.textContent=sending?'Sending…':sent?'Submitted ✓':'Send my results to Dasha';
+ bar.classList.add('available');send.disabled=count!==blockCount||sending||sent;send.textContent=sending?'Sending…':sent?'Submitted ✓':'Send my results to Dasha';
  finish.querySelector('h2').textContent=sent?'All sent — lovely work! 🌿':count===blockCount?'Your tree is complete! 🌿':'Your tree is growing! 🌱';
  finish.querySelector('p').textContent=sent?'Your homework has been submitted. You can still explore the blocks and review your work.':count===blockCount?'All three parts have grown! Send your answers and a marked copy to Dasha.':'Each completed block grows a new part of your tree. Each correct answer adds a green leaf.';
  save();
@@ -1202,7 +1219,7 @@ function showPage(i,n,focus=true){
  deck.pages.forEach((page,j)=>{page.classList.toggle('current-page',j===n);page.setAttribute('aria-hidden',j===n?'false':'true')});
  deck.label.textContent=(n+1)+' / '+deck.pages.length+' · '+deck.pages[n].dataset.title;
  deck.back.disabled=n===0;deck.check.hidden=n!==deck.pages.length-1;
- deck.next.textContent=n<deck.pages.length-1?'Next →':i<blockCount-1?'Next block →':'My results';
+ deck.next.textContent=n<deck.pages.length-1?'Next →':i<blockCount-1?'Next block →':'Results & send';
  deck.viewport.scrollTop=0;
  if(focus){deck.label.focus({preventScroll:true})}save();
 }
@@ -1210,7 +1227,15 @@ function showOverview(i){
  const deck=decks[i];showPage(i,deck.pages.length-1);
  let overview=deck.review.querySelector('.all-block-results');
  if(!overview){overview=document.createElement('div');overview.className='all-block-results';deck.review.append(overview)}
- overview.innerHTML='<h3>Your results</h3><p>'+ (done.every(Boolean)?'All three blocks are finished. Your final send button is beside the tree.':'Finish the unchecked blocks before sending your work.')+'</p>';
+ overview.innerHTML='<h3>Your results</h3>';
+ const delivery=document.createElement('div');delivery.className='clara-results-delivery';
+ const deliveryButton=document.createElement('button');deliveryButton.type='button';deliveryButton.className='garden-button primary clara-results-send';deliveryButton.onclick=()=>window.hwSend();
+ const deliveryMessage=document.createElement('p');deliveryMessage.setAttribute('role','status');deliveryMessage.setAttribute('aria-live','polite');
+ const refreshDelivery=()=>{deliveryButton.disabled=send.disabled;deliveryButton.textContent=send.textContent;deliveryMessage.textContent=done.every(Boolean)?document.getElementById('hwMsg').textContent:'Your results have not been sent yet. Finish and check the blocks below to send them.';};
+ delivery.append(deliveryButton,deliveryMessage);overview.append(delivery);refreshDelivery();
+ if(deck.deliveryObserver)deck.deliveryObserver.disconnect();
+ deck.deliveryObserver=new MutationObserver(refreshDelivery);deck.deliveryObserver.observe(bar,{subtree:true,childList:true,characterData:true,attributes:true});
+ sections.forEach((section,j)=>{if(done[j])return;const jump=document.createElement('button');jump.type='button';jump.className='garden-button';jump.textContent='Finish '+titles[j];jump.onclick=()=>{show(j);showPage(j,decks[j].pages.length-1)};overview.append(jump)});
  overview.append(finish.querySelector('.finish-list').cloneNode(true));
  const back=document.createElement('button');back.className='garden-button';back.textContent='Back to block check';back.onclick=()=>deck.review.classList.remove('overview-mode');overview.append(back);
  deck.review.classList.add('overview-mode');
@@ -1268,7 +1293,7 @@ sections.forEach((section,i)=>{
  if(done[i])return;
  const missing=fields(i).filter(el=>!value(el));
  if(missing.length){result.textContent='There '+(missing.length===1?'is 1 answer':'are '+missing.length+' answers')+' still to try in this block. Fill them in, then check again.';const el=missing[0],twin=section.querySelector('[data-field="'+el.dataset.k+'"]');const target=twin||el;deck.notice.textContent=result.textContent;const page=target.closest('.exercise-page');if(page)showPage(i,deck.pages.indexOf(page),false);target.scrollIntoView({block:'nearest',behavior:'instant'});if(target.matches('input,select,textarea,[contenteditable]'))target.focus({preventScroll:true});return}
- done[i]={answers:snapshot(i),score:summary(i)};window.hwShowChecks(section);lockBlock(section);report();deck.notice.textContent='';update();showPage(i,deck.pages.length-1,false);
+ done[i]={answers:snapshot(i),score:summary(i)};window.hwShowChecks(section);lockBlock(section);report();deck.notice.textContent='';update();showPage(i,deck.pages.length-1,false);if(done.every(Boolean))showOverview(i);
  };
  if(done[i]){window.hwShowChecks(section);lockBlock(section);report()}
  showPage(i,pageNumbers[i]||0,false);

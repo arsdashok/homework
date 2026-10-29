@@ -371,6 +371,18 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
 @media(min-width:801px) and (max-height:800px){.mint-game .tree-scene svg{max-height:225px}}
 @media(max-width:600px){.mint-game .sheet-head{padding-right:90px}.mint-game .friend-parade{width:85px;height:43px;right:4px;top:0}.mint-game .tree-scene svg{height:83px;max-height:83px}.mint-game .sheet-head h1{font-size:20px}}
 </style>
+<style id="clara-final-only-style">
+/* One final checking and delivery action, inside the last exercise page. */
+.mint-game .review-page .hw-bar{display:block;max-width:none;width:100%;padding:16px;margin:16px 0;background:#edf7f1;border:1px solid #b4d5c2;box-sizing:border-box}
+.mint-game .review-page .hw-send{width:100%;min-height:48px;font-size:18px;padding:12px}
+.mint-game .review-page .hw-msg{font-size:15px;line-height:1.5;max-height:none;overflow:visible;margin:10px 0}
+.mint-game:not(.final-checked) .hw-pdf{display:none}
+.mint-game .review-page .hw-pdf{font-size:14px}
+.mint-game .final-answer-list{margin-top:24px;font-size:16px;line-height:1.5}
+.mint-game .final-answer-row{padding:12px 0;border-bottom:1px solid #d5e7dc;overflow-wrap:anywhere}
+.mint-game .final-answer-row p{margin:5px 0;font-size:16px}
+.mint-game .final-correct{color:#286951}.mint-game .final-correction{color:#9b461d}
+</style>
 </head>
 <body data-student="Clara" data-sheet="Maths 2026-10-24" data-sheet-id="clara-2026-10-24-maths-and-english">
 <div id="sheet">
@@ -1092,6 +1104,7 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
     btn.disabled = true; msg.textContent = "Sending… (this takes a few seconds)";
     // Mark FIRST, so the PDF Dasha receives shows the ticks, crosses and right answers too
     // (Dasha, 7 Oct 2026: «чтобы в пдф которая мне приходит тоже были видны правильные ответы»).
+    if (typeof window.claraBeforeSubmit === "function") window.claraBeforeSubmit();
     var score = showChecks();
     try { if (typeof window.hwShowExtra === "function") window.hwShowExtra(); } catch (e) {}
     // clara-confirmed-delivery-v1: a PDF failure must not prevent answer delivery.
@@ -1176,69 +1189,75 @@ const snapshot=i=>fields(i).map(el=>value(el));
 // including previously checked blocks from the earlier edition.
 done=sections.map((s,i)=>done[i]&&Array.isArray(done[i].answers)&&done[i].answers.length===fields(i).length?done[i]:null);
 sections.forEach((section,i)=>{if(!done[i])return;fields(i).forEach((el,j)=>{if('value' in el)el.value=done[i].answers[j];else el.textContent=done[i].answers[j];el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));});done[i].score=summary(i)});
-let sending=false, sent=!!saved.sent&&saved.deliveryConfirmed===1&&done.every(Boolean);
-const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,sent,deliveryConfirmed:sent?1:0,pages:pageNumbers}))}catch(e){}};
+// Single final check: no intermediate scores or block-check buttons.
+let finalChecked=!!saved.finalChecked||done.every(Boolean);
+let sending=false, sent=!!saved.sent&&saved.deliveryConfirmed===1&&finalChecked;
+const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,finalChecked,sent,deliveryConfirmed:sent?1:0,pages:pageNumbers}))}catch(e){}};
 document.body.classList.add('mint-game');
 document.querySelector('.sheet-head').insertAdjacentHTML('beforeend',window.claraTreeArt.header);
-const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="3" value="0" aria-label="Completed blocks"></progress><nav class="block-nav" aria-label="Homework blocks"></nav><p class="save-note">Your work is saved on this device. Check carefully: a checked block cannot be changed.</p>';
+const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="43" value="0" aria-label="Answers saved"></progress><nav class="block-nav" aria-label="Homework blocks"></nav>';
 document.querySelector('.sheet-head').after(dashboard);
 const nav=dashboard.querySelector('nav');
-const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your tree is growing! 🌱</h2><p>Check all three blocks to unlock the final button. You can review any block before sending.</p><div class="tree-layout"><div class="tree-scene"></div><div class="tree-story"><div class="tree-count" aria-live="polite"></div><ol class="tree-stages"></ol><p class="leaf-note">One green leaf for each correct answer. Dasha will review your methods separately.</p></div></div><div class="finish-list"></div>';
+const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your tree is growing! 🌱</h2><div class="tree-layout"><div class="tree-scene"></div><div class="tree-story"><div class="tree-count" aria-live="polite"></div><p class="leaf-note">Your work saves as you go. Check and send everything at the end.</p></div></div>';
 document.getElementById('sheet').after(finish);
-const details=document.createElement('details');details.className='results-details';details.innerHTML='<summary>Results by block</summary>';details.append(finish.querySelector('.finish-list'));finish.append(details);
-const bar=document.querySelector('.hw-bar');finish.append(bar);
-const send=document.getElementById('hwSend');const nativeSend=window.hwSend;
-window.hwSend=function(){if(done.filter(Boolean).length!==blockCount||sending||sent)return;sending=true;document.getElementById('sheet').inert=true;update();try{const result=nativeSend();if(result===false){window.claraSubmissionFailed();document.getElementById('hwMsg').textContent='Not sent. Your checked answers are still saved.'}return result}catch(error){window.claraSubmissionFailed();document.getElementById('hwMsg').textContent='Could not send. Your answers are still saved. Please try again.'}};
-window.claraSubmissionDone=function(){sending=false;sent=true;document.getElementById('sheet').inert=false;update()};
-window.claraSubmissionFailed=function(){sending=false;sent=false;document.getElementById('sheet').inert=false;update()};
-function growTree(count,leaves){
- finish.querySelector('.tree-scene').innerHTML=window.claraTreeArt.render(count,leaves);
- finish.querySelector('.tree-count').textContent=leaves+' green '+(leaves===1?'leaf':'leaves')+' · '+count+'/3 tree parts';
- finish.querySelector('.tree-stages').innerHTML=['A little sapling','A growing crown','A full-grown tree'].map((name,i)=>'<li class="'+(i<count?'grown':'')+'"><span>'+(i<count?'✓':i+1)+'</span>'+name+'</li>').join('');
-}
-function lockBlock(section){
- section.classList.add('locked');
- section.querySelectorAll('[data-k],.pic-opt,.txt-opt,.tp-tile').forEach(el=>{if(el.hasAttribute('contenteditable'))el.setAttribute('contenteditable','false');if('disabled' in el)el.disabled=true;});
+const bar=document.querySelector('.hw-bar');bar.classList.add('available');
+const send=document.getElementById('hwSend'),msg=document.getElementById('hwMsg'),nativeSend=window.hwSend;
+msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');
+msg.textContent='Your answers have not been sent yet.';
+const results=document.createElement('div');results.className='final-answer-list';
+const allFields=()=>fieldLists.flat();
+const filled=i=>fields(i).filter(el=>value(el)).length;
+function lockBlock(section){section.classList.add('locked');section.querySelectorAll('[data-k],.pic-opt,.txt-opt,.tp-tile').forEach(el=>{if(el.hasAttribute('contenteditable'))el.setAttribute('contenteditable','false');if('disabled' in el)el.disabled=true;});}
+function renderResults(){
+ results.replaceChildren();if(!finalChecked)return;
+ const heading=document.createElement('h3');heading.textContent='All your answers';results.append(heading);
+ allFields().forEach(el=>{
+  const row=document.createElement('div');row.className='final-answer-row';
+  const label=document.createElement('strong');label.textContent=el.dataset.label||el.dataset.k;
+  const answer=document.createElement('p');answer.textContent='Your answer: '+(value(el)||'(blank)');
+  const mark=document.createElement('p'),k=key[el.dataset.k];
+  if(!k||k.t==='open')mark.textContent='Dasha will review your method.';
+  else if(value(el)&&norm(value(el))===norm(k.a)){mark.textContent='✓ Correct';mark.className='final-correct';}
+  else{mark.textContent='Correct answer: '+k.a;mark.className='final-correction';}
+  row.append(label,answer,mark);results.append(row);
+ });
 }
 function update(){
- const count=done.filter(Boolean).length;
- growTree(count,done.reduce((n,item)=>n+(item?item.score.right:0),0));
- dashboard.querySelector('#gardenProgressText').textContent=count+' of 3 blocks checked';
- dashboard.querySelector('progress').value=count;
- nav.querySelectorAll('button').forEach((b,i)=>{b.classList.toggle('done',!!done[i]);b.setAttribute('aria-current',i===current?'step':'false');b.querySelector('.step-badge').textContent=done[i]?'✓':icons[i];b.querySelector('small').textContent=done[i]?'Checked':i===current?'You are here':'Explore this block'});
- finish.querySelector('.finish-list').replaceChildren(...sections.map((s,i)=>{const row=document.createElement('div');row.className='finish-row';let text=titles[i]+': ';if(done[i]){const a=done[i].score;text+=a.right+' / '+a.total+' checks correct'+(a.open?' · '+a.open+' for Dasha to review':'')}else text+='not checked yet';row.textContent=text;return row}));
- bar.classList.add('available');send.disabled=count!==blockCount||sending||sent;send.textContent=sending?'Sending…':sent?'Submitted ✓':'Send my results to Dasha';
- finish.querySelector('h2').textContent=sent?'All sent — lovely work! 🌿':count===blockCount?'Your tree is complete! 🌿':'Your tree is growing! 🌱';
- finish.querySelector('p').textContent=sent?'Your homework has been submitted. You can still explore the blocks and review your work.':count===blockCount?'All three parts have grown! Send your answers and a marked copy to Dasha.':'Each completed block grows a new part of your tree. Each correct answer adds a green leaf.';
+ document.body.classList.toggle('final-checked',finalChecked);
+ const answered=allFields().filter(el=>value(el)).length,total=allFields().length;
+ const count=finalChecked?blockCount:sections.filter((s,i)=>filled(i)===fields(i).length).length;
+ const leaves=finalChecked?done.reduce((n,d)=>n+(d?d.score.right:0),0):answered;
+ finish.querySelector('.tree-scene').innerHTML=window.claraTreeArt.render(count,leaves);
+ finish.querySelector('.tree-count').textContent=finalChecked?leaves+' correct answers':answered+' of '+total+' answers saved';
+ dashboard.querySelector('#gardenProgressText').textContent=answered+' of '+total+' answers saved';
+ dashboard.querySelector('progress').max=total;dashboard.querySelector('progress').value=answered;
+ nav.querySelectorAll('button').forEach((b,i)=>{b.setAttribute('aria-current',i===current?'step':'false');b.querySelector('.step-badge').textContent=icons[i];});
+ send.disabled=sending||sent;send.textContent=sending?'Sending…':sent?'Submitted ✓':finalChecked?'Send my results to Dasha':'Check & send to Dasha';
+ finish.querySelector('h2').textContent=sent?'All sent — lovely work! 🌿':finalChecked?'Your results 🌿':'Your tree is growing! 🌱';
+ if(decks[blockCount-1]){decks[blockCount-1].review.querySelector('h3').textContent=finalChecked?'Your results':'Ready to send?';decks[blockCount-1].review.querySelector('p').hidden=finalChecked;}
  save();
 }
-function show(i,focus=true){current=i;sections.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',i===j?'false':'true')});showPage(i,pageNumbers[i]||0,focus);update()}
+window.claraBeforeSubmit=function(){
+ if(!finalChecked){done=sections.map((section,i)=>({answers:snapshot(i),score:summary(i)}));finalChecked=true;sections.forEach(lockBlock);renderResults();save();}
+};
+window.hwSend=function(){
+ if(sending||sent)return;
+ sending=true;document.getElementById('sheet').inert=true;update();
+ try{const result=nativeSend();if(result===false){window.claraSubmissionFailed();msg.textContent='Not sent. Your answers are still saved.'}return result;}
+ catch(error){window.claraSubmissionFailed();msg.textContent='Could not send. Your answers are still saved. Please try again.';}
+};
+window.claraSubmissionDone=function(){sending=false;sent=true;document.getElementById('sheet').inert=false;update()};
+window.claraSubmissionFailed=function(){sending=false;sent=false;document.getElementById('sheet').inert=false;update()};
+function show(i,focus=true){current=i;sections.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',i===j?'false':'true')});showPage(i,pageNumbers[i]||0,focus);update();}
 function showPage(i,n,focus=true){
  const deck=decks[i];if(!deck)return;
- n=Math.max(0,Math.min(deck.pages.length-1,n));pageNumbers[i]=n;deck.review.classList.remove('overview-mode');
+ n=Math.max(0,Math.min(deck.pages.length-1,n));pageNumbers[i]=n;
  deck.pages.forEach((page,j)=>{page.classList.toggle('current-page',j===n);page.setAttribute('aria-hidden',j===n?'false':'true')});
  deck.label.textContent=(n+1)+' / '+deck.pages.length+' · '+deck.pages[n].dataset.title;
- deck.back.disabled=n===0;deck.check.hidden=n!==deck.pages.length-1;
- deck.next.textContent=n<deck.pages.length-1?'Next →':i<blockCount-1?'Next block →':'Results & send';
- deck.viewport.scrollTop=0;
- if(focus){deck.label.focus({preventScroll:true})}save();
-}
-function showOverview(i){
- const deck=decks[i];showPage(i,deck.pages.length-1);
- let overview=deck.review.querySelector('.all-block-results');
- if(!overview){overview=document.createElement('div');overview.className='all-block-results';deck.review.append(overview)}
- overview.innerHTML='<h3>Your results</h3>';
- const delivery=document.createElement('div');delivery.className='clara-results-delivery';
- const deliveryButton=document.createElement('button');deliveryButton.type='button';deliveryButton.className='garden-button primary clara-results-send';deliveryButton.onclick=()=>window.hwSend();
- const deliveryMessage=document.createElement('p');deliveryMessage.setAttribute('role','status');deliveryMessage.setAttribute('aria-live','polite');
- const refreshDelivery=()=>{deliveryButton.disabled=send.disabled;deliveryButton.textContent=send.textContent;deliveryMessage.textContent=done.every(Boolean)?document.getElementById('hwMsg').textContent:'Your results have not been sent yet. Finish and check the blocks below to send them.';};
- delivery.append(deliveryButton,deliveryMessage);overview.append(delivery);refreshDelivery();
- if(deck.deliveryObserver)deck.deliveryObserver.disconnect();
- deck.deliveryObserver=new MutationObserver(refreshDelivery);deck.deliveryObserver.observe(bar,{subtree:true,childList:true,characterData:true,attributes:true});
- sections.forEach((section,j)=>{if(done[j])return;const jump=document.createElement('button');jump.type='button';jump.className='garden-button';jump.textContent='Finish '+titles[j];jump.onclick=()=>{show(j);showPage(j,decks[j].pages.length-1)};overview.append(jump)});
- overview.append(finish.querySelector('.finish-list').cloneNode(true));
- const back=document.createElement('button');back.className='garden-button';back.textContent='Back to block check';back.onclick=()=>deck.review.classList.remove('overview-mode');overview.append(back);
- deck.review.classList.add('overview-mode');
+ deck.back.disabled=i===0&&n===0;
+ deck.next.hidden=i===blockCount-1&&n===deck.pages.length-1;
+ deck.next.textContent=n<deck.pages.length-1?'Next →':'Next block →';
+ deck.viewport.scrollTop=0;if(focus)deck.label.focus({preventScroll:true});save();
 }
 function paginate(section,i){
  // Flatten layout-only wrappers, retaining every original question and field.
@@ -1265,8 +1284,8 @@ function paginate(section,i){
   }
  });
  if(pending.length)add(pending,'Instructions');
- const review=add([],'Finish this block');review.classList.add('game-ui','review-page');
- review.innerHTML='<h3>Ready to finish this block?</h3><p>Use Back to check your answers first.</p>';
+ const review=i===blockCount-1?add([],'Finish & send'):null;
+ if(review){review.classList.add('game-ui','review-page');review.innerHTML='<h3>Ready to send?</h3><p>You can go back to review your work. This button checks all your answers and sends them to Dasha.</p>';}
  const position=document.createElement('div');position.className='game-ui exercise-position';
  const label=document.createElement('span');label.tabIndex=-1;label.setAttribute('aria-live','polite');position.append(label);
  const reminder=pages.findIndex(p=>p.dataset.title==='Remember');
@@ -1276,30 +1295,23 @@ function paginate(section,i){
  return {pages,viewport,label,review,notice};
 }
 sections.forEach((section,i)=>{
- const tab=document.createElement('button');tab.className='block-tab';tab.type='button';tab.innerHTML='<span class="step-badge"></span><span>'+titles[i]+'<small></small></span>';tab.onclick=()=>show(i);nav.append(tab);
- const heading=section.querySelector('.sec-head');heading.tabIndex=-1;
+ const tab=document.createElement('button');tab.className='block-tab';tab.type='button';tab.innerHTML='<span class="step-badge"></span><span>'+titles[i]+'</span>';tab.onclick=()=>show(i);nav.append(tab);
  const deck=paginate(section,i);decks[i]=deck;
  const actions=document.createElement('div');actions.className='game-ui block-actions';
- const back=document.createElement('button');back.className='garden-button';back.textContent='← Back';back.onclick=()=>showPage(i,pageNumbers[i]-1);
- const check=document.createElement('button');check.className='garden-button primary';check.textContent='Finish & check block';
- const next=document.createElement('button');next.className='garden-button next-button';next.onclick=()=>{if(pageNumbers[i]<deck.pages.length-1)showPage(i,pageNumbers[i]+1);else if(i<blockCount-1)show(i+1);else {showOverview(i);}};
- actions.append(back,check,next);Object.assign(deck,{back,check,next});
- const result=document.createElement('div');result.className='game-ui block-result';result.setAttribute('role','status');
- deck.review.append(result);section.append(actions);
- ['click','pointerdown','keydown'].forEach(type=>section.addEventListener(type,event=>{if(done[i]&&!event.target.closest('.game-ui')&&event.target.closest('button,input,select,textarea,[data-k],.tp-zone')){event.preventDefault();event.stopImmediatePropagation()}},true));
- function report(){const a=done[i].score;result.replaceChildren();const score=document.createElement('strong');score.textContent=a.right+' of '+a.total+' correct';const hint=document.createElement('p');hint.textContent='Use Back to see the correct answers.';result.append(score,hint);deck.review.querySelector('h3').hidden=true;deck.review.querySelector('p').hidden=true;check.textContent='Block finished ✓';check.disabled=true;}
-
- check.onclick=()=>{
- if(done[i])return;
- const missing=fields(i).filter(el=>!value(el));
- if(missing.length){result.textContent='There '+(missing.length===1?'is 1 answer':'are '+missing.length+' answers')+' still to try in this block. Fill them in, then check again.';const el=missing[0],twin=section.querySelector('[data-field="'+el.dataset.k+'"]');const target=twin||el;deck.notice.textContent=result.textContent;const page=target.closest('.exercise-page');if(page)showPage(i,deck.pages.indexOf(page),false);target.scrollIntoView({block:'nearest',behavior:'instant'});if(target.matches('input,select,textarea,[contenteditable]'))target.focus({preventScroll:true});return}
- done[i]={answers:snapshot(i),score:summary(i)};window.hwShowChecks(section);lockBlock(section);report();deck.notice.textContent='';update();showPage(i,deck.pages.length-1,false);if(done.every(Boolean))showOverview(i);
- };
- if(done[i]){window.hwShowChecks(section);lockBlock(section);report()}
+ const back=document.createElement('button');back.className='garden-button';back.textContent='← Back';back.onclick=()=>{if(pageNumbers[i]>0)showPage(i,pageNumbers[i]-1);else{show(i-1);showPage(i-1,decks[i-1].pages.length-1)}};
+ const next=document.createElement('button');next.className='garden-button next-button';next.textContent='Next →';next.onclick=()=>{if(pageNumbers[i]<deck.pages.length-1)showPage(i,pageNumbers[i]+1);else if(i<blockCount-1)show(i+1)};
+ actions.append(back,next);Object.assign(deck,{back,next});section.append(actions);
+ if(deck.review)deck.review.append(bar,results);
+ ['click','pointerdown','keydown'].forEach(type=>section.addEventListener(type,event=>{if((done[i]||finalChecked)&&!event.target.closest('.game-ui')&&event.target.closest('button,input,select,textarea,[data-k],.tp-zone')){event.preventDefault();event.stopImmediatePropagation()}},true));
+ if(done[i])lockBlock(section);
+ ['input','change'].forEach(type=>section.addEventListener(type,()=>{if(!finalChecked)update()}));
  showPage(i,pageNumbers[i]||0,false);
 });
-show(current,false);if(sent)document.getElementById('hwMsg').textContent='Your final answers have been submitted to Dasha. You can still look back at your work.';
+if(finalChecked){window.hwShowChecks();renderResults();}
+if(sent)msg.textContent='Your answers have been submitted to Dasha.';
+show(current,false);
 })();
+
 </script>
 </body>
 </html>

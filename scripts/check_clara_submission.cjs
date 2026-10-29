@@ -3,9 +3,9 @@ const source=fs.readFileSync(require('path').join(__dirname,'../clara-2026-10-24
 const start=source.indexOf('  window.hwSend = function');
 const send=source.slice(start,source.indexOf('\n})();',start));
 async function run({pdfFail=false,status=200,reply='ok',opaque=false,network=false,empty=false,cancel=false,timeout=false}={}){
- let requests=[],done=0,failed=0,removed=0,checked=0,cleared=false;
+ let requests=[],done=0,failed=0,removed=0,checked=0,cleared=false,frozen=0;
  const btn={},msg={},fields=Array.from({length:43},(_,i)=>({dataset:{k:'q'+i,label:'Question '+i},classList:{contains:()=>false},answer:empty?'':String(i)}));
- const ctx={window:{claraSubmissionDone(){done++},claraSubmissionFailed(){failed++}},
+ const ctx={window:{claraBeforeSubmit(){frozen++},claraSubmissionDone(){done++},claraSubmissionFailed(){failed++}},
   document:{getElementById:id=>id==='hwSend'?btn:msg,querySelectorAll:q=>q==='[data-k]'?fields:[{remove(){removed++}}]},
   answerOf:el=>el.answer,CHECK:null,cNorm:x=>x,confirm:()=>!cancel,showChecks:()=> 'score',
   makePDF:()=>pdfFail?Promise.reject(new Error('PDF failed')):Promise.resolve('TEST_PDF'),
@@ -14,15 +14,21 @@ async function run({pdfFail=false,status=200,reply='ok',opaque=false,network=fal
   AbortController, setTimeout:fn=>{if(timeout)queueMicrotask(fn);return 1},clearTimeout:()=>{cleared=true},
   localStorage:{setItem(){checked++}},CHECKED:'checked',recheck:Object.assign(()=>{}, {on:false})};
  vm.runInNewContext(send,ctx);const result=await ctx.window.hwSend();
- return{done,failed,requests,removed,checked,result,cleared,btn,msg};
+ return{done,failed,requests,removed,checked,result,cleared,btn,msg,frozen};
 }
 (async()=>{
- let r=await run();assert.equal(r.done,1);assert.equal(r.requests[0].answers.length,43);assert.equal(r.requests[0].pdf,'TEST_PDF');assert(r.cleared);
+ let r=await run();assert.equal(r.done,1);assert.equal(r.frozen,1);assert.equal(r.requests[0].answers.length,43);assert.equal(r.requests[0].pdf,'TEST_PDF');assert(r.cleared);
  r=await run({pdfFail:true});assert.equal(r.done,1);assert.equal(r.requests[0].pdf,null);
  for(const opts of [{status:500},{reply:'no'},{reply:'<html>Error</html>'},{opaque:true},{network:true},{timeout:true}]){
   r=await run(opts);assert.equal(r.done,0);assert.equal(r.checked,0);assert.equal(r.failed,1);assert.equal(r.removed,0);assert.equal(r.btn.disabled,false);
  }
- r=await run({empty:true,cancel:true});assert.equal(r.requests.length,0);assert.equal(r.result,false);
- assert(source.includes('saved.deliveryConfirmed===1'));assert(source.includes('clara-results-send'));assert(source.includes('if(done.every(Boolean))showOverview(i)'));assert(source.includes("bar.classList.add('available')"));assert(source.includes("if(result===false){window.claraSubmissionFailed()"));
+ r=await run({empty:true,cancel:true});assert.equal(r.requests.length,0);assert.equal(r.result,false);assert.equal(r.frozen,0);
+ assert(source.includes('saved.deliveryConfirmed===1'));
+ assert(!source.includes('Finish & check block'));assert(!source.includes('My results'));assert(!source.includes('clara-results-send'));
+ assert(source.includes('Check & send to Dasha'));assert(source.includes('window.claraBeforeSubmit=function'));
+ assert(source.includes('if(finalChecked){window.hwShowChecks();renderResults();}'));
+ assert(source.includes("if(result===false){window.claraSubmissionFailed()"));
+ for(const m of source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)){if(!/application\/json/.test(m[1]))new vm.Script(m[2]);}
+
  console.log('PASS: 43 answers, attachment, PDF fallback, server rejection, HTTP failure, opaque reply, offline, timeout, cancellation, preserved marks and receipt migration.');
 })().catch(e=>{console.error(e);process.exit(1)});

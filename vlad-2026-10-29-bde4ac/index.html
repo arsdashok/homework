@@ -239,6 +239,13 @@ body.hw-pdf-mode .item{padding:8px 0}
 body.hw-pdf-mode .wrap .hw-field{font-size:14px}
 body.hw-pdf-mode .model .done{font-size:14px;padding:8px 12px}
 body.hw-pdf-mode .hw-field::placeholder{color:transparent}
+
+/* Phonetic symbols beside the sound models. */
+.ipa{font-family:Arial,"DejaVu Sans",sans-serif;font-size:25px;font-weight:400;letter-spacing:0;white-space:nowrap;color:var(--accent)}
+.zones.two .zhead{flex-wrap:wrap}
+.zones.two .zhead .as{flex-basis:100%;margin-left:0}
+.pronunciation-resource a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+@media print{.ipa{font-size:12pt}}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -271,7 +278,7 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
   <div class="section-heading"><span class="section-number">01</span><h2 id="t1">Long or short?</h2></div>
   <p class="instruction"><span class="scr">Tap a word, then tap its box: long ee or short&nbsp;i.</span><span class="prt">Write each word in its box: long ee or short&nbsp;i.</span></p>
   <div class="note">
-    <p><span class="scr">Tap the speaker, say it back, then sort. </span>Go by the sound, not the&nbsp;spelling.</p>
+    <p><span class="scr">Tap the speaker, say it back, then sort. </span>Go by the sound, not the&nbsp;spelling. The symbols show the sounds; ː marks a long vowel.</p>
   </div>
   <p class="saynote" hidden>Audio does not play in this browser. Try another one, or sort by ear from&nbsp;memory.</p>
 </div>
@@ -292,8 +299,8 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
       <button type="button" class="tp-tile" data-value="a minute" data-store="e12" data-field="e12">a minute<span class="say" role="button" tabindex="0" data-say="a minute" aria-label="Listen: a minute" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></span></button>
     </div>
     <div class="zones two">
-      <div class="tp-zone tp-multi" data-value="long ee"><div class="zhead"><b>Long ee</b><button type="button" class="say" data-say="mean" aria-label="Listen: mean" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as">smiley, as in <em>mean</em></span></div><div class="tp-slot"></div></div>
-      <div class="tp-zone tp-multi" data-value="short i"><div class="zhead"><b>Short i</b><button type="button" class="say" data-say="fit" aria-label="Listen: fit" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as">relaxed, as in <em>fit</em></span></div><div class="tp-slot"></div></div>
+      <div class="tp-zone tp-multi" data-value="long ee"><div class="zhead"><b>Long ee <span class="ipa">/iː/</span></b><button type="button" class="say" data-say="mean" aria-label="Listen: mean" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as">smiley, as in <em>mean</em></span></div><div class="tp-slot"></div></div>
+      <div class="tp-zone tp-multi" data-value="short i"><div class="zhead"><b>Short i <span class="ipa">/ɪ/</span></b><button type="button" class="say" data-say="fit" aria-label="Listen: fit" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as">relaxed, as in <em>fit</em></span></div><div class="tp-slot"></div></div>
     </div>
     <div class="tp-stores" hidden>
       <select data-k="e1" data-label="1. people: long ee or short i" class="hw-field"><option value=""></option><option value="long ee">long ee</option><option value="short i">short i</option></select>
@@ -335,9 +342,9 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
       <button type="button" class="tp-tile" data-value="blood" data-store="a9" data-field="a9">blood<span class="say" role="button" tabindex="0" data-say="blood" aria-label="Listen: blood" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></span></button>
     </div>
     <div class="zones three">
-      <div class="tp-zone tp-multi" data-value="father"><div class="zhead"><b>father</b><button type="button" class="say" data-say="father" aria-label="Listen: father" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><b class="zslash">/ can't</b><button type="button" class="say" data-say="can't" aria-label="Listen: can't" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as">long, deep&nbsp;ah</span></div><div class="tp-slot"></div></div>
-      <div class="tp-zone tp-multi" data-value="cup"><div class="zhead"><b>cup</b><button type="button" class="say" data-say="cup" aria-label="Listen: cup" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as">short&nbsp;ah</span></div><div class="tp-slot"></div></div>
-      <div class="tp-zone tp-multi" data-value="cat"><div class="zhead"><b>cat</b><button type="button" class="say" data-say="cat" aria-label="Listen: cat" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as">wide open&nbsp;a</span></div><div class="tp-slot"></div></div>
+      <div class="tp-zone tp-multi" data-value="father"><div class="zhead"><b>father</b><button type="button" class="say" data-say="father" aria-label="Listen: father" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><b class="zslash">/ can't</b><button type="button" class="say" data-say="can't" aria-label="Listen: can't" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as"><span class="ipa">/ɑː/</span> · long, deep&nbsp;ah</span></div><div class="tp-slot"></div></div>
+      <div class="tp-zone tp-multi" data-value="cup"><div class="zhead"><b>cup</b><button type="button" class="say" data-say="cup" aria-label="Listen: cup" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as"><span class="ipa">/ʌ/</span> · short&nbsp;ah</span></div><div class="tp-slot"></div></div>
+      <div class="tp-zone tp-multi" data-value="cat"><div class="zhead"><b>cat</b><button type="button" class="say" data-say="cat" aria-label="Listen: cat" title="Listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.2L11 3.8v12.4L6.2 12.5H3z" fill="currentColor"/><path d="M13.6 6.9a4.4 4.4 0 0 1 0 6.2M15.8 4.7a7.5 7.5 0 0 1 0 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button><span class="as"><span class="ipa">/æ/</span> · wide open&nbsp;a</span></div><div class="tp-slot"></div></div>
     </div>
     <div class="tp-stores" hidden>
       <select data-k="a1" data-label="13. money: father, cup or cat" class="hw-field"><option value=""></option><option value="father">father</option><option value="cup">cup</option><option value="cat">cat</option></select>
@@ -357,7 +364,7 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
 <section class="exercise q" aria-labelledby="t3">
 <div class="brief">
   <div class="section-heading"><span class="section-number">03</span><h2 id="t3">Read it aloud</h2></div>
-  <p class="instruction"><span class="scr">Tap every word with the long ee sound, as in&nbsp;feet.</span><span class="prt">Circle every word with the long ee sound, as in&nbsp;feet.</span></p>
+  <p class="instruction"><span class="scr">Tap every word with the long ee sound /iː/, as in&nbsp;feet.</span><span class="prt">Circle every word with the long ee sound /iː/, as in&nbsp;feet.</span></p>
   <p class="mini scr">Tap a word again to untap&nbsp;it.</p>
 </div>
 <div class="work">
@@ -374,8 +381,9 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
 <section class="exercise" aria-labelledby="t4">
 <div class="brief">
   <div class="section-heading"><span class="section-number">04</span><h2 id="t4">Your words</h2></div>
-  <p class="instruction">Write five words you often use, at work or every day, with the long ee&nbsp;sound.</p>
-  <p class="mini">A short sentence after each word is welcome. Say each one aloud and check it with a dictionary's listen&nbsp;button.</p>
+  <p class="instruction">Write five words you often use, at work or every day, with the long ee sound /iː/.</p>
+  <p class="mini">A short sentence after each word is welcome. Say each one aloud.</p>
+  <p class="mini pronunciation-resource"><a href="https://dictionary.cambridge.org/pronunciation/english/" target="_blank" rel="noopener noreferrer">Check pronunciation in Cambridge Dictionary</a><br>Look up your word, listen to the UK pronunciation and compare the phonetic symbols.</p>
 </div>
 <div class="work">
   <div class="item model">

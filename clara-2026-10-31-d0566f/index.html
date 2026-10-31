@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clara Homework 31 October 2026</title>
+<!--
+Clara, lesson of 31 October 2026 (Y5 W42 multiples, factors, common factors). Blocks: 8s and 12s / Factor or multiple? / Ladders / Shared factors / Tool names.
+ANSWER POSITION SEQUENCES (read back after placing; no alternation run, cycle or run of 3):
+  Multiple-of-8 tile order (8 tiles): M N M M N N M N.
+  Factor or multiple selects (1 factor of, 2 multiple of, 3 neither): 2,1,1,3,2,3.
+  Digit test yes/no (1 yes, 2 no): 2,1,1,2,2,1.
+  Stop selects (options 6,7,8,9,10): positions 3,5,4 in the order 32, 50, 63; stop numbers 8, 10, 9. Position 1 is never right, so a stop at 6 is always the trap. Partner fields 4, 5, 7.
+  Venn tile order (A only 14, B both, C only 35): B,A,C,B,C,A.
+  Tool bank order: same difference, bonds, count up, compensate, known facts. Positions for the five calculations in reading order: 3,5,4,1,2. Every tool is used once. Three additions and two subtractions, so no wording in the reminder settles an item alone.
+  Ladder tries on the tile screen stay in climbing order 2 to 7 on purpose, so the tile set does not reveal the stop.
+NUMBERS. Ladders, pairs and sentences avoid the deck's items (18, 24, 30, 36, 45, 17, 40, 42, 44; 12 and 18, 20 and 30, 16 and 20, 21 and 28, 8 and 15, 18 and 27; 96). Three deliberate exceptions: the count-on chains and table answers contain whatever the tables contain; tile 36 in the multiple-of-8 sort is her own slip (8, 16, 24, 36); 20 in "two factors of 20" was named in the brief. 42 is also the partition model, the lesson's own example, not an item. Venn pair 14 and 35, list pair 32 and 56: neither pair is on deck cards 06-08. The Venn has only the deck's three regions.
+MODEL AGAINST ITEM CHECK.
+  A model: multiples of 9 up to 45. No item asks about 9s; 9 x 8 and 6 x 12 are not shown by it.
+  B model: 2 x 11 = 22 names factors and multiple in a list, not in the sentence frame, so no item or Ada's sentence copies it. It does not feed any partition or ladder item. The shortcut small is a factor, big is a multiple is broken by the two neither items (6 and 38, 26 and 4), and 1 and 9 targets her slip on 1.
+  C ladder model: 15, stop at 5, with the digit test shown once at try 3. 15 is not an item, and 5 is not a stop option.
+  C partition model: 42 gives 3 x 14. Checked against every key: no item's answer is 42, and 14 is only one factor inside the list for 56, which the model does not show; 3 x 4 = 12 and 3 x 14 = 42 are not asked anywhere. The answers on 39, 54 and 57 each need their own left amount, and the last step names 10 + the small partner so 9 is not typed twice.
+  D model: 4 and 6, shared 1 and 2. Neither number is in a D pair, and each answer needs that number's own factors.
+  E model: names and jobs only, no calculation.
+ORDER NOTE. The first ladder puts the tile screen before the partner rows, because rows printed first would hand over which tries work. The ladders run 32, 50, 63, not 32, 63, 50, so the stops are not the ascending 8, 9, 10. 50 and 63 drop both supports: she types the tries as well.
+-->
+<style id="clara-mint-design">
+/* Clara mint system (17 October 2026 design), sheet of 31 October 2026.
+   Remember = mint card, Worked example = pale dashed inset, tasks on white with green number badges
+   and solid green-outline fields. Locally scoped so shared homework CSS cannot recolour it. */
+@page { size:A4; margin:14mm 15mm; }
+:root { --ink:#203e35; --muted:#536e64; --green:#286951; --mint:#dcefe5; --pale:#f0f7f3; --line:#bfd7ca; --red:#9b472c; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next',Arial,sans-serif; color:var(--ink); background:white; font-size:14px; line-height:1.5; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.sheet-head { padding:18px 22px; background:var(--mint); border-radius:16px; margin-bottom:18px; }
+.eyebrow,.page-label,.task-label,.ex-title,.role-label { font-size:10px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--green); }
+.eyebrow { margin-bottom:5px; }
+h1 { font-size:28px; line-height:1.2; letter-spacing:-.8px; }
+.sec-head { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--line); margin-bottom:14px; break-after:avoid; }
+.subj { font-size:11px; text-transform:uppercase; font-weight:700; letter-spacing:1.4px; background:var(--green); color:white; border-radius:6px; padding:4px 10px; }
+.note { color:var(--muted); font-size:12px; font-weight:400; }
+.page-label { margin-bottom:10px; color:var(--muted); }
+.task { margin-bottom:6px; }
+.task.gapt { margin-top:16px; }
+.task-label { margin-bottom:4px; }
+.lead { font-size:18px; line-height:1.4; font-weight:700; margin-bottom:6px; break-after:avoid; text-wrap:pretty; }
+.small { font-size:12px; color:var(--muted); margin-bottom:8px; }
+.small.inl { margin:0; }
+.role-label { margin:12px 0 6px; }
+.model,.chain-ex { margin:10px 0 12px; padding:10px 14px; background:var(--pale); border:1px dashed #92b6a3; border-radius:4px; break-inside:avoid; }
+.ex-title { display:block; margin-bottom:5px; color:var(--muted); }
+.model p { font-size:13px; }
+.model .was { color:var(--muted); margin-bottom:3px; }
+.model b,.fix { color:var(--green); font-weight:700; }
+.ex-prob { margin-bottom:6px; }
+.wex-row { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.wex-fig { flex:0 1 330px; min-width:240px; }
+.wex-steps p,.plan-rows p { margin:3px 0; font-variant-numeric:tabular-nums; }
+.st { display:inline-block; min-width:58px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--green); }
+.chain-ex { display:flex; align-items:center; flex-wrap:wrap; gap:5px 8px; font-size:13px; }
+.chain-ex .ex-title { flex-basis:100%; margin:0; }
+.digits { display:inline-flex; gap:1px; font-variant-numeric:tabular-nums; }
+.dg { display:inline-block; padding:1px 4px; border:1px solid transparent; border-radius:4px; font-size:16px; font-weight:600; }
+.dg.on { background:var(--green); border-color:var(--green); color:white; }
+.dc { padding:0 1px; font-size:16px; }
+.big10,.chip10,.zone-chip { font-variant-numeric:tabular-nums; }
+.big10 { display:inline-block; padding:0 8px; border-radius:7px; background:var(--green); color:white; }
+
+/* Tasks */
+.q { padding:10px 0; border-bottom:1px solid #dfebe4; break-inside:avoid; page-break-inside:avoid; }
+.q-top { display:flex; align-items:flex-start; gap:12px; }
+.q-num { display:flex; align-items:center; justify-content:center; flex:0 0 26px; height:26px; border-radius:50%; color:white; background:var(--green); font-size:12px; font-weight:700; }
+.prompt,.prompt-q,.wsent { font-size:14px; font-weight:400; padding-top:2px; }
+.prompt b,.prompt-q b { font-weight:700; }
+.arow { display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-start; gap:7px; margin:8px 0 0 38px; }
+.cap2 { font-size:13px; white-space:nowrap; }
+.gapl { margin-left:18px; }
+.cur { font-size:14px; font-weight:700; margin-right:-3px; }
+.star { font-size:16px; font-weight:700; color:var(--green); white-space:nowrap; }
+.nb { width:110px; height:35px; text-align:center; font:inherit; font-variant-numeric:tabular-nums; }
+.nb.wide { width:135px; }
+.np { width:260px; max-width:100%; height:35px; padding:4px 8px; font:inherit; vertical-align:middle; }
+.sent { min-height:64px; padding:10px 12px; margin:8px 0 0 38px; }
+body .nb,body .np,body select[data-k],body .sent,body #sheet .hw-field { background:#fff !important; color:#203e35 !important; border:1.5px solid #739d87 !important; border-radius:7px !important; font-weight:600; outline:none; }
+body input.hw-field { min-width:0; min-height:35px; padding:4px 6px; }
+body select[data-k] { font:inherit; font-size:12px; min-height:35px; padding:5px 8px; max-width:100%; }
+body select.sign { min-width:78px; font-size:15px; text-align:center; }
+body select.tool { min-width:170px; }
+body select.ww { min-width:110px; }
+body div.sent,body #sheet div.sent.hw-field { min-height:84px !important; }
+body #sheet .hw-field:focus,body .nb:focus,body .np:focus,body .sent:focus,body select:focus { border-color:#286951 !important; background:#f5fbf7 !important; box-shadow:0 0 0 3px #dcefe5; }
+body #sheet .hw-field:empty::before { color:#687f73; font-weight:400; }
+.circle-opt { display:none; font-size:12px; }
+.store,.tp-stores { display:none !important; }
+
+/* Pick a bar picture */
+.pic-pick { display:grid; grid-template-columns:repeat(2,minmax(0,330px)); gap:12px; margin:10px 0 0 38px; }
+.pic-opt { display:block; width:100%; padding:8px 10px 4px; background:white; border:1.5px solid #c0d7c9; border-radius:10px; cursor:pointer; text-align:left; font:inherit; color:var(--ink); touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.pic-opt:hover { background:var(--pale); }
+.pic-opt.on { border:2.5px solid var(--green); background:#f2faf5; box-shadow:0 0 0 3px #dcefe5; }
+.pic-cap { display:block; font-size:11px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+.pic-opt.on .pic-cap { color:var(--green); }
+.bar-svg { display:block; width:100%; height:auto; }
+.bar-svg text { font-family:'Avenir Next',Arial,sans-serif; }
+
+/* Plans */
+.plan-rows.in { margin-top:4px; }
+.arow.plan .st { min-width:62px; }
+
+/* Text options */
+.opt-pick { display:grid; gap:8px; flex:1; min-width:0; }
+.txt-opt { display:flex; align-items:center; gap:10px; width:100%; padding:8px 12px; background:white; border:1.5px solid #c0d7c9; border-radius:9px; cursor:pointer; text-align:left; font:inherit; font-size:14px; color:var(--ink); touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.txt-opt:hover { background:var(--pale); }
+.txt-opt.on { border:2.5px solid var(--green); background:#f2faf5; font-weight:600; }
+.tick-box { flex:0 0 18px; height:18px; border:1.5px solid #739d87; border-radius:4px; background:white; }
+.txt-opt.on .tick-box { background:var(--green); border-color:var(--green); }
+.wsent { line-height:2.1; }
+
+/* Rounding */
+.r-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:6px; }
+.r-card { border:1px solid #cfe2d6; border-radius:12px; padding:10px 12px 12px; }
+.r-top { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.chip10 { display:inline-block; padding:3px 10px; border-radius:7px; background:var(--green); color:white; font-weight:700; font-size:13px; white-space:nowrap; }
+.r-num { font-size:26px; font-weight:700; font-variant-numeric:tabular-nums; margin:4px 0 8px; letter-spacing:.5px; }
+.sortq .tp { margin-left:38px; }
+.sortq .lead { margin:0; }
+.sort-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.zone-head { font-size:15px; margin-bottom:6px; }
+.zone-head b { font-size:22px; font-variant-numeric:tabular-nums; }
+.zone-chip { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.8px; font-weight:700; }
+
+/* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, mint palette) ===== */
+.tp-bank { display:flex; flex-wrap:wrap; gap:10px; padding:12px; border:2px dashed #a9cdb9; border-radius:14px; min-height:64px; margin:10px 0 14px; }
+.tp-tile {
+  font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:#fff; font-variant-numeric:tabular-nums;
+  border:2px solid #8db89f; border-radius:12px; padding:8px 14px; min-height:44px;
+  cursor:pointer; text-align:left; line-height:1.35;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none;
+}
+.tp-tile.picked { background:#e6f4ec; border-color:var(--green); box-shadow:0 0 0 3px #cfe9db; }
+.tp-tile.dragging { position:fixed; z-index:1000; pointer-events:none; box-shadow:0 6px 18px rgba(0,0,0,.18); }
+.tp-zone { border:2px solid #cfe2d6; border-radius:14px; padding:10px 12px; min-height:150px; cursor:pointer; background:white; }
+.tp-zone.ready { border-color:#8db89f; background:#f6fbf8; }
+.tp-zone.over { border-color:var(--green); background:#e6f4ec; }
+.tp-slot { display:flex; flex-wrap:wrap; gap:8px; min-height:44px; align-items:flex-start; }
+.tp-multi .tp-slot { flex-direction:row; }
+/* ===== end TAP-PLACE CSS ===== */
+
+.foot { display:flex; justify-content:space-between; border-top:1px solid var(--line); margin:12px 0 0; padding-top:8px; font-size:10px; color:var(--muted); }
+.more,.english { break-before:page; }
+.screen-only { display:inline; } .print-only { display:none; }
+body .hw-bar { border:1px solid var(--line); background:#f0f7f3; border-radius:16px; box-shadow:none; }
+body .hw-send { color:white; background:var(--green); border:0; box-shadow:none; border-radius:10px; font-family:inherit; }
+body .hw-send:hover { background:#1e5540; }
+body .hw-msg,body .hw-pdf { color:var(--muted); }
+body .hw-mark.hw-ok { color:var(--green); } body .hw-mark.hw-no { color:#9b472c; }
+.pic-pick > .hw-mark,.opt-pick > .hw-mark { grid-column:1/-1; }
+
+@media screen {
+ body { max-width:1240px; margin:auto; padding:28px 24px 60px; background:#edf5f0; font-size:18px; }
+ #sheet { background:white; padding:36px 42px; border-radius:22px; box-shadow:0 8px 36px #1e49350a; }
+ body:not([data-sheet-id]) { background:white; }
+ .sheet-head { padding:26px 28px; margin-bottom:30px; } h1 { font-size:34px; }
+ .eyebrow,.page-label,.task-label,.ex-title,.role-label { font-size:12px; }
+ .sec-head { margin-bottom:22px; padding-bottom:14px; } .subj { font-size:12px; } .note { font-size:15px; }
+ .lead { font-size:24px; margin-bottom:10px; } .small { font-size:16px; }
+ .task.gapt { margin-top:34px; }
+ .model,.chain-ex { padding:16px 20px; margin:14px 0 22px; } .model p { font-size:19px; } .chain-ex { font-size:18px; }
+ .dg,.dc { font-size:22px; } .st { font-size:13px; min-width:72px; }
+ .role-label { margin-top:22px; } .q { padding:22px 0; } .q-top { gap:14px; } .q-num { flex-basis:32px; height:32px; font-size:15px; }
+ .prompt,.prompt-q,.wsent { font-size:20px; }
+ .arow { margin:14px 0 0 46px; gap:10px; } .cap2 { font-size:19px; } .cur { font-size:19px; } .star { font-size:22px; }
+ .nb { width:128px; height:46px; font-size:19px; } .nb.wide { width:160px; } .np { height:46px; width:320px; font-size:19px; }
+ body input.hw-field { min-height:46px; } body select[data-k] { min-height:46px; font-size:17px; } body select.sign { font-size:20px; min-width:96px; }
+ .sent { min-height:100px; margin-left:46px; }
+ .pic-pick { margin-left:46px; grid-template-columns:repeat(2,minmax(0,480px)); gap:22px; }
+ .wex-fig { flex:0 1 460px; }
+ .pic-cap { font-size:12px; }
+ .txt-opt { font-size:19px; padding:12px 16px; } .opt-pick { gap:10px; }
+ .r-grid { gap:18px; } .r-card { padding:16px 18px 18px; } .chip10 { font-size:16px; } .r-num { font-size:34px; }
+ .zone-head b { font-size:28px; } .tp-zone { min-height:180px; }
+ .tp-tile { font-size:20px; padding:10px 18px; }
+ .more,.english { margin-top:60px; } .foot { font-size:13px; padding-top:16px; margin-top:24px; }
+}
+@media screen and (max-width:700px) {
+ body { padding:10px 6px 30px; } #sheet { padding:22px 14px; border-radius:16px; } .sheet-head { padding:20px; } h1 { font-size:28px; }
+ .lead { font-size:21px; } .prompt,.prompt-q,.wsent { font-size:18px; }
+ .q-top { gap:10px; } .q-num { flex-basis:28px; height:28px; font-size:13px; }
+ .arow,.sent,.pic-pick { margin-left:0; } .gapl { margin-left:0; }
+ .pic-pick { grid-template-columns:1fr; }
+ .r-grid,.sort-grid { grid-template-columns:1fr; }
+ .np { width:100%; }
+ .wex-fig { flex-basis:100%; }
+ .tp-zone { min-height:110px; } .sortq .tp { margin-left:0; }
+}
+@media print {
+ .screen-only,.hw-bar { display:none !important; } .print-only { display:inline !important; }
+ .choice-wrap.is-empty select { display:none !important; } .choice-wrap.is-empty .circle-opt { display:inline-block; }
+ .foot { display:none; }
+ .q { padding:7px 0; } .model,.chain-ex { margin:7px 0; padding:8px 12px; }
+ .pic-pick { grid-template-columns:repeat(2,minmax(0,300px)); gap:10px; margin-top:6px; }
+ .pic-opt { padding:5px 8px 2px; }
+ .sent { min-height:56px; } .tp-zone { min-height:120px; }
+ .hw-field:empty::before { display:none; }
+ .r-num { font-size:24px; }
+ .keep { break-inside:avoid; page-break-inside:avoid; }
+ .plans { break-before:auto; page-break-before:auto; margin-top:18px; } .plans .page-label { display:none; }
+ .english { break-before:auto; page-break-before:auto; margin-top:22px; } .english .page-label { display:none; }
+ .rounding { break-before:auto; page-break-before:auto; margin-top:18px; } .rounding .page-label { display:none; }
+ .pic-pick { grid-template-columns:repeat(2,minmax(0,245px)); }
+ .wex-fig { flex:0 0 250px; min-width:0; }
+ .q.card-q { padding:6px 0; }
+ .arow { margin-top:5px; }
+ .txt-opt { padding:4px 10px; font-size:13px; } .opt-pick { gap:5px; }
+ .tick-box { flex-basis:14px; height:14px; }
+ .lead { font-size:16px; } .task.gapt { margin-top:10px; }
+ .role-label { margin:8px 0 4px; }
+ .sent { min-height:52px; }
+ .english { margin-top:12px; } .english .q { padding:4px 0; } .english .model { margin:5px 0; padding:6px 12px; }
+ .txt-opt { padding:2px 10px; } .english .wsent { line-height:1.9; }
+ body div.sent,body #sheet div.sent.hw-field { min-height:46px !important; } .english .sent { margin-top:4px; }
+ .r-card.q { padding:6px 10px 8px; } .r-num { font-size:20px; margin:2px 0 5px; }
+}
+
+
+/* Sheet of 31 October 2026: small additions in the same mint system. */
+.skip { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); align-items:center; gap:10px 12px; margin:14px 0 0 46px; max-width:640px; }
+.cell { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:2px 4px; min-width:0; }
+.sn { font-size:1.15em; font-weight:700; font-variant-numeric:tabular-nums; min-width:1.9em; text-align:center; }
+body .gapn, body #sheet .exercise-page .gapn, body #sheet .exercise-page .arow .hw-field.gapn { width:3.9em !important; min-width:0; padding-left:4px; padding-right:4px; }
+.fact-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px 22px; margin:18px 0 0 46px; }
+.fact-grid.two { grid-template-columns:repeat(2,minmax(0,300px)); }
+.fact { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:1.1em; font-variant-numeric:tabular-nums; }
+.zone-head b.zt, .mint-game .zone-head b.zt { font-size:18px; font-weight:700; line-height:1.25; }
+.tp-bank { position:sticky; top:0; z-index:3; background:#fff; }
+.mint-game .q.sortq { padding-top:8px; padding-bottom:8px; }
+.model .plan-rows p { margin:2px 0; }
+/* A tick goes after the whole line, so it never splits an equation or a sentence. A cross stays with its box. CSS order, because the export clones the sheet in the same tick as the marks. */
+.eqline { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.eqline .choice-wrap { display:contents; }
+.fact>.hw-mark.hw-ok, .arow>.hw-mark.hw-ok, .eqline>.hw-mark.hw-ok, .eqline .choice-wrap>.hw-mark.hw-ok { order:9; }
+body.hw-pdf-mode .tp-bank { position:static !important; }
+body.hw-pdf-mode .dcell { flex:0 0 auto; flex-wrap:nowrap; min-width:112px; }
+body.hw-pdf-mode .dcell.ds { flex:0 0 auto; }
+body.hw-pdf-mode .dr { margin-bottom:6px; }
+body.hw-pdf-mode #sheet .arow.tight { gap:3px !important; }
+body.hw-pdf-mode #sheet .wex-row.vm .wex-fig { flex:0 0 190px !important; }
+body.hw-pdf-mode #sheet .wex-row.vm { align-items:center; }
+body.hw-pdf-mode .q.fmq { padding:4px 0 !important; }
+body.hw-pdf-mode .wsent.eqline { line-height:1.4; }
+body.hw-pdf-mode #sheet .tp-zone.one { min-height:46px !important; padding:4px 8px !important; position:relative; }
+.tp-zone.one { position:relative; }
+.tp-zone.one>.hw-mark.hw-ok { position:absolute; right:10px; top:12px; margin:0; width:auto; display:inline; flex-basis:auto; }
+.tp-bank:not(:has(.tp-tile)) { display:none; }
+body.hw-pdf-mode .tp-bank:empty, body.hw-pdf-mode .tp-bank:not(:has(.tp-tile)) { display:none !important; }
+body.hw-pdf-mode #sheet .hw-pdf-drop>.tp-slot>.hw-pdf-tile { margin:0 6px 6px 0 !important; }
+/* A4 export: one equation stays whole, two to a row. */
+body.hw-pdf-mode .fact-grid, body.hw-pdf-mode .fact-grid.two { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:10px 24px !important; margin-left:0 !important; max-width:560px; }
+body.hw-pdf-mode .fact, body.hw-pdf-mode .arow.plan, body.hw-pdf-mode .arow.tight { flex-wrap:nowrap !important; }
+body.hw-pdf-mode .fact span, body.hw-pdf-mode .cap2 { white-space:nowrap; }
+body.hw-pdf-mode .skip { margin-left:0 !important; max-width:620px; }
+body.hw-pdf-mode .dtest { max-width:640px; }
+/* The partition reminder travels with its first task: the keep box reaches over the next two blocks. */
+body.hw-pdf-mode .task.rem-keep { padding-bottom:230px !important; margin-bottom:-230px !important; background:transparent !important; }
+/* Venn in the export: same regions, centred stack in each. */
+body.hw-pdf-mode #sheet .venn { min-height:200px; max-width:560px; margin:6px auto 0; }
+body.hw-pdf-mode #sheet .venn .tp-zone.vz { display:flex !important; flex-direction:column; align-items:center; justify-content:center; text-align:center !important; min-height:0 !important; padding:34px 6px !important; background:transparent !important; border-color:transparent !important; }
+body.hw-pdf-mode #sheet .venn .hw-pdf-drop>.tp-slot, body.hw-pdf-mode #sheet .venn .tp-zone.vz>.tp-slot { display:block !important; text-align:center !important; width:100%; }
+body.hw-pdf-mode #sheet .venn .hw-pdf-drop>.tp-slot>.hw-pdf-tile { margin:0 3px 5px !important; }
+body.hw-pdf-mode #sheet .venn .zone-head { text-align:center; }
+.plan-rows.in .arow.plan { margin-top:6px; }
+@media screen and (min-width:801px) {
+ .mint-game .block-nav { grid-template-columns:repeat(5,minmax(0,1fr)) !important; }
+ .mint-game .tp.sortset { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:12px 18px; align-items:start; margin-left:0; }
+ .mint-game .tp.sortset .tp-bank { margin:0; grid-column:1; grid-row:1; align-content:flex-start; }
+ .mint-game .tp.sortset .sort-grid,.mint-game .tp.sortset .venn,.mint-game .tp.sortset .match-list { grid-column:2; grid-row:1 / span 2; }
+ .mint-game .exercise-page .sortset .tp-tile { font-size:20px; padding:5px 12px; min-height:40px; }
+ .mint-game .exercise-page .sortset .tp-zone:not(.vz):not(.one) { min-height:120px; padding:10px 12px; }
+ body .mint-game .tp-zone.one, body.mint-game .exercise-page .tp-zone.one { min-height:46px !important; padding:1px 8px !important; }
+ .match-row .tp-slot { min-height:40px; }
+ .mint-game .venn { min-height:216px; }
+ .mint-game .exercise-page .wex-row.vm { grid-template-columns:minmax(0,250px) minmax(0,1fr); }
+ .mint-game .exercise-page .wex-row.vm .wex-steps p { margin:4px 0; }
+ .mint-game .tp.sortset.matchset { display:block; }
+ .mint-game .tp.sortset.matchset .tp-bank { margin:0 0 8px; min-height:0; }
+ .mint-game .match-list { grid-template-columns:1fr 1fr; gap:8px 16px; }
+ .mint-game .match-row { grid-template-columns:168px minmax(0,1fr); gap:6px; }
+ .mint-game .match-row .calc { font-size:18px; }
+ .lad { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,8fr); gap:6px 24px; align-items:center; }
+ .mint-game .exercise-page .lad .lad-stop .arow:first-child { margin-top:0; }
+ .mint-game .exercise-page .dtest .hw-field { min-height:40px !important; padding-top:2px; padding-bottom:2px; }
+ .dr { margin-bottom:4px; }
+}
+.plan-rows.in .arow { margin-top:10px; }
+.dn { font-size:1.4em; font-weight:700; min-width:1.9em; font-variant-numeric:tabular-nums; }
+.lc { min-width:6.6em; }
+.nw { white-space:nowrap; }
+body select.fm { max-width:100%; }
+/* Venn with tap places */
+.venn { position:relative; display:grid; grid-template-columns:34.5% 31% 34.5%; min-height:250px; }
+.venn-art { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.venn-art ellipse { fill:#dcefe5; fill-opacity:.55; stroke:#286951; stroke-width:1.6; vector-effect:non-scaling-stroke; }
+body .venn .tp-zone.vz { position:relative; background:transparent !important; border:2px dashed transparent !important; border-radius:18px; min-height:0 !important; padding:40px 6px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+body .venn .tp-zone.vz.ready { border-color:#8db89f !important; }
+body .venn .tp-zone.vz.over { border-color:var(--green) !important; }
+.venn .tp-slot { flex-direction:column; align-items:center; justify-content:center; min-height:0; width:100%; gap:6px; }
+.venn .zone-head { margin-bottom:6px; }
+.venn .tp-tile { width:max-content; max-width:100%; text-align:center; }
+.mint-game .venn .tp-tile .hw-mark.hw-ok { display:inline; margin:0 0 0 4px; white-space:nowrap; width:auto; flex-basis:auto; }
+.mint-game .venn .tp-tile .hw-mark.hw-no { font-size:13px; line-height:1.15; margin:1px 0 0; }
+.mint-game .exercise-page .arow.tight { gap:4px; }
+.calc { white-space:nowrap; }
+/* Digit test table */
+.dtest { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 22px; margin-top:8px; }
+.dr { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.dr.dh { font-size:15px; color:var(--muted); font-weight:700; margin-bottom:4px; min-height:32px; }
+.mint-game .exercise-page .dr.dh .q-num { width:28px; height:28px; flex:none; font-size:14px; }
+.dr .dn { flex:0 0 2em; min-width:0; }
+.dcell { flex:0 0 5.2em; display:flex; flex-wrap:wrap; align-items:center; gap:2px 4px; }
+.dcell.ds { flex:1 1 auto; }
+/* Match a sum to a tool */
+.match-list { display:grid; gap:10px; }
+.match-row { display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:14px; align-items:center; }
+.calc { font-size:1.15em; font-weight:700; font-variant-numeric:tabular-nums; }
+body .tp-zone.one { min-height:64px !important; padding:6px 10px !important; }
+.match-row .tp-slot { min-height:44px; }
+@media screen and (max-width:700px) {
+ .skip,.fact-grid { margin-left:0; }
+ .skip { grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+ .fact-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+ .fact-grid.two { grid-template-columns:1fr; }
+ .dtest { grid-template-columns:1fr; }
+ .dcol + .dcol .dr.dh { display:none; }
+ .mint-game .exercise-page .sortset .tp-tile { font-size:18px; padding:4px 11px; min-height:40px; }
+ .mint-game .exercise-page .sortset .tp-zone:not(.vz):not(.one) { min-height:90px; padding:8px; }
+ .mint-game .exercise-page .venn .tp-zone.vz { padding:40px 4px !important; min-height:0 !important; }
+ .match-row { grid-template-columns:1fr; gap:4px; }
+ .mint-game .venn { min-height:250px; }
+ body .venn .tp-zone.vz { padding:40px 4px; }
+ .fmq .q-top { flex-wrap:wrap; }
+ .fmq .wsent { flex:1 1 100%; }
+ .mint-game .exercise-page select.fm { font-size:16px; padding:5px 2px; }
+ .dn { min-width:1.6em; }
+ .lc { min-width:0; width:100%; }
+}
+@media print {
+ .section + .section { margin-top:18px; }
+ .tp-bank { position:static; }
+ .fact-grid, .fact-grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .fact, .arow.plan, .arow.tight { flex-wrap:nowrap; }
+ .skip,.fact-grid { margin-left:38px; }
+ .venn { min-height:170px; }
+ body .tp-zone.one { min-height:44px !important; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style id="clara-block-style">.game-ui{display:none}
+body.mint-game{max-width:1150px;background:#edf9f2;background-image:radial-gradient(#b8ddca 1px,transparent 1px);background-size:22px 22px;font-family:'Trebuchet MS','Avenir Next',sans-serif;padding:24px 22px 60px}
+.mint-game #sheet{padding:0;background:transparent;box-shadow:none}
+.mint-game .sheet-head{position:relative;padding:28px 140px 28px 28px;background:#d8f3e5;border:2px solid #9ccdb4;border-bottom:6px solid #9ccdb4;border-radius:28px;margin-bottom:20px;min-height:140px}
+.garden-pal{position:absolute;width:110px;height:110px;right:20px;top:18px}.hero-copy{font-size:17px;margin-top:10px;color:#426b59}
+.mint-game .game-ui{display:block}.mint-game .block-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 20px}
+.mint-game .block-tab,.mint-game .garden-button{font-size:16px;font-weight:700;line-height:1.3;color:#245b45;background:white;border:2px solid #a4cdb7;border-bottom-width:5px;border-radius:18px;padding:12px;cursor:pointer;font-family:inherit}
+.mint-game .block-tab{font-size:15px;text-align:left;display:flex;gap:10px;align-items:center}
+.mint-game button:focus-visible,.mint-game [tabindex]:focus-visible{outline:3px solid #276b51;outline-offset:4px}
+.mint-game .block-tab[aria-current="step"]{background:#c5edda;border-color:#42896b}.mint-game .block-tab small{display:block;font-size:12px;font-weight:400;margin-top:3px}
+.step-badge{background:#e6f7ef;border-radius:50%;width:29px;height:29px;display:grid;place-items:center;flex-shrink:0}.block-tab.done .step-badge{background:#286951;color:white}
+.mint-game .progress-head{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#426b59;margin-bottom:8px}.mint-game progress{display:block;width:100%;height:12px;border:none;border-radius:10px;overflow:hidden;background:#d5e9df;accent-color:#42896b}.mint-game progress::-webkit-progress-bar{background:#d5e9df}.mint-game progress::-webkit-progress-value{background:#42896b;border-radius:10px}
+.mint-game #sheet>.section{display:none;background:#fff;border:2px solid #c0dfce;border-radius:26px;padding:28px;margin:0;box-shadow:0 6px 0 #d3eade}
+.mint-game #sheet>.section.active{display:block}.mint-game #sheet>.foot{display:none}.mint-game .sec-head{border-bottom:2px dashed #c8e2d4}
+.mint-game .section>.task:has(>.task-label){padding:18px;background:#e6f6ee;border-radius:18px;margin-bottom:20px}.mint-game .model,.mint-game .chain-ex{border-radius:14px;background:#f7fcf9;border:2px dashed #b1d6c1}
+.mint-game .q{border:1px solid #d5e7dc;border-radius:18px;padding:18px;margin:14px 0;background:#fff}.mint-game .q-num{background:#d2efdf;color:#245b45;font-weight:800}.mint-game .q.sortq{border:0;padding:0}
+.mint-game .pic-opt,.mint-game .txt-opt,.mint-game .tp-tile{border-radius:15px;border-bottom-width:4px}.mint-game .txt-opt.on,.mint-game .pic-opt.on{background:#ddf4e7}.mint-game .tp-zone{background:#f3fbf6;border-style:dashed}
+.mint-game .block-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}.mint-game .garden-button.primary{background:#286951;border-color:#1d4d3a;color:white}.mint-game .garden-button:disabled{opacity:.55;cursor:default}.mint-game .block-result{background:#e8f7ef;border:2px dashed #aacfb9;border-radius:18px;padding:18px;margin-top:18px;font-size:16px}.mint-game .block-result:empty{display:none}.mint-game .block-result strong{display:block;font-size:20px;margin-bottom:6px}.mint-game .block-result p{margin-top:5px}
+.mint-game .finish-panel{margin-top:20px;background:#fff;border:2px solid #a4cdb7;border-radius:24px;padding:24px}.mint-game .finish-panel h2{font-size:24px}.mint-game .finish-panel p{font-size:16px;margin:8px 0}.mint-game .finish-list{display:grid;gap:8px;margin:18px 0}.mint-game .finish-row{padding:12px;background:#edf8f2;border-radius:12px;font-size:15px}
+.mint-game .hw-bar{position:static;width:auto;max-width:none;display:none;margin:18px 0 0;padding:18px;border-radius:20px}.mint-game .hw-bar.available{display:block}.mint-game .hw-send{padding:14px 20px;border-bottom:5px solid #174a35;border-radius:16px;font-size:18px}.mint-game .hw-send:disabled{opacity:.65}.mint-game .hw-msg{margin:10px 0;line-height:1.5}.mint-game .hw-pdf{margin-top:8px}
+.mint-game .save-note{font-size:12px;color:#526e61;margin:10px 0 18px}.mint-game .hw-mark-list{font-size:14px}.mint-game .hw-mark{white-space:normal;overflow-wrap:anywhere}.mint-game .hw-mark-in{display:block}
+@media(max-width:700px){body.mint-game{padding:12px 10px 35px}.mint-game .sheet-head{padding:22px 100px 22px 18px;border-radius:22px}.mint-game h1{font-size:27px}.mint-game .garden-pal{width:80px;height:80px;right:10px;top:28px}.mint-game .hero-copy{font-size:15px}.mint-game .eyebrow{font-size:10px}.mint-game .block-nav{grid-template-columns:repeat(2,1fr);gap:8px}.mint-game .block-tab{padding:10px 8px;font-size:13px;border-radius:14px}.mint-game #sheet>.section{padding:18px 14px}.mint-game .q{padding:14px 10px}.mint-game .wex-fig{min-width:0}.mint-game .arow{gap:8px}.mint-game .lead{font-size:21px}.mint-game .garden-button{font-size:15px}.mint-game .r-grid{gap:8px}.mint-game .block-actions>button{flex:1}.mint-game .finish-panel{padding:20px 16px}}
+@media print{.game-ui,.garden-pal,.hero-copy{display:none!important}body.mint-game #sheet>.section{display:block!important;border:0;box-shadow:none;padding:0}.hw-bar{display:none!important}}
+/* Compact, complete attachment: every block renders, without the game controls. */
+body.hw-pdf-mode #sheet{font-size:14px!important;line-height:1.5!important}
+body.hw-pdf-mode .sheet-head{padding:14px 18px!important;margin-bottom:16px!important}
+body.hw-pdf-mode h1{font-size:27px!important}body.hw-pdf-mode .hero-copy{font-size:13px!important}
+body.hw-pdf-mode .garden-pal,body.hw-pdf-mode .foot{display:none!important}
+body.hw-pdf-mode .sec-head{margin:14px 0 10px!important;padding-bottom:8px!important}
+body.hw-pdf-mode .lead{font-size:17px!important;margin-bottom:6px!important}
+body.hw-pdf-mode .small,body.hw-pdf-mode .note{font-size:12px!important}
+body.hw-pdf-mode .prompt,body.hw-pdf-mode .prompt-q,body.hw-pdf-mode .wsent,body.hw-pdf-mode .model p{font-size:14px!important}
+body.hw-pdf-mode .model,body.hw-pdf-mode .chain-ex{padding:10px 12px!important;margin:8px 0 12px!important;font-size:13px!important}
+body.hw-pdf-mode .wex-row{gap:10px!important;flex-wrap:nowrap!important}body.hw-pdf-mode .wex-fig{flex:0 0 290px!important;min-width:0!important}
+body.hw-pdf-mode .q{padding:9px 0!important}body.hw-pdf-mode .task.gapt{margin-top:12px!important}
+body.hw-pdf-mode .role-label{margin:10px 0 5px!important}body.hw-pdf-mode .q-num{width:24px!important;height:24px!important;flex-basis:24px!important;font-size:12px!important}
+body.hw-pdf-mode .arow{margin-top:6px!important;gap:6px!important}body.hw-pdf-mode .cap2{font-size:13px!important}
+body.hw-pdf-mode .txt-opt{font-size:13px!important;padding:6px 10px!important}body.hw-pdf-mode .opt-pick{gap:5px!important}
+body.hw-pdf-mode .r-card{padding:8px!important}body.hw-pdf-mode .r-top{gap:5px!important;flex-wrap:wrap!important}body.hw-pdf-mode .chip10{font-size:10px!important;white-space:normal!important;padding:3px 5px!important}body.hw-pdf-mode .r-num{font-size:24px!important;margin:8px 0!important}
+body.hw-pdf-mode .tp-bank:empty{display:none!important}body.hw-pdf-mode .tp-zone{min-height:90px!important}body.hw-pdf-mode .tp-tile{font-size:15px!important}
+
+.mint-game .tp-bank:empty{display:none}
+/* Cream paper, peach details and a few mint accents; the earned leaves carry the green. */
+body.mint-game{background-color:#faf7f1;background-image:radial-gradient(#e8dfd3 1px,transparent 1px);color:#45433e}
+.mint-game .sheet-head{background:#f6ecdf;border-color:#dfcdb8;border-bottom-color:#dfcdb8}
+.mint-game .hero-copy,.mint-game .progress-head,.mint-game .save-note{color:#736b60}
+.mint-game .block-tab{border-color:#d9d4ca;color:#514e46;background:#fffefa}
+.mint-game .block-tab[aria-current="step"]{background:#e4f1e9;border-color:#9fbfac}
+.mint-game .step-badge{background:#f2ebe0}.mint-game .block-tab.done .step-badge{background:#6e9279}
+.mint-game #sheet>.section{border-color:#e5ddd1;box-shadow:0 6px 0 #ece5dc}
+.mint-game .section>.task:has(>.task-label){background:#f6f3ec}
+.mint-game .model,.mint-game .chain-ex{background:#fffefa;border-color:#d7cbb9}
+.mint-game .q{border-color:#e9e2d8}.mint-game .q-num{background:#f4e5ce;color:#775c38}
+.mint-game .txt-opt,.mint-game .pic-opt{border-color:#d8d9cf}.mint-game .txt-opt.on,.mint-game .pic-opt.on{background:#e7f2e9;border-color:#90b29b}
+.mint-game .tp-zone{background:#fcfaf5;border-color:#d7cbb9}
+.mint-game .block-result{background:#fcf4e6;border-color:#dfccab}
+.mint-game .finish-panel{background:#fffdfa;border-color:#dfd3c2}.mint-game .finish-row{background:#f5f1e9}
+.mint-game .hw-bar{background:#f6f3eb;border-color:#dfd3c2}.mint-game .garden-button{border-color:#c9cbbd}.mint-game .garden-button.primary{background:#557a62;border-color:#3c5a47}
+.mint-game .final-attempt-note{margin-top:24px;font-size:14px;color:#746857}.mint-game .block-actions{margin-top:12px}
+.mint-game .locked [disabled]{opacity:1;-webkit-text-fill-color:currentColor;cursor:default}.mint-game .locked .garden-button:disabled{opacity:.65}
+.mint-game .locked input,.mint-game .locked select{color:#203e35!important}
+.mint-game .tree-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(220px,1fr);align-items:center;gap:24px;margin:16px 0}
+.mint-game .tree-scene{border-radius:28px;background:#fbf7ef;overflow:hidden}.tree-scene svg{width:100%;display:block;max-height:370px}
+.mint-game .tree-count{font-size:21px;font-weight:700;color:#526b45;margin-bottom:18px}
+.mint-game .tree-stages{list-style:none;padding:0;display:grid;gap:10px;font-size:16px;color:#90877a}
+.mint-game .tree-stages li{display:flex;align-items:center;gap:10px}.tree-stages li span{display:grid;place-items:center;border:1px solid #dfd3c2;border-radius:50%;width:28px;height:28px;background:#fbf7ef}
+.mint-game .tree-stages .grown{color:#514e46}.mint-game .tree-stages .grown span{background:#e5f1e5;border-color:#a4b99b;color:#4f744e}
+.mint-game .leaf-note{font-size:13px!important;color:#786d5c;margin-top:18px!important;max-width:320px}
+@media(max-width:700px){.mint-game .tree-layout{grid-template-columns:1fr;gap:12px}.tree-scene svg{max-height:290px}.mint-game .tree-count{font-size:19px}.mint-game .tree-stages{grid-template-columns:1fr 1fr;font-size:13px;gap:12px}.mint-game .tree-stages li{gap:7px}.mint-game .tree-stages li span{flex-shrink:0}.mint-game .leaf-note{max-width:none}}
+/* One exercise screen at a time, with the tree always in view. */
+body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;display:grid;grid-template-columns:minmax(0,1fr) 255px;grid-template-rows:auto auto minmax(0,1fr);gap:10px 16px}
+.mint-game #sheet{display:contents}.mint-game .sheet-head{grid-column:1/-1;grid-row:1;min-height:0;padding:12px 80px 12px 20px;margin:0;border-radius:18px;border-bottom-width:3px;display:flex;align-items:center;gap:18px}
+.mint-game .sheet-head h1{font-size:25px;letter-spacing:-.4px}.mint-game .sheet-head .eyebrow{font-size:10px;margin:0}.mint-game .hero-copy{display:none}.mint-game .garden-pal{height:48px;width:48px;top:3px;right:14px}
+.mint-game #sheet>.game-ui{grid-column:1/-1;grid-row:2}.mint-game .progress-head{font-size:12px;margin:0 0 4px}.mint-game progress{height:6px}.mint-game .block-nav{margin:7px 0 0;gap:8px}.mint-game .block-tab{padding:7px 12px;font-size:14px;border-radius:12px;border-bottom-width:3px}.mint-game .block-tab small{display:none}.mint-game .step-badge{height:24px;width:24px}.mint-game .save-note{display:none}
+.mint-game #sheet>.section.active{display:flex;flex-direction:column;grid-column:1;grid-row:3;min-height:0;min-width:0;padding:14px 18px;overflow:hidden;border-radius:20px;box-shadow:none}
+.mint-game .sec-head{flex-shrink:0;gap:8px;padding-bottom:7px;margin-bottom:7px}.mint-game .sec-head .note{font-size:13px}.mint-game .subj{font-size:10px;padding:3px 8px}
+.mint-game .exercise-position{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-shrink:0;margin-bottom:8px;font-size:13px;color:#786d5c}.mint-game .reminder-button{background:#f5f0e7;border:1px solid #d9cdbb;padding:5px 12px;border-radius:12px;font:inherit;color:#66563d;cursor:pointer}
+.mint-game .exercise-viewport{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:2px 4px 8px;scrollbar-gutter:stable}.mint-game .exercise-page{display:none}.mint-game .exercise-page.current-page{display:block}.mint-game .exercise-page .task{margin:0 0 10px}.mint-game .exercise-page .task.gapt{margin-top:0}
+.mint-game .exercise-page .lead{font-size:20px;line-height:1.4}.mint-game .exercise-page .small{font-size:14px}.mint-game .exercise-page .q{margin:0;padding:14px;border-radius:16px}.mint-game .exercise-page .prompt,.mint-game .exercise-page .prompt-q,.mint-game .exercise-page .wsent{font-size:19px;line-height:1.55}
+.mint-game .exercise-page .model,.mint-game .exercise-page .chain-ex{padding:12px 14px;margin:10px 0}.mint-game .exercise-page .model p{font-size:17px}.mint-game .exercise-page .wex-row{gap:12px}.mint-game .exercise-page .wex-fig{flex:0 1 280px}.mint-game .exercise-page .pic-pick{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.mint-game .exercise-page .pic-opt{padding:8px}.mint-game .exercise-page .bar-svg{max-height:135px}
+.mint-game .exercise-page .arow{margin-left:0;margin-top:12px}.mint-game .exercise-page .txt-opt{font-size:18px;padding:10px 12px}.mint-game .exercise-page .sent{margin-left:0;min-height:110px!important}.mint-game .exercise-hint{font-size:16px;line-height:1.45;margin:0 0 12px;color:#6e6252}.mint-game .exercise-page .role-label{margin:0 0 5px}
+.mint-game .block-actions{flex-shrink:0;margin:10px 0 0;border-top:1px solid #eee5d9;padding-top:10px;justify-content:space-between;gap:8px}.mint-game .garden-button{padding:9px 16px;font-size:15px;border-radius:13px}.mint-game .garden-button[hidden]{display:none!important}
+.mint-game .exercise-notice{font-size:13px;color:#8b532e;margin:0 0 8px}.mint-game .exercise-notice:empty{display:none}.mint-game .review-page h3{font-size:24px;margin:8px 0 12px}.mint-game .review-page>p{font-size:17px;line-height:1.6}.mint-game .final-attempt-note{font-size:14px;margin-top:18px}.mint-game .block-result{padding:14px;margin-top:16px}
+.mint-game .finish-panel{grid-column:2;grid-row:3;min-height:0;overflow:auto;margin:0;padding:14px;border-radius:20px;display:flex;flex-direction:column;align-self:stretch;overscroll-behavior:contain;gap:8px}.mint-game .finish-panel>h2{font-size:17px;margin:0;flex-shrink:0}.mint-game .finish-panel>p{display:none}.mint-game .tree-layout{display:block;margin:0;flex-shrink:0}.mint-game .tree-scene{border-radius:18px}.mint-game .tree-scene svg{max-height:clamp(120px,27vh,220px);width:100%}.mint-game .tree-count{font-size:14px;line-height:1.4;margin:8px 0}.mint-game .tree-stages{display:none}.mint-game .leaf-note{font-size:11px!important;margin:0!important;line-height:1.5}
+.mint-game .results-details{font-size:13px;min-height:0;overflow:auto}.mint-game .results-details summary{cursor:pointer;padding:7px 0;color:#70624e}.mint-game .finish-list{gap:5px;margin:4px 0}.mint-game .finish-row{font-size:11px;line-height:1.4;padding:7px}.mint-game .hw-bar{margin:auto 0 0;padding:10px;border-radius:14px;flex-shrink:0}.mint-game .hw-send{font-size:14px;padding:10px 9px;border-radius:12px;width:100%}.mint-game .hw-msg{font-size:11px;margin:6px 0}.mint-game .hw-pdf{font-size:11px;margin:0}
+@media(max-width:800px){body.mint-game{grid-template-columns:minmax(0,1fr) 190px;padding:8px;gap:8px}.mint-game .sheet-head{padding:9px 60px 9px 12px}.mint-game .sheet-head .eyebrow{display:none}.mint-game .sheet-head h1{font-size:22px}.mint-game #sheet>.section.active{padding:10px}.mint-game .finish-panel{padding:10px}.mint-game .block-tab{padding:6px;font-size:12px;gap:6px}.mint-game .block-nav{grid-template-columns:repeat(3,1fr)}.mint-game .step-badge{display:none}.mint-game .exercise-page .pic-pick{grid-template-columns:1fr}.mint-game .exercise-page .wex-fig{min-width:0}}
+@media(max-width:600px){body.mint-game{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr);gap:7px;padding:7px}.mint-game .sheet-head{grid-row:1;min-height:42px;padding:7px 55px 7px 12px}.mint-game .garden-pal{height:37px;width:37px}.mint-game .sheet-head h1{font-size:21px}.mint-game #sheet>.game-ui{grid-row:2}.mint-game .progress-head{font-size:11px}.mint-game .block-nav{gap:5px;margin-top:5px}.mint-game .block-tab{font-size:11px;padding:7px 5px;justify-content:center;text-align:center}.mint-game .finish-panel{grid-column:1;grid-row:3;max-height:160px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;padding:5px 10px;gap:6px;border-radius:15px}.mint-game .finish-panel>h2,.mint-game .results-details{display:none}.mint-game .tree-layout{display:grid;grid-template-columns:95px minmax(0,1fr);align-items:center;gap:10px}.mint-game .tree-scene svg{height:83px;max-height:83px}.mint-game .tree-count{font-size:13px;margin:0;max-width:180px}.mint-game .leaf-note{display:none}.mint-game .hw-bar{max-width:142px;padding:6px;margin:0;border:0;background:none}.mint-game .hw-msg{font-size:10px;max-height:34px;overflow:auto}.mint-game .hw-send{font-size:12px;padding:7px}.mint-game .hw-pdf{display:none}.mint-game #sheet>.section.active{grid-column:1;grid-row:4;padding:10px;min-height:0}.mint-game .sec-head .note{font-size:11px}.mint-game .subj{display:none}.mint-game .sec-head{margin-bottom:5px;padding-bottom:5px}.mint-game .exercise-position{font-size:12px;margin-bottom:5px}.mint-game .exercise-page .prompt,.mint-game .exercise-page .prompt-q,.mint-game .exercise-page .wsent{font-size:17px}.mint-game .exercise-page .q{padding:10px}.mint-game .exercise-page .lead{font-size:18px}.mint-game .exercise-page .txt-opt{font-size:16px}.mint-game .exercise-page .model p{font-size:15px}.mint-game .garden-button{padding:8px 10px;font-size:13px}.mint-game .block-actions{flex-wrap:nowrap}.mint-game .exercise-page .pic-pick{grid-template-columns:repeat(2,minmax(0,1fr))}.mint-game .exercise-page .pic-cap{font-size:10px}.mint-game .exercise-page .pic-opt{padding:3px}.mint-game .exercise-page .arow{gap:5px}.mint-game .exercise-page .bar-svg{max-height:100px}}
+@media print{body.mint-game{display:block;height:auto;overflow:visible}.mint-game #sheet{display:block}.mint-game .exercise-page,.mint-game .exercise-viewport{display:block!important;overflow:visible!important;height:auto!important}.game-ui{display:none!important}}
+.mint-game .finish-panel{overflow:hidden}.mint-game .results-details{flex:1;min-height:28px}
+.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .lead{font-size:16px;margin-bottom:4px}.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .small{font-size:12px;margin-bottom:4px}.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .role-label{font-size:10px}
+.mint-game .exercise-page .pic-opt .bar-svg{max-height:105px}.mint-game .exercise-page .pic-pick{margin:8px 0}.mint-game .exercise-page .pic-cap{font-size:11px}
+.mint-game .exercise-page .arow .cap2{font-size:16px}.mint-game .exercise-page .arow .hw-field.nb{height:38px;min-height:38px!important;font-size:18px}
+.mint-game .all-block-results{display:none}.mint-game .overview-mode>:not(.all-block-results){display:none!important}.mint-game .overview-mode>.all-block-results{display:block}.mint-game .all-block-results .finish-list{margin:16px 0}.mint-game .all-block-results .finish-row{font-size:15px;padding:10px}.mint-game .all-block-results>p{font-size:16px}
+/* Use the available exercise area for reading, not just for an empty card. */
+@media screen and (min-width:801px){
+ body.mint-game{max-width:1800px;grid-template-columns:minmax(0,1fr) clamp(255px,20vw,330px)}
+ .mint-game .exercise-viewport{container-type:size}
+ .mint-game .exercise-page.current-page{padding:clamp(6px,2cqh,24px) clamp(3px,1.2cqw,18px);max-width:1180px;margin-inline:auto}
+ .mint-game .exercise-page .lead{font-size:clamp(24px,min(3.1cqw,5cqh),36px);line-height:1.4;margin-bottom:16px}
+ .mint-game .exercise-page .prompt,.mint-game .exercise-page .prompt-q,.mint-game .exercise-page .wsent{font-size:clamp(23px,min(2.9cqw,4.8cqh),32px);line-height:1.55}
+ .mint-game .exercise-page .small,.mint-game .exercise-hint{font-size:clamp(17px,min(2.1cqw,3.4cqh),22px);line-height:1.5;margin-bottom:14px}
+ .mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .lead{font-size:clamp(20px,min(2.5cqw,4.2cqh),28px);margin-bottom:8px}
+ .mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .small{font-size:clamp(16px,min(2cqw,3cqh),20px);margin-bottom:10px}
+ .mint-game .exercise-page .role-label,.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .role-label,.mint-game .exercise-page .task-label{font-size:clamp(13px,1.5cqw,17px);margin-bottom:12px}
+ .mint-game .exercise-page .model,.mint-game .exercise-page .chain-ex{padding:clamp(18px,3cqh,32px);margin:clamp(16px,3cqh,30px) 0;border-radius:20px}
+ .mint-game .exercise-page .model p,.mint-game .exercise-page .chain-ex{font-size:clamp(21px,min(2.6cqw,4.5cqh),30px);line-height:1.55}
+ .mint-game .exercise-page .ex-title{font-size:clamp(15px,1.8cqw,20px)!important;margin-bottom:12px}
+ .mint-game .exercise-page .ex-prob{margin-bottom:clamp(16px,3cqh,30px)}
+ .mint-game .exercise-page .wex-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:clamp(20px,3cqw,40px)}
+ .mint-game .exercise-page .wex-fig{min-width:0;width:100%;max-width:none}.mint-game .exercise-page .wex-fig .bar-svg{max-height:none;width:100%}
+ .mint-game .exercise-page .wex-steps p{margin:16px 0}.mint-game .exercise-page .st{font-size:clamp(14px,1.7cqw,19px);min-width:80px}
+ .mint-game .exercise-page .q{padding:clamp(18px,3cqh,32px);border-radius:22px}.mint-game .exercise-page .q-top{gap:16px}
+ .mint-game .exercise-page .q-num{width:38px;height:38px;flex-basis:38px;font-size:18px}
+ .mint-game .exercise-page .pic-pick{gap:18px;margin:20px 0}.mint-game .exercise-page .pic-opt{padding:14px}.mint-game .exercise-page .pic-opt .bar-svg{max-height:clamp(120px,25cqh,210px)}.mint-game .exercise-page .pic-cap{font-size:15px}
+ .mint-game .exercise-page .arow{gap:12px;margin-top:20px}.mint-game .exercise-page .arow .cap2{font-size:clamp(19px,2.3cqw,26px)}
+ .mint-game .exercise-page .hw-field,.mint-game .exercise-page .arow .hw-field.nb{font-size:clamp(22px,2.6cqw,30px);min-height:1.9em!important;height:auto;padding:7px 10px}
+ .mint-game .exercise-page .nb{width:7.5em;max-width:100%}.mint-game .exercise-page .np{width:min(20em,100%)}.mint-game .exercise-page .sent{min-height:150px!important}
+ .mint-game .exercise-page .txt-opt{font-size:clamp(21px,min(2.5cqw,4.4cqh),29px);padding:18px 20px;line-height:1.5}.mint-game .exercise-page .opt-pick{gap:14px}
+ .mint-game .exercise-page .tp-tile{font-size:clamp(21px,2.6cqw,29px);padding:12px 18px}.mint-game .exercise-page .tp-zone{padding:18px;min-height:150px}
+ .mint-game .exercise-page .r-num{font-size:clamp(32px,5cqw,54px);margin:24px 0}.mint-game .exercise-page .dg,.mint-game .exercise-page .dc{font-size:clamp(26px,3.5cqw,40px)}
+ .mint-game .review-page h3,.mint-game .all-block-results h3{font-size:clamp(28px,3.4cqw,38px)}.mint-game .review-page>p,.mint-game .all-block-results>p{font-size:clamp(20px,2.4cqw,27px)}
+ .mint-game .block-result{font-size:clamp(19px,2.3cqw,25px);padding:22px}.mint-game .block-result strong{font-size:clamp(22px,2.6cqw,30px)}
+ .mint-game .block-tab{font-size:17px;padding:10px 14px}.mint-game .garden-button{font-size:18px;padding:12px 22px}
+ .mint-game .exercise-position{font-size:16px;margin-bottom:10px}.mint-game .sec-head .note{font-size:16px}
+ .mint-game .finish-panel>h2{font-size:21px}.mint-game .tree-scene svg{max-height:clamp(180px,32vh,350px)}.mint-game .tree-count{font-size:18px}.mint-game .leaf-note{font-size:13px!important}.mint-game .results-details{font-size:15px}
+}
+@media screen and (min-width:801px) and (max-height:800px){
+ .mint-game .exercise-page.current-page{padding:3px 8px}
+ .mint-game .exercise-page .lead{line-height:1.3;margin-bottom:10px}
+ .mint-game .exercise-page .small{margin-bottom:8px}
+ .mint-game .exercise-page .role-label{margin-bottom:6px}
+ .mint-game .exercise-page .model,.mint-game .exercise-page .chain-ex{padding:12px 16px;margin:10px 0}
+ .mint-game .exercise-page .model p{line-height:1.4}
+ .mint-game .exercise-page .ex-title{margin-bottom:6px}
+ .mint-game .exercise-page .ex-prob{margin-bottom:8px}
+ .mint-game .exercise-page .wex-row{gap:16px;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr)}
+ .mint-game .exercise-page .wex-steps p{margin:8px 0}
+ .mint-game .exercise-page .q{padding:14px}
+ .mint-game .exercise-page .pic-pick{margin:10px 0;gap:10px}
+ .mint-game .exercise-page .pic-opt{padding:8px}
+ .mint-game .exercise-page .arow{margin-top:10px;gap:8px}
+ .mint-game .exercise-page .arow .hw-field.nb{font-size:22px;padding:5px 8px}
+ .mint-game .exercise-page .nb{width:6.5em}
+ .mint-game .garden-button{padding:9px 18px}
+ .mint-game .finish-panel>h2{font-size:18px}
+ .mint-game .tree-scene svg{max-height:190px}
+}
+
+/* The forward action should be immediately obvious. */
+.mint-game .block-actions .next-button{background:#256b57;color:#fff;border:2px solid #174b3d;border-bottom-width:4px;box-shadow:0 4px 0 #c8ddd2;font-size:22px;font-weight:800;min-width:176px;min-height:56px;padding:12px 28px;border-radius:16px;cursor:pointer;transition:background .15s,transform .15s}
+.mint-game .block-actions .next-button:hover{background:#195540;transform:translateY(-1px)}
+.mint-game .block-actions .next-button:focus-visible{outline:4px solid #e6ab48;outline-offset:4px}
+.mint-game .block-actions .next-button:active{transform:translateY(2px);box-shadow:0 1px 0 #c8ddd2}
+@media(max-width:600px){.mint-game .block-actions .next-button{min-width:128px;min-height:48px;font-size:18px;padding:9px 15px;border-radius:13px}}
+
+/* Small illustrated companions, kept outside the exercises. */
+.mint-game .garden-pal{display:none}
+.mint-game .sheet-head{padding-right:170px}
+.mint-game .friend-parade{position:absolute;right:15px;top:0;width:145px;height:60px;pointer-events:none}
+.mint-game .tree-scene{background:#fbf5ec;border:1px solid #eee1cf}
+.mint-game .tree-scene svg{max-height:clamp(210px,34vh,360px)}
+@media(min-width:801px) and (max-height:800px){.mint-game .tree-scene svg{max-height:225px}}
+@media(max-width:600px){.mint-game .sheet-head{padding-right:90px}.mint-game .friend-parade{width:85px;height:43px;right:4px;top:0}.mint-game .tree-scene svg{height:83px;max-height:83px}.mint-game .sheet-head h1{font-size:20px}}
+
+/* One final checking and delivery action, inside the last exercise page. */
+.mint-game .review-page .hw-bar{display:block;max-width:none;width:100%;padding:16px;margin:16px 0;background:#edf7f1;border:1px solid #b4d5c2;box-sizing:border-box}
+.mint-game .review-page .hw-send{width:100%;min-height:48px;font-size:18px;padding:12px}
+.mint-game .review-page .hw-msg{font-size:15px;line-height:1.5;max-height:none;overflow:visible;margin:10px 0}
+.mint-game:not(.final-checked) .hw-pdf{display:none}
+.mint-game .review-page .hw-pdf{font-size:14px}
+.mint-game .final-answer-list{margin-top:24px;font-size:16px;line-height:1.5}
+.mint-game .final-answer-row{padding:12px 0;border-bottom:1px solid #d5e7dc;overflow-wrap:anywhere}
+.mint-game .final-answer-row p{margin:5px 0;font-size:16px}
+.mint-game .final-correct{color:#286951}.mint-game .final-correction{color:#9b461d}
+</style>
+</head>
+<body data-student="Clara" data-sheet="Maths 2026-10-31" data-sheet-id="clara-2026-10-31-maths">
+<div id="sheet">
+
+
+<div class="sheet-head">
+  <div class="eyebrow">Maths</div><h1>Clara’s homework</h1><p class="hero-copy">One block at a time.</p><svg class="garden-pal" viewBox="0 0 120 110" aria-hidden="true"><path d="M58 28Q31 25 31 8Q56 5 62 26Q69 4 94 8Q90 29 65 29" fill="#42896b"/><path d="M23 59Q22 29 61 30Q98 29 99 62L103 83Q99 100 83 94Q60 108 38 95Q16 99 19 81Z" fill="#99d9bb" stroke="#286951" stroke-width="3"/><circle cx="44" cy="61" r="4" fill="#203e35"/><circle cx="78" cy="61" r="4" fill="#203e35"/><path d="M54 72q7 8 14 0" fill="none" stroke="#203e35" stroke-width="3" stroke-linecap="round"/><ellipse cx="33" cy="72" rx="7" ry="4" fill="#efc2bb"/><ellipse cx="88" cy="72" rx="7" ry="4" fill="#efc2bb"/></svg>
+</div>
+
+<div class="section maths">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">8s and 12s</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<p class="lead">A multiple is the answer when you&nbsp;multiply.</p>
+<div class="model"><p class="ex-title">Like this</p><p>Multiples of 9: <b>9, 18, 27, 36, 45</b> and they keep&nbsp;going.</p><p>Each one is 9&nbsp;×&nbsp;something.</p></div>
+<div class="role-label">Your turn</div>
+<p class="lead">Type the missing&nbsp;numbers.</p>
+</div>
+<div class="q"><div class="q-top"><div class="q-num">1</div><p class="prompt">Count in <b>8s</b> up to 96.</p></div><div class="skip"><span class="cell"><span class="sn">8</span></span><span class="cell"><span class="sn">16</span></span><span class="cell"><span class="sn">24</span></span><span class="cell"><input class="hw-field nb num gapn" data-k="a81" data-label="A1. Count in 8s: 24 then" aria-label="A1. Count in 8s: 24 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><span class="sn">40</span></span><span class="cell"><span class="sn">48</span></span><span class="cell"><input class="hw-field nb num gapn" data-k="a82" data-label="A1. Count in 8s: 48 then" aria-label="A1. Count in 8s: 48 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><input class="hw-field nb num gapn" data-k="a83" data-label="A1. Count in 8s: 56 then" aria-label="A1. Count in 8s: 56 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><span class="sn">72</span></span><span class="cell"><input class="hw-field nb num gapn" data-k="a84" data-label="A1. Count in 8s: 72 then" aria-label="A1. Count in 8s: 72 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><input class="hw-field nb num gapn" data-k="a85" data-label="A1. Count in 8s: 80 then" aria-label="A1. Count in 8s: 80 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><span class="sn">96</span></span></div></div>
+<div class="q"><div class="q-top"><div class="q-num">2</div><p class="prompt">Count in <b>12s</b> up to 144.</p></div><div class="skip"><span class="cell"><span class="sn">12</span></span><span class="cell"><span class="sn">24</span></span><span class="cell"><input class="hw-field nb num gapn" data-k="a121" data-label="A2. Count in 12s: 24 then" aria-label="A2. Count in 12s: 24 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><span class="sn">48</span></span><span class="cell"><input class="hw-field nb num gapn" data-k="a122" data-label="A2. Count in 12s: 48 then" aria-label="A2. Count in 12s: 48 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><input class="hw-field nb num gapn" data-k="a123" data-label="A2. Count in 12s: 60 then" aria-label="A2. Count in 12s: 60 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><span class="sn">84</span></span><span class="cell"><input class="hw-field nb num gapn" data-k="a124" data-label="A2. Count in 12s: 84 then" aria-label="A2. Count in 12s: 84 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><span class="sn">108</span></span><span class="cell"><input class="hw-field nb num gapn" data-k="a125" data-label="A2. Count in 12s: 108 then" aria-label="A2. Count in 12s: 108 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="cell"><span class="sn">132</span></span><span class="cell"><input class="hw-field nb num gapn" data-k="a126" data-label="A2. Count in 12s: 132 then" aria-label="A2. Count in 12s: 132 then" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div>
+<div class="task"><p class="lead"><span class="screen-only">Tap a number, then tap its&nbsp;box.</span><span class="print-only">Write each number in its&nbsp;box.</span></p></div>
+<div class="q sortq"><div class="q-top"><div class="q-num">3</div><p class="prompt">Is it a multiple of&nbsp;8?</p></div><div class="tp sortset"><div class="tp-bank" aria-label="Numbers to sort"><button type="button" class="tp-tile" data-value="56" data-store="as1" data-field="as1">56</button><button type="button" class="tp-tile" data-value="36" data-store="as2" data-field="as2">36</button><button type="button" class="tp-tile" data-value="72" data-store="as3" data-field="as3">72</button><button type="button" class="tp-tile" data-value="32" data-store="as4" data-field="as4">32</button><button type="button" class="tp-tile" data-value="34" data-store="as5" data-field="as5">34</button><button type="button" class="tp-tile" data-value="58" data-store="as6" data-field="as6">58</button><button type="button" class="tp-tile" data-value="88" data-store="as7" data-field="as7">88</button><button type="button" class="tp-tile" data-value="84" data-store="as8" data-field="as8">84</button></div><div class="sort-grid"><div class="tp-zone tp-multi" data-value="multiple of 8"><div class="zone-head"><b class="zt">Multiple of 8</b></div><div class="tp-slot"></div></div>
+<div class="tp-zone tp-multi" data-value="not a multiple of 8"><div class="zone-head"><b class="zt">Not a multiple of 8</b></div><div class="tp-slot"></div></div>
+</div><div class="tp-stores" hidden><select data-k="as1" data-label="A3. Is 56 a multiple of 8?" tabindex="-1" class="hw-field"><option value=""></option><option value="multiple of 8">multiple of 8</option><option value="not a multiple of 8">not a multiple of 8</option></select>
+<select data-k="as2" data-label="A3. Is 36 a multiple of 8?" tabindex="-1" class="hw-field"><option value=""></option><option value="multiple of 8">multiple of 8</option><option value="not a multiple of 8">not a multiple of 8</option></select>
+<select data-k="as3" data-label="A3. Is 72 a multiple of 8?" tabindex="-1" class="hw-field"><option value=""></option><option value="multiple of 8">multiple of 8</option><option value="not a multiple of 8">not a multiple of 8</option></select>
+<select data-k="as4" data-label="A3. Is 32 a multiple of 8?" tabindex="-1" class="hw-field"><option value=""></option><option value="multiple of 8">multiple of 8</option><option value="not a multiple of 8">not a multiple of 8</option></select>
+<select data-k="as5" data-label="A3. Is 34 a multiple of 8?" tabindex="-1" class="hw-field"><option value=""></option><option value="multiple of 8">multiple of 8</option><option value="not a multiple of 8">not a multiple of 8</option></select>
+<select data-k="as6" data-label="A3. Is 58 a multiple of 8?" tabindex="-1" class="hw-field"><option value=""></option><option value="multiple of 8">multiple of 8</option><option value="not a multiple of 8">not a multiple of 8</option></select>
+<select data-k="as7" data-label="A3. Is 88 a multiple of 8?" tabindex="-1" class="hw-field"><option value=""></option><option value="multiple of 8">multiple of 8</option><option value="not a multiple of 8">not a multiple of 8</option></select>
+<select data-k="as8" data-label="A3. Is 84 a multiple of 8?" tabindex="-1" class="hw-field"><option value=""></option><option value="multiple of 8">multiple of 8</option><option value="not a multiple of 8">not a multiple of 8</option></select>
+</div></div></div>
+<div class="task"><p class="lead">Type each&nbsp;answer.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">4</div><p class="prompt">Mixed 8s and&nbsp;12s.</p></div><div class="fact-grid"><label class="fact"><span>7&nbsp;×&nbsp;8&nbsp;=</span><input class="hw-field nb num gapn" data-k="af1" data-label="A4. 7 × 8" aria-label="A4. 7 × 8" autocomplete="off" inputmode="decimal" spellcheck="false"></label><label class="fact"><span>12&nbsp;×&nbsp;3&nbsp;=</span><input class="hw-field nb num gapn" data-k="af2" data-label="A4. 12 × 3" aria-label="A4. 12 × 3" autocomplete="off" inputmode="decimal" spellcheck="false"></label><label class="fact"><span>9&nbsp;×&nbsp;8&nbsp;=</span><input class="hw-field nb num gapn" data-k="af3" data-label="A4. 9 × 8" aria-label="A4. 9 × 8" autocomplete="off" inputmode="decimal" spellcheck="false"></label><label class="fact"><span>6&nbsp;×&nbsp;12&nbsp;=</span><input class="hw-field nb num gapn" data-k="af4" data-label="A4. 6 × 12" aria-label="A4. 6 × 12" autocomplete="off" inputmode="decimal" spellcheck="false"></label><label class="fact"><span>8&nbsp;×&nbsp;8&nbsp;=</span><input class="hw-field nb num gapn" data-k="af5" data-label="A4. 8 × 8" aria-label="A4. 8 × 8" autocomplete="off" inputmode="decimal" spellcheck="false"></label><label class="fact"><span>12&nbsp;×&nbsp;7&nbsp;=</span><input class="hw-field nb num gapn" data-k="af6" data-label="A4. 12 × 7" aria-label="A4. 12 × 7" autocomplete="off" inputmode="decimal" spellcheck="false"></label><label class="fact"><span>6&nbsp;×&nbsp;8&nbsp;=</span><input class="hw-field nb num gapn" data-k="af7" data-label="A4. 6 × 8" aria-label="A4. 6 × 8" autocomplete="off" inputmode="decimal" spellcheck="false"></label><label class="fact"><span>8&nbsp;×&nbsp;12&nbsp;=</span><input class="hw-field nb num gapn" data-k="af8" data-label="A4. 8 × 12" aria-label="A4. 8 × 12" autocomplete="off" inputmode="decimal" spellcheck="false"></label></div></div>
+<div class="task"><p class="lead">Type the missing&nbsp;partner.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">5</div><p class="prompt">Which number makes it&nbsp;true?</p></div><div class="fact-grid two"><label class="fact"><span>8&nbsp;×</span><input class="hw-field nb num gapn" data-k="ap1" data-label="A5. 8 × ___ = 32" aria-label="A5. 8 × ___ = 32" autocomplete="off" inputmode="decimal" spellcheck="false"><span>=&nbsp;32</span></label><label class="fact"><span>12&nbsp;×</span><input class="hw-field nb num gapn" data-k="ap2" data-label="A5. 12 × ___ = 60" aria-label="A5. 12 × ___ = 60" autocomplete="off" inputmode="decimal" spellcheck="false"><span>=&nbsp;60</span></label><label class="fact"><span>8&nbsp;×</span><input class="hw-field nb num gapn" data-k="ap3" data-label="A5. 8 × ___ = 88" aria-label="A5. 8 × ___ = 88" autocomplete="off" inputmode="decimal" spellcheck="false"><span>=&nbsp;88</span></label><label class="fact"><span>12&nbsp;×</span><input class="hw-field nb num gapn" data-k="ap4" data-label="A5. 12 × ___ = 108" aria-label="A5. 12 × ___ = 108" autocomplete="off" inputmode="decimal" spellcheck="false"><span>=&nbsp;108</span></label></div></div>
+</div>
+<div class="section maths">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Factor or multiple?</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<p class="lead">A factor goes in with nothing left over. A multiple is the&nbsp;answer.</p>
+<div class="model"><p class="ex-title">Like this</p><p>2 × 11 = 22</p><p>Factors: <b>2</b> and <b>11</b>. &nbsp;Multiple: <b>22</b>.</p></div>
+<div class="role-label">Your turn</div>
+<p class="lead">Choose the words that make the sentence&nbsp;true.</p>
+</div>
+<div class="q fmq"><div class="q-top"><div class="q-num">1</div><p class="wsent eqline">54 is <span class="choice-wrap is-empty"><select class="hw-field ww fm" data-k="bs1" data-label="B1. 54 is ___ 6" aria-label="B1. 54 is ___ 6"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="not a factor or multiple of">not a factor or multiple of</option></select><span class="circle-opt">a factor of / a multiple of / not a factor or multiple of</span></span><span class="nw">&nbsp;6.</span></p></div></div>
+<div class="q fmq"><div class="q-top"><div class="q-num">2</div><p class="wsent eqline">7 is <span class="choice-wrap is-empty"><select class="hw-field ww fm" data-k="bs2" data-label="B2. 7 is ___ 56" aria-label="B2. 7 is ___ 56"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="not a factor or multiple of">not a factor or multiple of</option></select><span class="circle-opt">a factor of / a multiple of / not a factor or multiple of</span></span><span class="nw">&nbsp;56.</span></p></div></div>
+<div class="q fmq"><div class="q-top"><div class="q-num">3</div><p class="wsent eqline">1 is <span class="choice-wrap is-empty"><select class="hw-field ww fm" data-k="bs3" data-label="B3. 1 is ___ 9" aria-label="B3. 1 is ___ 9"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="not a factor or multiple of">not a factor or multiple of</option></select><span class="circle-opt">a factor of / a multiple of / not a factor or multiple of</span></span><span class="nw">&nbsp;9.</span></p></div></div>
+<div class="q fmq"><div class="q-top"><div class="q-num">4</div><p class="wsent eqline">6 is <span class="choice-wrap is-empty"><select class="hw-field ww fm" data-k="bs4" data-label="B4. 6 is ___ 38" aria-label="B4. 6 is ___ 38"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="not a factor or multiple of">not a factor or multiple of</option></select><span class="circle-opt">a factor of / a multiple of / not a factor or multiple of</span></span><span class="nw">&nbsp;38.</span></p></div></div>
+<div class="q fmq"><div class="q-top"><div class="q-num">5</div><p class="wsent eqline">72 is <span class="choice-wrap is-empty"><select class="hw-field ww fm" data-k="bs5" data-label="B5. 72 is ___ 8" aria-label="B5. 72 is ___ 8"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="not a factor or multiple of">not a factor or multiple of</option></select><span class="circle-opt">a factor of / a multiple of / not a factor or multiple of</span></span><span class="nw">&nbsp;8.</span></p></div></div>
+<div class="q fmq"><div class="q-top"><div class="q-num">6</div><p class="wsent eqline">26 is <span class="choice-wrap is-empty"><select class="hw-field ww fm" data-k="bs6" data-label="B6. 26 is ___ 4" aria-label="B6. 26 is ___ 4"><option value="">Choose</option><option value="a factor of">a factor of</option><option value="a multiple of">a multiple of</option><option value="not a factor or multiple of">not a factor or multiple of</option></select><span class="circle-opt">a factor of / a multiple of / not a factor or multiple of</span></span><span class="nw">&nbsp;4.</span></p></div></div>
+<div class="task"><p class="lead">Now you choose the&nbsp;numbers.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">7</div><p class="prompt">Write two multiples of&nbsp;7.</p></div><div class="arow"><input class="hw-field np" data-k="bp1" data-label="B7. Two multiples of 7" aria-label="B7. Two multiples of 7" autocomplete="off" spellcheck="false"></div></div>
+<div class="q"><div class="q-top"><div class="q-num">8</div><p class="prompt">Write two factors of&nbsp;20.</p></div><div class="arow"><input class="hw-field np" data-k="bp2" data-label="B8. Two factors of 20" aria-label="B8. Two factors of 20" autocomplete="off" spellcheck="false"></div></div>
+<div class="task"><p class="lead">Ada swapped the words. Type the true&nbsp;sentence.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">9</div><p class="prompt">Ada says: “5 is a multiple of&nbsp;65.”</p></div><div class="hw-field sent" contenteditable="true" data-k="bada" data-label="B9. The true sentence about 5 and 65" aria-label="B9. The true sentence"></div></div>
+</div>
+<div class="section maths">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Ladders</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<p class="lead">Try 1, 2, 3 and so on. Stop when the next try is already somebody’s&nbsp;partner.</p>
+<div class="model"><p class="ex-title">The ladder for 15</p><div class="plan-rows"><p><span class="st">Try 1</span> 1 × 15</p><p><span class="st">Try 2</span> does not work</p><p><span class="st">Try 3</span> 1 + 5 = 6, so 3 goes in: 3 × 5</p><p><span class="st">Try 4</span> does not work</p><p><span class="st">Try 5</span> already 3’s partner: <b>stop at 5</b></p></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead">Add the digits. If the total divides by 3, so does the&nbsp;number.</p>
+<p class="small">The total only checks. It is not the&nbsp;partner.</p>
+</div>
+<div class="q"><div class="dtest"><div class="dcol"><div class="dr dh"><span class="dn"><div class="q-num">1</div></span><span class="dcell">Total</span><span class="dcell ds">Does 3 go&nbsp;in?</span></div><div class="dr"><span class="dn">64</span><span class="dcell"><input class="hw-field nb num gapn" data-k="cd1t" data-label="C1. 64: digit total" aria-label="C1. 64: digit total" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="dcell ds"><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cd1y" data-label="C1. 64: does 3 go in?" aria-label="C1. 64: does 3 go in?"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="circle-opt">yes / no</span></span></span></div><div class="dr"><span class="dn">39</span><span class="dcell"><input class="hw-field nb num gapn" data-k="cd2t" data-label="C1. 39: digit total" aria-label="C1. 39: digit total" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="dcell ds"><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cd2y" data-label="C1. 39: does 3 go in?" aria-label="C1. 39: does 3 go in?"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="circle-opt">yes / no</span></span></span></div><div class="dr"><span class="dn">54</span><span class="dcell"><input class="hw-field nb num gapn" data-k="cd3t" data-label="C1. 54: digit total" aria-label="C1. 54: digit total" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="dcell ds"><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cd3y" data-label="C1. 54: does 3 go in?" aria-label="C1. 54: does 3 go in?"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="circle-opt">yes / no</span></span></span></div></div><div class="dcol"><div class="dr dh"><span class="dn"></span><span class="dcell">Total</span><span class="dcell ds">Does 3 go&nbsp;in?</span></div><div class="dr"><span class="dn">52</span><span class="dcell"><input class="hw-field nb num gapn" data-k="cd4t" data-label="C1. 52: digit total" aria-label="C1. 52: digit total" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="dcell ds"><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cd4y" data-label="C1. 52: does 3 go in?" aria-label="C1. 52: does 3 go in?"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="circle-opt">yes / no</span></span></span></div><div class="dr"><span class="dn">46</span><span class="dcell"><input class="hw-field nb num gapn" data-k="cd5t" data-label="C1. 46: digit total" aria-label="C1. 46: digit total" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="dcell ds"><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cd5y" data-label="C1. 46: does 3 go in?" aria-label="C1. 46: does 3 go in?"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="circle-opt">yes / no</span></span></span></div><div class="dr"><span class="dn">57</span><span class="dcell"><input class="hw-field nb num gapn" data-k="cd6t" data-label="C1. 57: digit total" aria-label="C1. 57: digit total" autocomplete="off" inputmode="decimal" spellcheck="false"></span><span class="dcell ds"><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cd6y" data-label="C1. 57: does 3 go in?" aria-label="C1. 57: does 3 go in?"><option value="">Choose</option><option value="yes">yes</option><option value="no">no</option></select><span class="circle-opt">yes / no</span></span></span></div></div></div></div>
+<div class="task rem-keep">
+<div class="task-label">Remember</div>
+<p class="lead">To find 3’s partner, start with 3&nbsp;×&nbsp;10.</p>
+<div class="model"><p class="ex-title">Like this: 42</p><div class="plan-rows"><p>3 × 10 = 30</p><p>12 left</p><p>3 × 4 = 12</p><p>10 + the small partner: 10 + 4 = 14, so <b>3 × 14 = 42</b></p></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead">Find 3’s&nbsp;partner.</p>
+</div>
+<div class="q"><div class="q-top"><div class="q-num">2</div><p class="prompt">3’s partner in <b>39</b>.</p></div><div class="plan-rows in">
+<div class="arow plan"><span class="cap2">3&nbsp;×&nbsp;10&nbsp;=&nbsp;30. What is&nbsp;left?</span><input class="hw-field nb num gapn" data-k="cq1a" data-label="C2. 39: what is left after 30" aria-label="C2. 39: what is left after 30" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+<div class="arow plan"><span class="cap2">3&nbsp;×</span><input class="hw-field nb num gapn" data-k="cq1b" data-label="C2. 39: 3 × ___ = what is left" aria-label="C2. 39: 3 × ___ = what is left" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">= what is&nbsp;left</span></div>
+<div class="arow plan"><span class="cap2">10 + the small partner&nbsp;=</span><input class="hw-field nb num gapn" data-k="cq1c" data-label="C2. 39: 10 + the small partner" aria-label="C2. 39: 10 + the small partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+</div></div>
+<div class="q"><div class="q-top"><div class="q-num">3</div><p class="prompt">3’s partner in <b>54</b>.</p></div><div class="plan-rows in">
+<div class="arow plan"><span class="cap2">Take off 3&nbsp;×&nbsp;10. What is&nbsp;left?</span><input class="hw-field nb num gapn" data-k="cq2a" data-label="C3. 54: what is left after 3 × 10" aria-label="C3. 54: what is left after 3 × 10" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+<div class="arow plan"><span class="cap2">3&nbsp;×</span><input class="hw-field nb num gapn" data-k="cq2b" data-label="C3. 54: 3 × ___ = what is left" aria-label="C3. 54: 3 × ___ = what is left" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">= what is&nbsp;left</span></div>
+<div class="arow plan"><span class="cap2">10 + the small partner&nbsp;=</span><input class="hw-field nb num gapn" data-k="cq2c" data-label="C3. 54: 10 + the small partner" aria-label="C3. 54: 10 + the small partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+</div></div>
+<div class="task"><p class="lead">Now just the&nbsp;partner.</p><p class="small">Work on paper if you&nbsp;like.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">4</div><p class="prompt eqline"><span>3&nbsp;×</span><input class="hw-field nb num gapn" data-k="cq3" data-label="C4. 3 × ___ = 57" aria-label="C4. 3 × ___ = 57" autocomplete="off" inputmode="decimal" spellcheck="false"><span>=&nbsp;57</span></p></div></div>
+<div class="task"><p class="lead"><span class="screen-only">Try 2 to 7 on this number. Tap a try, then tap its&nbsp;box.</span><span class="print-only">Try 2 to 7 on this number. Write each try in its&nbsp;box.</span></p><p class="small">Use the digit test for&nbsp;3.</p></div>
+<div class="q sortq"><div class="q-top"><div class="q-num">5</div><p class="prompt">The ladder for <b>32</b>.</p></div><div class="tp sortset"><div class="tp-bank" aria-label="Tries to sort"><button type="button" class="tp-tile" data-value="2" data-store="cxt1" data-field="cxt1">2</button><button type="button" class="tp-tile" data-value="3" data-store="cxt2" data-field="cxt2">3</button><button type="button" class="tp-tile" data-value="4" data-store="cxt3" data-field="cxt3">4</button><button type="button" class="tp-tile" data-value="5" data-store="cxt4" data-field="cxt4">5</button><button type="button" class="tp-tile" data-value="6" data-store="cxt5" data-field="cxt5">6</button><button type="button" class="tp-tile" data-value="7" data-store="cxt6" data-field="cxt6">7</button></div><div class="sort-grid"><div class="tp-zone tp-multi" data-value="works"><div class="zone-head"><b class="zt">Works</b></div><div class="tp-slot"></div></div>
+<div class="tp-zone tp-multi" data-value="did not work"><div class="zone-head"><b class="zt">Did not work</b></div><div class="tp-slot"></div></div>
+</div><div class="tp-stores" hidden><select data-k="cxt1" data-label="C5. Does 2 go into 32?" tabindex="-1" class="hw-field"><option value=""></option><option value="works">works</option><option value="did not work">did not work</option></select>
+<select data-k="cxt2" data-label="C5. Does 3 go into 32?" tabindex="-1" class="hw-field"><option value=""></option><option value="works">works</option><option value="did not work">did not work</option></select>
+<select data-k="cxt3" data-label="C5. Does 4 go into 32?" tabindex="-1" class="hw-field"><option value=""></option><option value="works">works</option><option value="did not work">did not work</option></select>
+<select data-k="cxt4" data-label="C5. Does 5 go into 32?" tabindex="-1" class="hw-field"><option value=""></option><option value="works">works</option><option value="did not work">did not work</option></select>
+<select data-k="cxt5" data-label="C5. Does 6 go into 32?" tabindex="-1" class="hw-field"><option value=""></option><option value="works">works</option><option value="did not work">did not work</option></select>
+<select data-k="cxt6" data-label="C5. Does 7 go into 32?" tabindex="-1" class="hw-field"><option value=""></option><option value="works">works</option><option value="did not work">did not work</option></select>
+</div></div></div>
+<div class="task"><p class="lead">Type each partner. Then choose where you&nbsp;stop.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">6</div><p class="prompt">The partners for <b>32</b>.</p></div><div class="lad"><div class="plan-rows in"><div class="arow plan"><span class="cap2">1&nbsp;×</span><input class="hw-field nb num gapn" data-k="cxp1" data-label="C6. 32: 1 × ___" aria-label="C6. 32: 1 × ___" autocomplete="off" inputmode="decimal" spellcheck="false"></div><div class="arow plan"><span class="cap2">2&nbsp;×</span><input class="hw-field nb num gapn" data-k="cxp2" data-label="C6. 32: 2 × ___" aria-label="C6. 32: 2 × ___" autocomplete="off" inputmode="decimal" spellcheck="false"></div><div class="arow plan"><span class="cap2">4&nbsp;×</span><input class="hw-field nb num gapn" data-k="cxp3" data-label="C6. 32: 4 × ___" aria-label="C6. 32: 4 × ___" autocomplete="off" inputmode="decimal" spellcheck="false"></div></div><div class="lad-stop"><div class="arow"><span class="cap2">Which number do you stop&nbsp;at?</span><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cxs" data-label="C6. 32: the number you stop at" aria-label="C6. 32: the number you stop at"><option value="">Choose</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><span class="circle-opt">6 / 7 / 8 / 9 / 10</span></span></div>
+<div class="arow tight"><span class="cap2">It is already</span><input class="hw-field nb num gapn" data-k="cxo" data-label="C6. 32: whose partner is the stop number" aria-label="C6. 32: whose partner is the stop number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">’s&nbsp;partner.</span></div></div></div></div>
+<div class="task"><p class="lead">Now the whole ladder. Type each pair that works, smallest try&nbsp;first.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">7</div><p class="prompt">The ladder for <b>50</b>.</p></div><div class="lad"><div class="plan-rows in"><div class="arow plan"><span class="cap2">1&nbsp;×</span><input class="hw-field nb num gapn" data-k="cwp1" data-label="C7. 50: 1 × ___" aria-label="C7. 50: 1 × ___" autocomplete="off" inputmode="decimal" spellcheck="false"></div><div class="arow plan"><input class="hw-field nb num gapn" data-k="cwa2" data-label="C7. 50: pair 2, the try" aria-label="C7. 50: pair 2, the try" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">×</span><input class="hw-field nb num gapn" data-k="cwp2" data-label="C7. 50: pair 2, the partner" aria-label="C7. 50: pair 2, the partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div><div class="arow plan"><input class="hw-field nb num gapn" data-k="cwa3" data-label="C7. 50: pair 3, the try" aria-label="C7. 50: pair 3, the try" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">×</span><input class="hw-field nb num gapn" data-k="cwp3" data-label="C7. 50: pair 3, the partner" aria-label="C7. 50: pair 3, the partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div></div><div class="lad-stop"><div class="arow"><span class="cap2">Which number do you stop&nbsp;at?</span><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cws" data-label="C7. 50: the number you stop at" aria-label="C7. 50: the number you stop at"><option value="">Choose</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><span class="circle-opt">6 / 7 / 8 / 9 / 10</span></span></div>
+<div class="arow tight"><span class="cap2">It is already</span><input class="hw-field nb num gapn" data-k="cwo" data-label="C7. 50: whose partner is the stop number" aria-label="C7. 50: whose partner is the stop number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">’s&nbsp;partner.</span></div></div></div></div>
+<div class="q"><div class="q-top"><div class="q-num">8</div><p class="prompt">The ladder for <b>63</b>.</p></div><div class="lad"><div class="plan-rows in"><div class="arow plan"><span class="cap2">1&nbsp;×</span><input class="hw-field nb num gapn" data-k="cyp1" data-label="C8. 63: 1 × ___" aria-label="C8. 63: 1 × ___" autocomplete="off" inputmode="decimal" spellcheck="false"></div><div class="arow plan"><input class="hw-field nb num gapn" data-k="cya2" data-label="C8. 63: pair 2, the try" aria-label="C8. 63: pair 2, the try" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">×</span><input class="hw-field nb num gapn" data-k="cyp2" data-label="C8. 63: pair 2, the partner" aria-label="C8. 63: pair 2, the partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div><div class="arow plan"><input class="hw-field nb num gapn" data-k="cya3" data-label="C8. 63: pair 3, the try" aria-label="C8. 63: pair 3, the try" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">×</span><input class="hw-field nb num gapn" data-k="cyp3" data-label="C8. 63: pair 3, the partner" aria-label="C8. 63: pair 3, the partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div></div><div class="lad-stop"><div class="arow"><span class="cap2">Which number do you stop&nbsp;at?</span><span class="choice-wrap is-empty"><select class="hw-field ww" data-k="cys" data-label="C8. 63: the number you stop at" aria-label="C8. 63: the number you stop at"><option value="">Choose</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><span class="circle-opt">6 / 7 / 8 / 9 / 10</span></span></div>
+<div class="arow tight"><span class="cap2">It is already</span><input class="hw-field nb num gapn" data-k="cyo" data-label="C8. 63: whose partner is the stop number" aria-label="C8. 63: whose partner is the stop number" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">’s&nbsp;partner.</span></div></div></div></div>
+</div>
+<div class="section maths">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Shared factors</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<p class="lead">List the factors of each number. What is on both lists goes in the&nbsp;middle.</p>
+<div class="model"><p class="ex-title">Like this</p><div class="wex-row vm"><div class="wex-fig"><svg class="bar-svg" role="img" aria-label="Venn diagram of the factors of 4 and 6" width="220" height="150" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+<circle cx="85.0" cy="75.0" r="42" fill="#cfe9db" fill-opacity="0.6" stroke="#286951" stroke-width="1.6"/>
+<circle cx="135.0" cy="75.0" r="42" fill="#dcefe5" fill-opacity="0.6" stroke="#286951" stroke-width="1.6"/>
+<text x="61.9" y="29.0" font-size="11" font-weight="700" text-anchor="middle" fill="#1f2937">Factors of 4</text>
+<text x="158.1" y="29.0" font-size="11" font-weight="700" text-anchor="middle" fill="#1f2937">Factors of 6</text>
+<text x="66.1" y="79.0" font-size="13" font-weight="700" text-anchor="middle" fill="#1f2937">4</text>
+<text x="110.0" y="79.0" font-size="13" font-weight="700" text-anchor="middle" fill="#1f2937">1, 2</text>
+<text x="153.9" y="79.0" font-size="13" font-weight="700" text-anchor="middle" fill="#1f2937">3, 6</text>
+</svg></div><div class="wex-steps"><p>4: 1, 2, 4</p><p>6: 1, 2, 3, 6</p><p>Shared: <b>1, 2</b></p></div></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap a number, then tap its place on the&nbsp;picture.</span><span class="print-only">Write each number in its place on the&nbsp;picture.</span></p>
+</div>
+<div class="q sortq"><div class="q-top"><div class="q-num">1</div><p class="prompt">The factors of <b>14</b> and <b>35</b>.</p></div>
+<div class="tp sortset"><div class="tp-bank" aria-label="Numbers to place"><button type="button" class="tp-tile" data-value="7" data-store="dv1" data-field="dv1">7</button><button type="button" class="tp-tile" data-value="2" data-store="dv2" data-field="dv2">2</button><button type="button" class="tp-tile" data-value="35" data-store="dv3" data-field="dv3">35</button><button type="button" class="tp-tile" data-value="1" data-store="dv4" data-field="dv4">1</button><button type="button" class="tp-tile" data-value="5" data-store="dv5" data-field="dv5">5</button><button type="button" class="tp-tile" data-value="14" data-store="dv6" data-field="dv6">14</button></div>
+<div class="venn"><svg class="venn-art" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="33" cy="30" rx="32.5" ry="29.5"/><ellipse cx="67" cy="30" rx="32.5" ry="29.5"/></svg>
+<div class="tp-zone tp-multi vz" data-value="only 14"><div class="zone-head"><b class="zt">Only 14</b></div><div class="tp-slot"></div></div>
+<div class="tp-zone tp-multi vz" data-value="both"><div class="zone-head"><b class="zt">Both</b></div><div class="tp-slot"></div></div>
+<div class="tp-zone tp-multi vz" data-value="only 35"><div class="zone-head"><b class="zt">Only 35</b></div><div class="tp-slot"></div></div>
+</div>
+<div class="tp-stores" hidden><select data-k="dv1" data-label="D1. Where does 7 go? (14 and 35)" tabindex="-1" class="hw-field"><option value=""></option><option value="only 14">only 14</option><option value="both">both</option><option value="only 35">only 35</option></select>
+<select data-k="dv2" data-label="D1. Where does 2 go? (14 and 35)" tabindex="-1" class="hw-field"><option value=""></option><option value="only 14">only 14</option><option value="both">both</option><option value="only 35">only 35</option></select>
+<select data-k="dv3" data-label="D1. Where does 35 go? (14 and 35)" tabindex="-1" class="hw-field"><option value=""></option><option value="only 14">only 14</option><option value="both">both</option><option value="only 35">only 35</option></select>
+<select data-k="dv4" data-label="D1. Where does 1 go? (14 and 35)" tabindex="-1" class="hw-field"><option value=""></option><option value="only 14">only 14</option><option value="both">both</option><option value="only 35">only 35</option></select>
+<select data-k="dv5" data-label="D1. Where does 5 go? (14 and 35)" tabindex="-1" class="hw-field"><option value=""></option><option value="only 14">only 14</option><option value="both">both</option><option value="only 35">only 35</option></select>
+<select data-k="dv6" data-label="D1. Where does 14 go? (14 and 35)" tabindex="-1" class="hw-field"><option value=""></option><option value="only 14">only 14</option><option value="both">both</option><option value="only 35">only 35</option></select>
+</div></div></div>
+<div class="task"><p class="lead">List the factors of each number. Then type what they&nbsp;share.</p><p class="small">Only numbers and&nbsp;commas.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">2</div><p class="prompt"><b>32</b> and <b>56</b>.</p></div><div class="arow"><span class="cap2 lc">Factors of 32</span><input class="hw-field np" data-k="dl1" data-label="D2. Factors of 32" aria-label="D2. Factors of 32" autocomplete="off" inputmode="text" spellcheck="false"></div>
+<div class="arow"><span class="cap2 lc">Factors of 56</span><input class="hw-field np" data-k="dl2" data-label="D2. Factors of 56" aria-label="D2. Factors of 56" autocomplete="off" inputmode="text" spellcheck="false"></div>
+<div class="arow"><span class="cap2 lc">Shared</span><input class="hw-field np" data-k="dl3" data-label="D2. Shared factors of 32 and 56" aria-label="D2. Shared factors of 32 and 56" autocomplete="off" inputmode="text" spellcheck="false"></div></div>
+</div>
+<div class="section maths">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Tool names</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<p class="lead">Each tool has its own&nbsp;job.</p>
+<div class="model"><p class="ex-title">Your tools</p><p><b>Compensate:</b> when adding, one number is nearly&nbsp;round.</p><p><b>Bonds:</b> the parts make a round&nbsp;number.</p><p><b>Count up:</b> the two numbers are&nbsp;close.</p><p><b>Known facts:</b> a small fact does the&nbsp;work.</p><p><b>Same difference:</b> for take away, change both numbers so the number you take away is&nbsp;round.</p></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap a tool, then tap the calculation it fits. Use each tool&nbsp;once.</span><span class="print-only">Write each tool next to the calculation it fits. Use each tool&nbsp;once.</span></p>
+</div>
+<div class="q sortq"><div class="q-top"><div class="q-num">1</div><p class="prompt">Which tool fits&nbsp;best?</p></div><div class="tp sortset matchset"><div class="tp-bank" aria-label="Tool names"><button type="button" class="tp-tile" data-value="same difference">same difference</button><button type="button" class="tp-tile" data-value="bonds">bonds</button><button type="button" class="tp-tile" data-value="count up">count up</button><button type="button" class="tp-tile" data-value="compensate">compensate</button><button type="button" class="tp-tile" data-value="known facts">known facts</button></div><div class="match-list"><div class="match-row"><span class="calc">8,003 − 7,986</span><div class="tp-zone one" data-store="et1" data-field="et1"><span class="tp-slot"></span></div></div>
+<div class="match-row"><span class="calc">63,000 + 24,000</span><div class="tp-zone one" data-store="et2" data-field="et2"><span class="tp-slot"></span></div></div>
+<div class="match-row"><span class="calc">36,999 + 12,400</span><div class="tp-zone one" data-store="et3" data-field="et3"><span class="tp-slot"></span></div></div>
+<div class="match-row"><span class="calc">6,004 − 1,998</span><div class="tp-zone one" data-store="et4" data-field="et4"><span class="tp-slot"></span></div></div>
+<div class="match-row"><span class="calc">4,700 + 5,300</span><div class="tp-zone one" data-store="et5" data-field="et5"><span class="tp-slot"></span></div></div>
+</div><div class="tp-stores" hidden><select data-k="et1" data-label="E1. Tool for 8,003 − 7,986" tabindex="-1" class="hw-field"><option value=""></option><option value="same difference">same difference</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="compensate">compensate</option><option value="known facts">known facts</option></select>
+<select data-k="et2" data-label="E1. Tool for 63,000 + 24,000" tabindex="-1" class="hw-field"><option value=""></option><option value="same difference">same difference</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="compensate">compensate</option><option value="known facts">known facts</option></select>
+<select data-k="et3" data-label="E1. Tool for 36,999 + 12,400" tabindex="-1" class="hw-field"><option value=""></option><option value="same difference">same difference</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="compensate">compensate</option><option value="known facts">known facts</option></select>
+<select data-k="et4" data-label="E1. Tool for 6,004 − 1,998" tabindex="-1" class="hw-field"><option value=""></option><option value="same difference">same difference</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="compensate">compensate</option><option value="known facts">known facts</option></select>
+<select data-k="et5" data-label="E1. Tool for 4,700 + 5,300" tabindex="-1" class="hw-field"><option value=""></option><option value="same difference">same difference</option><option value="bonds">bonds</option><option value="count up">count up</option><option value="compensate">compensate</option><option value="known facts">known facts</option></select>
+</div></div></div>
+</div>
+
+<script>
+/* An empty menu prints as words to circle; a chosen one prints as it is. */
+(function () {
+  function sync() {
+    var wraps = document.querySelectorAll('.choice-wrap');
+    for (var i = 0; i < wraps.length; i++) {
+      var s = wraps[i].querySelector('select');
+      wraps[i].classList.toggle('is-empty', !(s && s.value));
+    }
+  }
+  document.addEventListener('change', sync, true);
+  window.addEventListener('beforeprint', sync);
+  window.addEventListener('load', function () { sync(); setTimeout(sync, 500); setTimeout(sync, 1500); });
+  sync();
+})();
+
+/* Number boxes: Dasha accepts "k" (770k = 770,000). The key compares exact numbers, so a typed
+   "770k" or "£1,234" is turned into "770,000" / "1,234" when she leaves the box, before saving
+   and checking. The value is the same; only the way it is written changes. */
+(function () {
+  function tidy(el) {
+    var v = String(el.value || '').trim().replace(/^£\s*/, '');
+    var m = v.match(/^(\d+(?:\.\d+)?)\s*k$/i);
+    if (m) v = Math.round(parseFloat(m[1]) * 1000).toLocaleString('en-GB');
+    if (v !== el.value) { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); }
+  }
+  document.addEventListener('change', function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains('num')) tidy(e.target);
+  }, true);
+  document.addEventListener('click', function (e) {
+    if (e.target && e.target.closest && e.target.closest('.hw-send')) {
+      [].forEach.call(document.querySelectorAll('input.num'), tidy);
+    }
+  }, true);
+})();
+
+/* Tap one choice (a bar picture or a sentence). The answer lives in a hidden select (data-k)
+   inside .store, so hw.js saves, restores, sends and marks it on the data-field twin.
+   Tap the chosen one again to clear it. These are buttons, nothing moves under a finger. */
+(function () {
+  function store(k) { return document.querySelector(".store [data-k='" + k + "']"); }
+  function init() {
+    [].forEach.call(document.querySelectorAll('.pic-pick[data-store], .opt-pick[data-store]'), function (g) {
+      var s = store(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.pic-opt, .txt-opt'));
+      function paint() { btns.forEach(function (b) { var on = s.value === b.dataset.v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }); }
+      paint();
+      s.addEventListener('change', paint);
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          s.value = s.value === b.dataset.v ? '' : b.dataset.v;
+          s.dispatchEvent(new Event('input', { bubbles: true }));
+          s.dispatchEvent(new Event('change', { bubbles: true }));
+          paint();
+        });
+      });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html, unchanged) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }
+          else { unpick(); home(t); }
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Send my results to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJhODEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzMiJ9LCAiYTgyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTYifSwgImE4MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjY0In0sICJhODQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4MCJ9LCAiYTg1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiODgifSwgImExMjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzNiJ9LCAiYTEyMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjYwIn0sICJhMTIzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzIifSwgImExMjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5NiJ9LCAiYTEyNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjEyMCJ9LCAiYTEyNiI6IHsidCI6ICJleGFjdCIsICJhIjogIjE0NCJ9LCAiYXMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAibXVsdGlwbGUgb2YgOCJ9LCAiYXMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAibm90IGEgbXVsdGlwbGUgb2YgOCJ9LCAiYXMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAibXVsdGlwbGUgb2YgOCJ9LCAiYXM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAibXVsdGlwbGUgb2YgOCJ9LCAiYXM1IjogeyJ0IjogImV4YWN0IiwgImEiOiAibm90IGEgbXVsdGlwbGUgb2YgOCJ9LCAiYXM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAibm90IGEgbXVsdGlwbGUgb2YgOCJ9LCAiYXM3IjogeyJ0IjogImV4YWN0IiwgImEiOiAibXVsdGlwbGUgb2YgOCJ9LCAiYXM4IjogeyJ0IjogImV4YWN0IiwgImEiOiAibm90IGEgbXVsdGlwbGUgb2YgOCJ9LCAiYWYxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTYifSwgImFmMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjM2In0sICJhZjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3MiJ9LCAiYWY0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzIifSwgImFmNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjY0In0sICJhZjYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4NCJ9LCAiYWY3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDgifSwgImFmOCI6IHsidCI6ICJleGFjdCIsICJhIjogIjk2In0sICJhcDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0In0sICJhcDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1In0sICJhcDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMSJ9LCAiYXA0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSJ9LCAiYnMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBtdWx0aXBsZSBvZiJ9LCAiYnMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBmYWN0b3Igb2YifSwgImJzMyI6IHsidCI6ICJleGFjdCIsICJhIjogImEgZmFjdG9yIG9mIn0sICJiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJub3QgYSBmYWN0b3Igb3IgbXVsdGlwbGUgb2YifSwgImJzNSI6IHsidCI6ICJleGFjdCIsICJhIjogImEgbXVsdGlwbGUgb2YifSwgImJzNiI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vdCBhIGZhY3RvciBvciBtdWx0aXBsZSBvZiJ9LCAiYnAxIjogeyJ0IjogIm9wZW4ifSwgImJwMiI6IHsidCI6ICJvcGVuIn0sICJiYWRhIjogeyJ0IjogIm9wZW4ifSwgImNkMXQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMCJ9LCAiY2QxeSI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vIn0sICJjZDJ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTIifSwgImNkMnkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ5ZXMifSwgImNkM3QiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5In0sICJjZDN5IjogeyJ0IjogImV4YWN0IiwgImEiOiAieWVzIn0sICJjZDR0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiY2Q0eSI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vIn0sICJjZDV0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTAifSwgImNkNXkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJubyJ9LCAiY2Q2dCI6IHsidCI6ICJleGFjdCIsICJhIjogIjEyIn0sICJjZDZ5IjogeyJ0IjogImV4YWN0IiwgImEiOiAieWVzIn0sICJjcTFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSJ9LCAiY3ExYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgImNxMWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMyJ9LCAiY3EyYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjI0In0sICJjcTJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOCJ9LCAiY3EyYyI6IHsidCI6ICJleGFjdCIsICJhIjogIjE4In0sICJjcTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxOSJ9LCAiY3h0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIndvcmtzIn0sICJjeHQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZGlkIG5vdCB3b3JrIn0sICJjeHQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAid29ya3MifSwgImN4dDQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkaWQgbm90IHdvcmsifSwgImN4dDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkaWQgbm90IHdvcmsifSwgImN4dDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkaWQgbm90IHdvcmsifSwgImN4cDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzMiJ9LCAiY3hwMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjE2In0sICJjeHAzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOCJ9LCAiY3hzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOCJ9LCAiY3hvIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAiY3dwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjUwIn0sICJjd2EyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAiY3dwMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjI1In0sICJjd2EzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiY3dwMyI6IHsidCI6ICJleGFjdCIsICJhIjogIjEwIn0sICJjd3MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMCJ9LCAiY3dvIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiY3lwMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjYzIn0sICJjeWEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiY3lwMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjIxIn0sICJjeWEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiY3lwMyI6IHsidCI6ICJleGFjdCIsICJhIjogIjkifSwgImN5cyI6IHsidCI6ICJleGFjdCIsICJhIjogIjkifSwgImN5byI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgImR2MSI6IHsidCI6ICJleGFjdCIsICJhIjogImJvdGgifSwgImR2MiI6IHsidCI6ICJleGFjdCIsICJhIjogIm9ubHkgMTQifSwgImR2MyI6IHsidCI6ICJleGFjdCIsICJhIjogIm9ubHkgMzUifSwgImR2NCI6IHsidCI6ICJleGFjdCIsICJhIjogImJvdGgifSwgImR2NSI6IHsidCI6ICJleGFjdCIsICJhIjogIm9ubHkgMzUifSwgImR2NiI6IHsidCI6ICJleGFjdCIsICJhIjogIm9ubHkgMTQifSwgImRsMSI6IHsidCI6ICJzZXQiLCAiYSI6ICIxLCAyLCA0LCA4LCAxNiwgMzIifSwgImRsMiI6IHsidCI6ICJzZXQiLCAiYSI6ICIxLCAyLCA0LCA3LCA4LCAxNCwgMjgsIDU2In0sICJkbDMiOiB7InQiOiAic2V0IiwgImEiOiAiMSwgMiwgNCwgOCJ9LCAiZXQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY291bnQgdXAifSwgImV0MiI6IHsidCI6ICJleGFjdCIsICJhIjogImtub3duIGZhY3RzIn0sICJldDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wZW5zYXRlIn0sICJldDQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYW1lIGRpZmZlcmVuY2UifSwgImV0NSI6IHsidCI6ICJleGFjdCIsICJhIjogImJvbmRzIn19</script>
+<script id="clara-homework-runtime">/* Shared behaviour for online homework pages. Page supplies <body data-student data-sheet data-sheet-id>. */
+(function () {
+  var SEND_URL = "https://script.google.com/macros/s/AKfycbwtEVGXzip6vzoLC7oY_wzfmHGe31Vm2uFB9FMwHsSyVHdbyMOKpu16z-a6SdQXXVg/exec";
+  var SEND_KEY = "89949615279890a2";
+  var B = document.body, META = { student: B.dataset.student || "", sheet: B.dataset.sheet || "", sheetId: B.dataset.sheetId || "" };
+  var STORE = "hw-" + META.sheetId, state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} }
+
+  // click-to-circle: any element with class "circle-words" gets its words wrapped
+  var n = 0;
+  document.querySelectorAll(".circle-words").forEach(function (el) {
+    el.innerHTML = el.textContent.replace(/([A-Za-z']+)/g, function (m) { n++; return '<span class="hw-w" data-w="w' + n + '">' + m + "</span>"; });
+  });
+  // "circle-words break-lines" (Dasha, 7 Oct 2026): a tapped word ends its line, so the text breaks
+  // after it (and after its own comma or full stop); tapping it again joins the line back.
+  // The words are still marked by the same key ("set" of the tapped words).
+  function syncBreaks(box) {
+    box.querySelectorAll("br.hw-br").forEach(function (b) { b.remove(); });
+    box.querySelectorAll(".hw-w.hw-circled").forEach(function (w) {
+      var at = w, nx = w.nextSibling;
+      if (nx && nx.nodeType === 3) {
+        var p = nx.textContent.match(/^[^\sA-Za-z']*/)[0].length;
+        if (p) { if (p < nx.textContent.length) nx.splitText(p); at = nx; }
+      }
+      var br = document.createElement("br"); br.className = "hw-br";
+      at.parentNode.insertBefore(br, at.nextSibling);
+    });
+  }
+  document.querySelectorAll(".hw-w").forEach(function (w) {
+    if (state[w.dataset.w]) w.classList.add("hw-circled");
+    w.addEventListener("click", function () {
+      w.classList.toggle("hw-circled"); state[w.dataset.w] = w.classList.contains("hw-circled"); save();
+      var box = w.closest(".break-lines"); if (box) syncBreaks(box);
+    });
+  });
+  document.querySelectorAll(".circle-words.break-lines").forEach(syncBreaks);
+  function isCtl(el) { return /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName); }
+  function val(el) { return isCtl(el) ? el.value : el.innerText; }
+  document.querySelectorAll("[data-k]").forEach(function (el) {
+    if (el.classList.contains("circle-words")) return;
+    if (state[el.dataset.k]) { if (isCtl(el)) el.value = state[el.dataset.k]; else el.textContent = state[el.dataset.k]; }
+    function keep() { state[el.dataset.k] = val(el); save(); }
+    el.addEventListener("input", keep); el.addEventListener("change", keep);
+  });
+
+  var pdfPending = null;
+  function makePDF() {
+    if (pdfPending) return pdfPending;
+    // html2pdf measures page breaks with getBoundingClientRect. Rendering the live,
+    // scrolled document mixed viewport coordinates with PDF coordinates, adding huge
+    // blank areas and losing the tail. A separate, unscrolled document has one origin.
+    var frame = document.createElement("iframe"), timer;
+    frame.title = "Preparing homework PDF";
+    frame.setAttribute("aria-hidden", "true");
+    frame.tabIndex = -1;
+    frame.style.cssText = "position:fixed;left:-10000px;top:0;width:800px;height:1100px;border:0;pointer-events:none;";
+    var job = new Promise(function (resolve, reject) {
+      timer = setTimeout(function () { reject(new Error("PDF export timed out. Please try again.")); }, 60000);
+      B.appendChild(frame);
+      var doc = frame.contentDocument;
+      doc.open(); doc.write("<!doctype html><html><head></head><body></body></html>"); doc.close();
+      var base = doc.createElement("base"); base.href = document.baseURI; doc.head.appendChild(base);
+      var styles = [];
+      document.querySelectorAll('style, link[rel="stylesheet"]').forEach(function (node) {
+        var copy = doc.importNode(node, true);
+        if (node.tagName === "LINK") {
+          copy.href = node.href;
+          styles.push(new Promise(function (ok, fail) { copy.onload = ok; copy.onerror = function () { fail(new Error("PDF stylesheet failed to load")); }; }));
+        }
+        doc.head.appendChild(copy);
+      });
+      var sheet = doc.importNode(document.getElementById("sheet"), true); sheet.querySelectorAll(".exercise-page:not(.game-ui), .exercise-viewport").forEach(function(node){node.replaceWith.apply(node,Array.from(node.childNodes));});
+      sheet.querySelectorAll("script, .hw-bar, .save-bar, .game-ui").forEach(function (node) { node.remove(); });
+      // Read current field properties, not HTML attributes or only the visible portion
+      // of a textarea. Plain wrapping blocks preserve every line, including long words.
+      var originals = document.getElementById("sheet").querySelectorAll("[data-k]");
+      sheet.querySelectorAll("[data-k]").forEach(function (copy, i) {
+        var original = originals[i];
+        if (copy.classList.contains("circle-words")) return;
+        // A hidden select/input is the saved value behind a visible drop zone or
+        // choice group. Printing that storage field again duplicates the answer.
+        var twin = [].find.call(document.getElementById("sheet").querySelectorAll("[data-field]"), function (node) {
+          return node.dataset.field === original.dataset.k;
+        });
+        if (!seen(original) && seen(twin)) { copy.remove(); return; }
+        var answer = doc.createElement("span");
+        answer.className = copy.className + " hw-pdf-answer";
+        answer.dataset.k = original.dataset.k;
+        if (original.tagName === "INPUT" || original.tagName === "SELECT") answer.classList.add("hw-pdf-inline");
+        if (original.classList.contains("hw-gap")) answer.classList.add("hw-pdf-gap");
+        answer.textContent = val(original) || "\u00a0";
+        copy.replaceWith(answer);
+      });
+      // Keep each wrong response with its correction. Putting extra inline text
+      // into an equation row can otherwise push the last answer off the page.
+      sheet.querySelectorAll(".hw-pdf-answer").forEach(function (answer) {
+        var mark = answer.nextElementSibling;
+        if (!answer.classList.contains("hw-pdf-inline") || !mark || !mark.classList.contains("hw-no")) return;
+        var group = doc.createElement("span");
+        group.className = "hw-pdf-response";
+        answer.parentNode.insertBefore(group, answer);
+        group.appendChild(answer); group.appendChild(mark);
+      });
+      doc.body.className = "hw-pdf-mode";
+      doc.body.appendChild(sheet);
+      // Dragging belongs only to the live page. Use ordinary flow boxes in the
+      // export: html2canvas misplaces inline flex children in centred drop zones.
+      sheet.querySelectorAll(".dragging, .picked, .over, .ready").forEach(function (node) {
+        node.classList.remove("dragging", "picked", "over", "ready");
+      });
+      sheet.querySelectorAll(".tile, .chip, .tp-tile").forEach(function (node) {
+        // The same class also names picture cards; preserve their grid layout.
+        if (node.querySelector("img, svg, [data-k]")) return;
+        node.classList.add("hw-pdf-tile");
+      });
+      sheet.querySelectorAll(".slot, .drop, .dz, .pslot, .dslot, .tp-zone").forEach(function (node) {
+        // Tap-to-place places (Tools/hw_snippets/tap_place.html, 20 Oct 2026) are inline-flex
+        // columns holding a flex .tp-slot: html2canvas drew neither the tile nor the mark in
+        // them, so they always become plain flow boxes, filled or not.
+        if (node.querySelector(".tile, .chip, .tp-tile") || node.classList.contains("tp-zone")) {
+          node.classList.add("hw-pdf-drop");
+          if (node.tagName === "SPAN") node.classList.add("hw-pdf-drop-inline");
+        }
+      });
+      // html2canvas drops a text node that sits straight inside a block inside an inline-block place:
+      // the ✓ / ✗ vanished while the right answer, in its own span, printed. Give the glyph a span.
+      sheet.querySelectorAll(".tp-zone .hw-mark").forEach(function (mark) {
+        [].slice.call(mark.childNodes).forEach(function (n) {
+          if (n.nodeType !== 3 || !n.textContent.trim()) return;
+          var wrap = doc.createElement("span");
+          n.parentNode.replaceChild(wrap, n); wrap.appendChild(n);
+        });
+      });
+      var fixes = doc.createElement("style");
+      fixes.textContent = [
+        // Leave a small horizontal safety gutter inside html2pdf's rounded A4 container.
+        "html,body{margin:0!important;padding:0!important;max-width:none!important;width:680px!important;height:auto!important;min-height:0!important;overflow:visible!important;background:white!important;}",
+        "#sheet{margin:0!important;padding:0!important;width:680px!important;max-width:none!important;transform:none!important;}",
+        "#sheet .sheet{margin:0!important;max-width:none!important;}",
+        // Avoid moving whole sections to a new page; keep individual questions intact.
+        "#sheet *{break-before:auto!important;break-after:auto!important;break-inside:auto!important;page-break-before:auto!important;page-break-after:auto!important;page-break-inside:auto!important;}",
+        "#sheet .hw-pdf-answer{display:block!important;height:auto!important;max-height:none!important;min-height:38px!important;overflow:visible!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:break-word!important;text-wrap:wrap!important;padding:8px 10px!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-inline{display:inline-block!important;vertical-align:middle;min-width:80px;max-width:100%!important;}",
+        "#sheet .hw-pdf-gap{min-width:0!important;min-height:0!important;padding:0 3px!important;}",
+        "#sheet .hw-pdf-response{display:inline-flex!important;flex-direction:column!important;align-items:flex-start!important;vertical-align:top!important;min-width:0!important;max-width:100%!important;}",
+        "#sheet .hw-pdf-response>.hw-mark{display:block!important;margin:4px 0 0!important;white-space:normal!important;width:100%!important;font-size:13px!important;}" ,
+        "#sheet img,#sheet svg{max-width:100%;}",
+        "#sheet .hw-pdf-drop{display:block!important;min-width:0!important;text-align:left!important;}",
+        "#sheet .hw-pdf-tile{position:static!important;inset:auto!important;transform:none!important;display:inline-block!important;max-width:100%!important;min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;box-sizing:border-box!important;vertical-align:middle!important;}",
+        "#sheet .hw-pdf-drop>.hw-pdf-tile{display:block!important;width:100%!important;margin:0!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-drop>.hw-mark{display:block!important;width:auto!important;margin:4px 0 0!important;white-space:normal!important;}" ,
+        "#sheet .hw-pdf-drop-inline{display:inline-block!important;max-width:100%!important;vertical-align:middle!important;}",
+        "#sheet .hw-pdf-drop-inline>.hw-pdf-tile{display:inline-block!important;width:auto!important;}",
+        // Tap-to-place: the tile sits one level down, inside .tp-slot. Only these pages have it.
+        "#sheet .hw-pdf-drop>.tp-slot{display:block!important;min-height:0!important;text-align:center!important;}",
+        "#sheet .hw-pdf-drop>.tp-slot>.hw-pdf-tile{display:inline-block!important;width:auto!important;margin:0!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-drop-inline.tp-zone{text-align:center!important;}",
+        // In Dasha's PDF the marks stay; the pupil-facing «Feedback in the lesson» note is noise there.
+        "#sheet .hw-mark.hw-open{display:none!important;}",
+        "#sheet .hw-mark{max-width:100%!important;overflow-wrap:anywhere!important;}"
+      ].join("\n");
+      doc.head.appendChild(fixes);
+      var script = doc.createElement("script");
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+      script.onerror = function () { reject(new Error("PDF library failed to load")); };
+      script.onload = function () {
+        Promise.all(styles).then(function () { return doc.fonts ? doc.fonts.ready : null; })
+          .then(function () { return Promise.all([].map.call(sheet.querySelectorAll("img"), function (img) {
+            if (img.complete) return img.naturalWidth ? Promise.resolve() : Promise.reject(new Error("PDF image failed to load"));
+            return new Promise(function (ok, fail) { img.onload = ok; img.onerror = function () { fail(new Error("PDF image failed to load")); }; });
+          })); })
+          .then(function () {
+            frame.contentWindow.scrollTo(0, 0);
+            sheet.querySelectorAll(".task").forEach(function(task){
+              var question=task.nextElementSibling;if(!question || !question.matches(".q"))return;
+              var group=doc.createElement("div");task.parentNode.insertBefore(group,task);group.appendChild(task);group.appendChild(question);
+              if(group.getBoundingClientRect().height<920)group.classList.add("hw-pdf-keep");
+            });
+            sheet.querySelectorAll(".section, .keep").forEach(function(section) {
+              var children = Array.from(section.children), firstQuestion = children.findIndex(function(el){return el.matches(".q") || !!el.querySelector(".q");});
+              if (firstQuestion < 1) return;
+              var group = doc.createElement("div");section.insertBefore(group,children[0]);
+              children.slice(0,firstQuestion+1).forEach(function(el){group.appendChild(el);});
+              if(group.getBoundingClientRect().height < 920) group.classList.add("hw-pdf-keep");
+            });
+            // SVGs with only CSS width:100% / height:auto lose their intrinsic
+            // size when html2canvas serialises them. Freeze the export dimensions
+            // after the fonts and responsive layout have settled.
+            sheet.querySelectorAll("svg").forEach(function (svg) {
+              var bounds = svg.getBoundingClientRect();
+              if (!bounds.width || !bounds.height) return;
+              svg.setAttribute("width", bounds.width);
+              svg.setAttribute("height", bounds.height);
+              svg.style.width = bounds.width + "px";
+              svg.style.height = bounds.height + "px";
+            });
+            // Never slice a line of text. html2pdf moves a block by putting a spacer before it,
+            // which only works in ordinary block flow, so keep whole every such block that holds
+            // lines itself (no block children) or one row of flex/grid items, like a footer.
+            var view = frame.contentWindow;
+            sheet.querySelectorAll("*").forEach(function (el) {
+              var cs = view.getComputedStyle(el), up = el.parentElement;
+              if (!up || !/^(block|flow-root|list-item)$/.test(view.getComputedStyle(up).display)) return;
+              if (!/^(block|flow-root|list-item|flex|grid)$/.test(cs.display) || /^(absolute|fixed)$/.test(cs.position) || cs.cssFloat !== "none") return;
+              if (!el.textContent.trim()) return;
+              var items = [].filter.call(el.children, function (child) {
+                var c = view.getComputedStyle(child);
+                return c.display !== "none" && !/^(absolute|fixed)$/.test(c.position);
+              });
+              if (/^(flex|grid)$/.test(cs.display)) {
+                // only a single row: a grid of stacked cells may still break between its rows
+                var rows = items.map(function (child) { return child.getBoundingClientRect(); });
+                if (rows.length && Math.max.apply(null, rows.map(function (r) { return r.top; })) >= Math.min.apply(null, rows.map(function (r) { return r.bottom; }))) return;
+              } else if (items.some(function (child) { return /^(block|flow-root|list-item|flex|grid|table)$/.test(view.getComputedStyle(child).display); })) return;
+              el.classList.add("hw-pdf-lines");
+            });
+            // Class names such as .task and .checks can mean either one question or
+            // a whole exercise. Keeping a multi-question section together leaves
+            // almost a blank page when that section fits on the next page (Roman,
+            // 13 Oct). Only protect atomic blocks; their questions remain protected.
+            var keepSelectors = ".q,.question,.word-q,.div-item,tr,header,.model,.task,.instr,.instruction,.checks,p,h1,h2,h3,.hw-pdf-answer,.hw-pdf-drop,.pick,.job,.comp,.pmodel,.msub,.pics,.ex-card,.handstage,.hw-mark-list,.hw-pdf-lines";
+            var questionSelectors = ".q,.question,.word-q,.div-item";
+            sheet.querySelectorAll(keepSelectors).forEach(function (el) {
+              if (el.querySelectorAll(questionSelectors).length > 1) return;
+              if (el.matches(".task,.checks,.ex-card,.comp") && el.querySelectorAll("[data-k]").length > 1 && !el.matches(questionSelectors)) return;
+              el.classList.add("hw-pdf-keep");
+            });
+            var options = {
+              margin: [10, 10, 10, 10], image: {type:"jpeg",quality:0.94},
+              html2canvas: {scale:1.5,useCORS:true,scrollX:0,scrollY:0,windowWidth:800,windowHeight:1100},
+              jsPDF: {unit:"mm",format:"a4",orientation:"portrait"},
+              pagebreak: {mode:[],avoid:[".hw-pdf-keep"]}
+            };
+            // html2pdf uses instanceof Array, so option arrays must belong to its realm.
+            options = frame.contentWindow.JSON.parse(JSON.stringify(options));
+            var scale = options.html2canvas.scale;
+            // html2pdf moves a block to a new page at multiples of inner.px.height (A4 floored
+            // to 1046 CSS px), but cuts the canvas every floor(canvas.width * ratio) canvas px
+            // (1047.33 CSS px). The 1.33 px gap added up page by page until the first line
+            // of a moved block was sliced. Use ONE page height for both, a whole number of
+            // canvas pixels, and draw each slice at its true height (no stretching).
+            return frame.contentWindow.html2pdf().set(options).from(sheet)
+              .then(function () {
+                var px = this.prop.pageSize.inner.px;
+                px.height = Math.floor(px.height * scale) / scale;
+              })
+              .toCanvas()
+              .then(function () {
+                var inner = this.prop.pageSize.inner, width = this.prop.canvas.width;
+                var slice = Math.round(inner.px.height * scale);
+                inner.height = slice * inner.width / width;
+                inner.ratio = (slice + 0.5) / width;   // toPdf floors canvas.width * ratio back to slice
+              })
+              .outputPdf("datauristring");
+          }).then(function (uri) {
+            var result = uri.split(",")[1];
+            if (!result) throw new Error("PDF export produced no attachment");
+            resolve(result);
+          }).catch(reject);
+      };
+      doc.head.appendChild(script);
+    });
+    function cleanup() { clearTimeout(timer); frame.remove(); pdfPending = null; }
+    pdfPending = job.then(function (result) { cleanup(); return result; }, function (error) { cleanup(); throw error; });
+    return pdfPending;
+  }
+
+  window.hwMakePDF = makePDF;
+  // Use the same complete-answer export for downloads, not the browser's print
+  // view, which can clip the contents of scrolling textareas again.
+  document.querySelectorAll(".hw-pdf").forEach(function (button) {
+    button.onclick = function () {
+      var label = button.textContent;
+      button.disabled = true; button.textContent = "Preparing PDF…";
+      makePDF().then(function (data) {
+        var bytes = Uint8Array.from(atob(data), function (c) { return c.charCodeAt(0); });
+        var url = URL.createObjectURL(new Blob([bytes], {type:"application/pdf"}));
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = (META.student + " - " + META.sheet).replace(/[\\/:*?"<>|]/g, "-") + ".pdf";
+        B.appendChild(link); link.click(); link.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      }).catch(function () {
+        var msg = document.getElementById("hwMsg");
+        if (msg) msg.textContent = "The PDF could not be created. Your answers are still here. Please try again.";
+      }).then(function () { button.disabled = false; button.textContent = label; });
+    };
+  });
+
+  // ---------- instant check after sending (Dasha, 2 Oct 2026) ----------
+  // Items with one clear answer get a tick, or a cross with the right answer, NEXT TO THE TASK.
+  // Items the pupil writes in her own words get "Feedback in the lesson".
+  // Answers come from <script id="hw-check"> (base64 JSON, written by publish_online_hw.py from the
+  // sheet's key: only exact / words / set answers, never the private open-answer guidance).
+  // The comparison mirrors the Homework mailer (Admin/Homework backend/Code.gs), so the page and
+  // Dasha's email always agree.
+  function answerOf(el) {
+    if (el.classList.contains("circle-words")) return [].map.call(el.querySelectorAll(".hw-circled"), function (w) { return w.textContent; }).join(", ");
+    return val(el).trim();
+  }
+  var CHECK = null, CHECKED = "hw-checked-" + META.sheetId;
+  try {
+    var ce = document.getElementById("hw-check");
+    if (ce) CHECK = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(ce.textContent.trim()), function (c) { return c.charCodeAt(0); })));
+  } catch (e) { CHECK = null; }
+  function cNorm(s) { var v=String(s || "").toLowerCase().replace(/[\s,]/g, ""); var m=v.match(/^(\d+(?:\.\d+)?)k$/); return m ? String(Number(m[1])*1000) : v; }
+  function cWords(s) { return String(s || "").toLowerCase().replace(/[,.]/g, " ").replace(/\s+/g, " ").trim(); }
+  function cSet(s) { return String(s || "").toLowerCase().split(/[\s,]+/).filter(String).sort().join(","); }
+  function seen(el) { return !!el && !el.closest("[hidden], .store, .tp-stores"); }
+  function writable(el) { return /^(TEXTAREA|INPUT)$/.test(el.tagName) || el.isContentEditable || el.classList.contains("circle-words"); }
+  var checking = false;
+// BEGIN UNORDERED ANSWER MATCHER — shared by pupil and teacher checks.
+function matchHomeworkAnswers_(answers, keys) {
+  var result = Object.create(null), groups = Object.create(null);
+  function typeOf(key) { return key && (key.type || key.t); }
+  function matches(value, key) {
+    var type = typeOf(key);
+    if (!String(value || '').trim() || ['exact', 'words', 'set'].indexOf(type) < 0) return false;
+    function normalize(s) {
+      s = String(s || '').toLowerCase();
+      if (type === 'words') return s.replace(/[,.]/g, ' ').replace(/\s+/g, ' ').trim();
+      if (type === 'set') return s.split(/[\s,]+/).filter(String).sort().join(',');
+      return s.replace(/[\s,]/g, '');
+    }
+    return normalize(value) === normalize(key.a);
+  }
+  answers.forEach(function(answer) {
+    var key = keys[answer.k], type = typeOf(key);
+    result[answer.k] = {
+      result: !String(answer.a || '').trim() ? 'blank' : !key || !key.a ? 'missing' : type === 'open' ? 'manual' : matches(answer.a, key) ? 'correct' : 'incorrect',
+      expected: key ? key.a : ''
+    };
+    var group = key && (key.group || key.g);
+    if (group && ['exact', 'words', 'set'].indexOf(type) >= 0) {
+      if (!groups[group]) groups[group] = [];
+      groups[group].push(answer);
+    }
+  });
+  Object.keys(groups).forEach(function(group) {
+    var rows = groups[group], targets = Object.keys(keys).filter(function(k) {
+      return (keys[k].group || keys[k].g) === group && ['exact', 'words', 'set'].indexOf(typeOf(keys[k])) >= 0;
+    }), owners = Object.create(null), matched = Object.create(null);
+    // One expected answer can satisfy only one field, even if entered twice.
+    rows.forEach(function(row) {
+      var ordered = targets.filter(function(k) { return k === row.k; }).concat(targets.filter(function(k) { return k !== row.k; }));
+      for (var i = 0; i < ordered.length; i++) {
+        var k = ordered[i];
+        if (!owners[k] && matches(row.a, keys[k])) {
+          owners[k] = row.k; matched[row.k] = k; break;
+        }
+      }
+    });
+    var remaining = targets.filter(function(k) { return !owners[k]; });
+    rows.forEach(function(row) {
+      var target = matched[row.k];
+      if (target) result[row.k] = {result: 'correct', expected: keys[target].a};
+      else {
+        target = remaining.shift();
+        result[row.k] = {result: String(row.a || '').trim() ? 'incorrect' : 'blank', expected: target ? keys[target].a : ''};
+      }
+    });
+  });
+  return result;
+}
+// END UNORDERED ANSWER MATCHER
+
+  function showChecks(scope) {
+    scope = scope && scope.querySelectorAll ? scope : document;
+    if (!CHECK) return "";
+    checking = true;
+    scope.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
+    var right = 0, marked = 0, open = 0, lists = [];
+    var answers = Array.from(document.querySelectorAll("#sheet [data-k]"), function(el) { return {k: el.dataset.k, a: answerOf(el)}; });
+    var graded = matchHomeworkAnswers_(answers, CHECK);
+    scope.querySelectorAll(scope === document ? "#sheet [data-k]" : "[data-k]").forEach(function (el) {
+      var k = el.dataset.k, key = CHECK[k];
+      var vis = document.querySelector('[data-field="' + k + '"]');
+      var anchor = seen(vis) ? vis : (seen(el) ? el : null);
+      var node;
+      if (key && key.t && key.t !== "open") {
+        var ok = graded[k].result === "correct";
+        marked++; if (ok) right++;
+        node = document.createElement("span");
+        node.className = "hw-mark " + (ok ? "hw-ok" : "hw-no");
+        if (ok) node.textContent = "✓";
+        else { node.textContent = "✗ "; var r = document.createElement("span"); r.className = "hw-right"; r.textContent = graded[k].expected; node.appendChild(r); }
+      } else {
+        if (!anchor || anchor !== el || !writable(el)) return;   // hidden helpers and print-only boxes get nothing
+        open++;
+        node = document.createElement("span");
+        node.className = "hw-mark hw-open";
+        node.textContent = "Feedback in the lesson";
+      }
+      if (!anchor) {   // a hidden data store with no visible twin: list it under the task it belongs to
+        var host = el.parentElement; while (host && !seen(host)) host = host.parentElement;
+        if (!host) return;
+        var list = host.querySelector(":scope > .hw-mark-list");
+        if (!list) { list = document.createElement("div"); list.className = "hw-mark-list"; host.appendChild(list); }
+        var row = document.createElement("div");
+        row.textContent = (el.dataset.label || k).replace(/:.*$/, "") + ": ";
+        row.appendChild(node); list.appendChild(row);
+        return;
+      }
+      if (anchor.tagName === "BUTTON") { node.classList.add("hw-mark-in"); anchor.appendChild(node); return; }
+      if (node.textContent.length < 28) node.classList.add("hw-short");
+      if (anchor === el && el.classList.contains("hw-gap")) {   // letters typed inside a word: mark after the WHOLE word
+        var at = el, nx = el.nextSibling;
+        while (nx) {
+          if (nx.nodeType === 3) {
+            var cut = nx.textContent.search(/\s/);
+            if (cut === -1) { at = nx; nx = nx.nextSibling; continue; }
+            if (cut > 0) { nx.splitText(cut); at = nx; }
+            break;
+          }
+          if (nx.nodeType === 1 && !nx.matches("[data-k]") && !/^\s/.test(nx.textContent) && getComputedStyle(nx).display.indexOf("inline") === 0) {
+            at = nx; if (/\s/.test(nx.textContent)) break; nx = nx.nextSibling; continue;
+          }
+          break;
+        }
+        at.parentNode.insertBefore(node, at.nextSibling); return;
+      }
+      if (anchor === el && (/^(INPUT|SELECT)$/.test(el.tagName) || getComputedStyle(el).display.indexOf("inline") === 0)) {
+        anchor.parentNode.insertBefore(node, anchor.nextSibling); return;   // inline: right after the box or menu
+      }
+      node.classList.add("hw-mark-blk");
+      if (anchor !== el) { anchor.appendChild(node); return; }   // inside the visible card, tile bank or reply group
+      var below = el;   // under a writing box, but never squeezed into a side-by-side row with it
+      while (below.parentElement && below.parentElement.id !== "sheet") {
+        var cs = getComputedStyle(below.parentElement);
+        if (cs.display.indexOf("grid") >= 0 || (cs.display.indexOf("flex") >= 0 && cs.flexDirection.indexOf("row") === 0)) below = below.parentElement; else break;
+      }
+      below.parentNode.insertBefore(node, below.nextSibling);
+    });
+    checking = false;
+    if (!marked) return open ? "Dasha will read it. Your own writing: feedback in the lesson." : "";
+    return right + " of " + marked + " right. ✗ shows the right answer." + (open ? " Your own writing: feedback in the lesson." : "");
+  }
+  window.hwShowChecks = showChecks;
+  function recheck() { return; // Blocks are explicitly rechecked after edits.
+    var t = null;
+    document.addEventListener("input", function () { if (checking) return; clearTimeout(t); t = setTimeout(showChecks, 150); }, true);
+    document.addEventListener("change", function () { if (checking) return; clearTimeout(t); t = setTimeout(showChecks, 150); }, true);
+  }
+  if (CHECK) {
+    var wasChecked = false; try { wasChecked = localStorage.getItem(CHECKED) === "1"; } catch (e) {}
+    if (false) { // Block flow restores checked state instead.
+      var later = function () { setTimeout(function () { var sc = showChecks(); if (!recheck.on) { recheck.on = true; recheck(); } var msg = document.getElementById("hwMsg"); if (msg && sc) msg.textContent = "Sent! " + sc; }, 600); };
+      if (document.readyState === "complete") later(); else window.addEventListener("load", later);
+    }
+  }
+  window.hwSend = function () {
+    var btn = document.getElementById("hwSend"), msg = document.getElementById("hwMsg"), answers = [];
+    document.querySelectorAll("[data-k]").forEach(function (el) {
+      var answer = answerOf(el), punctuationKey = CHECK && CHECK[el.dataset.k];
+      if(el.classList.contains("num") && /^\d+(?:\.\d+)?\s*k$/i.test(answer.trim())) answer=cNorm(answer);
+      if ((el.dataset.k === "e3" || el.dataset.k === "e4") && punctuationKey && cNorm(answer) === cNorm(punctuationKey.a) && answer.replace(/\s+/g," ").trim() !== punctuationKey.a.replace(/\s+/g," ").trim()) {
+        answer += " [Selected sentence contains " + (answer.match(/,/g)||[]).length + " comma(s).]";
+      }
+      answers.push({ k: el.dataset.k, q: el.dataset.label || el.dataset.k, a: answer });
+    });
+    var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q); }).length;
+    if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return false;
+    btn.disabled = true; msg.textContent = "Sending… (this takes a few seconds)";
+    // Mark FIRST, so the PDF Dasha receives shows the ticks, crosses and right answers too
+    // (Dasha, 7 Oct 2026: «чтобы в пдф которая мне приходит тоже были видны правильные ответы»).
+    if (typeof window.claraBeforeSubmit === "function") window.claraBeforeSubmit();
+    var score = showChecks();
+    try { if (typeof window.hwShowExtra === "function") window.hwShowExtra(); } catch (e) {}
+    // clara-confirmed-delivery-v1: a PDF failure must not prevent answer delivery.
+    return makePDF().catch(function () { return null; })
+      .then(function (pdf) {
+        msg.textContent = "Sending your answers… Please keep this page open.";
+        var controller = new AbortController();
+        var timeout = setTimeout(function () { controller.abort(); }, 45000);
+        return fetch(SEND_URL, {
+          method: "POST", mode: "cors", credentials: "omit", signal: controller.signal,
+          headers: {"Content-Type": "text/plain;charset=utf-8"},
+          body: JSON.stringify({key: SEND_KEY, student: META.student, sheet: META.sheet,
+            sheetId: META.sheetId, answers: answers, pdf: pdf})
+        }).then(function (response) {
+          if (!response.ok || response.type === "opaque") throw new Error("No delivery confirmation");
+          return response.text();
+        }).then(function (reply) {
+          if (reply.trim() !== "ok") throw new Error("Submission was not accepted");
+        }).finally(function () { clearTimeout(timeout); });
+      })
+      .then(function () {
+        if (!recheck.on) { recheck.on = true; recheck(); }
+        try { localStorage.setItem(CHECKED, "1"); } catch (e) {}
+        msg.textContent = "Submitted to Dasha. " + (score || "Dasha will check it. ✓");
+        btn.textContent = "Submitted ✓";
+        if (window.claraSubmissionDone) window.claraSubmissionDone();
+        return true;
+      })
+      .catch(function () {
+        // Keep the marked, locked first attempt available for another delivery attempt.
+        if (window.claraSubmissionFailed) window.claraSubmissionFailed();
+        btn.disabled = false;
+        msg.textContent = "We could not confirm delivery. Your answers are still saved here. Please try sending again, or save a PDF to share with Dasha.";
+        return false;
+      });
+  };
+})();
+</script>
+<script id="clara-block-flow">/* Decorative friends are separate from the exact earned-leaf count. */
+window.claraTreeArt=(()=>{
+ const face=(x,y)=>`<g fill="#59483f"><circle cx="${x-5}" cy="${y}" r="1.8"/><circle cx="${x+5}" cy="${y}" r="1.8"/><path d="M${x-3} ${y+5}q3 3 6 0" fill="none" stroke="#59483f" stroke-width="1.6" stroke-linecap="round"/></g><g fill="#efa8a0"><ellipse cx="${x-10}" cy="${y+4}" rx="3" ry="2"/><ellipse cx="${x+10}" cy="${y+4}" rx="3" ry="2"/></g>`;
+ const rabbit=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><ellipse cx="-8" cy="-24" rx="6" ry="18" fill="#fff8e9" stroke="#c5a88e" stroke-width="2" transform="rotate(-12 -8 -24)"/><ellipse cx="9" cy="-25" rx="6" ry="19" fill="#fff8e9" stroke="#c5a88e" stroke-width="2" transform="rotate(12 9 -25)"/><path d="M-8 -35v19M9 -37v20" stroke="#f1bdba" stroke-width="3" stroke-linecap="round"/><ellipse cy="10" rx="23" ry="25" fill="#fff8e9" stroke="#c5a88e" stroke-width="2"/><ellipse cx="-12" cy="32" rx="9" ry="4" fill="#f6e5d2"/><ellipse cx="12" cy="32" rx="9" ry="4" fill="#f6e5d2"/>${face(0,5)}</g>`;
+ const berry=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-22 -4Q-26 -23 0 -20Q26 -23 22 -4Q12 25 0 29Q-12 25-22-4Z" fill="#efaaa8" stroke="#bf7b79" stroke-width="2"/><path d="M0-17l-15-10 7 0-1-10 10 12 10-11-1 11 14-1-13 10" fill="#87af8a" stroke="#658c6b" stroke-width="1.5"/><g fill="#fff1cc"><ellipse cx="-14" cy="-4" rx="1.4" ry="2"/><ellipse cx="14" cy="-4" rx="1.4" ry="2"/><ellipse cx="-10" cy="15" rx="1.4" ry="2"/><ellipse cx="10" cy="15" rx="1.4" ry="2"/><ellipse cy="23" rx="1.4" ry="2"/></g>${face(0,1)}</g>`;
+ const pear=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-11-14Q-10-30 1-28Q13-27 12-11Q33 15 16 26Q0 37-18 25Q-33 12-11-14Z" fill="#e6d491" stroke="#b5a86e" stroke-width="2"/><path d="M1-28q-1-10 5-14" fill="none" stroke="#99734e" stroke-width="3" stroke-linecap="round"/><path d="M4-32q5-15 17-10Q17-30 4-32" fill="#8eb89a"/>${face(0,8)}</g>`;
+ const cat=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-20 8Q-31-5-22-24L-8-15Q0-19 9-15L23-25Q31-3 20 8Q24 31 0 33Q-25 31-20 8Z" fill="#d5c7e8" stroke="#a898bc" stroke-width="2"/><path d="M-20-17l8 5-8 1M21-18l-8 6 9 1" fill="#edb9ce"/><path d="M19 24q19 2 15-13" fill="none" stroke="#a898bc" stroke-width="6" stroke-linecap="round"/>${face(0,0)}</g>`;
+ const crown=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-51 22C-77 12-68-20-46-24C-53-51-17-64 1-46C22-66 57-45 49-22C76-13 69 22 47 27C36 51 4 48-8 39C-28 52-54 42-51 22Z" fill="#f4dfbd" stroke="#d9bd92" stroke-width="2.3"/><path d="M-42-15q-14 7-11 19M-14-41q11-9 22 0" fill="none" stroke="#fff4dc" stroke-width="6" stroke-linecap="round"/></g>`;
+ function render(count,leaves){
+  const centres=count===3?[[157,170],[244,170],[200,122]]:count===2?[[166,201],[234,201]]:[[200,236]];
+  let earned='';
+  for(let n=0;n<leaves;n++){
+   const cluster=n%centres.length,slot=Math.floor(n/centres.length),angle=slot*2.39996,radius=9+Math.sqrt(slot)*10;
+   const x=centres[cluster][0]+Math.cos(angle)*radius,y=centres[cluster][1]+Math.sin(angle)*radius*.74;
+   earned+=`<g class="earned-leaf" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(slot*47+cluster*65)%180})"><path d="M0 10Q-17-1-9-17Q8-22 9-6Q8 3 0 10Z" fill="${['#639e7b','#83b590','#447f63'][n%3]}" stroke="#44725a" stroke-width="1.2"/><path d="M0 7L-2-12" stroke="#cde3b6" stroke-width="1.2" stroke-linecap="round"/></g>`;
+  }
+  // A single continuous canopy covers the branch joins at every growth stage.
+  const wood=count?`<path d="M177 329Q188 293 187 248L208 244Q207 291 225 329Q210 325 201 327Q189 324 177 329Z" fill="#c99a78" stroke="#a47b5b" stroke-width="2.5" stroke-linejoin="round"/><path d="M190 314q4-18 2-36" fill="none" stroke="#e9c9a8" stroke-width="4" stroke-linecap="round"/>${face(200,292)}`:'';
+  const foliage=count===3?crown(200,174,1.65):count===2?crown(200,203,1.19):count===1?crown(200,236,.64):'';
+  return `<svg viewBox="0 0 400 390" role="img" aria-label="Your tree: ${count} of 3 parts grown and ${leaves} green leaves"><rect width="400" height="390" rx="28" fill="#fbf5ec"/><circle cx="331" cy="57" r="23" fill="#f4d88a"/>${face(331,55)}<path d="M38 70q5-17 21-8q9-20 24-4q20-1 20 13H38" fill="#fffdf8"/><ellipse cx="202" cy="336" rx="156" ry="23" fill="#e9e6cf"/>${wood}${foliage}${earned}${count===0?'<ellipse cx="200" cy="323" rx="17" ry="11" fill="#bd8964" stroke="#966746" stroke-width="2"/><path d="M199 319l6-7" stroke="#e8bf96" stroke-width="3" stroke-linecap="round"/>':''}${rabbit(68,303,.8)}${cat(328,307,.83)}${berry(122,343,.55)}${pear(278,342,.53)}<g fill="#e6b7cb"><path d="M46 204q-18-20-23-3q-5 13 17 17q-18 10-8 18q11 9 17-13q10 16 18 7q9-13-13-15q19-12 8-20q-12-8-16 9Z" transform="translate(0 -25) scale(.7)"/></g><g fill="#eac67c"><circle cx="168" cy="352" r="3"/><circle cx="236" cy="350" r="3"/></g></svg>`;
+ }
+ return {render,header:`<svg class="friend-parade game-ui" viewBox="0 0 210 80" aria-hidden="true">${berry(32,42,.7)}${cat(102,38,.85)}${pear(173,42,.7)}</svg>`};
+})();
+
+(function(){
+'use strict';
+const sections=[...document.querySelectorAll('#sheet > .section')];
+const titles=['8s and 12s','Factor or multiple?','Ladders','Shared factors','Tool names'];
+const blockCount=sections.length;
+const icons=['1','2','3','4','5'];
+const storage='clara-blocks-v2-'+document.body.dataset.sheetId;
+let saved={};try{saved=JSON.parse(localStorage.getItem(storage)||'{}')}catch(e){}
+let current=Number.isInteger(saved.current)?Math.max(0,Math.min(blockCount-1,saved.current)):0;
+let done=Array.isArray(saved.done)?saved.done.slice(0,blockCount):[];
+const key=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(document.getElementById('hw-check').textContent.trim()),c=>c.charCodeAt(0))));
+const value=el=>('value' in el?el.value:el.innerText).trim();
+const setN=s=>String(s||'').toLowerCase().split(/[\s,]+/).filter(String).sort().join(',');
+const fieldLists=sections.map(section=>[...section.querySelectorAll('[data-k]')]);
+const fields=i=>fieldLists[i];
+const decks=[], pageNumbers=Array.isArray(saved.pages)?saved.pages.slice(0,blockCount):Array(blockCount).fill(0);
+const norm=s=>{const v=String(s||'').toLowerCase().replace(/[\s,]/g,'');const m=v.match(/^(\d+(?:\.\d+)?)k$/);return m?String(Number(m[1])*1000):v};
+const summary=i=>{let right=0,total=0,open=0;fields(i).forEach(el=>{const k=key[el.dataset.k];if(!k||k.t==='open'){open++;return}total++;if(value(el)&&(k.t==='set'?setN(value(el))===setN(k.a):norm(value(el))===norm(k.a)))right++});return {right,total,open}};
+const snapshot=i=>fields(i).map(el=>value(el));
+// A checked block is a final attempt. Restore the saved attempt before locking it,
+// including previously checked blocks from the earlier edition.
+done=sections.map((s,i)=>done[i]&&Array.isArray(done[i].answers)&&done[i].answers.length===fields(i).length?done[i]:null);
+sections.forEach((section,i)=>{if(!done[i])return;fields(i).forEach((el,j)=>{if('value' in el)el.value=done[i].answers[j];else el.textContent=done[i].answers[j];el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));});done[i].score=summary(i)});
+// Single final check: no intermediate scores or block-check buttons.
+let finalChecked=!!saved.finalChecked||done.every(Boolean);
+let sending=false, sent=!!saved.sent&&saved.deliveryConfirmed===1&&finalChecked;
+const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,finalChecked,sent,deliveryConfirmed:sent?1:0,pages:pageNumbers}))}catch(e){}};
+document.body.classList.add('mint-game');
+document.querySelector('.sheet-head').insertAdjacentHTML('beforeend',window.claraTreeArt.header);
+const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="43" value="0" aria-label="Answers saved"></progress><nav class="block-nav" aria-label="Homework blocks"></nav>';
+document.querySelector('.sheet-head').after(dashboard);
+const nav=dashboard.querySelector('nav');
+const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your tree is growing! 🌱</h2><div class="tree-layout"><div class="tree-scene"></div><div class="tree-story"><div class="tree-count" aria-live="polite"></div><p class="leaf-note">Your work saves as you go. Check and send everything at the end.</p></div></div>';
+document.getElementById('sheet').after(finish);
+const bar=document.querySelector('.hw-bar');bar.classList.add('available');
+const send=document.getElementById('hwSend'),msg=document.getElementById('hwMsg'),nativeSend=window.hwSend;
+msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');
+msg.textContent='Your answers have not been sent yet.';
+const results=document.createElement('div');results.className='final-answer-list';
+const allFields=()=>fieldLists.flat();
+const filled=i=>fields(i).filter(el=>value(el)).length;
+function lockBlock(section){section.classList.add('locked');section.querySelectorAll('[data-k],.pic-opt,.txt-opt,.tp-tile').forEach(el=>{if(el.hasAttribute('contenteditable'))el.setAttribute('contenteditable','false');if('disabled' in el)el.disabled=true;});}
+function renderResults(){
+ results.replaceChildren();if(!finalChecked)return;
+ const heading=document.createElement('h3');heading.textContent='All your answers';results.append(heading);
+ allFields().forEach(el=>{
+  const row=document.createElement('div');row.className='final-answer-row';
+  const label=document.createElement('strong');label.textContent=el.dataset.label||el.dataset.k;
+  const answer=document.createElement('p');answer.textContent='Your answer: '+(value(el)||'(blank)');
+  const mark=document.createElement('p'),k=key[el.dataset.k];
+  if(!k||k.t==='open')mark.textContent='Feedback in the lesson.';
+  else if(value(el)&&(k.t==='set'?setN(value(el))===setN(k.a):norm(value(el))===norm(k.a))){mark.textContent='✓ Correct';mark.className='final-correct';}
+  else{mark.textContent='Correct answer: '+k.a;mark.className='final-correction';}
+  row.append(label,answer,mark);results.append(row);
+ });
+}
+function update(){
+ document.body.classList.toggle('final-checked',finalChecked);
+ const answered=allFields().filter(el=>value(el)).length,total=allFields().length;
+ const count=finalChecked?blockCount:sections.filter((s,i)=>filled(i)===fields(i).length).length;
+ const leaves=finalChecked?done.reduce((n,d)=>n+(d?d.score.right:0),0):answered;
+ finish.querySelector('.tree-scene').innerHTML=window.claraTreeArt.render(Math.ceil(count*3/blockCount),leaves);
+ finish.querySelector('.tree-count').textContent=finalChecked?leaves+' correct answers':answered+' of '+total+' answers saved';
+ dashboard.querySelector('#gardenProgressText').textContent=answered+' of '+total+' answers saved';
+ dashboard.querySelector('progress').max=total;dashboard.querySelector('progress').value=answered;
+ nav.querySelectorAll('button').forEach((b,i)=>{b.setAttribute('aria-current',i===current?'step':'false');b.querySelector('.step-badge').textContent=icons[i];});
+ send.disabled=sending||sent;send.textContent=sending?'Sending…':sent?'Submitted ✓':finalChecked?'Send my results to Dasha':'Check & send to Dasha';
+ finish.querySelector('h2').textContent=sent?'All sent, lovely work! 🌿':finalChecked?'Your results 🌿':'Your tree is growing! 🌱';
+ if(decks[blockCount-1]){decks[blockCount-1].review.querySelector('h3').textContent=finalChecked?'Your results':'Ready to send?';decks[blockCount-1].review.querySelector('p').hidden=finalChecked;}
+ save();
+}
+window.claraBeforeSubmit=function(){
+ if(!finalChecked){done=sections.map((section,i)=>({answers:snapshot(i),score:summary(i)}));finalChecked=true;sections.forEach(lockBlock);renderResults();save();}
+};
+window.hwSend=function(){
+ if(sending||sent)return;
+ sending=true;document.getElementById('sheet').inert=true;update();
+ try{const result=nativeSend();if(result===false){window.claraSubmissionFailed();msg.textContent='Not sent. Your answers are still saved.'}return result;}
+ catch(error){window.claraSubmissionFailed();msg.textContent='Could not send. Your answers are still saved. Please try again.';}
+};
+window.claraSubmissionDone=function(){sending=false;sent=true;document.getElementById('sheet').inert=false;update()};
+window.claraSubmissionFailed=function(){sending=false;sent=false;document.getElementById('sheet').inert=false;update()};
+function show(i,focus=true){current=i;sections.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',i===j?'false':'true')});showPage(i,pageNumbers[i]||0,focus);update();}
+function showPage(i,n,focus=true){
+ const deck=decks[i];if(!deck)return;
+ n=Math.max(0,Math.min(deck.pages.length-1,n));pageNumbers[i]=n;
+ deck.pages.forEach((page,j)=>{page.classList.toggle('current-page',j===n);page.setAttribute('aria-hidden',j===n?'false':'true')});
+ deck.label.textContent=(n+1)+' / '+deck.pages.length+' · '+deck.pages[n].dataset.title;
+ deck.back.disabled=i===0&&n===0;
+ deck.next.hidden=i===blockCount-1&&n===deck.pages.length-1;
+ deck.next.textContent=n<deck.pages.length-1?'Next →':'Next block →';
+ deck.viewport.scrollTop=0;if(focus)deck.label.focus({preventScroll:true});save();
+}
+function paginate(section,i){
+ // Flatten layout-only wrappers, retaining every original question and field.
+ section.querySelectorAll('.keep:not(.task),.r-grid').forEach(el=>el.replaceWith(...el.childNodes));
+ section.querySelectorAll('.task').forEach(task=>{
+  const questions=[...task.querySelectorAll('.q')];if(questions.length){let after=task;questions.forEach(q=>{after.after(q);after=q});}
+  const label=task.querySelector(':scope > .role-label');
+  if(task.querySelector('.model')&&label){const tail=document.createElement('div');tail.className='task';let node=label;while(node){const next=node.nextSibling;tail.append(node);node=next}task.after(tail);}
+ });
+ const viewport=document.createElement('div');viewport.className='exercise-viewport';
+ const pages=[];let pending=[],hint='';
+ function add(nodes,title){const page=document.createElement('div');page.className='exercise-page';page.dataset.title=title;nodes.forEach(node=>page.append(node));pages.push(page);viewport.append(page);return page}
+ [...section.children].forEach(node=>{
+  if(node.matches('.sec-head,.store,.tp-stores'))return;
+  if(node.matches('.task')){
+   if(node.querySelector('.model,.chain-ex')){add([...pending,node],'Remember');pending=[];}
+   else{pending.push(node);hint=[...node.querySelectorAll('.lead,.small')].map(el=>{const copy=el.cloneNode(true);copy.querySelectorAll('.print-only').forEach(n=>n.remove());return copy.textContent}).join(' ').trim();}
+  }else if(node.matches('.q')){
+   const number=node.querySelector('.q-num')?.textContent||'';
+   const nodes=pending.length?[...pending,node]:[node];
+   const page=add(nodes,'Question '+number);
+   if(!pending.length&&hint){const help=document.createElement('p');help.className='game-ui exercise-hint';help.textContent=hint;page.prepend(help);}
+   pending=[];
+  }
+ });
+ if(pending.length)add(pending,'Instructions');
+ const review=i===blockCount-1?add([],'Finish & send'):null;
+ if(review){review.classList.add('game-ui','review-page');review.innerHTML='<h3>Ready to send?</h3><p>You can go back to review your work. This button checks all your answers and sends them to Dasha.</p>';}
+ const position=document.createElement('div');position.className='game-ui exercise-position';
+ const label=document.createElement('span');label.tabIndex=-1;label.setAttribute('aria-live','polite');position.append(label);
+ const reminder=pages.findIndex(p=>p.dataset.title==='Remember');
+ if(reminder>=0){const help=document.createElement('button');help.type='button';help.className='reminder-button';help.textContent='Remember';help.onclick=()=>showPage(i,reminder);position.append(help);}
+ const notice=document.createElement('p');notice.className='game-ui exercise-notice';notice.setAttribute('role','status');
+ section.append(position,notice,viewport);
+ return {pages,viewport,label,review,notice};
+}
+sections.forEach((section,i)=>{
+ const tab=document.createElement('button');tab.className='block-tab';tab.type='button';tab.innerHTML='<span class="step-badge"></span><span>'+titles[i]+'</span>';tab.onclick=()=>show(i);nav.append(tab);
+ const deck=paginate(section,i);decks[i]=deck;
+ const actions=document.createElement('div');actions.className='game-ui block-actions';
+ const back=document.createElement('button');back.className='garden-button';back.textContent='← Back';back.onclick=()=>{if(pageNumbers[i]>0)showPage(i,pageNumbers[i]-1);else{show(i-1);showPage(i-1,decks[i-1].pages.length-1)}};
+ const next=document.createElement('button');next.className='garden-button next-button';next.textContent='Next →';next.onclick=()=>{if(pageNumbers[i]<deck.pages.length-1)showPage(i,pageNumbers[i]+1);else if(i<blockCount-1)show(i+1)};
+ actions.append(back,next);Object.assign(deck,{back,next});section.append(actions);
+ if(deck.review)deck.review.append(bar,results);
+ ['click','pointerdown','keydown'].forEach(type=>section.addEventListener(type,event=>{if((done[i]||finalChecked)&&!event.target.closest('.game-ui')&&event.target.closest('button,input,select,textarea,[data-k],.tp-zone')){event.preventDefault();event.stopImmediatePropagation()}},true));
+ if(done[i])lockBlock(section);
+ ['input','change'].forEach(type=>section.addEventListener(type,()=>{if(!finalChecked)update()}));
+ showPage(i,pageNumbers[i]||0,false);
+});
+if(finalChecked){window.hwShowChecks();renderResults();}
+if(sent)msg.textContent='Your answers have been submitted to Dasha.';
+show(current,false);
+})();
+</script>
+</body>
+</html>

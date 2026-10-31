@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maria: Homework 31 October 2026</title>
-<!-- Lesson 31 Oct 2026: her London holiday. Single target: past simple of the verbs her story needs (went, saw, fed, had, was). Lesson facts from the verified brief; no deck dated 31 Oct on disk. Typed gaps. -->
+<!-- Lesson 31 Oct 2026. Single target, as taught in the lesson: does + bare verb (Does she always play the piano?). Words of the lesson and the job game. Past simple deliberately out: not taught (Dasha, 31 Oct). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
 <style>
@@ -105,7 +105,7 @@
   .q { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; page-break-inside: avoid; break-inside: avoid; }
   .prompt { font-size: 21px; line-height: 2.25; }@media print { }
   /* missing letters */
-  .words { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(2, auto); grid-auto-flow: column; gap: 12px 26px; }
+  .words { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 12px 26px; }
   .wcard { display: flex; align-items: flex-start; gap: 12px; page-break-inside: avoid; break-inside: avoid; }
   .wbody { min-width: 0; }
   .clue { font-size: 19px; line-height: 1.35; margin-bottom: 4px; }
@@ -129,7 +129,9 @@
     display: block; width: 100%; font: inherit; font-size: 19px; line-height: 1.55; color: #1d4ed8; resize: vertical;
     padding: 10px 14px; border: 2.5px solid #90caf9; border-radius: 14px; background: #f5fbff;
   }
-  section textarea.big { min-height: 210px; }
+  section textarea.big.mid { min-height: 112px; }
+  .instr.second { margin-top: 14px; }
+  .note.after { margin: 10px 0 0; }
 
   /* Dasha's emailed PDF (hw.js renders the page in a narrow frame with body.hw-pdf-mode): tile and mark stay inside the sentence */
   body.hw-pdf-mode header.banner { min-height: 0; padding: 10px 20px 14px; margin-bottom: 8px; }
@@ -166,7 +168,7 @@
     .clue { font-size: 18px; }
     .word { font-size: 27px; }
     .asks, .asks ul { gap: 2px 14px; }
-    section textarea.big { min-height: 230px; }
+    section textarea.big.mid { min-height: 120px; }
   }
 
   @media print {
@@ -200,7 +202,9 @@
     .asks, .asks ul { font-size: 12px; gap: 1px 14px; margin-bottom: 5px; }
     .asks ul { margin-bottom: 0; }
     textarea.big { font-size: 13px; border-width: 1.5px; border-radius: 12px; padding: 4px 10px; resize: none; }
-    section textarea.big { min-height: 118px; height: 118px; }
+    section textarea.big.mid { min-height: 54px; height: 54px; }
+    .instr.second { margin-top: 6px; }
+    .note.after { margin: 4px 0 0; }
     textarea.big::placeholder { color: transparent; }
   }
 </style>
@@ -216,75 +220,71 @@
   <div class="dots" aria-hidden="true"></div>
   <div class="txt">
     <span class="kicker">Maria&rsquo;s homework &middot; 31&nbsp;October</span><br>
-    <div class="plaque"><span><h1>A trip to&nbsp;London</h1></span></div>
+    <div class="plaque"><span><h1>Who does&nbsp;what?</h1></span></div>
   </div>
-  <div class="hero" role="img" aria-label="A red London bus">
+  <div class="hero" role="img" aria-label="A small sailing boat">
     <svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect width="148" height="148" fill="#bfe7fb"/>
-      <circle cx="30" cy="30" r="10" fill="#fff" opacity=".85"/><circle cx="43" cy="27" r="13" fill="#fff" opacity=".85"/><circle cx="56" cy="31" r="9" fill="#fff" opacity=".85"/>
-      <rect y="112" width="148" height="36" fill="#8d99a6"/>
-      <rect y="126" width="148" height="3" fill="#fff" opacity=".7"/>
-      <rect x="24" y="38" width="102" height="76" rx="9" fill="#d32f2f"/>
-      <rect x="24" y="72" width="102" height="5" fill="#ffd21f"/>
-      <g fill="#e3f4fd" stroke="#8e1c1c" stroke-width="1.5">
-        <rect x="31" y="45" width="20" height="20" rx="3"/><rect x="55" y="45" width="20" height="20" rx="3"/><rect x="79" y="45" width="20" height="20" rx="3"/><rect x="103" y="45" width="17" height="20" rx="3"/>
-        <rect x="31" y="83" width="20" height="17" rx="3"/><rect x="55" y="83" width="20" height="17" rx="3"/><rect x="79" y="83" width="16" height="17" rx="3"/><rect x="100" y="83" width="20" height="26" rx="3"/>
-      </g>
-      <rect x="109.5" y="84" width="1.5" height="24" fill="#8e1c1c"/>
-      <g><circle cx="46" cy="114" r="11" fill="#263238"/><circle cx="46" cy="114" r="4.5" fill="#cfd8dc"/><circle cx="102" cy="114" r="11" fill="#263238"/><circle cx="102" cy="114" r="4.5" fill="#cfd8dc"/></g>
+      <circle cx="116" cy="32" r="13" fill="#ffd21f"/>
+      <rect y="104" width="148" height="44" fill="#29b6f6"/>
+      <path d="M70 26 L70 88 L28 88 Z" fill="#fff" stroke="#1976d2" stroke-width="2"/>
+      <path d="M76 38 L76 88 L112 88 Z" fill="#fb8c00"/>
+      <rect x="71" y="22" width="4" height="72" fill="#5d4037"/>
+      <path d="M26 94 L120 94 L106 114 L40 114 Z" fill="#d32f2f"/>
+      <path d="M0 122 C20 114 40 130 60 122 C80 114 100 130 120 122 C130 118 140 120 148 122" fill="none" stroke="#fff" stroke-width="4"/>
     </svg>
   </div>
   <svg class="waves" viewBox="0 0 800 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C80,2 160,42 240,22 C320,2 400,42 480,22 C560,2 640,42 720,22 C760,12 790,16 800,20 L800,46 L0,46 Z" fill="#29b6f6"/><path d="M0,32 C90,16 170,46 260,32 C350,18 430,46 520,32 C610,18 700,46 800,30 L800,46 L0,46 Z" fill="#e3f4fd"/></svg>
 </header>
 
 <section class="ex-card c1">
-  <div class="ex-header"><span>Exercise 1: words for your&nbsp;trip</span></div>
+  <div class="ex-header"><span>Exercise 1: words from our&nbsp;lesson</span></div>
   <div class="ex-body">
     <p class="instr"><span class="scr">Type</span><span class="prt">Write</span> the missing letters: one letter for each&nbsp;dash.</p>
     <p class="note">Every letter is really in the word, even if you can&rsquo;t hear&nbsp;it.</p>
     <div class="words">
       <div class="wcard"><span class="n">1</span><div class="wbody"><p class="clue">A line of people waiting at a shop or a bus&nbsp;stop.</p><p class="word">q<input class="hw-field hw-gap g3" type="text" maxlength="3" placeholder="_ _ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s1" data-label="1.1 q___e" aria-label="Missing letters, word 1">e</p></div></div>
-      <div class="wcard"><span class="n">2</span><div class="wbody"><p class="clue">A small animal with a big soft tail. It climbs&nbsp;trees.</p><p class="word">squi<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s2" data-label="1.2 squi__el" aria-label="Missing letters, word 2">el</p></div></div>
+      <div class="wcard"><span class="n">2</span><div class="wbody"><p class="clue">A soft green plant on old walls and&nbsp;trees.</p><p class="word">mo<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s2" data-label="1.2 mo__" aria-label="Missing letters, word 2"></p></div></div>
       <div class="wcard"><span class="n">3</span><div class="wbody"><p class="clue">A bright green bird with a long&nbsp;tail.</p><p class="word">parak<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s3" data-label="1.3 parak__t" aria-label="Missing letters, word 3">t</p></div></div>
-      <div class="wcard"><span class="n">4</span><div class="wbody"><p class="clue">Shapes of very old animals and plants, kept in&nbsp;stone.</p><p class="word">foss<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s4" data-label="1.4 foss__s" aria-label="Missing letters, word 4">s</p></div></div>
+      <div class="wcard"><span class="n">4</span><div class="wbody"><p class="clue">A person who works on a&nbsp;ship.</p><p class="word">sail<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s4" data-label="1.4 sail__" aria-label="Missing letters, word 4"></p></div></div>
+      <div class="wcard"><span class="n">5</span><div class="wbody"><p class="clue">A small animal with a big soft tail. It climbs&nbsp;trees.</p><p class="word">squi<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s5" data-label="1.5 squi__el" aria-label="Missing letters, word 5">el</p></div></div>
+      <div class="wcard"><span class="n">6</span><div class="wbody"><p class="clue">Shapes of very old animals and plants, kept in&nbsp;stone.</p><p class="word">foss<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s6" data-label="1.6 foss__s" aria-label="Missing letters, word 6">s</p></div></div>
     </div>
   </div>
 </section>
 
 <div class="pairs" aria-label="Remember">
-  <span class="lab">Today &rarr; yesterday</span>
-  <span class="chip b-sky">go &rarr; went</span>
-  <span class="chip b-orange">see &rarr; saw</span>
-  <span class="chip b-green">feed &rarr; fed</span>
-  <span class="chip b-purple">have &rarr; had</span>
-  <span class="chip b-pink">is &rarr; was</span>
+  <span class="lab">Does already has the&nbsp;s</span>
+  <span class="chip b-sky">she plays &rarr; does she play?</span>
+  <span class="chip b-orange">he watches &rarr; does he watch?</span>
 </div>
 
 <section class="ex-card c2">
-  <div class="ex-header"><span>Exercise 2: Zoe&rsquo;s day in&nbsp;London</span></div>
+  <div class="ex-header"><span>Exercise 2: does she&nbsp;&hellip;?</span></div>
   <div class="ex-body">
-    <p class="instr"><span class="scr">Type</span><span class="prt">Write</span> the word in brackets in the&nbsp;past.</p>
-    <div class="example-box"><span class="label">Like this</span><p>Yesterday I <span class="like-gap">bought</span> a red&nbsp;hat. <span class="cue">(buy)</span></p></div>
-    <div class="q row"><span class="n">1</span><p class="prompt">Last Saturday Zoe and her aunt <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g1" data-label="2.1 Last Saturday Zoe and her aunt ___ to London. (go)" aria-label="Sentence 1"> to&nbsp;London. <span class="cue">(go)</span></p></div>
-    <div class="q row"><span class="n">2</span><p class="prompt">It <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g2" data-label="2.2 It ___ a sunny day. (is)" aria-label="Sentence 2"> a sunny&nbsp;day. <span class="cue">(is)</span></p></div>
-    <div class="q row"><span class="n">3</span><p class="prompt">From a boat on the river, they <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g3" data-label="2.3 From a boat on the river, they ___ a very big clock. (see)" aria-label="Sentence 3"> a very big&nbsp;clock. <span class="cue">(see)</span></p></div>
-    <div class="q row"><span class="n">4</span><p class="prompt">At one o&rsquo;clock, they <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g4" data-label="2.4 At one o'clock, they ___ lunch in a park. (have)" aria-label="Sentence 4"> lunch in a&nbsp;park. <span class="cue">(have)</span></p></div>
-    <div class="q row"><span class="n">5</span><p class="prompt">Zoe <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g5" data-label="2.5 Zoe ___ the ducks some bread from her sandwich. (feed)" aria-label="Sentence 5"> the ducks some bread from her&nbsp;sandwich. <span class="cue">(feed)</span></p></div>
-    <div class="q row"><span class="n">6</span><p class="prompt">Then they <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g6" data-label="2.6 Then they ___ a fox under a tree. (see)" aria-label="Sentence 6"> a fox under a&nbsp;tree. <span class="cue">(see)</span></p></div>
-    <div class="q row"><span class="n">7</span><p class="prompt">Her aunt <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g7" data-label="2.7 Her aunt ___ the pigeons some bread too. (feed)" aria-label="Sentence 7"> the pigeons some bread&nbsp;too. <span class="cue">(feed)</span></p></div>
-    <div class="q row"><span class="n">8</span><p class="prompt">After lunch, they <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g8" data-label="2.8 After lunch, they ___ to a toy shop. (go)" aria-label="Sentence 8"> to a toy&nbsp;shop. <span class="cue">(go)</span></p></div>
-    <div class="q row"><span class="n">9</span><p class="prompt">In the evening, Zoe <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g9" data-label="2.9 In the evening, Zoe ___ very tired. (is)" aria-label="Sentence 9"> very&nbsp;tired. <span class="cue">(is)</span></p></div>
+    <p class="instr">Make the question: <span class="scr">type</span><span class="prt">write</span> one&nbsp;word.</p>
+    <div class="example-box"><span class="label">Like this</span><p>He sings in a band. &rarr; <b>Does he</b> <span class="like-gap">sing</span> in a&nbsp;band?</p></div>
+    <div class="q row"><span class="n">1</span><p class="prompt">The farmer works every&nbsp;day. &rarr; <b>Does he</b> <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g1" data-label="2.1 The farmer works every day. Does he ___ every day?" aria-label="Question 1"> every&nbsp;day?</p></div>
+    <div class="q row"><span class="n">2</span><p class="prompt">Mrs Lee teaches&nbsp;children. &rarr; <b>Does she</b> <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g2" data-label="2.2 Mrs Lee teaches children. Does she ___ children?" aria-label="Question 2"> children?</p></div>
+    <div class="q row"><span class="n">3</span><p class="prompt">The sailor lives on a&nbsp;ship. &rarr; <b>Does he</b> <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g3" data-label="2.3 The sailor lives on a ship. Does he ___ on a ship?" aria-label="Question 3"> on a&nbsp;ship?</p></div>
+    <div class="q row"><span class="n">4</span><p class="prompt">The dog finds bad&nbsp;things. &rarr; <b>Does it</b> <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g4" data-label="2.4 The dog finds bad things. Does it ___ bad things?" aria-label="Question 4"> bad&nbsp;things?</p></div>
+    <div class="q row"><span class="n">5</span><p class="prompt">Zoe goes to work by&nbsp;bus. &rarr; <b>Does she</b> <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g5" data-label="2.5 Zoe goes to work by bus. Does she ___ to work by bus?" aria-label="Question 5"> to work by&nbsp;bus?</p></div>
+    <div class="q row"><span class="n">6</span><p class="prompt">The pilot always wears a&nbsp;hat. &rarr; <b>Does he always</b> <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g6" data-label="2.6 The pilot always wears a hat. Does he always ___ a hat?" aria-label="Question 6"> a&nbsp;hat?</p></div>
+    <div class="q row"><span class="n">7</span><p class="prompt">The vet helps sick&nbsp;animals. &rarr; <b>Does she</b> <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g7" data-label="2.7 The vet helps sick animals. Does she ___ sick animals?" aria-label="Question 7"> sick&nbsp;animals?</p></div>
   </div>
 </section>
 
 <section class="ex-card c3">
-  <div class="ex-header"><span>Exercise 3: the test&nbsp;question</span></div>
+  <div class="ex-header"><span>Exercise 3: guess the&nbsp;job</span></div>
   <div class="ex-body">
-    <p class="testq">Have you ever visited an English-speaking&nbsp;country?</p>
-    <p class="instr">Write 4 or 5 sentences about your trip to&nbsp;London.</p>
-    <div class="asks"><span class="lead">Tell me:</span><ul><li>Where did you&nbsp;go?</li><li>What did you&nbsp;see?</li><li>What did you do in the&nbsp;park?</li><li>What was your favourite&nbsp;place?</li></ul></div>
-    <div class="example-box"><span class="label">Like this</span><p>Yes, I have. Last year I visited Dublin. I bought a green&nbsp;hat.</p></div>
-    <textarea class="hw-field big" rows="7" data-k="w1" data-label="3. Have you ever visited an English-speaking country?" aria-label="Your answer" placeholder="Type your answer here"></textarea>
+    <p class="instr">Think of a job. Write 3 sentences about it. Don&rsquo;t write the&nbsp;job!</p>
+    <div class="asks"><ul><li>What does he or she&nbsp;do?</li><li>Where does he or she&nbsp;work?</li></ul></div>
+    <div class="example-box"><span class="label">Like this</span><p>She helps sick people. She works in a&nbsp;hospital.</p></div>
+    <textarea class="hw-field big mid" rows="4" data-k="w1" data-label="3a. Think of a job. Write 3 sentences about it." aria-label="Your job sentences" placeholder="Type your answer here"></textarea>
+    <p class="instr second">Now write 2 questions to guess a&nbsp;job.</p>
+    <div class="example-box"><span class="label">Like this</span><p>Does he drive a big&nbsp;car?</p></div>
+    <textarea class="hw-field big mid" rows="3" data-k="w2" data-label="3b. Write 2 questions to guess a job." aria-label="Your questions" placeholder="Type your answer here"></textarea>
+    <p class="note after">We can play this in the lesson: you ask, I&nbsp;answer.</p>
   </div>
 </section>
 
@@ -294,7 +294,7 @@
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJzMSI6IHsidCI6ICJleGFjdCIsICJhIjogInVldSJ9LCAiczIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyciJ9LCAiczMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJlZSJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpbCJ9LCAiZzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3ZW50In0sICJnMiI6IHsidCI6ICJleGFjdCIsICJhIjogIndhcyJ9LCAiZzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYXcifSwgImc0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiaGFkIn0sICJnNSI6IHsidCI6ICJleGFjdCIsICJhIjogImZlZCJ9LCAiZzYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYXcifSwgImc3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZmVkIn0sICJnOCI6IHsidCI6ICJleGFjdCIsICJhIjogIndlbnQifSwgImc5IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2FzIn0sICJ3MSI6IHsidCI6ICJvcGVuIn19</script>
+<script type="application/json" id="hw-check">eyJzMSI6IHsidCI6ICJleGFjdCIsICJhIjogInVldSJ9LCAiczIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzcyJ9LCAiczMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJlZSJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJvciJ9LCAiczUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyciJ9LCAiczYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpbCJ9LCAiZzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3b3JrIn0sICJnMiI6IHsidCI6ICJleGFjdCIsICJhIjogInRlYWNoIn0sICJnMyI6IHsidCI6ICJleGFjdCIsICJhIjogImxpdmUifSwgImc0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZmluZCJ9LCAiZzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJnbyJ9LCAiZzYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3ZWFyIn0sICJnNyI6IHsidCI6ICJleGFjdCIsICJhIjogImhlbHAifSwgIncxIjogeyJ0IjogIm9wZW4ifSwgIncyIjogeyJ0IjogIm9wZW4ifX0=</script>
 <script src="../assets/hw.js?v=20261029-answer-groups"></script>
 </body>
 </html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maria: Homework 31 October 2026</title>
+<!-- Lesson 31 Oct 2026: her London holiday. Single target: past simple of the verbs her story needs (went, saw, fed, had, was). Lesson facts from the verified brief; no deck dated 31 Oct on disk. Typed gaps. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+<style>
+  /* National Geographic Little Kids style: blue waves, slanted title plaques, ringed circle */
+  :root {
+    --blue: #1976d2; --sky: #0b8fd0; --sea: #e3f4fd; --orange: #e8690b; --purple: #7e3fa6;
+    --green: #3f9a1c; --pink: #d6336c; --yellow: #ffd21f; --ink: #1e1e1e; --paper: #ffffff;
+  }
+  @page { size: A4; margin: 9mm 11mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
+    font-size: 18px; color: var(--ink); background: var(--sea);
+    max-width: 1080px; margin: auto; padding: 16px 16px 20px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .prt { display: none; }
+
+  /* banner */
+  header.banner {
+    position: relative; overflow: hidden; border-radius: 22px;
+    background: var(--blue); color: #fff;
+    padding: 20px 24px 44px; margin-bottom: 16px; min-height: 176px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  header.banner .dots {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,.18) 2px, transparent 2.5px);
+    background-size: 16px 16px;
+  }
+  header.banner .waves { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 46px; }
+  header.banner .txt { position: relative; z-index: 1; }
+  .kicker {
+    display: inline-block; background: var(--yellow); color: var(--ink);
+    font-weight: 800; font-size: 13px; letter-spacing: .06em; text-transform: uppercase;
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .plaque {
+    display: inline-block; transform: skewX(-9deg) rotate(-2deg);
+    background: var(--orange); color: #fff; padding: 6px 20px 8px; border-radius: 8px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,.18);
+  }
+  .plaque > span { display: inline-block; transform: skewX(9deg); font-weight: 900; font-style: italic; }
+  header.banner h1 { font-size: 36px; line-height: 1.05; }
+  .hero {
+    position: relative; z-index: 1; flex-shrink: 0; width: 148px; height: 148px;
+    border-radius: 50%; border: 8px solid var(--yellow); box-shadow: 0 0 0 4px #fff;
+    overflow: hidden; background: #bfe7fb;
+  }
+  .hero svg { display: block; width: 100%; height: 100%; }
+
+  /* one-line reminder: the five pairs */
+  .pairs {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 10px 12px;
+    background: #fff; border-radius: 18px; padding: 12px 18px; margin-bottom: 4px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .pairs .lab { font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #56626c; white-space: nowrap; }
+  .chip { display: inline-block; color: #fff; font-weight: 800; font-size: 19px; padding: 6px 16px; border-radius: 999px; white-space: nowrap; }
+  .b-sky { background: var(--sky); } .b-orange { background: var(--orange); } .b-green { background: var(--green); }
+  .b-purple { background: var(--purple); } .b-pink { background: var(--pink); } .b-blue { background: var(--blue); }
+
+  /* exercise cards */
+  .ex-card { position: relative; margin: 12px 0 14px; padding-top: 16px; page-break-inside: avoid; break-inside: avoid; }
+  .ex-card > .ex-body { background: var(--paper); border-radius: 22px; padding: 30px 24px 20px; }
+  .ex-header {
+    position: absolute; top: 0; left: 18px; z-index: 1;
+    display: inline-block; transform: skewX(-9deg) rotate(-1.5deg);
+    color: #fff; padding: 5px 16px 6px; border-radius: 8px;
+    font-size: 13.5px; letter-spacing: .07em; text-transform: uppercase;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.16);
+  }
+  .ex-header > span { display: inline-block; transform: skewX(9deg); font-weight: 800; }
+  .ex-card.c1 .ex-header { background: var(--orange); }
+  .ex-card.c2 .ex-header { background: var(--green); }
+  .ex-card.c3 .ex-header { background: var(--purple); }
+  .instr { font-weight: 700; font-size: 25px; line-height: 1.25; margin-bottom: 6px; }
+  .note { font-size: 15px; color: #56626c; margin-bottom: 12px; }
+
+  .example-box {
+    background: #fff8d6; border: 3px dotted #f2b400; border-radius: 16px;
+    padding: 8px 14px; margin-bottom: 14px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px;
+  }
+  .example-box .label {
+    display: inline-block; background: var(--yellow); color: var(--ink);
+    font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    padding: 2px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .example-box b { color: var(--orange); }
+  .example-box .like-gap { display: inline-block; font-weight: 800; color: #1d4ed8; border: 2.5px solid #90caf9; background: #f5fbff; border-radius: 12px; padding: 0 10px; }
+
+  .n {
+    flex-shrink: 0; display: inline-block; width: 30px; height: 30px; line-height: 30px;
+    border-radius: 50%; background: var(--blue); color: #fff; text-align: center;
+    font-weight: 800; font-size: 15px; font-style: normal;
+  }
+  .q { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; page-break-inside: avoid; break-inside: avoid; }
+  .prompt { font-size: 21px; line-height: 2.25; }@media print { }
+  /* missing letters */
+  .words { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(2, auto); grid-auto-flow: column; gap: 12px 26px; }
+  .wcard { display: flex; align-items: flex-start; gap: 12px; page-break-inside: avoid; break-inside: avoid; }
+  .wbody { min-width: 0; }
+  .clue { font-size: 19px; line-height: 1.35; margin-bottom: 4px; }
+  .word { font-size: 30px; font-weight: 800; letter-spacing: .03em; color: var(--ink); line-height: 1.5; }
+  input.hw-gap {
+    display: inline-block; font: inherit; color: #1d4ed8; text-align: center; height: 1.5em; vertical-align: baseline; margin: 0 2px; padding: 0 3px;
+    border: 2.5px solid #90caf9; border-radius: 10px; background: #f5fbff; letter-spacing: .08em;
+  }
+  input.hw-gap::placeholder { color: #90a4ae; font-weight: 500; letter-spacing: 0; }
+  input.hw-gap.g2, input.hw-field.hw-gap.g2 { width: 2.9em; }
+  input.hw-gap.g3, input.hw-field.hw-gap.g3 { width: 3.8em; }
+  input.hw-gap.gv, input.hw-field.hw-gap.gv { width: 4.6em; font-weight: 800; }
+  .cue { font-weight: 700; color: var(--orange); white-space: nowrap; }
+
+  /* the test question */
+  .testq { font-size: 24px; font-weight: 500; color: var(--blue); line-height: 1.25; margin-bottom: 6px; }
+  .asks { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 20px; font-size: 16px; color: #39444d; margin-bottom: 12px; }
+  .asks ul { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; }
+  .asks .lead { font-weight: 500; }
+  textarea.big {
+    display: block; width: 100%; font: inherit; font-size: 19px; line-height: 1.55; color: #1d4ed8; resize: vertical;
+    padding: 10px 14px; border: 2.5px solid #90caf9; border-radius: 14px; background: #f5fbff;
+  }
+  section textarea.big { min-height: 210px; }
+
+  /* Dasha's emailed PDF (hw.js renders the page in a narrow frame with body.hw-pdf-mode): tile and mark stay inside the sentence */
+  body.hw-pdf-mode header.banner { min-height: 0; padding: 10px 20px 14px; margin-bottom: 8px; }
+  body.hw-pdf-mode header.banner h1 { font-size: 26px; }
+  body.hw-pdf-mode .kicker { margin-bottom: 5px; }
+  body.hw-pdf-mode .hero { width: 88px; height: 88px; border-width: 5px; box-shadow: none; }
+  body.hw-pdf-mode .pairs { padding: 4px 0; gap: 6px 7px; }
+  body.hw-pdf-mode .pairs .lab { font-size: 10.5px; }
+  body.hw-pdf-mode .chip { font-size: 13.5px; padding: 3px 10px; }
+  body.hw-pdf-mode .ex-card { margin: 6px 0 8px; }
+  body.hw-pdf-mode .ex-card > .ex-body { padding: 22px 8px 8px; }
+  body.hw-pdf-mode .instr { font-size: 19px; }
+  body.hw-pdf-mode .note { font-size: 12.5px; margin-bottom: 7px; }
+  body.hw-pdf-mode .example-box { padding: 4px 12px; margin-bottom: 8px; font-size: 15px; }  body.hw-pdf-mode .prompt { font-size: 16.5px; line-height: 1.75; }
+  body.hw-pdf-mode .q { margin-bottom: 3px; }  body.hw-pdf-mode .words { gap: 8px 20px; }
+  body.hw-pdf-mode .clue { font-size: 14.5px; }
+  body.hw-pdf-mode .word { font-size: 21px; line-height: 1.4; }
+  body.hw-pdf-mode .testq { font-size: 18px; }
+  body.hw-pdf-mode .asks { font-size: 13.5px; margin-bottom: 7px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 10px 16px; }
+    header.banner { flex-direction: column; align-items: flex-start; padding-bottom: 50px; }
+    header.banner h1 { font-size: 28px; }
+    .hero { width: 112px; height: 112px; border-width: 6px; }
+    .pairs { padding: 10px 12px; gap: 8px; }
+    .chip { font-size: 16px; padding: 4px 11px; }
+    .ex-card > .ex-body { padding: 28px 14px 16px; }
+    .instr { font-size: 21px; }
+    .testq { font-size: 21px; }
+    .q { align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+    .q .n { margin-top: 12px; }
+    .prompt { font-size: 19px; line-height: 2.2; }    .words { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; gap: 14px; }
+    .clue { font-size: 18px; }
+    .word { font-size: 27px; }
+    .asks, .asks ul { gap: 2px 14px; }
+    section textarea.big { min-height: 230px; }
+  }
+
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { font-size: 13px; padding: 0; max-width: none; background: #fff; }
+    header.banner { min-height: 0; padding: 9px 18px 26px; margin-bottom: 7px; border-radius: 16px; }
+    header.banner .waves { height: 24px; }
+    header.banner h1 { font-size: 24px; }
+    .kicker { font-size: 10.5px; margin-bottom: 5px; }
+    .hero { width: 84px; height: 84px; border-width: 5px; box-shadow: 0 0 0 2px #fff; }
+    .pairs { padding: 5px 12px; gap: 6px 8px; border: 2px solid #d6ecfa; border-radius: 14px; }
+    .pairs .lab { font-size: 10.5px; }
+    .chip { font-size: 13px; padding: 2px 10px; }
+    .ex-card { margin: 5px 0 5px; padding-top: 13px; }
+    .ex-card > .ex-body { padding: 19px 16px 10px; border: 2px solid #d6ecfa; border-radius: 16px; }
+    .ex-header { font-size: 10.5px; padding: 3px 12px 4px; }
+    .instr { font-size: 16px; margin-bottom: 3px; }
+    .note { font-size: 11.5px; margin-bottom: 6px; }
+    .example-box { padding: 3px 12px; margin-bottom: 7px; border-width: 2px; font-size: 13px; }
+    .example-box .label { font-size: 10px; }
+    .example-box .like-gap { border-width: 1.5px; border-radius: 8px; padding: 0 7px; }
+    .n { width: 21px; height: 21px; line-height: 21px; font-size: 11.5px; }
+    .q { gap: 9px; margin-bottom: 1px; }
+    .prompt { font-size: 14px; line-height: 2.05; }    .words { gap: 7px 20px; }
+    .wcard { gap: 9px; }
+    .clue { font-size: 12.5px; margin-bottom: 1px; }
+    .word { font-size: 18px; line-height: 1.4; }
+    input.hw-gap { border-width: 1.5px; border-radius: 7px; background: #fff; }
+    .testq { font-size: 16px; margin-bottom: 2px; }
+    .asks, .asks ul { font-size: 12px; gap: 1px 14px; margin-bottom: 5px; }
+    .asks ul { margin-bottom: 0; }
+    textarea.big { font-size: 13px; border-width: 1.5px; border-radius: 12px; padding: 4px 10px; resize: none; }
+    section textarea.big { min-height: 118px; height: 118px; }
+    textarea.big::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Maria" data-sheet="English 2026-10-31" data-sheet-id="maria-2026-10-31-english">
+<div id="sheet">
+
+
+<header class="banner">
+  <div class="dots" aria-hidden="true"></div>
+  <div class="txt">
+    <span class="kicker">Maria&rsquo;s homework &middot; 31&nbsp;October</span><br>
+    <div class="plaque"><span><h1>A trip to&nbsp;London</h1></span></div>
+  </div>
+  <div class="hero" role="img" aria-label="A red London bus">
+    <svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="148" height="148" fill="#bfe7fb"/>
+      <circle cx="30" cy="30" r="10" fill="#fff" opacity=".85"/><circle cx="43" cy="27" r="13" fill="#fff" opacity=".85"/><circle cx="56" cy="31" r="9" fill="#fff" opacity=".85"/>
+      <rect y="112" width="148" height="36" fill="#8d99a6"/>
+      <rect y="126" width="148" height="3" fill="#fff" opacity=".7"/>
+      <rect x="24" y="38" width="102" height="76" rx="9" fill="#d32f2f"/>
+      <rect x="24" y="72" width="102" height="5" fill="#ffd21f"/>
+      <g fill="#e3f4fd" stroke="#8e1c1c" stroke-width="1.5">
+        <rect x="31" y="45" width="20" height="20" rx="3"/><rect x="55" y="45" width="20" height="20" rx="3"/><rect x="79" y="45" width="20" height="20" rx="3"/><rect x="103" y="45" width="17" height="20" rx="3"/>
+        <rect x="31" y="83" width="20" height="17" rx="3"/><rect x="55" y="83" width="20" height="17" rx="3"/><rect x="79" y="83" width="16" height="17" rx="3"/><rect x="100" y="83" width="20" height="26" rx="3"/>
+      </g>
+      <rect x="109.5" y="84" width="1.5" height="24" fill="#8e1c1c"/>
+      <g><circle cx="46" cy="114" r="11" fill="#263238"/><circle cx="46" cy="114" r="4.5" fill="#cfd8dc"/><circle cx="102" cy="114" r="11" fill="#263238"/><circle cx="102" cy="114" r="4.5" fill="#cfd8dc"/></g>
+    </svg>
+  </div>
+  <svg class="waves" viewBox="0 0 800 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C80,2 160,42 240,22 C320,2 400,42 480,22 C560,2 640,42 720,22 C760,12 790,16 800,20 L800,46 L0,46 Z" fill="#29b6f6"/><path d="M0,32 C90,16 170,46 260,32 C350,18 430,46 520,32 C610,18 700,46 800,30 L800,46 L0,46 Z" fill="#e3f4fd"/></svg>
+</header>
+
+<section class="ex-card c1">
+  <div class="ex-header"><span>Exercise 1: words for your&nbsp;trip</span></div>
+  <div class="ex-body">
+    <p class="instr"><span class="scr">Type</span><span class="prt">Write</span> the missing letters: one letter for each&nbsp;dash.</p>
+    <p class="note">Every letter is really in the word, even if you can&rsquo;t hear&nbsp;it.</p>
+    <div class="words">
+      <div class="wcard"><span class="n">1</span><div class="wbody"><p class="clue">A line of people waiting at a shop or a bus&nbsp;stop.</p><p class="word">q<input class="hw-field hw-gap g3" type="text" maxlength="3" placeholder="_ _ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s1" data-label="1.1 q___e" aria-label="Missing letters, word 1">e</p></div></div>
+      <div class="wcard"><span class="n">2</span><div class="wbody"><p class="clue">A small animal with a big soft tail. It climbs&nbsp;trees.</p><p class="word">squi<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s2" data-label="1.2 squi__el" aria-label="Missing letters, word 2">el</p></div></div>
+      <div class="wcard"><span class="n">3</span><div class="wbody"><p class="clue">A bright green bird with a long&nbsp;tail.</p><p class="word">parak<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s3" data-label="1.3 parak__t" aria-label="Missing letters, word 3">t</p></div></div>
+      <div class="wcard"><span class="n">4</span><div class="wbody"><p class="clue">Very old dinosaur bones, now hard like&nbsp;stone.</p><p class="word">foss<input class="hw-field hw-gap g2" type="text" maxlength="2" placeholder="_ _" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="s4" data-label="1.4 foss__s" aria-label="Missing letters, word 4">s</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="pairs" aria-label="Remember">
+  <span class="lab">Today &rarr; yesterday</span>
+  <span class="chip b-sky">go &rarr; went</span>
+  <span class="chip b-orange">see &rarr; saw</span>
+  <span class="chip b-green">feed &rarr; fed</span>
+  <span class="chip b-purple">have &rarr; had</span>
+  <span class="chip b-pink">is &rarr; was</span>
+</div>
+
+<section class="ex-card c2">
+  <div class="ex-header"><span>Exercise 2: Zoe&rsquo;s day in&nbsp;London</span></div>
+  <div class="ex-body">
+    <p class="instr"><span class="scr">Type</span><span class="prt">Write</span> the word in brackets in the&nbsp;past.</p>
+    <div class="example-box"><span class="label">Like this</span><p>Yesterday I <span class="like-gap">bought</span> a red&nbsp;hat. <span class="cue">(buy)</span></p></div>
+    <div class="q row"><span class="n">1</span><p class="prompt">Last Saturday Zoe and her aunt <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g1" data-label="2.1 Last Saturday Zoe and her aunt ___ to London. (go)" aria-label="Sentence 1"> to&nbsp;London. <span class="cue">(go)</span></p></div>
+    <div class="q row"><span class="n">2</span><p class="prompt">It <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g2" data-label="2.2 It ___ a sunny day. (is)" aria-label="Sentence 2"> a sunny&nbsp;day. <span class="cue">(is)</span></p></div>
+    <div class="q row"><span class="n">3</span><p class="prompt">From a boat on the river, they <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g3" data-label="2.3 From a boat on the river, they ___ a very big clock. (see)" aria-label="Sentence 3"> a very big&nbsp;clock. <span class="cue">(see)</span></p></div>
+    <div class="q row"><span class="n">4</span><p class="prompt">At one o&rsquo;clock, they <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g4" data-label="2.4 At one o'clock, they ___ lunch in a park. (have)" aria-label="Sentence 4"> lunch in a&nbsp;park. <span class="cue">(have)</span></p></div>
+    <div class="q row"><span class="n">5</span><p class="prompt">Zoe <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g5" data-label="2.5 Zoe ___ the ducks some bread from her sandwich. (feed)" aria-label="Sentence 5"> the ducks some bread from her&nbsp;sandwich. <span class="cue">(feed)</span></p></div>
+    <div class="q row"><span class="n">6</span><p class="prompt">Then they <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g6" data-label="2.6 Then they ___ a fox under a tree. (see)" aria-label="Sentence 6"> a fox under a&nbsp;tree. <span class="cue">(see)</span></p></div>
+    <div class="q row"><span class="n">7</span><p class="prompt">Her aunt <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g7" data-label="2.7 Her aunt ___ the pigeons some bread too. (feed)" aria-label="Sentence 7"> the pigeons some bread&nbsp;too. <span class="cue">(feed)</span></p></div>
+    <div class="q row"><span class="n">8</span><p class="prompt">After lunch, they <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g8" data-label="2.8 After lunch, they ___ to a toy shop. (go)" aria-label="Sentence 8"> to a toy&nbsp;shop. <span class="cue">(go)</span></p></div>
+    <div class="q row"><span class="n">9</span><p class="prompt">In the evening, Zoe <input class="hw-field hw-gap gv" type="text" maxlength="8" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="g9" data-label="2.9 In the evening, Zoe ___ very tired. (is)" aria-label="Sentence 9"> very&nbsp;tired. <span class="cue">(is)</span></p></div>
+  </div>
+</section>
+
+<section class="ex-card c3">
+  <div class="ex-header"><span>Exercise 3: the test&nbsp;question</span></div>
+  <div class="ex-body">
+    <p class="testq">Have you ever visited an English-speaking&nbsp;country?</p>
+    <p class="instr">Write 4 or 5 sentences about your trip to&nbsp;London.</p>
+    <div class="asks"><span class="lead">Tell me:</span><ul><li>Where did you&nbsp;go?</li><li>What did you&nbsp;see?</li><li>What did you do in the&nbsp;park?</li><li>What was your favourite&nbsp;place?</li></ul></div>
+    <div class="example-box"><span class="label">Like this</span><p>Yes, I have. Last year I visited Dublin. I bought a green&nbsp;hat.</p></div>
+    <textarea class="hw-field big" rows="7" data-k="w1" data-label="3. Have you ever visited an English-speaking country?" aria-label="Your answer" placeholder="Type your answer here"></textarea>
+  </div>
+</section>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJzMSI6IHsidCI6ICJleGFjdCIsICJhIjogInVldSJ9LCAiczIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyciJ9LCAiczMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJlZSJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpbCJ9LCAiZzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3ZW50In0sICJnMiI6IHsidCI6ICJleGFjdCIsICJhIjogIndhcyJ9LCAiZzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYXcifSwgImc0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiaGFkIn0sICJnNSI6IHsidCI6ICJleGFjdCIsICJhIjogImZlZCJ9LCAiZzYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYXcifSwgImc3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZmVkIn0sICJnOCI6IHsidCI6ICJleGFjdCIsICJhIjogIndlbnQifSwgImc5IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2FzIn0sICJ3MSI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

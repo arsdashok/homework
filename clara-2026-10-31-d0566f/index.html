@@ -422,6 +422,19 @@ body .tp-zone.one { min-height:64px !important; padding:6px 10px !important; }
 }
 body.hw-pdf-mode .partition-bond { height:205px!important; }
 body.hw-pdf-mode .partition-equation,body.hw-pdf-mode .partition-result { font-size:18px!important; }
+
+.tools-examples { display:grid; gap:0; }
+.tool-example { display:grid; grid-template-columns:minmax(180px,.8fr) minmax(0,1.6fr); align-items:center; gap:20px; padding:14px 0; }
+.tool-example+.tool-example { border-top:1px solid #c6dcd1; }
+.tool-example b { color:#286b55; }
+.tool-example small { display:block; font-size:17px; line-height:1.25; margin-top:3px; color:#536e64; }
+.tool-calculation { font-size:26px; line-height:1.3; }
+.tool-calculation strong { color:#286b55; }
+.count-route { display:inline-flex; align-items:end; gap:12px; white-space:nowrap; }
+.count-jump { display:inline-flex; flex-direction:column; align-items:center; line-height:1; color:#286b55; }
+.count-jump small { color:inherit; margin:0; }
+.count-total { display:inline-block; margin-left:25px; white-space:nowrap; }
+@media(max-width:800px) { .tool-example { grid-template-columns:1fr; gap:8px; } }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -773,6 +786,22 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .partition-bond { height:220px; }
  body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .partition-layout { margin-top:6px; }
 }
+
+@media screen {
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .tools-examples { padding:10px 24px; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .tool-example { font-size:clamp(24px,2.3cqw,34px); }
+ body.mint-game:not(.hw-pdf-mode) #sheet .tool-calculation { font-size:clamp(24px,2.4cqw,36px); }
+ body.mint-game:not(.hw-pdf-mode) #sheet .tool-example small { font-size:clamp(17px,1.4cqw,22px); }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page:has(.tools-examples) .task-label { display:none; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .tool-example { padding:4px 0; gap:12px; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .tool-example > div > small { font-size:16px; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .tool-example .count-total { margin-left:14px; }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page:has(.tools-examples) .task > .lead { display:none; }
+}
 </style>
 </head>
 <body data-student="Clara" data-sheet="Maths 2026-10-31" data-sheet-id="clara-2026-10-31-maths">
@@ -936,7 +965,13 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
 <div class="task">
 <div class="task-label">Remember</div>
 <p class="lead">Each tool has its own&nbsp;job.</p>
-<div class="model"><p class="ex-title">Your tools</p><p><b>Compensate:</b> when adding, one number is nearly&nbsp;round.</p><p><b>Bonds:</b> the parts make a round&nbsp;number.</p><p><b>Count up:</b> the two numbers are&nbsp;close.</p><p><b>Known facts:</b> a small fact does the&nbsp;work.</p><p><b>Same difference:</b> for take away, change both numbers so the number you take away is&nbsp;round.</p></div>
+<div class="model tools-examples">
+<div class="tool-example"><div><b>Compensate</b><small>Add 30, then take 1 away.</small></div><div class="tool-calculation">47 + 29 = 47 + 30 − 1 = <strong>76</strong></div></div>
+<div class="tool-example"><div><b>Bonds</b></div><div class="tool-calculation">7 + 3 = 10 <span class="tool-so">→</span> 70 + 30 = <strong>100</strong></div></div>
+<div class="tool-example"><div><b>Count up</b><small>83 − 78: count the gap.</small></div><div class="tool-calculation"><span class="count-route">78 <span class="count-jump"><small>+2</small>→</span> 80 <span class="count-jump"><small>+3</small>→</span> 83</span><span class="count-total">2 + 3 = <strong>5</strong></span></div></div>
+<div class="tool-example"><div><b>Known facts</b></div><div class="tool-calculation">23 + 45 = 68 <span class="tool-so">→</span> 230 + 450 = <strong>680</strong></div></div>
+<div class="tool-example"><div><b>Same difference</b><small>Add 1 to both numbers.</small></div><div class="tool-calculation">83 − 29 = 84 − 30 = <strong>54</strong></div></div>
+</div>
 <div class="role-label">Your turn</div>
 <p class="lead"><span class="screen-only">Tap a tool, then tap the calculation it fits. Use each tool&nbsp;once.</span><span class="print-only">Write each tool next to the calculation it fits. Use each tool&nbsp;once.</span></p>
 </div>

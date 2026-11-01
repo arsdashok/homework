@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roman - Homework 1 November 2026</title>
+<!-- Lesson of 1 Nov 2026 (NASA crew quarters video finished; cards 7 and 8 ran, 9 and 10 did not). About 20 min, his default size.
+     Part 1 = NEW frame is/are used for + -ing, now in writing, as guess-the-object clues. Objects are none of the lesson's (suitcase, charger,
+     webcam, kettle, backpack, cupboard, a screen, thermos) and none of the teacher options; one plural to reach the «are» of the frame.
+     Part 2 = question order with a modal or do/does/is (his «What kind of things we can storage inside it?»). Word cues jumbled, no frame printed.
+     The field drops any typed end mark and puts one «?» on leaving the box (script at the end), because the key compares strings:
+     punctuation is not the target and must not turn a right order into a cross.
+     Part 3 = 8 own-option dropdowns IN the gap, positions 2,3,1,3,2,2,1,3. Contrasts: call / call to, listening to / hearing, store / storage.
+     Part 4 = the lesson's unrun card 9, as questions. Model answers no item and hands over no Part 4 sentence.
+     No Spain content, no facts about his family, no office assumption. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .prompt { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; }
+  .note a { color: #31594b; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 11px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 3px; }
+  .prompt { font-size: 17px; margin-bottom: 6px; }
+  .direct { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; color: #1f2a24; word-spacing: 2px; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  textarea.resp.qfield { min-height: 46px; }
+  textarea.resp { resize: vertical; }
+  textarea.resp.two { min-height: 84px; }
+  textarea.resp.big { min-height: 190px; }
+  .asks { font-size: 17px; margin: 0 0 10px; }
+
+  /* dropdown sits IN the gap */
+  .vline { line-height: 2.2; margin-bottom: 0; }
+  .q:has(.vline) .qnum { padding-top: 9px; }
+  select.resp.pick { display: inline-block; width: auto; min-width: 140px; height: 34px; padding: 2px 8px; margin: 0 3px; font-size: 15.5px; vertical-align: baseline; }
+  span.resp.pick { width: auto; }
+  .pgap { display: none; }
+  .print-opts { display: none; }
+  .nw { white-space: nowrap; }
+
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+    select.resp.pick { max-width: 100%; }
+    textarea.resp.qfield { min-height: 76px; }
+  }
+
+  @media print {
+    body { font-size: 12px; line-height: 1.3; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12.5px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 4px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 1px; }
+    .prompt { font-size: 12px; margin-bottom: 3px; }
+    .direct { font-size: 13px; }
+    .asks { font-size: 12px; margin-bottom: 5px; }
+    .resp { font-size: 12px; padding: 3px 9px; }
+    textarea.resp.qfield { min-height: 26px; height: 26px; }
+    textarea.resp.two { min-height: 46px; height: 46px; }
+    textarea.resp.big { min-height: 96px; height: 96px; }
+    .resp::placeholder { color: transparent; }
+    textarea.resp { resize: none; }
+    .vline { line-height: 1.6; }
+    .q:has(.vline) .qnum { padding-top: 1px; }
+    select.resp.pick { display: none !important; }
+    .pgap { display: inline-block; width: 92px; border-bottom: 1px solid #626a62; height: 11px; margin: 0 0 0 3px; vertical-align: baseline; }
+    .print-opts { display: block; margin: 2px 0 0; font-size: 10.5px; color: #626a62; white-space: nowrap; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-11-01" data-sheet-id="roman-2026-11-01-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 20&nbsp;minutes</span></div>
+    <h1>What is it used for?</h1>
+  </header>
+
+  <div class="task">
+    <h2>1. Guess the object: your clues</h2>
+    <div class="do">Write two clues about each object, without naming it: what it's used for (<i class="nw">is / are used for + -ing</i>), then its size or&nbsp;shape.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      a torch &rarr; <b>It's used for seeing in the dark. It's long and round, and it fits in one&nbsp;hand.</b>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><div>
+      <p class="prompt direct">a running watch</p>
+      <textarea class="hw-field resp two" data-k="c1" data-label="1. Two clues: a running watch" aria-label="Clues 1" autocomplete="off" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div>
+      <p class="prompt direct">sunglasses</p>
+      <textarea class="hw-field resp two" data-k="c2" data-label="2. Two clues: sunglasses" aria-label="Clues 2" autocomplete="off" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div>
+      <p class="prompt direct">a treadmill</p>
+      <textarea class="hw-field resp two" data-k="c3" data-label="3. Two clues: a treadmill" aria-label="Clues 3" autocomplete="off" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div>
+      <p class="prompt direct">a tent</p>
+      <textarea class="hw-field resp two" data-k="c4" data-label="4. Two clues: a tent" aria-label="Clues 4" autocomplete="off" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>2. Questions in the game</h2>
+    <div class="do">Put the words in order and write the question you'd ask to guess an&nbsp;object.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      heavy / how / it / is &rarr; <b>How heavy is&nbsp;it?</b>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><div>
+      <p class="prompt direct">buy / where / I / it / can</p>
+      <textarea class="hw-field resp qfield" rows="1" data-k="q1" data-label="1. buy / where / I / it / can" aria-label="Question 1" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div>
+      <p class="prompt direct">take / on a plane / can / I / it</p>
+      <textarea class="hw-field resp qfield" rows="1" data-k="q2" data-label="2. take / on a plane / can / I / it" aria-label="Question 2" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div>
+      <p class="prompt direct">store / we / inside it / what kind of things / can</p>
+      <textarea class="hw-field resp qfield" rows="1" data-k="q3" data-label="3. store / we / inside it / what kind of things / can" aria-label="Question 3" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div>
+      <p class="prompt direct">do / what / with it / we / can</p>
+      <textarea class="hw-field resp qfield" rows="1" data-k="q4" data-label="4. do / what / with it / we / can" aria-label="Question 4" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">5.</span><div>
+      <p class="prompt direct">where / people / usually / it / keep / do</p>
+      <textarea class="hw-field resp qfield" rows="1" data-k="q5" data-label="5. where / people / usually / it / keep / do" aria-label="Question 5" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>3. Words from the lesson</h2>
+    <div class="do">Choose the word that fits each&nbsp;gap.</div>
+    <p class="note">The answers are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 1&nbsp;November.</p>
+
+    <div class="q"><span class="qnum">1.</span><p class="prompt vline">This app works on any <span class="pgap"></span><select class="hw-field resp pick" data-k="w1" data-label="1. This app works on any ___: a phone, a tablet or a laptop." aria-label="Gap 1"><option value="">Choose</option><option value="appliance">appliance</option><option value="device">device</option><option value="utensil">utensil</option></select>: a phone, a tablet or a&nbsp;laptop.<span class="print-opts">appliance &nbsp;/&nbsp; device &nbsp;/&nbsp; utensil</span></p></div>
+    <div class="q"><span class="qnum">2.</span><p class="prompt vline">The shop is closed now, so I'll <span class="pgap"></span><select class="hw-field resp pick" data-k="w2" data-label="2. The shop is closed now, so I&#x27;ll ___ the manager in the morning." aria-label="Gap 2"><option value="">Choose</option><option value="call to">call to</option><option value="call at">call at</option><option value="call">call</option></select> the manager in the&nbsp;morning.<span class="print-opts">call to &nbsp;/&nbsp; call at &nbsp;/&nbsp; call</span></p></div>
+    <div class="q"><span class="qnum">3.</span><p class="prompt vline">My laptop can send files to my phone, and <span class="pgap"></span><select class="hw-field resp pick" data-k="w3" data-label="3. My laptop can send files to my phone, and ___." aria-label="Gap 3"><option value="">Choose</option><option value="vice versa">vice versa</option><option value="on the contrary">on the contrary</option><option value="in other words">in other words</option></select>.<span class="print-opts">vice versa &nbsp;/&nbsp; on the contrary &nbsp;/&nbsp; in other words</span></p></div>
+    <div class="q"><span class="qnum">4.</span><p class="prompt vline">Earphones are used for <span class="pgap"></span><select class="hw-field resp pick" data-k="w4" data-label="4. Earphones are used for ___ podcasts when you go running." aria-label="Gap 4"><option value="">Choose</option><option value="hearing">hearing</option><option value="listening">listening</option><option value="listening to">listening to</option></select> podcasts when you go&nbsp;running.<span class="print-opts">hearing &nbsp;/&nbsp; listening &nbsp;/&nbsp; listening to</span></p></div>
+    <div class="q"><span class="qnum">5.</span><p class="prompt vline">The client's name had one wrong letter: only a small <span class="pgap"></span><select class="hw-field resp pick" data-k="w5" data-label="5. The client&#x27;s name had one wrong letter: only a small ___, but he noticed it." aria-label="Gap 5"><option value="">Choose</option><option value="label">label</option><option value="typo">typo</option><option value="stamp">stamp</option></select>, but he noticed&nbsp;it.<span class="print-opts">label &nbsp;/&nbsp; typo &nbsp;/&nbsp; stamp</span></p></div>
+    <div class="q"><span class="qnum">6.</span><p class="prompt vline">The air conditioning on the train was freezing, and I <span class="pgap"></span><select class="hw-field resp pick" data-k="w6" data-label="6. The air conditioning on the train was freezing, and I ___." aria-label="Gap 6"><option value="">Choose</option><option value="kept a cold">kept a cold</option><option value="caught a cold">caught a cold</option><option value="held a cold">held a cold</option></select>.<span class="print-opts">kept a cold &nbsp;/&nbsp; caught a cold &nbsp;/&nbsp; held a cold</span></p></div>
+    <div class="q"><span class="qnum">7.</span><p class="prompt vline">This flat has very little <span class="pgap"></span><select class="hw-field resp pick" data-k="w7" data-label="7. This flat has very little ___ space, so we keep the boxes in the garage." aria-label="Gap 7"><option value="">Choose</option><option value="storage">storage</option><option value="store">store</option><option value="storing">storing</option></select> space, so we keep the boxes in the&nbsp;garage.<span class="print-opts">storage &nbsp;/&nbsp; store &nbsp;/&nbsp; storing</span></p></div>
+    <div class="q"><span class="qnum">8.</span><p class="prompt vline">The hotel was cheap because it was in <span class="pgap"></span><select class="hw-field resp pick" data-k="w8" data-label="8. The hotel was cheap because it was in ___, so we took a taxi back at night." aria-label="Gap 8"><option value="">Choose</option><option value="a safe neighbourhood">a safe neighbourhood</option><option value="a smart neighbourhood">a smart neighbourhood</option><option value="a rough neighbourhood">a rough neighbourhood</option></select>, so we took a taxi back at&nbsp;night.<span class="print-opts">a safe neighbourhood &nbsp;/&nbsp; a smart neighbourhood &nbsp;/&nbsp; a rough neighbourhood</span></p></div>
+  </div>
+
+  <div class="task">
+    <h2>4. A message to a friend</h2>
+    <div class="do">Write 3 or 4 sentences to a friend about the astronaut's&nbsp;room.</div>
+    <p class="asks">How big is the astronaut's room? Which two things in it do you remember, and what are they used for? Would you sleep well there? <span class="nw">Why or why not?</span></p>
+    <p class="note">You can <a href="https://www.youtube.com/watch?v=JZ7n24CtEFw" target="_blank" rel="noopener">watch the video again</a> if you want to check a&nbsp;detail.</p>
+    <textarea class="hw-field resp big" data-k="m1" data-label="4. A message to a friend: How big is the astronaut&#x27;s room? Which two things in it do you remember, and what are they used for? Would you sleep well there? Why or why not?" aria-label="Your message" autocomplete="off" placeholder="Type your answer here"></textarea>
+  </div>
+
+</div>
+<script>
+/* Part 2: one question mark at the end of a typed question, whatever was typed. */
+(function () {
+  var fields = document.querySelectorAll('.qfield');
+  function tidy(el) {
+    var v = el.value, t = v.replace(/[\s?.!,:;]+$/, '');
+    t = t ? t + '?' : '';
+    if (t !== v) { el.value = t; el.dispatchEvent(new Event('input', { bubbles: true })); }
+  }
+  fields.forEach(function (el) {
+    el.addEventListener('blur', function () { tidy(el); });
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
+  });
+  /* A tap on a button does not always take focus from the box on a phone. */
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('#hwSend, .hw-pdf')) fields.forEach(tidy);
+  }, true);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJjMSI6IHsidCI6ICJvcGVuIn0sICJjMiI6IHsidCI6ICJvcGVuIn0sICJjMyI6IHsidCI6ICJvcGVuIn0sICJjNCI6IHsidCI6ICJvcGVuIn0sICJxMSI6IHsidCI6ICJleGFjdCIsICJhIjogIldoZXJlIGNhbiBJIGJ1eSBpdD8ifSwgInEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiQ2FuIEkgdGFrZSBpdCBvbiBhIHBsYW5lPyJ9LCAicTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGF0IGtpbmQgb2YgdGhpbmdzIGNhbiB3ZSBzdG9yZSBpbnNpZGUgaXQ/In0sICJxNCI6IHsidCI6ICJleGFjdCIsICJhIjogIldoYXQgY2FuIHdlIGRvIHdpdGggaXQ/In0sICJxNSI6IHsidCI6ICJleGFjdCIsICJhIjogIldoZXJlIGRvIHBlb3BsZSB1c3VhbGx5IGtlZXAgaXQ/IiwgImciOiAicTUifSwgInE1X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGVyZSBkbyBwZW9wbGUga2VlcCBpdCB1c3VhbGx5PyIsICJnIjogInE1In0sICJxNV9hbHQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiVXN1YWxseSB3aGVyZSBkbyBwZW9wbGUga2VlcCBpdD8iLCAiZyI6ICJxNSJ9LCAidzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkZXZpY2UifSwgIncyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY2FsbCJ9LCAidzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ2aWNlIHZlcnNhIn0sICJ3NCI6IHsidCI6ICJleGFjdCIsICJhIjogImxpc3RlbmluZyB0byJ9LCAidzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0eXBvIn0sICJ3NiI6IHsidCI6ICJleGFjdCIsICJhIjogImNhdWdodCBhIGNvbGQifSwgInc3IjogeyJ0IjogImV4YWN0IiwgImEiOiAic3RvcmFnZSJ9LCAidzgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIHJvdWdoIG5laWdoYm91cmhvb2QifSwgIm0xIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

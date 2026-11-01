@@ -537,6 +537,135 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
 .mint-game .final-answer-row p{margin:5px 0;font-size:16px}
 .mint-game .final-correct{color:#286951}.mint-game .final-correction{color:#9b461d}
 </style>
+<style id="clara-large-exercises">/* Screen layout: size the actual maths to the available space. Export is unchanged. */
+@media screen and (min-width:801px) {
+ body.mint-game:not(.hw-pdf-mode) { max-width:none; grid-template-columns:minmax(0,1fr) clamp(210px,16vw,285px); }
+ body:not(.hw-pdf-mode) .exercise-page {
+  --copy:clamp(25px,2.5cqw,38px); --math:clamp(32px,3.25cqw,50px);
+  font-size:var(--copy); line-height:1.45;
+ }
+ body:not(.hw-pdf-mode) .exercise-page.current-page { max-width:none; width:100%; min-height:100%; padding:clamp(12px,2cqh,28px) clamp(8px,1.4cqw,26px); display:flex; flex-direction:column; justify-content:center; }
+ body:not(.hw-pdf-mode) .exercise-page .task { flex-shrink:0; }
+ body:not(.hw-pdf-mode) .exercise-page .task .lead,
+ body:not(.hw-pdf-mode) .exercise-page .lead,
+ body:not(.hw-pdf-mode) .exercise-page .exercise-hint { font-size:var(--copy); line-height:1.4; margin-bottom:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .task .small { font-size:clamp(20px,1.9cqw,28px); line-height:1.4; }
+ body:not(.hw-pdf-mode) .exercise-page .task .role-label { font-size:clamp(14px,1.3cqw,19px); margin-bottom:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .q { flex-shrink:0; padding:clamp(22px,3cqw,44px); border:1.5px solid #c8ded1; background:linear-gradient(135deg,#fff 65%,#f3faf6); border-radius:26px; }
+ body:not(.hw-pdf-mode) .exercise-page .q-top { gap:20px; align-items:center; }
+ body:not(.hw-pdf-mode) .exercise-page .q-num { width:48px; height:48px; flex-basis:48px; font-size:24px; background:#dcefe5; color:#286951; }
+ body:not(.hw-pdf-mode) .exercise-page .prompt,
+ body:not(.hw-pdf-mode) .exercise-page .prompt-q { font-size:clamp(29px,3cqw,44px); line-height:1.35; }
+ body:not(.hw-pdf-mode) .exercise-page .wsent { font-size:var(--math); line-height:1.5; }
+ body:not(.hw-pdf-mode) .exercise-page .hw-field,
+ body:not(.hw-pdf-mode) .exercise-page .arow .hw-field.nb { font-size:var(--math); min-height:1.9em!important; height:auto; padding:8px 12px; border-radius:12px; border-width:2px; }
+ body:not(.hw-pdf-mode) .exercise-page .hw-field.nb { width:4em; max-width:100%; }
+ body:not(.hw-pdf-mode) .exercise-page .fact-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 5%; margin:30px 0 4px; }
+ body:not(.hw-pdf-mode) .exercise-page .fact-grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:clamp(24px,5cqh,64px); margin-block:clamp(28px,5cqh,64px); }
+ body:not(.hw-pdf-mode) .exercise-page .fact { font-size:var(--math); gap:12px; flex-wrap:nowrap; justify-content:center; }
+ body:not(.hw-pdf-mode) #sheet .exercise-page .fact .gapn { width:2.8em!important; flex-shrink:1; }
+ body:not(.hw-pdf-mode) .exercise-page .skip { font-size:clamp(25px,2.55cqw,40px); margin:clamp(28px,6cqh,70px) 0; gap:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .skip .sn { font-size:1em; min-width:0; }
+ body:not(.hw-pdf-mode) .exercise-page .skip .hw-field { font-size:inherit; padding-inline:2px; }
+ body:not(.hw-pdf-mode) .exercise-page .arow { font-size:var(--math); gap:16px; margin-top:24px; }
+ body:not(.hw-pdf-mode) .exercise-page .arow .cap2 { font-size:var(--copy); }
+ body:not(.hw-pdf-mode) .exercise-page .model { padding:clamp(24px,3.2cqw,46px); margin:20px 0 0; border-radius:24px; }
+ body:not(.hw-pdf-mode) .exercise-page .model p { font-size:var(--copy); line-height:1.5; }
+ body:not(.hw-pdf-mode) .exercise-page .model .ex-title { font-size:clamp(17px,1.6cqw,24px)!important; margin-bottom:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .plan-rows p { margin:12px 0; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset { grid-template-columns:minmax(0,1fr) minmax(0,1.65fr); gap:24px; margin-top:28px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp-tile,
+ body:not(.hw-pdf-mode) .exercise-page .sortset .tp-tile { font-size:clamp(25px,2.6cqw,40px); min-height:60px; padding:12px 18px; border-radius:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .zone-head b.zt { font-size:clamp(23px,2.2cqw,32px); }
+ body:not(.hw-pdf-mode) .exercise-page .sortset .tp-zone:not(.vz):not(.one) { min-height:clamp(200px,42cqh,360px); padding:20px; }
+ body:not(.hw-pdf-mode) .exercise-page .venn { min-height:clamp(280px,47cqh,440px); }
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm { grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); }
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm .wex-fig { width:100%; }
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm .bar-svg { max-height:none; }
+ body:not(.hw-pdf-mode) .exercise-page .dtest { gap:24px 4%; margin-top:22px; }
+ body:not(.hw-pdf-mode) .exercise-page .dr { gap:12px; margin-bottom:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .dr.dh { font-size:clamp(19px,1.9cqw,28px); }
+ body:not(.hw-pdf-mode) .exercise-page .dcell { flex-basis:3.8em; }
+ body:not(.hw-pdf-mode) .exercise-page .dcell.ds { flex:1; }
+ body:not(.hw-pdf-mode) .exercise-page .dtest .hw-field { font-size:var(--copy); min-height:2.1em!important; width:100%; }
+ body:not(.hw-pdf-mode) .exercise-page .dn { font-size:var(--math); }
+ body:not(.hw-pdf-mode) .exercise-page .lad { gap:24px 5%; }
+ body:not(.hw-pdf-mode) .exercise-page .lad .arow { font-size:var(--copy); }
+ body:not(.hw-pdf-mode) .exercise-page .lad .cap2 { font-size:clamp(22px,2.2cqw,34px); }
+ body:not(.hw-pdf-mode) .exercise-page .match-list { grid-template-columns:1fr; gap:16px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .calc { font-size:var(--math); }
+ body:not(.hw-pdf-mode) .exercise-page .tp-zone.one { min-height:70px!important; padding:8px 14px!important; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset.matchset .tp-bank { gap:12px; margin-bottom:24px; }
+ body:not(.hw-pdf-mode) .exercise-page .fmq { padding-block:clamp(36px,9cqh,110px); }
+ body:not(.hw-pdf-mode) .exercise-page select.fm { font-size:var(--copy); min-height:2.2em; }
+ body:not(.hw-pdf-mode) .exercise-page .sent { min-height:180px!important; margin-top:30px; }
+ @container (min-width:1250px) {
+  body:not(.hw-pdf-mode) .exercise-page .fact-grid:not(.two) { grid-template-columns:repeat(4,minmax(0,1fr)); column-gap:20px; }
+ }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page { --copy:clamp(23px,2.5cqw,30px); --math:clamp(28px,3cqw,38px); }
+ body:not(.hw-pdf-mode) .exercise-page.current-page { padding:4px 8px; }
+ body:not(.hw-pdf-mode) .exercise-page .q { padding:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .q-num { width:38px;height:38px;flex-basis:38px;font-size:22px; }
+ body:not(.hw-pdf-mode) .exercise-page .task .lead, body:not(.hw-pdf-mode) .exercise-page .exercise-hint { margin-bottom:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .hw-field, body:not(.hw-pdf-mode) .exercise-page .arow .hw-field.nb { min-height:1.7em!important; padding:4px 8px; }
+ body:not(.hw-pdf-mode) .exercise-page .fact-grid { gap:12px 4%; margin:18px 0 0; }
+ body:not(.hw-pdf-mode) .exercise-page .fact-grid.two { row-gap:24px; margin-block:24px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset { gap:16px; margin-top:16px; }
+ body:not(.hw-pdf-mode) .exercise-page .sortset .tp-tile { min-height:46px; padding:6px 12px; }
+ body:not(.hw-pdf-mode) .exercise-page .sortset .tp-zone:not(.vz):not(.one) { min-height:170px; padding:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .model { padding:18px 22px; margin-top:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .plan-rows p { margin:6px 0; }
+ body:not(.hw-pdf-mode) .exercise-page .arow { margin-top:14px; }
+ body:not(.hw-pdf-mode) .exercise-page .dr { margin-bottom:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .venn { min-height:250px; }
+ body:not(.hw-pdf-mode) .exercise-page .fmq { padding-block:40px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-list { gap:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp-zone.one { min-height:54px!important; }
+}
+@media screen and (min-width:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm .bar-svg { max-height: min(38cqh,360px); }
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.matchset) { padding:26px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset.matchset { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2.6fr); gap:26px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset.matchset .tp-bank { display:flex; flex-direction:column; align-items:stretch; margin:0; padding:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-tile { font-size:clamp(23px,2.2cqw,32px); padding:8px 12px; min-height:54px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row { gap:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .calc { font-size:clamp(28px,2.8cqw,42px); }
+ body:not(.hw-pdf-mode) .exercise-page .fmq .wsent { flex:1; }
+ body:not(.hw-pdf-mode) .exercise-page .fmq .q-top { justify-content:center; }
+}
+@media screen and (min-width:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .sortset .sort-grid,
+ body:not(.hw-pdf-mode) .exercise-page .sortset .venn,
+ body:not(.hw-pdf-mode) .exercise-page .sortset .match-list { grid-row:1; }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.matchset) { padding:16px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset.matchset { gap:18px; margin-top:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-bank { gap:8px; padding:6px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-tile { min-height:42px; padding:5px 10px; font-size:22px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-list { gap:8px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .tp-zone.one { min-height:46px!important; padding:4px 8px!important; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .tp-slot { min-height:36px; }
+}
+@media screen and (min-width:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm .bar-svg { height:clamp(230px,36cqh,340px); max-height:none; width:100%; }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page .venn { min-height:220px; }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page:has(.matchset) .role-label { display:none; }
+ body:not(.hw-pdf-mode) .exercise-page:has(.matchset) .task .lead { margin-bottom:8px; }
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.matchset) { padding:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-bank { gap:6px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-tile { line-height:1.2; min-height:40px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .tp-zone.one { min-height:42px!important; padding:2px 8px!important; }
+ body:not(.hw-pdf-mode) .exercise-page .match-list { gap:6px; }
+}
+</style>
 </head>
 <body data-student="Clara" data-sheet="Maths 2026-10-31" data-sheet-id="clara-2026-10-31-maths">
 <div id="sheet">

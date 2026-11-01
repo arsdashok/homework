@@ -162,6 +162,45 @@ a { color:#bb461e; }
 .hw-pdf-mode .poster-head { min-height:300px; }
 .hw-pdf-mode .poster-art { min-height:300px; }
 .hw-pdf-mode .poster-stub { display:none; }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; }
+  .wrap { max-width:1640px; padding:0 48px 48px; }
+  .poster-head { grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:0 48px; min-height:540px; margin-bottom:40px; }
+  .poster-art { min-height:540px; }
+  .poster-copy { margin-top:36px; }
+  .poster-top { font-size:17px; }
+  .poster-copy h1 { font-size:clamp(88px,8vw,150px); margin:30px 0 18px; }
+  .poster-sub { font-size:46px; }
+  .poster-copy .page-meta { font-size:20px; }
+  .poster-stub { font-size:30px; right:24px; bottom:26px; padding:13px 20px; }
+  .exercise { padding:20px 0 16px; margin-bottom:48px; }
+  .section-number { font-size:28px; padding:4px 16px 2px; }
+  .exercise h2 { font-size:64px; }
+  .instruction { font-size:36px; margin:24px 0 24px; }
+  .language-note { font-size:24px; padding:18px 30px; }
+  .rule-row { grid-template-columns:minmax(0,1fr) minmax(0,1.6fr); gap:6px 24px; }
+  .example { padding:22px 40px 26px; }
+  .example-label { font-size:17px; }
+  .example .why { font-size:21px; }
+  .question { padding:26px 0; gap:18px; }
+  .qnum { font-size:28px; min-width:42px; }
+  .qbody { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:10px 36px; align-items:center; }
+  .qbody > .situation, .qbody > .ask, .qbody > .note-small, .qbody > textarea, .qbody > .choices.stack, .qbody > .hw-mark, .qbody > .hw-pdf-response { grid-column:1 / -1; }
+  .sentence { font-size:30px; line-height:1.4; margin:0; }
+  .example .sentence { margin:0 0 14px; }
+  .situation { font-size:25px; margin:0; }
+  .ask { font-size:30px; margin:0; }
+  .note-small { font-size:21px; margin:0 0 6px; }
+  .fillgap { min-width:170px; }
+  .choices { gap:16px; }
+  .choices.stack { flex-direction:row; align-items:stretch; gap:20px; }
+  .choices.stack .choice, .choices.stack .demo-choice { flex:1 1 0; font-size:26px; padding:18px 24px; }
+  .choice, .demo-choice { font-size:28px; padding:14px 30px; }
+  .qbody > .choices:not(.stack) .choice { flex:1 1 0; text-align:center; }
+  textarea.hw-field { font-size:26px !important; line-height:1.45; padding:16px 20px; }
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">

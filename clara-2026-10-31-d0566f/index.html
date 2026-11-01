@@ -382,6 +382,46 @@ body .tp-zone.one { min-height:64px !important; padding:6px 10px !important; }
  .ladder-rung { font-size:20px; padding-block:5px; }
  .ladder-number { font-size:24px; margin-bottom:8px; }
 }
+
+/* Same part-part-whole model in the example and the pupil's own calculations. */
+.partition-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); align-items:center; gap:24px; margin-top:14px; }
+.partition-bond { width:100%; height:auto; max-height:350px; font-family:'Avenir Next',Arial,sans-serif; }
+.partition-bond text { text-anchor:middle; fill:#203e35; }
+.partition-bond .bond-label { font-size:16px; fill:#536e64; }
+.partition-bond .bond-number { font-size:42px; font-weight:750; }
+.partition-bond .bond-fact { font-size:28px; font-weight:650; }
+.partition-steps { display:grid; gap:16px; min-width:0; }
+.partition-equation { display:flex; flex-wrap:wrap; align-items:center; gap:10px; font-size:26px; line-height:1.35; }
+.partition-result { font-size:28px; line-height:1.35; background:#dcefe5; padding:14px 18px; border-radius:14px; color:#203e35; }
+.partition-equation>span { white-space:nowrap; }
+@media screen and (min-width:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .partition-equation,
+ body:not(.hw-pdf-mode) .exercise-page .partition-result { font-size:var(--math); }
+ body:not(.hw-pdf-mode) #sheet .exercise-page .partition-equation .gapn { width:2.5em!important; }
+ body:not(.hw-pdf-mode) .exercise-page .partition-bond { height:clamp(250px,44cqh,380px); max-height:none; }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page .partition-card { padding:12px 18px; }
+ body:not(.hw-pdf-mode) .exercise-page .partition-layout { gap:18px; margin-top:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .partition-bond { height:240px; }
+ body:not(.hw-pdf-mode) .exercise-page .partition-steps { gap:8px; }
+ body:not(.hw-pdf-mode) .exercise-page .partition-result { padding:8px 12px; }
+ body:not(.hw-pdf-mode) .exercise-page:has(.partition-card) .role-label { display:none; }
+}
+@media screen and (max-width:700px) {
+ .partition-layout { grid-template-columns:1fr; gap:12px; }
+ .partition-bond { max-height:230px; }
+ .partition-steps { gap:12px; }
+ .partition-equation,.partition-result { font-size:24px; }
+}
+@media print {
+ .partition-bond { max-height:205px; }
+ .partition-layout { gap:12px; }
+ .partition-steps { gap:8px; }
+ .partition-equation,.partition-result { font-size:18px; }
+}
+body.hw-pdf-mode .partition-bond { height:205px!important; }
+body.hw-pdf-mode .partition-equation,body.hw-pdf-mode .partition-result { font-size:18px!important; }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -725,6 +765,14 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  body:not(.hw-pdf-mode) .exercise-page .ladder-rung { padding-block:4px; }
  body:not(.hw-pdf-mode) .exercise-page .ladder-number { margin-bottom:8px; }
 }
+
+@media screen and (min-width:801px) and (max-height:800px) {
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page:has(.partition-card) :is(.role-label,.task-label) { display:none; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page:has(.q.partition-card) > :is(.task,.exercise-hint) { display:none; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .partition-card { padding:12px 18px; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .partition-bond { height:220px; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .partition-layout { margin-top:6px; }
+}
 </style>
 </head>
 <body data-student="Clara" data-sheet="Maths 2026-10-31" data-sheet-id="clara-2026-10-31-maths">
@@ -793,20 +841,45 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
 <div class="task rem-keep">
 <div class="task-label">Remember</div>
 <p class="lead">To find 3’s partner, start with 3&nbsp;×&nbsp;10.</p>
-<div class="model"><p class="ex-title">Like this: 42</p><div class="plan-rows"><p>3 × 10 = 30</p><p>12 left</p><p>3 × 4 = 12</p><p>10 + the small partner: 10 + 4 = 14, so <b>3 × 14 = 42</b></p></div></div>
+<div class="model partition-card"><div class="partition-layout"><svg class="partition-bond" viewBox="0 0 420 350" role="img" aria-label="42 split into 30 and the remaining part" xmlns="http://www.w3.org/2000/svg">
+ <path d="M210 118 L100 188 M210 118 L320 188" fill="none" stroke="#81aa95" stroke-width="4"/>
+ <circle cx="210" cy="72" r="61" fill="#dcefe5" stroke="#81aa95" stroke-width="3"/>
+ <circle cx="100" cy="235" r="62" fill="#f0f8f3" stroke="#81aa95" stroke-width="3"/>
+ <circle cx="320" cy="235" r="62" fill="#fff6e7" stroke="#81aa95" stroke-width="3"/>
+ <text class="bond-label" x="210" y="51">whole</text><text class="bond-number" x="210" y="96">42</text>
+ <text class="bond-label" x="100" y="214">part</text><text class="bond-number" x="100" y="258">30</text>
+ <text class="bond-label" x="320" y="214">part</text><text class="bond-number" x="320" y="258">12</text>
+ <text class="bond-fact" x="100" y="335">3 × 10</text><text class="bond-fact" x="320" y="335">3 × 4</text>
+ </svg><div class="partition-steps"><div class="partition-equation">42 − 30 = <b>12</b></div><div class="partition-equation">3 × <b>4</b> = 12</div><div class="partition-equation">10 + 4 = <b>14</b></div><div class="partition-result">3 × <b>14</b> = 42</div></div></div></div>
 <div class="role-label">Your turn</div>
 <p class="lead">Find 3’s&nbsp;partner.</p>
 </div>
-<div class="q"><div class="q-top"><div class="q-num">2</div><p class="prompt">3’s partner in <b>39</b>.</p></div><div class="plan-rows in">
-<div class="arow plan"><span class="cap2">3&nbsp;×&nbsp;10&nbsp;=&nbsp;30. What is&nbsp;left?</span><input class="hw-field nb num gapn" data-k="cq1a" data-label="C2. 39: what is left after 30" aria-label="C2. 39: what is left after 30" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
-<div class="arow plan"><span class="cap2">3&nbsp;×</span><input class="hw-field nb num gapn" data-k="cq1b" data-label="C2. 39: 3 × ___ = what is left" aria-label="C2. 39: 3 × ___ = what is left" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">= <span class="carried-answer" data-from="cq1a" title="Your earlier answer">…</span></span></div>
-<div class="arow plan"><span class="cap2">10 + <span class="carried-answer" data-from="cq1b" title="Your earlier answer">…</span>&nbsp;=</span><input class="hw-field nb num gapn" data-k="cq1c" data-label="C2. 39: 10 + the small partner" aria-label="C2. 39: 10 + the small partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
-</div></div>
-<div class="q"><div class="q-top"><div class="q-num">3</div><p class="prompt">3’s partner in <b>54</b>.</p></div><div class="plan-rows in">
-<div class="arow plan"><span class="cap2">Take off 3&nbsp;×&nbsp;10. What is&nbsp;left?</span><input class="hw-field nb num gapn" data-k="cq2a" data-label="C3. 54: what is left after 3 × 10" aria-label="C3. 54: what is left after 3 × 10" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
-<div class="arow plan"><span class="cap2">3&nbsp;×</span><input class="hw-field nb num gapn" data-k="cq2b" data-label="C3. 54: 3 × ___ = what is left" aria-label="C3. 54: 3 × ___ = what is left" autocomplete="off" inputmode="decimal" spellcheck="false"><span class="cap2">= <span class="carried-answer" data-from="cq2a" title="Your earlier answer">…</span></span></div>
-<div class="arow plan"><span class="cap2">10 + <span class="carried-answer" data-from="cq2b" title="Your earlier answer">…</span>&nbsp;=</span><input class="hw-field nb num gapn" data-k="cq2c" data-label="C3. 54: 10 + the small partner" aria-label="C3. 54: 10 + the small partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
-</div></div>
+<div class="q partition-card"><div class="q-top"><div class="q-num">2</div><p class="prompt">3’s partner in 39.</p></div><div class="partition-layout"><svg class="partition-bond" viewBox="0 0 420 350" role="img" aria-label="39 split into 30 and the remaining part" xmlns="http://www.w3.org/2000/svg">
+ <path d="M210 118 L100 188 M210 118 L320 188" fill="none" stroke="#81aa95" stroke-width="4"/>
+ <circle cx="210" cy="72" r="61" fill="#dcefe5" stroke="#81aa95" stroke-width="3"/>
+ <circle cx="100" cy="235" r="62" fill="#f0f8f3" stroke="#81aa95" stroke-width="3"/>
+ <circle cx="320" cy="235" r="62" fill="#fff6e7" stroke="#81aa95" stroke-width="3"/>
+ <text class="bond-label" x="210" y="51">whole</text><text class="bond-number" x="210" y="96">39</text>
+ <text class="bond-label" x="100" y="214">part</text><text class="bond-number" x="100" y="258">30</text>
+ <text class="bond-label" x="320" y="214">part</text><text class="bond-number" x="320" y="258"><tspan class="carried-answer" data-from="cq1a">…</tspan></text>
+ <text class="bond-fact" x="100" y="335">3 × 10</text><text class="bond-fact" x="320" y="335">3 × <tspan class="carried-answer" data-from="cq1b">…</tspan></text>
+ </svg><div class="partition-steps"><div class="partition-equation"><span>39 − 30 =</span><input class="hw-field nb num gapn" data-k="cq1a" data-label="C2. 39: what is left after 30" aria-label="C2. 39: what is left after 30" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+ <div class="partition-equation"><span>3 ×</span><input class="hw-field nb num gapn" data-k="cq1b" data-label="C2. 39: 3 × ___ = what is left" aria-label="C2. 39: 3 × ___ = what is left" autocomplete="off" inputmode="decimal" spellcheck="false"><span>= <span class="carried-answer" data-from="cq1a" title="Your earlier answer">…</span></span></div>
+ <div class="partition-equation"><span>10 + <span class="carried-answer" data-from="cq1b" title="Your earlier answer">…</span> =</span><input class="hw-field nb num gapn" data-k="cq1c" data-label="C2. 39: 10 + the small partner" aria-label="C2. 39: 10 + the small partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+ <div class="partition-result">3 × <span class="carried-answer" data-from="cq1c" title="Your earlier answer">…</span> = 39</div></div></div></div>
+<div class="q partition-card"><div class="q-top"><div class="q-num">3</div><p class="prompt">3’s partner in 54.</p></div><div class="partition-layout"><svg class="partition-bond" viewBox="0 0 420 350" role="img" aria-label="54 split into 30 and the remaining part" xmlns="http://www.w3.org/2000/svg">
+ <path d="M210 118 L100 188 M210 118 L320 188" fill="none" stroke="#81aa95" stroke-width="4"/>
+ <circle cx="210" cy="72" r="61" fill="#dcefe5" stroke="#81aa95" stroke-width="3"/>
+ <circle cx="100" cy="235" r="62" fill="#f0f8f3" stroke="#81aa95" stroke-width="3"/>
+ <circle cx="320" cy="235" r="62" fill="#fff6e7" stroke="#81aa95" stroke-width="3"/>
+ <text class="bond-label" x="210" y="51">whole</text><text class="bond-number" x="210" y="96">54</text>
+ <text class="bond-label" x="100" y="214">part</text><text class="bond-number" x="100" y="258">30</text>
+ <text class="bond-label" x="320" y="214">part</text><text class="bond-number" x="320" y="258"><tspan class="carried-answer" data-from="cq2a">…</tspan></text>
+ <text class="bond-fact" x="100" y="335">3 × 10</text><text class="bond-fact" x="320" y="335">3 × <tspan class="carried-answer" data-from="cq2b">…</tspan></text>
+ </svg><div class="partition-steps"><div class="partition-equation"><span>54 − 30 =</span><input class="hw-field nb num gapn" data-k="cq2a" data-label="C3. 54: what is left after 3 × 10" aria-label="C3. 54: what is left after 3 × 10" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+ <div class="partition-equation"><span>3 ×</span><input class="hw-field nb num gapn" data-k="cq2b" data-label="C3. 54: 3 × ___ = what is left" aria-label="C3. 54: 3 × ___ = what is left" autocomplete="off" inputmode="decimal" spellcheck="false"><span>= <span class="carried-answer" data-from="cq2a" title="Your earlier answer">…</span></span></div>
+ <div class="partition-equation"><span>10 + <span class="carried-answer" data-from="cq2b" title="Your earlier answer">…</span> =</span><input class="hw-field nb num gapn" data-k="cq2c" data-label="C3. 54: 10 + the small partner" aria-label="C3. 54: 10 + the small partner" autocomplete="off" inputmode="decimal" spellcheck="false"></div>
+ <div class="partition-result">3 × <span class="carried-answer" data-from="cq2c" title="Your earlier answer">…</span> = 54</div></div></div></div>
 <div class="task"><p class="lead">Now just the&nbsp;partner.</p><p class="small">Work on paper if you&nbsp;like.</p></div>
 <div class="q"><div class="q-top"><div class="q-num">4</div><p class="prompt eqline"><span>3&nbsp;×</span><input class="hw-field nb num gapn" data-k="cq3" data-label="C4. 3 × ___ = 57" aria-label="C4. 3 × ___ = 57" autocomplete="off" inputmode="decimal" spellcheck="false"><span>=&nbsp;57</span></p></div></div>
 <div class="task">

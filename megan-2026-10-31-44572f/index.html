@@ -252,6 +252,70 @@ body.hw-pdf-mode .mbox {width:26px; height:30px; font-size:17px; border-width:1.
 body.hw-pdf-mode .mno {font-size:9px;}
 body.hw-pdf-mode .mnote {display:none;}
 
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; }
+  .wrap { max-width:1640px; padding:0 48px 48px; }
+  header { padding:24px 38px; }
+  h1 { font-size:36px; }
+  .meta { font-size:20px; }
+  .lbl { font-size:17px; }
+  .instr { font-size:38px; }
+  .note { font-size:22px; }
+  .card { padding:28px 38px 30px; }
+  .mtag { font-size:16px; }
+  .big { font-size:42px; }
+  .ctitle { font-size:28px; }
+  .ltrl { font-size:19px; }
+  .lslot { width:56px; height:56px; font-size:30px; }
+  .sq { font-size:28px; }
+  .cap { font-size:26px; }
+  .swap { font-size:21px; flex-basis:160px; }
+  svg.ctr { max-width:600px; }
+  .opt { font-size:28px; padding:14px 20px; min-width:150px; min-height:68px; }
+  .opt.far { font-size:24px; }
+  .quote { font-size:32px; }
+  .pvrow { grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:24px 36px; }
+  .pvhead { font-size:19px; min-height:62px; }
+  .pvbody { height:262px; grid-template-rows:repeat(5,var(--s,44px)); grid-auto-columns:var(--s,44px); }
+  .pvcount { font-size:34px; }
+  .pvreset { font-size:19px; }
+  .pvrow .opts { flex-wrap:nowrap; gap:12px; }
+  .pvrow .opts .opt { flex:1 1 0; min-width:0; padding:14px 6px; font-size:26px; }
+  .pvrow .opts .opt.far { font-size:24px; }
+  .mbox { width:64px; height:74px; font-size:38px; }
+  .mno { font-size:16px; }
+  .mnote { font-size:21px; }
+  .code .ctitle { font-size:30px; }
+}
+
+/* the chart's buttons: every column as on the platform */
+.pvacts {display:block; min-height:0; padding:5px 4px 8px; background:#fff;}
+.pvswaps {display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px; margin-bottom:4px;}
+.pvswaps.onlyright {justify-content:flex-end;}
+.pvfoot {display:flex; flex-wrap:wrap; justify-content:center; gap:4px;}
+.pvbtn {font-size:15px; padding:6px 6px; min-height:34px; min-width:0;}
+.pvbtn.add {background:#3d5afe; border-color:#3d5afe;}
+.pvbtn.take {background:#fff; border-color:#c9c4d6; color:#2f2a3b;}
+.pvbtn.pvswap:disabled {background:#fff7ed; border-color:#fed7aa; color:#c9a78e;}
+.pvbtn.take:disabled {background:#fff; border-color:#e7e3ef; color:#a9a3b8;}
+.pvctr.opens {cursor:pointer;}
+.pvtools {display:flex; gap:22px;}
+.pvreset:disabled {color:#b9b4c6; cursor:default; text-decoration:none;}
+@media (max-width:600px) { .pvacts {padding:4px 1px 6px;} .pvbtn {font-size:12px; padding:5px 3px; min-height:30px;} .pvswaps {justify-content:center;} .pvswaps.onlyright {justify-content:center;} }
+@media print { .pvtools {display:none;} }
+.hw-pdf-mode .pvtools {display:none;}
+@media screen and (min-width:900px) {
+  .pvacts {padding:7px 6px 10px; min-height:0;}
+  .pvrow {grid-template-columns:minmax(0,2.4fr) minmax(0,1fr);}
+  .pvbtn {font-size:16px; padding:7px 6px; min-height:40px;}
+  .pvswaps {gap:4px; margin-bottom:6px;}
+  .pvfoot {gap:4px;}
+  .pvbtn.add, .pvbtn.take {min-width:38px;}
+  .pvbtn.pvswap {font-size:15px; padding:7px 4px;}
+  .pvswaps .pvbtn:last-child:not(:first-child) {margin-left:auto;}
+}
 </style><meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -264,7 +328,7 @@ body.hw-pdf-mode .mnote {display:none;}
 <section class="lead"><p class="lbl">Counters</p><p class="instr">10 ones make 1&nbsp;ten.</p>
 <div class="card model q"><p class="mtag">Like this</p><div class="pics"><svg class="ctr" width="440" height="196" viewBox="0 0 440 196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="1 hundred, 2 tens and 9 ones, with one more one making 10 ones, ringed"><text x="220.0" y="22" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#3f3752">129 + 1</text><rect x="6" y="34" width="80" height="116" rx="10" fill="#ffffff" stroke="#c9bdf0" stroke-width="1.5"/><text x="46.0" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6b6280">Hundreds</text><rect x="86" y="34" width="174" height="116" rx="10" fill="#ffffff" stroke="#c9bdf0" stroke-width="1.5"/><text x="173.0" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6b6280">Tens</text><rect x="260" y="34" width="174" height="116" rx="10" fill="#ffffff" stroke="#c9bdf0" stroke-width="1.5"/><text x="347.0" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6b6280">Ones</text><circle cx="46.0" cy="78" r="13" fill="#14a090" stroke="#ffffff" stroke-width="1.5"/><text x="46.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="800" fill="#ffffff">100</text><circle cx="157.0" cy="78" r="13" fill="#e8930c" stroke="#ffffff" stroke-width="1.5"/><text x="157.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">10</text><circle cx="189.0" cy="78" r="13" fill="#e8930c" stroke="#ffffff" stroke-width="1.5"/><text x="189.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">10</text><circle cx="283.0" cy="78" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="283.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="315.0" cy="78" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="315.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="347.0" cy="78" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="347.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="379.0" cy="78" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="379.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="411.0" cy="78" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="411.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="283.0" cy="112" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="283.0" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="315.0" cy="112" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="315.0" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="347.0" cy="112" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="347.0" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="379.0" cy="112" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="379.0" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><circle cx="411.0" cy="112" r="13" fill="#ef5f4c" stroke="#ffffff" stroke-width="1.5"/><text x="411.0" y="116" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text><rect x="266" y="60" width="162" height="70" rx="12" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="6 4"/><text x="46.0" y="180" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#7d7890">1</text><text x="173.0" y="180" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#7d7890">2</text><text x="347.0" y="180" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#5b32b5">9 + 1</text></svg><p class="swap"><span class="swaparrow" aria-hidden="true">&rarr;</span>10 ones become 1&nbsp;ten</p><svg class="ctr" width="440" height="196" viewBox="0 0 440 196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="1 hundred, 3 tens and no ones"><text x="220.0" y="22" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#3f3752">130</text><rect x="6" y="34" width="80" height="116" rx="10" fill="#ffffff" stroke="#c9bdf0" stroke-width="1.5"/><text x="46.0" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6b6280">Hundreds</text><rect x="86" y="34" width="174" height="116" rx="10" fill="#ffffff" stroke="#c9bdf0" stroke-width="1.5"/><text x="173.0" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6b6280">Tens</text><rect x="260" y="34" width="174" height="116" rx="10" fill="#ffffff" stroke="#c9bdf0" stroke-width="1.5"/><text x="347.0" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#6b6280">Ones</text><circle cx="46.0" cy="78" r="13" fill="#14a090" stroke="#ffffff" stroke-width="1.5"/><text x="46.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="800" fill="#ffffff">100</text><circle cx="141.0" cy="78" r="13" fill="#e8930c" stroke="#ffffff" stroke-width="1.5"/><text x="141.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">10</text><circle cx="173.0" cy="78" r="13" fill="#e8930c" stroke="#ffffff" stroke-width="1.5"/><text x="173.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">10</text><circle cx="205.0" cy="78" r="13" fill="#e8930c" stroke="#ffffff" stroke-width="1.5"/><text x="205.0" y="82" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">10</text><circle cx="205.0" cy="78" r="15.5" fill="none" stroke="#ea580c" stroke-width="2.5"/><text x="46.0" y="180" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#7d7890">1</text><text x="173.0" y="180" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#5b32b5">3</text><text x="347.0" y="180" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#5b32b5">0</text></svg></div><p class="cap">3 tens is not 10 tens, so we&nbsp;stop.</p></div></section>
 
-<section><div class="keep q"><p class="lbl">Add 1</p><p class="instr">Add 1 on the chart, then choose the&nbsp;answer.</p><p class="note scr"><svg class="pawicon" width="26" height="26" viewBox="-21 -21 42 42" aria-hidden="true"><g fill="#d9711c"><ellipse cx="0" cy="7.6" rx="12.5" ry="10.3"/><ellipse cx="-14.8" cy="-5.7" rx="4.4" ry="5.7"/><ellipse cx="-5.3" cy="-14.4" rx="4.4" ry="5.7"/><ellipse cx="5.3" cy="-14.4" rx="4.4" ry="5.7"/><ellipse cx="14.8" cy="-5.7" rx="4.4" ry="5.7"/></g></svg>10 counters in a column? Press <b>10 → 1</b> to swap them. Each answer gives a letter for a secret&nbsp;message.</p><p class="note pr">Circle one&nbsp;answer.</p>
+<section><div class="keep q"><p class="lbl">Add 1</p><p class="instr">Add 1 on the chart, then choose the&nbsp;answer.</p><p class="note scr"><svg class="pawicon" width="26" height="26" viewBox="-21 -21 42 42" aria-hidden="true"><g fill="#d9711c"><ellipse cx="0" cy="7.6" rx="12.5" ry="10.3"/><ellipse cx="-14.8" cy="-5.7" rx="4.4" ry="5.7"/><ellipse cx="-5.3" cy="-14.4" rx="4.4" ry="5.7"/><ellipse cx="5.3" cy="-14.4" rx="4.4" ry="5.7"/><ellipse cx="14.8" cy="-5.7" rx="4.4" ry="5.7"/></g></svg>10 counters in a column? Press <b>1 ← 10</b> to swap them for 1 in the next&nbsp;column. Each answer gives a letter for a secret&nbsp;message.</p><p class="note pr">Circle one&nbsp;answer.</p>
 <div class="card q item live" data-card="m_a1"><div class="chead"><p class="ctitle"><span class="qn">1.</span> <span class="big">4,148 + 1</span></p><p class="ltr"><span class="ltrl">Letter&nbsp;1</span><span class="lslot" data-from="m_a1n" data-n="1"></span></p></div><div class="pvrow"><div class="pvc" data-id="m_a1" data-start="4148" data-op="+" data-hi="3"></div><div class="steps"><div class="step" data-live><div class="shead"><span class="sq">4,148 + 1&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_a1n"><button type="button" class="opt" data-v="4,150" data-l="Z" aria-pressed="false">4,150</button><button type="button" class="opt" data-v="41,490" data-l="S" aria-pressed="false">41,490</button><button type="button" class="opt" data-v="4,149" data-l="P" aria-pressed="false">4,149</button></div></div></div></div><div class="store"><select data-k="m_a1n" data-label="4,4,148 + 1 is" class="hw-field"><option value="">Choose</option><option value="4,150">4,150</option><option value="41,490">41,490</option><option value="4,149">4,149</option></select></div></div></div><div class="card q item live" data-card="m_a2"><div class="chead"><p class="ctitle"><span class="qn">2.</span> <span class="big">23,659 + 1</span></p><p class="ltr"><span class="ltrl">Letter&nbsp;2</span><span class="lslot" data-from="m_a2n" data-n="2"></span></p></div><div class="pvrow"><div class="pvc" data-id="m_a2" data-start="23659" data-op="+" data-hi="4"></div><div class="steps"><div class="step" data-live><div class="shead"><span class="sq">23,659 + 1&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_a2n"><button type="button" class="opt" data-v="23,660" data-l="E" aria-pressed="false">23,660</button><button type="button" class="opt" data-v="23,670" data-l="X" aria-pressed="false">23,670</button><button type="button" class="opt" data-v="24,660" data-l="A" aria-pressed="false">24,660</button></div></div></div></div><div class="store"><select data-k="m_a2n" data-label="23,23,659 + 1 is" class="hw-field"><option value="">Choose</option><option value="23,660">23,660</option><option value="23,670">23,670</option><option value="24,660">24,660</option></select></div></div><div class="card q item live" data-card="m_a3"><div class="chead"><p class="ctitle"><span class="qn">3.</span> <span class="big">46,989 + 1</span></p><p class="ltr"><span class="ltrl">Letter&nbsp;3</span><span class="lslot" data-from="m_a3n" data-n="3"></span></p></div><div class="pvrow"><div class="pvc" data-id="m_a3" data-start="46989" data-op="+" data-hi="4"></div><div class="steps"><div class="step" data-live><div class="shead"><span class="sq">46,989 + 1&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_a3n"><button type="button" class="opt" data-v="47,000" data-l="Q" aria-pressed="false">47,000</button><button type="button" class="opt" data-v="46,990" data-l="T" aria-pressed="false">46,990</button><button type="button" class="opt" data-v="46,900" data-l="W" aria-pressed="false">46,900</button></div></div></div></div><div class="store"><select data-k="m_a3n" data-label="46,46,989 + 1 is" class="hw-field"><option value="">Choose</option><option value="47,000">47,000</option><option value="46,990">46,990</option><option value="46,900">46,900</option></select></div></div><div class="card q item live" data-card="m_a4"><div class="chead"><p class="ctitle"><span class="qn">4.</span> <span class="big">61,999 + 1</span></p><p class="ltr"><span class="ltrl">Letter&nbsp;4</span><span class="lslot" data-from="m_a4n" data-n="4"></span></p></div><div class="pvrow"><div class="pvc" data-id="m_a4" data-start="61999" data-op="+" data-hi="4"></div><div class="steps"><div class="step" data-live><div class="shead"><span class="sq">61,999 + 1&nbsp;is…</span><span class="nowtag">Now</span></div><div class="opts" data-field="m_a4n"><button type="button" class="opt" data-v="61,900" data-l="V" aria-pressed="false">61,900</button><button type="button" class="opt" data-v="62,900" data-l="B" aria-pressed="false">62,900</button><button type="button" class="opt" data-v="62,000" data-l="M" aria-pressed="false">62,000</button></div></div></div></div><div class="store"><select data-k="m_a4n" data-label="61,999 + 1 is" class="hw-field"><option value="">Choose</option><option value="61,900">61,900</option><option value="62,900">62,900</option><option value="62,000">62,000</option></select></div></div></section>
 
 <section><div class="keep q"><p class="lbl">Take away 1</p><p class="instr">Take away 1 on the chart, then choose the&nbsp;answer.</p><p class="note scr"><svg class="pawicon" width="26" height="26" viewBox="-21 -21 42 42" aria-hidden="true"><g fill="#d9711c"><ellipse cx="0" cy="7.6" rx="12.5" ry="10.3"/><ellipse cx="-14.8" cy="-5.7" rx="4.4" ry="5.7"/><ellipse cx="-5.3" cy="-14.4" rx="4.4" ry="5.7"/><ellipse cx="5.3" cy="-14.4" rx="4.4" ry="5.7"/><ellipse cx="14.8" cy="-5.7" rx="4.4" ry="5.7"/></g></svg>No ones to take? Press <b>1 → 10</b> on the next column. More letters for the&nbsp;message.</p><p class="note pr">Circle one&nbsp;answer.</p>
@@ -281,14 +345,15 @@ body.hw-pdf-mode .mnote {display:none;}
     2:{nm:"Hundreds",lab:"100",c:"#14a090",bg:"#ebf8f6"},1:{nm:"Tens",lab:"10",c:"#e8930c",bg:"#fef6e7"},0:{nm:"Ones",lab:"1",c:"#ef5f4c",bg:"#fef0ee"}};
   function fsFor(l) { return l.length <= 1 ? .46 : l.length <= 2 ? .42 : l.length <= 3 ? .36 : .27; }
   function chart(root) {
-    var start = parseInt(root.dataset.start, 10), op = root.dataset.op, hi = parseInt(root.dataset.hi, 10);
-    var store = "hwpvc:" + location.pathname + ":" + root.dataset.id, st = null;
-    function fresh() { var c = {}; for (var p = 0; p <= hi; p++) c[p] = Math.floor(start / Math.pow(10, p)) % 10; return {c: c, done: false}; }
+    var start = parseInt(root.dataset.start, 10), hi = parseInt(root.dataset.hi, 10);
+    var store = "hwpvc2:" + location.pathname + ":" + root.dataset.id, st = null;
+    function fresh() { var c = {}; for (var p = 0; p <= hi; p++) c[p] = Math.floor(start / Math.pow(10, p)) % 10; return {c: c, undo: []}; }
     try { st = JSON.parse(localStorage.getItem(store)); } catch (e) {}
     if (!st || !st.c) st = fresh();
     function save() { try { localStorage.setItem(store, JSON.stringify(st)); } catch (e) {} }
-    function act(fn, arrive) { fn(); save(); render(arrive); }
+    function act(fn, arrive) { st.undo.push(JSON.stringify(st.c)); if (st.undo.length > 60) st.undo.shift(); fn(); save(); render(arrive); }
     function open(p) { if (p > 0 && st.c[p] > 0) act(function () { st.c[p]--; st.c[p - 1] += 10; }, {p: p - 1, n: 10}); }
+    function pack(p) { if (p < hi && st.c[p] >= 10) act(function () { st.c[p] -= 10; st.c[p + 1]++; }, {p: p + 1, n: 1}); }
     function render(arrive) {
       root.innerHTML = "";
       var box = document.createElement("div"); box.className = "pvchart";
@@ -301,32 +366,41 @@ body.hw-pdf-mode .mnote {display:none;}
         for (var i = 0; i < st.c[p]; i++) {
           var d = document.createElement("div"); d.className = "pvctr"; d.textContent = P.lab;
           if (arrive && arrive.p === p && i >= st.c[p] - arrive.n) d.classList.add("new");
-          if (op === "-" && p > 0) { d.classList.add("opens"); d.addEventListener("click", function () { open(p); }); }
+          if (p > 0) { d.classList.add("opens"); d.addEventListener("click", function () { open(p); }); }
           body.appendChild(d);
         }
         col.appendChild(body);
         var count = document.createElement("div"); count.className = "pvcount"; count.textContent = st.c[p]; col.appendChild(count);
         var acts = document.createElement("div"); acts.className = "pvacts";
-        function btn(txt, cls, label, fn, off) {
+        function btn(row, txt, cls, label, fn, off) {
           var b = document.createElement("button"); b.type = "button"; b.className = "pvbtn " + cls; b.textContent = txt;
-          b.setAttribute("aria-label", label); b.disabled = !!off; b.addEventListener("click", fn); acts.appendChild(b);
+          b.setAttribute("aria-label", label); b.disabled = !!off; b.addEventListener("click", fn); row.appendChild(b);
         }
-        if (p === 0 && op === "+") btn("+1", "one", "Add 1 counter to the ones", function () { act(function () { st.c[0]++; st.done = true; }, {p: 0, n: 1}); }, st.done);
-        if (p === 0 && op === "-") btn("−1", "one", "Take 1 counter from the ones", function () { act(function () { st.c[0]--; st.done = true; }); }, st.done || st.c[0] < 1);
-        if (op === "+" && p < hi && st.c[p] >= 10) btn("10 → 1", "", "Swap 10 " + P.nm.toLowerCase() + " for 1 " + PLACES[p + 1].nm.toLowerCase(), function () { act(function () { st.c[p] -= 10; st.c[p + 1]++; }, {p: p + 1, n: 1}); });
-        if (op === "-" && p > 0 && st.c[p] >= 1) btn("1 → 10", "", "Open 1 " + P.nm.toLowerCase() + " into 10 " + PLACES[p - 1].nm.toLowerCase(), function () { open(p); });
+        var swaps = document.createElement("div"); swaps.className = "pvswaps" + (p === hi ? " onlyright" : "");
+        if (p < hi) btn(swaps, "1 ← 10", "pvswap", "Swap 10 " + P.nm.toLowerCase() + " for 1 " + PLACES[p + 1].nm.toLowerCase(), function () { pack(p); }, st.c[p] < 10);
+        if (p > 0) btn(swaps, "1 → 10", "pvswap", "Open 1 " + P.nm.toLowerCase() + " into 10 " + PLACES[p - 1].nm.toLowerCase(), function () { open(p); }, st.c[p] < 1);
+        acts.appendChild(swaps);
+        var foot = document.createElement("div"); foot.className = "pvfoot";
+        btn(foot, "+1", "add", "Add 1 " + P.nm.toLowerCase() + " counter", function () { act(function () { st.c[p] += 1; }, {p: p, n: 1}); });
+        btn(foot, "+10", "add", "Add 10 " + P.nm.toLowerCase() + " counters", function () { act(function () { st.c[p] += 10; }, {p: p, n: 10}); });
+        btn(foot, "−1", "take", "Take away 1 " + P.nm.toLowerCase() + " counter", function () { act(function () { st.c[p] -= 1; }); }, st.c[p] < 1);
+        acts.appendChild(foot);
         col.appendChild(acts);
         box.appendChild(col);
       })(p);
       root.appendChild(box);
+      var tools = document.createElement("div"); tools.className = "pvtools";
+      var undo = document.createElement("button"); undo.type = "button"; undo.className = "pvreset"; undo.textContent = "↶ Undo"; undo.disabled = !st.undo.length;
+      undo.addEventListener("click", function () { if (st.undo.length) { st.c = JSON.parse(st.undo.pop()); save(); render(); } });
       var reset = document.createElement("button"); reset.type = "button"; reset.className = "pvreset"; reset.textContent = "Start again";
       reset.addEventListener("click", function () { st = fresh(); save(); render(); });
-      root.appendChild(reset);
+      tools.appendChild(undo); tools.appendChild(reset);
+      root.appendChild(tools);
       [].forEach.call(root.querySelectorAll(".pvbody"), function (b) {
         var n = b.children.length, cs = getComputedStyle(b); if (!n) return;
         var cols = Math.ceil(n / 5), g = 4, w = b.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
         var h = b.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
-        var s = Math.max(13, Math.floor(Math.min(34, (w - (cols - 1) * g) / cols, (h - 4 * g) / 5)));
+        var s = Math.max(9, Math.floor(Math.min(innerWidth >= 900 ? 44 : 34, (w - (cols - 1) * g) / cols, (h - 4 * g) / 5)));
         b.style.setProperty("--s", s + "px");
       });
     }

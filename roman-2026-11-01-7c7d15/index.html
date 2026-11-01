@@ -142,6 +142,39 @@
     .pgap { display: inline-block; width: 92px; border-bottom: 1px solid #626a62; height: 11px; margin: 0 0 0 3px; vertical-align: baseline; }
     .print-opts { display: block; margin: 2px 0 0; font-size: 10.5px; color: #626a62; white-space: nowrap; }
   }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:20px 0; }
+  .qnum { font-size:22px; padding-top:6px; }
+  .q:has(.vline) .qnum { padding-top:14px; }
+  .prompt { font-size:28px; margin-bottom:10px; }
+  .direct { font-size:30px; }
+  .asks { font-size:28px; margin:0 0 14px; }
+  .resp { font-size:26px; padding:12px 18px; }
+  textarea.resp.qfield { min-height:68px; }
+  textarea.resp.two { min-height:136px; }
+  textarea.resp.big { min-height:280px; }
+  .vline { line-height:2; margin-bottom:0; }
+  select.resp.pick { height:54px; min-width:210px; font-size:26px; padding:2px 12px; }
+  .task.two-up { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:48px; }
+  .task.two-up > h2, .task.two-up > .do, .task.two-up > .model { grid-column:1 / -1; }
+  .task.two-up > .q { border-bottom:0; }
+  .task.row-up .q > div { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 36px; align-items:center; }
+  .task.row-up .q .prompt { margin:0; }
+  .task.row-up .q > div > .hw-mark, .task.row-up .q > div > .hw-pdf-response { grid-column:1 / -1; }
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -157,7 +190,7 @@
     <h1>What is it used for?</h1>
   </header>
 
-  <div class="task">
+  <div class="task two-up">
     <h2>1. Guess the object: your clues</h2>
     <div class="do">Write two clues about each object, without naming it: what it's used for (<i class="nw">is / are used for + -ing</i>), then its size or&nbsp;shape.</div>
     <div class="model">
@@ -186,7 +219,7 @@
     </div></div>
   </div>
 
-  <div class="task">
+  <div class="task row-up">
     <h2>2. Questions in the game</h2>
     <div class="do">Put the words in order and write the question you'd ask to guess an&nbsp;object.</div>
     <div class="model">

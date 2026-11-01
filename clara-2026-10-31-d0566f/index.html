@@ -665,6 +665,34 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  body:not(.hw-pdf-mode) .exercise-page .match-row .tp-zone.one { min-height:42px!important; padding:2px 8px!important; }
  body:not(.hw-pdf-mode) .exercise-page .match-list { gap:6px; }
 }
+/* One typography scale for every instruction, including generated repeated hints.
+   These role rules deliberately override the older task/height-specific styles. */
+@media screen {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page {
+  --instruction-size:clamp(28px,3cqw,44px);
+  --support-size:clamp(22px,2.35cqw,34px);
+ }
+ body.mint-game:not(.hw-pdf-mode) .exercise-page :is(.lead,.exercise-hint,.prompt,.prompt-q) {
+  font-size:var(--instruction-size)!important;
+  font-weight:700!important;
+  line-height:1.35!important;
+  color:#48473f!important;
+ }
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .small {
+  font-size:var(--support-size)!important;
+  line-height:1.4!important;
+ }
+}
+@media screen and (max-width:800px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page {
+  --instruction-size:24px;
+  --support-size:20px;
+ }
+}
+@media screen and (min-width:801px) and (min-height:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .model { padding-block:30px; }
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.matchset) { padding-block:16px; }
+}
 </style>
 </head>
 <body data-student="Clara" data-sheet="Maths 2026-10-31" data-sheet-id="clara-2026-10-31-maths">

@@ -43,3 +43,14 @@ select.hw-field { display:inline-block; min-height:40px; min-width:210px; paddin
 .hw-mark-list { margin-top: 8px; font-size: 15px; line-height: 1.6; }
 @media print { .hw-mark.hw-open { display: none; } }
 .hw-mark.hw-short { white-space: nowrap; flex-shrink: 0; }
+
+/* Screens: full width and bigger type, all sheets (Dasha, 1 Nov 2026). PDF export runs narrower, so it is untouched. */
+@media screen and (min-width:900px) {
+  .hw-bar { max-width:none; padding:28px 40px; }
+  .hw-send { font-size:28px; padding:16px 44px; }
+  .hw-msg { font-size:21px; }
+  .hw-pdf { font-size:19px; }
+  .hw-mark { font-size:21px; }
+  .hw-mark.hw-open { font-size:20px; }
+  textarea.hw-field { font-size:26px !important; line-height:1.45; }
+}

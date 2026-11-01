@@ -111,7 +111,7 @@ button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
 .pvreset {font:inherit; font-size:15px; font-weight:700; color:#6b6280; background:none; border:0; padding:6px 2px 0; cursor:pointer; text-decoration:underline; touch-action:manipulation;}
 @media (max-width:760px) {.pvrow {grid-template-columns:minmax(0,1fr);}}
 .hw-pdf-mode .pvacts, .hw-pdf-mode .pvreset {display:none;}
-.hw-pdf-mode .pvbody {height:150px;}
+.hw-pdf-mode .pvbody {--s:24px!important; height:162px;}
 @media (max-width:600px) {
   .pvhead {font-size:12px; padding:6px 1px; min-height:46px;}
   .pvbody {height:186px; padding:8px 2px;}
@@ -121,7 +121,7 @@ button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
 }
 @media print {
   .pvrow {grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:8px 12px;}
-  .pvbody {height:120px; padding:5px 2px;}
+  .pvbody {--s:20px!important; height:130px; padding:5px 2px;}
   .pvhead {font-size:10px; min-height:26px; padding:3px 1px;}
   .pvcount {font-size:13px;}
   .pvacts, .pvreset {display:none;}

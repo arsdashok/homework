@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 4 November 2026</title>
+<!-- Lesson of 4 Nov 2026 (lesson 15, reading: LEGO History, «Entering the age of plastics»). Cards 3-6 ran; 7-12 did not. About 15 min.
+     Part 1 = the frame he never produced whole in the opening chat: can get as low as / as high as + number. 5 fact notes in ENGLISH
+     (his file, 6 Oct: no Russian-to-English retrieval) + item 6 true for him. High/low: H L L H H, then his own.
+     Model (phone battery) answers no item. Madrid winter nights (lesson chat, tomorrow's hinge) deliberately NOT an item.
+     Part 2 = NEW mechanic for him: tap-to-place tiles into a fresh retelling (historical present, like the article). 10 gaps, 13 tiles
+     (3 distractors from the 4 Nov vocab page: beechwood, distributor, a pay rise). Bank position of the right tile per gap: 7,13,3,10,12,5,1,8,4,9.
+     Card 7 questions removed after the gates: card 7 runs in the next lesson. The retelling does not state the sons' fear,
+     the father's belief or the 1951/1953 naming. Facts checked on lego.com, 4 Nov 2026. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .prompt, li { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; }
+  .note a { color: #31594b; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 11px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 3px; }
+  .prompt { font-size: 17px; margin-bottom: 6px; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  textarea.resp { resize: vertical; }
+  textarea.resp.one { min-height: 46px; }
+  textarea.resp.two { min-height: 84px; }
+  .nw { white-space: nowrap; }
+
+  /* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, recoloured to his palette) ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 2px dashed #b9c6bb; border-radius: 10px; min-height: 64px; margin: 10px 0 14px; background: #f7f8f3; align-content: flex-start; }
+  .tp-tile {
+    font: inherit; font-size: 16px; font-weight: 600; color: #253a34; background: #fff;
+    border: 2px solid #8fa99a; border-radius: 8px; padding: 8px 14px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.35;
+    touch-action: manipulation;            /* a touch scrolls the page; never "none" */
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: #e4ece4; border-color: #31594b; box-shadow: 0 0 0 3px #c9d8cc; }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { border: 2px dashed #8fa99a; border-radius: 8px; padding: 6px; min-height: 48px; cursor: pointer; background: #f7f8f3; -webkit-tap-highlight-color: transparent; }
+  .tp-zone.ready { border-color: #31594b; background: #eef3ec; }
+  .tp-zone.over { border-color: #31594b; background: #e4ece4; }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: flex-start; }
+  .tp-says { display: block; font-size: 14px; font-weight: 400; color: #253a34; margin-top: 4px; }
+  .tp-bank .tp-says { display: none; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== TAP-PLACE CSS end ===== */
+
+  /* gaps sit inside the story */
+  .story p { font-size: 17px; line-height: 2.25; margin-bottom: 10px; }
+  .story p:last-child { margin-bottom: 0; }
+  .story p { page-break-inside: avoid; break-inside: avoid; }
+  .tp-zone.gapz { display: inline-flex; align-items: center; vertical-align: middle; min-width: 8.5em; padding: 0 3px; margin: 0 3px; }
+  .gapz .tp-slot { display: inline-flex; min-height: 40px; align-items: center; }
+  .gapz .tp-tile { color: #1a4fd6; padding: 4px 10px; min-height: 36px; }
+  .tp-zone.gapz:has(.tp-tile) { min-width: 0; border-color: transparent; background: transparent; padding: 0; }
+  .p2grid { display: block; }
+
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+    .tp-zone.gapz { min-width: 7em; }
+  }
+
+  body.hw-pdf-mode .tp-zone { min-height: 0; padding: 2px; }
+  body.hw-pdf-mode .tp-tile { font-size: 13px; min-height: 0; padding: 2px 8px; }
+
+  @media print {
+    body { font-size: 12px; line-height: 1.3; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 7px 16px 8px; margin-bottom: 7px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12.5px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 1px; }
+    .prompt { font-size: 12px; margin-bottom: 3px; }
+    .resp { font-size: 12px; padding: 3px 9px; }
+    textarea.resp.one { min-height: 40px; height: 40px; }
+    textarea.resp.two { min-height: 42px; height: 42px; }
+    .resp::placeholder { color: transparent; }
+    textarea.resp { resize: none; }
+    .tp-bank { padding: 5px; gap: 5px; min-height: 0; margin: 4px 0 6px; }
+    .tp-tile { font-size: 11.5px; min-height: 0; padding: 2px 8px; border-width: 1.2px; }
+    .story p { font-size: 12px; line-height: 2.25; margin-bottom: 4px; }
+    .tp-zone { min-height: 0; border-width: 1.2px; }
+    .tp-zone.gapz { min-width: 13em; height: 24px; padding: 0 2px; }
+    .gapz .tp-slot { min-height: 20px; }
+    .gapz .tp-tile { padding: 1px 7px; min-height: 0; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:20px 0; }
+  .qnum { font-size:22px; padding-top:6px; }
+  .prompt { font-size:28px; margin-bottom:12px; }
+  .resp { font-size:26px; padding:12px 18px; }
+  textarea.resp.one { min-height:68px; }
+  textarea.resp.two { min-height:136px; }
+  .task.two-up { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:48px; }
+  .task.two-up > h2, .task.two-up > .do, .task.two-up > .model, .task.two-up > .note { grid-column:1 / -1; }
+  .task.two-up > .q { border-bottom:0; align-content:start; }
+  .task.two-up > .q > div { display:flex; flex-direction:column; }
+  .task.two-up > .q > div > .prompt { flex:1 0 auto; }
+  /* Part 2: story on the left, the word bank beside it and staying in view */
+  .p2grid { display:grid; grid-template-columns:minmax(0,1fr) 380px; column-gap:48px; align-items:start; }
+  .p2grid .tp-bank { grid-column:2; grid-row:1; position:sticky; top:20px; margin:0; gap:14px; padding:18px; }
+  .p2grid .story { grid-column:1; grid-row:1; }
+  .tp-tile { font-size:26px; min-height:60px; padding:10px 18px; }
+  .story p { font-size:29px; line-height:2.15; margin-bottom:18px; }
+  .tp-zone.gapz { min-height:60px; min-width:8em; }
+  .gapz .tp-slot { min-height:52px; }
+  .gapz .tp-tile { font-size:26px; min-height:50px; padding:6px 14px; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-11-04" data-sheet-id="roman-2026-11-04-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 15&nbsp;minutes</span></div>
+    <h1>From wood to plastic</h1>
+  </header>
+
+  <div class="task two-up">
+    <h2>1. As low as, as high as</h2>
+    <div class="do">Write one sentence with <i>can get as low as</i> or <i>can get as high&nbsp;as</i>.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      Your phone battery at the end of a long day: sometimes only 5%. &rarr; <b>By the evening, my battery can get as low as&nbsp;5%.</b>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span><div>
+      <p class="prompt">Your heart rate at the end of a 10&nbsp;km race: sometimes&nbsp;180.</p>
+      <textarea class="hw-field resp one" rows="1" data-k="p1" data-label="1. Heart rate at the end of a 10 km race: sometimes 180" aria-label="Sentence 1" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">2.</span><div>
+      <p class="prompt">A ski trip in the Alps. At night, at the top of the mountain: sometimes minus 20&nbsp;degrees.</p>
+      <textarea class="hw-field resp one" rows="1" data-k="p2" data-label="2. Ski trip in the Alps, at night at the top: sometimes minus 20 degrees" aria-label="Sentence 2" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">3.</span><div>
+      <p class="prompt">Return fares to London in January: sometimes only &euro;30.</p>
+      <textarea class="hw-field resp one" rows="1" data-k="p3" data-label="3. Return fares to London in January: sometimes only 30 euros" aria-label="Sentence 3" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">4.</span><div>
+      <p class="prompt">Madrid in August, in the afternoon: sometimes 40&nbsp;degrees.</p>
+      <textarea class="hw-field resp one" rows="1" data-k="p4" data-label="4. Madrid in August, in the afternoon: sometimes 40 degrees" aria-label="Sentence 4" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">5.</span><div>
+      <p class="prompt">Your electricity bill in January, when the heating is on all day: sometimes&nbsp;&euro;200.</p>
+      <textarea class="hw-field resp one" rows="1" data-k="p5" data-label="5. Electricity bill in January, heating on all day: sometimes 200 euros" aria-label="Sentence 5" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+    </div></div>
+
+    <div class="q"><span class="qnum">6.</span><div>
+      <p class="prompt">Now one that is true for you: something in your life that can get very high or very low (your screen time on a busy day, the emails in your inbox, a&nbsp;bill).</p>
+      <textarea class="hw-field resp one" rows="1" data-k="p6" data-label="6. True for you: something in your life that can get very high or very low" aria-label="Sentence 6" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+    </div></div>
+  </div>
+
+  <div class="task">
+    <h2>2. The LEGO story</h2>
+    <div class="do">Tap a word, then tap its gap in the&nbsp;story.</div>
+    <p class="note">All these words are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 4&nbsp;November. Tap a placed word to send it&nbsp;back.</p>
+
+    <div class="tp p2grid" id="story">
+      <div class="tp-bank" aria-label="Words">
+        <button type="button" class="tp-tile" data-value="affect">affect</button>
+        <button type="button" class="tp-tile" data-value="beechwood">beechwood</button>
+        <button type="button" class="tp-tile" data-value="straightforward">straightforward</button>
+        <button type="button" class="tp-tile" data-value="licence agreement">licence agreement</button>
+        <button type="button" class="tp-tile" data-value="switch">switch</button>
+        <button type="button" class="tp-tile" data-value="a pay rise">a pay rise</button>
+        <button type="button" class="tp-tile" data-value="source">source</button>
+        <button type="button" class="tp-tile" data-value="won't be able to">won't be able to</button>
+        <button type="button" class="tp-tile" data-value="lifts">lifts</button>
+        <button type="button" class="tp-tile" data-value="mould">mould</button>
+        <button type="button" class="tp-tile" data-value="distributor">distributor</button>
+        <button type="button" class="tp-tile" data-value="persuade">persuade</button>
+        <button type="button" class="tp-tile" data-value="allows">allows</button>
+      </div>
+
+      <div class="story">
+        <p class="q-story">By the end of the Second World War, good beechwood for Ole Kirk Kristiansen's wooden toys is getting harder to <span class="tp-zone gapz" data-store="g1" data-field="g1" aria-label="Gap 1"><span class="tp-slot"></span></span>. Plastic looks like the future, so he orders an expensive plastic moulding machine from London, and it arrives in Billund in&nbsp;1947. The new material <span class="tp-zone gapz" data-store="g2" data-field="g2" aria-label="Gap 2"><span class="tp-slot"></span></span> the company to make toys in new shapes, but the start isn't <span class="tp-zone gapz" data-store="g3" data-field="g3" aria-label="Gap 3"><span class="tp-slot"></span></span>: tools and raw materials are hard to find, and it takes a lot of experiments to learn how to <span class="tp-zone gapz" data-store="g4" data-field="g4" aria-label="Gap 4"><span class="tp-slot"></span></span> plastic into&nbsp;toys.</p>
+        <p class="q-story">His sons don't share his enthusiasm. They try to <span class="tp-zone gapz" data-store="g5" data-field="g5" aria-label="Gap 5"><span class="tp-slot"></span></span> their father to <span class="tp-zone gapz" data-store="g6" data-field="g6" aria-label="Gap 6"><span class="tp-slot"></span></span> back to wooden toys only, but he&nbsp;refuses.</p>
+        <p class="q-story">After the war, many countries restrict toy imports, and these rules <span class="tp-zone gapz" data-store="g7" data-field="g7" aria-label="Gap 7"><span class="tp-slot"></span></span> the way the company starts selling abroad. It knows that while the restrictions last, its toys from Denmark <span class="tp-zone gapz" data-store="g8" data-field="g8" aria-label="Gap 8"><span class="tp-slot"></span></span> get into Norwegian shops. So in 1953 it signs a <span class="tp-zone gapz" data-store="g9" data-field="g9" aria-label="Gap 9"><span class="tp-slot"></span></span> with a plastics company in Norway, which makes and sells LEGO products there. Ten years later, Norway <span class="tp-zone gapz" data-store="g10" data-field="g10" aria-label="Gap 10"><span class="tp-slot"></span></span> its import restrictions, and LEGO sets up its own sales company there&nbsp;instead.</p>
+      </div>
+
+      <div class="tp-stores" hidden>
+        <select data-k="g1" data-label="Gap 1. Good beechwood is getting harder to ___." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g2" data-label="Gap 2. The new material ___ the company to make toys in new shapes." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g3" data-label="Gap 3. But the start isn't ___." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g4" data-label="Gap 4. It takes a lot of experiments to learn how to ___ plastic into toys." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g5" data-label="Gap 5. They try to ___ their father..." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g6" data-label="Gap 6. ...their father to ___ back to wooden toys only." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g7" data-label="Gap 7. These rules ___ the way the company starts selling abroad." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g8" data-label="Gap 8. Its toys from Denmark ___ get into Norwegian shops." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g9" data-label="Gap 9. In 1953 it signs a ___ with a plastics company in Norway." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+        <select data-k="g10" data-label="Gap 10. Ten years later, Norway ___ its import restrictions." class="hw-field"><option value=""></option><option>affect</option><option>beechwood</option><option>straightforward</option><option>licence agreement</option><option>switch</option><option>a pay rise</option><option>source</option><option>won't be able to</option><option>lifts</option><option>mould</option><option>distributor</option><option>persuade</option><option>allows</option></select>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html, unchanged) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS end ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJwMSI6IHsidCI6ICJvcGVuIn0sICJwMiI6IHsidCI6ICJvcGVuIn0sICJwMyI6IHsidCI6ICJvcGVuIn0sICJwNCI6IHsidCI6ICJvcGVuIn0sICJwNSI6IHsidCI6ICJvcGVuIn0sICJwNiI6IHsidCI6ICJvcGVuIn0sICJnMSI6IHsidCI6ICJleGFjdCIsICJhIjogInNvdXJjZSJ9LCAiZzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhbGxvd3MifSwgImczIjogeyJ0IjogImV4YWN0IiwgImEiOiAic3RyYWlnaHRmb3J3YXJkIn0sICJnNCI6IHsidCI6ICJleGFjdCIsICJhIjogIm1vdWxkIn0sICJnNSI6IHsidCI6ICJleGFjdCIsICJhIjogInBlcnN1YWRlIn0sICJnNiI6IHsidCI6ICJleGFjdCIsICJhIjogInN3aXRjaCJ9LCAiZzciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhZmZlY3QifSwgImc4IjogeyJ0IjogImV4YWN0IiwgImEiOiAid29uJ3QgYmUgYWJsZSB0byJ9LCAiZzkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsaWNlbmNlIGFncmVlbWVudCJ9LCAiZzEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAibGlmdHMifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

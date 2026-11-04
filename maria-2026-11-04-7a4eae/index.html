@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maria: Homework 4 November 2026</title>
+<!-- Lesson 4 Nov 2026 (Power Up 3 PB unit 3 Party time p.34, coursebook screen-shared, no deck). Single target: describing what someone looks like, adjectives before a noun in the order taught on screen: size/length, then shape, then colour (long straight black hair). Ex1 order the words (tap-to-place, Tools/hw_snippets/tap_place.html), Ex2 read and choose the scarecrow (SVG drawings generated in scratch, each pair differs in 2+ features), Ex3 describe someone. Present only; no past simple (not taught). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+<style>
+  /* National Geographic Little Kids style: blue waves, slanted title plaques, ringed circle */
+  :root {
+    --blue: #1976d2; --sky: #0b8fd0; --sea: #e3f4fd; --orange: #e8690b; --purple: #7e3fa6;
+    --green: #3f9a1c; --pink: #d6336c; --yellow: #ffd21f; --ink: #1e1e1e; --paper: #ffffff;
+  }
+  @page { size: A4; margin: 9mm 11mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
+    font-size: 18px; color: var(--ink); background: var(--sea);
+    max-width: 1080px; margin: auto; padding: 16px 16px 20px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .prt { display: none; }
+  .nw { white-space: nowrap; }
+
+  /* banner */
+  header.banner {
+    position: relative; overflow: hidden; border-radius: 22px;
+    background: var(--blue); color: #fff;
+    padding: 20px 24px 44px; margin-bottom: 16px; min-height: 176px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  header.banner .dots {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,.18) 2px, transparent 2.5px);
+    background-size: 16px 16px;
+  }
+  header.banner .waves { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 46px; }
+  header.banner .txt { position: relative; z-index: 1; }
+  .kicker {
+    display: inline-block; background: var(--yellow); color: var(--ink);
+    font-weight: 800; font-size: 13px; letter-spacing: .06em; text-transform: uppercase;
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .plaque {
+    display: inline-block; transform: skewX(-9deg) rotate(-2deg);
+    background: var(--orange); color: #fff; padding: 6px 20px 8px; border-radius: 8px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,.18);
+  }
+  .plaque > span { display: inline-block; transform: skewX(9deg); font-weight: 900; font-style: italic; }
+  header.banner h1 { font-size: 36px; line-height: 1.05; }
+  .hero {
+    position: relative; z-index: 1; flex-shrink: 0; width: 148px; height: 148px;
+    border-radius: 50%; border: 8px solid var(--yellow); box-shadow: 0 0 0 4px #fff;
+    overflow: hidden; background: #bfe7fb;
+  }
+  .hero svg { display: block; width: 100%; height: 100%; }
+
+  /* exercise cards */
+  .ex-card { position: relative; margin: 12px 0 14px; padding-top: 16px; }
+  .ex-card > .ex-body { background: var(--paper); border-radius: 22px; padding: 30px 24px 20px; }
+  .ex-header {
+    position: absolute; top: 0; left: 18px; z-index: 1;
+    display: inline-block; transform: skewX(-9deg) rotate(-1.5deg);
+    color: #fff; padding: 5px 16px 6px; border-radius: 8px;
+    font-size: 13.5px; letter-spacing: .07em; text-transform: uppercase;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.16);
+  }
+  .ex-header > span { display: inline-block; transform: skewX(9deg); font-weight: 800; }
+  .ex-card.c1 .ex-header { background: var(--orange); }
+  .ex-card.c2 .ex-header { background: var(--green); }
+  .ex-card.c3 .ex-header { background: var(--purple); }
+  .instr { font-weight: 700; font-size: 25px; line-height: 1.25; margin-bottom: 6px; }
+  .note { font-size: 15px; color: #56626c; margin-bottom: 12px; }
+
+  .example-box {
+    background: #fff8d6; border: 3px dotted #f2b400; border-radius: 16px;
+    padding: 8px 14px; margin-bottom: 14px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .example-box .label {
+    display: inline-block; background: var(--yellow); color: var(--ink);
+    font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    padding: 2px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .example-box b { color: var(--orange); }
+  .rule { font-size: 18px; }
+  .strip { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+  .chip { display: inline-block; color: #fff; font-weight: 800; font-size: 18px; padding: 5px 14px; border-radius: 999px; white-space: nowrap; }
+  .chip small { font-weight: 500; font-size: .82em; }
+  .b-orange { background: var(--orange); } .b-green { background: var(--green); } .b-purple { background: var(--purple); }
+  .arrow { font-weight: 900; font-size: 20px; color: var(--ink); }
+  .model { font-size: 19px; }
+  .model b { color: var(--orange); }
+
+  .n {
+    flex-shrink: 0; display: inline-block; width: 30px; height: 30px; line-height: 30px;
+    border-radius: 50%; background: var(--blue); color: #fff; text-align: center;
+    font-weight: 800; font-size: 15px; font-style: normal;
+  }
+  .q { page-break-inside: avoid; break-inside: avoid; }
+
+  /* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html) ===== */
+.tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 2px dashed #b7d9d4; border-radius: 14px; min-height: 64px; margin: 10px 0 14px; }
+.tp-tile {
+  font: inherit; font-size: 16px; font-weight: 600; color: #1d4f4a; background: #fff;
+  border: 2px solid #7ccdc3; border-radius: 12px; padding: 8px 14px; min-height: 44px;
+  cursor: pointer; text-align: left; line-height: 1.35;
+  touch-action: manipulation;            /* a touch scrolls the page; never "none" */
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+}
+.tp-tile.picked { background: #e3f6f3; border-color: #1d7a71; box-shadow: 0 0 0 3px #bfeae4; }
+.tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+.tp-zone { border: 2px solid #cfe7e3; border-radius: 14px; padding: 10px; min-height: 56px; cursor: pointer; }
+.tp-zone.ready { border-color: #7ccdc3; background: #f6fcfb; }
+.tp-zone.over { border-color: #1d7a71; background: #e3f6f3; }
+.tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: flex-start; }
+.tp-multi .tp-slot { flex-direction: column; align-items: stretch; }
+.tp-says { display: block; font-size: 14px; font-weight: 400; color: #1d4f4a; margin-top: 4px; }
+.tp-bank .tp-says { display: none; }
+.tp-stores { display: none !important; }
+@media print { .tp-tile.picked { box-shadow: none; } }
+
+  /* ===== end TAP-PLACE CSS ===== */
+  /* Maria's palette on the shared tap-place pattern (behaviour unchanged) */
+  .tp-bank { border-color: #90caf9; background: #f5fbff; margin: 0; padding: 8px 10px; min-height: 0; align-content: flex-start; }
+  .tp-tile { color: #fff; background: var(--sky); border: 2px solid var(--sky); border-radius: 999px; font-weight: 800; padding: 6px 16px; }
+  .tp-tile.picked { background: var(--blue); border-color: var(--ink); box-shadow: 0 0 0 3px var(--yellow); }
+  .tp-zone { border: 2.5px solid #90caf9; background: #f5fbff; border-radius: 12px; }
+  .tp-zone.ready { border-color: var(--blue); background: #fffbe6; }
+  .tp-zone.over { border-color: var(--blue); background: #fff3c4; }
+  .tp-zone.gapz { display: inline-flex; align-items: center; vertical-align: middle; min-width: 5.4em; min-height: 46px; padding: 0 3px; margin: 2px 2px; }
+  .gapz .tp-slot { display: inline-flex; min-height: 40px; align-items: center; }
+  .tp-zone.gapz:has(.tp-tile) { min-width: 0; border-color: transparent; background: transparent; padding: 0; }
+  .tp-zone .tp-tile { color: #1d4ed8; background: #e8f3ff; border-color: #90caf9; }
+  .tp-bank:not(:has(.tp-tile)) { display: none; }
+  .tp-zone .hw-mark.hw-mark-blk { display: inline-block; width: auto; flex-basis: auto; margin: 0 0 0 4px; }
+
+  /* Exercise 1: one item = one row, sentence left, its words right */
+  .oq { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px 14px; padding: 6px 0; border-bottom: 1.5px dashed #d6ecfa; }
+  .oq:last-child { border-bottom: 0; }
+  .osent { font-size: 21px; line-height: 1.9; }
+  .oq .tp-bank { justify-self: start; }
+
+  /* Exercise 2: pictures and descriptions */
+  .pics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 4px 0 14px; page-break-inside: avoid; break-inside: avoid; }
+  .pic { position: relative; text-align: center; }
+  .pframe { border: 6px solid var(--ring); border-radius: 22px; overflow: hidden; background: #eaf6fd; }
+  .pframe svg { display: block; width: 100%; height: auto; }
+  .plet { position: absolute; top: -8px; left: -6px; z-index: 1; width: 38px; height: 38px; line-height: 38px; border-radius: 50%; background: var(--ring); color: #fff; font-weight: 900; font-size: 22px; box-shadow: 2px 2px 0 rgba(0,0,0,.15); }
+  .descs { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .dq { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 6px 14px; }
+  .dq .n { margin-top: 2px; }
+  .dpick { grid-column: 2; }
+  .dtext { font-size: 20px; line-height: 1.4; min-width: 0; }
+  .dpick { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+  .plab { font-size: 15px; color: #56626c; font-weight: 500; }
+  .dpick select { font: inherit; font-size: 20px; font-weight: 700; }
+  .prt.pbox { width: 46px; height: 26px; border: 1.5px solid #90caf9; border-radius: 8px; vertical-align: middle; }
+
+  .picref { display: inline-block; width: 1.45em; height: 1.45em; line-height: 1.45em; border-radius: 50%; background: var(--ring); color: #fff; font-weight: 900; text-align: center; font-size: .85em; vertical-align: middle; margin-right: 2px; }
+  .pics + .oq { border-top: 0; }
+  /* Exercise 3 */
+  .askq { font-size: 23px; font-weight: 500; color: var(--blue); line-height: 1.25; margin: 4px 0 4px; }
+  textarea.big {
+    display: block; width: 100%; font: inherit; font-size: 19px; line-height: 1.55; color: #1d4ed8; resize: vertical;
+    padding: 10px 14px; border: 2.5px solid #90caf9; border-radius: 14px; background: #f5fbff;
+  }
+  section textarea.big.tall { min-height: 150px; }
+
+  /* Dasha's emailed PDF (hw.js renders the page in an 800px frame with body.hw-pdf-mode) */
+  body.hw-pdf-mode header.banner { min-height: 0; padding: 10px 20px 14px; margin-bottom: 8px; }
+  body.hw-pdf-mode header.banner h1 { font-size: 26px; }
+  body.hw-pdf-mode .kicker { margin-bottom: 5px; }
+  body.hw-pdf-mode .hero { width: 88px; height: 88px; border-width: 5px; box-shadow: none; }
+  body.hw-pdf-mode .ex-card { margin: 6px 0 8px; }
+  body.hw-pdf-mode .ex-card > .ex-body { padding: 22px 8px 8px; }
+  body.hw-pdf-mode .instr { font-size: 19px; }
+  body.hw-pdf-mode .note { font-size: 12.5px; margin-bottom: 7px; }
+  body.hw-pdf-mode .example-box { padding: 4px 12px; margin-bottom: 8px; font-size: 14px; }
+  body.hw-pdf-mode .rule, body.hw-pdf-mode .model { font-size: 14px; }
+  body.hw-pdf-mode .chip { font-size: 13px; padding: 3px 10px; }
+  body.hw-pdf-mode .oq { grid-template-columns: auto minmax(0, 1fr); padding: 3px 0; }
+  body.hw-pdf-mode .oq .tp-bank { display: none; }
+  body.hw-pdf-mode .osent { font-size: 15px; line-height: 1.8; }
+  body.hw-pdf-mode .tp-tile { font-size: 14px; padding: 2px 10px; min-height: 0; }
+  body.hw-pdf-mode .pics { gap: 8px; margin-bottom: 8px; }
+  body.hw-pdf-mode .pframe { border-width: 4px; border-radius: 14px; }
+  body.hw-pdf-mode .plet { width: 26px; height: 26px; line-height: 26px; font-size: 15px; }
+  body.hw-pdf-mode .dtext { font-size: 14.5px; }
+  body.hw-pdf-mode .descs { gap: 5px; }
+  body.hw-pdf-mode .askq { font-size: 16px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 10px 16px; }
+    header.banner { flex-direction: column; align-items: flex-start; padding-bottom: 50px; }
+    header.banner h1 { font-size: 28px; }
+    .hero { width: 112px; height: 112px; border-width: 6px; }
+    .ex-card > .ex-body { padding: 28px 14px 16px; }
+    .instr { font-size: 22px; }
+    .chip { font-size: 15px; padding: 4px 11px; }
+    .oq { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+    .oq .n { margin-top: 10px; }
+    .oq .tp-bank { grid-column: 2; }
+    .osent { font-size: 19px; }
+    .tp-zone.gapz { min-width: 4.6em; }
+    .pics { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 10px; }
+    .dtext { font-size: 18px; }
+    .askq { font-size: 21px; }
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 28px 48px 48px; font-size: 26px; }
+    header.banner { min-height: 210px; padding: 26px 40px 54px; margin-bottom: 26px; }
+    header.banner h1 { font-size: 54px; }
+    .kicker { font-size: 19px; padding: 5px 16px; margin-bottom: 14px; }
+    .hero { width: 178px; height: 178px; border-width: 10px; }
+    .ex-card { margin: 22px 0 28px; padding-top: 22px; }
+    .ex-card > .ex-body { padding: 44px 40px 30px; border-radius: 26px; }
+    .ex-header { font-size: 21px; padding: 8px 22px 9px; left: 26px; }
+    .instr { font-size: 38px; margin-bottom: 10px; }
+    .note { font-size: 23px; margin-bottom: 18px; }
+    .example-box { padding: 14px 22px; gap: 10px 20px; margin-bottom: 22px; }
+    .example-box .label { font-size: 17px; padding: 4px 14px; }
+    .rule { font-size: 27px; }
+    .chip { font-size: 26px; padding: 8px 20px; }
+    .arrow { font-size: 30px; }
+    .model { font-size: 28px; }
+    .n { width: 44px; height: 44px; line-height: 44px; font-size: 22px; }
+    .oq { grid-template-columns: auto minmax(0, 1fr); gap: 6px 22px; padding: 14px 0; }
+    .oq .tp-bank { grid-column: 2; }
+    .osent { font-size: 30px; line-height: 1.9; }
+    .tp-bank { gap: 14px; padding: 12px 16px; }
+    .tp-tile { font-size: 27px; min-height: 58px; padding: 8px 24px; }
+    .tp-zone.gapz { min-height: 64px; min-width: 5.2em; font-size: 27px; margin: 3px 4px; }
+    .gapz .tp-slot { min-height: 56px; }
+    .hw-mark { font-size: 22px; }
+    .pics { gap: 26px; margin: 8px 0 26px; }
+    .pframe { border-width: 8px; border-radius: 28px; }
+    .pframe svg { max-height: 380px; width: auto; margin: 0 auto; }
+    .plet { width: 54px; height: 54px; line-height: 54px; font-size: 30px; top: -12px; left: -10px; }
+    .descs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 56px; }
+    .dtext { font-size: 29px; }
+    .plab { font-size: 22px; }
+    .dpick select { font-size: 27px; min-height: 58px; padding: 6px 14px; }
+    .askq { font-size: 32px; margin: 6px 0 8px; }
+    textarea.big { font-size: 27px; padding: 14px 20px; }
+    section textarea.big.tall { min-height: 230px; }
+  }
+
+  @media screen and (min-width:1500px) {
+    .oq { grid-template-columns: auto max-content minmax(0, 1fr); gap: 10px 40px; }
+    .oq .tp-bank { grid-column: 3; }
+  }
+
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    .prt.pbox { display: inline-block !important; }
+    body { font-size: 13px; padding: 0; max-width: none; background: #fff; }
+    header.banner { min-height: 0; padding: 7px 18px 20px; margin-bottom: 4px; border-radius: 16px; }
+    header.banner .waves { height: 24px; }
+    header.banner h1 { font-size: 24px; }
+    .kicker { font-size: 10.5px; margin-bottom: 5px; }
+    .hero { width: 68px; height: 68px; border-width: 5px; box-shadow: 0 0 0 2px #fff; }
+    .ex-card { margin: 3px 0 3px; padding-top: 13px; page-break-inside: avoid; break-inside: avoid; }
+    .ex-card > .ex-body { padding: 17px 16px 8px; border: 2px solid #d6ecfa; border-radius: 16px; }
+    .ex-header { font-size: 10.5px; padding: 3px 12px 4px; }
+    .instr { font-size: 16px; margin-bottom: 3px; }
+    .note { font-size: 11px; margin-bottom: 4px; }
+    .example-box { padding: 3px 10px; margin-bottom: 4px; border-width: 2px; gap: 3px 10px; }
+    .example-box .label { font-size: 9.5px; }
+    .rule, .model { font-size: 12.5px; }
+    .chip { font-size: 11.5px; padding: 2px 9px; }
+    .arrow { font-size: 13px; }
+    .n { width: 20px; height: 20px; line-height: 20px; font-size: 11px; }
+    .oq { grid-template-columns: auto minmax(0, 1.2fr) minmax(0, 0.8fr); padding: 1px 0; gap: 2px 10px; }
+    .osent { font-size: 13.5px; line-height: 1.75; }
+    .tp-bank { padding: 2px 6px; gap: 5px; border-width: 1.2px; }
+    .tp-tile { font-size: 11.5px; padding: 1px 9px; min-height: 0; }
+    .tp-zone.gapz { min-width: 5.2em; min-height: 0; height: 23px; border-width: 1.3px; border-radius: 7px; background: #fff; }
+    .gapz .tp-slot { min-height: 0; }
+    .pics { gap: 8px; margin: 2px 0 5px; }
+    .pics .pframe svg { max-height: 27mm; width: auto; margin: 0 auto; }
+    .pframe { border-width: 3px; border-radius: 12px; }
+    .plet { width: 20px; height: 20px; line-height: 20px; font-size: 11.5px; top: -5px; left: -4px; }
+    .descs { grid-template-columns: 1fr 1fr; gap: 3px 22px; }
+    .dq { grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 2px 8px; }
+    .dpick { grid-column: 3; }
+    .dtext { font-size: 12.5px; line-height: 1.3; }
+    .plab { font-size: 10px; }
+    .prt.pbox { width: 30px; height: 18px; border: 1.5px solid #90caf9; border-radius: 6px; vertical-align: middle; }
+    .askq { font-size: 14.5px; margin: 2px 0 2px; }
+    textarea.big { font-size: 13px; border-width: 1.5px; border-radius: 12px; padding: 4px 10px; resize: none; }
+    section textarea.big.tall { min-height: 25mm; height: 25mm; }
+    textarea.big::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Maria" data-sheet="English 2026-11-04" data-sheet-id="maria-2026-11-04-english">
+<div id="sheet">
+
+
+<header class="banner">
+  <div class="dots" aria-hidden="true"></div>
+  <div class="txt">
+    <span class="kicker">Maria&rsquo;s homework &middot; 4&nbsp;November</span><br>
+    <div class="plaque"><span><h1>What do they look&nbsp;like?</h1></span></div>
+  </div>
+  <div class="hero" role="img" aria-label="A crow on a fence">
+    <svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="148" height="148" fill="#bfe7fb"/>
+      <circle cx="114" cy="34" r="14" fill="#ffd21f"/>
+      <rect y="112" width="148" height="36" fill="#9ccc65"/>
+      <rect x="64" y="84" width="14" height="40" fill="#8a5a2b"/>
+      <rect x="30" y="96" width="90" height="7" rx="3" fill="#a06a35"/>
+      <path d="M44 74 Q46 52 70 50 Q88 50 94 62 L112 58 L98 70 Q100 80 88 86 L52 86 Q42 84 44 74 Z" fill="#26282b"/>
+      <path d="M44 76 L22 70 L28 80 L20 88 L46 82 Z" fill="#26282b"/>
+      <path d="M70 66 Q80 60 86 72 Q76 74 70 66 Z" fill="#3c4046"/>
+      <circle cx="96" cy="58" r="12" fill="#26282b"/>
+      <path d="M106 54 L122 59 L106 63 Z" fill="#f2a516"/>
+      <circle cx="99" cy="55" r="3.4" fill="#fff"/><circle cx="100" cy="55" r="1.7" fill="#111"/>
+      <path d="M64 86 L62 96 M60 96 L66 96 M76 86 L76 96 M73 96 L80 96" stroke="#f2a516" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <svg class="waves" viewBox="0 0 800 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C80,2 160,42 240,22 C320,2 400,42 480,22 C560,2 640,42 720,22 C760,12 790,16 800,20 L800,46 L0,46 Z" fill="#29b6f6"/><path d="M0,32 C90,16 170,46 260,32 C350,18 430,46 520,32 C610,18 700,46 800,30 L800,46 L0,46 Z" fill="#e3f4fd"/></svg>
+</header>
+
+<section class="ex-card c1">
+  <div class="ex-header"><span>Exercise 1: words in&nbsp;order</span></div>
+  <div class="ex-body">
+    <p class="instr">Put the words in the right&nbsp;order.</p>
+    <p class="note"><span class="scr">Tap a bubble word, then tap a box. Tap a word in a box to send it&nbsp;back.</span><span class="prt">Write the bubble words in the boxes.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="strip"><span class="chip b-orange">size <small>long, short, little, big</small></span><span class="arrow">&rarr;</span><span class="chip b-green">shape <small>straight, curly, spiky</small></span><span class="arrow">&rarr;</span><span class="chip b-purple">colour <small>black, fair, red&hellip;</small></span></span>
+      <span class="model">She&rsquo;s got <b>short straight black</b>&nbsp;hair.</span>
+    </div>
+      <div class="oq q tp"><span class="n">1</span><p class="osent">He&rsquo;s got <span class="tp-zone gapz" data-store="o1a" data-field="o1a" aria-label="Item 1, place 1"><span class="tp-slot"></span></span> <span class="tp-zone gapz" data-store="o1b" data-field="o1b" aria-label="Item 1, place 2"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="o1c" data-field="o1c" aria-label="Item 1, place 3"><span class="tp-slot"></span></span>&nbsp;hair.</span></p><div class="tp-bank" aria-label="Words for item 1"><button type="button" class="tp-tile" data-value="spiky">spiky</button><button type="button" class="tp-tile" data-value="green">green</button><button type="button" class="tp-tile" data-value="short">short</button></div><div class="tp-stores" hidden><select data-k="o1a" data-label="1.1 He's got ___ ___ ___ hair.: place 1" aria-label="Item 1 place 1" class="hw-field"><option value=""></option><option value="spiky">spiky</option><option value="green">green</option><option value="short">short</option></select><select data-k="o1b" data-label="1.1 He's got ___ ___ ___ hair.: place 2" aria-label="Item 1 place 2" class="hw-field"><option value=""></option><option value="spiky">spiky</option><option value="green">green</option><option value="short">short</option></select><select data-k="o1c" data-label="1.1 He's got ___ ___ ___ hair.: place 3" aria-label="Item 1 place 3" class="hw-field"><option value=""></option><option value="spiky">spiky</option><option value="green">green</option><option value="short">short</option></select></div></div>
+      <div class="oq q tp"><span class="n">2</span><p class="osent">She&rsquo;s got a <span class="tp-zone gapz" data-store="o2a" data-field="o2a" aria-label="Item 2, place 1"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="o2b" data-field="o2b" aria-label="Item 2, place 2"><span class="tp-slot"></span></span>&nbsp;hat.</span></p><div class="tp-bank" aria-label="Words for item 2"><button type="button" class="tp-tile" data-value="purple">purple</button><button type="button" class="tp-tile" data-value="little">little</button></div><div class="tp-stores" hidden><select data-k="o2a" data-label="1.2 She's got a ___ ___ hat.: place 1" aria-label="Item 2 place 1" class="hw-field"><option value=""></option><option value="purple">purple</option><option value="little">little</option></select><select data-k="o2b" data-label="1.2 She's got a ___ ___ hat.: place 2" aria-label="Item 2 place 2" class="hw-field"><option value=""></option><option value="purple">purple</option><option value="little">little</option></select></div></div>
+      <div class="oq q tp"><span class="n">3</span><p class="osent">He&rsquo;s got a <span class="tp-zone gapz" data-store="o3a" data-field="o3a" aria-label="Item 3, place 1"><span class="tp-slot"></span></span> <span class="tp-zone gapz" data-store="o3b" data-field="o3b" aria-label="Item 3, place 2"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="o3c" data-field="o3c" aria-label="Item 3, place 3"><span class="tp-slot"></span></span>&nbsp;beard.</span></p><div class="tp-bank" aria-label="Words for item 3"><button type="button" class="tp-tile" data-value="grey">grey</button><button type="button" class="tp-tile" data-value="long">long</button><button type="button" class="tp-tile" data-value="curly">curly</button></div><div class="tp-stores" hidden><select data-k="o3a" data-label="1.3 He's got a ___ ___ ___ beard.: place 1" aria-label="Item 3 place 1" class="hw-field"><option value=""></option><option value="grey">grey</option><option value="long">long</option><option value="curly">curly</option></select><select data-k="o3b" data-label="1.3 He's got a ___ ___ ___ beard.: place 2" aria-label="Item 3 place 2" class="hw-field"><option value=""></option><option value="grey">grey</option><option value="long">long</option><option value="curly">curly</option></select><select data-k="o3c" data-label="1.3 He's got a ___ ___ ___ beard.: place 3" aria-label="Item 3 place 3" class="hw-field"><option value=""></option><option value="grey">grey</option><option value="long">long</option><option value="curly">curly</option></select></div></div>
+      <div class="oq q tp"><span class="n">4</span><p class="osent">She&rsquo;s got <span class="tp-zone gapz" data-store="o4a" data-field="o4a" aria-label="Item 4, place 1"><span class="tp-slot"></span></span> <span class="tp-zone gapz" data-store="o4b" data-field="o4b" aria-label="Item 4, place 2"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="o4c" data-field="o4c" aria-label="Item 4, place 3"><span class="tp-slot"></span></span>&nbsp;hair.</span></p><div class="tp-bank" aria-label="Words for item 4"><button type="button" class="tp-tile" data-value="long">long</button><button type="button" class="tp-tile" data-value="fair">fair</button><button type="button" class="tp-tile" data-value="straight">straight</button></div><div class="tp-stores" hidden><select data-k="o4a" data-label="1.4 She's got ___ ___ ___ hair.: place 1" aria-label="Item 4 place 1" class="hw-field"><option value=""></option><option value="long">long</option><option value="fair">fair</option><option value="straight">straight</option></select><select data-k="o4b" data-label="1.4 She's got ___ ___ ___ hair.: place 2" aria-label="Item 4 place 2" class="hw-field"><option value=""></option><option value="long">long</option><option value="fair">fair</option><option value="straight">straight</option></select><select data-k="o4c" data-label="1.4 She's got ___ ___ ___ hair.: place 3" aria-label="Item 4 place 3" class="hw-field"><option value=""></option><option value="long">long</option><option value="fair">fair</option><option value="straight">straight</option></select></div></div>
+      <div class="oq q tp"><span class="n">5</span><p class="osent">It&rsquo;s got <span class="tp-zone gapz" data-store="o5a" data-field="o5a" aria-label="Item 5, place 1"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="o5b" data-field="o5b" aria-label="Item 5, place 2"><span class="tp-slot"></span></span>&nbsp;hair.</span></p><div class="tp-bank" aria-label="Words for item 5"><button type="button" class="tp-tile" data-value="purple">purple</button><button type="button" class="tp-tile" data-value="spiky">spiky</button></div><div class="tp-stores" hidden><select data-k="o5a" data-label="1.5 It's got ___ ___ hair.: place 1" aria-label="Item 5 place 1" class="hw-field"><option value=""></option><option value="purple">purple</option><option value="spiky">spiky</option></select><select data-k="o5b" data-label="1.5 It's got ___ ___ hair.: place 2" aria-label="Item 5 place 2" class="hw-field"><option value=""></option><option value="purple">purple</option><option value="spiky">spiky</option></select></div></div>
+      <div class="oq q tp"><span class="n">6</span><p class="osent">He&rsquo;s got a <span class="tp-zone gapz" data-store="o6a" data-field="o6a" aria-label="Item 6, place 1"><span class="tp-slot"></span></span> <span class="tp-zone gapz" data-store="o6b" data-field="o6b" aria-label="Item 6, place 2"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="o6c" data-field="o6c" aria-label="Item 6, place 3"><span class="tp-slot"></span></span>&nbsp;moustache.</span></p><div class="tp-bank" aria-label="Words for item 6"><button type="button" class="tp-tile" data-value="brown">brown</button><button type="button" class="tp-tile" data-value="curly">curly</button><button type="button" class="tp-tile" data-value="big">big</button></div><div class="tp-stores" hidden><select data-k="o6a" data-label="1.6 He's got a ___ ___ ___ moustache.: place 1" aria-label="Item 6 place 1" class="hw-field"><option value=""></option><option value="brown">brown</option><option value="curly">curly</option><option value="big">big</option></select><select data-k="o6b" data-label="1.6 He's got a ___ ___ ___ moustache.: place 2" aria-label="Item 6 place 2" class="hw-field"><option value=""></option><option value="brown">brown</option><option value="curly">curly</option><option value="big">big</option></select><select data-k="o6c" data-label="1.6 He's got a ___ ___ ___ moustache.: place 3" aria-label="Item 6 place 3" class="hw-field"><option value=""></option><option value="brown">brown</option><option value="curly">curly</option><option value="big">big</option></select></div></div>
+  </div>
+</section>
+
+<section class="ex-card c2">
+  <div class="ex-header"><span>Exercise 2: look and&nbsp;say</span></div>
+  <div class="ex-body">
+    <p class="instr">Look at the scarecrow. Finish the&nbsp;sentence.</p>
+    <p class="note"><span class="scr">Tap a bubble word, then tap a box.</span><span class="prt">Write the bubble words in the boxes.</span> One word in each bank is not in the&nbsp;picture.</p>
+    <div class="pics">
+        <figure class="pic" style="--ring:#e8690b"><span class="plet">A</span><div class="pframe"><svg viewBox="0 0 160 250" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="57" y="172" width="20" height="68" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><rect x="83" y="172" width="20" height="68" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><path d="M60.0 240 L64.0 232 M67.0 240 L67.0 231 M74.0 240 L70.0 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><path d="M86.0 240 L90.0 232 M93.0 240 L93.0 231 M100.0 240 L96.0 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="116" width="132" height="8" rx="4" fill="#8a5a2b"/><path d="M14 120 l-8 -8 M14 120 l-10 0 M14 120 l-8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><path d="M146 120 l8 -8 M146 120 l10 0 M146 120 l8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><rect x="34.0" y="106" width="92" height="70" rx="30" fill="#f08a5d" stroke="#333" stroke-width="2"/><rect x="42.0" y="152" width="13" height="12" fill="#f6e3b4" stroke="#333" stroke-width="1.5"/><path d="M80 112 L80 170" stroke="#333" stroke-width="1.5" stroke-dasharray="4 4"/><circle cx="80" cy="80" r="22" fill="#f1d9a6" stroke="#8a6a3a" stroke-width="2"/><circle cx="72" cy="79" r="3.2" fill="#222"/><circle cx="88" cy="79" r="3.2" fill="#222"/><path d="M77 81 L83 81 L80 87 Z" fill="#ef7d22"/><path d="M70 91 Q80 98 90 91" fill="none" stroke="#6b4a1f" stroke-width="2"/><line x1="73" y1="91" x2="73" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="78" y1="91" x2="78" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="83" y1="91" x2="83" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="88" y1="91" x2="88" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><path d="M61 68 Q80 60 99 68 L97 75 L63 75 Z" fill="#f2b51c" stroke="#8a5a0c" stroke-width="1.3"/><line x1="68" y1="65" x2="68" y2="74.5" stroke="#8a5a0c" stroke-width="1"/><line x1="72" y1="65" x2="72" y2="74.5" stroke="#8a5a0c" stroke-width="1"/><line x1="76" y1="65" x2="76" y2="74.5" stroke="#8a5a0c" stroke-width="1"/><line x1="80" y1="65" x2="80" y2="74.5" stroke="#8a5a0c" stroke-width="1"/><line x1="84" y1="65" x2="84" y2="74.5" stroke="#8a5a0c" stroke-width="1"/><line x1="88" y1="65" x2="88" y2="74.5" stroke="#8a5a0c" stroke-width="1"/><line x1="92" y1="65" x2="92" y2="74.5" stroke="#8a5a0c" stroke-width="1"/><path d="M56 66 L65 66 L65 87 L56 87 Z" fill="#f2b51c" stroke="#8a5a0c" stroke-width="1.3"/><line x1="59.0" y1="68" x2="59.0" y2="86" stroke="#8a5a0c" stroke-width="1"/><line x1="62.0" y1="68" x2="62.0" y2="86" stroke="#8a5a0c" stroke-width="1"/><path d="M104 66 L95 66 L95 87 L104 87 Z" fill="#f2b51c" stroke="#8a5a0c" stroke-width="1.3"/><line x1="101.0" y1="68" x2="101.0" y2="86" stroke="#8a5a0c" stroke-width="1"/><line x1="98.0" y1="68" x2="98.0" y2="86" stroke="#8a5a0c" stroke-width="1"/><path d="M61 83 Q60 110 80 136 Q100 110 99 83 Q94 100 80 100 Q66 100 61 83 Z" fill="#a7a9ac" stroke="#6d6f72" stroke-width="1.5"/><path d="M72 104 Q75.2 118 77.6 128" fill="none" stroke="#6d6f72" stroke-width="1.2"/><path d="M80 104 Q80.0 118 80.0 128" fill="none" stroke="#6d6f72" stroke-width="1.2"/><path d="M88 104 Q84.8 118 82.4 128" fill="none" stroke="#6d6f72" stroke-width="1.2"/><rect x="66.0" y="46" width="28" height="18" rx="4" fill="#3f9a1c" stroke="#222" stroke-width="2"/><rect x="66.0" y="55" width="28" height="5" fill="#fff" fill-opacity=".5"/><ellipse cx="80" cy="62" rx="25.0" ry="5.5" fill="#3f9a1c" stroke="#222" stroke-width="2"/><rect x="0" y="240" width="160" height="10" fill="#9ccc65"/></svg></div></figure>
+        <figure class="pic" style="--ring:#3f9a1c"><span class="plet">B</span><div class="pframe"><svg viewBox="0 0 160 250" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="64" y="172" width="13" height="68" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><rect x="83" y="172" width="13" height="68" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><path d="M63.5 240 L67.5 232 M70.5 240 L70.5 231 M77.5 240 L73.5 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><path d="M82.5 240 L86.5 232 M89.5 240 L89.5 231 M96.5 240 L92.5 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="116" width="132" height="8" rx="4" fill="#8a5a2b"/><path d="M14 120 l-8 -8 M14 120 l-10 0 M14 120 l-8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><path d="M146 120 l8 -8 M146 120 l10 0 M146 120 l8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><rect x="60.0" y="106" width="40" height="70" rx="14" fill="#f6c445" stroke="#333" stroke-width="2"/><rect x="68.0" y="152" width="13" height="12" fill="#f6e3b4" stroke="#333" stroke-width="1.5"/><path d="M80 112 L80 170" stroke="#333" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="51" y="66" width="14" height="58" rx="3" fill="#262626"/><line x1="53" y1="70" x2="53" y2="122" stroke="#000" stroke-opacity=".25" stroke-width="1"/><line x1="57" y1="70" x2="57" y2="122" stroke="#000" stroke-opacity=".25" stroke-width="1"/><line x1="61" y1="70" x2="61" y2="122" stroke="#000" stroke-opacity=".25" stroke-width="1"/><rect x="95" y="66" width="14" height="58" rx="3" fill="#262626"/><line x1="97" y1="70" x2="97" y2="122" stroke="#000" stroke-opacity=".25" stroke-width="1"/><line x1="101" y1="70" x2="101" y2="122" stroke="#000" stroke-opacity=".25" stroke-width="1"/><line x1="105" y1="70" x2="105" y2="122" stroke="#000" stroke-opacity=".25" stroke-width="1"/><circle cx="80" cy="80" r="22" fill="#f1d9a6" stroke="#8a6a3a" stroke-width="2"/><circle cx="72" cy="79" r="3.2" fill="#222"/><circle cx="88" cy="79" r="3.2" fill="#222"/><path d="M77 81 L83 81 L80 87 Z" fill="#ef7d22"/><path d="M70 91 Q80 98 90 91" fill="none" stroke="#6b4a1f" stroke-width="2"/><line x1="73" y1="91" x2="73" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="78" y1="91" x2="78" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="83" y1="91" x2="83" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="88" y1="91" x2="88" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><rect x="66.0" y="46" width="28" height="18" rx="4" fill="#3f9a1c" stroke="#222" stroke-width="2"/><rect x="66.0" y="55" width="28" height="5" fill="#fff" fill-opacity=".5"/><ellipse cx="80" cy="62" rx="25.0" ry="5.5" fill="#3f9a1c" stroke="#222" stroke-width="2"/><rect x="0" y="240" width="160" height="10" fill="#9ccc65"/></svg></div></figure>
+        <figure class="pic" style="--ring:#7e3fa6"><span class="plet">C</span><div class="pframe"><svg viewBox="0 0 160 250" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="64" y="210" width="13" height="30" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><rect x="83" y="210" width="13" height="30" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><path d="M63.5 240 L67.5 232 M70.5 240 L70.5 231 M77.5 240 L73.5 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><path d="M82.5 240 L86.5 232 M89.5 240 L89.5 231 M96.5 240 L92.5 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="172" width="132" height="8" rx="4" fill="#8a5a2b"/><path d="M14 176 l-8 -8 M14 176 l-10 0 M14 176 l-8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><path d="M146 176 l8 -8 M146 176 l10 0 M146 176 l8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><rect x="60.0" y="162" width="40" height="52" rx="14" fill="#7cc6a5" stroke="#333" stroke-width="2"/><rect x="68.0" y="190" width="13" height="12" fill="#f6e3b4" stroke="#333" stroke-width="1.5"/><path d="M80 168 L80 208" stroke="#333" stroke-width="1.5" stroke-dasharray="4 4"/><circle cx="59" cy="125" r="9.5" fill="#d93a2b" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="54" cy="135" r="9.5" fill="#d93a2b" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="56" cy="146" r="9.5" fill="#d93a2b" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="101" cy="125" r="9.5" fill="#d93a2b" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="106" cy="135" r="9.5" fill="#d93a2b" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="104" cy="146" r="9.5" fill="#d93a2b" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="80" cy="136" r="22" fill="#f1d9a6" stroke="#8a6a3a" stroke-width="2"/><circle cx="72" cy="135" r="3.2" fill="#222"/><circle cx="88" cy="135" r="3.2" fill="#222"/><path d="M77 137 L83 137 L80 143 Z" fill="#ef7d22"/><path d="M70 147 Q80 154 90 147" fill="none" stroke="#6b4a1f" stroke-width="2"/><line x1="73" y1="147" x2="73" y2="152" stroke="#6b4a1f" stroke-width="1.3"/><line x1="78" y1="147" x2="78" y2="152" stroke="#6b4a1f" stroke-width="1.3"/><line x1="83" y1="147" x2="83" y2="152" stroke="#6b4a1f" stroke-width="1.3"/><line x1="88" y1="147" x2="88" y2="152" stroke="#6b4a1f" stroke-width="1.3"/><rect x="55.0" y="86" width="50" height="34" rx="4" fill="#1f6fd1" stroke="#222" stroke-width="2"/><rect x="55.0" y="111" width="50" height="5" fill="#fff" fill-opacity=".5"/><ellipse cx="80" cy="118" rx="44.0" ry="5.5" fill="#1f6fd1" stroke="#222" stroke-width="2"/><rect x="0" y="240" width="160" height="10" fill="#9ccc65"/></svg></div></figure>
+        <figure class="pic" style="--ring:#0b8fd0"><span class="plet">D</span><div class="pframe"><svg viewBox="0 0 160 250" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="57" y="210" width="20" height="30" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><rect x="83" y="210" width="20" height="30" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><path d="M60.0 240 L64.0 232 M67.0 240 L67.0 231 M74.0 240 L70.0 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><path d="M86.0 240 L90.0 232 M93.0 240 L93.0 231 M100.0 240 L96.0 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="172" width="132" height="8" rx="4" fill="#8a5a2b"/><path d="M14 176 l-8 -8 M14 176 l-10 0 M14 176 l-8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><path d="M146 176 l8 -8 M146 176 l10 0 M146 176 l8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><rect x="34.0" y="162" width="92" height="52" rx="30" fill="#e76f8f" stroke="#333" stroke-width="2"/><rect x="42.0" y="190" width="13" height="12" fill="#f6e3b4" stroke="#333" stroke-width="1.5"/><path d="M80 168 L80 208" stroke="#333" stroke-width="1.5" stroke-dasharray="4 4"/><circle cx="80" cy="136" r="22" fill="#f1d9a6" stroke="#8a6a3a" stroke-width="2"/><circle cx="72" cy="135" r="3.2" fill="#222"/><circle cx="88" cy="135" r="3.2" fill="#222"/><path d="M77 137 L83 137 L80 143 Z" fill="#ef7d22"/><path d="M70 147 Q80 154 90 147" fill="none" stroke="#6b4a1f" stroke-width="2"/><line x1="73" y1="147" x2="73" y2="152" stroke="#6b4a1f" stroke-width="1.3"/><line x1="78" y1="147" x2="78" y2="152" stroke="#6b4a1f" stroke-width="1.3"/><line x1="83" y1="147" x2="83" y2="152" stroke="#6b4a1f" stroke-width="1.3"/><line x1="88" y1="147" x2="88" y2="152" stroke="#6b4a1f" stroke-width="1.3"/><path d="M61 124 Q80 116 99 124 L97 131 L63 131 Z" fill="#8a5a2b" stroke="#3b2410" stroke-width="1.3"/><line x1="68" y1="121" x2="68" y2="130.5" stroke="#3b2410" stroke-width="1"/><line x1="72" y1="121" x2="72" y2="130.5" stroke="#3b2410" stroke-width="1"/><line x1="76" y1="121" x2="76" y2="130.5" stroke="#3b2410" stroke-width="1"/><line x1="80" y1="121" x2="80" y2="130.5" stroke="#3b2410" stroke-width="1"/><line x1="84" y1="121" x2="84" y2="130.5" stroke="#3b2410" stroke-width="1"/><line x1="88" y1="121" x2="88" y2="130.5" stroke="#3b2410" stroke-width="1"/><line x1="92" y1="121" x2="92" y2="130.5" stroke="#3b2410" stroke-width="1"/><path d="M56 122 L65 122 L65 143 L56 143 Z" fill="#8a5a2b" stroke="#3b2410" stroke-width="1.3"/><line x1="59.0" y1="124" x2="59.0" y2="142" stroke="#3b2410" stroke-width="1"/><line x1="62.0" y1="124" x2="62.0" y2="142" stroke="#3b2410" stroke-width="1"/><path d="M104 122 L95 122 L95 143 L104 143 Z" fill="#8a5a2b" stroke="#3b2410" stroke-width="1.3"/><line x1="101.0" y1="124" x2="101.0" y2="142" stroke="#3b2410" stroke-width="1"/><line x1="98.0" y1="124" x2="98.0" y2="142" stroke="#3b2410" stroke-width="1"/><path d="M80.0 144.0 Q67.6 136.2 53.6 144.0 Q45.9 153.3 58.3 153.3 Q67.6 151.8 80.0 151.8 Q92.4 151.8 101.7 153.3 Q114.1 153.3 106.3 144.0 Q92.4 136.2 80.0 144.0 Z" fill="#262626"/><rect x="55.0" y="86" width="50" height="34" rx="4" fill="#1f6fd1" stroke="#222" stroke-width="2"/><rect x="55.0" y="111" width="50" height="5" fill="#fff" fill-opacity=".5"/><ellipse cx="80" cy="118" rx="44.0" ry="5.5" fill="#1f6fd1" stroke="#222" stroke-width="2"/><rect x="0" y="240" width="160" height="10" fill="#9ccc65"/></svg></div></figure>
+        <figure class="pic" style="--ring:#d6336c"><span class="plet">E</span><div class="pframe"><svg viewBox="0 0 160 250" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="64" y="172" width="13" height="68" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><rect x="83" y="172" width="13" height="68" rx="4" fill="#5b7fa6" stroke="#2b3e55" stroke-width="2"/><path d="M63.5 240 L67.5 232 M70.5 240 L70.5 231 M77.5 240 L73.5 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><path d="M82.5 240 L86.5 232 M89.5 240 L89.5 231 M96.5 240 L92.5 232" stroke="#d9a825" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="116" width="132" height="8" rx="4" fill="#8a5a2b"/><path d="M14 120 l-8 -8 M14 120 l-10 0 M14 120 l-8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><path d="M146 120 l8 -8 M146 120 l10 0 M146 120 l8 8" stroke="#d9a825" stroke-width="3" stroke-linecap="round"/><rect x="60.0" y="106" width="40" height="70" rx="14" fill="#f08a5d" stroke="#333" stroke-width="2"/><rect x="68.0" y="152" width="13" height="12" fill="#f6e3b4" stroke="#333" stroke-width="1.5"/><path d="M80 112 L80 170" stroke="#333" stroke-width="1.5" stroke-dasharray="4 4"/><circle cx="59" cy="69" r="9.5" fill="#262626" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="54" cy="79" r="9.5" fill="#262626" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="56" cy="90" r="9.5" fill="#262626" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="101" cy="69" r="9.5" fill="#262626" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="106" cy="79" r="9.5" fill="#262626" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="104" cy="90" r="9.5" fill="#262626" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/><circle cx="80" cy="80" r="22" fill="#f1d9a6" stroke="#8a6a3a" stroke-width="2"/><circle cx="72" cy="79" r="3.2" fill="#222"/><circle cx="88" cy="79" r="3.2" fill="#222"/><path d="M77 81 L83 81 L80 87 Z" fill="#ef7d22"/><path d="M70 91 Q80 98 90 91" fill="none" stroke="#6b4a1f" stroke-width="2"/><line x1="73" y1="91" x2="73" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="78" y1="91" x2="78" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="83" y1="91" x2="83" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><line x1="88" y1="91" x2="88" y2="96" stroke="#6b4a1f" stroke-width="1.3"/><path d="M80.0 88.0 Q67.6 80.2 53.6 88.0 Q45.9 97.3 58.3 97.3 Q67.6 95.8 80.0 95.8 Q92.4 95.8 101.7 97.3 Q114.1 97.3 106.3 88.0 Q92.4 80.2 80.0 88.0 Z" fill="#262626"/><rect x="55.0" y="30" width="50" height="34" rx="4" fill="#8a3fb8" stroke="#222" stroke-width="2"/><rect x="55.0" y="55" width="50" height="5" fill="#fff" fill-opacity=".5"/><ellipse cx="80" cy="62" rx="44.0" ry="5.5" fill="#8a3fb8" stroke="#222" stroke-width="2"/><rect x="0" y="240" width="160" height="10" fill="#9ccc65"/></svg></div></figure>
+    </div>
+      <div class="oq q tp"><span class="n">1</span><p class="osent"><span class="picref" style="--ring:#7e3fa6">C</span> She&rsquo;s got <span class="tp-zone gapz" data-store="p1a" data-field="p1a" aria-label="Item 1, place 1"><span class="tp-slot"></span></span> <span class="tp-zone gapz" data-store="p1b" data-field="p1b" aria-label="Item 1, place 2"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="p1c" data-field="p1c" aria-label="Item 1, place 3"><span class="tp-slot"></span></span>&nbsp;hair.</span></p><div class="tp-bank" aria-label="Words for item 1"><button type="button" class="tp-tile" data-value="red">red</button><button type="button" class="tp-tile" data-value="straight">straight</button><button type="button" class="tp-tile" data-value="short">short</button><button type="button" class="tp-tile" data-value="curly">curly</button></div><div class="tp-stores" hidden><select data-k="p1a" data-label="2.1 Picture C: She's got ___ ___ ___ hair.: place 1" aria-label="Item 1 place 1" class="hw-field"><option value=""></option><option value="red">red</option><option value="straight">straight</option><option value="short">short</option><option value="curly">curly</option></select><select data-k="p1b" data-label="2.1 Picture C: She's got ___ ___ ___ hair.: place 2" aria-label="Item 1 place 2" class="hw-field"><option value=""></option><option value="red">red</option><option value="straight">straight</option><option value="short">short</option><option value="curly">curly</option></select><select data-k="p1c" data-label="2.1 Picture C: She's got ___ ___ ___ hair.: place 3" aria-label="Item 1 place 3" class="hw-field"><option value=""></option><option value="red">red</option><option value="straight">straight</option><option value="short">short</option><option value="curly">curly</option></select></div></div>
+      <div class="oq q tp"><span class="n">2</span><p class="osent"><span class="picref" style="--ring:#e8690b">A</span> He&rsquo;s got a <span class="tp-zone gapz" data-store="p2a" data-field="p2a" aria-label="Item 2, place 1"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="p2b" data-field="p2b" aria-label="Item 2, place 2"><span class="tp-slot"></span></span>&nbsp;beard.</span></p><div class="tp-bank" aria-label="Words for item 2"><button type="button" class="tp-tile" data-value="grey">grey</button><button type="button" class="tp-tile" data-value="black">black</button><button type="button" class="tp-tile" data-value="long">long</button></div><div class="tp-stores" hidden><select data-k="p2a" data-label="2.2 Picture A: He's got a ___ ___ beard.: place 1" aria-label="Item 2 place 1" class="hw-field"><option value=""></option><option value="grey">grey</option><option value="black">black</option><option value="long">long</option></select><select data-k="p2b" data-label="2.2 Picture A: He's got a ___ ___ beard.: place 2" aria-label="Item 2 place 2" class="hw-field"><option value=""></option><option value="grey">grey</option><option value="black">black</option><option value="long">long</option></select></div></div>
+      <div class="oq q tp"><span class="n">3</span><p class="osent"><span class="picref" style="--ring:#d6336c">E</span> He&rsquo;s got <span class="tp-zone gapz" data-store="p3a" data-field="p3a" aria-label="Item 3, place 1"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="p3b" data-field="p3b" aria-label="Item 3, place 2"><span class="tp-slot"></span></span>&nbsp;hair.</span></p><div class="tp-bank" aria-label="Words for item 3"><button type="button" class="tp-tile" data-value="spiky">spiky</button><button type="button" class="tp-tile" data-value="black">black</button><button type="button" class="tp-tile" data-value="curly">curly</button></div><div class="tp-stores" hidden><select data-k="p3a" data-label="2.3 Picture E: He's got ___ ___ hair.: place 1" aria-label="Item 3 place 1" class="hw-field"><option value=""></option><option value="spiky">spiky</option><option value="black">black</option><option value="curly">curly</option></select><select data-k="p3b" data-label="2.3 Picture E: He's got ___ ___ hair.: place 2" aria-label="Item 3 place 2" class="hw-field"><option value=""></option><option value="spiky">spiky</option><option value="black">black</option><option value="curly">curly</option></select></div></div>
+      <div class="oq q tp"><span class="n">4</span><p class="osent"><span class="picref" style="--ring:#0b8fd0">D</span> He&rsquo;s got a <span class="tp-zone gapz" data-store="p4a" data-field="p4a" aria-label="Item 4, place 1"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="p4b" data-field="p4b" aria-label="Item 4, place 2"><span class="tp-slot"></span></span>&nbsp;hat.</span></p><div class="tp-bank" aria-label="Words for item 4"><button type="button" class="tp-tile" data-value="blue">blue</button><button type="button" class="tp-tile" data-value="little">little</button><button type="button" class="tp-tile" data-value="big">big</button></div><div class="tp-stores" hidden><select data-k="p4a" data-label="2.4 Picture D: He's got a ___ ___ hat.: place 1" aria-label="Item 4 place 1" class="hw-field"><option value=""></option><option value="blue">blue</option><option value="little">little</option><option value="big">big</option></select><select data-k="p4b" data-label="2.4 Picture D: He's got a ___ ___ hat.: place 2" aria-label="Item 4 place 2" class="hw-field"><option value=""></option><option value="blue">blue</option><option value="little">little</option><option value="big">big</option></select></div></div>
+      <div class="oq q tp"><span class="n">5</span><p class="osent"><span class="picref" style="--ring:#e8690b">A</span> He&rsquo;s got <span class="tp-zone gapz" data-store="p5a" data-field="p5a" aria-label="Item 5, place 1"><span class="tp-slot"></span></span> <span class="nw"><span class="tp-zone gapz" data-store="p5b" data-field="p5b" aria-label="Item 5, place 2"><span class="tp-slot"></span></span>&nbsp;hair.</span></p><div class="tp-bank" aria-label="Words for item 5"><button type="button" class="tp-tile" data-value="fair">fair</button><button type="button" class="tp-tile" data-value="curly">curly</button><button type="button" class="tp-tile" data-value="straight">straight</button></div><div class="tp-stores" hidden><select data-k="p5a" data-label="2.5 Picture A: He's got ___ ___ hair.: place 1" aria-label="Item 5 place 1" class="hw-field"><option value=""></option><option value="fair">fair</option><option value="curly">curly</option><option value="straight">straight</option></select><select data-k="p5b" data-label="2.5 Picture A: He's got ___ ___ hair.: place 2" aria-label="Item 5 place 2" class="hw-field"><option value=""></option><option value="fair">fair</option><option value="curly">curly</option><option value="straight">straight</option></select></div></div>
+  </div>
+</section>
+
+<section class="ex-card c3">
+  <div class="ex-header"><span>Exercise 3: your&nbsp;turn</span></div>
+  <div class="ex-body">
+    <p class="instr">Write about your mum, your dad, a friend or a character you&nbsp;like.</p>
+    <p class="askq">What does he or she look&nbsp;like?</p>
+    <p class="note">3 or 4 sentences: tall or short? thin? hair (two or three words before <i>hair</i>)? And one more thing: a beard, a moustache, a hat or a&nbsp;fringe.</p>
+    <div class="example-box"><span class="label">Like this</span><span class="model">My neighbour is tall and thin. She&rsquo;s got long curly brown hair and a fringe. She&rsquo;s got a little red&nbsp;hat.</span></div>
+    <textarea class="hw-field big tall" rows="5" data-k="d1" data-label="3. What does he or she look like? (3 or 4 sentences)" aria-label="Your description" placeholder="Type your answer here"></textarea>
+  </div>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+
+/* ===== end TAP-PLACE JS ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJvMWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzaG9ydCJ9LCAibzFiIjogeyJ0IjogImV4YWN0IiwgImEiOiAic3Bpa3kifSwgIm8xYyI6IHsidCI6ICJleGFjdCIsICJhIjogImdyZWVuIn0sICJvMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsaXR0bGUifSwgIm8yYiI6IHsidCI6ICJleGFjdCIsICJhIjogInB1cnBsZSJ9LCAibzNhIjogeyJ0IjogImV4YWN0IiwgImEiOiAibG9uZyJ9LCAibzNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY3VybHkifSwgIm8zYyI6IHsidCI6ICJleGFjdCIsICJhIjogImdyZXkifSwgIm80YSI6IHsidCI6ICJleGFjdCIsICJhIjogImxvbmcifSwgIm80YiI6IHsidCI6ICJleGFjdCIsICJhIjogInN0cmFpZ2h0In0sICJvNGMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmYWlyIn0sICJvNWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzcGlreSJ9LCAibzViIjogeyJ0IjogImV4YWN0IiwgImEiOiAicHVycGxlIn0sICJvNmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJiaWcifSwgIm82YiI6IHsidCI6ICJleGFjdCIsICJhIjogImN1cmx5In0sICJvNmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJicm93biJ9LCAicDFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2hvcnQifSwgInAxYiI6IHsidCI6ICJleGFjdCIsICJhIjogImN1cmx5In0sICJwMWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyZWQifSwgInAyYSI6IHsidCI6ICJleGFjdCIsICJhIjogImxvbmcifSwgInAyYiI6IHsidCI6ICJleGFjdCIsICJhIjogImdyZXkifSwgInAzYSI6IHsidCI6ICJleGFjdCIsICJhIjogImN1cmx5In0sICJwM2IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJibGFjayJ9LCAicDRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYmlnIn0sICJwNGIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJibHVlIn0sICJwNWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzdHJhaWdodCJ9LCAicDViIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZmFpciJ9LCAiZDEiOiB7InQiOiAib3BlbiJ9fQ==</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

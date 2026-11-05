@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 5 November 2026</title>
+<!-- Lesson of 5 Nov 2026 (lesson 15 continued). SMALL at his request, about 10 min. Part 1 = verb form after a preposition / worth / a paired verb, plus one to-infinitive (decided). Part 2 = a few / very few by meaning. Part 3 = 5 Nov words, tap one of two inside each gap. Answers live only in the private key. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .prompt, li { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; }
+  .note a { color: #31594b; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 7px; }
+  .prompt { font-size: 17px; line-height: 2.1; margin-bottom: 0; }
+  .nw { white-space: nowrap; }
+  .cue { color: #626a62; }
+
+  /* Part 1: the verb is typed inside the sentence */
+  input.vgap { display: inline-block; width: 8.5em; font-size: 16px; margin: 0 4px; vertical-align: baseline; }
+
+  /* Part 2: the dropdown sits in the gap */
+  select.pick { display: inline-block; width: auto; min-width: 130px; height: 34px; padding: 2px 8px; margin: 0 4px; font-size: 15.5px; vertical-align: baseline; }
+  .pgap { display: none; }
+  .print-opts { display: none; }
+  .two-col { display: block; }
+
+  /* Part 3: tap one of two words in the gap */
+  .story p { font-size: 17px; line-height: 2.3; margin-bottom: 8px; page-break-inside: avoid; break-inside: avoid; }
+  .story p:last-child { margin-bottom: 0; }
+  .pair { display: inline-flex; align-items: center; gap: 4px; margin: 0 3px; vertical-align: baseline; white-space: nowrap; }
+  .pair .gn { font-size: 12px; color: #797c72; margin-right: 2px; }
+  .pair .sl { color: #9aa39b; }
+  .pair .nb { display: inline-flex; align-items: center; gap: inherit; white-space: nowrap; }
+  .opt {
+    font: inherit; font-size: 16px; font-weight: 600; color: #253a34; background: #fff;
+    border: 1.5px solid #8fa99a; border-radius: 7px; padding: 3px 11px; min-height: 36px;
+    cursor: pointer; line-height: 1.3;
+    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  .opt.on { color: #1d4ed8; background: #eef2ff; border-color: #1d4ed8; box-shadow: 0 0 0 2px #c7d2fe; }
+  .pair.has .opt:not(.on) { color: #8b938c; border-color: #d0d6cf; }
+  .stores { display: none !important; }
+  .prt { display: none; }
+
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+    .pair { white-space: normal; flex-wrap: wrap; }
+  }
+
+  body.hw-pdf-mode .opt { font-size: 13px; min-height: 0; padding: 1px 8px; box-shadow: none; }
+
+  @media print {
+    body { font-size: 12px; line-height: 1.3; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12.5px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 2px; }
+    .prompt { font-size: 12.5px; line-height: 1.9; }
+    input.vgap { font-size: 12px; width: 8em; min-height: 0; height: 20px; padding: 0 4px; }
+    input.vgap::placeholder { color: transparent; }
+    select.pick { display: none !important; }
+    .pgap { display: inline-block; width: 80px; border-bottom: 1px solid #626a62; height: 11px; margin: 0 3px; vertical-align: baseline; }
+    .print-opts { display: inline; margin-left: 6px; font-size: 10.5px; color: #626a62; white-space: nowrap; }
+    .story p { font-size: 12.5px; line-height: 2.1; margin-bottom: 4px; }
+    .opt { font-size: 11.5px; min-height: 0; padding: 0 7px; border-width: 1px; box-shadow: none; }
+    .pair .gn { font-size: 9.5px; }
+    .scr { display: none; }
+    .prt { display: inline; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:16px 0; }
+  .qnum { font-size:22px; padding-top:14px; }
+  .prompt { font-size:29px; line-height:2; }
+  input.vgap { font-size:26px; width:8em; min-height:54px; }
+  select.pick { height:56px; min-width:220px; font-size:26px; padding:2px 12px; }
+  .story p { font-size:29px; line-height:2.2; margin-bottom:18px; }
+  .pair { gap:8px; margin:0 6px; }
+  .pair .gn { font-size:19px; }
+  .opt { font-size:26px; min-height:54px; padding:5px 18px; border-width:2px; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-11-05" data-sheet-id="roman-2026-11-05-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 10&nbsp;minutes</span></div>
+    <h1>Small changes, big decisions</h1>
+  </header>
+
+  <div class="task">
+    <h2>1. The right form of the verb</h2>
+    <div class="do">Write the verb in brackets in the right form, with <i>to</i> if it needs&nbsp;it.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      We're tired of ___ <span class="cue">(wait)</span> for the lift every morning. &rarr; We're tired of <b>waiting</b> for the lift every&nbsp;morning.
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <p class="prompt">She's tired of cooking and <input class="hw-field vgap" type="text" data-k="v1" data-label="1. She's tired of cooking and ___ (clean) every evening." aria-label="Gap 1" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(clean)</span> every evening, so she has ordered a robot&nbsp;vacuum.</p></div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <p class="prompt">Last year our company decided <input class="hw-field vgap" type="text" data-k="v2" data-label="2. Last year our company decided ___ (open) an office in Kazakhstan." aria-label="Gap 2" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(open)</span> an office in&nbsp;Kazakhstan.</p></div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <p class="prompt">The bakery on our corner has switched to <input class="hw-field vgap" type="text" data-k="v3" data-label="3. The bakery has switched to ___ (sell) only organic bread." aria-label="Gap 3" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(sell)</span> only organic&nbsp;bread.</p></div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <p class="prompt">The cheap printer breaks every month. It's worth <input class="hw-field vgap" type="text" data-k="v4" data-label="4. It's worth ___ (pay) a little more for a reliable printer." aria-label="Gap 4" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(pay)</span> a little more for a reliable&nbsp;one.</p></div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <p class="prompt">After a month of eating out, we switched back to <input class="hw-field vgap" type="text" data-k="v5" data-label="5. After a month of eating out, we switched back to ___ (cook) at home." aria-label="Gap 5" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(cook)</span> at&nbsp;home.</p></div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <p class="prompt">Our team is good at designing and <input class="hw-field vgap" type="text" data-k="v6" data-label="6. Our team is good at designing and ___ (test) new apps." aria-label="Gap 6" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(test)</span> new apps, but our sales are still&nbsp;weak.</p></div>
+  </div>
+
+  <div class="task">
+    <h2>2. A few or very few</h2>
+    <div class="do">Choose <i>a few</i> or <i>very few</i> for each&nbsp;gap.</div>
+    <div class="two-col">
+      <div class="q"><span class="qnum">1.</span>
+        <p class="prompt">The meeting finished early, so I have <span class="pgap"></span><select class="hw-field resp pick" data-k="f1" data-label="1. The meeting finished early, so I have ___ minutes free. Let's grab a coffee!" aria-label="Gap 1"><option value="">Choose</option><option value="a few">a few</option><option value="very few">very few</option></select> minutes free. Let's grab a&nbsp;coffee!<span class="print-opts">a few / very few</span></p></div>
+
+      <div class="q"><span class="qnum">2.</span>
+        <p class="prompt">The new gym is almost always empty: <span class="pgap"></span><select class="hw-field resp pick" data-k="f2" data-label="2. The new gym is almost always empty: ___ people go there, and it may close soon." aria-label="Gap 2"><option value="">Choose</option><option value="a few">a few</option><option value="very few">very few</option></select> people go there, and it may close&nbsp;soon.<span class="print-opts">a few / very few</span></p></div>
+
+      <div class="q"><span class="qnum">3.</span>
+        <p class="prompt">The old road is narrow and slow, so <span class="pgap"></span><select class="hw-field resp pick" data-k="f3" data-label="3. The old road is narrow and slow, so ___ drivers use it now that the motorway is open." aria-label="Gap 3"><option value="">Choose</option><option value="a few">a few</option><option value="very few">very few</option></select> drivers use it now that the motorway is&nbsp;open.<span class="print-opts">a few / very few</span></p></div>
+
+      <div class="q"><span class="qnum">4.</span>
+        <p class="prompt">Good news: there are still <span class="pgap"></span><select class="hw-field resp pick" data-k="f4" data-label="4. Good news: there are still ___ free spaces in the car park." aria-label="Gap 4"><option value="">Choose</option><option value="a few">a few</option><option value="very few">very few</option></select> free spaces in the car park, so we don't need to park on the&nbsp;street.<span class="print-opts">a few / very few</span></p></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <h2>3. The map makers</h2>
+    <div class="do"><span class="scr">Tap</span><span class="prt">Circle</span> the word that fits each&nbsp;gap.</div>
+    <p class="note">All these words are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 5&nbsp;November.</p>
+
+    <div class="story" id="mapstory">
+      <p>For forty years, the Brenner family printed paper road maps in a small workshop. Then smartphones with free maps <span class="pair" data-store="w1" data-field="w1" role="group" aria-label="Gap 1"><span class="gn">1</span><button type="button" class="opt" data-v="realised">realised</button><span class="nb"><span class="sl">/</span><button type="button" class="opt" data-v="appeared">appeared</button></span></span>, and sales started to&nbsp;fall.</p>
+      <p>Every month the workshop lost money. Mr Brenner <span class="pair" data-store="w2" data-field="w2" role="group" aria-label="Gap 2"><span class="gn">2</span><button type="button" class="opt" data-v="feared">feared</button><span class="nb"><span class="sl">/</span><button type="button" class="opt" data-v="appeared">appeared</button></span></span> that he would have to close it: another year like this could be <span class="pair" data-store="w3" data-field="w3" role="group" aria-label="Gap 3"><span class="gn">3</span><button type="button" class="opt" data-v="ruinous">ruinous</button><span class="nb"><span class="sl">/</span><button type="button" class="opt" data-v="straightforward">straightforward</button></span></span> for the&nbsp;family.</p>
+      <p>His daughter Anna had an idea: cut old&nbsp;maps <span class="pair" data-store="w4" data-field="w4" role="group" aria-label="Gap 4"><span class="gn">4</span><button type="button" class="opt" data-v="on small pieces">on small pieces</button><span class="nb"><span class="sl">/</span><button type="button" class="opt" data-v="into small pieces">into small pieces</button></span></span> and sell them as jigsaw&nbsp;puzzles.</p>
+      <p>At first her father said no. Then Anna showed him her first ten puzzles, and that <span class="pair" data-store="w5" data-field="w5" role="group" aria-label="Gap 5"><span class="gn">5</span><button type="button" class="opt" data-v="changed his meaning">changed his meaning</button><span class="nb"><span class="sl">/</span><button type="button" class="opt" data-v="changed his mind">changed his mind</button>.</span></span></p>
+      <p>The puzzles sold out in a week, and Mr Brenner <span class="pair" data-store="w6" data-field="w6" role="group" aria-label="Gap 6"><span class="gn">6</span><button type="button" class="opt" data-v="realised">realised</button><span class="nb"><span class="sl">/</span><button type="button" class="opt" data-v="feared">feared</button></span></span> that people still loved paper maps, just not in the&nbsp;car.</p>
+    </div>
+
+    <div class="stores" hidden>
+      <select data-k="w1" data-label="Gap 1. Then smartphones with free maps ___, and sales started to fall." class="hw-field"><option value=""></option><option value="realised">realised</option><option value="appeared">appeared</option></select>
+      <select data-k="w2" data-label="Gap 2. Mr Brenner ___ that he would have to close it." class="hw-field"><option value=""></option><option value="feared">feared</option><option value="appeared">appeared</option></select>
+      <select data-k="w3" data-label="Gap 3. Another year like this could be ___ for the family." class="hw-field"><option value=""></option><option value="ruinous">ruinous</option><option value="straightforward">straightforward</option></select>
+      <select data-k="w4" data-label="Gap 4. Cut old maps ___ and sell them as jigsaw puzzles." class="hw-field"><option value=""></option><option value="on small pieces">on small pieces</option><option value="into small pieces">into small pieces</option></select>
+      <select data-k="w5" data-label="Gap 5. Anna showed him her first ten puzzles, and that ___." class="hw-field"><option value=""></option><option value="changed his meaning">changed his meaning</option><option value="changed his mind">changed his mind</option></select>
+      <select data-k="w6" data-label="Gap 6. Mr Brenner ___ that people still loved paper maps, just not in the car." class="hw-field"><option value=""></option><option value="realised">realised</option><option value="feared">feared</option></select>
+    </div>
+  </div>
+
+</div>
+<script>
+/* Tap one of two words in a gap. The choice is kept in a hidden select (data-k), so saving,
+   the key, the marks and the emailed PDF work as with any other field. Click only: a finger
+   that scrolls across a word never chooses it. */
+(function () {
+  function init() {
+    document.querySelectorAll(".pair[data-store]").forEach(function (pair) {
+      var store = document.querySelector('[data-k="' + pair.dataset.store + '"]');
+      var opts = [].slice.call(pair.querySelectorAll(".opt"));
+      function show() {
+        var v = store ? store.value : "";
+        opts.forEach(function (o) {
+          var on = o.dataset.v === v;
+          o.classList.toggle("on", on);
+          o.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        pair.classList.toggle("has", !!v);
+      }
+      opts.forEach(function (o) {
+        o.addEventListener("click", function () {
+          if (!store) return;
+          store.value = store.value === o.dataset.v ? "" : o.dataset.v;
+          store.dispatchEvent(new Event("change", { bubbles: true }));
+          show();
+        });
+      });
+      show();
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJ2MSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNsZWFuaW5nIn0sICJ2MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogInRvIG9wZW4ifSwgInYzIjogeyJ0IjogIndvcmRzIiwgImEiOiAic2VsbGluZyJ9LCAidjQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJwYXlpbmcifSwgInY1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiY29va2luZyJ9LCAiZjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIGZldyJ9LCAiZjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ2ZXJ5IGZldyJ9LCAiZjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ2ZXJ5IGZldyJ9LCAiZjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIGZldyJ9LCAidzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhcHBlYXJlZCJ9LCAidzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmZWFyZWQifSwgInczIjogeyJ0IjogImV4YWN0IiwgImEiOiAicnVpbm91cyJ9LCAidzQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpbnRvIHNtYWxsIHBpZWNlcyJ9LCAidzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjaGFuZ2VkIGhpcyBtaW5kIn0sICJ3NiI6IHsidCI6ICJleGFjdCIsICJhIjogInJlYWxpc2VkIn0sICJ2NiI6IHsidCI6ICJ3b3JkcyIsICJhIjogInRlc3RpbmcifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

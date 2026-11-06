@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aahan &middot; Maths homework &middot; 6 November 2026</title>
+<!-- 6 Nov 2026, Y5 W44 Square & Cube Numbers (whole deck + Stretch run in the lesson).
+     Taught envelope: Materials/Maths/Year 5/Lessons/2026-W44 Square & Cube Numbers/Whiteboard_Cards_2026_W44_Square_Cube_Numbers.html
+     + Stretch_2026_W44 (odd-number stairs, always/sometimes/never, riddles). Shell: Aahan_Homework_2026-10-20.html (comic look).
+     SHAKY (practised): squaring slipping into doubling (3² "6", 9² "18", 11² "22", 2³ "six"); cubes in two steps
+     (5³ 105/115 before 125, 6³ 246 before 216); the square list from 1 ("49, 64, 81, 100, is that it?");
+     verdict before evidence on a/s/n. LANDED (no reps): what a square is, 4³, 3³, 10³, his own riddle.
+     Lesson formats NOT repeated: compare-the-pair ("work out both, bigger"), stairs, riddles, three pupils.
+     20 Oct formats NOT repeated: team sheet (one typed list box), penalty shoot-out, pick two bench one.
+     v2 after gates (pupil-critic FIX FIRST, pedagogy SOUND, format 4 minor), 6 Nov.
+     Block 1 "Too-fast robot": he types the real answer. r1 9²=18 W(81) · r2 5³=105 W, frame 5x5=[25] then [mirror]x5=[125]
+       · r3 12²=144 R · r4 6³=246 W, frame 6x6=[36] then [mirror]x6=[216] · r5 11²=22 W(121) · r6 4²=16 R. W W R W W R.
+       The mirror shows his own step-1 entry, read-only. No right robot fact gives a block 2 bin (bases 12 and 4: 4->64 is a cube
+       tile, 4² = 16 is not on any tile). Last item: the robot's "square team to 100: 49, 64, 81, 100. That's it!", six shirts
+       (1 4 9 16 25 36). Model 10³ = 100 marked with a cross, then 10 x 10 = 100, then 100 x 10 = 1000.
+     Block 2 "Squared, doubled or cubed?": unchanged. 4->64 C, 8->16 D, 6->36 S, 7->49 S, 2->8 C, 4->8 D, 9->18 D, 8->64 S,
+       3->27 C. Model 10 -> 20 in DOUBLED.
+     Block 3 "VAR check": decision buttons unlock only when every test box of that claim holds digits.
+       1 "Cube numbers are odd." 3³, 6³ (27, 216) -> sometimes · 2 "An odd number squared is odd." 3², 5², 7² -> always ·
+       3 "For a number bigger than 2, doubling it gives a bigger answer than squaring it." 3, 5, 10 (6/9, 10/25, 20/100) -> never.
+       Decision positions (ALWAYS, SOMETIMES, NEVER): 2, 1, 3.
+     Banner glyphs x² n³: no number from any item. Numbers restart inside each block; no running count. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --teal-soft: #e3f5f4; --muted: #6b5f4e; --dash: #e6d6b4;
+}
+@page { size: A4; margin: 9mm 11mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font: 17px/1.5 'Rubik', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--cream);
+  max-width: 1120px; margin: 0 auto; padding: 22px 18px 40px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.display { font-family: 'Luckiest Guy', 'Arial Black', 'Rubik', sans-serif; font-weight: 400; letter-spacing: .02em; }
+.nw { white-space: nowrap; }
+.prt { display: none; }
+
+/* banner */
+.banner { position: relative; height: 150px; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px; background: var(--teal); }
+.banner .digits { position: absolute; inset: -14px -10px auto -10px; font-size: 118px; line-height: .9; color: rgba(255,255,255,.17); white-space: nowrap; letter-spacing: .14em; }
+.banner .digits.two { top: 76px; left: -50px; color: rgba(27,23,18,.12); }
+.banner .label { position: absolute; left: 18px; bottom: 16px; background: var(--paper); border: 3px solid var(--ink); border-radius: 12px; padding: 8px 16px 6px; box-shadow: 4px 4px 0 var(--ink); }
+.banner .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.banner h1 { font-size: 34px; line-height: 1.05; }
+.banner .date { position: absolute; right: 16px; top: 14px; background: var(--ink); color: var(--gold); font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+
+/* cards: three registers, items regular, instruction bold, notes small */
+section { background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 22px; margin-bottom: 28px; }
+h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 22px; line-height: 1.1; margin-bottom: 10px; break-after: avoid; page-break-after: avoid; }
+.badge { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 22px; padding-top: 3px; }
+.robot { flex: none; width: 40px; height: 40px; }
+.instruction { font-size: 23px; line-height: 1.35; font-weight: 700; margin-bottom: 4px; text-wrap: pretty; }
+.note { font-size: 14.5px; line-height: 1.4; color: var(--muted); margin-bottom: 14px; text-wrap: pretty; }
+.qnum { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
+.mtile { display: inline-block; min-width: 38px; text-align: center; font-weight: 700; color: var(--ink); background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 8px; padding: 0 8px; margin: 0 3px; }
+.pmodel { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 2px 0 16px; padding: 10px 14px; border-left: 3px solid var(--teal); color: var(--muted); font-size: 17px; break-inside: avoid; page-break-inside: avoid; }
+.pmodel .mink { color: var(--ink); font-size: 19px; font-variant-numeric: tabular-nums; }
+.wrongx { color: var(--orange); font-weight: 800; margin-left: 2px; }
+.mirror { display: inline-block; min-width: 2.6em; text-align: center; border-bottom: 2px dashed #c9b891; color: var(--muted); font-weight: 600; }
+.mirror.on { color: #1d4ed8; }
+.real.steps { row-gap: 8px; }
+.step { display: inline-flex; align-items: center; gap: 6px 10px; white-space: nowrap; }
+.rcard { align-content: start; }
+
+/* ---------- block 1: too-fast robot ---------- */
+.rgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 18px; }
+.rcard { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 10px; align-items: center; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; break-inside: avoid; page-break-inside: avoid; }
+.rcard .qnum { grid-row: 1 / span 2; align-self: start; margin-top: 4px; }
+.say { font-size: 17px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.say b { color: var(--ink); font-size: 23px; font-weight: 700; margin-left: 4px; }
+.real { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 20px; font-variant-numeric: tabular-nums; }
+.real .lab { font-size: 15px; color: var(--muted); }
+.real input { font: inherit; font-size: 21px; width: 110px; }
+.rcard.wide { grid-column: 1 / -1; }
+.shirts { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 4px; }
+.shirt { display: inline-flex; align-items: center; justify-content: center; width: 78px; height: 62px; border: 2.5px solid var(--ink); border-radius: 12px 12px 10px 10px; background: var(--gold-soft); font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 25px; padding-top: 3px; box-shadow: 2px 2px 0 var(--ink); }
+.shirt.blank { background: #fff; padding: 0 6px; }
+.shirt.blank input { font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-size: 20px; width: 64px; min-width: 0; }
+
+/* ---------- block 2: squared, doubled or cubed (TAP-PLACE, restyled for the comic look) ---------- */
+/* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, colours changed) ===== */
+.tp-bank { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 10px 12px; border: 2px dashed #c9b891; border-radius: 12px; min-height: 64px; margin: 0 0 14px; background: var(--teal-soft); }
+.tp-tile {
+  font: inherit; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink);
+  background: var(--gold-soft); border: 2px solid var(--ink); border-radius: 10px; padding: 4px 14px; min-width: 84px; min-height: 44px;
+  box-shadow: 3px 3px 0 var(--ink); cursor: pointer; text-align: center; line-height: 1.3; white-space: nowrap;
+  touch-action: manipulation;            /* a touch scrolls the page; never "none" */
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+}
+.tp-tile.picked { background: #fff; outline: 3px solid var(--orange); outline-offset: 2px; }
+.tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 5px 5px 0 var(--ink); }
+.tp-zone { border: 2.5px dashed #c9b891; border-radius: 14px; padding: 8px 10px 10px; min-height: 120px; background: #fff; cursor: pointer; }
+.tp-zone.ready { border-color: var(--teal); background: #f6fcfb; }
+.tp-zone.over { border-color: var(--teal); background: var(--teal-soft); }
+.tp-slot { display: flex; flex-wrap: wrap; gap: 10px; min-height: 44px; align-items: center; justify-content: center; }
+.tp-stores { display: none !important; }
+@media print { .tp-tile.picked { outline: 0; } }
+/* ===== end TAP-PLACE CSS ===== */
+.sortq { break-inside: avoid; page-break-inside: avoid; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.bin-head { display: block; text-align: center; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 21px; letter-spacing: .03em; padding-top: 2px; margin-bottom: 8px; }
+.bin-head .sym { font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-weight: 700; color: var(--teal); margin-left: 6px; }
+.bin-head .sym.sup { font-size: 1.35em; line-height: 1; margin-left: 2px; vertical-align: -.05em; }
+.tp-slot .hw-mark { font-size: 14px; }
+
+/* ---------- block 3: VAR check ---------- */
+.cgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 18px; }
+.ccard { display: flex; flex-direction: column; gap: 10px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; break-inside: avoid; page-break-inside: avoid; }
+.chead { display: flex; gap: 10px; align-items: flex-start; }
+.claim { font-size: 19px; line-height: 1.35; text-wrap: pretty; }
+.test { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; font-size: 20px; font-variant-numeric: tabular-nums; }
+.trows { display: flex; flex-direction: column; gap: 8px; }
+.trow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; }
+.trows.two { display: grid; grid-template-columns: max-content max-content; gap: 8px 18px; }
+.trows.two .trow { display: contents; }
+.test .pair { justify-content: flex-end; }
+.test .lab { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
+.test .pair { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.test input { font: inherit; font-size: 20px; width: 96px; }
+.dec { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.dec .lab { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); width: 100%; }
+.vbtn { font: inherit; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-size: 17px; letter-spacing: .03em; padding: 8px 12px 5px; min-height: 44px; border: 2.5px solid var(--ink); border-radius: 999px; background: var(--paper); color: var(--ink); box-shadow: 3px 3px 0 var(--ink); cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.vbtn[aria-pressed="true"] { background: var(--gold); }
+.vbtn:disabled { opacity: .38; cursor: not-allowed; box-shadow: none; }
+.dec .hw-mark { flex-basis: 100%; margin-left: 0; }
+
+/* Emailed PDF only (hw.js gives the export body the class hw-pdf-mode). html2pdf keeps a card whole by
+   putting a spacer before it, and in a grid that spacer takes a cell and shifts every later card. */
+body.hw-pdf-mode .rgrid, body.hw-pdf-mode .cgrid { display: block; }
+body.hw-pdf-mode .rgrid > .rcard { display: inline-grid; vertical-align: top; width: calc(50% - 10px); margin: 0 0 14px; }
+body.hw-pdf-mode .rgrid > .rcard:nth-child(odd) { margin-right: 12px; }
+body.hw-pdf-mode .rgrid > .rcard.wide { display: grid; width: 100%; margin-right: 0; }
+body.hw-pdf-mode .cgrid > .ccard { margin-bottom: 14px; }
+body.hw-pdf-mode .vbtn:disabled { opacity: 1; }
+
+/* Laptop and big screens: whole width, big type (Dasha, 1 Nov 2026). PDF export and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { max-width: 1640px; padding: 28px 48px 56px; font-size: 24px; }
+  .banner { height: 190px; }
+  .banner .digits { font-size: 150px; }
+  .banner .digits.two { top: 96px; }
+  .banner .kicker { font-size: 17px; }
+  .banner h1 { font-size: 44px; }
+  .banner .date { font-size: 18px; padding: 6px 14px; }
+  section { padding: 26px 34px 32px; margin-bottom: 36px; }
+  h2 { font-size: 28px; margin-bottom: 14px; }
+  .badge { width: 50px; height: 50px; font-size: 27px; }
+  .robot { width: 54px; height: 54px; }
+  .instruction { font-size: 38px; line-height: 1.25; margin-bottom: 8px; }
+  .note { font-size: 22px; margin-bottom: 20px; }
+  .qnum { width: 40px; height: 40px; font-size: 20px; }
+  .tag { font-size: 17px; }
+  .mtile { font-size: 26px; padding: 0 10px; }
+  .pmodel { font-size: 24px; gap: 8px 18px; padding: 14px 20px; margin-bottom: 24px; }
+  .pmodel .mink { font-size: 28px; }
+  .rgrid { gap: 22px 26px; }
+  .rcard { grid-template-columns: 46px minmax(0, 1fr); padding: 18px 20px 20px; gap: 6px 14px; }
+  .say { font-size: 24px; }
+  .say b { font-size: 34px; }
+  .real { font-size: 30px; gap: 8px 14px; }
+  .real .lab { font-size: 22px; }
+  .real { flex-wrap: nowrap; }
+  .real.steps { flex-wrap: wrap; row-gap: 12px; }
+  .step { gap: 8px 12px; }
+  .real.steps input { width: 100px; }
+  .rcard .mirror { min-width: 1.8em; }
+  .trows.two { gap: 12px 22px; }
+  .real input { font-size: 30px; width: 112px; min-height: 56px; }
+  .real .lab { font-size: 20px; }
+  .shirts { flex-wrap: nowrap; gap: 12px; }
+  .shirt { flex: 1 1 0; min-width: 0; max-width: 116px; width: auto; height: 88px; font-size: 34px; }
+  .shirt.blank { padding: 0 6px; }
+  .shirt.blank input { font-size: 28px; width: 100%; min-width: 0; min-height: 52px; }
+  .tp-bank { gap: 16px; padding: 14px 16px; min-height: 84px; }
+  .tp-tile { font-size: 30px; padding: 6px 20px; min-width: 130px; min-height: 60px; }
+  .bins { gap: 24px; }
+  .tp-zone { min-height: 190px; padding: 12px 14px 16px; }
+  .bin-head { font-size: 30px; }
+  .tp-slot { gap: 14px; }
+  .tp-slot .hw-mark { font-size: 21px; }
+  .cgrid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .cgrid > .ccard:last-child { grid-column: auto; }
+  .ccard { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; padding: 18px 22px 20px; gap: 16px 30px; }
+  .ccard .dec { grid-column: 1 / -1; }
+  .dec .lab { width: auto; margin-right: 8px; }
+  .claim { font-size: 29px; }
+  .test { font-size: 30px; gap: 10px 20px; }
+  .test .lab, .dec .lab { font-size: 18px; }
+  .test input { font-size: 28px; width: 120px; min-height: 54px; }
+  .trows { gap: 12px; }
+  .mirror { min-width: 2.4em; }
+  .dec { gap: 12px; }
+  .vbtn { font-size: 26px; padding: 12px 18px 8px; min-height: 60px; }
+}
+@media screen and (min-width:900px) and (max-width:1439px) {
+  .rgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (max-width: 899px) {
+  .rgrid, .cgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cgrid > .ccard:last-child { grid-column: 1 / -1; }
+}
+@media screen and (max-width: 560px) {
+  body { padding: 16px 12px 36px; }
+  .banner { height: 140px; }
+  .banner .label { right: 16px; bottom: 14px; }
+  .banner h1 { font-size: 26px; }
+  .banner .date { top: 10px; font-size: 12px; }
+  section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 20px; }
+  .instruction { font-size: 20px; }
+  .rgrid, .cgrid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .bins { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .tp-zone { min-height: 84px; }
+  .tp-tile { font-size: 20px; min-width: 76px; padding: 4px 10px; }
+  .shirts { gap: 8px; }
+  .shirt { width: 60px; height: 52px; font-size: 20px; }
+  .shirt.blank { padding: 0 4px; }
+  .shirt.blank input { width: 50px; min-width: 0; font-size: 18px; }
+  .vbtn { font-size: 16px; padding: 8px 10px 5px; }
+  .real.steps input { width: 80px; }
+  .step { gap: 6px; }
+  .trows.two { gap: 8px 10px; }
+  .test input { width: 72px; }
+}
+@media print {
+  html, body { background: #fff; }
+  body { padding: 0 8px 6px 0; max-width: none; font-size: 12px; line-height: 1.3; }
+  .scr { display: none !important; }
+  .prt { display: inline; }
+  .banner { height: 58px; margin-bottom: 8px; box-shadow: 4px 4px 0 var(--ink); }
+  .banner .digits { font-size: 58px; }
+  .banner .digits.two { top: 30px; }
+  .banner .label { bottom: 6px; padding: 3px 12px 2px; }
+  .banner .kicker { font-size: 9px; }
+  .banner h1 { font-size: 19px; }
+  .banner .date { font-size: 10.5px; top: 8px; }
+  section { padding: 7px 12px 10px; margin-bottom: 10px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 15px; margin-bottom: 3px; gap: 8px; }
+  .badge { width: 24px; height: 24px; font-size: 13px; }
+  .robot { width: 26px; height: 26px; }
+  .instruction { font-size: 14px; margin-bottom: 1px; }
+  .note { font-size: 10px; margin-bottom: 5px; }
+  .tag { font-size: 8.5px; }
+  .qnum { width: 20px; height: 20px; font-size: 10.5px; }
+  .mtile { min-width: 26px; padding: 0 5px; border-width: 1.5px; }
+  .pmodel { padding: 3px 10px; margin: 1px 0 6px; font-size: 10.5px; gap: 3px 10px; }
+  .pmodel .mink { font-size: 12px; }
+  .rgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 10px; }
+  .rcard { grid-template-columns: 22px minmax(0, 1fr); padding: 5px 8px 7px; gap: 2px 6px; border-width: 1.5px; }
+  .say { font-size: 10.5px; }
+  .say b { font-size: 13px; }
+  .real { font-size: 12px; gap: 3px 6px; }
+  .real .lab { font-size: 9.5px; }
+  .real input { font-size: 11px; width: 60px; height: 22px; min-height: 0; }
+  .shirts { gap: 6px; }
+  .shirt { width: 46px; height: 32px; font-size: 14px; border-width: 1.5px; box-shadow: 1.5px 1.5px 0 var(--ink); }
+  .shirt.blank input { width: 38px; height: 22px; min-height: 0; font-size: 11px; }
+  .tp-bank { min-height: 0; padding: 4px 8px; gap: 6px; margin-bottom: 5px; border-width: 1.5px; }
+  .tp-tile { font-size: 12.5px; padding: 1px 8px; min-width: 50px; min-height: 0; box-shadow: 2px 2px 0 var(--ink); border-width: 1.5px; }
+  .tp-zone { min-height: 92px; padding: 3px 6px; border-width: 1.5px; }
+  .bins { gap: 8px; }
+  .bin-head { font-size: 12px; margin-bottom: 2px; }
+  .tp-slot { min-height: 18px; gap: 5px; }
+  .cgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 10px; }
+  .cgrid > .ccard:last-child { grid-column: auto; }
+  .ccard { padding: 5px 8px 7px; gap: 4px; border-width: 1.5px; }
+  .claim { font-size: 11.5px; }
+  .test { font-size: 12px; gap: 3px 8px; }
+  .test .lab, .dec .lab { font-size: 8.5px; }
+  .test input { font-size: 11px; width: 44px; height: 20px; min-height: 0; }
+  .trows { gap: 3px; }
+  .trow { gap: 3px 8px; }
+  .trows.two { gap: 3px 8px; }
+  .test { gap: 2px; }
+  .dec { gap: 4px; }
+  .vbtn { font-size: 10px; padding: 3px 7px 1px; min-height: 0; border-width: 1.5px; box-shadow: 1.5px 1.5px 0 var(--ink); }
+  .vbtn:disabled { opacity: 1; }
+  .vbtn[aria-pressed="true"] { background: var(--paper); }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Aahan" data-sheet="Square and cube numbers 2026-11-06" data-sheet-id="aahan-2026-11-06-square-and-cube-numbers">
+<div id="sheet">
+
+<div class="banner">
+  <div class="digits display" aria-hidden="true">x² n³ x² n³ x²</div>
+  <div class="digits two display" aria-hidden="true">n³ x² n³ x² n³</div>
+  <span class="date">6 November</span>
+  <div class="label">
+    <div class="kicker">Squares and cubes</div>
+    <h1 class="display">Aahan's maths</h1>
+  </div>
+</div>
+
+<section id="robot">
+  <header>
+  <h2><span class="badge">1</span> Too-fast robot
+    <svg class="robot" viewBox="0 0 40 40" aria-hidden="true"><line x1="20" y1="3" x2="20" y2="10" stroke="#1b1712" stroke-width="2.5"/><circle cx="20" cy="4" r="3" fill="#e2562b" stroke="#1b1712" stroke-width="2"/><rect x="6" y="10" width="28" height="22" rx="6" fill="#22a39f" stroke="#1b1712" stroke-width="2.5"/><circle cx="14.5" cy="19" r="3.2" fill="#fffaf0" stroke="#1b1712" stroke-width="1.8"/><circle cx="25.5" cy="19" r="3.2" fill="#fffaf0" stroke="#1b1712" stroke-width="1.8"/><rect x="13" y="25" width="14" height="3" rx="1.5" fill="#1b1712"/><rect x="2" y="16" width="4" height="9" rx="2" fill="#f3b43d" stroke="#1b1712" stroke-width="1.8"/><rect x="34" y="16" width="4" height="9" rx="2" fill="#f3b43d" stroke="#1b1712" stroke-width="1.8"/></svg>
+  </h2>
+  <p class="instruction"><span class="scr">The robot answered too fast. Type the real answer to <span class="nw">each one.</span></span><span class="prt">The robot answered too fast. Write the real answer to <span class="nw">each one.</span></span></p>
+  <p class="note">Not every robot answer is wrong. Cubes take <span class="nw">two steps.</span></p>
+  <div class="pmodel">
+    <span class="tag">Like this</span>
+    <span>Robot: <span class="mink">10³ = 100</span> <span class="wrongx">&#10007;</span></span>
+    <span class="mink">You: 10 &times; 10 = 100, then 100 &times; 10 = <span class="mtile">1000</span></span>
+  </div>
+  </header>
+
+  <div class="rgrid">
+    <div class="rcard q">
+      <span class="qnum">1</span>
+      <div class="say">Robot:<b>9² = 18</b></div>
+      <div class="real"><span class="lab">You:</span> <span class="nw">9² =</span> <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="r1" data-label="1.1 Robot said 9² = 18. Real answer" aria-label="Real answer for 9 squared" class="hw-field"></div>
+    </div>
+    <div class="rcard q">
+      <span class="qnum">2</span>
+      <div class="say">Robot:<b>5³ = 105</b></div>
+      <div class="real steps"><span class="step"><span class="lab">You:</span> <span class="nw">5 &times; 5 =</span> <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="r2a" data-label="1.2 Robot said 5³ = 105. Step 1: 5 × 5" aria-label="5 times 5" class="hw-field"></span> <span class="step">then <span class="mirror" data-mirror="r2a">&nbsp;</span> &times; 5 = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="r2b" data-label="1.2 Robot said 5³ = 105. Step 2: 5³" aria-label="Real answer for 5 cubed" class="hw-field"></span></div>
+    </div>
+    <div class="rcard q">
+      <span class="qnum">3</span>
+      <div class="say">Robot:<b>12² = 144</b></div>
+      <div class="real"><span class="lab">You:</span> <span class="nw">12² =</span> <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="r3" data-label="1.3 Robot said 12² = 144. Real answer" aria-label="Real answer for 12 squared" class="hw-field"></div>
+    </div>
+    <div class="rcard q">
+      <span class="qnum">4</span>
+      <div class="say">Robot:<b>6³ = 246</b></div>
+      <div class="real steps"><span class="step"><span class="lab">You:</span> <span class="nw">6 &times; 6 =</span> <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="r4a" data-label="1.4 Robot said 6³ = 246. Step 1: 6 × 6" aria-label="6 times 6" class="hw-field"></span> <span class="step">then <span class="mirror" data-mirror="r4a">&nbsp;</span> &times; 6 = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="r4b" data-label="1.4 Robot said 6³ = 246. Step 2: 6³" aria-label="Real answer for 6 cubed" class="hw-field"></span></div>
+    </div>
+    <div class="rcard q">
+      <span class="qnum">5</span>
+      <div class="say">Robot:<b>11² = 22</b></div>
+      <div class="real"><span class="lab">You:</span> <span class="nw">11² =</span> <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="r5" data-label="1.5 Robot said 11² = 22. Real answer" aria-label="Real answer for 11 squared" class="hw-field"></div>
+    </div>
+    <div class="rcard q">
+      <span class="qnum">6</span>
+      <div class="say">Robot:<b>4² = 16</b></div>
+      <div class="real"><span class="lab">You:</span> <span class="nw">4² =</span> <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="r6" data-label="1.6 Robot said 4² = 16. Real answer" aria-label="Real answer for 4 squared" class="hw-field"></div>
+    </div>
+    <div class="rcard q wide">
+      <span class="qnum">7</span>
+      <div class="say">Robot:<b>The square team to 100 is 49, 64, 81, 100. That's <span class="nw">it!</span></b></div>
+      <div class="real"><span class="lab">You: the whole team, from&nbsp;the&nbsp;start</span></div>
+      <div></div>
+      <div class="shirts">
+        <span class="shirt blank"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="s1" data-label="1.7 Square team to 100: 1st" aria-label="Square team, 1st" class="hw-field"></span>
+        <span class="shirt blank"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="s2" data-label="1.7 Square team to 100: 2nd" aria-label="Square team, 2nd" class="hw-field"></span>
+        <span class="shirt blank"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="s3" data-label="1.7 Square team to 100: 3rd" aria-label="Square team, 3rd" class="hw-field"></span>
+        <span class="shirt blank"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="s4" data-label="1.7 Square team to 100: 4th" aria-label="Square team, 4th" class="hw-field"></span>
+        <span class="shirt blank"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="s5" data-label="1.7 Square team to 100: 5th" aria-label="Square team, 5th" class="hw-field"></span>
+        <span class="shirt blank"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="s6" data-label="1.7 Square team to 100: 6th" aria-label="Square team, 6th" class="hw-field"></span>
+        <span class="shirt">49</span><span class="shirt">64</span><span class="shirt">81</span><span class="shirt">100</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sort">
+  <header>
+  <h2><span class="badge">2</span> Squared, doubled or cubed?</h2>
+  <p class="instruction"><span class="scr">What happened to each number? Tap a card, then tap <span class="nw">its box.</span></span><span class="prt">What happened to each number? Write each card in <span class="nw">its box.</span></span></p>
+  <p class="note">Every box gets some cards.<span class="scr"> Tap a placed card to send <span class="nw">it back.</span></span></p>
+  <div class="pmodel">
+    <span class="tag">Like this</span>
+    <span class="mtile">10 &rarr; 20</span>
+    <span>goes in <b class="mink">DOUBLED</b>, because 10 &times; 2 = 20</span>
+  </div>
+  </header>
+
+  <div class="tp sortq q">
+    <div class="tp-bank">
+      <button type="button" class="tp-tile" data-value="b1" data-store="b1" data-field="b1">4 &rarr; 64</button>
+      <button type="button" class="tp-tile" data-value="b2" data-store="b2" data-field="b2">8 &rarr; 16</button>
+      <button type="button" class="tp-tile" data-value="b3" data-store="b3" data-field="b3">6 &rarr; 36</button>
+      <button type="button" class="tp-tile" data-value="b4" data-store="b4" data-field="b4">7 &rarr; 49</button>
+      <button type="button" class="tp-tile" data-value="b5" data-store="b5" data-field="b5">2 &rarr; 8</button>
+      <button type="button" class="tp-tile" data-value="b6" data-store="b6" data-field="b6">4 &rarr; 8</button>
+      <button type="button" class="tp-tile" data-value="b7" data-store="b7" data-field="b7">9 &rarr; 18</button>
+      <button type="button" class="tp-tile" data-value="b8" data-store="b8" data-field="b8">8 &rarr; 64</button>
+      <button type="button" class="tp-tile" data-value="b9" data-store="b9" data-field="b9">3 &rarr; 27</button>
+    </div>
+    <div class="bins">
+      <div class="tp-zone tp-multi" data-value="squared" aria-label="Squared box"><span class="bin-head">Squared<span class="sym sup">²</span></span><div class="tp-slot"></div></div>
+      <div class="tp-zone tp-multi" data-value="doubled" aria-label="Doubled box"><span class="bin-head">Doubled<span class="sym">&times; 2</span></span><div class="tp-slot"></div></div>
+      <div class="tp-zone tp-multi" data-value="cubed" aria-label="Cubed box"><span class="bin-head">Cubed<span class="sym sup">³</span></span><div class="tp-slot"></div></div>
+    </div>
+    <div class="tp-stores" hidden>
+      <select data-k="b1" data-label="2. 4 → 64" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+      <select data-k="b2" data-label="2. 8 → 16" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+      <select data-k="b3" data-label="2. 6 → 36" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+      <select data-k="b4" data-label="2. 7 → 49" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+      <select data-k="b5" data-label="2. 2 → 8" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+      <select data-k="b6" data-label="2. 4 → 8" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+      <select data-k="b7" data-label="2. 9 → 18" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+      <select data-k="b8" data-label="2. 8 → 64" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+      <select data-k="b9" data-label="2. 3 → 27" class="hw-field"><option value=""></option><option>squared</option><option>doubled</option><option>cubed</option></select>
+    </div>
+  </div>
+</section>
+
+<section id="var">
+  <header>
+  <h2><span class="badge">3</span> VAR check</h2>
+  <p class="instruction"><span class="scr">Test each claim first. Then give the <span class="nw">VAR decision.</span></span><span class="prt">Test each claim first. Then circle <span class="nw">the decision.</span></span></p>
+  <p class="note"><span class="scr">The decision buttons switch on when every test box has <span class="nw">a number.</span></span><span class="prt">Always, sometimes or never true?</span></p>
+  </header>
+
+  <div class="cgrid">
+    <div class="ccard q" data-claim="1">
+      <div class="chead"><span class="qnum">1</span><p class="claim">&ldquo;Cube numbers are <span class="nw">odd.&rdquo;</span></p></div>
+      <div class="test"><span class="lab">Test</span>
+        <div class="trows">
+          <div class="trow"><span class="pair">3³ = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c1a" data-label="3.1 Cube numbers are odd. Test: 3³" aria-label="3 cubed" class="hw-field"></span></div>
+          <div class="trow"><span class="pair">6³ = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c1b" data-label="3.1 Cube numbers are odd. Test: 6³" aria-label="6 cubed" class="hw-field"></span></div>
+        </div>
+      </div>
+      <div class="dec" role="group" aria-label="Decision for claim 1" data-field="d1" data-store="d1"><span class="lab">VAR decision</span>
+        <button type="button" class="vbtn" data-v="always">Always</button><button type="button" class="vbtn" data-v="sometimes">Sometimes</button><button type="button" class="vbtn" data-v="never">Never</button>
+      </div>
+    </div>
+    <div class="ccard q" data-claim="2">
+      <div class="chead"><span class="qnum">2</span><p class="claim">&ldquo;An odd number squared <span class="nw">is odd.&rdquo;</span></p></div>
+      <div class="test"><span class="lab">Test</span>
+        <div class="trows">
+          <div class="trow"><span class="pair">3² = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c2a" data-label="3.2 An odd number squared is odd. Test: 3²" aria-label="3 squared" class="hw-field"></span></div>
+          <div class="trow"><span class="pair">5² = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c2b" data-label="3.2 An odd number squared is odd. Test: 5²" aria-label="5 squared" class="hw-field"></span></div>
+          <div class="trow"><span class="pair">7² = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c2c" data-label="3.2 An odd number squared is odd. Test: 7²" aria-label="7 squared" class="hw-field"></span></div>
+        </div>
+      </div>
+      <div class="dec" role="group" aria-label="Decision for claim 2" data-field="d2" data-store="d2"><span class="lab">VAR decision</span>
+        <button type="button" class="vbtn" data-v="always">Always</button><button type="button" class="vbtn" data-v="sometimes">Sometimes</button><button type="button" class="vbtn" data-v="never">Never</button>
+      </div>
+    </div>
+    <div class="ccard q" data-claim="3">
+      <div class="chead"><span class="qnum">3</span><p class="claim">&ldquo;For a number bigger than&nbsp;2, doubling it gives a bigger answer than <span class="nw">squaring it.&rdquo;</span></p></div>
+      <div class="test"><span class="lab">Test</span>
+        <div class="trows two">
+          <div class="trow"><span class="pair">3 &times; 2 = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c3a" data-label="3.3 Doubling beats squaring above 2. Test: 3 × 2" aria-label="3 times 2" class="hw-field"></span> <span class="pair">3² = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c3b" data-label="3.3 Doubling beats squaring above 2. Test: 3²" aria-label="3 squared" class="hw-field"></span></div>
+          <div class="trow"><span class="pair">5 &times; 2 = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c3c" data-label="3.3 Doubling beats squaring above 2. Test: 5 × 2" aria-label="5 times 2" class="hw-field"></span> <span class="pair">5² = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c3d" data-label="3.3 Doubling beats squaring above 2. Test: 5²" aria-label="5 squared" class="hw-field"></span></div>
+          <div class="trow"><span class="pair">10 &times; 2 = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c3e" data-label="3.3 Doubling beats squaring above 2. Test: 10 × 2" aria-label="10 times 2" class="hw-field"></span> <span class="pair">10² = <input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c3f" data-label="3.3 Doubling beats squaring above 2. Test: 10²" aria-label="10 squared" class="hw-field"></span></div>
+        </div>
+      </div>
+      <div class="dec" role="group" aria-label="Decision for claim 3" data-field="d3" data-store="d3"><span class="lab">VAR decision</span>
+        <button type="button" class="vbtn" data-v="always">Always</button><button type="button" class="vbtn" data-v="sometimes">Sometimes</button><button type="button" class="vbtn" data-v="never">Never</button>
+      </div>
+    </div>
+  </div>
+  <div class="tp-stores" hidden>
+    <select data-k="d1" data-label="3.1 Cube numbers are odd: decision" class="hw-field"><option value=""></option><option value="always">always</option><option value="sometimes">sometimes</option><option value="never">never</option></select>
+    <select data-k="d2" data-label="3.2 An odd number squared is odd: decision" class="hw-field"><option value=""></option><option value="always">always</option><option value="sometimes">sometimes</option><option value="never">never</option></select>
+    <select data-k="d3" data-label="3.3 Doubling beats squaring above 2: decision" class="hw-field"><option value=""></option><option value="always">always</option><option value="sometimes">sometimes</option><option value="never">never</option></select>
+  </div>
+</section>
+
+<script>
+/* Cube steps: the box after "then" shows his own step-1 answer (read-only), never the right one. */
+(function () {
+  function initMirror() {
+    document.querySelectorAll(".mirror[data-mirror]").forEach(function (m) {
+      var src = document.querySelector('input[data-k="' + m.dataset.mirror + '"]');
+      if (!src) return;
+      function upd() { var v = src.value.trim(); m.textContent = v || "\u00a0"; m.classList.toggle("on", !!v); }
+      src.addEventListener("input", upd); src.addEventListener("change", upd); upd();
+    });
+  }
+  if (document.readyState === "complete") initMirror(); else window.addEventListener("load", initMirror);
+})();
+
+/* VAR decisions: the buttons stay off until every test box in that claim has something in it (test first, then decide).
+   The chosen word lives in a hidden select (hw.js saves, checks and prints it); the buttons only show it. */
+(function () {
+  function initVar() {
+    document.querySelectorAll(".ccard[data-claim]").forEach(function (card) {
+      var group = card.querySelector(".dec"), btns = [].slice.call(group.querySelectorAll(".vbtn"));
+      var store = document.querySelector('select[data-k="' + group.dataset.store + '"]');
+      var tests = [].slice.call(card.querySelectorAll(".test input"));
+      function ready() { return tests.every(function (i) { return /^\d+$/.test(i.value.replace(/[\s,]/g, "")); }); }
+      function show() {
+        var v = store ? store.value : "", on = ready();
+        btns.forEach(function (b) {
+          b.setAttribute("aria-pressed", b.dataset.v === v ? "true" : "false");
+          b.disabled = !on && b.dataset.v !== v;
+        });
+      }
+      btns.forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (!store || b.disabled) return;
+          store.value = store.value === b.dataset.v ? "" : b.dataset.v;
+          store.dispatchEvent(new Event("change", { bubbles: true }));
+          show();
+        });
+      });
+      tests.forEach(function (i) { i.addEventListener("input", show); i.addEventListener("change", show); });
+      if (store) store.addEventListener("change", show);
+      show();
+    });
+  }
+  if (document.readyState === "complete") initVar(); else window.addEventListener("load", initVar);
+})();
+
+/* ===== TAP-PLACE JS (copied from Tools/hw_snippets/tap_place.html, unchanged) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJyMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjgxIn0sICJyMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNSJ9LCAicjJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTI1In0sICJyMyI6IHsidCI6ICJleGFjdCIsICJhIjogIjE0NCJ9LCAicjRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzYifSwgInI0YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjIxNiJ9LCAicjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMjEifSwgInI2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTYifSwgInMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMSJ9LCAiczIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0In0sICJzMyI6IHsidCI6ICJleGFjdCIsICJhIjogIjkifSwgInM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTYifSwgInM1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjUifSwgInM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzYifSwgImIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY3ViZWQifSwgImIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZG91YmxlZCJ9LCAiYjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzcXVhcmVkIn0sICJiNCI6IHsidCI6ICJleGFjdCIsICJhIjogInNxdWFyZWQifSwgImI1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY3ViZWQifSwgImI2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZG91YmxlZCJ9LCAiYjciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkb3VibGVkIn0sICJiOCI6IHsidCI6ICJleGFjdCIsICJhIjogInNxdWFyZWQifSwgImI5IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY3ViZWQifSwgImMxYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjI3In0sICJjMWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMTYifSwgImQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAic29tZXRpbWVzIn0sICJjMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5In0sICJjMmIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNSJ9LCAiYzJjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDkifSwgImQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYWx3YXlzIn0sICJjM2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2In0sICJjM2IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5In0sICJjM2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMCJ9LCAiYzNkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjUifSwgImMzZSI6IHsidCI6ICJleGFjdCIsICJhIjogIjIwIn0sICJjM2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMDAifSwgImQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAibmV2ZXIifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

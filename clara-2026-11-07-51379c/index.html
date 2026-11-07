@@ -331,6 +331,540 @@ body.hw-pdf-mode .kp { min-width:38px; height:38px; font-size:16px; }
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style id="clara-block-style">.game-ui{display:none}
+body.mint-game{max-width:1150px;background:#edf9f2;background-image:radial-gradient(#b8ddca 1px,transparent 1px);background-size:22px 22px;font-family:'Trebuchet MS','Avenir Next',sans-serif;padding:24px 22px 60px}
+.mint-game #sheet{padding:0;background:transparent;box-shadow:none}
+.mint-game .sheet-head{position:relative;padding:28px 140px 28px 28px;background:#d8f3e5;border:2px solid #9ccdb4;border-bottom:6px solid #9ccdb4;border-radius:28px;margin-bottom:20px;min-height:140px}
+.garden-pal{position:absolute;width:110px;height:110px;right:20px;top:18px}.hero-copy{font-size:17px;margin-top:10px;color:#426b59}
+.mint-game .game-ui{display:block}.mint-game .block-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 20px}
+.mint-game .block-tab,.mint-game .garden-button{font-size:16px;font-weight:700;line-height:1.3;color:#245b45;background:white;border:2px solid #a4cdb7;border-bottom-width:5px;border-radius:18px;padding:12px;cursor:pointer;font-family:inherit}
+.mint-game .block-tab{font-size:15px;text-align:left;display:flex;gap:10px;align-items:center}
+.mint-game button:focus-visible,.mint-game [tabindex]:focus-visible{outline:3px solid #276b51;outline-offset:4px}
+.mint-game .block-tab[aria-current="step"]{background:#c5edda;border-color:#42896b}.mint-game .block-tab small{display:block;font-size:12px;font-weight:400;margin-top:3px}
+.step-badge{background:#e6f7ef;border-radius:50%;width:29px;height:29px;display:grid;place-items:center;flex-shrink:0}.block-tab.done .step-badge{background:#286951;color:white}
+.mint-game .progress-head{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#426b59;margin-bottom:8px}.mint-game progress{display:block;width:100%;height:12px;border:none;border-radius:10px;overflow:hidden;background:#d5e9df;accent-color:#42896b}.mint-game progress::-webkit-progress-bar{background:#d5e9df}.mint-game progress::-webkit-progress-value{background:#42896b;border-radius:10px}
+.mint-game #sheet>.section{display:none;background:#fff;border:2px solid #c0dfce;border-radius:26px;padding:28px;margin:0;box-shadow:0 6px 0 #d3eade}
+.mint-game #sheet>.section.active{display:block}.mint-game #sheet>.foot{display:none}.mint-game .sec-head{border-bottom:2px dashed #c8e2d4}
+.mint-game .section>.task:has(>.task-label){padding:18px;background:#e6f6ee;border-radius:18px;margin-bottom:20px}.mint-game .model,.mint-game .chain-ex{border-radius:14px;background:#f7fcf9;border:2px dashed #b1d6c1}
+.mint-game .q{border:1px solid #d5e7dc;border-radius:18px;padding:18px;margin:14px 0;background:#fff}.mint-game .q-num{background:#d2efdf;color:#245b45;font-weight:800}.mint-game .q.sortq{border:0;padding:0}
+.mint-game .pic-opt,.mint-game .txt-opt,.mint-game .tp-tile{border-radius:15px;border-bottom-width:4px}.mint-game .txt-opt.on,.mint-game .pic-opt.on{background:#ddf4e7}.mint-game .tp-zone{background:#f3fbf6;border-style:dashed}
+.mint-game .block-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}.mint-game .garden-button.primary{background:#286951;border-color:#1d4d3a;color:white}.mint-game .garden-button:disabled{opacity:.55;cursor:default}.mint-game .block-result{background:#e8f7ef;border:2px dashed #aacfb9;border-radius:18px;padding:18px;margin-top:18px;font-size:16px}.mint-game .block-result:empty{display:none}.mint-game .block-result strong{display:block;font-size:20px;margin-bottom:6px}.mint-game .block-result p{margin-top:5px}
+.mint-game .finish-panel{margin-top:20px;background:#fff;border:2px solid #a4cdb7;border-radius:24px;padding:24px}.mint-game .finish-panel h2{font-size:24px}.mint-game .finish-panel p{font-size:16px;margin:8px 0}.mint-game .finish-list{display:grid;gap:8px;margin:18px 0}.mint-game .finish-row{padding:12px;background:#edf8f2;border-radius:12px;font-size:15px}
+.mint-game .hw-bar{position:static;width:auto;max-width:none;display:none;margin:18px 0 0;padding:18px;border-radius:20px}.mint-game .hw-bar.available{display:block}.mint-game .hw-send{padding:14px 20px;border-bottom:5px solid #174a35;border-radius:16px;font-size:18px}.mint-game .hw-send:disabled{opacity:.65}.mint-game .hw-msg{margin:10px 0;line-height:1.5}.mint-game .hw-pdf{margin-top:8px}
+.mint-game .save-note{font-size:12px;color:#526e61;margin:10px 0 18px}.mint-game .hw-mark-list{font-size:14px}.mint-game .hw-mark{white-space:normal;overflow-wrap:anywhere}.mint-game .hw-mark-in{display:block}
+@media(max-width:700px){body.mint-game{padding:12px 10px 35px}.mint-game .sheet-head{padding:22px 100px 22px 18px;border-radius:22px}.mint-game h1{font-size:27px}.mint-game .garden-pal{width:80px;height:80px;right:10px;top:28px}.mint-game .hero-copy{font-size:15px}.mint-game .eyebrow{font-size:10px}.mint-game .block-nav{grid-template-columns:repeat(2,1fr);gap:8px}.mint-game .block-tab{padding:10px 8px;font-size:13px;border-radius:14px}.mint-game #sheet>.section{padding:18px 14px}.mint-game .q{padding:14px 10px}.mint-game .wex-fig{min-width:0}.mint-game .arow{gap:8px}.mint-game .lead{font-size:21px}.mint-game .garden-button{font-size:15px}.mint-game .r-grid{gap:8px}.mint-game .block-actions>button{flex:1}.mint-game .finish-panel{padding:20px 16px}}
+@media print{.game-ui,.garden-pal,.hero-copy{display:none!important}body.mint-game #sheet>.section{display:block!important;border:0;box-shadow:none;padding:0}.hw-bar{display:none!important}}
+/* Compact, complete attachment: every block renders, without the game controls. */
+body.hw-pdf-mode #sheet{font-size:14px!important;line-height:1.5!important}
+body.hw-pdf-mode .sheet-head{padding:14px 18px!important;margin-bottom:16px!important}
+body.hw-pdf-mode h1{font-size:27px!important}body.hw-pdf-mode .hero-copy{font-size:13px!important}
+body.hw-pdf-mode .garden-pal,body.hw-pdf-mode .foot{display:none!important}
+body.hw-pdf-mode .sec-head{margin:14px 0 10px!important;padding-bottom:8px!important}
+body.hw-pdf-mode .lead{font-size:17px!important;margin-bottom:6px!important}
+body.hw-pdf-mode .small,body.hw-pdf-mode .note{font-size:12px!important}
+body.hw-pdf-mode .prompt,body.hw-pdf-mode .prompt-q,body.hw-pdf-mode .wsent,body.hw-pdf-mode .model p{font-size:14px!important}
+body.hw-pdf-mode .model,body.hw-pdf-mode .chain-ex{padding:10px 12px!important;margin:8px 0 12px!important;font-size:13px!important}
+body.hw-pdf-mode .wex-row{gap:10px!important;flex-wrap:nowrap!important}body.hw-pdf-mode .wex-fig{flex:0 0 290px!important;min-width:0!important}
+body.hw-pdf-mode .q{padding:9px 0!important}body.hw-pdf-mode .task.gapt{margin-top:12px!important}
+body.hw-pdf-mode .role-label{margin:10px 0 5px!important}body.hw-pdf-mode .q-num{width:24px!important;height:24px!important;flex-basis:24px!important;font-size:12px!important}
+body.hw-pdf-mode .arow{margin-top:6px!important;gap:6px!important}body.hw-pdf-mode .cap2{font-size:13px!important}
+body.hw-pdf-mode .txt-opt{font-size:13px!important;padding:6px 10px!important}body.hw-pdf-mode .opt-pick{gap:5px!important}
+body.hw-pdf-mode .r-card{padding:8px!important}body.hw-pdf-mode .r-top{gap:5px!important;flex-wrap:wrap!important}body.hw-pdf-mode .chip10{font-size:10px!important;white-space:normal!important;padding:3px 5px!important}body.hw-pdf-mode .r-num{font-size:24px!important;margin:8px 0!important}
+body.hw-pdf-mode .tp-bank:empty{display:none!important}body.hw-pdf-mode .tp-zone{min-height:90px!important}body.hw-pdf-mode .tp-tile{font-size:15px!important}
+
+.mint-game .tp-bank:empty{display:none}
+/* Cream paper, peach details and a few mint accents; the earned leaves carry the green. */
+body.mint-game{background-color:#faf7f1;background-image:radial-gradient(#e8dfd3 1px,transparent 1px);color:#45433e}
+.mint-game .sheet-head{background:#f6ecdf;border-color:#dfcdb8;border-bottom-color:#dfcdb8}
+.mint-game .hero-copy,.mint-game .progress-head,.mint-game .save-note{color:#736b60}
+.mint-game .block-tab{border-color:#d9d4ca;color:#514e46;background:#fffefa}
+.mint-game .block-tab[aria-current="step"]{background:#e4f1e9;border-color:#9fbfac}
+.mint-game .step-badge{background:#f2ebe0}.mint-game .block-tab.done .step-badge{background:#6e9279}
+.mint-game #sheet>.section{border-color:#e5ddd1;box-shadow:0 6px 0 #ece5dc}
+.mint-game .section>.task:has(>.task-label){background:#f6f3ec}
+.mint-game .model,.mint-game .chain-ex{background:#fffefa;border-color:#d7cbb9}
+.mint-game .q{border-color:#e9e2d8}.mint-game .q-num{background:#f4e5ce;color:#775c38}
+.mint-game .txt-opt,.mint-game .pic-opt{border-color:#d8d9cf}.mint-game .txt-opt.on,.mint-game .pic-opt.on{background:#e7f2e9;border-color:#90b29b}
+.mint-game .tp-zone{background:#fcfaf5;border-color:#d7cbb9}
+.mint-game .block-result{background:#fcf4e6;border-color:#dfccab}
+.mint-game .finish-panel{background:#fffdfa;border-color:#dfd3c2}.mint-game .finish-row{background:#f5f1e9}
+.mint-game .hw-bar{background:#f6f3eb;border-color:#dfd3c2}.mint-game .garden-button{border-color:#c9cbbd}.mint-game .garden-button.primary{background:#557a62;border-color:#3c5a47}
+.mint-game .final-attempt-note{margin-top:24px;font-size:14px;color:#746857}.mint-game .block-actions{margin-top:12px}
+.mint-game .locked [disabled]{opacity:1;-webkit-text-fill-color:currentColor;cursor:default}.mint-game .locked .garden-button:disabled{opacity:.65}
+.mint-game .locked input,.mint-game .locked select{color:#203e35!important}
+.mint-game .tree-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(220px,1fr);align-items:center;gap:24px;margin:16px 0}
+.mint-game .tree-scene{border-radius:28px;background:#fbf7ef;overflow:hidden}.tree-scene svg{width:100%;display:block;max-height:370px}
+.mint-game .tree-count{font-size:21px;font-weight:700;color:#526b45;margin-bottom:18px}
+.mint-game .tree-stages{list-style:none;padding:0;display:grid;gap:10px;font-size:16px;color:#90877a}
+.mint-game .tree-stages li{display:flex;align-items:center;gap:10px}.tree-stages li span{display:grid;place-items:center;border:1px solid #dfd3c2;border-radius:50%;width:28px;height:28px;background:#fbf7ef}
+.mint-game .tree-stages .grown{color:#514e46}.mint-game .tree-stages .grown span{background:#e5f1e5;border-color:#a4b99b;color:#4f744e}
+.mint-game .leaf-note{font-size:13px!important;color:#786d5c;margin-top:18px!important;max-width:320px}
+@media(max-width:700px){.mint-game .tree-layout{grid-template-columns:1fr;gap:12px}.tree-scene svg{max-height:290px}.mint-game .tree-count{font-size:19px}.mint-game .tree-stages{grid-template-columns:1fr 1fr;font-size:13px;gap:12px}.mint-game .tree-stages li{gap:7px}.mint-game .tree-stages li span{flex-shrink:0}.mint-game .leaf-note{max-width:none}}
+/* One exercise screen at a time, with the tree always in view. */
+body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;display:grid;grid-template-columns:minmax(0,1fr) 255px;grid-template-rows:auto auto minmax(0,1fr);gap:10px 16px}
+.mint-game #sheet{display:contents}.mint-game .sheet-head{grid-column:1/-1;grid-row:1;min-height:0;padding:12px 80px 12px 20px;margin:0;border-radius:18px;border-bottom-width:3px;display:flex;align-items:center;gap:18px}
+.mint-game .sheet-head h1{font-size:25px;letter-spacing:-.4px}.mint-game .sheet-head .eyebrow{font-size:10px;margin:0}.mint-game .hero-copy{display:none}.mint-game .garden-pal{height:48px;width:48px;top:3px;right:14px}
+.mint-game #sheet>.game-ui{grid-column:1/-1;grid-row:2}.mint-game .progress-head{font-size:12px;margin:0 0 4px}.mint-game progress{height:6px}.mint-game .block-nav{margin:7px 0 0;gap:8px}.mint-game .block-tab{padding:7px 12px;font-size:14px;border-radius:12px;border-bottom-width:3px}.mint-game .block-tab small{display:none}.mint-game .step-badge{height:24px;width:24px}.mint-game .save-note{display:none}
+.mint-game #sheet>.section.active{display:flex;flex-direction:column;grid-column:1;grid-row:3;min-height:0;min-width:0;padding:14px 18px;overflow:hidden;border-radius:20px;box-shadow:none}
+.mint-game .sec-head{flex-shrink:0;gap:8px;padding-bottom:7px;margin-bottom:7px}.mint-game .sec-head .note{font-size:13px}.mint-game .subj{font-size:10px;padding:3px 8px}
+.mint-game .exercise-position{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-shrink:0;margin-bottom:8px;font-size:13px;color:#786d5c}.mint-game .reminder-button{background:#f5f0e7;border:1px solid #d9cdbb;padding:5px 12px;border-radius:12px;font:inherit;color:#66563d;cursor:pointer}
+.mint-game .exercise-viewport{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:2px 4px 8px;scrollbar-gutter:stable}.mint-game .exercise-page{display:none}.mint-game .exercise-page.current-page{display:block}.mint-game .exercise-page .task{margin:0 0 10px}.mint-game .exercise-page .task.gapt{margin-top:0}
+.mint-game .exercise-page .lead{font-size:20px;line-height:1.4}.mint-game .exercise-page .small{font-size:14px}.mint-game .exercise-page .q{margin:0;padding:14px;border-radius:16px}.mint-game .exercise-page .prompt,.mint-game .exercise-page .prompt-q,.mint-game .exercise-page .wsent{font-size:19px;line-height:1.55}
+.mint-game .exercise-page .model,.mint-game .exercise-page .chain-ex{padding:12px 14px;margin:10px 0}.mint-game .exercise-page .model p{font-size:17px}.mint-game .exercise-page .wex-row{gap:12px}.mint-game .exercise-page .wex-fig{flex:0 1 280px}.mint-game .exercise-page .pic-pick{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.mint-game .exercise-page .pic-opt{padding:8px}.mint-game .exercise-page .bar-svg{max-height:135px}
+.mint-game .exercise-page .arow{margin-left:0;margin-top:12px}.mint-game .exercise-page .txt-opt{font-size:18px;padding:10px 12px}.mint-game .exercise-page .sent{margin-left:0;min-height:110px!important}.mint-game .exercise-hint{font-size:16px;line-height:1.45;margin:0 0 12px;color:#6e6252}.mint-game .exercise-page .role-label{margin:0 0 5px}
+.mint-game .block-actions{flex-shrink:0;margin:10px 0 0;border-top:1px solid #eee5d9;padding-top:10px;justify-content:space-between;gap:8px}.mint-game .garden-button{padding:9px 16px;font-size:15px;border-radius:13px}.mint-game .garden-button[hidden]{display:none!important}
+.mint-game .exercise-notice{font-size:13px;color:#8b532e;margin:0 0 8px}.mint-game .exercise-notice:empty{display:none}.mint-game .review-page h3{font-size:24px;margin:8px 0 12px}.mint-game .review-page>p{font-size:17px;line-height:1.6}.mint-game .final-attempt-note{font-size:14px;margin-top:18px}.mint-game .block-result{padding:14px;margin-top:16px}
+.mint-game .finish-panel{grid-column:2;grid-row:3;min-height:0;overflow:auto;margin:0;padding:14px;border-radius:20px;display:flex;flex-direction:column;align-self:stretch;overscroll-behavior:contain;gap:8px}.mint-game .finish-panel>h2{font-size:17px;margin:0;flex-shrink:0}.mint-game .finish-panel>p{display:none}.mint-game .tree-layout{display:block;margin:0;flex-shrink:0}.mint-game .tree-scene{border-radius:18px}.mint-game .tree-scene svg{max-height:clamp(120px,27vh,220px);width:100%}.mint-game .tree-count{font-size:14px;line-height:1.4;margin:8px 0}.mint-game .tree-stages{display:none}.mint-game .leaf-note{font-size:11px!important;margin:0!important;line-height:1.5}
+.mint-game .results-details{font-size:13px;min-height:0;overflow:auto}.mint-game .results-details summary{cursor:pointer;padding:7px 0;color:#70624e}.mint-game .finish-list{gap:5px;margin:4px 0}.mint-game .finish-row{font-size:11px;line-height:1.4;padding:7px}.mint-game .hw-bar{margin:auto 0 0;padding:10px;border-radius:14px;flex-shrink:0}.mint-game .hw-send{font-size:14px;padding:10px 9px;border-radius:12px;width:100%}.mint-game .hw-msg{font-size:11px;margin:6px 0}.mint-game .hw-pdf{font-size:11px;margin:0}
+@media(max-width:800px){body.mint-game{grid-template-columns:minmax(0,1fr) 190px;padding:8px;gap:8px}.mint-game .sheet-head{padding:9px 60px 9px 12px}.mint-game .sheet-head .eyebrow{display:none}.mint-game .sheet-head h1{font-size:22px}.mint-game #sheet>.section.active{padding:10px}.mint-game .finish-panel{padding:10px}.mint-game .block-tab{padding:6px;font-size:12px;gap:6px}.mint-game .block-nav{grid-template-columns:repeat(3,1fr)}.mint-game .step-badge{display:none}.mint-game .exercise-page .pic-pick{grid-template-columns:1fr}.mint-game .exercise-page .wex-fig{min-width:0}}
+@media(max-width:600px){body.mint-game{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr);gap:7px;padding:7px}.mint-game .sheet-head{grid-row:1;min-height:42px;padding:7px 55px 7px 12px}.mint-game .garden-pal{height:37px;width:37px}.mint-game .sheet-head h1{font-size:21px}.mint-game #sheet>.game-ui{grid-row:2}.mint-game .progress-head{font-size:11px}.mint-game .block-nav{gap:5px;margin-top:5px}.mint-game .block-tab{font-size:11px;padding:7px 5px;justify-content:center;text-align:center}.mint-game .finish-panel{grid-column:1;grid-row:3;max-height:160px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;padding:5px 10px;gap:6px;border-radius:15px}.mint-game .finish-panel>h2,.mint-game .results-details{display:none}.mint-game .tree-layout{display:grid;grid-template-columns:95px minmax(0,1fr);align-items:center;gap:10px}.mint-game .tree-scene svg{height:83px;max-height:83px}.mint-game .tree-count{font-size:13px;margin:0;max-width:180px}.mint-game .leaf-note{display:none}.mint-game .hw-bar{max-width:142px;padding:6px;margin:0;border:0;background:none}.mint-game .hw-msg{font-size:10px;max-height:34px;overflow:auto}.mint-game .hw-send{font-size:12px;padding:7px}.mint-game .hw-pdf{display:none}.mint-game #sheet>.section.active{grid-column:1;grid-row:4;padding:10px;min-height:0}.mint-game .sec-head .note{font-size:11px}.mint-game .subj{display:none}.mint-game .sec-head{margin-bottom:5px;padding-bottom:5px}.mint-game .exercise-position{font-size:12px;margin-bottom:5px}.mint-game .exercise-page .prompt,.mint-game .exercise-page .prompt-q,.mint-game .exercise-page .wsent{font-size:17px}.mint-game .exercise-page .q{padding:10px}.mint-game .exercise-page .lead{font-size:18px}.mint-game .exercise-page .txt-opt{font-size:16px}.mint-game .exercise-page .model p{font-size:15px}.mint-game .garden-button{padding:8px 10px;font-size:13px}.mint-game .block-actions{flex-wrap:nowrap}.mint-game .exercise-page .pic-pick{grid-template-columns:repeat(2,minmax(0,1fr))}.mint-game .exercise-page .pic-cap{font-size:10px}.mint-game .exercise-page .pic-opt{padding:3px}.mint-game .exercise-page .arow{gap:5px}.mint-game .exercise-page .bar-svg{max-height:100px}}
+@media print{body.mint-game{display:block;height:auto;overflow:visible}.mint-game #sheet{display:block}.mint-game .exercise-page,.mint-game .exercise-viewport{display:block!important;overflow:visible!important;height:auto!important}.game-ui{display:none!important}}
+.mint-game .finish-panel{overflow:hidden}.mint-game .results-details{flex:1;min-height:28px}
+.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .lead{font-size:16px;margin-bottom:4px}.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .small{font-size:12px;margin-bottom:4px}.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .role-label{font-size:10px}
+.mint-game .exercise-page .pic-opt .bar-svg{max-height:105px}.mint-game .exercise-page .pic-pick{margin:8px 0}.mint-game .exercise-page .pic-cap{font-size:11px}
+.mint-game .exercise-page .arow .cap2{font-size:16px}.mint-game .exercise-page .arow .hw-field.nb{height:38px;min-height:38px!important;font-size:18px}
+.mint-game .all-block-results{display:none}.mint-game .overview-mode>:not(.all-block-results){display:none!important}.mint-game .overview-mode>.all-block-results{display:block}.mint-game .all-block-results .finish-list{margin:16px 0}.mint-game .all-block-results .finish-row{font-size:15px;padding:10px}.mint-game .all-block-results>p{font-size:16px}
+/* Use the available exercise area for reading, not just for an empty card. */
+@media screen and (min-width:801px){
+ body.mint-game{max-width:1800px;grid-template-columns:minmax(0,1fr) clamp(255px,20vw,330px)}
+ .mint-game .exercise-viewport{container-type:size}
+ .mint-game .exercise-page.current-page{padding:clamp(6px,2cqh,24px) clamp(3px,1.2cqw,18px);max-width:1180px;margin-inline:auto}
+ .mint-game .exercise-page .lead{font-size:clamp(24px,min(3.1cqw,5cqh),36px);line-height:1.4;margin-bottom:16px}
+ .mint-game .exercise-page .prompt,.mint-game .exercise-page .prompt-q,.mint-game .exercise-page .wsent{font-size:clamp(23px,min(2.9cqw,4.8cqh),32px);line-height:1.55}
+ .mint-game .exercise-page .small,.mint-game .exercise-hint{font-size:clamp(17px,min(2.1cqw,3.4cqh),22px);line-height:1.5;margin-bottom:14px}
+ .mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .lead{font-size:clamp(20px,min(2.5cqw,4.2cqh),28px);margin-bottom:8px}
+ .mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .small{font-size:clamp(16px,min(2cqw,3cqh),20px);margin-bottom:10px}
+ .mint-game .exercise-page .role-label,.mint-game .exercise-page .task:not(:has(.model,.chain-ex)) .role-label,.mint-game .exercise-page .task-label{font-size:clamp(13px,1.5cqw,17px);margin-bottom:12px}
+ .mint-game .exercise-page .model,.mint-game .exercise-page .chain-ex{padding:clamp(18px,3cqh,32px);margin:clamp(16px,3cqh,30px) 0;border-radius:20px}
+ .mint-game .exercise-page .model p,.mint-game .exercise-page .chain-ex{font-size:clamp(21px,min(2.6cqw,4.5cqh),30px);line-height:1.55}
+ .mint-game .exercise-page .ex-title{font-size:clamp(15px,1.8cqw,20px)!important;margin-bottom:12px}
+ .mint-game .exercise-page .ex-prob{margin-bottom:clamp(16px,3cqh,30px)}
+ .mint-game .exercise-page .wex-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:clamp(20px,3cqw,40px)}
+ .mint-game .exercise-page .wex-fig{min-width:0;width:100%;max-width:none}.mint-game .exercise-page .wex-fig .bar-svg{max-height:none;width:100%}
+ .mint-game .exercise-page .wex-steps p{margin:16px 0}.mint-game .exercise-page .st{font-size:clamp(14px,1.7cqw,19px);min-width:80px}
+ .mint-game .exercise-page .q{padding:clamp(18px,3cqh,32px);border-radius:22px}.mint-game .exercise-page .q-top{gap:16px}
+ .mint-game .exercise-page .q-num{width:38px;height:38px;flex-basis:38px;font-size:18px}
+ .mint-game .exercise-page .pic-pick{gap:18px;margin:20px 0}.mint-game .exercise-page .pic-opt{padding:14px}.mint-game .exercise-page .pic-opt .bar-svg{max-height:clamp(120px,25cqh,210px)}.mint-game .exercise-page .pic-cap{font-size:15px}
+ .mint-game .exercise-page .arow{gap:12px;margin-top:20px}.mint-game .exercise-page .arow .cap2{font-size:clamp(19px,2.3cqw,26px)}
+ .mint-game .exercise-page .hw-field,.mint-game .exercise-page .arow .hw-field.nb{font-size:clamp(22px,2.6cqw,30px);min-height:1.9em!important;height:auto;padding:7px 10px}
+ .mint-game .exercise-page .nb{width:7.5em;max-width:100%}.mint-game .exercise-page .np{width:min(20em,100%)}.mint-game .exercise-page .sent{min-height:150px!important}
+ .mint-game .exercise-page .txt-opt{font-size:clamp(21px,min(2.5cqw,4.4cqh),29px);padding:18px 20px;line-height:1.5}.mint-game .exercise-page .opt-pick{gap:14px}
+ .mint-game .exercise-page .tp-tile{font-size:clamp(21px,2.6cqw,29px);padding:12px 18px}.mint-game .exercise-page .tp-zone{padding:18px;min-height:150px}
+ .mint-game .exercise-page .r-num{font-size:clamp(32px,5cqw,54px);margin:24px 0}.mint-game .exercise-page .dg,.mint-game .exercise-page .dc{font-size:clamp(26px,3.5cqw,40px)}
+ .mint-game .review-page h3,.mint-game .all-block-results h3{font-size:clamp(28px,3.4cqw,38px)}.mint-game .review-page>p,.mint-game .all-block-results>p{font-size:clamp(20px,2.4cqw,27px)}
+ .mint-game .block-result{font-size:clamp(19px,2.3cqw,25px);padding:22px}.mint-game .block-result strong{font-size:clamp(22px,2.6cqw,30px)}
+ .mint-game .block-tab{font-size:17px;padding:10px 14px}.mint-game .garden-button{font-size:18px;padding:12px 22px}
+ .mint-game .exercise-position{font-size:16px;margin-bottom:10px}.mint-game .sec-head .note{font-size:16px}
+ .mint-game .finish-panel>h2{font-size:21px}.mint-game .tree-scene svg{max-height:clamp(180px,32vh,350px)}.mint-game .tree-count{font-size:18px}.mint-game .leaf-note{font-size:13px!important}.mint-game .results-details{font-size:15px}
+}
+@media screen and (min-width:801px) and (max-height:800px){
+ .mint-game .exercise-page.current-page{padding:3px 8px}
+ .mint-game .exercise-page .lead{line-height:1.3;margin-bottom:10px}
+ .mint-game .exercise-page .small{margin-bottom:8px}
+ .mint-game .exercise-page .role-label{margin-bottom:6px}
+ .mint-game .exercise-page .model,.mint-game .exercise-page .chain-ex{padding:12px 16px;margin:10px 0}
+ .mint-game .exercise-page .model p{line-height:1.4}
+ .mint-game .exercise-page .ex-title{margin-bottom:6px}
+ .mint-game .exercise-page .ex-prob{margin-bottom:8px}
+ .mint-game .exercise-page .wex-row{gap:16px;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr)}
+ .mint-game .exercise-page .wex-steps p{margin:8px 0}
+ .mint-game .exercise-page .q{padding:14px}
+ .mint-game .exercise-page .pic-pick{margin:10px 0;gap:10px}
+ .mint-game .exercise-page .pic-opt{padding:8px}
+ .mint-game .exercise-page .arow{margin-top:10px;gap:8px}
+ .mint-game .exercise-page .arow .hw-field.nb{font-size:22px;padding:5px 8px}
+ .mint-game .exercise-page .nb{width:6.5em}
+ .mint-game .garden-button{padding:9px 18px}
+ .mint-game .finish-panel>h2{font-size:18px}
+ .mint-game .tree-scene svg{max-height:190px}
+}
+
+/* The forward action should be immediately obvious. */
+.mint-game .block-actions .next-button{background:#256b57;color:#fff;border:2px solid #174b3d;border-bottom-width:4px;box-shadow:0 4px 0 #c8ddd2;font-size:22px;font-weight:800;min-width:176px;min-height:56px;padding:12px 28px;border-radius:16px;cursor:pointer;transition:background .15s,transform .15s}
+.mint-game .block-actions .next-button:hover{background:#195540;transform:translateY(-1px)}
+.mint-game .block-actions .next-button:focus-visible{outline:4px solid #e6ab48;outline-offset:4px}
+.mint-game .block-actions .next-button:active{transform:translateY(2px);box-shadow:0 1px 0 #c8ddd2}
+@media(max-width:600px){.mint-game .block-actions .next-button{min-width:128px;min-height:48px;font-size:18px;padding:9px 15px;border-radius:13px}}
+
+/* Small illustrated companions, kept outside the exercises. */
+.mint-game .garden-pal{display:none}
+.mint-game .sheet-head{padding-right:170px}
+.mint-game .friend-parade{position:absolute;right:15px;top:0;width:145px;height:60px;pointer-events:none}
+.mint-game .tree-scene{background:#fbf5ec;border:1px solid #eee1cf}
+.mint-game .tree-scene svg{max-height:clamp(210px,34vh,360px)}
+@media(min-width:801px) and (max-height:800px){.mint-game .tree-scene svg{max-height:225px}}
+@media(max-width:600px){.mint-game .sheet-head{padding-right:90px}.mint-game .friend-parade{width:85px;height:43px;right:4px;top:0}.mint-game .tree-scene svg{height:83px;max-height:83px}.mint-game .sheet-head h1{font-size:20px}}
+
+/* One final checking and delivery action, inside the last exercise page. */
+.mint-game .review-page .hw-bar{display:block;max-width:none;width:100%;padding:16px;margin:16px 0;background:#edf7f1;border:1px solid #b4d5c2;box-sizing:border-box}
+.mint-game .review-page .hw-send{width:100%;min-height:48px;font-size:18px;padding:12px}
+.mint-game .review-page .hw-msg{font-size:15px;line-height:1.5;max-height:none;overflow:visible;margin:10px 0}
+.mint-game:not(.final-checked) .hw-pdf{display:none}
+.mint-game .review-page .hw-pdf{font-size:14px}
+.mint-game .final-answer-list{margin-top:24px;font-size:16px;line-height:1.5}
+.mint-game .final-answer-row{padding:12px 0;border-bottom:1px solid #d5e7dc;overflow-wrap:anywhere}
+.mint-game .final-answer-row p{margin:5px 0;font-size:16px}
+.mint-game .final-correct{color:#286951}.mint-game .final-correction{color:#9b461d}
+</style>
+<style id="clara-large-exercises">/* Screen layout: size the actual maths to the available space. Export is unchanged. */
+@media screen and (min-width:801px) {
+ body.mint-game:not(.hw-pdf-mode) { max-width:none; grid-template-columns:minmax(0,1fr) clamp(210px,16vw,285px); }
+ body:not(.hw-pdf-mode) .exercise-page {
+  --copy:clamp(25px,2.5cqw,38px); --math:clamp(32px,3.25cqw,50px);
+  font-size:var(--copy); line-height:1.45;
+ }
+ body:not(.hw-pdf-mode) .exercise-page.current-page { max-width:none; width:100%; min-height:100%; padding:clamp(12px,2cqh,28px) clamp(8px,1.4cqw,26px); display:flex; flex-direction:column; justify-content:center; }
+ body:not(.hw-pdf-mode) .exercise-page .task { flex-shrink:0; }
+ body:not(.hw-pdf-mode) .exercise-page .task .lead,
+ body:not(.hw-pdf-mode) .exercise-page .lead,
+ body:not(.hw-pdf-mode) .exercise-page .exercise-hint { font-size:var(--copy); line-height:1.4; margin-bottom:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .task .small { font-size:clamp(20px,1.9cqw,28px); line-height:1.4; }
+ body:not(.hw-pdf-mode) .exercise-page .task .role-label { font-size:clamp(14px,1.3cqw,19px); margin-bottom:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .q { flex-shrink:0; padding:clamp(22px,3cqw,44px); border:1.5px solid #c8ded1; background:linear-gradient(135deg,#fff 65%,#f3faf6); border-radius:26px; }
+ body:not(.hw-pdf-mode) .exercise-page .q-top { gap:20px; align-items:center; }
+ body:not(.hw-pdf-mode) .exercise-page .q-num { width:48px; height:48px; flex-basis:48px; font-size:24px; background:#dcefe5; color:#286951; }
+ body:not(.hw-pdf-mode) .exercise-page .prompt,
+ body:not(.hw-pdf-mode) .exercise-page .prompt-q { font-size:clamp(29px,3cqw,44px); line-height:1.35; }
+ body:not(.hw-pdf-mode) .exercise-page .wsent { font-size:var(--math); line-height:1.5; }
+ body:not(.hw-pdf-mode) .exercise-page .hw-field,
+ body:not(.hw-pdf-mode) .exercise-page .arow .hw-field.nb { font-size:var(--math); min-height:1.9em!important; height:auto; padding:8px 12px; border-radius:12px; border-width:2px; }
+ body:not(.hw-pdf-mode) .exercise-page .hw-field.nb { width:4em; max-width:100%; }
+ body:not(.hw-pdf-mode) .exercise-page .fact-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 5%; margin:30px 0 4px; }
+ body:not(.hw-pdf-mode) .exercise-page .fact-grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:clamp(24px,5cqh,64px); margin-block:clamp(28px,5cqh,64px); }
+ body:not(.hw-pdf-mode) .exercise-page .fact { font-size:var(--math); gap:12px; flex-wrap:nowrap; justify-content:center; }
+ body:not(.hw-pdf-mode) #sheet .exercise-page .fact .gapn { width:2.8em!important; flex-shrink:1; }
+ body:not(.hw-pdf-mode) .exercise-page .skip { font-size:clamp(25px,2.55cqw,40px); margin:clamp(28px,6cqh,70px) 0; gap:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .skip .sn { font-size:1em; min-width:0; }
+ body:not(.hw-pdf-mode) .exercise-page .skip .hw-field { font-size:inherit; padding-inline:2px; }
+ body:not(.hw-pdf-mode) .exercise-page .arow { font-size:var(--math); gap:16px; margin-top:24px; }
+ body:not(.hw-pdf-mode) .exercise-page .arow .cap2 { font-size:var(--copy); }
+ body:not(.hw-pdf-mode) .exercise-page .model { padding:clamp(24px,3.2cqw,46px); margin:20px 0 0; border-radius:24px; }
+ body:not(.hw-pdf-mode) .exercise-page .model p { font-size:var(--copy); line-height:1.5; }
+ body:not(.hw-pdf-mode) .exercise-page .model .ex-title { font-size:clamp(17px,1.6cqw,24px)!important; margin-bottom:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .plan-rows p { margin:12px 0; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset { grid-template-columns:minmax(0,1fr) minmax(0,1.65fr); gap:24px; margin-top:28px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp-tile,
+ body:not(.hw-pdf-mode) .exercise-page .sortset .tp-tile { font-size:clamp(25px,2.6cqw,40px); min-height:60px; padding:12px 18px; border-radius:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .zone-head b.zt { font-size:clamp(23px,2.2cqw,32px); }
+ body:not(.hw-pdf-mode) .exercise-page .sortset .tp-zone:not(.vz):not(.one) { min-height:clamp(200px,42cqh,360px); padding:20px; }
+ body:not(.hw-pdf-mode) .exercise-page .venn { min-height:clamp(280px,47cqh,440px); }
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm { grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); }
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm .wex-fig { width:100%; }
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm .bar-svg { max-height:none; }
+ body:not(.hw-pdf-mode) .exercise-page .dtest { gap:24px 4%; margin-top:22px; }
+ body:not(.hw-pdf-mode) .exercise-page .dr { gap:12px; margin-bottom:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .dr.dh { font-size:clamp(19px,1.9cqw,28px); }
+ body:not(.hw-pdf-mode) .exercise-page .dcell { flex-basis:3.8em; }
+ body:not(.hw-pdf-mode) .exercise-page .dcell.ds { flex:1; }
+ body:not(.hw-pdf-mode) .exercise-page .dtest .hw-field { font-size:var(--copy); min-height:2.1em!important; width:100%; }
+ body:not(.hw-pdf-mode) .exercise-page .dn { font-size:var(--math); }
+ body:not(.hw-pdf-mode) .exercise-page .lad { gap:24px 5%; }
+ body:not(.hw-pdf-mode) .exercise-page .lad .arow { font-size:var(--copy); }
+ body:not(.hw-pdf-mode) .exercise-page .lad .cap2 { font-size:clamp(22px,2.2cqw,34px); }
+ body:not(.hw-pdf-mode) .exercise-page .match-list { grid-template-columns:1fr; gap:16px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .calc { font-size:var(--math); }
+ body:not(.hw-pdf-mode) .exercise-page .tp-zone.one { min-height:70px!important; padding:8px 14px!important; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset.matchset .tp-bank { gap:12px; margin-bottom:24px; }
+ body:not(.hw-pdf-mode) .exercise-page .fmq { padding-block:clamp(36px,9cqh,110px); }
+ body:not(.hw-pdf-mode) .exercise-page select.fm { font-size:var(--copy); min-height:2.2em; }
+ body:not(.hw-pdf-mode) .exercise-page .sent { min-height:180px!important; margin-top:30px; }
+ @container (min-width:1250px) {
+  body:not(.hw-pdf-mode) .exercise-page .fact-grid:not(.two) { grid-template-columns:repeat(4,minmax(0,1fr)); column-gap:20px; }
+ }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page { --copy:clamp(23px,2.5cqw,30px); --math:clamp(28px,3cqw,38px); }
+ body:not(.hw-pdf-mode) .exercise-page.current-page { padding:4px 8px; }
+ body:not(.hw-pdf-mode) .exercise-page .q { padding:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .q-num { width:38px;height:38px;flex-basis:38px;font-size:22px; }
+ body:not(.hw-pdf-mode) .exercise-page .task .lead, body:not(.hw-pdf-mode) .exercise-page .exercise-hint { margin-bottom:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .hw-field, body:not(.hw-pdf-mode) .exercise-page .arow .hw-field.nb { min-height:1.7em!important; padding:4px 8px; }
+ body:not(.hw-pdf-mode) .exercise-page .fact-grid { gap:12px 4%; margin:18px 0 0; }
+ body:not(.hw-pdf-mode) .exercise-page .fact-grid.two { row-gap:24px; margin-block:24px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset { gap:16px; margin-top:16px; }
+ body:not(.hw-pdf-mode) .exercise-page .sortset .tp-tile { min-height:46px; padding:6px 12px; }
+ body:not(.hw-pdf-mode) .exercise-page .sortset .tp-zone:not(.vz):not(.one) { min-height:170px; padding:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .model { padding:18px 22px; margin-top:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .plan-rows p { margin:6px 0; }
+ body:not(.hw-pdf-mode) .exercise-page .arow { margin-top:14px; }
+ body:not(.hw-pdf-mode) .exercise-page .dr { margin-bottom:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .venn { min-height:250px; }
+ body:not(.hw-pdf-mode) .exercise-page .fmq { padding-block:40px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-list { gap:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp-zone.one { min-height:54px!important; }
+}
+@media screen and (min-width:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm .bar-svg { max-height: min(38cqh,360px); }
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.matchset) { padding:26px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset.matchset { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2.6fr); gap:26px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset.matchset .tp-bank { display:flex; flex-direction:column; align-items:stretch; margin:0; padding:10px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-tile { font-size:clamp(23px,2.2cqw,32px); padding:8px 12px; min-height:54px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row { gap:18px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .calc { font-size:clamp(28px,2.8cqw,42px); }
+ body:not(.hw-pdf-mode) .exercise-page .fmq .wsent { flex:1; }
+ body:not(.hw-pdf-mode) .exercise-page .fmq .q-top { justify-content:center; }
+}
+@media screen and (min-width:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .sortset .sort-grid,
+ body:not(.hw-pdf-mode) .exercise-page .sortset .venn,
+ body:not(.hw-pdf-mode) .exercise-page .sortset .match-list { grid-row:1; }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.matchset) { padding:16px; }
+ body:not(.hw-pdf-mode) .exercise-page .tp.sortset.matchset { gap:18px; margin-top:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-bank { gap:8px; padding:6px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-tile { min-height:42px; padding:5px 10px; font-size:22px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-list { gap:8px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .tp-zone.one { min-height:46px!important; padding:4px 8px!important; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .tp-slot { min-height:36px; }
+}
+@media screen and (min-width:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .wex-row.vm .bar-svg { height:clamp(230px,36cqh,340px); max-height:none; width:100%; }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page .venn { min-height:220px; }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page:has(.matchset) .role-label { display:none; }
+ body:not(.hw-pdf-mode) .exercise-page:has(.matchset) .task .lead { margin-bottom:8px; }
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.matchset) { padding:12px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-bank { gap:6px; }
+ body:not(.hw-pdf-mode) .exercise-page .matchset .tp-tile { line-height:1.2; min-height:40px; }
+ body:not(.hw-pdf-mode) .exercise-page .match-row .tp-zone.one { min-height:42px!important; padding:2px 8px!important; }
+ body:not(.hw-pdf-mode) .exercise-page .match-list { gap:6px; }
+}
+/* One typography scale for every instruction, including generated repeated hints.
+   These role rules deliberately override the older task/height-specific styles. */
+@media screen {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page {
+  --instruction-size:clamp(28px,3cqw,44px);
+  --support-size:clamp(22px,2.35cqw,34px);
+ }
+ body.mint-game:not(.hw-pdf-mode) .exercise-page :is(.lead,.exercise-hint,.prompt,.prompt-q) {
+  font-size:var(--instruction-size)!important;
+  font-weight:700!important;
+  line-height:1.35!important;
+  color:#48473f!important;
+ }
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .small {
+  font-size:var(--support-size)!important;
+  line-height:1.4!important;
+ }
+}
+@media screen and (max-width:800px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page {
+  --instruction-size:24px;
+  --support-size:20px;
+ }
+}
+@media screen and (min-width:801px) and (min-height:801px) {
+ body:not(.hw-pdf-mode) .exercise-page .model { padding-block:30px; }
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.matchset) { padding-block:16px; }
+}
+
+@media screen and (min-width:801px) and (max-height:800px) {
+ body:not(.hw-pdf-mode) .exercise-page:has(.factor-ladder) .role-label { display:none; }
+ body:not(.hw-pdf-mode) .exercise-page .q:has(.factor-ladder) { padding:12px 18px; }
+ body:not(.hw-pdf-mode) .exercise-page .factor-ladder { margin:12px auto 4px; }
+ body:not(.hw-pdf-mode) .exercise-page .ladder-rung { padding-block:4px; }
+ body:not(.hw-pdf-mode) .exercise-page .ladder-number { margin-bottom:8px; }
+}
+
+@media screen and (min-width:801px) and (max-height:800px) {
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page:has(.partition-card) :is(.role-label,.task-label) { display:none; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page:has(.q.partition-card) > :is(.task,.exercise-hint) { display:none; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .partition-card { padding:12px 18px; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .partition-bond { height:220px; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .partition-layout { margin-top:6px; }
+}
+
+@media screen {
+ body.mint-game:not(.hw-pdf-mode) #sheet .method-summary { padding:8px 22px; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .method-row { font-size:clamp(22px,2.1cqw,31px); }
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page:has(.method-summary) .task-label { display:none; }
+ body.mint-game:not(.hw-pdf-mode) #sheet .method-row { padding:9px 0; gap:9px; grid-template-columns:1fr 1.3fr 20px 2.6fr; }
+}
+
+/* Clara 7 Nov 2026 screens: odd one out, goalkeepers, ladders, tool names.
+   Screen only (the PDF export and paper keep clara_1107.css). */
+.mint-game .block-nav{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+@media screen {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .q{margin:0 0 12px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .remember{background:#e9f5ee;border-radius:20px;padding:clamp(14px,2.4cqh,30px) clamp(16px,2cqw,30px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .remember p{font-size:var(--support-size,26px);line-height:1.45}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .remember p+p{margin-top:.55em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model-say{font-size:var(--support-size,26px);line-height:1.45;margin-top:14px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .task-label{margin-bottom:12px}
+ /* odd one out: five pictures in one row, as on the sheet */
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .pic-pick{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(8px,1.4cqw,22px);margin:6px 0 0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .pic-opt{padding:clamp(4px,.8cqw,12px);border-width:2px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .pic-opt.on{border-width:4px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page svg.nvr{max-width:none;width:100%;max-height:clamp(90px,34cqh,250px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .pic-cap{font-size:clamp(16px,1.8cqw,26px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model-pick{max-width:none}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model-pick svg.nvr{max-height:clamp(80px,26cqh,200px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .nq .q-top{align-items:flex-start}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .reason-row{margin-top:clamp(10px,2.4cqh,24px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page select.reason{min-width:min(460px,100%)}
+ /* goalkeepers: shot, digit total, keepers in one row */
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-block{display:grid;gap:12px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-head,
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row{grid-template-columns:clamp(80px,9cqw,130px) clamp(110px,13cqw,190px) minmax(0,1fr);gap:clamp(10px,1.6cqw,26px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-head{font-size:clamp(14px,1.4cqw,19px);padding:0 clamp(14px,2cqw,28px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row.q{padding:clamp(10px,1.8cqh,18px) clamp(14px,2cqw,28px);margin:0;display:grid}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot{font-size:clamp(32px,3.6cqw,52px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row .dt-cap{display:none}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row .hw-field.gapn{width:3em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .keepers{gap:clamp(8px,1cqw,16px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .kp{min-width:clamp(54px,5.4cqw,76px);height:clamp(54px,5.4cqw,76px);border-radius:40px;font-size:clamp(24px,2.5cqw,34px);padding:0 12px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .kp.none{font-size:clamp(19px,1.9cqw,26px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model .gk-row{font-size:var(--support-size,26px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model .dt .given{font-size:clamp(28px,3cqw,40px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model .kp{min-width:clamp(46px,4.4cqw,64px);height:clamp(46px,4.4cqw,64px);font-size:clamp(20px,2cqw,28px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-block .task.gapt{margin:4px 0 0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .q .arow{margin-left:clamp(0px,5cqw,66px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .np{width:min(14em,100%)}
+ /* ladders: two side by side */
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.4cqw,40px);margin-top:4px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder{padding:clamp(10px,1.6cqh,20px) clamp(14px,2cqw,26px);border-radius:22px;border-width:2px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder.q{margin:0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-num{font-size:clamp(34px,3.6cqw,52px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow{grid-template-columns:clamp(52px,5cqw,80px) minmax(0,1fr);gap:clamp(8px,1.2cqw,18px);min-height:clamp(52px,8.5cqh,76px);padding:3px 0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .try{font-size:clamp(24px,2.6cqw,34px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lctl{font-size:clamp(22px,2.2cqw,30px);gap:10px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow .dt-cap{font-size:clamp(17px,1.7cqw,22px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow.verdict .vcap{font-size:clamp(17px,1.7cqw,22px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .stopnote{font-size:clamp(19px,1.9cqw,26px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow .hw-field{min-height:1.6em!important;padding:3px 8px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow .hw-field.gapn{width:2.8em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page select.step{min-width:7.2em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page select.fnd{min-width:0;max-width:100%}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-model .ladder.still{max-width:760px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-model .lrow{min-height:clamp(40px,6.6cqh,62px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .one-q .q-top{align-items:center}
+ /* tool names: calculation left, the five tools right */
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-list{display:grid;gap:12px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:10px clamp(14px,2cqw,30px);align-items:center;padding:clamp(10px,1.8cqh,18px) clamp(14px,2cqw,28px);margin:0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .calc{font-size:clamp(28px,3cqw,42px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-pick{gap:clamp(8px,1cqw,14px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-opt{font-size:clamp(20px,1.9cqw,28px);min-height:clamp(48px,6cqh,62px);padding:6px clamp(12px,1.4cqw,20px);border-radius:32px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .hw-mark{font-size:clamp(17px,1.7cqw,24px)}
+}
+/* Root rule for desktops: instruction at least 36px, items and controls at least 26px. */
+@media screen and (min-width:900px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page{--instruction-size:clamp(36px,3.2cqw,46px);--support-size:clamp(28px,2.5cqw,36px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page :is(input.hw-field,select[data-k]){font-size:clamp(26px,2.3cqw,32px)!important}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-opt{font-size:clamp(26px,2cqw,30px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lctl,
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow.verdict .vcap{font-size:clamp(26px,2.2cqw,30px)}
+}
+@media screen and (min-width:900px) and (max-width:1500px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{grid-template-columns:1fr}
+}
+/* phones: tree above, exercise below; pictures 3 + 2, rows stack */
+@media screen and (max-width:600px) {
+ .mint-game .block-tab{font-size:12px;padding:7px 3px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .pic-pick{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page svg.nvr{max-height:none}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .pic-cap{font-size:15px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .q-top{gap:8px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .nq .q-num{display:none}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page select.reason{min-width:0;width:100%}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-head{display:none}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row{grid-template-columns:64px 1fr}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row .dt-cap{display:inline;font-size:15px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row .keepers{grid-column:1/-1}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot{font-size:30px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .kp{min-width:44px;height:44px;font-size:19px;padding:0 8px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .kp.none{font-size:15px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-grid{grid-template-columns:1fr}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow{grid-template-columns:44px 1fr;min-height:48px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .try{font-size:22px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lctl{font-size:18px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{grid-template-columns:1fr}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .calc{font-size:24px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-opt{font-size:16px;min-height:42px;padding:4px 11px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .remember p,
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model-say{font-size:18px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .q .arow{margin-left:0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .method-row{grid-template-columns:1fr 24px 1.6fr;font-size:16px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .method-row>b{grid-column:1/-1}
+}
+/* Worked example row has no column heads: keep its "digits" caption. */
+body.mint-game:not(.hw-pdf-mode) .exercise-page .model .gk-row .dt-cap{display:inline;font-size:var(--support-size,22px);color:#6e6252}
+/* Ladders on a wide screen: number | the tries going down | the result, all in view. */
+@media screen and (min-width:601px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-grid{grid-template-columns:1fr}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder{display:grid;grid-template-columns:auto minmax(0,1.15fr) minmax(0,1fr);grid-auto-flow:row dense;column-gap:clamp(16px,2.6cqw,40px);align-items:stretch}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder .lad-top{grid-column:1;grid-row:1/span 5;flex-direction:column;justify-content:flex-start;margin:0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder .lrow:not(.verdict){grid-column:2}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder .lrow.verdict{grid-column:3;grid-template-columns:clamp(70px,7cqw,110px) minmax(0,1fr)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder .lrow.verdict:first-of-type{border-top:0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder>.hw-mark{grid-column:1/-1}
+}
+/* Short laptop screens (1280 x 720): a slimmer frame so each exercise fits without scrolling. */
+@media screen and (min-width:801px) and (max-height:800px) {
+ body.mint-game{padding:8px 16px;gap:6px 14px}
+ .mint-game .sheet-head{padding:5px 150px 5px 18px;min-height:0;border-radius:14px}
+ .mint-game .sheet-head h1{font-size:21px}
+ .mint-game .friend-parade{height:42px;width:110px;top:0}
+ .mint-game .progress-head{font-size:12px;margin-bottom:2px}
+ .mint-game .block-nav{margin-top:5px}
+ .mint-game .block-tab{padding:5px 12px;font-size:16px}
+ .mint-game #sheet>.section.active{padding:8px 16px}
+ .mint-game #sheet>.section.active>.sec-head{display:none}
+ .mint-game .exercise-position{margin-bottom:4px;font-size:15px}
+ .mint-game .reminder-button{padding:3px 12px}
+ .mint-game .block-actions{margin-top:6px;padding-top:6px}
+ .mint-game .block-actions .next-button{min-height:48px;padding:8px 26px;font-size:20px}
+ .mint-game .garden-button{padding:8px 18px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page.current-page{padding:2px 6px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .task .role-label{display:none}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page :is(.lead,.exercise-hint){margin-bottom:10px!important}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .task .small{font-size:24px!important;margin-bottom:8px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .q{padding:12px 16px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row.q,
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{padding:8px 16px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-block,
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-list{gap:8px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow{min-height:50px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-opt{min-height:46px;padding:3px 14px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .calc{font-size:30px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{gap:4px 20px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .remember{padding:12px 20px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model{padding:14px 20px;margin-top:6px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .method-row{padding:6px 0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page svg.nvr{max-height:min(34cqh,170px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .model-pick svg.nvr{max-height:min(30cqh,150px)}
+}
+@media screen and (min-width:900px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .kp{font-size:clamp(26px,2.5cqw,34px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .kp.none{font-size:clamp(20px,1.9cqw,26px)}
+}
+body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-model .ladder.still{max-width:none}
+/* A cloned column head is a game-ui element: keep its grid. */
+.mint-game .exercise-page .gk-head.game-ui{display:grid}
+/* The whole team: the two questions side by side when there is room. */
+body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs{display:grid;gap:14px}
+@media screen and (max-width:1499px) and (min-width:801px) and (max-height:800px){body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs{gap:8px}body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .q{padding:8px 16px}body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .arow{margin-top:6px}}
+@media screen and (min-width:1500px){body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .q{margin:0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .arow,body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .arow-note{margin-left:clamp(0px,4cqw,62px)}}
+/* Tool names on a wide screen: the calculation takes its own width, the tools the rest. */
+@media screen and (min-width:1501px){body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{grid-template-columns:max-content minmax(0,1fr)}}
+@media screen and (min-width:801px) and (min-height:901px){body.mint-game:not(.hw-pdf-mode) .exercise-page svg.nvr{max-height:min(34cqh,320px)}}
+/* Phone: the tool reminder rows stack instead of running off the side. */
+@media screen and (max-width:600px){
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .method-row{grid-template-columns:26px minmax(0,1fr);font-size:17px;gap:2px 6px}
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .method-row>b,
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .method-row>.method-original{grid-column:1/-1}
+ body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .method-row .short-route{white-space:normal;flex-wrap:wrap}
+}
+@media screen and (min-width:1501px){body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{grid-template-columns:clamp(300px,25cqw,430px) minmax(0,1fr)}}
+</style>
 </head>
 <body data-student="Clara" data-sheet="Maths 2026-11-07" data-sheet-id="clara-2026-11-07-maths">
 <div id="sheet">
@@ -664,11 +1198,751 @@ function claraSet(s, v) {
 </script>
 </div><!-- /sheet -->
 <div class="hw-bar">
-  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check &amp; send to Dasha</button>
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
 <script type="application/json" id="hw-check">eyJuMSI6IHsidCI6ICJleGFjdCIsICJhIjogImMifSwgInIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29sb3VyIG9yZGVyIiwgImciOiAicjEtb2sifSwgInIxX2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCIsICJnIjogInIxLW9rIn0sICJuMiI6IHsidCI6ICJleGFjdCIsICJhIjogImEifSwgInIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24iLCAiZyI6ICJyMi1vayJ9LCAicjJfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pcnJvcmVkIiwgImciOiAicjItb2sifSwgIm4zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZCJ9LCAicjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJob3cgbXVjaCBpcyBzaGFkZWQiLCAiZyI6ICJyMy1vayJ9LCAicjNfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImxpbmVzIGNyb3NzIiwgImciOiAicjMtb2sifSwgIm40IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZSJ9LCAicjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCJ9LCAibjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJiIn0sICJyNSI6IHsidCI6ICJleGFjdCIsICJhIjogInR1cm4gZGlyZWN0aW9uIiwgImciOiAicjUtb2sifSwgInI1X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCIsICJnIjogInI1LW9rIn0sICJuNiI6IHsidCI6ICJleGFjdCIsICJhIjogImQifSwgInI2IjogeyJ0IjogImV4YWN0IiwgImEiOiAibnVtYmVyIG9mIHNpZGVzIn0sICJuNyI6IHsidCI6ICJleGFjdCIsICJhIjogImEifSwgInI3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29sb3VyIG9yZGVyIn0sICJuOCI6IHsidCI6ICJleGFjdCIsICJhIjogImMifSwgInI4IjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24ifSwgIm45IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZSJ9LCAicjkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCBzaGFwZSBpcyBpbiBmcm9udCJ9LCAibjEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYiJ9LCAicjEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24iLCAiZyI6ICJyMTAtb2sifSwgInIxMF9hbHQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlycm9yZWQiLCAiZyI6ICJyMTAtb2sifSwgImd0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgImdzMSI6IHsidCI6ICJzZXQiLCAiYSI6ICIyIn0sICJndDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNSJ9LCAiZ3MyIjogeyJ0IjogInNldCIsICJhIjogIjMifSwgImd0MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgImdzMyI6IHsidCI6ICJzZXQiLCAiYSI6ICIyLCA0LCAxMyJ9LCAiZ3Q0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgImdzNCI6IHsidCI6ICJzZXQiLCAiYSI6ICI3In0sICJndDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNiJ9LCAiZ3M1IjogeyJ0IjogInNldCIsICJhIjogIm5vbmUifSwgImd0NiI6IHsidCI6ICJleGFjdCIsICJhIjogIjgifSwgImdzNiI6IHsidCI6ICJzZXQiLCAiYSI6ICI1LCA3In0sICJndDciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiJ9LCAiZ3M3IjogeyJ0IjogInNldCIsICJhIjogIjIsIDMsIDQsIDYsIDcifSwgImdfZ29hbCI6IHsidCI6ICJzZXQiLCAiYSI6ICI3OSJ9LCAiZ19zZWxsIjogeyJ0IjogInNldCIsICJhIjogIjQsIDYsIDEzIn0sICJvbmUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJuZWl0aGVyIn0sICJsMV8yIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlzc2VzIn0sICJsMV8zdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjEyIn0sICJsMV8zIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2F2ZXMifSwgImwxX2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwYWlyIGZvdW5kIn0sICJsMV9wYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMiLCAiZyI6ICJsMXBhaXIifSwgImwxX3BiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMiLCAiZyI6ICJsMXBhaXIifSwgImwxX3YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wb3NpdGUifSwgImwyXzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgImwyXzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyX2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJubyBrZWVwZXIgc2F2ZXMgaXQifSwgImwyX3YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmltZSJ9LCAibDNfMiI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfM3QiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMSJ9LCAibDNfMyI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfNSI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfNyI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfZiI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vIGtlZXBlciBzYXZlcyBpdCJ9LCAibDNfdiI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJsNF8yIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlzc2VzIn0sICJsNF8zdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgImw0XzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYXZlcyJ9LCAibDRfZiI6IHsidCI6ICJleGFjdCIsICJhIjogInBhaXIgZm91bmQifSwgImw0X3BhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyIsICJnIjogImw0cGFpciJ9LCAibDRfcGIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3IiwgImciOiAibDRwYWlyIn0sICJsNF92IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBlbnNhdGUifSwgInQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAia25vd24gZmFjdHMifSwgInQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYm9uZHMiLCAiZyI6ICJ0My1vayJ9LCAidDNfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImtub3duIGZhY3RzIiwgImciOiAidDMtb2sifSwgInQ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBkaWZmZXJlbmNlIiwgImciOiAidDQtb2sifSwgInQ0X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wZW5zYXRlIiwgImciOiAidDQtb2sifSwgInQ1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcGVuc2F0ZSJ9LCAidDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb3VudCB1cCIsICJnIjogInQ2LW9rIn0sICJ0Nl9hbHQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBkaWZmZXJlbmNlIiwgImciOiAidDYtb2sifSwgInQ3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYm9uZHMiLCAiZyI6ICJ0Ny1vayJ9LCAidDdfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImtub3duIGZhY3RzIiwgImciOiAidDctb2sifX0=</script>
-<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+<script id="clara-homework-runtime">/* Shared behaviour for online homework pages. Page supplies <body data-student data-sheet data-sheet-id>. */
+(function () {
+  var SEND_URL = "https://script.google.com/macros/s/AKfycbwtEVGXzip6vzoLC7oY_wzfmHGe31Vm2uFB9FMwHsSyVHdbyMOKpu16z-a6SdQXXVg/exec";
+  var SEND_KEY = "89949615279890a2";
+  var B = document.body, META = { student: B.dataset.student || "", sheet: B.dataset.sheet || "", sheetId: B.dataset.sheetId || "" };
+  var STORE = "hw-" + META.sheetId, state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} }
+
+  // click-to-circle: any element with class "circle-words" gets its words wrapped
+  var n = 0;
+  document.querySelectorAll(".circle-words").forEach(function (el) {
+    el.innerHTML = el.textContent.replace(/([A-Za-z']+)/g, function (m) { n++; return '<span class="hw-w" data-w="w' + n + '">' + m + "</span>"; });
+  });
+  // "circle-words break-lines" (Dasha, 7 Oct 2026): a tapped word ends its line, so the text breaks
+  // after it (and after its own comma or full stop); tapping it again joins the line back.
+  // The words are still marked by the same key ("set" of the tapped words).
+  function syncBreaks(box) {
+    box.querySelectorAll("br.hw-br").forEach(function (b) { b.remove(); });
+    box.querySelectorAll(".hw-w.hw-circled").forEach(function (w) {
+      var at = w, nx = w.nextSibling;
+      if (nx && nx.nodeType === 3) {
+        var p = nx.textContent.match(/^[^\sA-Za-z']*/)[0].length;
+        if (p) { if (p < nx.textContent.length) nx.splitText(p); at = nx; }
+      }
+      var br = document.createElement("br"); br.className = "hw-br";
+      at.parentNode.insertBefore(br, at.nextSibling);
+    });
+  }
+  document.querySelectorAll(".hw-w").forEach(function (w) {
+    if (state[w.dataset.w]) w.classList.add("hw-circled");
+    w.addEventListener("click", function () {
+      w.classList.toggle("hw-circled"); state[w.dataset.w] = w.classList.contains("hw-circled"); save();
+      var box = w.closest(".break-lines"); if (box) syncBreaks(box);
+    });
+  });
+  document.querySelectorAll(".circle-words.break-lines").forEach(syncBreaks);
+  function isCtl(el) { return /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName); }
+  function val(el) { return isCtl(el) ? el.value : el.innerText; }
+  document.querySelectorAll("[data-k]").forEach(function (el) {
+    if (el.classList.contains("circle-words")) return;
+    if (state[el.dataset.k]) { if (isCtl(el)) el.value = state[el.dataset.k]; else el.textContent = state[el.dataset.k]; }
+    function keep() { state[el.dataset.k] = val(el); save(); }
+    el.addEventListener("input", keep); el.addEventListener("change", keep);
+  });
+
+  var pdfPending = null;
+  function makePDF() {
+    if (pdfPending) return pdfPending;
+    // html2pdf measures page breaks with getBoundingClientRect. Rendering the live,
+    // scrolled document mixed viewport coordinates with PDF coordinates, adding huge
+    // blank areas and losing the tail. A separate, unscrolled document has one origin.
+    var frame = document.createElement("iframe"), timer;
+    frame.title = "Preparing homework PDF";
+    frame.setAttribute("aria-hidden", "true");
+    frame.tabIndex = -1;
+    frame.style.cssText = "position:fixed;left:-10000px;top:0;width:800px;height:1100px;border:0;pointer-events:none;";
+    var job = new Promise(function (resolve, reject) {
+      timer = setTimeout(function () { reject(new Error("PDF export timed out. Please try again.")); }, 60000);
+      B.appendChild(frame);
+      var doc = frame.contentDocument;
+      doc.open(); doc.write("<!doctype html><html><head></head><body></body></html>"); doc.close();
+      var base = doc.createElement("base"); base.href = document.baseURI; doc.head.appendChild(base);
+      var styles = [];
+      document.querySelectorAll('style, link[rel="stylesheet"]').forEach(function (node) {
+        var copy = doc.importNode(node, true);
+        if (node.tagName === "LINK") {
+          copy.href = node.href;
+          styles.push(new Promise(function (ok, fail) { copy.onload = ok; copy.onerror = function () { fail(new Error("PDF stylesheet failed to load")); }; }));
+        }
+        doc.head.appendChild(copy);
+      });
+      var sheet = doc.importNode(document.getElementById("sheet"), true); sheet.querySelectorAll(".exercise-page:not(.game-ui), .exercise-viewport").forEach(function(node){node.replaceWith.apply(node,Array.from(node.childNodes));});
+      sheet.querySelectorAll("script, .hw-bar, .save-bar, .game-ui").forEach(function (node) { node.remove(); }); sheet.querySelectorAll(".lad-grid, .gk-block, .tool-list").forEach(function (box) { var prev = box.previousElementSibling; if (prev && prev.className === box.className && box.parentNode) { while (box.firstChild) prev.appendChild(box.firstChild); box.remove(); } }); sheet.querySelectorAll(".lad-grid").forEach(function (grid) { var lads = Array.from(grid.children).filter(function (n) { return n.matches(".ladder"); }); if (lads.length < 3) { grid.classList.add("hw-pdf-keep"); return; } for (var j = 0; j < lads.length; j += 2) { var row = doc.createElement("div"); row.className = "lad-grid hw-pdf-keep"; grid.parentNode.insertBefore(row, grid); lads.slice(j, j + 2).forEach(function (l) { row.appendChild(l); }); } grid.remove(); });
+      // Read current field properties, not HTML attributes or only the visible portion
+      // of a textarea. Plain wrapping blocks preserve every line, including long words.
+      var originals = document.getElementById("sheet").querySelectorAll("[data-k]");
+      sheet.querySelectorAll("[data-k]").forEach(function (copy, i) {
+        var original = originals[i];
+        if (copy.classList.contains("circle-words")) return;
+        // A hidden select/input is the saved value behind a visible drop zone or
+        // choice group. Printing that storage field again duplicates the answer.
+        var twin = [].find.call(document.getElementById("sheet").querySelectorAll("[data-field]"), function (node) {
+          return node.dataset.field === original.dataset.k;
+        });
+        if (!seen(original) && seen(twin)) { copy.remove(); return; }
+        var answer = doc.createElement("span");
+        answer.className = copy.className + " hw-pdf-answer";
+        answer.dataset.k = original.dataset.k;
+        if (original.tagName === "INPUT" || original.tagName === "SELECT") answer.classList.add("hw-pdf-inline");
+        if (original.classList.contains("hw-gap")) answer.classList.add("hw-pdf-gap");
+        answer.textContent = val(original) || "\u00a0";
+        copy.replaceWith(answer);
+      });
+      // Keep each wrong response with its correction. Putting extra inline text
+      // into an equation row can otherwise push the last answer off the page.
+      sheet.querySelectorAll(".hw-pdf-answer").forEach(function (answer) {
+        var mark = answer.nextElementSibling;
+        if (!answer.classList.contains("hw-pdf-inline") || !mark || !mark.classList.contains("hw-no")) return;
+        var group = doc.createElement("span");
+        group.className = "hw-pdf-response";
+        answer.parentNode.insertBefore(group, answer);
+        group.appendChild(answer); group.appendChild(mark);
+      });
+      doc.body.className = "hw-pdf-mode";
+      doc.body.appendChild(sheet);
+      // Dragging belongs only to the live page. Use ordinary flow boxes in the
+      // export: html2canvas misplaces inline flex children in centred drop zones.
+      sheet.querySelectorAll(".dragging, .picked, .over, .ready").forEach(function (node) {
+        node.classList.remove("dragging", "picked", "over", "ready");
+      });
+      sheet.querySelectorAll(".tile, .chip, .tp-tile").forEach(function (node) {
+        // The same class also names picture cards; preserve their grid layout.
+        if (node.querySelector("img, svg, [data-k]")) return;
+        node.classList.add("hw-pdf-tile");
+      });
+      sheet.querySelectorAll(".slot, .drop, .dz, .pslot, .dslot, .tp-zone").forEach(function (node) {
+        // Tap-to-place places (Tools/hw_snippets/tap_place.html, 20 Oct 2026) are inline-flex
+        // columns holding a flex .tp-slot: html2canvas drew neither the tile nor the mark in
+        // them, so they always become plain flow boxes, filled or not.
+        if (node.querySelector(".tile, .chip, .tp-tile") || node.classList.contains("tp-zone")) {
+          node.classList.add("hw-pdf-drop");
+          if (node.tagName === "SPAN") node.classList.add("hw-pdf-drop-inline");
+        }
+      });
+      // html2canvas drops a text node that sits straight inside a block inside an inline-block place:
+      // the ✓ / ✗ vanished while the right answer, in its own span, printed. Give the glyph a span.
+      sheet.querySelectorAll(".tp-zone .hw-mark").forEach(function (mark) {
+        [].slice.call(mark.childNodes).forEach(function (n) {
+          if (n.nodeType !== 3 || !n.textContent.trim()) return;
+          var wrap = doc.createElement("span");
+          n.parentNode.replaceChild(wrap, n); wrap.appendChild(n);
+        });
+      });
+      var fixes = doc.createElement("style");
+      fixes.textContent = [
+        // Leave a small horizontal safety gutter inside html2pdf's rounded A4 container.
+        "html,body{margin:0!important;padding:0!important;max-width:none!important;width:680px!important;height:auto!important;min-height:0!important;overflow:visible!important;background:white!important;}",
+        "#sheet{margin:0!important;padding:0!important;width:680px!important;max-width:none!important;transform:none!important;}",
+        "#sheet .sheet{margin:0!important;max-width:none!important;}",
+        // Avoid moving whole sections to a new page; keep individual questions intact.
+        "#sheet *{break-before:auto!important;break-after:auto!important;break-inside:auto!important;page-break-before:auto!important;page-break-after:auto!important;page-break-inside:auto!important;}",
+        "#sheet .hw-pdf-answer{display:block!important;height:auto!important;max-height:none!important;min-height:38px!important;overflow:visible!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:break-word!important;text-wrap:wrap!important;padding:8px 10px!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-inline{display:inline-block!important;vertical-align:middle;min-width:80px;max-width:100%!important;}",
+        "#sheet .hw-pdf-gap{min-width:0!important;min-height:0!important;padding:0 3px!important;}",
+        "#sheet .hw-pdf-response{display:inline-flex!important;flex-direction:column!important;align-items:flex-start!important;vertical-align:top!important;min-width:0!important;max-width:100%!important;}",
+        "#sheet .hw-pdf-response>.hw-mark{display:block!important;margin:4px 0 0!important;white-space:normal!important;width:100%!important;font-size:13px!important;}" ,
+        "#sheet img,#sheet svg{max-width:100%;}",
+        "#sheet .hw-pdf-drop{display:block!important;min-width:0!important;text-align:left!important;}",
+        "#sheet .hw-pdf-tile{position:static!important;inset:auto!important;transform:none!important;display:inline-block!important;max-width:100%!important;min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;box-sizing:border-box!important;vertical-align:middle!important;}",
+        "#sheet .hw-pdf-drop>.hw-pdf-tile{display:block!important;width:100%!important;margin:0!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-drop>.hw-mark{display:block!important;width:auto!important;margin:4px 0 0!important;white-space:normal!important;}" ,
+        "#sheet .hw-pdf-drop-inline{display:inline-block!important;max-width:100%!important;vertical-align:middle!important;}",
+        "#sheet .hw-pdf-drop-inline>.hw-pdf-tile{display:inline-block!important;width:auto!important;}",
+        // Tap-to-place: the tile sits one level down, inside .tp-slot. Only these pages have it.
+        "#sheet .hw-pdf-drop>.tp-slot{display:block!important;min-height:0!important;text-align:center!important;}",
+        "#sheet .hw-pdf-drop>.tp-slot>.hw-pdf-tile{display:inline-block!important;width:auto!important;margin:0!important;box-shadow:none!important;}",
+        "#sheet .hw-pdf-drop-inline.tp-zone{text-align:center!important;}",
+        // In Dasha's PDF the marks stay; the pupil-facing «Feedback in the lesson» note is noise there.
+        "#sheet .hw-mark.hw-open{display:none!important;}",
+        "#sheet .hw-mark{max-width:100%!important;overflow-wrap:anywhere!important;}"
+      ].join("\n");
+      doc.head.appendChild(fixes);
+      var script = doc.createElement("script");
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+      script.onerror = function () { reject(new Error("PDF library failed to load")); };
+      script.onload = function () {
+        Promise.all(styles).then(function () { return doc.fonts ? doc.fonts.ready : null; })
+          .then(function () { return Promise.all([].map.call(sheet.querySelectorAll("img"), function (img) {
+            if (img.complete) return img.naturalWidth ? Promise.resolve() : Promise.reject(new Error("PDF image failed to load"));
+            return new Promise(function (ok, fail) { img.onload = ok; img.onerror = function () { fail(new Error("PDF image failed to load")); }; });
+          })); })
+          .then(function () {
+            frame.contentWindow.scrollTo(0, 0);
+            sheet.querySelectorAll(".task").forEach(function(task){
+              var question=task.nextElementSibling;if(!question || !question.matches(".q, .lad-grid, .gk-block, .tool-list"))return;
+              var group=doc.createElement("div");task.parentNode.insertBefore(group,task);group.appendChild(task);group.appendChild(question);
+              if(group.getBoundingClientRect().height<920)group.classList.add("hw-pdf-keep");
+            });
+            // A block heading stays with its Remember box and worked example.
+            sheet.querySelectorAll(".section > .sec-head").forEach(function(head){
+              var group=doc.createElement("div");head.parentNode.insertBefore(group,head);group.appendChild(head);
+              for(var n=0;n<2;n++){var nx=group.nextElementSibling;if(!nx||!nx.matches(".task")||nx.querySelector(".role-label"))break;group.appendChild(nx);}
+              if(group.getBoundingClientRect().height<920)group.classList.add("hw-pdf-keep");
+            });
+            // SVGs with only CSS width:100% / height:auto lose their intrinsic
+            // size when html2canvas serialises them. Freeze the export dimensions
+            // after the fonts and responsive layout have settled.
+            sheet.querySelectorAll("svg").forEach(function (svg) {
+              var bounds = svg.getBoundingClientRect();
+              if (!bounds.width || !bounds.height) return;
+              svg.setAttribute("width", bounds.width);
+              svg.setAttribute("height", bounds.height);
+              svg.style.width = bounds.width + "px";
+              svg.style.height = bounds.height + "px";
+            });
+            // Never slice a line of text. html2pdf moves a block by putting a spacer before it,
+            // which only works in ordinary block flow, so keep whole every such block that holds
+            // lines itself (no block children) or one row of flex/grid items, like a footer.
+            var view = frame.contentWindow;
+            sheet.querySelectorAll("*").forEach(function (el) {
+              var cs = view.getComputedStyle(el), up = el.parentElement;
+              if (!up || !/^(block|flow-root|list-item)$/.test(view.getComputedStyle(up).display)) return;
+              if (!/^(block|flow-root|list-item|flex|grid)$/.test(cs.display) || /^(absolute|fixed)$/.test(cs.position) || cs.cssFloat !== "none") return;
+              if (!el.textContent.trim()) return;
+              var items = [].filter.call(el.children, function (child) {
+                var c = view.getComputedStyle(child);
+                return c.display !== "none" && !/^(absolute|fixed)$/.test(c.position);
+              });
+              if (/^(flex|grid)$/.test(cs.display)) {
+                // only a single row: a grid of stacked cells may still break between its rows
+                var rows = items.map(function (child) { return child.getBoundingClientRect(); });
+                if (rows.length && Math.max.apply(null, rows.map(function (r) { return r.top; })) >= Math.min.apply(null, rows.map(function (r) { return r.bottom; }))) return;
+              } else if (items.some(function (child) { return /^(block|flow-root|list-item|flex|grid|table)$/.test(view.getComputedStyle(child).display); })) return;
+              el.classList.add("hw-pdf-lines");
+            });
+            // Class names such as .task and .checks can mean either one question or
+            // a whole exercise. Keeping a multi-question section together leaves
+            // almost a blank page when that section fits on the next page (Roman,
+            // 13 Oct). Only protect atomic blocks; their questions remain protected.
+            var keepSelectors = ".q,.question,.word-q,.div-item,tr,header,.model,.task,.instr,.instruction,.checks,p,h1,h2,h3,.hw-pdf-answer,.hw-pdf-drop,.pick,.job,.comp,.pmodel,.msub,.pics,.ex-card,.handstage,.hw-mark-list,.hw-pdf-lines";
+            var questionSelectors = ".q,.question,.word-q,.div-item";
+            sheet.querySelectorAll(keepSelectors).forEach(function (el) {
+              if (el.querySelectorAll(questionSelectors).length > 1) return;
+              if (el.matches(".task,.checks,.ex-card,.comp") && el.querySelectorAll("[data-k]").length > 1 && !el.matches(questionSelectors)) return;
+              el.classList.add("hw-pdf-keep");
+            });
+            var options = {
+              margin: [10, 10, 10, 10], image: {type:"jpeg",quality:0.94},
+              html2canvas: {scale:1.5,useCORS:true,scrollX:0,scrollY:0,windowWidth:800,windowHeight:1100},
+              jsPDF: {unit:"mm",format:"a4",orientation:"portrait"},
+              pagebreak: {mode:[],avoid:[".hw-pdf-keep"]}
+            };
+            // html2pdf uses instanceof Array, so option arrays must belong to its realm.
+            options = frame.contentWindow.JSON.parse(JSON.stringify(options));
+            var scale = options.html2canvas.scale;
+            // html2pdf moves a block to a new page at multiples of inner.px.height (A4 floored
+            // to 1046 CSS px), but cuts the canvas every floor(canvas.width * ratio) canvas px
+            // (1047.33 CSS px). The 1.33 px gap added up page by page until the first line
+            // of a moved block was sliced. Use ONE page height for both, a whole number of
+            // canvas pixels, and draw each slice at its true height (no stretching).
+            return frame.contentWindow.html2pdf().set(options).from(sheet)
+              .then(function () {
+                var px = this.prop.pageSize.inner.px;
+                px.height = Math.floor(px.height * scale) / scale;
+              })
+              .toCanvas()
+              .then(function () {
+                var inner = this.prop.pageSize.inner, width = this.prop.canvas.width;
+                var slice = Math.round(inner.px.height * scale);
+                inner.height = slice * inner.width / width;
+                inner.ratio = (slice + 0.5) / width;   // toPdf floors canvas.width * ratio back to slice
+              })
+              .outputPdf("datauristring");
+          }).then(function (uri) {
+            var result = uri.split(",")[1];
+            if (!result) throw new Error("PDF export produced no attachment");
+            resolve(result);
+          }).catch(reject);
+      };
+      doc.head.appendChild(script);
+    });
+    function cleanup() { clearTimeout(timer); frame.remove(); pdfPending = null; }
+    pdfPending = job.then(function (result) { cleanup(); return result; }, function (error) { cleanup(); throw error; });
+    return pdfPending;
+  }
+
+  window.hwMakePDF = makePDF;
+  // Use the same complete-answer export for downloads, not the browser's print
+  // view, which can clip the contents of scrolling textareas again.
+  document.querySelectorAll(".hw-pdf").forEach(function (button) {
+    button.onclick = function () {
+      var label = button.textContent;
+      button.disabled = true; button.textContent = "Preparing PDF…";
+      makePDF().then(function (data) {
+        var bytes = Uint8Array.from(atob(data), function (c) { return c.charCodeAt(0); });
+        var url = URL.createObjectURL(new Blob([bytes], {type:"application/pdf"}));
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = (META.student + " - " + META.sheet).replace(/[\\/:*?"<>|]/g, "-") + ".pdf";
+        B.appendChild(link); link.click(); link.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      }).catch(function () {
+        var msg = document.getElementById("hwMsg");
+        if (msg) msg.textContent = "The PDF could not be created. Your answers are still here. Please try again.";
+      }).then(function () { button.disabled = false; button.textContent = label; });
+    };
+  });
+
+  // ---------- instant check after sending (Dasha, 2 Oct 2026) ----------
+  // Items with one clear answer get a tick, or a cross with the right answer, NEXT TO THE TASK.
+  // Items the pupil writes in her own words get "Feedback in the lesson".
+  // Answers come from <script id="hw-check"> (base64 JSON, written by publish_online_hw.py from the
+  // sheet's key: only exact / words / set answers, never the private open-answer guidance).
+  // The comparison mirrors the Homework mailer (Admin/Homework backend/Code.gs), so the page and
+  // Dasha's email always agree.
+  function answerOf(el) {
+    if (el.classList.contains("circle-words")) return [].map.call(el.querySelectorAll(".hw-circled"), function (w) { return w.textContent; }).join(", ");
+    return val(el).trim();
+  }
+  var CHECK = null, CHECKED = "hw-checked-" + META.sheetId;
+  try {
+    var ce = document.getElementById("hw-check");
+    if (ce) CHECK = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(ce.textContent.trim()), function (c) { return c.charCodeAt(0); })));
+  } catch (e) { CHECK = null; }
+  function cNorm(s) { var v=String(s || "").toLowerCase().replace(/[\s,]/g, ""); var m=v.match(/^(\d+(?:\.\d+)?)k$/); return m ? String(Number(m[1])*1000) : v; }
+  function cWords(s) { return String(s || "").toLowerCase().replace(/[,.]/g, " ").replace(/\s+/g, " ").trim(); }
+  function cSet(s) { return String(s || "").toLowerCase().split(/[\s,]+/).filter(String).sort().join(","); }
+  function seen(el) { return !!el && !el.closest("[hidden], .store, .tp-stores"); }
+  function writable(el) { return /^(TEXTAREA|INPUT)$/.test(el.tagName) || el.isContentEditable || el.classList.contains("circle-words"); }
+  var checking = false;
+// BEGIN UNORDERED ANSWER MATCHER — shared by pupil and teacher checks.
+function matchHomeworkAnswers_(answers, keys) {
+  var result = Object.create(null), groups = Object.create(null);
+  function typeOf(key) { return key && (key.type || key.t); }
+  function matches(value, key) {
+    var type = typeOf(key);
+    if (!String(value || '').trim() || ['exact', 'words', 'set'].indexOf(type) < 0) return false;
+    function normalize(s) {
+      s = String(s || '').toLowerCase();
+      if (type === 'words') return s.replace(/[,.]/g, ' ').replace(/\s+/g, ' ').trim();
+      if (type === 'set') return s.split(/[\s,]+/).filter(String).sort().join(',');
+      s = s.replace(/[\s,]/g, ''); var km = s.match(/^(\d+(?:\.\d+)?)k$/); return km ? String(Number(km[1]) * 1000) : s;
+    }
+    return normalize(value) === normalize(key.a);
+  }
+  answers.forEach(function(answer) {
+    var key = keys[answer.k], type = typeOf(key);
+    result[answer.k] = {
+      result: !String(answer.a || '').trim() ? 'blank' : !key || !key.a ? 'missing' : type === 'open' ? 'manual' : matches(answer.a, key) ? 'correct' : 'incorrect',
+      expected: key ? key.a : ''
+    };
+    var group = key && (key.group || key.g);
+    if (group && ['exact', 'words', 'set'].indexOf(type) >= 0) {
+      if (!groups[group]) groups[group] = [];
+      groups[group].push(answer);
+    }
+  });
+  Object.keys(groups).forEach(function(group) {
+    var rows = groups[group], targets = Object.keys(keys).filter(function(k) {
+      return (keys[k].group || keys[k].g) === group && ['exact', 'words', 'set'].indexOf(typeOf(keys[k])) >= 0;
+    }), owners = Object.create(null), matched = Object.create(null);
+    // One expected answer can satisfy only one field, even if entered twice.
+    rows.forEach(function(row) {
+      var ordered = targets.filter(function(k) { return k === row.k; }).concat(targets.filter(function(k) { return k !== row.k; }));
+      for (var i = 0; i < ordered.length; i++) {
+        var k = ordered[i];
+        if (!owners[k] && matches(row.a, keys[k])) {
+          owners[k] = row.k; matched[row.k] = k; break;
+        }
+      }
+    });
+    var remaining = targets.filter(function(k) { return !owners[k]; });
+    rows.forEach(function(row) {
+      var target = matched[row.k];
+      if (target) result[row.k] = {result: 'correct', expected: keys[target].a};
+      else {
+        target = remaining.shift();
+        result[row.k] = {result: String(row.a || '').trim() ? 'incorrect' : 'blank', expected: target ? keys[target].a : ''};
+      }
+    });
+  });
+  return result;
+}
+// END UNORDERED ANSWER MATCHER
+
+  function showChecks() {
+    if (!CHECK) return "";
+    checking = true;
+    document.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
+    var right = 0, marked = 0, open = 0, lists = [];
+    var answers = Array.from(document.querySelectorAll("#sheet [data-k]"), function(el) { return {k: el.dataset.k, a: answerOf(el)}; });
+    var graded = matchHomeworkAnswers_(answers, CHECK);
+    document.querySelectorAll("#sheet [data-k]").forEach(function (el) {
+      var k = el.dataset.k, key = CHECK[k];
+      var vis = document.querySelector('[data-field="' + k + '"]');
+      var anchor = seen(vis) ? vis : (seen(el) ? el : null);
+      var node;
+      if (key && key.t && key.t !== "open") {
+        var ok = graded[k].result === "correct";
+        marked++; if (ok) right++;
+        node = document.createElement("span");
+        node.className = "hw-mark " + (ok ? "hw-ok" : "hw-no");
+        if (ok) node.textContent = "✓";
+        else { node.textContent = "✗ "; var r = document.createElement("span"); r.className = "hw-right"; r.textContent = graded[k].expected; node.appendChild(r); }
+      } else {
+        if (!anchor || anchor !== el || !writable(el)) return;   // hidden helpers and print-only boxes get nothing
+        open++;
+        node = document.createElement("span");
+        node.className = "hw-mark hw-open";
+        node.textContent = "Feedback in the lesson";
+      }
+      if (!anchor) {   // a hidden data store with no visible twin: list it under the task it belongs to
+        var host = el.parentElement; while (host && !seen(host)) host = host.parentElement;
+        if (!host) return;
+        var list = host.querySelector(":scope > .hw-mark-list");
+        if (!list) { list = document.createElement("div"); list.className = "hw-mark-list"; host.appendChild(list); }
+        var row = document.createElement("div");
+        row.textContent = (el.dataset.label || k).replace(/:.*$/, "") + ": ";
+        row.appendChild(node); list.appendChild(row);
+        return;
+      }
+      if (anchor.tagName === "BUTTON") { node.classList.add("hw-mark-in"); anchor.appendChild(node); return; }
+      if (node.textContent.length < 28) node.classList.add("hw-short");
+      if (anchor === el && el.classList.contains("hw-gap")) {   // letters typed inside a word: mark after the WHOLE word
+        var at = el, nx = el.nextSibling;
+        while (nx) {
+          if (nx.nodeType === 3) {
+            var cut = nx.textContent.search(/\s/);
+            if (cut === -1) { at = nx; nx = nx.nextSibling; continue; }
+            if (cut > 0) { nx.splitText(cut); at = nx; }
+            break;
+          }
+          if (nx.nodeType === 1 && !nx.matches("[data-k]") && !/^\s/.test(nx.textContent) && getComputedStyle(nx).display.indexOf("inline") === 0) {
+            at = nx; if (/\s/.test(nx.textContent)) break; nx = nx.nextSibling; continue;
+          }
+          break;
+        }
+        at.parentNode.insertBefore(node, at.nextSibling); return;
+      }
+      if (anchor === el && (/^(INPUT|SELECT)$/.test(el.tagName) || getComputedStyle(el).display.indexOf("inline") === 0)) {
+        anchor.parentNode.insertBefore(node, anchor.nextSibling); return;   // inline: right after the box or menu
+      }
+      node.classList.add("hw-mark-blk");
+      if (anchor !== el) { anchor.appendChild(node); return; }   // inside the visible card, tile bank or reply group
+      var below = el;   // under a writing box, but never squeezed into a side-by-side row with it
+      while (below.parentElement && below.parentElement.id !== "sheet") {
+        var cs = getComputedStyle(below.parentElement);
+        if (cs.display.indexOf("grid") >= 0 || (cs.display.indexOf("flex") >= 0 && cs.flexDirection.indexOf("row") === 0)) below = below.parentElement; else break;
+      }
+      below.parentNode.insertBefore(node, below.nextSibling);
+    });
+    checking = false;
+    if (!marked) return open ? "Dasha will read it. Your own writing: feedback in the lesson." : "";
+    return right + " of " + marked + " right. ✗ shows the right answer." + (open ? " Your own writing: feedback in the lesson." : "");
+  }
+  window.hwShowChecks = showChecks;
+  window.claraGrade = function () { if (!CHECK) return {}; return matchHomeworkAnswers_(Array.from(document.querySelectorAll("#sheet [data-k]"), function (el) { return {k: el.dataset.k, a: answerOf(el)}; }), CHECK); };
+  function recheck() { return; // The final attempt is locked; no live re-marking.
+    var t = null;
+    document.addEventListener("input", function () { if (checking) return; clearTimeout(t); t = setTimeout(showChecks, 150); }, true);
+    document.addEventListener("change", function () { if (checking) return; clearTimeout(t); t = setTimeout(showChecks, 150); }, true);
+  }
+  if (CHECK) {
+    var wasChecked = false; try { wasChecked = localStorage.getItem(CHECKED) === "1"; } catch (e) {}
+    if (false) { // Block flow restores checked state instead.
+      var later = function () { setTimeout(function () { var sc = showChecks(); if (!recheck.on) { recheck.on = true; recheck(); } var msg = document.getElementById("hwMsg"); if (msg && sc) msg.textContent = "Sent! " + sc; }, 600); };
+      if (document.readyState === "complete") later(); else window.addEventListener("load", later);
+    }
+  }
+  window.hwSend = function () {
+    var btn = document.getElementById("hwSend"), msg = document.getElementById("hwMsg"), answers = [];
+    document.querySelectorAll("[data-k]").forEach(function (el) {
+      var answer = answerOf(el);
+      if (el.classList.contains("num") && /^\d+(?:\.\d+)?\s*k$/i.test(answer.trim())) answer = cNorm(answer);
+      answers.push({ k: el.dataset.k, q: el.dataset.label || el.dataset.k, a: answer });
+    });
+    var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q); }).length;
+    if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return false;
+    btn.disabled = true; msg.textContent = "Sending… (this takes a few seconds)";
+    // Mark FIRST, so the PDF Dasha receives shows the ticks, crosses and right answers too
+    // (Dasha, 7 Oct 2026: «чтобы в пдф которая мне приходит тоже были видны правильные ответы»).
+    if (typeof window.claraBeforeSubmit === "function") window.claraBeforeSubmit();
+    var score = showChecks();
+    try { if (typeof window.hwShowExtra === "function") window.hwShowExtra(); } catch (e) {}
+    // clara-confirmed-delivery-v1: a PDF failure must not prevent answer delivery.
+    return makePDF().catch(function () { return null; })
+      .then(function (pdf) {
+        msg.textContent = "Sending your answers… Please keep this page open.";
+        var controller = new AbortController();
+        var timeout = setTimeout(function () { controller.abort(); }, 45000);
+        return fetch(SEND_URL, {
+          method: "POST", mode: "cors", credentials: "omit", signal: controller.signal,
+          headers: {"Content-Type": "text/plain;charset=utf-8"},
+          body: JSON.stringify({key: SEND_KEY, student: META.student, sheet: META.sheet,
+            sheetId: META.sheetId, answers: answers, pdf: pdf})
+        }).then(function (response) {
+          if (!response.ok || response.type === "opaque") throw new Error("No delivery confirmation");
+          return response.text();
+        }).then(function (reply) {
+          if (reply.trim() !== "ok") throw new Error("Submission was not accepted");
+        }).finally(function () { clearTimeout(timeout); });
+      })
+      .then(function () {
+        if (!recheck.on) { recheck.on = true; recheck(); }
+        try { localStorage.setItem(CHECKED, "1"); } catch (e) {}
+        msg.textContent = "Submitted to Dasha. " + (score || "Dasha will check it. ✓");
+        btn.textContent = "Submitted ✓";
+        if (window.claraSubmissionDone) window.claraSubmissionDone();
+        return true;
+      })
+      .catch(function () {
+        // Keep the marked, locked first attempt available for another delivery attempt.
+        if (window.claraSubmissionFailed) window.claraSubmissionFailed();
+        btn.disabled = false;
+        msg.textContent = "We could not confirm delivery. Your answers are still saved here. Please try sending again, or save a PDF to share with Dasha.";
+        return false;
+      });
+  };
+})();
+</script>
+<script id="clara-screen-plan">/* Clara 7 Nov 2026: which original nodes make up each exercise screen.
+   Every node is MOVED, never copied, so field order, ids and listeners stay as on the sheet.
+   Clones are only headers and carry .game-ui, so the PDF export drops them. */
+window.claraScreenPlan=function(section,i){
+ const one=(sel,root)=>(root||section).querySelector(sel);
+ const all=(sel,root)=>[...(root||section).querySelectorAll(sel)];
+ const wrap=(cls,nodes)=>{const d=document.createElement('div');d.className=cls;nodes.filter(Boolean).forEach(n=>d.append(n));return d};
+ const say=el=>{if(!el)return '';const c=el.cloneNode(true);c.querySelectorAll('.print-only').forEach(n=>n.remove());return c.textContent.replace(/\s+/g,' ').trim()};
+ const task=one(':scope > .task');
+ const remember=()=>({title:'Remember',nodes:[wrap('task',[one('.task-label',task),one('.remember',task)])]});
+ const example=()=>({title:'Worked example',nodes:[wrap('task',[one('.model',task)])]});
+ const yourTurn=extra=>wrap('task',[one('.role-label',task),one('.lead',task)].concat(extra||[]));
+ const lead=one('.lead',task),hint=say(lead);
+ let plan;
+ if(i===0){ // odd one out: one item per screen, pictures big
+  const qs=all(':scope > .q');
+  const extra=all(':scope > .small',task);
+  plan=[remember(),example()].concat(qs.map((q,n)=>({title:'Question '+(n+1),nodes:n?[q]:[yourTurn(extra),q],hint:n?hint:''})));
+ }else if(i===1){ // goalkeepers: shots in screens of 3, 2, 2, then the whole team
+  const block=one(':scope > .gk-block'),head=one('.gk-head',block),rows=all(':scope > .gk-row',block);
+  const team=[...block.children].filter(n=>!n.matches('.gk-head,.gk-row'));
+  const part=(from,to)=>{const h=head.cloneNode(true);h.classList.add('game-ui');return wrap('gk-block',[h].concat(rows.slice(from,to)))};
+  const second=part(3,5),third=part(5,7);
+  plan=[remember(),example(),
+   {title:'Shots 1 to 3',nodes:[yourTurn(),block]},
+   {title:'Shots 4 and 5',nodes:[second],hint:hint},
+   {title:'Shots 6 and 7',nodes:[third],hint:hint},
+   {title:'The whole team',nodes:team.filter(n=>!n.matches('.q')).concat([wrap('team-qs',team.filter(n=>n.matches('.q')))])}];
+ }else if(i===2){ // prime ladders: one ladder per screen, then 1
+  const grid=one(':scope > .lad-grid'),lads=all(':scope > .ladder',grid);
+  const rest=[...section.children].filter(n=>n!==task&&n!==grid&&!n.matches('.sec-head'));
+  const extra=all(':scope > .small',task);
+  plan=[remember(),example()].concat(lads.map((l,n)=>({title:'Ladder '+l.dataset.n,nodes:n?[wrap('lad-grid',[l])]:[yourTurn(extra),grid],hint:n?hint:''})),
+   [{title:'Question 5',nodes:rest}]);
+ }else if(i===3){ // tool names: the reminder, then calculations in screens of 3, 2, 2
+  const tasks=all(':scope > .task'),list=one(':scope > .tool-list'),rows=all(':scope > .tool-row',list);
+  const tl=say(one('.lead',tasks[1]));
+  plan=[{title:'Remember',nodes:[tasks[0]]},
+   {title:'Calculations 1 to 3',nodes:[tasks[1],list]},
+   {title:'Calculations 4 and 5',nodes:[wrap('tool-list',rows.slice(3,5))],hint:tl},
+   {title:'Calculations 6 and 7',nodes:[wrap('tool-list',rows.slice(5,7))],hint:tl}];
+ }
+ return plan||null;
+};
+</script>
+<script id="clara-block-flow">/* Decorative friends are separate from the exact earned-leaf count. */
+window.claraTreeArt=(()=>{
+ const face=(x,y)=>`<g fill="#59483f"><circle cx="${x-5}" cy="${y}" r="1.8"/><circle cx="${x+5}" cy="${y}" r="1.8"/><path d="M${x-3} ${y+5}q3 3 6 0" fill="none" stroke="#59483f" stroke-width="1.6" stroke-linecap="round"/></g><g fill="#efa8a0"><ellipse cx="${x-10}" cy="${y+4}" rx="3" ry="2"/><ellipse cx="${x+10}" cy="${y+4}" rx="3" ry="2"/></g>`;
+ const rabbit=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><ellipse cx="-8" cy="-24" rx="6" ry="18" fill="#fff8e9" stroke="#c5a88e" stroke-width="2" transform="rotate(-12 -8 -24)"/><ellipse cx="9" cy="-25" rx="6" ry="19" fill="#fff8e9" stroke="#c5a88e" stroke-width="2" transform="rotate(12 9 -25)"/><path d="M-8 -35v19M9 -37v20" stroke="#f1bdba" stroke-width="3" stroke-linecap="round"/><ellipse cy="10" rx="23" ry="25" fill="#fff8e9" stroke="#c5a88e" stroke-width="2"/><ellipse cx="-12" cy="32" rx="9" ry="4" fill="#f6e5d2"/><ellipse cx="12" cy="32" rx="9" ry="4" fill="#f6e5d2"/>${face(0,5)}</g>`;
+ const berry=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-22 -4Q-26 -23 0 -20Q26 -23 22 -4Q12 25 0 29Q-12 25-22-4Z" fill="#efaaa8" stroke="#bf7b79" stroke-width="2"/><path d="M0-17l-15-10 7 0-1-10 10 12 10-11-1 11 14-1-13 10" fill="#87af8a" stroke="#658c6b" stroke-width="1.5"/><g fill="#fff1cc"><ellipse cx="-14" cy="-4" rx="1.4" ry="2"/><ellipse cx="14" cy="-4" rx="1.4" ry="2"/><ellipse cx="-10" cy="15" rx="1.4" ry="2"/><ellipse cx="10" cy="15" rx="1.4" ry="2"/><ellipse cy="23" rx="1.4" ry="2"/></g>${face(0,1)}</g>`;
+ const pear=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-11-14Q-10-30 1-28Q13-27 12-11Q33 15 16 26Q0 37-18 25Q-33 12-11-14Z" fill="#e6d491" stroke="#b5a86e" stroke-width="2"/><path d="M1-28q-1-10 5-14" fill="none" stroke="#99734e" stroke-width="3" stroke-linecap="round"/><path d="M4-32q5-15 17-10Q17-30 4-32" fill="#8eb89a"/>${face(0,8)}</g>`;
+ const cat=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-20 8Q-31-5-22-24L-8-15Q0-19 9-15L23-25Q31-3 20 8Q24 31 0 33Q-25 31-20 8Z" fill="#d5c7e8" stroke="#a898bc" stroke-width="2"/><path d="M-20-17l8 5-8 1M21-18l-8 6 9 1" fill="#edb9ce"/><path d="M19 24q19 2 15-13" fill="none" stroke="#a898bc" stroke-width="6" stroke-linecap="round"/>${face(0,0)}</g>`;
+ const crown=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-51 22C-77 12-68-20-46-24C-53-51-17-64 1-46C22-66 57-45 49-22C76-13 69 22 47 27C36 51 4 48-8 39C-28 52-54 42-51 22Z" fill="#f4dfbd" stroke="#d9bd92" stroke-width="2.3"/><path d="M-42-15q-14 7-11 19M-14-41q11-9 22 0" fill="none" stroke="#fff4dc" stroke-width="6" stroke-linecap="round"/></g>`;
+ function render(count,leaves){
+  const centres=count>=3?[[157,170],[244,170],[200,122]]:count===2?[[166,201],[234,201]]:[[200,236]];
+  let earned='';
+  for(let n=0;n<leaves;n++){
+   const cluster=n%centres.length,slot=Math.floor(n/centres.length),angle=slot*2.39996,radius=9+Math.sqrt(slot)*10;
+   const x=centres[cluster][0]+Math.cos(angle)*radius,y=centres[cluster][1]+Math.sin(angle)*radius*.74;
+   earned+=`<g class="earned-leaf" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(slot*47+cluster*65)%180})"><path d="M0 10Q-17-1-9-17Q8-22 9-6Q8 3 0 10Z" fill="${['#639e7b','#83b590','#447f63'][n%3]}" stroke="#44725a" stroke-width="1.2"/><path d="M0 7L-2-12" stroke="#cde3b6" stroke-width="1.2" stroke-linecap="round"/></g>`;
+  }
+  // A single continuous canopy covers the branch joins at every growth stage.
+  const wood=count?`<path d="M177 329Q188 293 187 248L208 244Q207 291 225 329Q210 325 201 327Q189 324 177 329Z" fill="#c99a78" stroke="#a47b5b" stroke-width="2.5" stroke-linejoin="round"/><path d="M190 314q4-18 2-36" fill="none" stroke="#e9c9a8" stroke-width="4" stroke-linecap="round"/>${face(200,292)}`:'';
+  const blossom=count>=4?[[150,150],[252,146],[203,106],[168,214],[236,212],[118,180],[282,178]].map(([x,y])=>`<g transform="translate(${x} ${y})"><path d="M0-9q3-7 9-8" fill="none" stroke="#7b9c6d" stroke-width="2" stroke-linecap="round"/><circle r="9" fill="#f2a7a0" stroke="#c97c75" stroke-width="1.6"/><circle cx="-3" cy="-3" r="2.6" fill="#fde3dd"/></g>`).join(''):'';
+  const foliage=count>=3?crown(200,174,1.65)+blossom:count===2?crown(200,203,1.19):count===1?crown(200,236,.64):'';
+  return `<svg viewBox="0 0 400 390" role="img" aria-label="Your tree: ${count} of 4 parts grown and ${leaves} green leaves"><rect width="400" height="390" rx="28" fill="#fbf5ec"/><circle cx="331" cy="57" r="23" fill="#f4d88a"/>${face(331,55)}<path d="M38 70q5-17 21-8q9-20 24-4q20-1 20 13H38" fill="#fffdf8"/><ellipse cx="202" cy="336" rx="156" ry="23" fill="#e9e6cf"/>${wood}${foliage}${earned}${count===0?'<ellipse cx="200" cy="323" rx="17" ry="11" fill="#bd8964" stroke="#966746" stroke-width="2"/><path d="M199 319l6-7" stroke="#e8bf96" stroke-width="3" stroke-linecap="round"/>':''}${rabbit(68,303,.8)}${cat(328,307,.83)}${berry(122,343,.55)}${pear(278,342,.53)}<g fill="#e6b7cb"><path d="M46 204q-18-20-23-3q-5 13 17 17q-18 10-8 18q11 9 17-13q10 16 18 7q9-13-13-15q19-12 8-20q-12-8-16 9Z" transform="translate(0 -25) scale(.7)"/></g><g fill="#eac67c"><circle cx="168" cy="352" r="3"/><circle cx="236" cy="350" r="3"/></g></svg>`;
+ }
+ return {render,header:`<svg class="friend-parade game-ui" viewBox="0 0 210 80" aria-hidden="true">${berry(32,42,.7)}${cat(102,38,.85)}${pear(173,42,.7)}</svg>`};
+})();
+
+(function(){
+'use strict';
+const sections=[...document.querySelectorAll('#sheet > .section')];
+const titles=['Odd one out','Goalkeepers','Ladders','Tool names'];
+const blockCount=sections.length;
+const icons=['1','2','3','4'];
+const storage='clara-blocks-v2-'+document.body.dataset.sheetId;
+let saved={};try{saved=JSON.parse(localStorage.getItem(storage)||'{}')}catch(e){}
+let current=Number.isInteger(saved.current)?Math.max(0,Math.min(blockCount-1,saved.current)):0;
+let done=Array.isArray(saved.done)?saved.done.slice(0,blockCount):[];
+const key=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(document.getElementById('hw-check').textContent.trim()),c=>c.charCodeAt(0))));
+const value=el=>('value' in el?el.value:el.innerText).trim();
+const fieldLists=sections.map(section=>[...section.querySelectorAll('[data-k]')]);
+const fields=i=>fieldLists[i];
+const decks=[], pageNumbers=Array.isArray(saved.pages)?saved.pages.slice(0,blockCount):Array(blockCount).fill(0);
+const norm=s=>{const v=String(s||'').toLowerCase().replace(/[\s,]/g,'');const m=v.match(/^(\d+(?:\.\d+)?)k$/);return m?String(Number(m[1])*1000):v};
+const grade=()=>typeof window.claraGrade==='function'?window.claraGrade():{};
+const summary=i=>{const g=grade();let right=0,total=0,open=0;fields(i).forEach(el=>{const k=key[el.dataset.k];if(!k||k.t==='open'){open++;return}total++;if(g[el.dataset.k]&&g[el.dataset.k].result==='correct')right++});return {right,total,open}};
+const snapshot=i=>fields(i).map(el=>value(el));
+// A checked block is a final attempt. Restore the saved attempt before locking it,
+// including previously checked blocks from the earlier edition.
+done=sections.map((s,i)=>done[i]&&Array.isArray(done[i].answers)&&done[i].answers.length===fields(i).length?done[i]:null);
+sections.forEach((section,i)=>{if(!done[i])return;fields(i).forEach((el,j)=>{if('value' in el)el.value=done[i].answers[j];else el.textContent=done[i].answers[j];el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));});done[i].score=summary(i)});
+// Single final check: no intermediate scores or block-check buttons.
+let finalChecked=!!saved.finalChecked||done.every(Boolean);
+let sending=false, sent=!!saved.sent&&saved.deliveryConfirmed===1&&finalChecked;
+const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,finalChecked,sent,deliveryConfirmed:sent?1:0,pages:pageNumbers}))}catch(e){}};
+document.body.classList.add('mint-game');
+document.querySelector('.sheet-head').insertAdjacentHTML('beforeend',window.claraTreeArt.header);
+const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="80" value="0" aria-label="Answers saved"></progress><nav class="block-nav" aria-label="Homework blocks"></nav>';
+document.querySelector('.sheet-head').after(dashboard);
+const nav=dashboard.querySelector('nav');
+const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your tree is growing! 🌱</h2><div class="tree-layout"><div class="tree-scene"></div><div class="tree-story"><div class="tree-count" aria-live="polite"></div><p class="leaf-note">Your work saves as you go. Check and send everything at the end.</p></div></div>';
+document.getElementById('sheet').after(finish);
+const bar=document.querySelector('.hw-bar');bar.classList.add('available');
+const send=document.getElementById('hwSend'),msg=document.getElementById('hwMsg'),nativeSend=window.hwSend;
+msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');
+msg.textContent='Your answers have not been sent yet.';
+const results=document.createElement('div');results.className='final-answer-list';
+const allFields=()=>fieldLists.flat();
+const live=el=>!el.closest('.after-stop,.pairrow.off');
+const need=i=>fields(i).filter(live);
+const filled=i=>need(i).filter(el=>value(el)).length;
+function lockBlock(section){section.classList.add('locked');section.querySelectorAll('[data-k],.pic-opt,.txt-opt,.tp-tile,.tool-opt,.kp').forEach(el=>{if(el.hasAttribute('contenteditable'))el.setAttribute('contenteditable','false');if('disabled' in el)el.disabled=true;});}
+function renderResults(){
+ results.replaceChildren();if(!finalChecked)return;
+ const g=grade();
+ const heading=document.createElement('h3');heading.textContent='All your answers';results.append(heading);
+ allFields().forEach(el=>{
+  const k=key[el.dataset.k],v=value(el);
+  // A step that was not needed (a keeper after the stop, a pair for a prime) has no key and no answer.
+  if((!k||k.t==='open')&&!v)return;
+  const row=document.createElement('div');row.className='final-answer-row';
+  const label=document.createElement('strong');label.textContent=el.dataset.label||el.dataset.k;
+  const answer=document.createElement('p');answer.textContent='Your answer: '+(v||'(blank)');
+  const mark=document.createElement('p'),r=g[el.dataset.k];
+  if(!k||k.t==='open')mark.textContent='Feedback in the lesson.';
+  else if(r&&r.result==='correct'){mark.textContent='✓ Correct';mark.className='final-correct';}
+  else{mark.textContent='Correct answer: '+(r&&r.expected?r.expected:k.a);mark.className='final-correction';}
+  row.append(label,answer,mark);results.append(row);
+ });
+}
+function update(){
+ document.body.classList.toggle('final-checked',finalChecked);
+ const answered=allFields().filter(live).filter(el=>value(el)).length,total=allFields().filter(live).length;
+ const count=finalChecked?blockCount:sections.filter((s,i)=>filled(i)===need(i).length).length;
+ const leaves=finalChecked?done.reduce((n,d)=>n+(d?d.score.right:0),0):answered;
+ finish.querySelector('.tree-scene').innerHTML=window.claraTreeArt.render(count,leaves);
+ finish.querySelector('.tree-count').textContent=finalChecked?leaves+' correct answers':answered+' of '+total+' answers saved';
+ dashboard.querySelector('#gardenProgressText').textContent=answered+' of '+total+' answers saved';
+ dashboard.querySelector('progress').max=total;dashboard.querySelector('progress').value=answered;
+ nav.querySelectorAll('button').forEach((b,i)=>{b.setAttribute('aria-current',i===current?'step':'false');b.querySelector('.step-badge').textContent=icons[i];});
+ send.disabled=sending||sent;send.textContent=sending?'Sending…':sent?'Submitted ✓':finalChecked?'Send my results to Dasha':'Check & send to Dasha';
+ finish.querySelector('h2').textContent=sent?'All sent, lovely work! 🌿':finalChecked?'Your results 🌿':'Your tree is growing! 🌱';
+ if(decks[blockCount-1]){decks[blockCount-1].review.querySelector('h3').textContent=finalChecked?'Your results':'Ready to send?';decks[blockCount-1].review.querySelector('p').hidden=finalChecked;}
+ save();
+}
+window.claraBeforeSubmit=function(){
+ if(!finalChecked){done=sections.map((section,i)=>({answers:snapshot(i),score:summary(i)}));finalChecked=true;sections.forEach(lockBlock);renderResults();save();}
+};
+window.hwSend=function(){
+ if(sending||sent)return;
+ sending=true;document.getElementById('sheet').inert=true;update();
+ try{const result=nativeSend();if(result===false){window.claraSubmissionFailed();msg.textContent='Not sent. Your answers are still saved.'}return result;}
+ catch(error){window.claraSubmissionFailed();msg.textContent='Could not send. Your answers are still saved. Please try again.';}
+};
+window.claraSubmissionDone=function(){sending=false;sent=true;document.getElementById('sheet').inert=false;update()};
+window.claraSubmissionFailed=function(){sending=false;sent=false;document.getElementById('sheet').inert=false;update()};
+function show(i,focus=true){current=i;sections.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',i===j?'false':'true')});showPage(i,pageNumbers[i]||0,focus);update();}
+function showPage(i,n,focus=true){
+ const deck=decks[i];if(!deck)return;
+ n=Math.max(0,Math.min(deck.pages.length-1,n));pageNumbers[i]=n;
+ deck.pages.forEach((page,j)=>{page.classList.toggle('current-page',j===n);page.setAttribute('aria-hidden',j===n?'false':'true')});
+ deck.label.textContent=(n+1)+' / '+deck.pages.length+' · '+deck.pages[n].dataset.title;
+ deck.back.disabled=i===0&&n===0;
+ deck.next.hidden=i===blockCount-1&&n===deck.pages.length-1;
+ deck.next.textContent=n<deck.pages.length-1?'Next →':'Next block →';
+ deck.viewport.scrollTop=0;if(focus)deck.label.focus({preventScroll:true});save();
+}
+function paginatePlan(section,i,plan){
+ const viewport=document.createElement('div');viewport.className='exercise-viewport';
+ const pages=[];
+ function add(nodes,title){const page=document.createElement('div');page.className='exercise-page';page.dataset.title=title;nodes.forEach(node=>page.append(node));pages.push(page);viewport.append(page);return page}
+ plan.forEach(screen=>{const p=add(screen.nodes,screen.title);if(screen.hint){const help=document.createElement('p');help.className='game-ui exercise-hint';help.textContent=screen.hint;p.prepend(help);}});
+ [...section.children].forEach(node=>{if(node.matches('.sec-head'))return;if(node.querySelector('[data-k]'))throw new Error('Screen plan left a field outside the screens');node.remove();});
+ const review=i===blockCount-1?add([],'Finish & send'):null;
+ if(review){review.classList.add('game-ui','review-page');review.innerHTML='<h3>Ready to send?</h3><p>You can go back to look at your work. This button checks all your answers and sends them to Dasha.</p>';}
+ const position=document.createElement('div');position.className='game-ui exercise-position';
+ const label=document.createElement('span');label.tabIndex=-1;label.setAttribute('aria-live','polite');position.append(label);
+ const reminder=pages.findIndex(p=>p.dataset.title==='Remember');
+ if(reminder>=0){const help=document.createElement('button');help.type='button';help.className='reminder-button';help.textContent='Remember';help.onclick=()=>showPage(i,reminder);position.append(help);}
+ const notice=document.createElement('p');notice.className='game-ui exercise-notice';notice.setAttribute('role','status');
+ section.append(position,notice,viewport);
+ return {pages,viewport,label,review,notice};
+}
+function paginate(section,i){
+ if(window.claraScreenPlan){const plan=window.claraScreenPlan(section,i);if(plan)return paginatePlan(section,i,plan);}
+ // Flatten layout-only wrappers, retaining every original question and field.
+ section.querySelectorAll('.keep:not(.task),.r-grid').forEach(el=>el.replaceWith(...el.childNodes));
+ section.querySelectorAll('.task').forEach(task=>{
+  const questions=[...task.querySelectorAll('.q')];if(questions.length){let after=task;questions.forEach(q=>{after.after(q);after=q});}
+  const label=task.querySelector(':scope > .role-label');
+  if(task.querySelector('.model')&&label){const tail=document.createElement('div');tail.className='task';let node=label;while(node){const next=node.nextSibling;tail.append(node);node=next}task.after(tail);}
+ });
+ const viewport=document.createElement('div');viewport.className='exercise-viewport';
+ const pages=[];let pending=[],hint='';
+ function add(nodes,title){const page=document.createElement('div');page.className='exercise-page';page.dataset.title=title;nodes.forEach(node=>page.append(node));pages.push(page);viewport.append(page);return page}
+ [...section.children].forEach(node=>{
+  if(node.matches('.sec-head,.store,.tp-stores'))return;
+  if(node.matches('.task')){
+   if(node.querySelector('.model,.chain-ex')){add([...pending,node],'Remember');pending=[];}
+   else{pending.push(node);hint=[...node.querySelectorAll('.lead,.small')].map(el=>{const copy=el.cloneNode(true);copy.querySelectorAll('.print-only').forEach(n=>n.remove());return copy.textContent}).join(' ').trim();}
+  }else if(node.matches('.q')){
+   const number=node.querySelector('.q-num')?.textContent||'';
+   const nodes=pending.length?[...pending,node]:[node];
+   const page=add(nodes,'Question '+number);
+   if(!pending.length&&hint){const help=document.createElement('p');help.className='game-ui exercise-hint';help.textContent=hint;page.prepend(help);}
+   pending=[];
+  }
+ });
+ if(pending.length)add(pending,'Instructions');
+ const review=i===blockCount-1?add([],'Finish & send'):null;
+ if(review){review.classList.add('game-ui','review-page');review.innerHTML='<h3>Ready to send?</h3><p>You can go back to review your work. This button checks all your answers and sends them to Dasha.</p>';}
+ const position=document.createElement('div');position.className='game-ui exercise-position';
+ const label=document.createElement('span');label.tabIndex=-1;label.setAttribute('aria-live','polite');position.append(label);
+ const reminder=pages.findIndex(p=>p.dataset.title==='Remember');
+ if(reminder>=0){const help=document.createElement('button');help.type='button';help.className='reminder-button';help.textContent='Remember';help.onclick=()=>{let target=reminder;pages.forEach((p,n)=>{if(n<=(pageNumbers[i]||0)&&p.dataset.title==='Remember')target=n});showPage(i,target)};position.append(help);}
+ const notice=document.createElement('p');notice.className='game-ui exercise-notice';notice.setAttribute('role','status');
+ section.append(position,notice,viewport);
+ return {pages,viewport,label,review,notice};
+}
+sections.forEach((section,i)=>{
+ const tab=document.createElement('button');tab.className='block-tab';tab.type='button';tab.innerHTML='<span class="step-badge"></span><span>'+titles[i]+'</span>';tab.onclick=()=>show(i);nav.append(tab);
+ const deck=paginate(section,i);decks[i]=deck;
+ const actions=document.createElement('div');actions.className='game-ui block-actions';
+ const back=document.createElement('button');back.className='garden-button';back.textContent='← Back';back.onclick=()=>{if(pageNumbers[i]>0)showPage(i,pageNumbers[i]-1);else{show(i-1);showPage(i-1,decks[i-1].pages.length-1)}};
+ const next=document.createElement('button');next.className='garden-button next-button';next.textContent='Next →';next.onclick=()=>{if(pageNumbers[i]<deck.pages.length-1)showPage(i,pageNumbers[i]+1);else if(i<blockCount-1)show(i+1)};
+ actions.append(back,next);Object.assign(deck,{back,next});section.append(actions);
+ if(deck.review)deck.review.append(bar,results);
+ ['click','pointerdown','keydown'].forEach(type=>section.addEventListener(type,event=>{if((done[i]||finalChecked)&&!event.target.closest('.game-ui')&&event.target.closest('button,input,select,textarea,[data-k],.tp-zone')){event.preventDefault();event.stopImmediatePropagation()}},true));
+ if(done[i])lockBlock(section);
+ ['input','change'].forEach(type=>section.addEventListener(type,()=>{if(!finalChecked)update()}));
+ showPage(i,pageNumbers[i]||0,false);
+});
+if(finalChecked){window.hwShowChecks();renderResults();}
+if(sent)msg.textContent='Your answers have been submitted to Dasha.';
+show(current,false);
+window.addEventListener('load',()=>setTimeout(update,0));
+})();
+</script>
 </body>
 </html>

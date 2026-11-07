@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evie · Maths homework · 7 November 2026</title>
+<style>
+@page {size:A4; margin:11mm 11mm;}
+* {box-sizing:border-box;}
+html {-webkit-text-size-adjust:100%;}
+body {font-family:'Segoe UI',Arial,sans-serif; color:#252333; margin:0; font-size:18px; background:#fbfaff;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+.wrap {max-width:1180px; margin:0 auto; padding:0 28px 48px;}
+header {background:linear-gradient(135deg,#6c63ff,#a78bfa); color:#fff; border-radius:18px; padding:18px 30px; margin:26px 0 36px;}
+h1 {font-size:25px; margin:0 0 4px;}
+.meta {font-size:15px; opacity:.95;}
+section {margin:0 0 48px;}
+.lbl {font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#6d4fc2; margin:0 0 8px;}
+.instr {font-size:30px; font-weight:800; color:#1f1b2e; line-height:1.25; margin:0 0 8px; text-wrap:balance;}
+.note {font-size:17px; color:#6b6280; margin:0 0 22px;}
+.note.pr {display:none;}
+.q {page-break-inside:avoid; break-inside:avoid;}
+.card {background:#fff; border:2px solid #e6e0fa; border-radius:20px; padding:18px 24px 20px; margin:0 0 16px; transition:border-color .15s, box-shadow .15s;}
+.card.current {border-color:#a78bfa; box-shadow:0 10px 30px rgba(108,99,255,.13);}
+.card.model {background:#f7f5ff; border-color:#d9cff7;}
+.mtag {display:inline-block; margin:0 0 10px; padding:4px 13px; border-radius:999px; background:#6c63ff; color:#fff; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;}
+.qn {color:#6b6280; font-weight:600;}
+.big {font-size:30px; font-weight:800; color:#5b32b5; white-space:nowrap;}
+.store {display:none;}
+
+/* Part A: predict, then check */
+.arow {display:block;}
+.aitem {display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px;}
+.prompt {display:flex; align-items:baseline; gap:10px; margin:0; white-space:nowrap;}
+.opts {display:flex; flex-wrap:wrap; align-items:center; gap:10px;}
+.opt {font:inherit; font-size:22px; font-weight:700; color:#3f3752; background:#fff; border:2px solid #c9bdf0; border-radius:14px;
+  padding:10px 16px; min-width:120px; min-height:56px; line-height:1.2; text-align:center; cursor:pointer; touch-action:manipulation;
+  display:inline-flex; align-items:center; justify-content:center; transition:background .12s, border-color .12s, box-shadow .12s;}
+button.opt:hover {background:#f3f0ff; border-color:#a78bfa;}
+button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
+.opts .opt.on, .opt.shown {background:#6c63ff; border-color:#6c63ff; color:#fff; box-shadow:0 0 0 4px #ddd6fe;}
+.opts > .hw-mark.hw-mark-blk {font-size:19px; margin:2px 0 0;}
+input.ans {width:200px; font-size:24px; height:56px;}
+.shownbox {display:inline-flex; align-items:center; justify-content:center; min-width:170px; height:56px; padding:0 14px; font-size:24px; font-weight:600;
+  color:#1d4ed8; background:#f6f5ff; border:2px solid #8072b2; border-radius:8px;}
+.chk {display:inline-flex; align-items:center; gap:8px; font-size:17px; font-weight:700; color:#5b32b5; background:#f3f0ff; border:2px solid #c9bdf0;
+  border-radius:999px; padding:9px 18px; text-decoration:none; touch-action:manipulation; white-space:nowrap;}
+.chk:hover {border-color:#a78bfa;}
+.chk.on {background:#5b32b5; border-color:#5b32b5; color:#fff;}
+.chk.off {opacity:.4; cursor:default; pointer-events:none;}
+.mline {font-size:18px; color:#6b6280; margin:0;}
+.panel {display:none;}
+
+/* Part B: count across, then the jumps */
+.ctitle {font-size:22px; margin:0 0 12px; color:#3f3752;}
+.ctitle b {color:#5b32b5;}
+.dir {font-weight:800; color:#c2410c; margin-left:6px;}
+.tscroll {overflow-x:auto; -webkit-overflow-scrolling:touch; padding:2px 0 4px;}
+.track {position:relative; min-width:calc(var(--n) * 112px);}
+.cells {display:grid; grid-template-columns:repeat(var(--n), minmax(0,1fr)); gap:0;}
+.cell {display:flex; flex-direction:column; align-items:stretch; padding:0 4px;}
+.cell .num, .cell input.hw-field, .cell .shownbox {width:100%; min-width:0; height:56px; font-size:20px; padding:2px 4px;}
+.cell .num {display:flex; align-items:center; justify-content:center; font-weight:800; color:#3f3752; background:#ede9fe; border:2px solid #a78bfa; border-radius:10px;}
+.cell .shownbox {min-width:0;}
+.cell > .hw-mark {text-align:center; margin:3px 0 0;}
+.jumps {position:relative; height:136px;}
+.hops {position:absolute; left:0; right:0; top:0; height:16px;}
+.hop {position:absolute; top:0; left:calc((var(--a) + .5) / var(--n) * 100%); width:calc(100% / var(--n)); height:16px;
+  border:2px solid #c4b5fd; border-top:0; border-radius:0 0 50% 50% / 0 0 100% 100%;}
+.jump {position:absolute; top:22px; left:calc((var(--a) + .5) / var(--n) * 100%); width:calc((var(--b) - var(--a)) / var(--n) * 100%);
+  display:flex; flex-direction:column; align-items:center;}
+.arc {width:100%; height:30px; border:3px solid #a78bfa; border-top:0; border-radius:0 0 50% 50% / 0 0 100% 100%;}
+.jlab {display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:6px 8px; margin-top:8px; font-size:18px; color:#3f3752; white-space:nowrap;}
+.jlab input.hw-field {width:66px; min-width:0; height:48px; font-size:20px;}
+.jlab .shownbox {min-width:54px; height:48px; font-size:20px;}
+.diff {display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px; font-size:20px; margin:0; color:#3f3752;}
+.diff input.hw-field {width:80px; min-width:0; height:52px; font-size:22px;}
+.diff .shownbox {min-width:64px; height:52px; font-size:22px;}
+.eq {display:inline-flex; align-items:center; flex-wrap:nowrap; gap:inherit; white-space:nowrap;}
+.mir {display:inline-flex; align-items:center; justify-content:center; min-width:44px; height:42px; padding:0 8px; border:2px dashed #c9bdf0; border-radius:8px;
+  font-weight:700; color:#1d4ed8; background:#fff;}
+.mir.full {border-style:solid; border-color:#c9bdf0; background:#f6f5ff;}
+
+@media (max-width:600px) {
+  body {font-size:17px;}
+  .wrap {padding:0 12px 40px;}
+  header {padding:14px 18px; margin:14px 0 26px; border-radius:14px;}
+  h1 {font-size:22px;}
+  .instr {font-size:24px;}
+  .card {padding:14px 12px 16px; border-radius:16px;}
+  .big {font-size:26px;}
+  .opts {gap:8px; width:100%;}
+  .opt {font-size:19px; min-width:0; flex:1 1 84px; padding:9px 6px; min-height:52px;}
+  input.ans {width:160px;}
+  .ctitle {font-size:19px;}
+  /* the number line stands up on a phone, so nothing scrolls sideways */
+  .tscroll {overflow:visible;}
+  .track {min-width:0; display:grid; grid-template-columns:minmax(0,1fr) 128px; column-gap:4px;}
+  .cells {grid-template-columns:minmax(0,1fr);}
+  .cell {flex-direction:row; align-items:center; gap:6px; padding:3px 0; height:62px;}
+  .cell .num, .cell input.hw-field, .cell .shownbox {height:54px; font-size:20px; flex:1 1 auto; width:auto;}
+  .cell > .hw-mark {margin:0; white-space:nowrap; font-size:14px;}
+  .jumps {height:auto;}
+  .hops {left:0; top:0; bottom:0; right:auto; width:12px; height:auto;}
+  .hop {left:0; width:12px; top:calc((var(--a) + .5) / var(--n) * 100%); height:calc(100% / var(--n)); border:2px solid #c4b5fd; border-left:0; border-radius:0 100% 100% 0 / 0 50% 50% 0;}
+  .jump {left:16px; width:calc(100% - 16px); top:calc((var(--a) + .5) / var(--n) * 100%); height:calc((var(--b) - var(--a)) / var(--n) * 100%); flex-direction:row; align-items:center;}
+  .arc {flex:0 0 22px; width:22px; height:100%; border:3px solid #a78bfa; border-left:0; border-radius:0 100% 100% 0 / 0 50% 50% 0;}
+  .jlab {margin:0 0 0 6px; justify-content:flex-start; white-space:normal; font-size:16px;}
+  .jlab input.hw-field {width:58px; height:46px;}
+  .diff {font-size:18px;}
+}
+
+@media print {
+  body {font-size:13px; background:#fff;}
+  .wrap {max-width:none; padding:0;}
+  header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+  h1 {font-size:19px; margin:0;}
+  .meta {font-size:11.5px;}
+  section {margin:0 0 12px;}
+  .lbl {font-size:10.5px; margin:0 0 3px;}
+  .instr {font-size:18px; margin:0 0 3px;}
+  .note {font-size:12px; margin:0 0 8px;}
+  .note.scr, .chk, .panel {display:none !important;}
+  .note.pr {display:block;}
+  .card {padding:7px 12px 8px; margin:0 0 7px; border-width:1.5px; border-radius:12px; box-shadow:none;}
+  .card.current {border-color:#e6e0fa; box-shadow:none;}
+  .mtag {font-size:10px; padding:2px 9px; margin:0 0 4px;}
+  .big {font-size:17px;}
+  .aitem {gap:6px 12px;}
+  .opt {font-size:13.5px; padding:3px 8px; min-width:62px; min-height:0; border-width:1.5px; border-radius:8px;}
+  .opts .opt.on, .opt.shown {box-shadow:none;}
+  input.ans, .shownbox {height:30px; width:110px; min-width:0; font-size:14px;}
+  .mline {font-size:12px;}
+  .ctitle {font-size:14px; margin:0 0 5px;}
+  .track {min-width:0;}
+  .tscroll {overflow:visible;}
+  .cell .num, .cell input.hw-field, .cell .shownbox {height:30px; font-size:12.5px;}
+  .jumps {height:80px;}
+  .hops, .hop {height:9px;}
+  .hop {border-width:1.5px;}
+  .jump {top:13px;}
+  .arc {height:16px; border-width:2px;}
+  .jlab {font-size:12px; margin-top:4px;}
+  .jlab input.hw-field, .jlab .shownbox {width:40px; min-width:0; height:26px; font-size:13px;}
+  .diff {font-size:13px;}
+  .diff input.hw-field, .diff .shownbox {width:50px; min-width:0; height:28px; font-size:13px;}
+  .mir {min-width:30px; height:24px;}
+  .cell .shownbox {width:100%; min-width:0; height:30px; font-size:12.5px;}
+  .jlab .shownbox, .diff .shownbox {width:44px;}
+}
+@media print { input::placeholder {color:transparent;} }
+body.hw-pdf-mode input::placeholder {color:transparent;}
+body.hw-pdf-mode {font-size:13px; background:#fff;}
+body.hw-pdf-mode .wrap {max-width:none; padding:0;}
+body.hw-pdf-mode header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+body.hw-pdf-mode h1 {font-size:19px; margin:0;}
+body.hw-pdf-mode .meta {font-size:11.5px;}
+body.hw-pdf-mode section {margin:0 0 12px;}
+body.hw-pdf-mode .lbl {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .instr {font-size:18px; margin:0 0 3px;}
+body.hw-pdf-mode .note {font-size:12px; margin:0 0 8px;}
+body.hw-pdf-mode .note.scr, body.hw-pdf-mode .chk, body.hw-pdf-mode .panel {display:none !important;}
+body.hw-pdf-mode .arow {display:block !important;}
+body.hw-pdf-mode .card {padding:7px 12px 8px; margin:0 0 7px; border-width:1.5px; border-radius:12px; box-shadow:none;}
+body.hw-pdf-mode .card.current {border-color:#e6e0fa; box-shadow:none;}
+body.hw-pdf-mode .mtag {font-size:10px; padding:2px 9px; margin:0 0 4px;}
+body.hw-pdf-mode .big {font-size:17px;}
+body.hw-pdf-mode .opt {font-size:13.5px; padding:3px 8px; min-width:62px; min-height:0; border-width:1.5px; border-radius:8px; box-shadow:none;}
+body.hw-pdf-mode input.ans, body.hw-pdf-mode .shownbox {height:30px; width:110px; min-width:0; font-size:14px;}
+body.hw-pdf-mode .mline {font-size:12px;}
+body.hw-pdf-mode .ctitle {font-size:14px; margin:0 0 5px;}
+body.hw-pdf-mode .track {min-width:0;}
+body.hw-pdf-mode .tscroll {overflow:visible;}
+body.hw-pdf-mode .cell .num, body.hw-pdf-mode .cell input.hw-field {height:30px; font-size:12.5px;}
+body.hw-pdf-mode .jumps {height:90px;}
+body.hw-pdf-mode .hops, body.hw-pdf-mode .hop {height:9px;}
+body.hw-pdf-mode .hop {border-width:1.5px;}
+body.hw-pdf-mode .jump {top:13px;}
+body.hw-pdf-mode .arc {height:16px; border-width:2px;}
+body.hw-pdf-mode .jlab {font-size:12px; margin-top:4px;}
+body.hw-pdf-mode .jlab input.hw-field {width:40px; height:26px; font-size:13px;}
+body.hw-pdf-mode .diff {font-size:13px;}
+body.hw-pdf-mode .diff input.hw-field {width:50px; height:28px; font-size:13px;}
+body.hw-pdf-mode .mir {min-width:30px; height:24px;}
+body.hw-pdf-mode .cell .shownbox {width:100%; min-width:0; height:30px; font-size:12.5px;}
+body.hw-pdf-mode .jlab .shownbox, body.hw-pdf-mode .diff .shownbox {width:44px; height:28px; font-size:13px;}
+body.hw-pdf-mode .hw-mark {font-size:12px;}
+
+/* Full page width and big type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body {font-size:24px;}
+  .wrap {max-width:1640px; padding:0 48px 56px;}
+  header {padding:24px 38px;}
+  h1 {font-size:36px;}
+  .meta {font-size:21px;}
+  .lbl {font-size:18px;}
+  .instr {font-size:40px;}
+  .note {font-size:24px;}
+  .mtag {font-size:16px;}
+  .card {padding:22px 32px 24px; margin:0 0 18px;}
+  .big {font-size:32px;}
+  .arow {display:grid; grid-template-columns:minmax(0,1fr) minmax(460px,560px); gap:40px; align-items:start;}
+  .prompt {min-width:280px;}
+  .opts {flex-wrap:nowrap;}
+  .panel {display:block; position:sticky; top:18px; background:#fff; border:2px solid #e6e0fa; border-radius:22px; padding:16px 18px 18px;}
+  .panel .ptitle {font-size:26px; font-weight:800; color:#3f3752; margin:0 0 4px;}
+  .panel .pnote {font-size:20px; color:#6b6280; margin:0 0 10px;}
+  .panel iframe {display:block; width:100%; height:600px; border:0; border-radius:14px; background:#fff;}
+  .opt {font-size:28px; padding:12px 14px; min-width:150px; min-height:68px;}
+  input.ans, .shownbox {width:220px; height:68px; font-size:30px !important;}
+  .chk {font-size:22px; padding:12px 22px;}
+  .mline {font-size:22px;}
+  .ctitle {font-size:30px; margin:0 0 16px;}
+  .track {min-width:0;}
+  .cell {padding:0 6px;}
+  .cell .num, .cell input.hw-field, .cell .shownbox {height:72px; font-size:28px !important;}
+  .jumps {height:182px;}
+  .hops, .hop {height:22px;}
+  .hop {border-width:3px;}
+  .jump {top:32px;}
+  .arc {height:42px;}
+  .jlab {font-size:26px; margin-top:10px;}
+  .jlab input.hw-field, .jlab .shownbox {width:90px; height:62px; font-size:28px !important;}
+  .diff {font-size:28px; gap:10px 14px;}
+  .diff input.hw-field, .diff .shownbox {width:110px; height:66px; font-size:30px !important;}
+  .mir {min-width:64px; height:58px; font-size:28px;}
+  .opts > .hw-mark.hw-mark-blk {font-size:22px;}
+}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Evie" data-sheet="Maths 2026-11-07" data-sheet-id="evie-2026-11-07-maths">
+<div id="sheet">
+
+<div class="wrap">
+<header><h1>Evie &middot; Maths</h1><div class="meta">7 November 2026 &middot; Add 1, take away 1, count across a round&nbsp;number</div></header>
+<section><div class="q"><p class="lbl">Predict, then check</p><p class="instr">Choose your answer. Then check it on the number&nbsp;counter.</p><p class="note scr">Choose first. Then press &laquo;Check&raquo; and press + 1 or &minus; 1 on the counter. Watch the&nbsp;wheels.</p><p class="note pr">Circle one answer. The counter is at arsdashok.github.io/games/odometer</p></div>
+<div class="arow"><div class="alist">
+<div class="card model q"><p class="mtag">Like this</p><div class="aitem"><p class="prompt"><span class="big">6,090 &minus; 1</span></p><span class="opt shown">6,089</span><p class="mline">then &minus; 1 on the counter shows 6,089</p></div></div>
+<div class="card q live"><div class="aitem"><p class="prompt"><span class="qn">1.</span> <span class="big">6,000 &minus; 1</span></p><div class="opts" data-field="e_a1"><button type="button" class="opt" data-v="5,099" aria-pressed="false">5,099</button><button type="button" class="opt" data-v="6,999" aria-pressed="false">6,999</button><button type="button" class="opt" data-v="5,999" aria-pressed="false">5,999</button></div><a class="chk" href="https://arsdashok.github.io/games/odometer/?n=6000" target="_blank" rel="noopener" data-show="6,000" data-op="&minus;" aria-label="Check 6,000 on the number counter">Check &#8599;</a></div><div class="store"><select data-k="e_a1" data-label="A1. 6,000 - 1 =" class="hw-field"><option value="">Choose</option><option value="5,099">5,099</option><option value="6,999">6,999</option><option value="5,999">5,999</option></select></div></div>
+<div class="card q live"><div class="aitem"><p class="prompt"><span class="qn">2.</span> <span class="big">409,999 + 1</span></p><div class="opts" data-field="e_a2"><button type="button" class="opt" data-v="410,000" aria-pressed="false">410,000</button><button type="button" class="opt" data-v="500,000" aria-pressed="false">500,000</button><button type="button" class="opt" data-v="490,000" aria-pressed="false">490,000</button></div><a class="chk" href="https://arsdashok.github.io/games/odometer/?n=409999" target="_blank" rel="noopener" data-show="409,999" data-op="+" aria-label="Check 409,999 on the number counter">Check &#8599;</a></div><div class="store"><select data-k="e_a2" data-label="A2. 409,999 + 1 =" class="hw-field"><option value="">Choose</option><option value="410,000">410,000</option><option value="500,000">500,000</option><option value="490,000">490,000</option></select></div></div>
+<div class="card q live"><div class="aitem"><p class="prompt"><span class="qn">3.</span> <span class="big">74,385 + 1</span></p><div class="opts" data-field="e_a3"><button type="button" class="opt" data-v="74,386" aria-pressed="false">74,386</button><button type="button" class="opt" data-v="75,000" aria-pressed="false">75,000</button><button type="button" class="opt" data-v="74,390" aria-pressed="false">74,390</button></div><a class="chk" href="https://arsdashok.github.io/games/odometer/?n=74385" target="_blank" rel="noopener" data-show="74,385" data-op="+" aria-label="Check 74,385 on the number counter">Check &#8599;</a></div><div class="store"><select data-k="e_a3" data-label="A3. 74,385 + 1 =" class="hw-field"><option value="">Choose</option><option value="74,386">74,386</option><option value="75,000">75,000</option><option value="74,390">74,390</option></select></div></div>
+<div class="card q live"><div class="aitem"><p class="prompt"><span class="qn">4.</span> <span class="big">90,000 &minus; 1</span></p><div class="opts" data-field="e_a4"><button type="button" class="opt" data-v="99,999" aria-pressed="false">99,999</button><button type="button" class="opt" data-v="80,999" aria-pressed="false">80,999</button><button type="button" class="opt" data-v="89,999" aria-pressed="false">89,999</button></div><a class="chk" href="https://arsdashok.github.io/games/odometer/?n=90000" target="_blank" rel="noopener" data-show="90,000" data-op="&minus;" aria-label="Check 90,000 on the number counter">Check &#8599;</a></div><div class="store"><select data-k="e_a4" data-label="A4. 90,000 - 1 =" class="hw-field"><option value="">Choose</option><option value="99,999">99,999</option><option value="80,999">80,999</option><option value="89,999">89,999</option></select></div></div>
+<div class="card q live"><div class="aitem"><p class="prompt"><span class="qn">5.</span> <span class="big">15,999 + 1</span></p><div class="opts" data-field="e_a5"><button type="button" class="opt" data-v="16,999" aria-pressed="false">16,999</button><button type="button" class="opt" data-v="16,000" aria-pressed="false">16,000</button><button type="button" class="opt" data-v="20,000" aria-pressed="false">20,000</button></div><a class="chk" href="https://arsdashok.github.io/games/odometer/?n=15999" target="_blank" rel="noopener" data-show="15,999" data-op="+" aria-label="Check 15,999 on the number counter">Check &#8599;</a></div><div class="store"><select data-k="e_a5" data-label="A5. 15,999 + 1 =" class="hw-field"><option value="">Choose</option><option value="16,999">16,999</option><option value="16,000">16,000</option><option value="20,000">20,000</option></select></div></div>
+<div class="card q live"><div class="aitem"><p class="prompt"><span class="qn">6.</span> <span class="big">30,508 &minus; 1</span></p><div class="opts" data-field="e_a6"><button type="button" class="opt" data-v="29,507" aria-pressed="false">29,507</button><button type="button" class="opt" data-v="30,507" aria-pressed="false">30,507</button><button type="button" class="opt" data-v="30,497" aria-pressed="false">30,497</button></div><a class="chk" href="https://arsdashok.github.io/games/odometer/?n=30508" target="_blank" rel="noopener" data-show="30,508" data-op="&minus;" aria-label="Check 30,508 on the number counter">Check &#8599;</a></div><div class="store"><select data-k="e_a6" data-label="A6. 30,508 - 1 =" class="hw-field"><option value="">Choose</option><option value="29,507">29,507</option><option value="30,507">30,507</option><option value="30,497">30,497</option></select></div></div>
+<div class="card q live"><div class="aitem"><p class="prompt"><span class="qn">7.</span> <span class="big">700,100 &minus; 1</span></p><div class="opts" data-field="e_a7"><button type="button" class="opt" data-v="700,099" aria-pressed="false">700,099</button><button type="button" class="opt" data-v="699,999" aria-pressed="false">699,999</button><button type="button" class="opt" data-v="700,009" aria-pressed="false">700,009</button></div><a class="chk" href="https://arsdashok.github.io/games/odometer/?n=700100" target="_blank" rel="noopener" data-show="700,100" data-op="&minus;" aria-label="Check 700,100 on the number counter">Check &#8599;</a></div><div class="store"><select data-k="e_a7" data-label="A7. 700,100 - 1 =" class="hw-field"><option value="">Choose</option><option value="700,099">700,099</option><option value="699,999">699,999</option><option value="700,009">700,009</option></select></div></div>
+<div class="card q live"><div class="aitem"><p class="prompt"><span class="qn">8.</span> <span class="big">1,099 + 1</span></p><div class="opts" data-field="e_a8"><button type="button" class="opt" data-v="2,000" aria-pressed="false">2,000</button><button type="button" class="opt" data-v="1,190" aria-pressed="false">1,190</button><button type="button" class="opt" data-v="1,100" aria-pressed="false">1,100</button></div><a class="chk" href="https://arsdashok.github.io/games/odometer/?n=1099" target="_blank" rel="noopener" data-show="1,099" data-op="+" aria-label="Check 1,099 on the number counter">Check &#8599;</a></div><div class="store"><select data-k="e_a8" data-label="A8. 1,099 + 1 =" class="hw-field"><option value="">Choose</option><option value="2,000">2,000</option><option value="1,190">1,190</option><option value="1,100">1,100</option></select></div></div>
+</div><aside class="panel" aria-label="The number counter"><p class="pnote" id="ctrNow">Answer a question, then press its &laquo;Check&raquo; to put its number&nbsp;here.</p><iframe id="ctrFrame" title="The number counter" src="https://arsdashok.github.io/games/odometer/?n=6090" loading="lazy"></iframe></aside></div></section>
+<section><div class="q"><p class="lbl">Count across</p><p class="instr">Type the numbers in order. Then count the&nbsp;jumps.</p><p class="note scr">Say each number aloud as you type it. The jumps go to the round number, then&nbsp;on.<br>Count the gaps, not the numbers. Then add the two&nbsp;jumps.</p><p class="note pr">Say each number aloud as you write&nbsp;it. Count the gaps, not the numbers. Then add the two&nbsp;jumps.</p><div class="card model q"><p class="mtag">Like this</p><p class="ctitle">Count <b>backwards</b> from <b>50,002</b> to&nbsp;<b>49,997</b>&nbsp;<span class="dir">&larr;</span></p><div class="tscroll"><div class="track" style="--n:6"><div class="cells"><div class="cell given"><span class="num">50,002</span></div><div class="cell"><span class="shownbox">50,001</span></div><div class="cell"><span class="shownbox">50,000</span></div><div class="cell"><span class="shownbox">49,999</span></div><div class="cell"><span class="shownbox">49,998</span></div><div class="cell given"><span class="num">49,997</span></div></div><div class="jumps"><div class="hops" aria-hidden="true"><div class="hop" style="--a:0"></div><div class="hop" style="--a:1"></div><div class="hop" style="--a:2"></div><div class="hop" style="--a:3"></div><div class="hop" style="--a:4"></div></div><div class="jump" style="--a:0;--b:2"><div class="arc"></div><div class="jlab"><span class="shownbox">2</span><span>jumps</span></div></div><div class="jump" style="--a:2;--b:5"><div class="arc"></div><div class="jlab"><span class="shownbox">3</span><span>jumps</span></div></div></div></div></div><p class="diff">Difference between 50,002 and&nbsp;49,997: <span class="eq"><span class="mir full">2</span> + <span class="mir full">3</span> = <span class="shownbox">5</span></span></p></div></div>
+<div class="card q live"><p class="ctitle"><span class="qn">1.</span> Count <b>forwards</b> from <b>597</b> to&nbsp;<b>602</b>&nbsp;<span class="dir">&rarr;</span></p><div class="tscroll"><div class="track" style="--n:6"><div class="cells"><div class="cell given"><span class="num">597</span></div><div class="cell"><input class="hw-field tnum" data-k="e_b1c1" data-label="B1. 597 to 602: number 2" inputmode="numeric" autocomplete="off" aria-label="number 2"></div><div class="cell"><input class="hw-field tnum" data-k="e_b1c2" data-label="B1. 597 to 602: number 3" inputmode="numeric" autocomplete="off" aria-label="number 3"></div><div class="cell"><input class="hw-field tnum" data-k="e_b1c3" data-label="B1. 597 to 602: number 4" inputmode="numeric" autocomplete="off" aria-label="number 4"></div><div class="cell"><input class="hw-field tnum" data-k="e_b1c4" data-label="B1. 597 to 602: number 5" inputmode="numeric" autocomplete="off" aria-label="number 5"></div><div class="cell given"><span class="num">602</span></div></div><div class="jumps"><div class="hops" aria-hidden="true"><div class="hop" style="--a:0"></div><div class="hop" style="--a:1"></div><div class="hop" style="--a:2"></div><div class="hop" style="--a:3"></div><div class="hop" style="--a:4"></div></div><div class="jump" style="--a:0;--b:3"><div class="arc"></div><div class="jlab"><input class="hw-field tnum" data-k="e_b1j1" data-label="B1. jumps from 597 to the round number" inputmode="numeric" autocomplete="off" aria-label="B1. jumps from 597 to the round number"><span>jumps</span></div></div><div class="jump" style="--a:3;--b:5"><div class="arc"></div><div class="jlab"><input class="hw-field tnum" data-k="e_b1j2" data-label="B1. jumps from the round number to 602" inputmode="numeric" autocomplete="off" aria-label="B1. jumps from the round number to 602"><span>jumps</span></div></div></div></div></div><p class="diff">Difference between 597 and&nbsp;602: <span class="eq"><span class="mir" data-mir="e_b1j1"></span> + <span class="mir" data-mir="e_b1j2"></span> = <input class="hw-field tnum" data-k="e_b1d" data-label="B1. difference between 597 and 602" inputmode="numeric" autocomplete="off" aria-label="B1. difference between 597 and 602"></span></p></div>
+<div class="card q live"><p class="ctitle"><span class="qn">2.</span> Count <b>backwards</b> from <b>2,003</b> to&nbsp;<b>1,997</b>&nbsp;<span class="dir">&larr;</span></p><div class="tscroll"><div class="track" style="--n:7"><div class="cells"><div class="cell given"><span class="num">2,003</span></div><div class="cell"><input class="hw-field tnum" data-k="e_b2c1" data-label="B2. 2,003 to 1,997: number 2" inputmode="numeric" autocomplete="off" aria-label="number 2"></div><div class="cell"><input class="hw-field tnum" data-k="e_b2c2" data-label="B2. 2,003 to 1,997: number 3" inputmode="numeric" autocomplete="off" aria-label="number 3"></div><div class="cell"><input class="hw-field tnum" data-k="e_b2c3" data-label="B2. 2,003 to 1,997: number 4" inputmode="numeric" autocomplete="off" aria-label="number 4"></div><div class="cell"><input class="hw-field tnum" data-k="e_b2c4" data-label="B2. 2,003 to 1,997: number 5" inputmode="numeric" autocomplete="off" aria-label="number 5"></div><div class="cell"><input class="hw-field tnum" data-k="e_b2c5" data-label="B2. 2,003 to 1,997: number 6" inputmode="numeric" autocomplete="off" aria-label="number 6"></div><div class="cell given"><span class="num">1,997</span></div></div><div class="jumps"><div class="hops" aria-hidden="true"><div class="hop" style="--a:0"></div><div class="hop" style="--a:1"></div><div class="hop" style="--a:2"></div><div class="hop" style="--a:3"></div><div class="hop" style="--a:4"></div><div class="hop" style="--a:5"></div></div><div class="jump" style="--a:0;--b:3"><div class="arc"></div><div class="jlab"><input class="hw-field tnum" data-k="e_b2j1" data-label="B2. jumps from 2,003 to the round number" inputmode="numeric" autocomplete="off" aria-label="B2. jumps from 2,003 to the round number"><span>jumps</span></div></div><div class="jump" style="--a:3;--b:6"><div class="arc"></div><div class="jlab"><input class="hw-field tnum" data-k="e_b2j2" data-label="B2. jumps from the round number to 1,997" inputmode="numeric" autocomplete="off" aria-label="B2. jumps from the round number to 1,997"><span>jumps</span></div></div></div></div></div><p class="diff">Difference between 2,003 and&nbsp;1,997: <span class="eq"><span class="mir" data-mir="e_b2j1"></span> + <span class="mir" data-mir="e_b2j2"></span> = <input class="hw-field tnum" data-k="e_b2d" data-label="B2. difference between 2,003 and 1,997" inputmode="numeric" autocomplete="off" aria-label="B2. difference between 2,003 and 1,997"></span></p></div>
+<div class="card q live"><p class="ctitle"><span class="qn">3.</span> Count <b>backwards</b> from <b>40,502</b> to&nbsp;<b>40,498</b>&nbsp;<span class="dir">&larr;</span></p><div class="tscroll"><div class="track" style="--n:5"><div class="cells"><div class="cell given"><span class="num">40,502</span></div><div class="cell"><input class="hw-field tnum" data-k="e_b3c1" data-label="B3. 40,502 to 40,498: number 2" inputmode="numeric" autocomplete="off" aria-label="number 2"></div><div class="cell"><input class="hw-field tnum" data-k="e_b3c2" data-label="B3. 40,502 to 40,498: number 3" inputmode="numeric" autocomplete="off" aria-label="number 3"></div><div class="cell"><input class="hw-field tnum" data-k="e_b3c3" data-label="B3. 40,502 to 40,498: number 4" inputmode="numeric" autocomplete="off" aria-label="number 4"></div><div class="cell given"><span class="num">40,498</span></div></div><div class="jumps"><div class="hops" aria-hidden="true"><div class="hop" style="--a:0"></div><div class="hop" style="--a:1"></div><div class="hop" style="--a:2"></div><div class="hop" style="--a:3"></div></div><div class="jump" style="--a:0;--b:2"><div class="arc"></div><div class="jlab"><input class="hw-field tnum" data-k="e_b3j1" data-label="B3. jumps from 40,502 to the round number" inputmode="numeric" autocomplete="off" aria-label="B3. jumps from 40,502 to the round number"><span>jumps</span></div></div><div class="jump" style="--a:2;--b:4"><div class="arc"></div><div class="jlab"><input class="hw-field tnum" data-k="e_b3j2" data-label="B3. jumps from the round number to 40,498" inputmode="numeric" autocomplete="off" aria-label="B3. jumps from the round number to 40,498"><span>jumps</span></div></div></div></div></div><p class="diff">Difference between 40,502 and&nbsp;40,498: <span class="eq"><span class="mir" data-mir="e_b3j1"></span> + <span class="mir" data-mir="e_b3j2"></span> = <input class="hw-field tnum" data-k="e_b3d" data-label="B3. difference between 40,502 and 40,498" inputmode="numeric" autocomplete="off" aria-label="B3. difference between 40,502 and 40,498"></span></p></div>
+<div class="card q live"><p class="ctitle"><span class="qn">4.</span> Count <b>backwards</b> from <b>200,002</b> to&nbsp;<b>199,995</b>&nbsp;<span class="dir">&larr;</span></p><div class="tscroll"><div class="track" style="--n:8"><div class="cells"><div class="cell given"><span class="num">200,002</span></div><div class="cell"><input class="hw-field tnum" data-k="e_b4c1" data-label="B4. 200,002 to 199,995: number 2" inputmode="numeric" autocomplete="off" aria-label="number 2"></div><div class="cell"><input class="hw-field tnum" data-k="e_b4c2" data-label="B4. 200,002 to 199,995: number 3" inputmode="numeric" autocomplete="off" aria-label="number 3"></div><div class="cell"><input class="hw-field tnum" data-k="e_b4c3" data-label="B4. 200,002 to 199,995: number 4" inputmode="numeric" autocomplete="off" aria-label="number 4"></div><div class="cell"><input class="hw-field tnum" data-k="e_b4c4" data-label="B4. 200,002 to 199,995: number 5" inputmode="numeric" autocomplete="off" aria-label="number 5"></div><div class="cell"><input class="hw-field tnum" data-k="e_b4c5" data-label="B4. 200,002 to 199,995: number 6" inputmode="numeric" autocomplete="off" aria-label="number 6"></div><div class="cell"><input class="hw-field tnum" data-k="e_b4c6" data-label="B4. 200,002 to 199,995: number 7" inputmode="numeric" autocomplete="off" aria-label="number 7"></div><div class="cell given"><span class="num">199,995</span></div></div><div class="jumps"><div class="hops" aria-hidden="true"><div class="hop" style="--a:0"></div><div class="hop" style="--a:1"></div><div class="hop" style="--a:2"></div><div class="hop" style="--a:3"></div><div class="hop" style="--a:4"></div><div class="hop" style="--a:5"></div><div class="hop" style="--a:6"></div></div><div class="jump" style="--a:0;--b:2"><div class="arc"></div><div class="jlab"><input class="hw-field tnum" data-k="e_b4j1" data-label="B4. jumps from 200,002 to the round number" inputmode="numeric" autocomplete="off" aria-label="B4. jumps from 200,002 to the round number"><span>jumps</span></div></div><div class="jump" style="--a:2;--b:7"><div class="arc"></div><div class="jlab"><input class="hw-field tnum" data-k="e_b4j2" data-label="B4. jumps from the round number to 199,995" inputmode="numeric" autocomplete="off" aria-label="B4. jumps from the round number to 199,995"><span>jumps</span></div></div></div></div></div><p class="diff">Difference between 200,002 and&nbsp;199,995: <span class="eq"><span class="mir" data-mir="e_b4j1"></span> + <span class="mir" data-mir="e_b4j2"></span> = <input class="hw-field tnum" data-k="e_b4d" data-label="B4. difference between 200,002 and 199,995" inputmode="numeric" autocomplete="off" aria-label="B4. difference between 200,002 and 199,995"></span></p></div>
+</section>
+</div>
+
+<script>
+(function () {
+  var wide = window.matchMedia("(min-width:900px)");
+  var frame = document.getElementById("ctrFrame"), now = document.getElementById("ctrNow");
+  [].forEach.call(document.querySelectorAll("a.chk"), function (a) {
+    a.addEventListener("click", function (e) {
+      if (a.classList.contains("off")) { e.preventDefault(); return; }   // say your answer first
+      if (!frame || !wide.matches) return;            // phone or tablet: the counter opens in a new tab
+      e.preventDefault();
+      frame.src = a.href;
+      [].forEach.call(document.querySelectorAll("a.chk.on"), function (x) { x.classList.remove("on"); });
+      a.classList.add("on");
+      if (now) now.textContent = "Now it shows " + a.dataset.show + ". Press " + a.dataset.op + " 1.";
+    });
+  });
+  function field(k) { return [].find.call(document.querySelectorAll("[data-k]"), function (e) { return e.dataset.k === k; }); }
+  var groups = [].slice.call(document.querySelectorAll(".opts[data-field]"));
+  function paint() {
+    groups.forEach(function (g) {
+      var s = field(g.dataset.field), v = s ? s.value : "";
+      [].forEach.call(g.querySelectorAll("button.opt"), function (b) {
+        var on = !!v && b.dataset.v === v;
+        b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    });
+  }
+  groups.forEach(function (g) {
+    [].forEach.call(g.querySelectorAll("button.opt"), function (b) {
+      b.addEventListener("click", function () {
+        var s = field(g.dataset.field); if (!s) return;
+        if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+        refresh();
+      });
+    });
+  });
+  function mirrors() {
+    [].forEach.call(document.querySelectorAll(".mir[data-mir]"), function (m) {
+      var s = field(m.dataset.mir), v = s ? String(s.value || "").trim() : "";
+      m.textContent = v; m.classList.toggle("full", !!v);
+    });
+  }
+  function current() {
+    var first = null;
+    [].forEach.call(document.querySelectorAll(".card.live"), function (c) {
+      c.classList.remove("current");
+      if (first) return;
+      var empty = [].some.call(c.querySelectorAll("[data-k]"), function (f) { return !String(f.value || "").trim(); });
+      if (empty) first = c;
+    });
+    if (first) first.classList.add("current");
+  }
+  function gate() {
+    [].forEach.call(document.querySelectorAll("a.chk"), function (a) {
+      var c = a.closest(".card"), f = c && c.querySelector("[data-k]");
+      var off = !f || !String(f.value || "").trim();
+      a.classList.toggle("off", off); a.setAttribute("aria-disabled", off ? "true" : "false");
+      if (off) a.setAttribute("tabindex", "-1"); else a.removeAttribute("tabindex");
+    });
+  }
+  function refresh() { paint(); mirrors(); current(); gate(); }
+  document.addEventListener("input", refresh);
+  document.addEventListener("change", refresh);
+  function init() { refresh(); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+  setTimeout(init, 700);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJlX2ExIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSw5OTkifSwgImVfYTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MTAsMDAwIn0sICJlX2EzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzQsMzg2In0sICJlX2E0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiODksOTk5In0sICJlX2E1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTYsMDAwIn0sICJlX2E2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzAsNTA3In0sICJlX2E3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzAwLDA5OSJ9LCAiZV9hOCI6IHsidCI6ICJleGFjdCIsICJhIjogIjEsMTAwIn0sICJlX2IxYzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1OTgifSwgImVfYjFjMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjU5OSJ9LCAiZV9iMWMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjAwIn0sICJlX2IxYzQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MDEifSwgImVfYjFqMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgImVfYjFqMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjIifSwgImVfYjFkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiZV9iMmMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiwwMDIifSwgImVfYjJjMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjIsMDAxIn0sICJlX2IyYzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyLDAwMCJ9LCAiZV9iMmM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMSw5OTkifSwgImVfYjJjNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjEsOTk4In0sICJlX2IyajEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzIn0sICJlX2IyajIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzIn0sICJlX2IyZCI6IHsidCI6ICJleGFjdCIsICJhIjogIjYifSwgImVfYjNjMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQwLDUwMSJ9LCAiZV9iM2MyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDAsNTAwIn0sICJlX2IzYzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MCw0OTkifSwgImVfYjNqMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjIifSwgImVfYjNqMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjIifSwgImVfYjNkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAiZV9iNGMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjAwLDAwMSJ9LCAiZV9iNGMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjAwLDAwMCJ9LCAiZV9iNGMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTk5LDk5OSJ9LCAiZV9iNGM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTk5LDk5OCJ9LCAiZV9iNGM1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTk5LDk5NyJ9LCAiZV9iNGM2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTk5LDk5NiJ9LCAiZV9iNGoxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAiZV9iNGoyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiZV9iNGQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3In19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body></html>

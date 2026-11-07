@@ -6,7 +6,7 @@
 <title>Clara Homework 7 November 2026</title>
 <!--
 Clara, lesson of 7 November 2026: first non-verbal reasoning (odd one out, 10 slides) + Y5 W43 primes and composites (warm-up, cards 01-05, card 05 only 15).
-Online sheet. Publish with Tools/publish_online_hw.py after the gates. Fields: 80.
+Online sheet. Publish with Tools/publish_online_hw.py after the gates. Fields: 52.
 ANSWER POSITIONS (read back after placing):
   NVR odd letters 1-10: c, a, d, e, b, d, a, c, e, b (no run, no alternation, no cycle; each letter twice).
   NVR reasons 1-10: colour order, turn, shaded, mirrored, turn, sides, colour order, turn (fit the hole), in front, turn.
@@ -16,16 +16,16 @@ ANSWER POSITIONS (read back after placing):
     Arrow turn items 2, 5, 10: turn direction or mirrored. Item 3 (shaded): also lines cross (d has radii that meet without crossing). Colour order item 1 (the odd one goes round the other way,
     which is a mirror image): colour order or mirrored. Item 7 (two shades swapped) and item 8 (fit the hole): one answer.
     Tool item 6 (40,002 - 39,989): count up or same difference. Item 4 (52,000 - 19,998): also compensate. Items 3 and 7 (bonds): also known facts.
-  Ladders: composite, prime, prime, composite (39, 67, 47, 21). Pair fields show only for "pair found";
-    the primes' pair fields are unkeyed.
+  Penalty shoot-out (Aahan's 20 Oct mechanic, Dasha 7 Nov): shots 61 69 49 79 91 67 85 39.
+    Keepers GOAL! 3 7 GOAL! 7 GOAL! 5 3 (menu 2, 3, 5, 7, GOAL!: positions 5 2 4 5 4 5 3 2).
+    Verdicts P C C P C P C C (no run of three). Partners 23, 7, 13, 17, 13; a goal's partner box is
+    replaced by «Nobody saves N: it has no partner.», filled «no partner», keyed open. Item 9: 1 is neither.
   Tool buttons in every row: bonds, compensate, count up, known facts, same difference; correct positions 2, 4, 1, 5, 2, 3, 1.
     Tools repeat: compensate x2, bonds x2, known facts, count up, same difference.
-NUMBERS. Avoids deck cards 06-08 (57, 91, 43, 27, 31, 58, 71, 93) and the prime team under 20.
-  Goalkeeper shots 34, 69, 52, 49, 79, 35, 84 with keepers 2, 3, 4, 5, 6, 7, 13.
-    Digit-total traps: 34 and 52 total 7 (7 misses both; 13 DOES save 52); 49 totals 13 (13 misses, 7 saves).
-    49 is the card 04 we-do number, used as a shot because it is the one two-digit number left
-    (besides 77 lesson and 91 card 06) that keeps keeper 7 in the team. Sell 4, 6, 13; goals 79; stay 2, 3, 5, 7.
-  Ladders 39, 67, 47, 21; none is a shot. Model ladder 55 stops at 5; no item stops at 5.
+NUMBERS. Every composite shot has exactly ONE keeper among 2, 3, 5, 7.
+  Digit-total traps from the lesson: 61 (digits 7, keeper 7 misses: «6 plus 1 equals 7, it could save 61»),
+    85 (digits 13: «8 plus 5 equals 13»; keeper 5 saves it by the last digit), 67 (digits 13), 49 and 91 (keeper 7 by the table).
+  Model 95 = 5 x 19 (tries 2, 3, 5 and the partner route 50 + 45); 95 is no item. 85 also has keeper 5, with a different partner.
   NVR model (dots) uses a rule that is not one of the reasons.
   Tool reminder rows differ from all seven items in size and shape.
 -->
@@ -97,46 +97,33 @@ svg.nvr { display:block; width:100%; height:auto; max-width:200px; margin:0 auto
 body select.reason { min-width:280px; }
 .pic-pick > .hw-mark { grid-column:1/-1; }
 
-/* ---------- goalkeepers ---------- */
-.gk-head { display:grid; grid-template-columns:70px 130px 1fr; gap:12px; font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:8px 0 4px; break-after:avoid; }
-.gk-row { display:grid; grid-template-columns:70px 130px 1fr; gap:12px; align-items:center; }
-.gk-row.still { padding:4px 0; }
-.shot { font-size:28px; font-weight:800; font-variant-numeric:tabular-nums; text-align:center; background:var(--mint); border-radius:10px; padding:2px 0; }
-.dt { display:flex; align-items:center; gap:6px; }
-.dt-cap { font-size:13px; color:var(--muted); }
-.dt .given { font-size:22px; color:var(--green); min-width:2em; text-align:center; }
-.keepers { display:flex; flex-wrap:wrap; gap:8px; }
-.kp { min-width:46px; height:46px; padding:0 10px; border-radius:23px; border:2px solid #8db89f; background:#fff; color:var(--ink);
-  font:inherit; font-size:19px; font-weight:700; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; display:inline-flex; align-items:center; justify-content:center; }
-.kp.none { font-size:15px; font-weight:600; border-style:dashed; }
-.kp.on { background:var(--green); border-color:var(--green); color:#fff; }
-div.kp { cursor:default; }
-.gk-row > .hw-mark { grid-column:1/-1; }
-
-/* ---------- ladders ---------- */
-.lad-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 22px; margin-top:8px; }
-.ladder { border:1.5px solid #c6dcd1; border-radius:14px; padding:12px 14px; background:#fff; }
-.ladder.still { background:transparent; border-color:#b7d1c3; max-width:460px; }
-.lad-model { margin-top:0; }
-.lad-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
-.lad-num { font-size:30px; font-weight:800; background:var(--mint); border-radius:14px; padding:0 16px; font-variant-numeric:tabular-nums; }
-.lhead, .lrow { display:grid; grid-template-columns:52px 1fr; gap:10px; align-items:center; }
-.lhead { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding-bottom:2px; }
-.lrow { min-height:52px; border-top:1px solid #e1ece6; padding:4px 0; }
-.try { font-size:22px; font-weight:800; text-align:center; color:var(--green); }
-.lctl { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:18px; }
-.lrow.verdict .vcap { font-size:15px; font-weight:700; color:var(--muted); text-align:center; }
-.x { font-size:20px; font-weight:700; }
-.stopnote { display:none; font-size:16px; color:var(--muted); font-style:italic; }
-.lrow.after-stop { background:#f4f7f5; }
-.lrow.after-stop .lctl { display:none; }
-.lrow.after-stop .stopnote { display:block; }
-.lrow.after-stop .try { color:#a6b9af; text-decoration:line-through; }
-body select.step { min-width:130px; }
+/* ---------- penalty shoot-out ---------- */
+.shots { display:grid; gap:0; }
+.shot-card { display:grid; grid-template-columns:30px 76px minmax(0,1fr); gap:6px 12px; align-items:center; }
+.shot-card > .q-num { grid-row:1/span 3; align-self:start; }
+.shot-card > .ball { grid-row:1/span 3; align-self:start; }
+.shot-card > .srow, .shot-card > .hw-mark, .shot-card > .hw-mark-list { grid-column:3; }
+.ball { font-size:28px; font-weight:800; font-variant-numeric:tabular-nums; text-align:center; background:var(--mint); border-radius:14px; padding:4px 0; }
+.srow { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:19px; }
+.lab { font-size:15px; font-weight:700; color:var(--muted); min-width:4.2em; }
+.eqrow { display:inline-flex; align-items:center; flex-wrap:wrap; gap:0; font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; }
+.eqrow .hw-field { margin-left:4px; }
+.kecho { color:var(--muted); font-weight:600; }
+.kecho.on { color:var(--ink); font-weight:800; }
+.nopart { display:none; font-size:18px; color:var(--muted); font-style:italic; }
+.shot-card.is-goal .eqrow { display:none; }
+.shot-card.is-goal .nopart { display:inline; }
+body select.ksel { min-width:120px; }
+.shot-model { display:grid; grid-template-columns:minmax(0,1fr); gap:10px; }
+.shot-card.still { grid-template-columns:76px minmax(0,1fr); }
+.shot-card.still > .ball { grid-row:1/span 3; }
+.shot-card.still > .srow { grid-column:2; min-height:32px; }
+.tries p { font-size:17px; } .tries p + p { margin-top:3px; }
+.keeper-checks b { color:var(--green); font-size:1.1em; }
 body select.verd { min-width:150px; }
 .one-q { margin-top:10px; }
-.lrow.pairrow.off { display:none; }
-body select.fnd { min-width:210px; }
+.wsent { line-height:2; }
+
 /* tool names: one row per calculation, tap one tool */
 .tool-list { display:grid; }
 .tool-row { display:grid; grid-template-columns:minmax(0,220px) minmax(0,1fr); gap:10px 18px; align-items:center; }
@@ -214,31 +201,19 @@ body .hw-mark.hw-ok { color:var(--green); }
   .model-pick { max-width:900px; } .model-pick svg.nvr { max-width:140px; }
   .reason-row { margin-top:16px; }
   body select.reason { min-width:420px; }
-  /* goalkeepers: shot, digit total and keepers in one row */
-  .gk-head, .gk-row { grid-template-columns:120px 230px 1fr; gap:22px; }
-  .gk-head { font-size:18px; }
-  .shot { font-size:40px; }
-  .dt-cap { font-size:20px; } .dt .given { font-size:32px; }
-  .gk-row .dt-cap { display:none; }
-  .keepers { gap:14px; }
-  .kp { min-width:68px; height:68px; border-radius:34px; font-size:28px; padding:0 14px; }
-  .kp.none { font-size:22px; }
-  /* ladders: two across */
-  .lad-grid { gap:28px 40px; }
-  .ladder { padding:20px 24px; }
-  .ladder.still { max-width:none; }
-  .lad-intro { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; align-items:start; }
-  .lad-intro .lad-model { margin:0; }
-  .lad-num { font-size:44px; }
-  .lhead, .lrow { grid-template-columns:76px 1fr; gap:16px; }
-  .lhead { font-size:16px; }
-  .lrow { min-height:72px; }
-  .try { font-size:30px; }
-  .lctl { font-size:27px; gap:12px; }
-  .lrow.verdict .vcap { font-size:22px; }
-  .x { font-size:30px; }
-  .stopnote { font-size:24px; }
-  body select.step { min-width:190px; } body select.verd { min-width:230px; }
+  /* penalty shoot-out: each shot one row across the width */
+  .shot-card { grid-template-columns:42px 120px minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr); gap:10px 26px; }
+  .shot-card > .q-num, .shot-card > .ball { grid-row:auto; align-self:center; }
+  .shot-card > .srow { grid-column:auto; }
+  .shot-card > .hw-mark, .shot-card > .hw-mark-list { grid-column:1/-1; }
+  .ball { font-size:40px; border-radius:18px; }
+  .srow { font-size:28px; gap:12px; } .lab { font-size:22px; }
+  .eqrow { font-size:30px; } .nopart { font-size:26px; }
+  body select.ksel { min-width:170px; } body select.verd { min-width:230px; }
+  .shot-card.still { grid-template-columns:120px repeat(3,minmax(0,1fr)); }
+  .shot-card.still > .ball { grid-row:auto; }
+  .shot-card.still > .srow { grid-column:auto; }
+  .tries p { font-size:26px; }
   .wsent { font-size:29px; }
   /* tool names */
   .method-row { font-size:28px; gap:20px; padding:16px 0; }
@@ -246,10 +221,8 @@ body .hw-mark.hw-ok { color:var(--green); }
   .match-list { gap:16px 40px; }
   .calc { font-size:30px; }
   .tool-row { grid-template-columns:1fr; gap:10px; }
-  .model .kp { min-width:54px; height:54px; font-size:22px; padding:0 10px; } .model .kp.none { font-size:18px; } .model .keepers { gap:8px; }
   .tool-pick { gap:12px; }
   .tool-opt { font-size:26px; padding:8px 20px; min-height:60px; border-radius:30px; }
-  body select.fnd { min-width:330px; }
   .remember.method-summary { padding:10px 26px; }
   .tp-tile { font-size:27px; padding:10px 20px; min-height:60px; }
   .tp-zone { min-height:76px; }
@@ -268,11 +241,10 @@ body .hw-mark.hw-ok { color:var(--green); }
   .pic-pick { gap:5px; } .pic-opt { padding:3px 2px 2px; border-radius:8px; } .pic-cap { font-size:13px; }
   .model-pick { max-width:none; }
   body select.reason { min-width:0; width:100%; }
-  .gk-head { display:none; }
-  .gk-row { grid-template-columns:64px 1fr; gap:8px 10px; }
-  .gk-row .keepers { grid-column:1/-1; }
-  .kp { min-width:42px; height:42px; font-size:17px; }
-  .lad-grid { grid-template-columns:1fr; }
+  .shot-card { grid-template-columns:26px 62px minmax(0,1fr); gap:6px 8px; }
+  .ball { font-size:24px; }
+  .lab { min-width:0; }
+  .shot-card.still { grid-template-columns:62px minmax(0,1fr); }
   .match-list { grid-template-columns:1fr; }
   .match-row { grid-template-columns:1fr; gap:4px; }
   .tool-row { grid-template-columns:1fr; gap:6px; }
@@ -285,8 +257,6 @@ body .hw-mark.hw-ok { color:var(--green); }
 /* PDF export (hw.js, 800px frame) and paper */
 body.hw-pdf-mode .pic-opt { padding:3px 3px 2px; }
 body.hw-pdf-mode svg.nvr { max-width:120px; }
-body.hw-pdf-mode .gk-head, body.hw-pdf-mode .gk-row { grid-template-columns:64px 110px 1fr; }
-body.hw-pdf-mode .kp { min-width:38px; height:38px; font-size:16px; }
 @media print {
   body { padding:0; font-size:14px; }
   .screen-only, .hw-bar { display:none !important; } .print-only { display:inline !important; }
@@ -300,29 +270,20 @@ body.hw-pdf-mode .kp { min-width:38px; height:38px; font-size:16px; }
   .remember { padding:8px 12px; margin-bottom:8px; } .model { padding:8px 12px; margin:6px 0 8px; }
   .model-pick svg.nvr { max-width:62px; }
   .pic-cap { font-size:11px; }
-  .gk-head, .gk-row { grid-template-columns:60px 110px 1fr; }
-  .shot { font-size:20px; }
-  .kp { min-width:32px; height:32px; font-size:14px; }
-  .kp.none { font-size:11px; }
-  .lad-grid { gap:10px 14px; }
-  .lrow { min-height:36px; } .try { font-size:16px; } .lctl { font-size:14px; } .lad-num { font-size:22px; }
+  .ball { font-size:20px; }
+  .srow, .eqrow { font-size:14px; } .lab { font-size:12px; } .tries p { font-size:13px; }
+  .shot-card { padding:5px 0; }
+  .nopart { display:none !important; } .shot-card .eqrow { display:inline-flex !important; }
   .method-row { font-size:14px; padding:6px 0; }
   .calc { font-size:15px; }
   .tp-zone { min-height:36px; }
   .section + .section { margin-top:18px; }
   .task { break-inside:avoid; page-break-inside:avoid; }
-  .sec-head, .task-label, .role-label, .lead, .task, .gk-head { break-after:avoid; page-break-after:avoid; }
+  .sec-head, .task-label, .role-label, .lead, .task { break-after:avoid; page-break-after:avoid; }
   svg.nvr { max-width:84px; }
   .pic-pick { gap:6px; } .pic-opt { padding:2px 3px 1px; }
   .reason-row { margin-top:4px; }
-  .lad-intro { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:14px; align-items:start; }
-  .lad-intro .lad-model { margin:0; }
-  .ladder.still { max-width:none; }
-  .ladder { padding:6px 10px; }
-  .lrow.pairrow.off { display:grid; }
-  .gk-block { break-inside:avoid; page-break-inside:avoid; }
   .section.tools { break-inside:avoid; page-break-inside:avoid; }
-  .gk-row { padding:4px 0; }
   .tool-opt { font-size:12px; padding:2px 8px; min-height:26px; }
   .tool-row { grid-template-columns:150px 1fr; padding:5px 0; }
 }
@@ -688,9 +649,9 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  body.mint-game:not(.hw-pdf-mode) #sheet .method-row { padding:9px 0; gap:9px; grid-template-columns:1fr 1.3fr 20px 2.6fr; }
 }
 
-/* Clara 7 Nov 2026 screens: odd one out, goalkeepers, ladders, tool names.
+/* Clara 7 Nov 2026 screens: odd one out, penalty shoot-out, tool names.
    Screen only (the PDF export and paper keep clara_1107.css). */
-.mint-game .block-nav{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.mint-game .block-nav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 @media screen {
  body.mint-game:not(.hw-pdf-mode) .exercise-page .q{margin:0 0 12px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .remember{background:#e9f5ee;border-radius:20px;padding:clamp(14px,2.4cqh,30px) clamp(16px,2cqw,30px)}
@@ -709,42 +670,8 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  body.mint-game:not(.hw-pdf-mode) .exercise-page .nq .q-top{align-items:flex-start}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .reason-row{margin-top:clamp(10px,2.4cqh,24px)}
  body.mint-game:not(.hw-pdf-mode) .exercise-page select.reason{min-width:min(460px,100%)}
- /* goalkeepers: shot, digit total, keepers in one row */
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-block{display:grid;gap:12px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-head,
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row{grid-template-columns:clamp(80px,9cqw,130px) clamp(110px,13cqw,190px) minmax(0,1fr);gap:clamp(10px,1.6cqw,26px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-head{font-size:clamp(14px,1.4cqw,19px);padding:0 clamp(14px,2cqw,28px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row.q{padding:clamp(10px,1.8cqh,18px) clamp(14px,2cqw,28px);margin:0;display:grid}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .shot{font-size:clamp(32px,3.6cqw,52px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row .dt-cap{display:none}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row .hw-field.gapn{width:3em}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .keepers{gap:clamp(8px,1cqw,16px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .kp{min-width:clamp(54px,5.4cqw,76px);height:clamp(54px,5.4cqw,76px);border-radius:40px;font-size:clamp(24px,2.5cqw,34px);padding:0 12px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .kp.none{font-size:clamp(19px,1.9cqw,26px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .model .gk-row{font-size:var(--support-size,26px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .model .dt .given{font-size:clamp(28px,3cqw,40px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .model .kp{min-width:clamp(46px,4.4cqw,64px);height:clamp(46px,4.4cqw,64px);font-size:clamp(20px,2cqw,28px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-block .task.gapt{margin:4px 0 0}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .q .arow{margin-left:clamp(0px,5cqw,66px)}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .np{width:min(14em,100%)}
- /* ladders: two side by side */
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.4cqw,40px);margin-top:4px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder{padding:clamp(10px,1.6cqh,20px) clamp(14px,2cqw,26px);border-radius:22px;border-width:2px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder.q{margin:0}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-num{font-size:clamp(34px,3.6cqw,52px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow{grid-template-columns:clamp(52px,5cqw,80px) minmax(0,1fr);gap:clamp(8px,1.2cqw,18px);min-height:clamp(52px,8.5cqh,76px);padding:3px 0}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .try{font-size:clamp(24px,2.6cqw,34px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lctl{font-size:clamp(22px,2.2cqw,30px);gap:10px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow .dt-cap{font-size:clamp(17px,1.7cqw,22px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow.verdict .vcap{font-size:clamp(17px,1.7cqw,22px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .stopnote{font-size:clamp(19px,1.9cqw,26px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow .hw-field{min-height:1.6em!important;padding:3px 8px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow .hw-field.gapn{width:2.8em}
- body.mint-game:not(.hw-pdf-mode) .exercise-page select.step{min-width:7.2em}
- body.mint-game:not(.hw-pdf-mode) .exercise-page select.fnd{min-width:0;max-width:100%}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-model .ladder.still{max-width:760px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-model .lrow{min-height:clamp(40px,6.6cqh,62px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .one-q .q-top{align-items:center}
  /* tool names: calculation left, the five tools right */
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-list{display:grid;gap:12px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:10px clamp(14px,2cqw,30px);align-items:center;padding:clamp(10px,1.8cqh,18px) clamp(14px,2cqw,28px);margin:0}
@@ -758,8 +685,6 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  body.mint-game:not(.hw-pdf-mode) .exercise-page{--instruction-size:clamp(36px,3.2cqw,46px);--support-size:clamp(28px,2.5cqw,36px)}
  body.mint-game:not(.hw-pdf-mode) .exercise-page :is(input.hw-field,select[data-k]){font-size:clamp(26px,2.3cqw,32px)!important}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-opt{font-size:clamp(26px,2cqw,30px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lctl,
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow.verdict .vcap{font-size:clamp(26px,2.2cqw,30px)}
 }
 @media screen and (min-width:900px) and (max-width:1500px) {
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{grid-template-columns:1fr}
@@ -773,17 +698,6 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  body.mint-game:not(.hw-pdf-mode) .exercise-page .q-top{gap:8px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .nq .q-num{display:none}
  body.mint-game:not(.hw-pdf-mode) .exercise-page select.reason{min-width:0;width:100%}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-head{display:none}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row{grid-template-columns:64px 1fr}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row .dt-cap{display:inline;font-size:15px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row .keepers{grid-column:1/-1}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .shot{font-size:30px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .kp{min-width:44px;height:44px;font-size:19px;padding:0 8px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .kp.none{font-size:15px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-grid{grid-template-columns:1fr}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow{grid-template-columns:44px 1fr;min-height:48px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .try{font-size:22px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lctl{font-size:18px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{grid-template-columns:1fr}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .calc{font-size:24px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-opt{font-size:16px;min-height:42px;padding:4px 11px}
@@ -792,18 +706,6 @@ body.mint-game{height:100dvh;max-width:1440px;overflow:hidden;padding:12px 18px;
  body.mint-game:not(.hw-pdf-mode) .exercise-page .q .arow{margin-left:0}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .method-row{grid-template-columns:1fr 24px 1.6fr;font-size:16px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .method-row>b{grid-column:1/-1}
-}
-/* Worked example row has no column heads: keep its "digits" caption. */
-body.mint-game:not(.hw-pdf-mode) .exercise-page .model .gk-row .dt-cap{display:inline;font-size:var(--support-size,22px);color:#6e6252}
-/* Ladders on a wide screen: number | the tries going down | the result, all in view. */
-@media screen and (min-width:601px) {
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-grid{grid-template-columns:1fr}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder{display:grid;grid-template-columns:auto minmax(0,1.15fr) minmax(0,1fr);grid-auto-flow:row dense;column-gap:clamp(16px,2.6cqw,40px);align-items:stretch}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder .lad-top{grid-column:1;grid-row:1/span 5;flex-direction:column;justify-content:flex-start;margin:0}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder .lrow:not(.verdict){grid-column:2}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder .lrow.verdict{grid-column:3;grid-template-columns:clamp(70px,7cqw,110px) minmax(0,1fr)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder .lrow.verdict:first-of-type{border-top:0}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .ladder>.hw-mark{grid-column:1/-1}
 }
 /* Short laptop screens (1280 x 720): a slimmer frame so each exercise fits without scrolling. */
 @media screen and (min-width:801px) and (max-height:800px) {
@@ -826,11 +728,8 @@ body.mint-game:not(.hw-pdf-mode) .exercise-page .model .gk-row .dt-cap{display:i
  body.mint-game:not(.hw-pdf-mode) .exercise-page :is(.lead,.exercise-hint){margin-bottom:10px!important}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .task .small{font-size:24px!important;margin-bottom:8px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .q{padding:12px 16px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-row.q,
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{padding:8px 16px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .gk-block,
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-list{gap:8px}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .lrow{min-height:50px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-opt{min-height:46px;padding:3px 14px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .calc{font-size:30px}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{gap:4px 20px}
@@ -840,19 +739,6 @@ body.mint-game:not(.hw-pdf-mode) .exercise-page .model .gk-row .dt-cap{display:i
  body.mint-game:not(.hw-pdf-mode) .exercise-page svg.nvr{max-height:min(34cqh,170px)}
  body.mint-game:not(.hw-pdf-mode) .exercise-page .model-pick svg.nvr{max-height:min(30cqh,150px)}
 }
-@media screen and (min-width:900px) {
- body.mint-game:not(.hw-pdf-mode) .exercise-page .kp{font-size:clamp(26px,2.5cqw,34px)}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .kp.none{font-size:clamp(20px,1.9cqw,26px)}
-}
-body.mint-game:not(.hw-pdf-mode) .exercise-page .lad-model .ladder.still{max-width:none}
-/* A cloned column head is a game-ui element: keep its grid. */
-.mint-game .exercise-page .gk-head.game-ui{display:grid}
-/* The whole team: the two questions side by side when there is room. */
-body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs{display:grid;gap:14px}
-@media screen and (max-width:1499px) and (min-width:801px) and (max-height:800px){body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs{gap:8px}body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .q{padding:8px 16px}body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .arow{margin-top:6px}}
-@media screen and (min-width:1500px){body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .q{margin:0}
- body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .arow,body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs .arow-note{margin-left:clamp(0px,4cqw,62px)}}
 /* Tool names on a wide screen: the calculation takes its own width, the tools the rest. */
 @media screen and (min-width:1501px){body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{grid-template-columns:max-content minmax(0,1fr)}}
 @media screen and (min-width:801px) and (min-height:901px){body.mint-game:not(.hw-pdf-mode) .exercise-page svg.nvr{max-height:min(34cqh,320px)}}
@@ -864,6 +750,61 @@ body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs{display:grid;gap:14px}
  body.mint-game:not(.hw-pdf-mode) #sheet .exercise-page .method-row .short-route{white-space:normal;flex-wrap:wrap}
 }
 @media screen and (min-width:1501px){body.mint-game:not(.hw-pdf-mode) .exercise-page .tool-row.q{grid-template-columns:clamp(300px,25cqw,430px) minmax(0,1fr)}}
+
+/* Penalty shoot-out (Aahan's 20 Oct mechanic): one card per shot, laid out across the width:
+   number badge | the shot | Keeper [menu] | N = keeper x [partner] | N is [menu]. */
+@media screen {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shots{display:grid;gap:clamp(8px,1.6cqh,14px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q{margin:0;padding:clamp(10px,1.8cqh,18px) clamp(14px,2cqw,28px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ball{font-size:clamp(32px,3.6cqw,52px);border-radius:18px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card .srow{font-size:clamp(22px,2.2cqw,30px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card .lab{font-size:clamp(17px,1.7cqw,24px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .eqrow{font-size:clamp(24px,2.4cqw,34px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .nopart{font-size:clamp(19px,1.9cqw,26px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .eqrow .hw-field.gapn{width:2.8em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page select.ksel{min-width:6.2em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page select.verd{min-width:7.6em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-model{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(14px,2.4cqw,40px);align-items:start}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.still{grid-template-columns:auto minmax(0,1fr);gap:clamp(6px,1.2cqh,12px) clamp(14px,2cqw,26px);background:#fff;border:1.5px solid #c6dcd1;border-radius:18px;padding:clamp(10px,1.6cqh,18px) clamp(12px,1.6cqw,22px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.still>.ball{grid-row:1/span 3}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.still>.srow{grid-column:2}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tries p{font-size:var(--support-size,24px);line-height:1.4}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tries p+p{margin-top:.35em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .keeper-checks p+p{margin-top:.3em}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .one-q .q-top{align-items:center}
+}
+@media screen and (min-width:900px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q{grid-template-columns:clamp(36px,3.2cqw,46px) clamp(96px,10cqw,140px) minmax(0,.9fr) minmax(0,1.1fr) minmax(0,1fr);gap:8px clamp(14px,2cqw,30px)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card .srow{font-size:clamp(26px,2.2cqw,32px)}
+}
+/* 900-1279: the shot and its number on the left, the three steps stacked on the right. */
+@media screen and (min-width:601px) and (max-width:1279px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q{grid-template-columns:clamp(30px,3.2cqw,42px) clamp(80px,10cqw,120px) minmax(0,1fr)}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q>.q-num,
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q>.ball{grid-row:1/span 3;align-self:start}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q>.srow{grid-column:3}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-model{grid-template-columns:1fr}
+}
+@media screen and (min-width:801px) and (max-height:800px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q{padding:4px 16px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card .srow{row-gap:0}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shots{gap:6px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .keeper-checks p{font-size:24px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tries p{font-size:24px}
+}
+@media screen and (max-width:600px) {
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q{grid-template-columns:28px 64px minmax(0,1fr);padding:10px 12px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q>.q-num,
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q>.ball{grid-row:1/span 3;align-self:start}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card.q>.srow{grid-column:3}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .ball{font-size:28px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card .srow{font-size:19px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .eqrow{font-size:21px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .nopart{font-size:17px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-model{grid-template-columns:1fr}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .tries p{font-size:17px}
+ body.mint-game:not(.hw-pdf-mode) .exercise-page .shot-card .lab{min-width:0;font-size:15px}
+}
 </style>
 </head>
 <body data-student="Clara" data-sheet="Maths 2026-11-07" data-sheet-id="clara-2026-11-07-maths">
@@ -890,55 +831,37 @@ body.mint-game:not(.hw-pdf-mode) .exercise-page .team-qs{display:grid;gap:14px}
 </div>
 
 
-<div class="section maths">
-<div class="sec-head"><span class="subj">Maths</span><span class="note">Goalkeeper trials</span></div>
+<div class="section maths shootout">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Penalty shoot-out</span></div>
 <div class="task">
 <div class="task-label">Remember</div>
-<div class="remember"><p>A keeper saves the shots in his times&nbsp;table.</p>
-<p>Keeper 3: add the digits. Keepers 7 and 13: use their times&nbsp;tables.</p></div>
-<div class="model"><p class="ex-title">Worked example</p>
-<div class="gk-row still"><span class="shot">25</span><span class="dt"><span class="dt-cap">digits</span><span class="given">7</span></span><div class="keepers"><div class="kp" data-v="2" aria-label="Keeper 2">2</div><div class="kp" data-v="3" aria-label="Keeper 3">3</div><div class="kp" data-v="4" aria-label="Keeper 4">4</div><div class="kp on" data-v="5" aria-label="Keeper 5">5</div><div class="kp" data-v="6" aria-label="Keeper 6">6</div><div class="kp" data-v="7" aria-label="Keeper 7">7</div><div class="kp" data-v="13" aria-label="Keeper 13">13</div><div class="kp none" data-v="none" aria-label="No keeper saves it">no save</div></div></div>
-<p class="model-say">7 is not in the 3 times table, so 3 misses. 7&nbsp;×&nbsp;3&nbsp;=&nbsp;21, 7&nbsp;×&nbsp;4&nbsp;=&nbsp;28, so 7 misses too. Only 5&nbsp;saves.</p></div>
-<div class="role-label">Your turn</div>
-<p class="lead"><span class="screen-only">Type the digit total. Then tap every keeper who saves the&nbsp;shot.</span><span class="print-only">Write the digit total. Then circle every keeper who saves the&nbsp;shot.</span></p>
+<div class="remember keeper-checks">
+<p>Keepers dive smallest first: 2, then 3, then 5, then 7. Stop at the first&nbsp;save.</p>
+<p><b>2</b>: is the number&nbsp;even?</p>
+<p><b>3</b>: add the digits. Is the total in the 3 times table? Add the digits only for keeper&nbsp;3.</p>
+<p><b>5</b>: does it end in 0 or&nbsp;5?</p>
+<p><b>7</b>: is it in the 7 times&nbsp;table?</p>
+<p>Nobody saves it? GOAL! A prime has only one pair: 1&nbsp;×&nbsp;itself.</p>
 </div>
-<div class="gk-block"><div class="gk-head"><span>Shot</span><span>Digit total</span><span>Keepers</span></div>
-<div class="q gk-row" data-field="gs1"><span class="shot">34</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt1" data-label="G1. Shot 34: digit total" aria-label="G1. Shot 34: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs1"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs1" data-label="G1. Shot 34: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs2"><span class="shot">69</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt2" data-label="G2. Shot 69: digit total" aria-label="G2. Shot 69: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs2"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs2" data-label="G2. Shot 69: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs3"><span class="shot">52</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt3" data-label="G3. Shot 52: digit total" aria-label="G3. Shot 52: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs3"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs3" data-label="G3. Shot 52: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs4"><span class="shot">49</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt4" data-label="G4. Shot 49: digit total" aria-label="G4. Shot 49: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs4"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs4" data-label="G4. Shot 49: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs5"><span class="shot">79</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt5" data-label="G5. Shot 79: digit total" aria-label="G5. Shot 79: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs5"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs5" data-label="G5. Shot 79: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs6"><span class="shot">35</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt6" data-label="G6. Shot 35: digit total" aria-label="G6. Shot 35: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs6"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs6" data-label="G6. Shot 35: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs7"><span class="shot">84</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt7" data-label="G7. Shot 84: digit total" aria-label="G7. Shot 84: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs7"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs7" data-label="G7. Shot 84: keepers who save it" tabindex="-1" class="hw-field"></div></div>
-<div class="task gapt"><p class="lead">Answer about the whole&nbsp;team.</p></div>
-<div class="q"><div class="q-top"><div class="q-num">1</div><p class="prompt">Which shots are goals? No keeper saves&nbsp;them.</p></div>
-<div class="arow"><input class="hw-field np" data-k="g_goal" data-label="G9. Shots that are goals" aria-label="G9. Shots that are goals" autocomplete="off" inputmode="text" spellcheck="false"></div></div>
-<div class="q"><div class="q-top"><div class="q-num">2</div><p class="prompt">Sell a keeper if a smaller keeper saved all his shots too. Which keepers do you&nbsp;sell?</p></div>
-<div class="arow"><input class="hw-field np" data-k="g_sell" data-label="G10. Keepers to sell" aria-label="G10. Keepers to sell" autocomplete="off" inputmode="text" spellcheck="false"></div>
-<p class="small arow-note">Put a comma between&nbsp;numbers.</p></div>
-</div></div>
-
-
-<div class="section maths">
-<div class="sec-head"><span class="subj">Maths</span><span class="note">Prime test</span></div>
-<div class="task">
-<div class="lad-intro"><div><div class="task-label">Remember</div>
-<div class="remember"><p>A prime has exactly two factors: 1&nbsp;and&nbsp;itself.</p>
-<p>A prime has only one pair: 1&nbsp;×&nbsp;itself.</p>
-<p>Try the keepers 2, 3, 5 and 7. Stop the moment one&nbsp;saves.</p></div></div>
-<div class="model lad-model"><p class="ex-title">Worked example</p>
-<div class="ladder still"><div class="lad-top"><div class="lad-num">55</div></div>
-
-<div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;55</span></span></div>
-<div class="lrow"><span class="try">2</span><span class="lctl">misses: 55 is odd</span></div>
-<div class="lrow"><span class="try">3</span><span class="lctl">digits 5&nbsp;+&nbsp;5&nbsp;=&nbsp;10: misses</span></div>
-<div class="lrow"><span class="try">5</span><span class="lctl"><b>saves: 5&nbsp;×&nbsp;11&nbsp;=&nbsp;55</b></span></div>
-<div class="lrow after-stop"><span class="try">7</span><span class="stopnote">Stop. No need to&nbsp;try.</span></div>
-<div class="lrow verdict"><span class="vcap">Result</span><span class="lctl"><b>pair found</b></span></div>
-<div class="lrow verdict"><span class="vcap">Pair</span><span class="lctl"><b>5&nbsp;×&nbsp;11</b></span></div>
-<div class="lrow verdict"><span class="vcap">55 is</span><span class="lctl"><b>composite</b></span></div>
+<div class="model"><p class="ex-title">Worked example</p>
+<div class="shot-model">
+<div class="shot-card still"><div class="ball">95</div>
+<div class="srow keep"><span class="lab">Keeper</span><b>5</b></div>
+<div class="srow eqcell"><span class="eqrow">95&nbsp;=&nbsp;<b>5</b>&nbsp;×&nbsp;<b>19</b></span></div>
+<div class="srow vrd"><span class="lab">95 is</span><b>composite</b></div></div>
+<div class="tries">
+<p>2? 95 is odd: no&nbsp;save.</p>
+<p>3? 9&nbsp;+&nbsp;5&nbsp;=&nbsp;14, not in the 3 times table: no&nbsp;save.</p>
+<p>5? 95 ends in 5: <b>saved!</b> Stop&nbsp;here.</p>
+<p>Partner? 95&nbsp;=&nbsp;50&nbsp;+&nbsp;45. 50&nbsp;÷&nbsp;5&nbsp;=&nbsp;10 and 45&nbsp;÷&nbsp;5&nbsp;=&nbsp;9, so the partner is 10&nbsp;+&nbsp;9&nbsp;=&nbsp;<b>19</b>.</p>
 </div></div></div>
 <div class="role-label">Your turn</div>
-<p class="lead"><span class="screen-only">Test each number. Choose misses or saves, and stop when a keeper&nbsp;saves.</span><span class="print-only">Test each number. Circle misses or saves, and stop when a keeper&nbsp;saves.</span></p>
-<p class="small">Then choose pair found or no keeper saves it. Type the pair only if you found&nbsp;one.</p>
+<p class="lead"><span class="screen-only">Choose the keeper who saves each shot, type his partner, then choose prime or&nbsp;composite.</span><span class="print-only">Circle the keeper who saves each shot, write his partner, then circle prime or&nbsp;composite.</span></p>
+<p class="small"><span class="screen-only">Nobody saves it? Choose GOAL! Then there is no partner to look&nbsp;for.</span><span class="print-only">Nobody saves it? Circle GOAL! and leave the partner&nbsp;empty.</span></p>
 </div>
-<div class="lad-grid"><div class="q ladder" data-n="39"><div class="lad-top"><div class="q-num">1</div><div class="lad-num">39</div></div><div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;39</span></span></div><div class="lrow" data-step="2"><span class="try">2</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l1_2" data-label="L1. 39: keeper 2" aria-label="L1. 39: keeper 2"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="3"><span class="try">3</span><span class="lctl"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="l1_3t" data-label="L1. 39: digit total" aria-label="L1. 39: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l1_3" data-label="L1. 39: keeper 3" aria-label="L1. 39: keeper 3"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="5"><span class="try">5</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l1_5" data-label="L1. 39: keeper 5" aria-label="L1. 39: keeper 5"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="7"><span class="try">7</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l1_7" data-label="L1. 39: keeper 7" aria-label="L1. 39: keeper 7"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow verdict found"><span class="vcap">Result</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field fnd" data-k="l1_f" data-label="L1. 39: pair found?" aria-label="L1. 39: pair found?"><option value="">Choose</option><option value="pair found">pair found</option><option value="no keeper saves it">no keeper saves it</option></select><span class="circle-opt">pair found / no keeper saves it</span></span></span></div><div class="lrow verdict pairrow"><span class="vcap">Pair</span><span class="lctl"><input class="hw-field nb num gapn" data-k="l1_pa" data-label="L1. 39: pair, first number" aria-label="L1. 39: pair, first number" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="x">×</span><input class="hw-field nb num gapn" data-k="l1_pb" data-label="L1. 39: pair, second number" aria-label="L1. 39: pair, second number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="lrow verdict"><span class="vcap">39 is</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="l1_v" data-label="L1. 39: prime or composite" aria-label="L1. 39: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></span></div></div><div class="q ladder" data-n="67"><div class="lad-top"><div class="q-num">2</div><div class="lad-num">67</div></div><div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;67</span></span></div><div class="lrow" data-step="2"><span class="try">2</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l2_2" data-label="L2. 67: keeper 2" aria-label="L2. 67: keeper 2"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="3"><span class="try">3</span><span class="lctl"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="l2_3t" data-label="L2. 67: digit total" aria-label="L2. 67: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l2_3" data-label="L2. 67: keeper 3" aria-label="L2. 67: keeper 3"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="5"><span class="try">5</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l2_5" data-label="L2. 67: keeper 5" aria-label="L2. 67: keeper 5"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="7"><span class="try">7</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l2_7" data-label="L2. 67: keeper 7" aria-label="L2. 67: keeper 7"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow verdict found"><span class="vcap">Result</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field fnd" data-k="l2_f" data-label="L2. 67: pair found?" aria-label="L2. 67: pair found?"><option value="">Choose</option><option value="pair found">pair found</option><option value="no keeper saves it">no keeper saves it</option></select><span class="circle-opt">pair found / no keeper saves it</span></span></span></div><div class="lrow verdict pairrow"><span class="vcap">Pair</span><span class="lctl"><input class="hw-field nb num gapn" data-k="l2_pa" data-label="L2. 67: pair, first number" aria-label="L2. 67: pair, first number" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="x">×</span><input class="hw-field nb num gapn" data-k="l2_pb" data-label="L2. 67: pair, second number" aria-label="L2. 67: pair, second number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="lrow verdict"><span class="vcap">67 is</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="l2_v" data-label="L2. 67: prime or composite" aria-label="L2. 67: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></span></div></div><div class="q ladder" data-n="47"><div class="lad-top"><div class="q-num">3</div><div class="lad-num">47</div></div><div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;47</span></span></div><div class="lrow" data-step="2"><span class="try">2</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l3_2" data-label="L3. 47: keeper 2" aria-label="L3. 47: keeper 2"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="3"><span class="try">3</span><span class="lctl"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="l3_3t" data-label="L3. 47: digit total" aria-label="L3. 47: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l3_3" data-label="L3. 47: keeper 3" aria-label="L3. 47: keeper 3"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="5"><span class="try">5</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l3_5" data-label="L3. 47: keeper 5" aria-label="L3. 47: keeper 5"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="7"><span class="try">7</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l3_7" data-label="L3. 47: keeper 7" aria-label="L3. 47: keeper 7"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow verdict found"><span class="vcap">Result</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field fnd" data-k="l3_f" data-label="L3. 47: pair found?" aria-label="L3. 47: pair found?"><option value="">Choose</option><option value="pair found">pair found</option><option value="no keeper saves it">no keeper saves it</option></select><span class="circle-opt">pair found / no keeper saves it</span></span></span></div><div class="lrow verdict pairrow"><span class="vcap">Pair</span><span class="lctl"><input class="hw-field nb num gapn" data-k="l3_pa" data-label="L3. 47: pair, first number" aria-label="L3. 47: pair, first number" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="x">×</span><input class="hw-field nb num gapn" data-k="l3_pb" data-label="L3. 47: pair, second number" aria-label="L3. 47: pair, second number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="lrow verdict"><span class="vcap">47 is</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="l3_v" data-label="L3. 47: prime or composite" aria-label="L3. 47: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></span></div></div><div class="q ladder" data-n="21"><div class="lad-top"><div class="q-num">4</div><div class="lad-num">21</div></div><div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;21</span></span></div><div class="lrow" data-step="2"><span class="try">2</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l4_2" data-label="L4. 21: keeper 2" aria-label="L4. 21: keeper 2"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="3"><span class="try">3</span><span class="lctl"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="l4_3t" data-label="L4. 21: digit total" aria-label="L4. 21: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l4_3" data-label="L4. 21: keeper 3" aria-label="L4. 21: keeper 3"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="5"><span class="try">5</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l4_5" data-label="L4. 21: keeper 5" aria-label="L4. 21: keeper 5"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="7"><span class="try">7</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l4_7" data-label="L4. 21: keeper 7" aria-label="L4. 21: keeper 7"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow verdict found"><span class="vcap">Result</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field fnd" data-k="l4_f" data-label="L4. 21: pair found?" aria-label="L4. 21: pair found?"><option value="">Choose</option><option value="pair found">pair found</option><option value="no keeper saves it">no keeper saves it</option></select><span class="circle-opt">pair found / no keeper saves it</span></span></span></div><div class="lrow verdict pairrow"><span class="vcap">Pair</span><span class="lctl"><input class="hw-field nb num gapn" data-k="l4_pa" data-label="L4. 21: pair, first number" aria-label="L4. 21: pair, first number" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="x">×</span><input class="hw-field nb num gapn" data-k="l4_pb" data-label="L4. 21: pair, second number" aria-label="L4. 21: pair, second number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="lrow verdict"><span class="vcap">21 is</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="l4_v" data-label="L4. 21: prime or composite" aria-label="L4. 21: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></span></div></div></div>
+<div class="shots"><div class="q shot-card" data-n="61"><div class="q-num">1</div><div class="ball">61</div><div class="srow keep"><span class="lab">Keeper</span><span class="choice-wrap is-empty"><select class="hw-field ksel" data-k="k1" data-label="S1. Shot 61: keeper" aria-label="S1. Shot 61: keeper"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="circle-opt">2 / 3 / 5 / 7 / GOAL!</span></span></div><div class="srow eqcell"><span class="eqrow">61&nbsp;=&nbsp;<span class="kecho">keeper</span>&nbsp;×&nbsp;<input class="hw-field nb num gapn" data-k="p1" data-label="S1. Shot 61: partner" aria-label="S1. Shot 61: partner" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="nopart">Nobody saves 61: it has no&nbsp;partner.</span></div><div class="srow vrd"><span class="lab">61 is</span><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="v1" data-label="S1. Shot 61: prime or composite" aria-label="S1. Shot 61: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></div></div><div class="q shot-card" data-n="69"><div class="q-num">2</div><div class="ball">69</div><div class="srow keep"><span class="lab">Keeper</span><span class="choice-wrap is-empty"><select class="hw-field ksel" data-k="k2" data-label="S2. Shot 69: keeper" aria-label="S2. Shot 69: keeper"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="circle-opt">2 / 3 / 5 / 7 / GOAL!</span></span></div><div class="srow eqcell"><span class="eqrow">69&nbsp;=&nbsp;<span class="kecho">keeper</span>&nbsp;×&nbsp;<input class="hw-field nb num gapn" data-k="p2" data-label="S2. Shot 69: partner" aria-label="S2. Shot 69: partner" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="nopart">Nobody saves 69: it has no&nbsp;partner.</span></div><div class="srow vrd"><span class="lab">69 is</span><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="v2" data-label="S2. Shot 69: prime or composite" aria-label="S2. Shot 69: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></div></div><div class="q shot-card" data-n="49"><div class="q-num">3</div><div class="ball">49</div><div class="srow keep"><span class="lab">Keeper</span><span class="choice-wrap is-empty"><select class="hw-field ksel" data-k="k3" data-label="S3. Shot 49: keeper" aria-label="S3. Shot 49: keeper"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="circle-opt">2 / 3 / 5 / 7 / GOAL!</span></span></div><div class="srow eqcell"><span class="eqrow">49&nbsp;=&nbsp;<span class="kecho">keeper</span>&nbsp;×&nbsp;<input class="hw-field nb num gapn" data-k="p3" data-label="S3. Shot 49: partner" aria-label="S3. Shot 49: partner" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="nopart">Nobody saves 49: it has no&nbsp;partner.</span></div><div class="srow vrd"><span class="lab">49 is</span><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="v3" data-label="S3. Shot 49: prime or composite" aria-label="S3. Shot 49: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></div></div><div class="q shot-card" data-n="79"><div class="q-num">4</div><div class="ball">79</div><div class="srow keep"><span class="lab">Keeper</span><span class="choice-wrap is-empty"><select class="hw-field ksel" data-k="k4" data-label="S4. Shot 79: keeper" aria-label="S4. Shot 79: keeper"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="circle-opt">2 / 3 / 5 / 7 / GOAL!</span></span></div><div class="srow eqcell"><span class="eqrow">79&nbsp;=&nbsp;<span class="kecho">keeper</span>&nbsp;×&nbsp;<input class="hw-field nb num gapn" data-k="p4" data-label="S4. Shot 79: partner" aria-label="S4. Shot 79: partner" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="nopart">Nobody saves 79: it has no&nbsp;partner.</span></div><div class="srow vrd"><span class="lab">79 is</span><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="v4" data-label="S4. Shot 79: prime or composite" aria-label="S4. Shot 79: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></div></div><div class="q shot-card" data-n="91"><div class="q-num">5</div><div class="ball">91</div><div class="srow keep"><span class="lab">Keeper</span><span class="choice-wrap is-empty"><select class="hw-field ksel" data-k="k5" data-label="S5. Shot 91: keeper" aria-label="S5. Shot 91: keeper"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="circle-opt">2 / 3 / 5 / 7 / GOAL!</span></span></div><div class="srow eqcell"><span class="eqrow">91&nbsp;=&nbsp;<span class="kecho">keeper</span>&nbsp;×&nbsp;<input class="hw-field nb num gapn" data-k="p5" data-label="S5. Shot 91: partner" aria-label="S5. Shot 91: partner" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="nopart">Nobody saves 91: it has no&nbsp;partner.</span></div><div class="srow vrd"><span class="lab">91 is</span><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="v5" data-label="S5. Shot 91: prime or composite" aria-label="S5. Shot 91: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></div></div><div class="q shot-card" data-n="67"><div class="q-num">6</div><div class="ball">67</div><div class="srow keep"><span class="lab">Keeper</span><span class="choice-wrap is-empty"><select class="hw-field ksel" data-k="k6" data-label="S6. Shot 67: keeper" aria-label="S6. Shot 67: keeper"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="circle-opt">2 / 3 / 5 / 7 / GOAL!</span></span></div><div class="srow eqcell"><span class="eqrow">67&nbsp;=&nbsp;<span class="kecho">keeper</span>&nbsp;×&nbsp;<input class="hw-field nb num gapn" data-k="p6" data-label="S6. Shot 67: partner" aria-label="S6. Shot 67: partner" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="nopart">Nobody saves 67: it has no&nbsp;partner.</span></div><div class="srow vrd"><span class="lab">67 is</span><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="v6" data-label="S6. Shot 67: prime or composite" aria-label="S6. Shot 67: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></div></div><div class="q shot-card" data-n="85"><div class="q-num">7</div><div class="ball">85</div><div class="srow keep"><span class="lab">Keeper</span><span class="choice-wrap is-empty"><select class="hw-field ksel" data-k="k7" data-label="S7. Shot 85: keeper" aria-label="S7. Shot 85: keeper"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="circle-opt">2 / 3 / 5 / 7 / GOAL!</span></span></div><div class="srow eqcell"><span class="eqrow">85&nbsp;=&nbsp;<span class="kecho">keeper</span>&nbsp;×&nbsp;<input class="hw-field nb num gapn" data-k="p7" data-label="S7. Shot 85: partner" aria-label="S7. Shot 85: partner" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="nopart">Nobody saves 85: it has no&nbsp;partner.</span></div><div class="srow vrd"><span class="lab">85 is</span><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="v7" data-label="S7. Shot 85: prime or composite" aria-label="S7. Shot 85: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></div></div><div class="q shot-card" data-n="39"><div class="q-num">8</div><div class="ball">39</div><div class="srow keep"><span class="lab">Keeper</span><span class="choice-wrap is-empty"><select class="hw-field ksel" data-k="k8" data-label="S8. Shot 39: keeper" aria-label="S8. Shot 39: keeper"><option value="">Choose</option><option value="2">2</option><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="GOAL!">GOAL!</option></select><span class="circle-opt">2 / 3 / 5 / 7 / GOAL!</span></span></div><div class="srow eqcell"><span class="eqrow">39&nbsp;=&nbsp;<span class="kecho">keeper</span>&nbsp;×&nbsp;<input class="hw-field nb num gapn" data-k="p8" data-label="S8. Shot 39: partner" aria-label="S8. Shot 39: partner" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="nopart">Nobody saves 39: it has no&nbsp;partner.</span></div><div class="srow vrd"><span class="lab">39 is</span><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="v8" data-label="S8. Shot 39: prime or composite" aria-label="S8. Shot 39: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></div></div></div>
 <div class="task gapt"><p class="lead">Choose the word that makes the sentence&nbsp;true.</p></div>
-<div class="q one-q"><div class="q-top"><div class="q-num">5</div><p class="prompt wsent">1 is <span class="choice-wrap is-empty"><select class="hw-field verd" data-k="one" data-label="L5. 1 is prime, composite or neither" aria-label="L5. 1 is prime, composite or neither"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option><option value="neither">neither</option></select><span class="circle-opt">prime / composite / neither</span></span><span class="nw">.</span></p></div></div>
+<div class="q one-q"><div class="q-top"><div class="q-num">9</div><p class="prompt wsent">1 is <span class="choice-wrap is-empty"><select class="hw-field verd" data-k="one" data-label="S9. 1 is prime, composite or neither" aria-label="S9. 1 is prime, composite or neither"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option><option value="neither">neither</option></select><span class="circle-opt">prime / composite / neither</span></span><span class="nw">.</span></p></div></div>
 </div>
 
 
@@ -1012,62 +935,25 @@ function claraSet(s, v) {
   if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
 })();
 
-/* Goalkeepers: tap every keeper who saves the shot (tap again to take it off).
-   "no save" clears the keepers; a keeper clears "no save". Stored as "2, 4, 13". */
+/* Penalty shoot-out (Aahan's 20 Oct mechanic): the keeper she chose is echoed in the equation.
+   On GOAL! the partner row goes, the line «Nobody saves N: it has no partner.» shows, and the hidden
+   partner box is filled «no partner» (keyed open). Choosing a keeper again empties it.
+   The echo shows only what she chose, never whether it is right. */
 (function () {
   function init() {
-    document.querySelectorAll('.keepers[data-store]').forEach(function (g) {
-      var s = claraStore(g.dataset.store); if (!s) return;
-      var btns = [].slice.call(g.querySelectorAll('.kp'));
-      function read() { return String(s.value || '').split(/[\s,]+/).filter(Boolean); }
-      function paint() { var on = read(); btns.forEach(function (b) { var x = on.indexOf(b.dataset.v) >= 0; b.classList.toggle('on', x); b.setAttribute('aria-pressed', x ? 'true' : 'false'); }); }
-      paint(); s.addEventListener('change', paint);
-      btns.forEach(function (b) {
-        b.addEventListener('click', function () {
-          var v = b.dataset.v, on = read();
-          if (v === 'none') on = on.indexOf('none') >= 0 ? [] : ['none'];
-          else {
-            on = on.filter(function (x) { return x !== 'none'; });
-            on = on.indexOf(v) >= 0 ? on.filter(function (x) { return x !== v; }) : on.concat([v]);
-            on.sort(function (p, q) { return +p - +q; });
-          }
-          claraSet(s, on.join(', ')); paint();
-        });
-      });
-    });
-  }
-  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
-})();
-
-/* Prime ladders: once a keeper saves, the keepers below say "Stop" and their boxes go. */
-(function () {
-  var busy = false;
-  function update(lad) {
-    if (busy) return; busy = true;
-    var stopped = false;
-    lad.querySelectorAll('.lrow[data-step]').forEach(function (row) {
-      row.classList.toggle('after-stop', stopped);
-      if (stopped) row.querySelectorAll('[data-k]').forEach(function (f) {
-        if (f.value) { f.value = ''; f.dispatchEvent(new Event('input', { bubbles: true })); f.dispatchEvent(new Event('change', { bubbles: true })); }
-      });
-      var sel = row.querySelector('select.step');
-      if (!stopped && sel && sel.value === 'saves') stopped = true;
-    });
-    // the pair boxes only make sense once a pair has been found
-    var found = lad.querySelector('select.fnd'), pr = lad.querySelector('.lrow.pairrow');
-    if (found && pr) {
-      var off = found.value !== 'pair found';
-      pr.classList.toggle('off', off);
-      if (off) pr.querySelectorAll('[data-k]').forEach(function (f) {
-        if (f.value) { f.value = ''; f.dispatchEvent(new Event('input', { bubbles: true })); f.dispatchEvent(new Event('change', { bubbles: true })); }
-      });
-    }
-    busy = false;
-  }
-  function init() {
-    document.querySelectorAll('.ladder[data-n]').forEach(function (lad) {
-      update(lad);
-      lad.addEventListener('change', function () { update(lad); });
+    document.querySelectorAll('.shot-card[data-n]').forEach(function (card) {
+      var s = card.querySelector('select.ksel'), echo = card.querySelector('.kecho'), pin = card.querySelector('.eqrow input[data-k]');
+      if (!s) return;
+      function upd() {
+        var v = s.value, goal = /^goal/i.test(v);
+        if (echo) { echo.textContent = v && !goal ? v : 'keeper'; echo.classList.toggle('on', !!v && !goal); }
+        card.classList.toggle('is-goal', goal);
+        if (pin) {
+          if (goal && pin.value !== 'no partner') claraSet(pin, 'no partner');
+          else if (!goal && pin.value === 'no partner') claraSet(pin, '');
+        }
+      }
+      s.addEventListener('change', upd); s.addEventListener('input', upd); upd();
     });
   }
   if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
@@ -1202,7 +1088,7 @@ function claraSet(s, v) {
   <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
-<script type="application/json" id="hw-check">eyJuMSI6IHsidCI6ICJleGFjdCIsICJhIjogImMifSwgInIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29sb3VyIG9yZGVyIiwgImciOiAicjEtb2sifSwgInIxX2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCIsICJnIjogInIxLW9rIn0sICJuMiI6IHsidCI6ICJleGFjdCIsICJhIjogImEifSwgInIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24iLCAiZyI6ICJyMi1vayJ9LCAicjJfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pcnJvcmVkIiwgImciOiAicjItb2sifSwgIm4zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZCJ9LCAicjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJob3cgbXVjaCBpcyBzaGFkZWQiLCAiZyI6ICJyMy1vayJ9LCAicjNfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImxpbmVzIGNyb3NzIiwgImciOiAicjMtb2sifSwgIm40IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZSJ9LCAicjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCJ9LCAibjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJiIn0sICJyNSI6IHsidCI6ICJleGFjdCIsICJhIjogInR1cm4gZGlyZWN0aW9uIiwgImciOiAicjUtb2sifSwgInI1X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCIsICJnIjogInI1LW9rIn0sICJuNiI6IHsidCI6ICJleGFjdCIsICJhIjogImQifSwgInI2IjogeyJ0IjogImV4YWN0IiwgImEiOiAibnVtYmVyIG9mIHNpZGVzIn0sICJuNyI6IHsidCI6ICJleGFjdCIsICJhIjogImEifSwgInI3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29sb3VyIG9yZGVyIn0sICJuOCI6IHsidCI6ICJleGFjdCIsICJhIjogImMifSwgInI4IjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24ifSwgIm45IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZSJ9LCAicjkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCBzaGFwZSBpcyBpbiBmcm9udCJ9LCAibjEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYiJ9LCAicjEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24iLCAiZyI6ICJyMTAtb2sifSwgInIxMF9hbHQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlycm9yZWQiLCAiZyI6ICJyMTAtb2sifSwgImd0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgImdzMSI6IHsidCI6ICJzZXQiLCAiYSI6ICIyIn0sICJndDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNSJ9LCAiZ3MyIjogeyJ0IjogInNldCIsICJhIjogIjMifSwgImd0MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgImdzMyI6IHsidCI6ICJzZXQiLCAiYSI6ICIyLCA0LCAxMyJ9LCAiZ3Q0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgImdzNCI6IHsidCI6ICJzZXQiLCAiYSI6ICI3In0sICJndDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNiJ9LCAiZ3M1IjogeyJ0IjogInNldCIsICJhIjogIm5vbmUifSwgImd0NiI6IHsidCI6ICJleGFjdCIsICJhIjogIjgifSwgImdzNiI6IHsidCI6ICJzZXQiLCAiYSI6ICI1LCA3In0sICJndDciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiJ9LCAiZ3M3IjogeyJ0IjogInNldCIsICJhIjogIjIsIDMsIDQsIDYsIDcifSwgImdfZ29hbCI6IHsidCI6ICJzZXQiLCAiYSI6ICI3OSJ9LCAiZ19zZWxsIjogeyJ0IjogInNldCIsICJhIjogIjQsIDYsIDEzIn0sICJvbmUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJuZWl0aGVyIn0sICJsMV8yIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlzc2VzIn0sICJsMV8zdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjEyIn0sICJsMV8zIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2F2ZXMifSwgImwxX2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwYWlyIGZvdW5kIn0sICJsMV9wYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMiLCAiZyI6ICJsMXBhaXIifSwgImwxX3BiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMiLCAiZyI6ICJsMXBhaXIifSwgImwxX3YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wb3NpdGUifSwgImwyXzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgImwyXzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyX2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJubyBrZWVwZXIgc2F2ZXMgaXQifSwgImwyX3YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmltZSJ9LCAibDNfMiI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfM3QiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMSJ9LCAibDNfMyI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfNSI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfNyI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfZiI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vIGtlZXBlciBzYXZlcyBpdCJ9LCAibDNfdiI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJsNF8yIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlzc2VzIn0sICJsNF8zdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgImw0XzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYXZlcyJ9LCAibDRfZiI6IHsidCI6ICJleGFjdCIsICJhIjogInBhaXIgZm91bmQifSwgImw0X3BhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyIsICJnIjogImw0cGFpciJ9LCAibDRfcGIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3IiwgImciOiAibDRwYWlyIn0sICJsNF92IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBlbnNhdGUifSwgInQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAia25vd24gZmFjdHMifSwgInQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYm9uZHMiLCAiZyI6ICJ0My1vayJ9LCAidDNfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImtub3duIGZhY3RzIiwgImciOiAidDMtb2sifSwgInQ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBkaWZmZXJlbmNlIiwgImciOiAidDQtb2sifSwgInQ0X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wZW5zYXRlIiwgImciOiAidDQtb2sifSwgInQ1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcGVuc2F0ZSJ9LCAidDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb3VudCB1cCIsICJnIjogInQ2LW9rIn0sICJ0Nl9hbHQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBkaWZmZXJlbmNlIiwgImciOiAidDYtb2sifSwgInQ3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYm9uZHMiLCAiZyI6ICJ0Ny1vayJ9LCAidDdfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImtub3duIGZhY3RzIiwgImciOiAidDctb2sifX0=</script>
+<script type="application/json" id="hw-check">eyJuMSI6IHsidCI6ICJleGFjdCIsICJhIjogImMifSwgInIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29sb3VyIG9yZGVyIiwgImciOiAicjEtb2sifSwgInIxX2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCIsICJnIjogInIxLW9rIn0sICJuMiI6IHsidCI6ICJleGFjdCIsICJhIjogImEifSwgInIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24iLCAiZyI6ICJyMi1vayJ9LCAicjJfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pcnJvcmVkIiwgImciOiAicjItb2sifSwgIm4zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZCJ9LCAicjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJob3cgbXVjaCBpcyBzaGFkZWQiLCAiZyI6ICJyMy1vayJ9LCAicjNfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImxpbmVzIGNyb3NzIiwgImciOiAicjMtb2sifSwgIm40IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZSJ9LCAicjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCJ9LCAibjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJiIn0sICJyNSI6IHsidCI6ICJleGFjdCIsICJhIjogInR1cm4gZGlyZWN0aW9uIiwgImciOiAicjUtb2sifSwgInI1X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCIsICJnIjogInI1LW9rIn0sICJuNiI6IHsidCI6ICJleGFjdCIsICJhIjogImQifSwgInI2IjogeyJ0IjogImV4YWN0IiwgImEiOiAibnVtYmVyIG9mIHNpZGVzIn0sICJuNyI6IHsidCI6ICJleGFjdCIsICJhIjogImEifSwgInI3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29sb3VyIG9yZGVyIn0sICJuOCI6IHsidCI6ICJleGFjdCIsICJhIjogImMifSwgInI4IjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24ifSwgIm45IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZSJ9LCAicjkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCBzaGFwZSBpcyBpbiBmcm9udCJ9LCAibjEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYiJ9LCAicjEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24iLCAiZyI6ICJyMTAtb2sifSwgInIxMF9hbHQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlycm9yZWQiLCAiZyI6ICJyMTAtb2sifSwgIm9uZSI6IHsidCI6ICJleGFjdCIsICJhIjogIm5laXRoZXIifSwgImsxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiR09BTCEifSwgInAxIjogeyJ0IjogIm9wZW4ifSwgInYxIjogeyJ0IjogImV4YWN0IiwgImEiOiAicHJpbWUifSwgImsyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAicDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMyJ9LCAidjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wb3NpdGUifSwgImszIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAicDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3In0sICJ2MyI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBvc2l0ZSJ9LCAiazQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJHT0FMISJ9LCAicDQiOiB7InQiOiAib3BlbiJ9LCAidjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmltZSJ9LCAiazUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3In0sICJwNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjEzIn0sICJ2NSI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBvc2l0ZSJ9LCAiazYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJHT0FMISJ9LCAicDYiOiB7InQiOiAib3BlbiJ9LCAidjYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmltZSJ9LCAiazciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1In0sICJwNyI6IHsidCI6ICJleGFjdCIsICJhIjogIjE3In0sICJ2NyI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBvc2l0ZSJ9LCAiazgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzIn0sICJwOCI6IHsidCI6ICJleGFjdCIsICJhIjogIjEzIn0sICJ2OCI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBvc2l0ZSJ9LCAidDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wZW5zYXRlIn0sICJ0MiI6IHsidCI6ICJleGFjdCIsICJhIjogImtub3duIGZhY3RzIn0sICJ0MyI6IHsidCI6ICJleGFjdCIsICJhIjogImJvbmRzIiwgImciOiAidDMtb2sifSwgInQzX2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJrbm93biBmYWN0cyIsICJnIjogInQzLW9rIn0sICJ0NCI6IHsidCI6ICJleGFjdCIsICJhIjogInNhbWUgZGlmZmVyZW5jZSIsICJnIjogInQ0LW9rIn0sICJ0NF9hbHQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcGVuc2F0ZSIsICJnIjogInQ0LW9rIn0sICJ0NSI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBlbnNhdGUifSwgInQ2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY291bnQgdXAiLCAiZyI6ICJ0Ni1vayJ9LCAidDZfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogInNhbWUgZGlmZmVyZW5jZSIsICJnIjogInQ2LW9rIn0sICJ0NyI6IHsidCI6ICJleGFjdCIsICJhIjogImJvbmRzIiwgImciOiAidDctb2sifSwgInQ3X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJrbm93biBmYWN0cyIsICJnIjogInQ3LW9rIn19</script>
 <script id="clara-homework-runtime">/* Shared behaviour for online homework pages. Page supplies <body data-student data-sheet data-sheet-id>. */
 (function () {
   var SEND_URL = "https://script.google.com/macros/s/AKfycbwtEVGXzip6vzoLC7oY_wzfmHGe31Vm2uFB9FMwHsSyVHdbyMOKpu16z-a6SdQXXVg/exec";
@@ -1276,7 +1162,7 @@ function claraSet(s, v) {
         doc.head.appendChild(copy);
       });
       var sheet = doc.importNode(document.getElementById("sheet"), true); sheet.querySelectorAll(".exercise-page:not(.game-ui), .exercise-viewport").forEach(function(node){node.replaceWith.apply(node,Array.from(node.childNodes));});
-      sheet.querySelectorAll("script, .hw-bar, .save-bar, .game-ui").forEach(function (node) { node.remove(); }); sheet.querySelectorAll(".lad-grid, .gk-block, .tool-list").forEach(function (box) { var prev = box.previousElementSibling; if (prev && prev.className === box.className && box.parentNode) { while (box.firstChild) prev.appendChild(box.firstChild); box.remove(); } }); sheet.querySelectorAll(".lad-grid").forEach(function (grid) { var lads = Array.from(grid.children).filter(function (n) { return n.matches(".ladder"); }); if (lads.length < 3) { grid.classList.add("hw-pdf-keep"); return; } for (var j = 0; j < lads.length; j += 2) { var row = doc.createElement("div"); row.className = "lad-grid hw-pdf-keep"; grid.parentNode.insertBefore(row, grid); lads.slice(j, j + 2).forEach(function (l) { row.appendChild(l); }); } grid.remove(); });
+      sheet.querySelectorAll("script, .hw-bar, .save-bar, .game-ui").forEach(function (node) { node.remove(); }); sheet.querySelectorAll(".shots, .tool-list").forEach(function (box) { var prev = box.previousElementSibling; if (prev && prev.className === box.className && box.parentNode) { while (box.firstChild) prev.appendChild(box.firstChild); box.remove(); } });
       // Read current field properties, not HTML attributes or only the visible portion
       // of a textarea. Plain wrapping blocks preserve every line, including long words.
       var originals = document.getElementById("sheet").querySelectorAll("[data-k]");
@@ -1378,7 +1264,7 @@ function claraSet(s, v) {
           .then(function () {
             frame.contentWindow.scrollTo(0, 0);
             sheet.querySelectorAll(".task").forEach(function(task){
-              var question=task.nextElementSibling;if(!question || !question.matches(".q, .lad-grid, .gk-block, .tool-list"))return;
+              var question=task.nextElementSibling;if(!question || !question.matches(".q, .shots, .tool-list"))return;
               var group=doc.createElement("div");task.parentNode.insertBefore(group,task);group.appendChild(task);group.appendChild(question);
               if(group.getBoundingClientRect().height<920)group.classList.add("hw-pdf-keep");
             });
@@ -1704,7 +1590,7 @@ function matchHomeworkAnswers_(answers, keys) {
   };
 })();
 </script>
-<script id="clara-screen-plan">/* Clara 7 Nov 2026: which original nodes make up each exercise screen.
+<script id="clara-screen-plan">/* Clara 7 Nov 2026 (three blocks: odd one out, penalty shoot-out, tool names): which original nodes make up each exercise screen.
    Every node is MOVED, never copied, so field order, ids and listeners stay as on the sheet.
    Clones are only headers and carry .game-ui, so the PDF export drops them. */
 window.claraScreenPlan=function(section,i){
@@ -1722,23 +1608,16 @@ window.claraScreenPlan=function(section,i){
   const qs=all(':scope > .q');
   const extra=all(':scope > .small',task);
   plan=[remember(),example()].concat(qs.map((q,n)=>({title:'Question '+(n+1),nodes:n?[q]:[yourTurn(extra),q],hint:n?hint:''})));
- }else if(i===1){ // goalkeepers: shots in screens of 3, 2, 2, then the whole team
-  const block=one(':scope > .gk-block'),head=one('.gk-head',block),rows=all(':scope > .gk-row',block);
-  const team=[...block.children].filter(n=>!n.matches('.gk-head,.gk-row'));
-  const part=(from,to)=>{const h=head.cloneNode(true);h.classList.add('game-ui');return wrap('gk-block',[h].concat(rows.slice(from,to)))};
-  const second=part(3,5),third=part(5,7);
-  plan=[remember(),example(),
-   {title:'Shots 1 to 3',nodes:[yourTurn(),block]},
-   {title:'Shots 4 and 5',nodes:[second],hint:hint},
-   {title:'Shots 6 and 7',nodes:[third],hint:hint},
-   {title:'The whole team',nodes:team.filter(n=>!n.matches('.q')).concat([wrap('team-qs',team.filter(n=>n.matches('.q')))])}];
- }else if(i===2){ // prime ladders: one ladder per screen, then 1
-  const grid=one(':scope > .lad-grid'),lads=all(':scope > .ladder',grid);
-  const rest=[...section.children].filter(n=>n!==task&&n!==grid&&!n.matches('.sec-head'));
+ }else if(i===1){ // penalty shoot-out: shots in screens of 3, 3, 2, then 1 is ___
+  const list=one(':scope > .shots'),cards=all(':scope > .shot-card',list);
+  const rest=[...section.children].filter(n=>n!==task&&n!==list&&!n.matches('.sec-head'));
   const extra=all(':scope > .small',task);
-  plan=[remember(),example()].concat(lads.map((l,n)=>({title:'Ladder '+l.dataset.n,nodes:n?[wrap('lad-grid',[l])]:[yourTurn(extra),grid],hint:n?hint:''})),
-   [{title:'Question 5',nodes:rest}]);
- }else if(i===3){ // tool names: the reminder, then calculations in screens of 3, 2, 2
+  plan=[remember(),example(),
+   {title:'Shots 1 to 3',nodes:[yourTurn(extra),list]},
+   {title:'Shots 4 to 6',nodes:[wrap('shots',cards.slice(3,6))],hint:hint},
+   {title:'Shots 7 and 8',nodes:[wrap('shots',cards.slice(6,8))],hint:hint},
+   {title:'Question 9',nodes:rest}];
+ }else if(i===2){ // tool names: the reminder, then calculations in screens of 3, 2, 2
   const tasks=all(':scope > .task'),list=one(':scope > .tool-list'),rows=all(':scope > .tool-row',list);
   const tl=say(one('.lead',tasks[1]));
   plan=[{title:'Remember',nodes:[tasks[0]]},
@@ -1758,7 +1637,7 @@ window.claraTreeArt=(()=>{
  const cat=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-20 8Q-31-5-22-24L-8-15Q0-19 9-15L23-25Q31-3 20 8Q24 31 0 33Q-25 31-20 8Z" fill="#d5c7e8" stroke="#a898bc" stroke-width="2"/><path d="M-20-17l8 5-8 1M21-18l-8 6 9 1" fill="#edb9ce"/><path d="M19 24q19 2 15-13" fill="none" stroke="#a898bc" stroke-width="6" stroke-linecap="round"/>${face(0,0)}</g>`;
  const crown=(x,y,scale=1)=>`<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-51 22C-77 12-68-20-46-24C-53-51-17-64 1-46C22-66 57-45 49-22C76-13 69 22 47 27C36 51 4 48-8 39C-28 52-54 42-51 22Z" fill="#f4dfbd" stroke="#d9bd92" stroke-width="2.3"/><path d="M-42-15q-14 7-11 19M-14-41q11-9 22 0" fill="none" stroke="#fff4dc" stroke-width="6" stroke-linecap="round"/></g>`;
  function render(count,leaves){
-  const centres=count>=3?[[157,170],[244,170],[200,122]]:count===2?[[166,201],[234,201]]:[[200,236]];
+  const centres=count===3?[[157,170],[244,170],[200,122]]:count===2?[[166,201],[234,201]]:[[200,236]];
   let earned='';
   for(let n=0;n<leaves;n++){
    const cluster=n%centres.length,slot=Math.floor(n/centres.length),angle=slot*2.39996,radius=9+Math.sqrt(slot)*10;
@@ -1767,9 +1646,8 @@ window.claraTreeArt=(()=>{
   }
   // A single continuous canopy covers the branch joins at every growth stage.
   const wood=count?`<path d="M177 329Q188 293 187 248L208 244Q207 291 225 329Q210 325 201 327Q189 324 177 329Z" fill="#c99a78" stroke="#a47b5b" stroke-width="2.5" stroke-linejoin="round"/><path d="M190 314q4-18 2-36" fill="none" stroke="#e9c9a8" stroke-width="4" stroke-linecap="round"/>${face(200,292)}`:'';
-  const blossom=count>=4?[[150,150],[252,146],[203,106],[168,214],[236,212],[118,180],[282,178]].map(([x,y])=>`<g transform="translate(${x} ${y})"><path d="M0-9q3-7 9-8" fill="none" stroke="#7b9c6d" stroke-width="2" stroke-linecap="round"/><circle r="9" fill="#f2a7a0" stroke="#c97c75" stroke-width="1.6"/><circle cx="-3" cy="-3" r="2.6" fill="#fde3dd"/></g>`).join(''):'';
-  const foliage=count>=3?crown(200,174,1.65)+blossom:count===2?crown(200,203,1.19):count===1?crown(200,236,.64):'';
-  return `<svg viewBox="0 0 400 390" role="img" aria-label="Your tree: ${count} of 4 parts grown and ${leaves} green leaves"><rect width="400" height="390" rx="28" fill="#fbf5ec"/><circle cx="331" cy="57" r="23" fill="#f4d88a"/>${face(331,55)}<path d="M38 70q5-17 21-8q9-20 24-4q20-1 20 13H38" fill="#fffdf8"/><ellipse cx="202" cy="336" rx="156" ry="23" fill="#e9e6cf"/>${wood}${foliage}${earned}${count===0?'<ellipse cx="200" cy="323" rx="17" ry="11" fill="#bd8964" stroke="#966746" stroke-width="2"/><path d="M199 319l6-7" stroke="#e8bf96" stroke-width="3" stroke-linecap="round"/>':''}${rabbit(68,303,.8)}${cat(328,307,.83)}${berry(122,343,.55)}${pear(278,342,.53)}<g fill="#e6b7cb"><path d="M46 204q-18-20-23-3q-5 13 17 17q-18 10-8 18q11 9 17-13q10 16 18 7q9-13-13-15q19-12 8-20q-12-8-16 9Z" transform="translate(0 -25) scale(.7)"/></g><g fill="#eac67c"><circle cx="168" cy="352" r="3"/><circle cx="236" cy="350" r="3"/></g></svg>`;
+  const foliage=count===3?crown(200,174,1.65):count===2?crown(200,203,1.19):count===1?crown(200,236,.64):'';
+  return `<svg viewBox="0 0 400 390" role="img" aria-label="Your tree: ${count} of 3 parts grown and ${leaves} green leaves"><rect width="400" height="390" rx="28" fill="#fbf5ec"/><circle cx="331" cy="57" r="23" fill="#f4d88a"/>${face(331,55)}<path d="M38 70q5-17 21-8q9-20 24-4q20-1 20 13H38" fill="#fffdf8"/><ellipse cx="202" cy="336" rx="156" ry="23" fill="#e9e6cf"/>${wood}${foliage}${earned}${count===0?'<ellipse cx="200" cy="323" rx="17" ry="11" fill="#bd8964" stroke="#966746" stroke-width="2"/><path d="M199 319l6-7" stroke="#e8bf96" stroke-width="3" stroke-linecap="round"/>':''}${rabbit(68,303,.8)}${cat(328,307,.83)}${berry(122,343,.55)}${pear(278,342,.53)}<g fill="#e6b7cb"><path d="M46 204q-18-20-23-3q-5 13 17 17q-18 10-8 18q11 9 17-13q10 16 18 7q9-13-13-15q19-12 8-20q-12-8-16 9Z" transform="translate(0 -25) scale(.7)"/></g><g fill="#eac67c"><circle cx="168" cy="352" r="3"/><circle cx="236" cy="350" r="3"/></g></svg>`;
  }
  return {render,header:`<svg class="friend-parade game-ui" viewBox="0 0 210 80" aria-hidden="true">${berry(32,42,.7)}${cat(102,38,.85)}${pear(173,42,.7)}</svg>`};
 })();
@@ -1777,10 +1655,10 @@ window.claraTreeArt=(()=>{
 (function(){
 'use strict';
 const sections=[...document.querySelectorAll('#sheet > .section')];
-const titles=['Odd one out','Goalkeepers','Ladders','Tool names'];
+const titles=['Odd one out','Penalty shoot-out','Tool names'];
 const blockCount=sections.length;
-const icons=['1','2','3','4'];
-const storage='clara-blocks-v2-'+document.body.dataset.sheetId;
+const icons=['1','2','3'];
+const storage='clara-blocks-v3-'+document.body.dataset.sheetId;
 let saved={};try{saved=JSON.parse(localStorage.getItem(storage)||'{}')}catch(e){}
 let current=Number.isInteger(saved.current)?Math.max(0,Math.min(blockCount-1,saved.current)):0;
 let done=Array.isArray(saved.done)?saved.done.slice(0,blockCount):[];
@@ -1803,7 +1681,7 @@ let sending=false, sent=!!saved.sent&&saved.deliveryConfirmed===1&&finalChecked;
 const save=()=>{try{localStorage.setItem(storage,JSON.stringify({current,done,finalChecked,sent,deliveryConfirmed:sent?1:0,pages:pageNumbers}))}catch(e){}};
 document.body.classList.add('mint-game');
 document.querySelector('.sheet-head').insertAdjacentHTML('beforeend',window.claraTreeArt.header);
-const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="80" value="0" aria-label="Answers saved"></progress><nav class="block-nav" aria-label="Homework blocks"></nav>';
+const dashboard=document.createElement('div');dashboard.className='game-ui';dashboard.innerHTML='<div class="progress-head"><strong id="gardenProgressText"></strong><span>Little steps count.</span></div><progress id="gardenProgress" max="52" value="0" aria-label="Answers saved"></progress><nav class="block-nav" aria-label="Homework blocks"></nav>';
 document.querySelector('.sheet-head').after(dashboard);
 const nav=dashboard.querySelector('nav');
 const finish=document.createElement('section');finish.className='game-ui finish-panel';finish.innerHTML='<h2>Your tree is growing! 🌱</h2><div class="tree-layout"><div class="tree-scene"></div><div class="tree-story"><div class="tree-count" aria-live="polite"></div><p class="leaf-note">Your work saves as you go. Check and send everything at the end.</p></div></div>';
@@ -1814,18 +1692,18 @@ msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');
 msg.textContent='Your answers have not been sent yet.';
 const results=document.createElement('div');results.className='final-answer-list';
 const allFields=()=>fieldLists.flat();
-const live=el=>!el.closest('.after-stop,.pairrow.off');
+const live=el=>!el.closest('.shot-card.is-goal .eqrow');
 const need=i=>fields(i).filter(live);
 const filled=i=>need(i).filter(el=>value(el)).length;
-function lockBlock(section){section.classList.add('locked');section.querySelectorAll('[data-k],.pic-opt,.txt-opt,.tp-tile,.tool-opt,.kp').forEach(el=>{if(el.hasAttribute('contenteditable'))el.setAttribute('contenteditable','false');if('disabled' in el)el.disabled=true;});}
+function lockBlock(section){section.classList.add('locked');section.querySelectorAll('[data-k],.pic-opt,.txt-opt,.tp-tile,.tool-opt').forEach(el=>{if(el.hasAttribute('contenteditable'))el.setAttribute('contenteditable','false');if('disabled' in el)el.disabled=true;});}
 function renderResults(){
  results.replaceChildren();if(!finalChecked)return;
  const g=grade();
  const heading=document.createElement('h3');heading.textContent='All your answers';results.append(heading);
  allFields().forEach(el=>{
   const k=key[el.dataset.k],v=value(el);
-  // A step that was not needed (a keeper after the stop, a pair for a prime) has no key and no answer.
-  if((!k||k.t==='open')&&!v)return;
+  // A step that was not needed (the partner of a goal) is not listed.
+  if((!k||k.t==='open')&&(!v||!live(el)))return;
   const row=document.createElement('div');row.className='final-answer-row';
   const label=document.createElement('strong');label.textContent=el.dataset.label||el.dataset.k;
   const answer=document.createElement('p');answer.textContent='Your answer: '+(v||'(blank)');

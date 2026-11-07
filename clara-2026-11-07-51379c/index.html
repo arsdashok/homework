@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clara Homework 7 November 2026</title>
+<!--
+Clara, lesson of 7 November 2026: first non-verbal reasoning (odd one out, 10 slides) + Y5 W43 primes and composites (warm-up, cards 01-05, card 05 only 15).
+Online sheet. Publish with Tools/publish_online_hw.py after the gates. Fields: 80.
+ANSWER POSITIONS (read back after placing):
+  NVR odd letters 1-10: c, a, d, e, b, d, a, c, e, b (no run, no alternation, no cycle; each letter twice).
+  NVR reasons 1-10: colour order, turn, shaded, mirrored, turn, sides, colour order, turn (fit the hole), in front, turn.
+    No run of 3 with the same reason. Menu is alphabetical and keeps lines cross / arrows point as wrong options.
+  ACCEPTED ALTERNATIVES: the key format has one answer per field, so a second accepted answer is a key entry
+    "<field>_alt1" in the same answer group, with no field on the page (shared matcher in hw.js and the mailer).
+    Arrow turn items 2, 5, 10: turn direction or mirrored. Item 3 (shaded): also lines cross (d has radii that meet without crossing). Colour order item 1 (the odd one goes round the other way,
+    which is a mirror image): colour order or mirrored. Item 7 (two shades swapped) and item 8 (fit the hole): one answer.
+    Tool item 6 (40,002 - 39,989): count up or same difference. Item 4 (52,000 - 19,998): also compensate. Items 3 and 7 (bonds): also known facts.
+  Ladders: composite, prime, prime, composite (39, 67, 47, 21). Pair fields show only for "pair found";
+    the primes' pair fields are unkeyed.
+  Tool buttons in every row: bonds, compensate, count up, known facts, same difference; correct positions 2, 4, 1, 5, 2, 3, 1.
+    Tools repeat: compensate x2, bonds x2, known facts, count up, same difference.
+NUMBERS. Avoids deck cards 06-08 (57, 91, 43, 27, 31, 58, 71, 93) and the prime team under 20.
+  Goalkeeper shots 34, 69, 52, 49, 79, 35, 84 with keepers 2, 3, 4, 5, 6, 7, 13.
+    Digit-total traps: 34 and 52 total 7 (7 misses both; 13 DOES save 52); 49 totals 13 (13 misses, 7 saves).
+    49 is the card 04 we-do number, used as a shot because it is the one two-digit number left
+    (besides 77 lesson and 91 card 06) that keeps keeper 7 in the team. Sell 4, 6, 13; goals 79; stay 2, 3, 5, 7.
+  Ladders 39, 67, 47, 21; none is a shot. Model ladder 55 stops at 5; no item stops at 5.
+  NVR model (dots) uses a rule that is not one of the reasons.
+  Tool reminder rows differ from all seven items in size and shape.
+-->
+<style>
+/* Clara mint system (17 Oct 2026 design): Remember = mint card, Worked example = pale dashed inset,
+   tasks on white with green number badges and green-outline fields. Sheet of 7 November 2026. */
+@page { size:A4; margin:13mm 14mm; }
+:root { --ink:#203e35; --muted:#536e64; --green:#286951; --mint:#dcefe5; --pale:#f0f7f3; --line:#bfd7ca; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next',Arial,sans-serif; color:var(--ink); background:#fff; font-size:17px; line-height:1.45;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:18px 18px 40px; }
+.sheet-head { padding:18px 22px; background:var(--mint); border-radius:16px; margin-bottom:20px; }
+.eyebrow,.task-label,.ex-title,.role-label { font-size:12px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--green); }
+.eyebrow { margin-bottom:4px; }
+h1 { font-size:28px; line-height:1.2; letter-spacing:-.6px; }
+.section { margin-bottom:26px; }
+.section + .section { margin-top:34px; }
+.sec-head { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--line); margin-bottom:14px; break-after:avoid; }
+.subj { font-size:12px; text-transform:uppercase; font-weight:700; letter-spacing:1.3px; background:var(--green); color:#fff; border-radius:6px; padding:4px 10px; }
+.note { color:var(--muted); font-size:15px; }
+.task { margin-bottom:6px; }
+.task.gapt { margin-top:18px; }
+.task-label { margin-bottom:6px; }
+.remember { background:var(--mint); border-radius:12px; padding:12px 16px; margin-bottom:12px; break-inside:avoid; }
+.remember p { font-size:18px; font-weight:400; line-height:1.4; }
+.remember p + p { margin-top:4px; }
+.model { margin:10px 0 12px; padding:12px 16px; background:var(--pale); border:1.5px dashed #92b6a3; border-radius:6px; break-inside:avoid; }
+.ex-title { display:block; margin-bottom:8px; color:var(--muted); }
+.model-say { font-size:17px; margin-top:8px; text-wrap:pretty; }
+.model b, .model strong { color:var(--green); }
+.role-label { margin:14px 0 6px; }
+.lead { font-size:22px; line-height:1.3; font-weight:700; margin-bottom:8px; break-after:avoid; text-wrap:pretty; }
+.small { font-size:14px; color:var(--muted); margin-bottom:8px; }
+.screen-only { display:inline; } .print-only { display:none; }
+.store, .tp-stores { display:none !important; }
+.nw { white-space:nowrap; }
+.given { font-weight:700; font-variant-numeric:tabular-nums; }
+
+.q { padding:12px 0; border-bottom:1px solid #dfebe4; break-inside:avoid; page-break-inside:avoid; }
+.q-top { display:flex; align-items:flex-start; gap:12px; }
+.q-num { display:flex; align-items:center; justify-content:center; flex:0 0 30px; height:30px; border-radius:50%; color:#fff; background:var(--green); font-size:14px; font-weight:700; }
+.prompt { font-size:19px; padding-top:2px; text-wrap:pretty; }
+.arow { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:10px 0 0 42px; }
+.arow-note { margin:6px 0 0 42px; }
+
+/* fields: mint outline; answer text keeps the shared blue */
+body input.hw-field, body select[data-k], body .hw-field { background:#fff !important; border:1.5px solid #739d87 !important; border-radius:8px !important; }
+body input.hw-field:focus, body select[data-k]:focus { border-color:var(--green) !important; box-shadow:0 0 0 3px var(--mint); outline:none; }
+body input.hw-field { min-height:40px; font-size:18px; padding:4px 6px; }
+.gapn { width:3.4em; min-width:0 !important; text-align:center; }
+.np { width:300px; max-width:100%; text-align:left !important; }
+body select[data-k] { font:inherit; font-size:17px; min-height:40px; padding:4px 8px; min-width:0; max-width:100%; }
+.circle-opt { display:none; font-size:14px; }
+
+/* ---------- NVR ---------- */
+.nq-body { flex:1; min-width:0; }
+.pic-pick { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
+.pic-opt { display:block; width:100%; padding:6px 6px 4px; background:#fff; border:1.5px solid #c0d7c9; border-radius:12px; cursor:pointer;
+  font:inherit; color:var(--ink); text-align:center; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.pic-opt:hover { background:var(--pale); }
+.pic-opt.on { border:3px solid var(--green); background:#f2faf5; box-shadow:0 0 0 3px var(--mint); }
+.pic-opt.still { cursor:default; }
+.pic-cap { display:block; font-size:15px; font-weight:700; color:var(--muted); text-align:left; }
+.pic-opt.on .pic-cap { color:var(--green); }
+svg.nvr { display:block; width:100%; height:auto; max-width:200px; margin:0 auto; }
+.model-pick { max-width:560px; }
+.model-pick svg.nvr { max-width:90px; }
+.reason-row { margin-top:10px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+body select.reason { min-width:280px; }
+.pic-pick > .hw-mark { grid-column:1/-1; }
+
+/* ---------- goalkeepers ---------- */
+.gk-head { display:grid; grid-template-columns:70px 130px 1fr; gap:12px; font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:8px 0 4px; break-after:avoid; }
+.gk-row { display:grid; grid-template-columns:70px 130px 1fr; gap:12px; align-items:center; }
+.gk-row.still { padding:4px 0; }
+.shot { font-size:28px; font-weight:800; font-variant-numeric:tabular-nums; text-align:center; background:var(--mint); border-radius:10px; padding:2px 0; }
+.dt { display:flex; align-items:center; gap:6px; }
+.dt-cap { font-size:13px; color:var(--muted); }
+.dt .given { font-size:22px; color:var(--green); min-width:2em; text-align:center; }
+.keepers { display:flex; flex-wrap:wrap; gap:8px; }
+.kp { min-width:46px; height:46px; padding:0 10px; border-radius:23px; border:2px solid #8db89f; background:#fff; color:var(--ink);
+  font:inherit; font-size:19px; font-weight:700; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; display:inline-flex; align-items:center; justify-content:center; }
+.kp.none { font-size:15px; font-weight:600; border-style:dashed; }
+.kp.on { background:var(--green); border-color:var(--green); color:#fff; }
+div.kp { cursor:default; }
+.gk-row > .hw-mark { grid-column:1/-1; }
+
+/* ---------- ladders ---------- */
+.lad-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 22px; margin-top:8px; }
+.ladder { border:1.5px solid #c6dcd1; border-radius:14px; padding:12px 14px; background:#fff; }
+.ladder.still { background:transparent; border-color:#b7d1c3; max-width:460px; }
+.lad-model { margin-top:0; }
+.lad-top { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+.lad-num { font-size:30px; font-weight:800; background:var(--mint); border-radius:14px; padding:0 16px; font-variant-numeric:tabular-nums; }
+.lhead, .lrow { display:grid; grid-template-columns:52px 1fr; gap:10px; align-items:center; }
+.lhead { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding-bottom:2px; }
+.lrow { min-height:52px; border-top:1px solid #e1ece6; padding:4px 0; }
+.try { font-size:22px; font-weight:800; text-align:center; color:var(--green); }
+.lctl { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:18px; }
+.lrow.verdict .vcap { font-size:15px; font-weight:700; color:var(--muted); text-align:center; }
+.x { font-size:20px; font-weight:700; }
+.stopnote { display:none; font-size:16px; color:var(--muted); font-style:italic; }
+.lrow.after-stop { background:#f4f7f5; }
+.lrow.after-stop .lctl { display:none; }
+.lrow.after-stop .stopnote { display:block; }
+.lrow.after-stop .try { color:#a6b9af; text-decoration:line-through; }
+body select.step { min-width:130px; }
+body select.verd { min-width:150px; }
+.one-q { margin-top:10px; }
+.lrow.pairrow.off { display:none; }
+body select.fnd { min-width:210px; }
+/* tool names: one row per calculation, tap one tool */
+.tool-list { display:grid; }
+.tool-row { display:grid; grid-template-columns:minmax(0,220px) minmax(0,1fr); gap:10px 18px; align-items:center; }
+.tool-pick { display:flex; flex-wrap:wrap; gap:8px; }
+.tool-opt { font:inherit; font-size:16px; font-weight:600; color:var(--ink); background:#fff; border:2px solid #8db89f; border-radius:22px;
+  padding:6px 14px; min-height:42px; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.tool-opt.on { background:var(--green); border-color:var(--green); color:#fff; }
+.tool-pick > .hw-mark { flex-basis:100%; }
+.remember.method-summary { padding:6px 18px; }
+.wsent { line-height:2; }
+
+/* ---------- tool names (tap to place) ---------- */
+.method-summary { display:grid; }
+.method-row { display:grid; grid-template-columns:1fr 1.25fr 24px 2.5fr; align-items:center; gap:12px; padding:10px 0; font-size:18px; line-height:1.3; }
+.method-row + .method-row { border-top:1px solid #c6dcd1; }
+.method-row b, .method-row strong, .method-arrow { color:var(--green); }
+.method-original { white-space:nowrap; font-variant-numeric:tabular-nums; }
+.short-route { display:inline-flex; gap:8px; align-items:end; white-space:nowrap; }
+.short-route > span { display:flex; flex-direction:column; align-items:center; line-height:1; color:var(--green); }
+.short-route small { font-size:14px; }
+.short-total { display:block; margin-top:4px; }
+.match-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 22px; }
+.match-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:12px; align-items:center; }
+.calc { font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+
+/* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, mint palette) ===== */
+.tp-bank { display:flex; flex-wrap:wrap; gap:10px; padding:12px; border:2px dashed #a9cdb9; border-radius:14px; min-height:64px; margin:4px 0 14px; }
+.tp-tile {
+  font:inherit; font-size:18px; font-weight:700; color:var(--ink); background:#fff;
+  border:2px solid #8db89f; border-radius:12px; padding:8px 14px; min-height:44px;
+  cursor:pointer; text-align:left; line-height:1.35;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none;
+}
+.tp-tile.picked { background:#e6f4ec; border-color:var(--green); box-shadow:0 0 0 3px #cfe9db; }
+.tp-tile.dragging { position:fixed; z-index:1000; pointer-events:none; box-shadow:0 6px 18px rgba(0,0,0,.18); }
+.tp-zone { border:2px solid #cfe2d6; border-radius:14px; padding:6px 10px; min-height:58px; cursor:pointer; background:#fff; }
+.tp-zone.ready { border-color:#8db89f; background:#f6fbf8; }
+.tp-zone.over { border-color:var(--green); background:#e6f4ec; }
+.tp-slot { display:flex; flex-wrap:wrap; gap:8px; min-height:44px; align-items:center; }
+/* ===== end TAP-PLACE CSS ===== */
+.tp-bank:not(:has(.tp-tile)) { display:none; }
+
+/* shared bar in the mint palette */
+body .hw-bar { border:1px solid var(--line); background:var(--pale); border-radius:16px; box-shadow:none; }
+body .hw-send { color:#fff; background:var(--green); border:0; border-radius:10px; font-family:inherit; }
+body .hw-mark.hw-ok { color:var(--green); }
+
+/* ---------- big screens: whole width, big type (Dasha, 1 Nov 2026) ---------- */
+@media screen and (min-width:900px) {
+  body { max-width:1640px; margin:0 auto; padding:36px 48px 70px; background:#edf5f0; }
+  #sheet { background:#fff; padding:44px 52px; border-radius:24px; }
+  body:not(:has(#sheet)) { background:#fff; }
+  .sheet-head { padding:26px 32px; margin-bottom:34px; } h1 { font-size:40px; }
+  .eyebrow,.task-label,.ex-title,.role-label { font-size:16px; }
+  .subj { font-size:16px; padding:6px 14px; } .note { font-size:22px; }
+  .section + .section { margin-top:64px; }
+  .remember { padding:18px 24px; } .remember p { font-size:28px; }
+  .model { padding:20px 26px; }
+  .model-say { font-size:26px; }
+  .lead { font-size:36px; margin-bottom:14px; }
+  .small, .arow-note { font-size:20px; }
+  .q { padding:24px 0; } .q-num { flex-basis:42px; height:42px; font-size:20px; } .q-top { gap:18px; }
+  .prompt { font-size:29px; }
+  .arow { margin-left:60px; gap:14px; } .arow-note { margin-left:60px; }
+  body input.hw-field { min-height:56px; font-size:27px; }
+  body select[data-k] { min-height:56px; font-size:26px; padding:6px 12px; }
+  .np { width:420px; }
+  .circle-opt { font-size:20px; }
+  /* NVR: five big pictures across the width */
+  .pic-pick { gap:18px; }
+  .pic-opt { padding:10px 10px 8px; border-radius:16px; }
+  .pic-cap { font-size:24px; }
+  svg.nvr { max-width:250px; }
+  .model-pick { max-width:900px; } .model-pick svg.nvr { max-width:140px; }
+  .reason-row { margin-top:16px; }
+  body select.reason { min-width:420px; }
+  /* goalkeepers: shot, digit total and keepers in one row */
+  .gk-head, .gk-row { grid-template-columns:120px 230px 1fr; gap:22px; }
+  .gk-head { font-size:18px; }
+  .shot { font-size:40px; }
+  .dt-cap { font-size:20px; } .dt .given { font-size:32px; }
+  .gk-row .dt-cap { display:none; }
+  .keepers { gap:14px; }
+  .kp { min-width:68px; height:68px; border-radius:34px; font-size:28px; padding:0 14px; }
+  .kp.none { font-size:22px; }
+  /* ladders: two across */
+  .lad-grid { gap:28px 40px; }
+  .ladder { padding:20px 24px; }
+  .ladder.still { max-width:none; }
+  .lad-intro { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; align-items:start; }
+  .lad-intro .lad-model { margin:0; }
+  .lad-num { font-size:44px; }
+  .lhead, .lrow { grid-template-columns:76px 1fr; gap:16px; }
+  .lhead { font-size:16px; }
+  .lrow { min-height:72px; }
+  .try { font-size:30px; }
+  .lctl { font-size:27px; gap:12px; }
+  .lrow.verdict .vcap { font-size:22px; }
+  .x { font-size:30px; }
+  .stopnote { font-size:24px; }
+  body select.step { min-width:190px; } body select.verd { min-width:230px; }
+  .wsent { font-size:29px; }
+  /* tool names */
+  .method-row { font-size:28px; gap:20px; padding:16px 0; }
+  .short-route small { font-size:20px; }
+  .match-list { gap:16px 40px; }
+  .calc { font-size:30px; }
+  .tool-row { grid-template-columns:1fr; gap:10px; }
+  .model .kp { min-width:54px; height:54px; font-size:22px; padding:0 10px; } .model .kp.none { font-size:18px; } .model .keepers { gap:8px; }
+  .tool-pick { gap:12px; }
+  .tool-opt { font-size:26px; padding:8px 20px; min-height:60px; border-radius:30px; }
+  body select.fnd { min-width:330px; }
+  .remember.method-summary { padding:10px 26px; }
+  .tp-tile { font-size:27px; padding:10px 20px; min-height:60px; }
+  .tp-zone { min-height:76px; }
+  .tp-slot { min-height:58px; }
+}
+
+@media screen and (min-width:1600px) {
+  .tool-row { grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:14px 28px; }
+}
+
+/* phones */
+@media screen and (max-width:620px) {
+  body { padding:10px 8px 30px; }
+  .lead { font-size:20px; } .prompt { font-size:18px; } .remember p { font-size:17px; }
+  .q-top { gap:8px; } .q-num { flex-basis:26px; height:26px; font-size:13px; }
+  .pic-pick { gap:5px; } .pic-opt { padding:3px 2px 2px; border-radius:8px; } .pic-cap { font-size:13px; }
+  .model-pick { max-width:none; }
+  body select.reason { min-width:0; width:100%; }
+  .gk-head { display:none; }
+  .gk-row { grid-template-columns:64px 1fr; gap:8px 10px; }
+  .gk-row .keepers { grid-column:1/-1; }
+  .kp { min-width:42px; height:42px; font-size:17px; }
+  .lad-grid { grid-template-columns:1fr; }
+  .match-list { grid-template-columns:1fr; }
+  .match-row { grid-template-columns:1fr; gap:4px; }
+  .tool-row { grid-template-columns:1fr; gap:6px; }
+  .tool-opt { font-size:15px; padding:5px 11px; min-height:40px; }
+  .method-row { grid-template-columns:1fr 24px 1.6fr; font-size:16px; } .method-row > b { grid-column:1/-1; }
+  .arow, .arow-note { margin-left:0; }
+  .np { width:100%; }
+}
+
+/* PDF export (hw.js, 800px frame) and paper */
+body.hw-pdf-mode .pic-opt { padding:3px 3px 2px; }
+body.hw-pdf-mode svg.nvr { max-width:120px; }
+body.hw-pdf-mode .gk-head, body.hw-pdf-mode .gk-row { grid-template-columns:64px 110px 1fr; }
+body.hw-pdf-mode .kp { min-width:38px; height:38px; font-size:16px; }
+@media print {
+  body { padding:0; font-size:14px; }
+  .screen-only, .hw-bar { display:none !important; } .print-only { display:inline !important; }
+  p.print-only { display:block !important; }
+  .choice-wrap.is-empty select { display:none !important; }
+  .choice-wrap.is-empty .circle-opt { display:inline-block; }
+  .sheet-head { padding:12px 16px; margin-bottom:12px; } h1 { font-size:22px; }
+  .lead { font-size:16px; } .remember p { font-size:14px; } .model-say { font-size:13px; }
+  .prompt { font-size:14px; }
+  .q { padding:7px 0; }
+  .remember { padding:8px 12px; margin-bottom:8px; } .model { padding:8px 12px; margin:6px 0 8px; }
+  .model-pick svg.nvr { max-width:62px; }
+  .pic-cap { font-size:11px; }
+  .gk-head, .gk-row { grid-template-columns:60px 110px 1fr; }
+  .shot { font-size:20px; }
+  .kp { min-width:32px; height:32px; font-size:14px; }
+  .kp.none { font-size:11px; }
+  .lad-grid { gap:10px 14px; }
+  .lrow { min-height:36px; } .try { font-size:16px; } .lctl { font-size:14px; } .lad-num { font-size:22px; }
+  .method-row { font-size:14px; padding:6px 0; }
+  .calc { font-size:15px; }
+  .tp-zone { min-height:36px; }
+  .section + .section { margin-top:18px; }
+  .task { break-inside:avoid; page-break-inside:avoid; }
+  .sec-head, .task-label, .role-label, .lead, .task, .gk-head { break-after:avoid; page-break-after:avoid; }
+  svg.nvr { max-width:84px; }
+  .pic-pick { gap:6px; } .pic-opt { padding:2px 3px 1px; }
+  .reason-row { margin-top:4px; }
+  .lad-intro { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:14px; align-items:start; }
+  .lad-intro .lad-model { margin:0; }
+  .ladder.still { max-width:none; }
+  .ladder { padding:6px 10px; }
+  .lrow.pairrow.off { display:grid; }
+  .gk-block { break-inside:avoid; page-break-inside:avoid; }
+  .section.tools { break-inside:avoid; page-break-inside:avoid; }
+  .gk-row { padding:4px 0; }
+  .tool-opt { font-size:12px; padding:2px 8px; min-height:26px; }
+  .tool-row { grid-template-columns:150px 1fr; padding:5px 0; }
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Clara" data-sheet="Maths 2026-11-07" data-sheet-id="clara-2026-11-07-maths">
+<div id="sheet">
+
+<div class="sheet-head"><div class="eyebrow">Non-verbal reasoning and maths</div><h1>Clara’s homework</h1></div>
+
+<div class="section nvr-sec">
+<div class="sec-head"><span class="subj">Non-verbal reasoning</span><span class="note">Odd one out</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember"><p>Check one thing at a time: shapes, colours, order, turn&nbsp;direction.</p>
+<p>For a colour order, start from the same colour in every&nbsp;picture.</p>
+<p>A piece turns to fit its hole: which way does it&nbsp;turn?</p>
+<p>For a turn, follow the arrow from its tail to its head. Same way as clock&nbsp;hands&nbsp;=&nbsp;clockwise.</p></div>
+<div class="model"><p class="ex-title">Worked example</p>
+<div class="pic-pick model-pick"><div class="pic-opt still"><span class="pic-cap">a)</span><svg class="nvr mini" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="22,22 98,22 98,98 22,98" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="40" cy="40" r="7" fill="#1d2b26"/><circle cx="80" cy="40" r="7" fill="#1d2b26"/><circle cx="60" cy="80" r="7" fill="#1d2b26"/></svg></div><div class="pic-opt still"><span class="pic-cap">b)</span><svg class="nvr mini" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="22,22 98,22 98,98 22,98" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="40" cy="60" r="7" fill="#1d2b26"/><circle cx="60" cy="60" r="7" fill="#1d2b26"/><circle cx="80" cy="60" r="7" fill="#1d2b26"/></svg></div><div class="pic-opt still"><span class="pic-cap">c)</span><svg class="nvr mini" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="22,22 98,22 98,98 22,98" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="40" cy="78" r="7" fill="#1d2b26"/><circle cx="60" cy="42" r="7" fill="#1d2b26"/><circle cx="80" cy="78" r="7" fill="#1d2b26"/></svg></div><div class="pic-opt still on"><span class="pic-cap">d)</span><svg class="nvr mini" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="22,22 98,22 98,98 22,98" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="40" cy="40" r="7" fill="#1d2b26"/><circle cx="80" cy="40" r="7" fill="#1d2b26"/><circle cx="40" cy="80" r="7" fill="#1d2b26"/><circle cx="80" cy="80" r="7" fill="#1d2b26"/></svg></div><div class="pic-opt still"><span class="pic-cap">e)</span><svg class="nvr mini" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="22,22 98,22 98,98 22,98" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="42" cy="42" r="7" fill="#1d2b26"/><circle cx="60" cy="60" r="7" fill="#1d2b26"/><circle cx="78" cy="78" r="7" fill="#1d2b26"/></svg></div></div>
+<p class="model-say">Shapes: same. Shading: same. Number of dots: <b>d</b> has 4, the others&nbsp;3.</p></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap the odd one out. Then choose the reason it is&nbsp;different.</span><span class="print-only">Circle the odd one out. Then write the reason it is&nbsp;different.</span></p>
+<p class="small print-only">Reasons: arrows point, colour order, how much is shaded, lines cross, mirrored, number of sides, turn direction, which shape is in front.</p>
+</div>
+<div class="q nq"><div class="q-top"><div class="q-num">1</div><div class="nq-body"><div class="pic-pick" data-store="n1" data-field="n1"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="75.8,31 67.9,44.6 52.1,44.6 44.2,31 52.1,17.4 67.9,17.4" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="102.6,77.5 94.7,91.1 79,91.1 71.1,77.5 79,63.9 94.7,63.9" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="48.9,77.5 41,91.1 25.3,91.1 17.4,77.5 25.3,63.9 41,63.9" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="86.8" cy="77.5" r="15" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><circle cx="33.2" cy="77.5" r="15" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/><circle cx="60" cy="31" r="15" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="45.4,89.7 21,89.7 21,65.3 45.4,65.3" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="99,89.7 74.6,89.7 74.6,65.3 99,65.3" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="72.2,43.2 47.8,43.2 47.8,18.8 72.2,18.8" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="86.8,30.5 102.4,57.5 71.3,57.5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="60,77 75.6,104 44.4,104" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="33.2,30.5 48.7,57.5 17.6,57.5" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="60,76.5 75.7,87.9 69.7,106.3 50.3,106.3 44.3,87.9" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="33.2,30 48.8,41.4 42.9,59.8 23.5,59.8 17.5,41.4" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="86.8,30 102.5,41.4 96.5,59.8 77.1,59.8 71.2,41.4" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button></div><div class="store"><select data-k="n1" data-label="N1. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r1" data-label="N1. The reason" aria-label="N1. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">2</div><div class="nq-body"><div class="pic-pick" data-store="n2" data-field="n2"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M93.5,65.9 A34,34 0 1 0 39.1,86.8" fill="none" stroke="#1d2b26" stroke-width="3" stroke-linecap="round"/><polygon points="50.8,93.9 32.4,93.7 41.4,78.2" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="60" cy="60" r="9" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M86,38.1 A34,34 0 1 1 26.7,52.9" fill="none" stroke="#1d2b26" stroke-width="3" stroke-linecap="round"/><polygon points="31.1,39.9 17.2,51.9 34.1,58" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="60" cy="60" r="9" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M54.1,93.5 A34,34 0 1 1 93.3,67.1" fill="none" stroke="#1d2b26" stroke-width="3" stroke-linecap="round"/><polygon points="88.9,80.1 102.8,68.1 85.9,62" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="67.8,67.8 52.2,67.8 52.2,52.2 67.8,52.2" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M28.1,48.4 A34,34 0 1 1 58.8,94" fill="none" stroke="#1d2b26" stroke-width="3" stroke-linecap="round"/><polygon points="45.2,91.9 59.4,103.6 62.6,85.8" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="67.8,67.8 52.2,67.8 52.2,52.2 67.8,52.2" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M54.1,26.5 A34,34 0 1 1 42,88.8" fill="none" stroke="#1d2b26" stroke-width="3" stroke-linecap="round"/><polygon points="31.3,80.3 37.7,97.4 49.3,83.7" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="67.8,67.8 52.2,67.8 52.2,52.2 67.8,52.2" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button></div><div class="store"><select data-k="n2" data-label="N2. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r2" data-label="N2. The reason" aria-label="N2. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">3</div><div class="nq-body"><div class="pic-pick" data-store="n3" data-field="n3"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="60" cy="60" r="40" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><path d="M60,60 L88.3,31.7 A40,40 0 0 1 88.3,88.3 Z" fill="#a3a8a6" stroke="none"/><line x1="60" y1="60" x2="88.3" y2="88.3" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="60" x2="31.7" y2="88.3" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="60" x2="31.7" y2="31.7" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="60" x2="88.3" y2="31.7" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><circle cx="60" cy="60" r="40" fill="none" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="25,25 95,25 95,95 25,95" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="25,25 95,25 60,60" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><line x1="25" y1="25" x2="95" y2="95" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="95" y1="25" x2="25" y2="95" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><polygon points="25,25 95,25 95,95 25,95" fill="none" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="60" cy="60" r="40" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><path d="M60,60 L20,60 A40,40 0 0 1 60,20 Z" fill="#a3a8a6" stroke="none"/><line x1="60" y1="60" x2="100" y2="60" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="60" x2="60" y2="100" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="60" x2="20" y2="60" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="60" x2="60" y2="20" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><circle cx="60" cy="60" r="40" fill="none" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="60" cy="60" r="40" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><path d="M60,60 L94.6,80 A40,40 0 0 1 25.4,80 Z" fill="#a3a8a6" stroke="none"/><line x1="60" y1="60" x2="60" y2="20" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="60" x2="94.6" y2="80" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="60" x2="25.4" y2="80" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><circle cx="60" cy="60" r="40" fill="none" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="44.5,17.5 102.5,44.5 75.5,102.5 17.5,75.5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="60,60 89,73.5 75.5,102.5 46.5,89" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><line x1="73.5" y1="31" x2="46.5" y2="89" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><line x1="31" y1="46.5" x2="89" y2="73.5" stroke="#1d2b26" stroke-width="2" stroke-linecap="round"/><polygon points="44.5,17.5 102.5,44.5 75.5,102.5 17.5,75.5" fill="none" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button></div><div class="store"><select data-k="n3" data-label="N3. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r3" data-label="N3. The reason" aria-label="N3. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">4</div><div class="nq-body"><div class="pic-pick" data-store="n4" data-field="n4"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="56.5,14.1 73.8,24.1 45.8,72.6 71.8,87.6 61.8,104.9 18.5,79.9" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="60.1" cy="27.8" r="6" fill="#1d2b26"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="105.9,56.5 95.9,73.8 47.4,45.8 32.4,71.8 15.1,61.8 40.1,18.5" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="92.2" cy="60.1" r="6" fill="#1d2b26"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="33.2,97.4 26.3,78.6 79,59.5 68.7,31.3 87.5,24.5 104.6,71.4" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="39.2" cy="84.6" r="6" fill="#1d2b26"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="14.1,63.5 24.1,46.2 72.6,74.2 87.6,48.2 104.9,58.2 79.9,101.5" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="27.8" cy="59.9" r="6" fill="#1d2b26"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="48.6,104.6 67.4,97.8 48.2,45.1 76.4,34.9 69.6,16.1 22.6,33.2" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="54.5" cy="91.8" r="6" fill="#1d2b26"/></svg></button></div><div class="store"><select data-k="n4" data-label="N4. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r4" data-label="N4. The reason" aria-label="N4. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">5</div><div class="nq-body"><div class="pic-pick" data-store="n5" data-field="n5"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M25,85 L95,85 L95,39" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="95,29 104,39 86,39" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="25" cy="85" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M33,92 L33,28 L83,28" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="93,28 83,37 83,19" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="33" cy="92" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M90,31 L30,31 L30,85" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="30,95 21,85 39,85" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="90" cy="31" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M37,24 L37,96 L79,96" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="89,96 79,105 79,87" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="37" cy="24" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M100.3,82.6 L55.1,37.4 L22.5,69.9" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="15.5,77 16.2,63.5 28.9,76.3" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="100.3" cy="82.6" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/></svg></button></div><div class="store"><select data-k="n5" data-label="N5. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r5" data-label="N5. The reason" aria-label="N5. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">6</div><div class="nq-body"><div class="pic-pick" data-store="n6" data-field="n6"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="32,98 18,50 62,22 102,52 80,100" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="30,100 30,54 60,22 90,54 90,100" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="18,40 70,40 102,62 70,84 18,84" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="28,44 58,20 94,36 96,76 64,100 26,82" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="36,98 22,52 56,22 98,40 86,92" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button></div><div class="store"><select data-k="n6" data-label="N6. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r6" data-label="N6. The reason" aria-label="N6. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">7</div><div class="nq-body"><div class="pic-pick" data-store="n7" data-field="n7"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="60" cy="28" r="13" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><circle cx="92" cy="60" r="13" fill="#6c7370" stroke="#1d2b26" stroke-width="2.5"/><circle cx="60" cy="92" r="13" fill="#d6dad8" stroke="#1d2b26" stroke-width="2.5"/><circle cx="28" cy="60" r="13" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="102.6,70.6 81.4,70.6 81.4,49.4 102.6,49.4" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="70.6,102.6 49.4,102.6 49.4,81.4 70.6,81.4" fill="#d6dad8" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="38.6,70.6 17.4,70.6 17.4,49.4 38.6,49.4" fill="#6c7370" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="70.6,38.6 49.4,38.6 49.4,17.4 70.6,17.4" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="82.6,68.3 96.2,78.2 91,94.2 74.2,94.2 69,78.2" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="37.4,68.3 51,78.2 45.8,94.2 29,94.2 23.8,78.2" fill="#d6dad8" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="37.4,23.1 51,33 45.8,48.9 29,48.9 23.8,33" fill="#6c7370" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="82.6,23.1 96.2,33 91,48.9 74.2,48.9 69,33" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="96.3,37.4 89.5,49.2 75.8,49.2 69,37.4 75.8,25.6 89.5,25.6" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="96.3,82.6 89.5,94.4 75.8,94.4 69,82.6 75.8,70.8 89.5,70.8" fill="#d6dad8" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="51,82.6 44.2,94.4 30.5,94.4 23.7,82.6 30.5,70.8 44.2,70.8" fill="#6c7370" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="51,37.4 44.2,49.2 30.5,49.2 23.7,37.4 30.5,25.6 44.2,25.6" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="28,46.4 41.5,69.8 14.5,69.8" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="60,14.4 73.5,37.8 46.5,37.8" fill="#d6dad8" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="92,46.4 105.5,69.8 78.5,69.8" fill="#6c7370" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="60,78.4 73.5,101.8 46.5,101.8" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button></div><div class="store"><select data-k="n7" data-label="N7. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r7" data-label="N7. The reason" aria-label="N7. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">8</div><div class="nq-body"><div class="pic-pick" data-store="n8" data-field="n8"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="12,12 74,12 74,74 12,74" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="32,26.5 43,26.5 43,48.5 54,48.5 54,59.5 32,59.5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="107.5,85 107.5,94 89.5,94 89.5,103 80.5,103 80.5,85" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="77" cy="43" r="33" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5"/><polygon points="93.5,32 93.5,43 71.5,43 71.5,54 60.5,54 60.5,32" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="35,107.5 26,107.5 26,89.5 17,89.5 17,80.5 35,80.5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="108,108 46,108 46,46 108,46" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="88,93.5 77,93.5 77,71.5 66,71.5 66,60.5 88,60.5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="39.5,17 39.5,26 21.5,26 21.5,35 12.5,35 12.5,17" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="43" cy="77" r="33" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5"/><polygon points="26.5,88 26.5,77 48.5,77 48.5,66 59.5,66 59.5,88" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="85,12.5 94,12.5 94,30.5 103,30.5 103,39.5 85,39.5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><polygon points="108,12 108,74 46,74 46,12" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="93.5,32 93.5,43 71.5,43 71.5,54 60.5,54 60.5,32" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><polygon points="35,107.5 26,107.5 26,89.5 17,89.5 17,80.5 35,80.5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/></svg></button></div><div class="store"><select data-k="n8" data-label="N8. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r8" data-label="N8. The reason" aria-label="N8. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">9</div><div class="nq-body"><div class="pic-pick" data-store="n9" data-field="n9"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="74" cy="46" r="24" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/><rect x="22" y="40" width="44" height="44" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="44" cy="72" r="24" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><rect x="52" y="22" width="44" height="44" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="76" cy="76" r="24" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/><rect x="24" y="24" width="44" height="44" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="44" cy="44" r="24" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><rect x="50" y="50" width="44" height="44" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="40" y="20" width="44" height="44" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5"/><circle cx="62" cy="74" r="24" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button></div><div class="store"><select data-k="n9" data-label="N9. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r9" data-label="N9. The reason" aria-label="N9. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div><div class="q nq"><div class="q-top"><div class="q-num">10</div><div class="nq-body"><div class="pic-pick" data-store="n10" data-field="n10"><button type="button" class="pic-opt" data-v="a" aria-label="Option a"><span class="pic-cap">a)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M31,31 L89,31 L89,89 L35,89" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="25,89 35,80 35,98" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="31" cy="31" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><circle cx="60" cy="60" r="8" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="b" aria-label="Option b"><span class="pic-cap">b)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M31,31 L31,89 L89,89 L89,35" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="89,25 98,35 80,35" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="31" cy="31" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><circle cx="60" cy="60" r="8" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="c" aria-label="Option c"><span class="pic-cap">c)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M89,89 L31,89 L31,31 L85,31" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="95,31 85,40 85,22" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="89" cy="89" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><circle cx="60" cy="60" r="8" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="d" aria-label="Option d"><span class="pic-cap">d)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M31,89 L31,31 L89,31 L89,85" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="89,95 80,85 98,85" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="31" cy="89" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><circle cx="60" cy="60" r="8" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button><button type="button" class="pic-opt" data-v="e" aria-label="Option e"><span class="pic-cap">e)</span><svg class="nvr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M60,19 L101,60 L60,101 L21.8,62.8" fill="none" stroke="#1d2b26" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><polygon points="14.7,55.8 28.2,56.5 15.5,69.2" fill="#1d2b26" stroke="#1d2b26" stroke-width="2.5" stroke-linejoin="round"/><circle cx="60" cy="19" r="5" fill="#ffffff" stroke="#1d2b26" stroke-width="2.5"/><circle cx="60" cy="60" r="8" fill="#a3a8a6" stroke="#1d2b26" stroke-width="2.5"/></svg></button></div><div class="store"><select data-k="n10" data-label="N10. Odd one out" tabindex="-1" class="hw-field"><option value=""></option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option></select></div><div class="reason-row"><span class="choice-wrap is-empty"><select class="hw-field reason" data-k="r10" data-label="N10. The reason" aria-label="N10. The reason"><option value="">Choose the reason</option><option value="arrows point">arrows point</option><option value="colour order">colour order</option><option value="how much is shaded">how much is shaded</option><option value="lines cross">lines cross</option><option value="mirrored">mirrored</option><option value="number of sides">number of sides</option><option value="turn direction">turn direction</option><option value="which shape is in front">which shape is in front</option></select><span class="circle-opt">Reason: ______________________</span></span></div></div></div></div>
+</div>
+
+
+<div class="section maths">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Goalkeeper trials</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember"><p>A keeper saves the shots in his times&nbsp;table.</p>
+<p>Keeper 3: add the digits. Keepers 7 and 13: use their times&nbsp;tables.</p></div>
+<div class="model"><p class="ex-title">Worked example</p>
+<div class="gk-row still"><span class="shot">25</span><span class="dt"><span class="dt-cap">digits</span><span class="given">7</span></span><div class="keepers"><div class="kp" data-v="2" aria-label="Keeper 2">2</div><div class="kp" data-v="3" aria-label="Keeper 3">3</div><div class="kp" data-v="4" aria-label="Keeper 4">4</div><div class="kp on" data-v="5" aria-label="Keeper 5">5</div><div class="kp" data-v="6" aria-label="Keeper 6">6</div><div class="kp" data-v="7" aria-label="Keeper 7">7</div><div class="kp" data-v="13" aria-label="Keeper 13">13</div><div class="kp none" data-v="none" aria-label="No keeper saves it">no save</div></div></div>
+<p class="model-say">7 is not in the 3 times table, so 3 misses. 7&nbsp;×&nbsp;3&nbsp;=&nbsp;21, 7&nbsp;×&nbsp;4&nbsp;=&nbsp;28, so 7 misses too. Only 5&nbsp;saves.</p></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Type the digit total. Then tap every keeper who saves the&nbsp;shot.</span><span class="print-only">Write the digit total. Then circle every keeper who saves the&nbsp;shot.</span></p>
+</div>
+<div class="gk-block"><div class="gk-head"><span>Shot</span><span>Digit total</span><span>Keepers</span></div>
+<div class="q gk-row" data-field="gs1"><span class="shot">34</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt1" data-label="G1. Shot 34: digit total" aria-label="G1. Shot 34: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs1"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs1" data-label="G1. Shot 34: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs2"><span class="shot">69</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt2" data-label="G2. Shot 69: digit total" aria-label="G2. Shot 69: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs2"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs2" data-label="G2. Shot 69: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs3"><span class="shot">52</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt3" data-label="G3. Shot 52: digit total" aria-label="G3. Shot 52: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs3"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs3" data-label="G3. Shot 52: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs4"><span class="shot">49</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt4" data-label="G4. Shot 49: digit total" aria-label="G4. Shot 49: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs4"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs4" data-label="G4. Shot 49: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs5"><span class="shot">79</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt5" data-label="G5. Shot 79: digit total" aria-label="G5. Shot 79: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs5"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs5" data-label="G5. Shot 79: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs6"><span class="shot">35</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt6" data-label="G6. Shot 35: digit total" aria-label="G6. Shot 35: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs6"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs6" data-label="G6. Shot 35: keepers who save it" tabindex="-1" class="hw-field"></div></div><div class="q gk-row" data-field="gs7"><span class="shot">84</span><span class="dt"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="gt7" data-label="G7. Shot 84: digit total" aria-label="G7. Shot 84: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="keepers" data-store="gs7"><button type="button" class="kp" data-v="2" aria-label="Keeper 2">2</button><button type="button" class="kp" data-v="3" aria-label="Keeper 3">3</button><button type="button" class="kp" data-v="4" aria-label="Keeper 4">4</button><button type="button" class="kp" data-v="5" aria-label="Keeper 5">5</button><button type="button" class="kp" data-v="6" aria-label="Keeper 6">6</button><button type="button" class="kp" data-v="7" aria-label="Keeper 7">7</button><button type="button" class="kp" data-v="13" aria-label="Keeper 13">13</button><button type="button" class="kp none" data-v="none" aria-label="No keeper saves it">no save</button></div><div class="store"><input type="text" data-k="gs7" data-label="G7. Shot 84: keepers who save it" tabindex="-1" class="hw-field"></div></div>
+<div class="task gapt"><p class="lead">Answer about the whole&nbsp;team.</p></div>
+<div class="q"><div class="q-top"><div class="q-num">1</div><p class="prompt">Which shots are goals? No keeper saves&nbsp;them.</p></div>
+<div class="arow"><input class="hw-field np" data-k="g_goal" data-label="G9. Shots that are goals" aria-label="G9. Shots that are goals" autocomplete="off" inputmode="text" spellcheck="false"></div></div>
+<div class="q"><div class="q-top"><div class="q-num">2</div><p class="prompt">Sell a keeper if a smaller keeper saved all his shots too. Which keepers do you&nbsp;sell?</p></div>
+<div class="arow"><input class="hw-field np" data-k="g_sell" data-label="G10. Keepers to sell" aria-label="G10. Keepers to sell" autocomplete="off" inputmode="text" spellcheck="false"></div>
+<p class="small arow-note">Put a comma between&nbsp;numbers.</p></div>
+</div></div>
+
+
+<div class="section maths">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Prime test</span></div>
+<div class="task">
+<div class="lad-intro"><div><div class="task-label">Remember</div>
+<div class="remember"><p>A prime has exactly two factors: 1&nbsp;and&nbsp;itself.</p>
+<p>A prime has only one pair: 1&nbsp;×&nbsp;itself.</p>
+<p>Try the keepers 2, 3, 5 and 7. Stop the moment one&nbsp;saves.</p></div></div>
+<div class="model lad-model"><p class="ex-title">Worked example</p>
+<div class="ladder still"><div class="lad-top"><div class="lad-num">55</div></div>
+
+<div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;55</span></span></div>
+<div class="lrow"><span class="try">2</span><span class="lctl">misses: 55 is odd</span></div>
+<div class="lrow"><span class="try">3</span><span class="lctl">digits 5&nbsp;+&nbsp;5&nbsp;=&nbsp;10: misses</span></div>
+<div class="lrow"><span class="try">5</span><span class="lctl"><b>saves: 5&nbsp;×&nbsp;11&nbsp;=&nbsp;55</b></span></div>
+<div class="lrow after-stop"><span class="try">7</span><span class="stopnote">Stop. No need to&nbsp;try.</span></div>
+<div class="lrow verdict"><span class="vcap">Result</span><span class="lctl"><b>pair found</b></span></div>
+<div class="lrow verdict"><span class="vcap">Pair</span><span class="lctl"><b>5&nbsp;×&nbsp;11</b></span></div>
+<div class="lrow verdict"><span class="vcap">55 is</span><span class="lctl"><b>composite</b></span></div>
+</div></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Test each number. Choose misses or saves, and stop when a keeper&nbsp;saves.</span><span class="print-only">Test each number. Circle misses or saves, and stop when a keeper&nbsp;saves.</span></p>
+<p class="small">Then choose pair found or no keeper saves it. Type the pair only if you found&nbsp;one.</p>
+</div>
+<div class="lad-grid"><div class="q ladder" data-n="39"><div class="lad-top"><div class="q-num">1</div><div class="lad-num">39</div></div><div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;39</span></span></div><div class="lrow" data-step="2"><span class="try">2</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l1_2" data-label="L1. 39: keeper 2" aria-label="L1. 39: keeper 2"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="3"><span class="try">3</span><span class="lctl"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="l1_3t" data-label="L1. 39: digit total" aria-label="L1. 39: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l1_3" data-label="L1. 39: keeper 3" aria-label="L1. 39: keeper 3"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="5"><span class="try">5</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l1_5" data-label="L1. 39: keeper 5" aria-label="L1. 39: keeper 5"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="7"><span class="try">7</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l1_7" data-label="L1. 39: keeper 7" aria-label="L1. 39: keeper 7"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow verdict found"><span class="vcap">Result</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field fnd" data-k="l1_f" data-label="L1. 39: pair found?" aria-label="L1. 39: pair found?"><option value="">Choose</option><option value="pair found">pair found</option><option value="no keeper saves it">no keeper saves it</option></select><span class="circle-opt">pair found / no keeper saves it</span></span></span></div><div class="lrow verdict pairrow"><span class="vcap">Pair</span><span class="lctl"><input class="hw-field nb num gapn" data-k="l1_pa" data-label="L1. 39: pair, first number" aria-label="L1. 39: pair, first number" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="x">×</span><input class="hw-field nb num gapn" data-k="l1_pb" data-label="L1. 39: pair, second number" aria-label="L1. 39: pair, second number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="lrow verdict"><span class="vcap">39 is</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="l1_v" data-label="L1. 39: prime or composite" aria-label="L1. 39: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></span></div></div><div class="q ladder" data-n="67"><div class="lad-top"><div class="q-num">2</div><div class="lad-num">67</div></div><div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;67</span></span></div><div class="lrow" data-step="2"><span class="try">2</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l2_2" data-label="L2. 67: keeper 2" aria-label="L2. 67: keeper 2"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="3"><span class="try">3</span><span class="lctl"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="l2_3t" data-label="L2. 67: digit total" aria-label="L2. 67: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l2_3" data-label="L2. 67: keeper 3" aria-label="L2. 67: keeper 3"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="5"><span class="try">5</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l2_5" data-label="L2. 67: keeper 5" aria-label="L2. 67: keeper 5"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="7"><span class="try">7</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l2_7" data-label="L2. 67: keeper 7" aria-label="L2. 67: keeper 7"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow verdict found"><span class="vcap">Result</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field fnd" data-k="l2_f" data-label="L2. 67: pair found?" aria-label="L2. 67: pair found?"><option value="">Choose</option><option value="pair found">pair found</option><option value="no keeper saves it">no keeper saves it</option></select><span class="circle-opt">pair found / no keeper saves it</span></span></span></div><div class="lrow verdict pairrow"><span class="vcap">Pair</span><span class="lctl"><input class="hw-field nb num gapn" data-k="l2_pa" data-label="L2. 67: pair, first number" aria-label="L2. 67: pair, first number" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="x">×</span><input class="hw-field nb num gapn" data-k="l2_pb" data-label="L2. 67: pair, second number" aria-label="L2. 67: pair, second number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="lrow verdict"><span class="vcap">67 is</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="l2_v" data-label="L2. 67: prime or composite" aria-label="L2. 67: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></span></div></div><div class="q ladder" data-n="47"><div class="lad-top"><div class="q-num">3</div><div class="lad-num">47</div></div><div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;47</span></span></div><div class="lrow" data-step="2"><span class="try">2</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l3_2" data-label="L3. 47: keeper 2" aria-label="L3. 47: keeper 2"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="3"><span class="try">3</span><span class="lctl"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="l3_3t" data-label="L3. 47: digit total" aria-label="L3. 47: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l3_3" data-label="L3. 47: keeper 3" aria-label="L3. 47: keeper 3"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="5"><span class="try">5</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l3_5" data-label="L3. 47: keeper 5" aria-label="L3. 47: keeper 5"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="7"><span class="try">7</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l3_7" data-label="L3. 47: keeper 7" aria-label="L3. 47: keeper 7"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow verdict found"><span class="vcap">Result</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field fnd" data-k="l3_f" data-label="L3. 47: pair found?" aria-label="L3. 47: pair found?"><option value="">Choose</option><option value="pair found">pair found</option><option value="no keeper saves it">no keeper saves it</option></select><span class="circle-opt">pair found / no keeper saves it</span></span></span></div><div class="lrow verdict pairrow"><span class="vcap">Pair</span><span class="lctl"><input class="hw-field nb num gapn" data-k="l3_pa" data-label="L3. 47: pair, first number" aria-label="L3. 47: pair, first number" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="x">×</span><input class="hw-field nb num gapn" data-k="l3_pb" data-label="L3. 47: pair, second number" aria-label="L3. 47: pair, second number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="lrow verdict"><span class="vcap">47 is</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="l3_v" data-label="L3. 47: prime or composite" aria-label="L3. 47: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></span></div></div><div class="q ladder" data-n="21"><div class="lad-top"><div class="q-num">4</div><div class="lad-num">21</div></div><div class="lrow"><span class="try">1</span><span class="lctl"><span class="given">1&nbsp;×&nbsp;21</span></span></div><div class="lrow" data-step="2"><span class="try">2</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l4_2" data-label="L4. 21: keeper 2" aria-label="L4. 21: keeper 2"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="3"><span class="try">3</span><span class="lctl"><span class="dt-cap">digits</span><input class="hw-field nb num gapn" data-k="l4_3t" data-label="L4. 21: digit total" aria-label="L4. 21: digit total" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l4_3" data-label="L4. 21: keeper 3" aria-label="L4. 21: keeper 3"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="5"><span class="try">5</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l4_5" data-label="L4. 21: keeper 5" aria-label="L4. 21: keeper 5"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow" data-step="7"><span class="try">7</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field step" data-k="l4_7" data-label="L4. 21: keeper 7" aria-label="L4. 21: keeper 7"><option value="">Choose</option><option value="misses">misses</option><option value="saves">saves</option></select><span class="circle-opt">misses / saves</span></span></span><span class="stopnote">Stop. No need to&nbsp;try.</span></div><div class="lrow verdict found"><span class="vcap">Result</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field fnd" data-k="l4_f" data-label="L4. 21: pair found?" aria-label="L4. 21: pair found?"><option value="">Choose</option><option value="pair found">pair found</option><option value="no keeper saves it">no keeper saves it</option></select><span class="circle-opt">pair found / no keeper saves it</span></span></span></div><div class="lrow verdict pairrow"><span class="vcap">Pair</span><span class="lctl"><input class="hw-field nb num gapn" data-k="l4_pa" data-label="L4. 21: pair, first number" aria-label="L4. 21: pair, first number" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="x">×</span><input class="hw-field nb num gapn" data-k="l4_pb" data-label="L4. 21: pair, second number" aria-label="L4. 21: pair, second number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="lrow verdict"><span class="vcap">21 is</span><span class="lctl"><span class="choice-wrap is-empty"><select class="hw-field verd" data-k="l4_v" data-label="L4. 21: prime or composite" aria-label="L4. 21: prime or composite"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option></select><span class="circle-opt">prime / composite</span></span></span></div></div></div>
+<div class="task gapt"><p class="lead">Choose the word that makes the sentence&nbsp;true.</p></div>
+<div class="q one-q"><div class="q-top"><div class="q-num">5</div><p class="prompt wsent">1 is <span class="choice-wrap is-empty"><select class="hw-field verd" data-k="one" data-label="L5. 1 is prime, composite or neither" aria-label="L5. 1 is prime, composite or neither"><option value="">Choose</option><option value="prime">prime</option><option value="composite">composite</option><option value="neither">neither</option></select><span class="circle-opt">prime / composite / neither</span></span><span class="nw">.</span></p></div></div>
+</div>
+
+
+<div class="section maths tools">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Tool names</span></div>
+<div class="task"><div class="task-label">Remember</div>
+<div class="remember method-summary">
+<div class="method-row"><b>Compensate</b><span class="method-original">34,999 + 6,200</span><span class="method-arrow">→</span><span class="method-working">35,000 + 6,200 − 1 = <strong>41,199</strong></span></div>
+<div class="method-row"><b>Bonds</b><span class="method-original">2,700 + 7,300</span><span class="method-arrow">→</span><span class="method-working">2,000 + 7,000 + 1,000 = <strong>10,000</strong></span></div>
+<div class="method-row"><b>Count up</b><span class="method-original">5,004 − 4,991</span><span class="method-arrow">→</span><span class="method-working"><span class="short-route">4,991 <span><small>+9</small>→</span> 5,000 <span><small>+4</small>→</span> 5,004</span><span class="short-total">9 + 4 = <strong>13</strong></span></span></div>
+<div class="method-row"><b>Known facts</b><span class="method-original">61,000 + 27,000</span><span class="method-arrow">→</span><span class="method-working">61 + 27 = 88 → <strong>88,000</strong></span></div>
+<div class="method-row"><b>Same difference</b><span class="method-original">8,002 − 3,997</span><span class="method-arrow">→</span><span class="method-working">8,005 − 4,000 = <strong>4,005</strong></span></div>
+</div></div>
+<div class="task">
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap a tool for each&nbsp;calculation.</span><span class="print-only">Circle a tool for each&nbsp;calculation.</span></p>
+</div>
+<div class="tool-list"><div class="q tool-row"><span class="calc">12,400 + 37,999</span><div class="tool-pick" data-store="t1" data-field="t1"><button type="button" class="tool-opt" data-v="bonds">bonds</button><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="count up">count up</button><button type="button" class="tool-opt" data-v="known facts">known facts</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t1" data-label="T1. Tool for 12,400 + 37,999" tabindex="-1" class="hw-field"><option value=""></option><option value="bonds">bonds</option><option value="compensate">compensate</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><span class="calc">140,000 + 30,000</span><div class="tool-pick" data-store="t2" data-field="t2"><button type="button" class="tool-opt" data-v="bonds">bonds</button><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="count up">count up</button><button type="button" class="tool-opt" data-v="known facts">known facts</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t2" data-label="T2. Tool for 140,000 + 30,000" tabindex="-1" class="hw-field"><option value=""></option><option value="bonds">bonds</option><option value="compensate">compensate</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><span class="calc">35,000 + 65,000</span><div class="tool-pick" data-store="t3" data-field="t3"><button type="button" class="tool-opt" data-v="bonds">bonds</button><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="count up">count up</button><button type="button" class="tool-opt" data-v="known facts">known facts</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t3" data-label="T3. Tool for 35,000 + 65,000" tabindex="-1" class="hw-field"><option value=""></option><option value="bonds">bonds</option><option value="compensate">compensate</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><span class="calc">52,000 − 19,998</span><div class="tool-pick" data-store="t4" data-field="t4"><button type="button" class="tool-opt" data-v="bonds">bonds</button><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="count up">count up</button><button type="button" class="tool-opt" data-v="known facts">known facts</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t4" data-label="T4. Tool for 52,000 − 19,998" tabindex="-1" class="hw-field"><option value=""></option><option value="bonds">bonds</option><option value="compensate">compensate</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><span class="calc">6,500 + 29,998</span><div class="tool-pick" data-store="t5" data-field="t5"><button type="button" class="tool-opt" data-v="bonds">bonds</button><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="count up">count up</button><button type="button" class="tool-opt" data-v="known facts">known facts</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t5" data-label="T5. Tool for 6,500 + 29,998" tabindex="-1" class="hw-field"><option value=""></option><option value="bonds">bonds</option><option value="compensate">compensate</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><span class="calc">40,002 − 39,989</span><div class="tool-pick" data-store="t6" data-field="t6"><button type="button" class="tool-opt" data-v="bonds">bonds</button><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="count up">count up</button><button type="button" class="tool-opt" data-v="known facts">known facts</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t6" data-label="T6. Tool for 40,002 − 39,989" tabindex="-1" class="hw-field"><option value=""></option><option value="bonds">bonds</option><option value="compensate">compensate</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><span class="calc">450,000 + 550,000</span><div class="tool-pick" data-store="t7" data-field="t7"><button type="button" class="tool-opt" data-v="bonds">bonds</button><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="count up">count up</button><button type="button" class="tool-opt" data-v="known facts">known facts</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t7" data-label="T7. Tool for 450,000 + 550,000" tabindex="-1" class="hw-field"><option value=""></option><option value="bonds">bonds</option><option value="compensate">compensate</option><option value="count up">count up</option><option value="known facts">known facts</option><option value="same difference">same difference</option></select></div></div></div>
+</div>
+
+<script>
+
+/* An empty menu prints as words to circle; a chosen one prints as it is. */
+(function () {
+  function sync() {
+    document.querySelectorAll('.choice-wrap').forEach(function (w) {
+      var s = w.querySelector('select'); w.classList.toggle('is-empty', !(s && s.value));
+    });
+  }
+  document.addEventListener('change', sync, true);
+  window.addEventListener('beforeprint', sync);
+  window.addEventListener('load', function () { sync(); setTimeout(sync, 500); setTimeout(sync, 1500); });
+  sync();
+})();
+
+/* Number boxes: Clara may write k for thousand (Dasha, 24 Oct 2026). */
+(function () {
+  function tidy(el) {
+    var v = String(el.value || '').trim();
+    var m = v.match(/^(\d+(?:\.\d+)?)\s*k$/i);
+    if (m) v = Math.round(parseFloat(m[1]) * 1000).toLocaleString('en-GB');
+    if (v !== el.value) { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); }
+  }
+  document.addEventListener('change', function (e) { if (e.target.classList && e.target.classList.contains('num')) tidy(e.target); }, true);
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.hw-send')) [].forEach.call(document.querySelectorAll('input.num'), tidy);
+  }, true);
+})();
+
+function claraStore(k) { return document.querySelector(".store [data-k='" + k + "']"); }
+function claraSet(s, v) {
+  if (!s || s.value === v) return;
+  s.value = v;
+  s.dispatchEvent(new Event('input', { bubbles: true }));
+  s.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* Odd one out: tap one picture. The answer lives in a hidden select (data-k) in .store,
+   so hw.js saves, restores, sends and marks it on the data-field twin. Tap again to clear.
+   These are buttons: nothing moves under a finger. */
+(function () {
+  function init() {
+    document.querySelectorAll('.pic-pick[data-store], .tool-pick[data-store]').forEach(function (g) {
+      var s = claraStore(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.pic-opt, .tool-opt'));
+      function paint() { btns.forEach(function (b) { var on = s.value === b.dataset.v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }); }
+      paint(); s.addEventListener('change', paint);
+      btns.forEach(function (b) { b.addEventListener('click', function () { claraSet(s, s.value === b.dataset.v ? '' : b.dataset.v); paint(); }); });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* Goalkeepers: tap every keeper who saves the shot (tap again to take it off).
+   "no save" clears the keepers; a keeper clears "no save". Stored as "2, 4, 13". */
+(function () {
+  function init() {
+    document.querySelectorAll('.keepers[data-store]').forEach(function (g) {
+      var s = claraStore(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.kp'));
+      function read() { return String(s.value || '').split(/[\s,]+/).filter(Boolean); }
+      function paint() { var on = read(); btns.forEach(function (b) { var x = on.indexOf(b.dataset.v) >= 0; b.classList.toggle('on', x); b.setAttribute('aria-pressed', x ? 'true' : 'false'); }); }
+      paint(); s.addEventListener('change', paint);
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.dataset.v, on = read();
+          if (v === 'none') on = on.indexOf('none') >= 0 ? [] : ['none'];
+          else {
+            on = on.filter(function (x) { return x !== 'none'; });
+            on = on.indexOf(v) >= 0 ? on.filter(function (x) { return x !== v; }) : on.concat([v]);
+            on.sort(function (p, q) { return +p - +q; });
+          }
+          claraSet(s, on.join(', ')); paint();
+        });
+      });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* Prime ladders: once a keeper saves, the keepers below say "Stop" and their boxes go. */
+(function () {
+  var busy = false;
+  function update(lad) {
+    if (busy) return; busy = true;
+    var stopped = false;
+    lad.querySelectorAll('.lrow[data-step]').forEach(function (row) {
+      row.classList.toggle('after-stop', stopped);
+      if (stopped) row.querySelectorAll('[data-k]').forEach(function (f) {
+        if (f.value) { f.value = ''; f.dispatchEvent(new Event('input', { bubbles: true })); f.dispatchEvent(new Event('change', { bubbles: true })); }
+      });
+      var sel = row.querySelector('select.step');
+      if (!stopped && sel && sel.value === 'saves') stopped = true;
+    });
+    // the pair boxes only make sense once a pair has been found
+    var found = lad.querySelector('select.fnd'), pr = lad.querySelector('.lrow.pairrow');
+    if (found && pr) {
+      var off = found.value !== 'pair found';
+      pr.classList.toggle('off', off);
+      if (off) pr.querySelectorAll('[data-k]').forEach(function (f) {
+        if (f.value) { f.value = ''; f.dispatchEvent(new Event('input', { bubbles: true })); f.dispatchEvent(new Event('change', { bubbles: true })); }
+      });
+    }
+    busy = false;
+  }
+  function init() {
+    document.querySelectorAll('.ladder[data-n]').forEach(function (lad) {
+      update(lad);
+      lad.addEventListener('change', function () { update(lad); });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* ===== TAP-PLACE JS (copy from here) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS (copy to here) ===== */
+
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJuMSI6IHsidCI6ICJleGFjdCIsICJhIjogImMifSwgInIxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29sb3VyIG9yZGVyIiwgImciOiAicjEtb2sifSwgInIxX2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCIsICJnIjogInIxLW9rIn0sICJuMiI6IHsidCI6ICJleGFjdCIsICJhIjogImEifSwgInIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24iLCAiZyI6ICJyMi1vayJ9LCAicjJfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pcnJvcmVkIiwgImciOiAicjItb2sifSwgIm4zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZCJ9LCAicjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJob3cgbXVjaCBpcyBzaGFkZWQiLCAiZyI6ICJyMy1vayJ9LCAicjNfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImxpbmVzIGNyb3NzIiwgImciOiAicjMtb2sifSwgIm40IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZSJ9LCAicjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCJ9LCAibjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJiIn0sICJyNSI6IHsidCI6ICJleGFjdCIsICJhIjogInR1cm4gZGlyZWN0aW9uIiwgImciOiAicjUtb2sifSwgInI1X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXJyb3JlZCIsICJnIjogInI1LW9rIn0sICJuNiI6IHsidCI6ICJleGFjdCIsICJhIjogImQifSwgInI2IjogeyJ0IjogImV4YWN0IiwgImEiOiAibnVtYmVyIG9mIHNpZGVzIn0sICJuNyI6IHsidCI6ICJleGFjdCIsICJhIjogImEifSwgInI3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29sb3VyIG9yZGVyIn0sICJuOCI6IHsidCI6ICJleGFjdCIsICJhIjogImMifSwgInI4IjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24ifSwgIm45IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZSJ9LCAicjkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGljaCBzaGFwZSBpcyBpbiBmcm9udCJ9LCAibjEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYiJ9LCAicjEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHVybiBkaXJlY3Rpb24iLCAiZyI6ICJyMTAtb2sifSwgInIxMF9hbHQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlycm9yZWQiLCAiZyI6ICJyMTAtb2sifSwgImd0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgImdzMSI6IHsidCI6ICJzZXQiLCAiYSI6ICIyIn0sICJndDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNSJ9LCAiZ3MyIjogeyJ0IjogInNldCIsICJhIjogIjMifSwgImd0MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgImdzMyI6IHsidCI6ICJzZXQiLCAiYSI6ICIyLCA0LCAxMyJ9LCAiZ3Q0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgImdzNCI6IHsidCI6ICJzZXQiLCAiYSI6ICI3In0sICJndDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNiJ9LCAiZ3M1IjogeyJ0IjogInNldCIsICJhIjogIm5vbmUifSwgImd0NiI6IHsidCI6ICJleGFjdCIsICJhIjogIjgifSwgImdzNiI6IHsidCI6ICJzZXQiLCAiYSI6ICI1LCA3In0sICJndDciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiJ9LCAiZ3M3IjogeyJ0IjogInNldCIsICJhIjogIjIsIDMsIDQsIDYsIDcifSwgImdfZ29hbCI6IHsidCI6ICJzZXQiLCAiYSI6ICI3OSJ9LCAiZ19zZWxsIjogeyJ0IjogInNldCIsICJhIjogIjQsIDYsIDEzIn0sICJvbmUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJuZWl0aGVyIn0sICJsMV8yIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlzc2VzIn0sICJsMV8zdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjEyIn0sICJsMV8zIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2F2ZXMifSwgImwxX2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwYWlyIGZvdW5kIn0sICJsMV9wYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMiLCAiZyI6ICJsMXBhaXIifSwgImwxX3BiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMiLCAiZyI6ICJsMXBhaXIifSwgImwxX3YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wb3NpdGUifSwgImwyXzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTMifSwgImwyXzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyXzciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtaXNzZXMifSwgImwyX2YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJubyBrZWVwZXIgc2F2ZXMgaXQifSwgImwyX3YiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwcmltZSJ9LCAibDNfMiI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfM3QiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMSJ9LCAibDNfMyI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfNSI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfNyI6IHsidCI6ICJleGFjdCIsICJhIjogIm1pc3NlcyJ9LCAibDNfZiI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vIGtlZXBlciBzYXZlcyBpdCJ9LCAibDNfdiI6IHsidCI6ICJleGFjdCIsICJhIjogInByaW1lIn0sICJsNF8yIjogeyJ0IjogImV4YWN0IiwgImEiOiAibWlzc2VzIn0sICJsNF8zdCI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgImw0XzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYXZlcyJ9LCAibDRfZiI6IHsidCI6ICJleGFjdCIsICJhIjogInBhaXIgZm91bmQifSwgImw0X3BhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyIsICJnIjogImw0cGFpciJ9LCAibDRfcGIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3IiwgImciOiAibDRwYWlyIn0sICJsNF92IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcG9zaXRlIn0sICJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBlbnNhdGUifSwgInQyIjogeyJ0IjogImV4YWN0IiwgImEiOiAia25vd24gZmFjdHMifSwgInQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYm9uZHMiLCAiZyI6ICJ0My1vayJ9LCAidDNfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImtub3duIGZhY3RzIiwgImciOiAidDMtb2sifSwgInQ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBkaWZmZXJlbmNlIiwgImciOiAidDQtb2sifSwgInQ0X2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wZW5zYXRlIiwgImciOiAidDQtb2sifSwgInQ1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29tcGVuc2F0ZSJ9LCAidDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb3VudCB1cCIsICJnIjogInQ2LW9rIn0sICJ0Nl9hbHQxIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBkaWZmZXJlbmNlIiwgImciOiAidDYtb2sifSwgInQ3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYm9uZHMiLCAiZyI6ICJ0Ny1vayJ9LCAidDdfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImtub3duIGZhY3RzIiwgImciOiAidDctb2sifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

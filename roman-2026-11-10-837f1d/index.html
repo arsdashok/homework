@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 10 November 2026</title>
+<!-- Lesson of 10 Nov 2026 (LEGO card: contrast with although / however). About 20 min, as he asked for more.
+     Part 1 = six pairs joined with although (1, 4, 5 at the start; 2, 3, 6 in the middle; 3 and 6 from cue words so was/were is his choice) + one of his own.
+     Part 2 = three new first sentences, he writes the However sentence. Part 3 = eight 10 Nov words in gap sentences with a Russian cue. Answers live only in the private key. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .prompt, li { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+  }
+  .task.keep { page-break-inside: avoid; break-inside: avoid; }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; }
+  .note a { color: #31594b; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model .lab2 { font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .ln { display: block; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 7px; }
+  .prompt { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 2.1; margin-bottom: 0; }
+  .facts .cw { color: #31594b; }
+  .facts .own { font-family: Arial, Helvetica, sans-serif; font-weight: 700; color: #1f2a24; }
+  .cue { color: #626a62; }
+  .gc { white-space: nowrap; }
+
+  /* Part 1: facts on the left, the pupil's sentences on the right (stacked on a phone) */
+  .pairq { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 28px; align-items: start; }
+  .facts { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; padding-top: 4px; }
+  .facts span { display: block; }
+  .answers { display: grid; gap: 6px; }
+  .hlab { font-size: 13.5px; color: #626a62; margin: 2px 0 -2px; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  textarea.resp { resize: vertical; min-height: 66px; }
+
+  /* Part 2: the word is typed inside the sentence */
+  input.vgap { display: inline-block; font: inherit; font-size: 16px; margin: 0 4px; padding: 2px 8px; vertical-align: baseline;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa; }
+  input.vgap.s { width: 8em; }
+  input.vgap.m { width: 10.5em; }
+  input.vgap.l { width: 13em; }
+
+  @media (min-width: 760px) {
+    .pairq { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
+  }
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+    .gc { white-space: normal; }
+  }
+
+  @media print {
+    body { font-size: 12px; line-height: 1.3; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab, .model .lab2 { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 2px; }
+    .pairq { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 3px 16px; }
+    .facts { font-size: 12px; padding-top: 1px; }
+    .answers { gap: 3px; }
+    .hlab { font-size: 9.5px; margin: 0; }
+    .resp { font-size: 11.5px; padding: 3px 8px; border-width: 1px; }
+    textarea.resp { min-height: 58px; height: 58px; resize: none; }
+    textarea.resp::placeholder { color: transparent; }
+    .prompt { font-size: 12.5px; line-height: 1.75; }
+    input.vgap { font-size: 11.5px; height: 19px; padding: 0 4px; border-width: 1px; }
+    input.vgap.s { width: 6em; }
+    input.vgap.m { width: 9em; }
+    input.vgap.l { width: 11em; }
+    input.vgap::placeholder { color: transparent; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab, .model .lab2 { font-size:17px; margin-bottom:4px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:18px 0; }
+  .qnum { font-size:22px; padding-top:10px; }
+  .pairq { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 40px; }
+  .facts { font-size:29px; line-height:1.45; padding-top:6px; }
+  .answers { gap:10px; }
+  .hlab { font-size:20px; margin:4px 0 -4px; }
+  .resp { font-size:26px; padding:10px 16px; border-width:2px; }
+  textarea.resp { min-height:104px; }
+  .prompt { font-size:29px; line-height:2; }
+  input.vgap { font-size:26px; min-height:54px; padding:4px 12px; border-width:2px; }
+}
+/* hw.css sets div/textarea field heights; keep the sentence boxes two lines tall on the live page. */
+@media screen { .task textarea.resp.hw-field { min-height:66px !important; } }
+@media screen and (min-width:900px) { .task textarea.resp.hw-field { min-height:104px !important; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-11-10" data-sheet-id="roman-2026-11-10-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 20&nbsp;minutes</span></div>
+    <h1>Showing a contrast</h1>
+  </header>
+
+  <div class="task">
+    <h2>1. Although</h2>
+    <div class="do">Join each pair of facts in one sentence with <i>although</i>. For 2, 3 and 6, put <i>although</i> in the&nbsp;middle.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">The hotel was cheap. The room was comfortable. &rarr;</span>
+      <span class="ln"><b>Although</b> the hotel was cheap, the room was&nbsp;comfortable.</span>
+      <span class="ln"><span class="lab2">In the middle:</span> The room was comfortable, <b>although</b> the hotel was&nbsp;cheap.</span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="pairq">
+        <p class="facts"><span>The app was free.</span><span>Very few people downloaded&nbsp;it.</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="a1" data-label="1. The app was free. / Very few people downloaded it." aria-label="Sentence 1" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="pairq">
+        <p class="facts"><span>It was raining all morning.</span><span>The market was full of&nbsp;people.</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="a2" data-label="2. It was raining all morning. / The market was full of people. (although in the middle)" aria-label="Sentence 2" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div class="pairq">
+        <p class="facts"><span class="cw">the concert tickets / very&nbsp;expensive</span><span class="cw">they / sell out in two&nbsp;hours</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="a3" data-label="3. the concert tickets / very expensive // they / sell out in two hours (although in the middle)" aria-label="Sentence 3" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <div class="pairq">
+        <p class="facts"><span>The marathon route was very&nbsp;hilly.</span><span>Most runners beat their personal&nbsp;best.</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="a4" data-label="4. The marathon route was very hilly. / Most runners beat their personal best." aria-label="Sentence 4" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <div class="pairq">
+        <p class="facts"><span>The restaurant is small and hard to&nbsp;find.</span><span>It's fully booked every&nbsp;weekend.</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="a5" data-label="5. The restaurant is small and hard to find. / It's fully booked every weekend." aria-label="Sentence 5" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <div class="pairq">
+        <p class="facts"><span class="cw">the developers / fix the bug on&nbsp;Friday</span><span class="cw">some clients / still have problems on&nbsp;Monday</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="a6" data-label="6. the developers / fix the bug on Friday // some clients / still have problems on Monday (although in the middle)" aria-label="Sentence 6" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">7.</span>
+      <div class="pairq">
+        <p class="facts"><span class="own">Your own: one contrast with although about your work or your&nbsp;running.</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="a7" data-label="7. Your own: one contrast with although about your work or your running." aria-label="Sentence 7, your own" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="task">
+    <h2>2. However</h2>
+    <div class="do">Write a second sentence that starts with <i>However</i>.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">The sons wanted to return to wood. &rarr; <b>However</b>, their father wanted to develop a new&nbsp;product.</span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="pairq">
+        <p class="facts"><span>We booked a big hotel room for the&nbsp;team.</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="h1" data-label="1. We booked a big hotel room for the team. However, ..." aria-label="Sentence 1" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="pairq">
+        <p class="facts"><span>The client liked our demo very&nbsp;much.</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="h2" data-label="2. The client liked our demo very much. However, ..." aria-label="Sentence 2" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div class="pairq">
+        <p class="facts"><span>The flight left on&nbsp;time.</span></p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="h3" data-label="3. The flight left on time. However, ..." aria-label="Sentence 3" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="task keep">
+    <h2>3. Words from 10 November</h2>
+    <div class="do">Write the word or phrase in the right form for each&nbsp;gap.</div>
+    <p class="note">All these words are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 10&nbsp;November.</p>
+    <div class="model">
+      <span class="lab">Example</span>
+      We wanted a quick lunch, but we ___ <span class="cue">(в итоге просидели)</span> in the café for three hours. &rarr; We wanted a quick lunch, but we <b>ended up sitting</b> in the café for three&nbsp;hours.
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <p class="prompt">Our support team works <span class="gc"><input class="hw-field vgap m" type="text" data-k="g1" data-label="1. Our support team works ___ (исключительно) with business clients, not with private users." aria-label="Gap 1" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(исключительно)</span></span> with business clients, not with private&nbsp;users.</p></div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <p class="prompt">The first time we tried, we didn't <span class="gc"><input class="hw-field vgap l" type="text" data-k="g2" data-label="2. The first time we tried, we didn't ___ (сделать всё правильно), but the second version of the app was much better." aria-label="Gap 2" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(сделать всё правильно)</span></span>, but the second version of the app was much&nbsp;better.</p></div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <p class="prompt">Our team <span class="gc"><input class="hw-field vgap m" type="text" data-k="g3" data-label="3. Our team ___ (суметь) launch the update two days before the deadline last month." aria-label="Gap 3" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(суметь)</span></span> launch the update two days before the deadline last&nbsp;month.</p></div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <p class="prompt">The client wants the new version in one week. With a team of four, that's simply <span class="gc">not <input class="hw-field vgap s" type="text" data-k="g4" data-label="4. The client wants the new version in one week. With a team of four, that's simply not ___ (осуществимо)." aria-label="Gap 4" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(осуществимо).</span></span></p></div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <p class="prompt">A running club isn't only about getting fit: you also <span class="gc"><input class="hw-field vgap l" type="text" data-k="g5" data-label="5. A running club isn't only about getting fit: you also ___ (заводить дружбу) with people from your area." aria-label="Gap 5" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(заводить дружбу)</span></span> with people from your&nbsp;area.</p></div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <p class="prompt">The children asked if their classmates could <span class="gc"><input class="hw-field vgap m" type="text" data-k="g6" data-label="6. The children asked if their classmates could ___ (прийти в гости) on Friday afternoon." aria-label="Gap 6" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(прийти в гости)</span></span> on Friday&nbsp;afternoon.</p></div>
+
+    <div class="q"><span class="qnum">7.</span>
+      <p class="prompt">Only one in ten students who apply <span class="gc"><input class="hw-field vgap m" type="text" data-k="g7" data-label="7. Only one in ten students who apply ___ (поступают в) this university, so you need excellent grades." aria-label="Gap 7" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(поступают в)</span></span> this university, so you need excellent&nbsp;grades.</p></div>
+
+    <div class="q"><span class="qnum">8.</span>
+      <p class="prompt">Our <span class="gc"><input class="hw-field vgap l" type="text" data-k="g8" data-label="8. Our ___ (текущая выручка) is good, but we need new clients to grow next year." aria-label="Gap 8" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(текущая выручка)</span></span> is good, but we need new clients to grow next&nbsp;year.</p></div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJhMSI6IHsidCI6ICJvcGVuIn0sICJhMiI6IHsidCI6ICJvcGVuIn0sICJhMyI6IHsidCI6ICJvcGVuIn0sICJhNCI6IHsidCI6ICJvcGVuIn0sICJhNSI6IHsidCI6ICJvcGVuIn0sICJhNiI6IHsidCI6ICJvcGVuIn0sICJhNyI6IHsidCI6ICJvcGVuIn0sICJoMSI6IHsidCI6ICJvcGVuIn0sICJoMiI6IHsidCI6ICJvcGVuIn0sICJoMyI6IHsidCI6ICJvcGVuIn0sICJnMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImV4Y2x1c2l2ZWx5IiwgImciOiAiZzEifSwgImcxX2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJvbmx5IiwgImciOiAiZzEifSwgImcyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiZ2V0IGl0IHJpZ2h0IiwgImciOiAiZzIifSwgImcyX2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJnZXQgZXZlcnl0aGluZyByaWdodCIsICJnIjogImcyIn0sICJnMl9hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiZ2V0IHRoaW5ncyByaWdodCIsICJnIjogImcyIn0sICJnMl9hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiZ2V0IGl0IGFsbCByaWdodCIsICJnIjogImcyIn0sICJnMl9hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZ2V0IHRoaXMgcmlnaHQiLCAiZyI6ICJnMiJ9LCAiZzJfYWx0NSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImRvIGl0IHJpZ2h0IiwgImciOiAiZzIifSwgImcyX2FsdDYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJkbyBldmVyeXRoaW5nIHJpZ2h0IiwgImciOiAiZzIifSwgImczIjogeyJ0IjogIndvcmRzIiwgImEiOiAibWFuYWdlZCB0byIsICJnIjogImczIn0sICJnM19hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAid2VyZSBhYmxlIHRvIiwgImciOiAiZzMifSwgImczX2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3YXMgYWJsZSB0byIsICJnIjogImczIn0sICJnM19hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAic3RpbGwgbWFuYWdlZCB0byIsICJnIjogImczIn0sICJnNCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImZlYXNpYmxlIiwgImciOiAiZzQifSwgImc0X2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJyZWFsaXN0aWMiLCAiZyI6ICJnNCJ9LCAiZzRfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogInBvc3NpYmxlIiwgImciOiAiZzQifSwgImc0X2FsdDMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJkb2FibGUiLCAiZyI6ICJnNCJ9LCAiZzUiOiB7InQiOiAid29yZHMiLCAiYSI6ICJidWlsZCBmcmllbmRzaGlwcyIsICJnIjogImc1In0sICJnNV9hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiYnVpbGQgbmV3IGZyaWVuZHNoaXBzIiwgImciOiAiZzUifSwgImc1X2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJtYWtlIGZyaWVuZHMiLCAiZyI6ICJnNSJ9LCAiZzVfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIm1ha2UgbmV3IGZyaWVuZHMiLCAiZyI6ICJnNSJ9LCAiZzVfYWx0NCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImJ1aWxkIGZyaWVuZHNoaXAiLCAiZyI6ICJnNSJ9LCAiZzYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjb21lIG92ZXIiLCAiZyI6ICJnNiJ9LCAiZzZfYWx0MSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNvbWUgcm91bmQiLCAiZyI6ICJnNiJ9LCAiZzZfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNvbWUgYXJvdW5kIiwgImciOiAiZzYifSwgImc2X2FsdDMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjb21lIHRvIHZpc2l0IiwgImciOiAiZzYifSwgImc2X2FsdDQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ2aXNpdCIsICJnIjogImc2In0sICJnNl9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiY29tZSBvdmVyIHRvIHZpc2l0IiwgImciOiAiZzYifSwgImc2X2FsdDYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjb21lIHJvdW5kIHRvIHZpc2l0IiwgImciOiAiZzYifSwgImc3IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZ2V0IGludG8iLCAiZyI6ICJnNyJ9LCAiZzdfYWx0MSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImdldHMgaW50byIsICJnIjogImc3In0sICJnN19hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiYXJlIGFjY2VwdGVkIGludG8iLCAiZyI6ICJnNyJ9LCAiZzdfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogImFyZSBhY2NlcHRlZCB0byIsICJnIjogImc3In0sICJnN19hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiYXJlIGFjY2VwdGVkIGF0IiwgImciOiAiZzcifSwgImc3X2FsdDUiOiB7InQiOiAid29yZHMiLCAiYSI6ICJpcyBhY2NlcHRlZCBpbnRvIiwgImciOiAiZzcifSwgImc3X2FsdDYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJpcyBhY2NlcHRlZCB0byIsICJnIjogImc3In0sICJnN19hbHQ3IjogeyJ0IjogIndvcmRzIiwgImEiOiAiaXMgYWNjZXB0ZWQgYXQiLCAiZyI6ICJnNyJ9LCAiZzdfYWx0OCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImFjdHVhbGx5IGdldCBpbnRvIiwgImciOiAiZzcifSwgImc4IjogeyJ0IjogIndvcmRzIiwgImEiOiAiY3VycmVudCByZXZlbnVlIiwgImciOiAiZzgifSwgImc4X2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjdXJyZW50IHJldmVudWVzIiwgImciOiAiZzgifSwgImc4X2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjdXJyZW50IGluY29tZSIsICJnIjogImc4In0sICJnOF9hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiY3VycmVudCB0dXJub3ZlciIsICJnIjogImc4In19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

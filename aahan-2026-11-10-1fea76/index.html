@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aahan &middot; Maths homework &middot; 10 November 2026</title>
+<!-- 10 Nov 2026, Y5 W45 Multiply & Divide by 10, 100, 1000. Taught envelope: Materials/Maths/Year 5/Lessons/
+     2026-W45 Multiply & Divide by 10, 100, 1000/Whiteboard_Cards_2026_W45_... + Stretch_2026_W45_... (place value chart,
+     digits slide left for x and right for /, the point stays pinned, zeros hold empty places; whole numbers and decimals
+     to thousandths; x and / by 10, 100, 1000 only). Shell: Aahan_Homework_2026-11-06.html (comic look, teal banner).
+     SHAKY (practised): which machine turned IN into OUT (7,400 -> 7.4 called / 100); a whole number divided below 1
+     (10 / 100 "10", "one"); add-or-take-zeros trick instead of moving digits (3.4 x 10 "only the 4 moves"); two-step routes
+     (x 10, x 10 last and slowest). LANDED: whole-number x and /, 8.3 / 10, 0.07 x 100, 9 / 1000.
+     NOT repeated: too-fast robot (6 Nov sheet), "columns: ___" decide-first rows (lesson, twice).
+     v2 after gates (pupil-critic FIX FIRST, pedagogy SOUND, format 3 minor), 10 Nov.
+     Block 1 "Which machine?": 1 90->0.09 /1000 . 2 0.03->30 x1000 . 3 0.35->35 x100 . 4 5,900->5.9 /1000 (the /100 trap)
+       . 5 18->1.8 /10 . 6 2.7->270 x100. Signs / x x / / x. Option positions (x10,x100,x1000,/10,/100,/1000): 6,3,2,6,4,2.
+     Block 2 "Slide the digits": 1 45/100=0.45 . 2 7/1000=0.007 . 3 2.05x100=205 . 4 4/10=0.4 . 5 3.9x10=39
+       . 6 0.38x1000=380 . 7 300/1000=0.3 . 8 0.016x100=1.6. Signs / / x / x x / x. Model 8 / 100 = 0.08 (not an item).
+       Each visible box (c1v-c8v, keyed open) copies a normalised number to a hidden store c1-c8 (keyed exact):
+       leading 0 added, trailing zeros after the point dropped, so .45, 0.300, 39.0 are right and 3.90 is not.
+     Block 3 "Two machines": 0.6 -> ? -> 60. Routes x10,x10 (6) . x1000,/10 (600) . /10,x1000 (0.06). The three visible
+       controls of a row are keyed open; a hidden field per row (t1-t3) holds "m1 -> middle -> m2" and is keyed exact with
+       group "routes", so rows are marked in any order. No item number appears in another block or in the banner. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --teal-soft: #e3f5f4; --muted: #6b5f4e; --dash: #e6d6b4;
+}
+@page { size: A4; margin: 9mm 11mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font: 17px/1.5 'Rubik', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--cream);
+  max-width: 1120px; margin: 0 auto; padding: 22px 18px 40px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.display { font-family: 'Luckiest Guy', 'Arial Black', 'Rubik', sans-serif; font-weight: 400; letter-spacing: .02em; }
+.nw { white-space: nowrap; }
+.prt { display: none; }
+.stores { display: none !important; }
+
+/* banner */
+.banner { position: relative; height: 150px; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px; background: var(--teal); }
+.banner .digits { position: absolute; inset: -14px -10px auto -10px; font-size: 118px; line-height: .9; color: rgba(255,255,255,.17); white-space: nowrap; letter-spacing: .14em; }
+.banner .digits.two { top: 76px; left: -50px; color: rgba(27,23,18,.12); }
+.banner .label { position: absolute; left: 18px; bottom: 16px; background: var(--paper); border: 3px solid var(--ink); border-radius: 12px; padding: 8px 16px 6px; box-shadow: 4px 4px 0 var(--ink); }
+.banner .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.banner h1 { font-size: 34px; line-height: 1.05; }
+.banner .date { position: absolute; right: 16px; top: 14px; background: var(--ink); color: var(--gold); font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+
+/* cards: three registers, items regular, instruction bold, notes small */
+section { background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 22px; margin-bottom: 28px; }
+h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 22px; line-height: 1.1; margin-bottom: 10px; break-after: avoid; page-break-after: avoid; }
+.badge { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 22px; padding-top: 3px; }
+.instruction { font-size: 23px; line-height: 1.35; font-weight: 700; margin-bottom: 4px; text-wrap: pretty; }
+.note { font-size: 14.5px; line-height: 1.4; color: var(--muted); margin-bottom: 14px; text-wrap: pretty; }
+.qnum { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
+.arr { color: var(--muted); font-weight: 700; }
+.num { font-weight: 700; font-variant-numeric: tabular-nums; }
+.pbox { display: none; }
+
+/* ---------- block 1: which machine ---------- */
+.mgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px; }
+.mcard { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; break-inside: avoid; page-break-inside: avoid; }
+.io { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 22px; }
+.io .num { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.05; }
+.io .num small { font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--teal); }
+.io select { font: inherit; font-size: 18px; }
+.mcard .io select, .route .path select { min-width: 0; width: 150px; }
+
+/* ---------- block 2: slide the digits ---------- */
+.items { display: flex; flex-direction: column; gap: 10px; }
+.calc { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 8px 14px; break-inside: avoid; page-break-inside: avoid; }
+.calc .sum { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 22px; font-variant-numeric: tabular-nums; }
+.calc input { font: inherit; font-size: 20px; width: 150px; }
+.model { max-width: 560px; margin: 6px 0 14px; background: var(--paper); border-left: 3px solid var(--teal); padding: 8px 14px 10px; color: var(--muted); break-inside: avoid; page-break-inside: avoid; }
+.model .head { font-size: 17px; margin: 2px 0 8px; }
+.model .head b { color: var(--ink); font-size: 19px; }
+.pv { border-collapse: collapse; table-layout: fixed; font-variant-numeric: tabular-nums; background: transparent; }
+.pv col.lab { width: 62px; } .pv col.pt { width: 14px; } .pv col.place { width: 96px; }
+.pv th { font-size: 12px; font-weight: 700; color: var(--ink); background: var(--teal-soft); border: 1.5px solid var(--ink); padding: 2px 4px; text-align: center; white-space: nowrap; }
+.pv td { border: 1.5px solid var(--ink); background: #fff; height: 40px; text-align: center; font-size: 22px; font-weight: 700; color: var(--ink); }
+.pv th.pt, .pv td.pt { width: 14px; padding: 0; border-left: 0; border-right: 0; background: #fff; font-size: 24px; color: var(--orange); }
+.pv td.z { color: var(--teal); }
+.pv td.lab { border: 0; background: transparent; padding: 0 10px 0 0; font-size: 15px; font-weight: 600; color: var(--muted); text-align: right; white-space: nowrap; }
+.pv tr.move td { height: 26px; border: 0; background: transparent; font-size: 15px; font-weight: 700; color: var(--orange); }
+.pv tr.move td.slide { text-align: center; letter-spacing: .02em; }
+.model .res { font-size: 21px; color: var(--ink); font-weight: 700; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.model .small { font-size: 14px; margin-top: 4px; }
+
+/* ---------- block 3: two machines ---------- */
+.routes { display: flex; flex-direction: column; gap: 14px; }
+.route { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; break-inside: avoid; page-break-inside: avoid; }
+.route .path { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 22px; font-variant-numeric: tabular-nums; }
+.route select { font: inherit; font-size: 18px; }
+.route input { font: inherit; font-size: 20px; width: 130px; }
+.route .midbox { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; }
+.route input::placeholder { font-size: .55em; color: #a09bb8; font-weight: 400; }
+.route .midbox small { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+.route .end { font-weight: 700; font-size: 24px; }
+.route .lead, .route .grp { display: inline-flex; align-items: center; gap: inherit; white-space: nowrap; }
+
+/* Emailed PDF only (hw.js gives the export body the class hw-pdf-mode). html2pdf keeps a card whole by
+   putting a spacer before it, and in a grid that spacer takes a cell and shifts every later card. */
+body.hw-pdf-mode .mgrid { display: block; }
+body.hw-pdf-mode .mgrid > .mcard { display: flex; width: 100%; margin: 0 0 10px; }
+body.hw-pdf-mode .mgrid > .mcard { margin-bottom: 7px; }
+body.hw-pdf-mode .mcard, body.hw-pdf-mode .calc, body.hw-pdf-mode .route { padding: 5px 12px 6px; }
+body.hw-pdf-mode .items { gap: 7px; }
+body.hw-pdf-mode .routes { gap: 7px; }
+body.hw-pdf-mode section { padding: 12px 18px 14px; margin-bottom: 18px; }
+body.hw-pdf-mode .banner { height: 110px; margin-bottom: 16px; }
+
+/* Laptop and big screens: whole width, big type (Dasha, 1 Nov 2026). PDF export and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { max-width: 1640px; padding: 28px 48px 56px; font-size: 24px; }
+  .banner { height: 190px; }
+  .banner .digits { font-size: 150px; }
+  .banner .digits.two { top: 96px; }
+  .banner .kicker { font-size: 17px; }
+  .banner h1 { font-size: 44px; }
+  .banner .date { font-size: 18px; padding: 6px 14px; }
+  section { padding: 26px 34px 32px; margin-bottom: 36px; }
+  h2 { font-size: 28px; margin-bottom: 14px; }
+  .badge { width: 50px; height: 50px; font-size: 27px; }
+  .instruction { font-size: 38px; line-height: 1.25; margin-bottom: 8px; }
+  .note { font-size: 22px; margin-bottom: 20px; }
+  .qnum { width: 40px; height: 40px; font-size: 20px; }
+  .tag { font-size: 17px; }
+  .mgrid { gap: 22px 26px; }
+  .mcard { padding: 18px 20px 20px; gap: 14px; }
+  .io { font-size: 34px; gap: 8px 14px; flex-wrap: nowrap; }
+  .io .num small { font-size: 15px; }
+  .io select { font-size: 27px; min-height: 58px; }
+  .mcard .io select, .route .path select { width: 200px; }
+  .items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column; gap: 18px 24px; }
+  .calc { padding: 14px 18px; gap: 14px; }
+  .calc .sum { font-size: 32px; gap: 8px 16px; flex-wrap: nowrap; }
+  .calc input { font-size: 30px; width: 150px; min-height: 58px; }
+  .model { max-width: 680px; margin: 8px 0 22px; padding: 14px 20px 18px; }
+  .model .head { font-size: 24px; }
+  .model .head b { font-size: 28px; }
+  .pv th { font-size: 15px; padding: 4px 8px; }
+  .pv td { height: 54px; font-size: 30px; }
+  .pv th.pt, .pv td.pt { font-size: 32px; }
+  .pv col.lab { width: 78px; } .pv col.pt { width: 18px; } .pv col.place { width: 120px; }
+  .pv td.lab { font-size: 20px; }
+  .pv tr.move td { height: 34px; font-size: 19px; }
+  .model .res { font-size: 30px; }
+  .model .small { font-size: 20px; }
+  .routes { gap: 20px; }
+  .route { padding: 18px 22px 20px; gap: 14px 20px; }
+  .route .path { font-size: 34px; gap: 10px 18px; flex-wrap: nowrap; }
+  .route select { font-size: 27px; min-height: 58px; }
+  .route input { font-size: 30px; width: 180px; min-height: 58px; }
+  .route .midbox small { font-size: 15px; }
+  .route .end { font-size: 36px; }
+}
+@media screen and (min-width:900px) and (max-width:1279px) {
+  .mgrid { grid-template-columns: minmax(0, 1fr); }
+  .route .path { flex-wrap: wrap; gap: 10px 14px; }
+  .mcard .io select, .route .path select { width: 172px; }
+  .items { display: flex; flex-direction: column; }
+}
+@media screen and (min-width:1280px) and (max-width:1699px) {
+  .io { font-size: 30px; gap: 8px 10px; }
+  .mcard .io select { width: 172px; }
+}
+/* Wide screens: the worked model sits in a sticky column beside the items (the header's children become grid items). */
+@media screen and (min-width:1700px) {
+  #slide { display: grid; grid-template-columns: minmax(0, 1fr) 620px; column-gap: 30px; align-items: start; }
+  #slide > header { display: contents; }
+  #slide h2, #slide .instruction { grid-column: 1 / -1; }
+  #slide .model { grid-column: 2; grid-row: 3; position: sticky; top: 20px; margin: 0; max-width: none; }
+  #slide > .items { grid-column: 1; grid-row: 3; }
+  #slide > .items { display: flex; flex-direction: column; }
+}
+@media screen and (max-width: 560px) {
+  body { padding: 16px 12px 36px; }
+  .banner { height: 140px; }
+  .banner .label { right: 16px; bottom: 14px; }
+  .banner h1 { font-size: 26px; }
+  .banner .date { top: 10px; font-size: 12px; }
+  section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 20px; }
+  .instruction { font-size: 20px; }
+  .mgrid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .mcard { padding: 10px 10px 12px; gap: 8px; }
+  .io { font-size: 19px; gap: 6px 7px; }
+  .mcard .io select, .route .path select { width: 112px; font-size: 16px; padding: 4px 6px; }
+  .calc { padding: 8px 10px; gap: 8px; }
+  .calc .sum { font-size: 19px; gap: 6px 8px; flex-wrap: nowrap; }
+  .calc input { width: 96px; }
+  .pv td { height: 36px; font-size: 19px; }
+  .pv th { font-size: 8.5px; padding: 2px; }
+  .pv col.lab { width: 38px; } .pv col.pt { width: 10px; } .pv col.place { width: 62px; }
+  .pv td.lab { font-size: 13px; padding-right: 6px; }
+  .route { padding: 10px 10px 12px; }
+  .route .path { font-size: 19px; gap: 6px 7px; }
+  .route .lead { white-space: nowrap; }
+  .route input { width: 96px; }
+}
+@media print {
+  html, body { background: #fff; }
+  body { padding: 0 8px 6px 0; max-width: none; font-size: 12px; line-height: 1.3; }
+  .scr { display: none !important; }
+  .prt { display: inline; }
+  select { display: none !important; }
+  .pbox { display: inline-block; width: 64px; height: 22px; border: 1.5px solid var(--ink); border-radius: 6px; background: #fff; vertical-align: middle; }
+  .banner { height: 58px; margin-bottom: 8px; box-shadow: 4px 4px 0 var(--ink); }
+  .banner .digits { font-size: 58px; }
+  .banner .digits.two { top: 30px; }
+  .banner .label { bottom: 6px; padding: 3px 12px 2px; }
+  .banner .kicker { font-size: 9px; }
+  .banner h1 { font-size: 19px; }
+  .banner .date { font-size: 10.5px; top: 8px; }
+  section { padding: 7px 12px 10px; margin-bottom: 10px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 15px; margin-bottom: 3px; gap: 8px; }
+  .badge { width: 24px; height: 24px; font-size: 13px; }
+  .instruction { font-size: 14px; margin-bottom: 1px; }
+  .note { font-size: 10px; margin-bottom: 5px; }
+  .tag { font-size: 8.5px; }
+  .qnum { width: 20px; height: 20px; font-size: 10.5px; }
+  .mgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 10px; }
+  .mcard { padding: 5px 8px 7px; gap: 6px; border-width: 1.5px; }
+  .io { font-size: 13px; gap: 3px 6px; flex-wrap: nowrap; }
+  .io .num small { font-size: 7.5px; }
+  .items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column; gap: 5px 10px; }
+  .calc { padding: 4px 8px; gap: 6px; border-width: 1.5px; }
+  .calc .sum { font-size: 13px; gap: 3px 6px; flex-wrap: nowrap; }
+  .calc input { font-size: 11px; width: 70px; height: 22px; min-height: 0; }
+  .model { padding: 3px 8px 5px; margin: 2px 0 6px; max-width: 360px; }
+  .model .head { font-size: 10.5px; margin: 0 0 3px; }
+  .model .head b { font-size: 12px; }
+  .pv th { font-size: 8px; padding: 2px 3px; border-width: 1px; }
+  .pv td { height: 20px; font-size: 12px; border-width: 1px; }
+  .pv th.pt, .pv td.pt { font-size: 13px; }
+  .pv col.lab { width: 34px; } .pv col.pt { width: 8px; } .pv col.place { width: 64px; }
+  input { border: 1.5px solid var(--ink) !important; border-radius: 6px !important; background: #fff !important; }
+  input::placeholder, .route input::placeholder { color: transparent; }
+  .pv td.lab { font-size: 8.5px; padding-right: 4px; }
+  .pv tr.move td { height: 14px; font-size: 8.5px; }
+  .model .res { font-size: 12px; margin-top: 3px; }
+  .model .small { font-size: 8.5px; margin-top: 1px; }
+  .routes { gap: 6px; }
+  .route { padding: 5px 10px 7px; gap: 6px 10px; border-width: 1.5px; }
+  .route .path { font-size: 13px; gap: 3px 8px; flex-wrap: nowrap; }
+  .route input { font-size: 11px; width: 64px; height: 22px; min-height: 0; }
+  .route .midbox small { font-size: 7.5px; }
+  .route .end { font-size: 14px; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Aahan" data-sheet="Maths 2026-11-10" data-sheet-id="aahan-2026-11-10-maths">
+<div id="sheet">
+
+<div class="banner">
+  <div class="digits display" aria-hidden="true">&times;10 &divide;100 &times;1000 &divide;10</div>
+  <div class="digits two display" aria-hidden="true">&divide;1000 &times;100 &divide;10 &times;10</div>
+  <span class="date">10 November</span>
+  <div class="label">
+    <div class="kicker">&times; and &divide; by 10, 100, 1000</div>
+    <h1 class="display">Aahan's maths</h1>
+  </div>
+</div>
+
+<section id="machine">
+  <header>
+  <h2><span class="badge">1</span> Which machine?</h2>
+  <p class="instruction"><span class="scr">Choose the machine that turns each IN number into its <span class="nw">OUT number.</span></span><span class="prt">Write the machine that turns each IN number into its <span class="nw">OUT number.</span></span></p>
+  <p class="note"><span class="scr">Count the columns the digits slid, and <span class="nw">which way.</span></span><span class="prt">Machines: &times;&nbsp;10, &times;&nbsp;100, &times;&nbsp;1000, &divide;&nbsp;10, &divide;&nbsp;100 or <span class="nw">&divide;&nbsp;1000.</span></span></p>
+  </header>
+
+  <div class="mgrid">
+    <div class="mcard q" data-field="m1">
+      <span class="qnum">1</span>
+      <div class="io"><span class="num"><small>IN</small>90</span><span class="arr">&rarr;</span><select data-k="m1" data-label="1.1 90 → 0.09: which machine" aria-label="Machine for 90 to 0.09" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="num"><small>OUT</small>0.09</span></div>
+    </div>
+    <div class="mcard q" data-field="m2">
+      <span class="qnum">2</span>
+      <div class="io"><span class="num"><small>IN</small>0.03</span><span class="arr">&rarr;</span><select data-k="m2" data-label="1.2 0.03 → 30: which machine" aria-label="Machine for 0.03 to 30" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="num"><small>OUT</small>30</span></div>
+    </div>
+    <div class="mcard q" data-field="m3">
+      <span class="qnum">3</span>
+      <div class="io"><span class="num"><small>IN</small>0.35</span><span class="arr">&rarr;</span><select data-k="m3" data-label="1.3 0.35 → 35: which machine" aria-label="Machine for 0.35 to 35" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="num"><small>OUT</small>35</span></div>
+    </div>
+    <div class="mcard q" data-field="m4">
+      <span class="qnum">4</span>
+      <div class="io"><span class="num"><small>IN</small>5,900</span><span class="arr">&rarr;</span><select data-k="m4" data-label="1.4 5,900 → 5.9: which machine" aria-label="Machine for 5,900 to 5.9" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="num"><small>OUT</small>5.9</span></div>
+    </div>
+    <div class="mcard q" data-field="m5">
+      <span class="qnum">5</span>
+      <div class="io"><span class="num"><small>IN</small>18</span><span class="arr">&rarr;</span><select data-k="m5" data-label="1.5 18 → 1.8: which machine" aria-label="Machine for 18 to 1.8" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="num"><small>OUT</small>1.8</span></div>
+    </div>
+    <div class="mcard q" data-field="m6">
+      <span class="qnum">6</span>
+      <div class="io"><span class="num"><small>IN</small>2.7</span><span class="arr">&rarr;</span><select data-k="m6" data-label="1.6 2.7 → 270: which machine" aria-label="Machine for 2.7 to 270" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="num"><small>OUT</small>270</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="slide">
+  <header>
+  <h2><span class="badge">2</span> Slide the digits</h2>
+  <p class="instruction"><span class="scr">Work out each one. Type the number only, <span class="nw">like 2.6.</span></span><span class="prt">Work out each one. Write the number only, <span class="nw">like 2.6.</span></span></p>
+    <aside class="model" aria-label="Worked example">
+      <span class="tag">Like this</span>
+      <p class="head"><b>8 &divide; 100</b>: the 8 slides two <span class="nw">columns right.</span></p>
+      <table class="pv">
+        <colgroup><col class="lab"><col class="place"><col class="pt"><col class="place"><col class="place"><col class="place"></colgroup>
+        <tr><td class="lab"></td><th>Ones</th><th class="pt"></th><th>Tenths</th><th>Hundredths</th><th>Thousandths</th></tr>
+        <tr><td class="lab">8</td><td>8</td><td class="pt">&bull;</td><td></td><td></td><td></td></tr>
+        <tr class="move"><td class="lab"></td><td colspan="4" class="slide">8 &rarr; &rarr; two columns</td><td></td></tr>
+        <tr><td class="lab">&divide; 100</td><td class="z">0</td><td class="pt">&bull;</td><td class="z">0</td><td>8</td><td></td></tr>
+      </table>
+      <p class="res">8 &divide; 100 = 0.08</p>
+      <p class="small">The point stays put. Zeros hold the <span class="nw">empty places.</span></p>
+    </aside>
+  </header>
+
+    <div class="items">
+      <div class="calc q" data-field="c1"><span class="qnum">1</span><div class="sum"><span class="nw">45 &divide; 100 =</span> <span class="cin" data-field="c1v"><input autocomplete="off" spellcheck="false" inputmode="decimal" data-k="c1v" data-label="2.1 45 ÷ 100 (as typed)" aria-label="45 divided by 100" class="hw-field"></span></div></div>
+      <div class="calc q" data-field="c2"><span class="qnum">2</span><div class="sum"><span class="nw">7 &divide; 1000 =</span> <span class="cin" data-field="c2v"><input autocomplete="off" spellcheck="false" inputmode="decimal" data-k="c2v" data-label="2.2 7 ÷ 1000 (as typed)" aria-label="7 divided by 1000" class="hw-field"></span></div></div>
+      <div class="calc q" data-field="c3"><span class="qnum">3</span><div class="sum"><span class="nw">2.05 &times; 100 =</span> <span class="cin" data-field="c3v"><input autocomplete="off" spellcheck="false" inputmode="decimal" data-k="c3v" data-label="2.3 2.05 × 100 (as typed)" aria-label="2.05 times 100" class="hw-field"></span></div></div>
+      <div class="calc q" data-field="c4"><span class="qnum">4</span><div class="sum"><span class="nw">4 &divide; 10 =</span> <span class="cin" data-field="c4v"><input autocomplete="off" spellcheck="false" inputmode="decimal" data-k="c4v" data-label="2.4 4 ÷ 10 (as typed)" aria-label="4 divided by 10" class="hw-field"></span></div></div>
+      <div class="calc q" data-field="c5"><span class="qnum">5</span><div class="sum"><span class="nw">3.9 &times; 10 =</span> <span class="cin" data-field="c5v"><input autocomplete="off" spellcheck="false" inputmode="decimal" data-k="c5v" data-label="2.5 3.9 × 10 (as typed)" aria-label="3.9 times 10" class="hw-field"></span></div></div>
+      <div class="calc q" data-field="c6"><span class="qnum">6</span><div class="sum"><span class="nw">0.38 &times; 1000 =</span> <span class="cin" data-field="c6v"><input autocomplete="off" spellcheck="false" inputmode="decimal" data-k="c6v" data-label="2.6 0.38 × 1000 (as typed)" aria-label="0.38 times 1000" class="hw-field"></span></div></div>
+      <div class="calc q" data-field="c7"><span class="qnum">7</span><div class="sum"><span class="nw">300 &divide; 1000 =</span> <span class="cin" data-field="c7v"><input autocomplete="off" spellcheck="false" inputmode="decimal" data-k="c7v" data-label="2.7 300 ÷ 1000 (as typed)" aria-label="300 divided by 1000" class="hw-field"></span></div></div>
+      <div class="calc q" data-field="c8"><span class="qnum">8</span><div class="sum"><span class="nw">0.016 &times; 100 =</span> <span class="cin" data-field="c8v"><input autocomplete="off" spellcheck="false" inputmode="decimal" data-k="c8v" data-label="2.8 0.016 × 100 (as typed)" aria-label="0.016 times 100" class="hw-field"></span></div></div>
+    </div>
+  <div class="stores" hidden>
+    <input data-k="c1" data-label="2.1 45 ÷ 100" class="hw-field">
+    <input data-k="c2" data-label="2.2 7 ÷ 1000" class="hw-field">
+    <input data-k="c3" data-label="2.3 2.05 × 100" class="hw-field">
+    <input data-k="c4" data-label="2.4 4 ÷ 10" class="hw-field">
+    <input data-k="c5" data-label="2.5 3.9 × 10" class="hw-field">
+    <input data-k="c6" data-label="2.6 0.38 × 1000" class="hw-field">
+    <input data-k="c7" data-label="2.7 300 ÷ 1000" class="hw-field">
+    <input data-k="c8" data-label="2.8 0.016 × 100" class="hw-field">
+  </div>
+</section>
+
+<section id="routes">
+  <header>
+  <h2><span class="badge">3</span> Two machines</h2>
+  <p class="instruction"><span class="scr">Get from 0.6 to 60 with two machines. Find three different routes and type the number <span class="nw">in the middle.</span></span><span class="prt">Get from 0.6 to 60 with two machines. Find three different routes and write the number <span class="nw">in the middle.</span></span></p>
+  <p class="note">Any machine can go in <span class="nw">either box.</span></p>
+  </header>
+
+  <div class="routes">
+    <div class="route q" data-field="t1" data-route="t1">
+      <div class="path"><span class="lead"><span class="qnum">1</span> <span class="end">0.6</span> <span class="arr">&rarr;</span></span><span class="grp"><select data-k="t1a" data-label="3.1 Route: first machine" aria-label="Route 1, first machine" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span></span><span class="midbox" data-field="t1m"><small>Middle number</small><input autocomplete="off" spellcheck="false" inputmode="decimal" placeholder="number only" data-k="t1m" data-label="3.1 Route: middle number" aria-label="Route 1, middle number" class="hw-field"></span><span class="grp"><span class="arr">&rarr;</span><select data-k="t1b" data-label="3.1 Route: second machine" aria-label="Route 1, second machine" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="end">60</span></span></div>
+    </div>
+    <div class="route q" data-field="t2" data-route="t2">
+      <div class="path"><span class="lead"><span class="qnum">2</span> <span class="end">0.6</span> <span class="arr">&rarr;</span></span><span class="grp"><select data-k="t2a" data-label="3.2 Route: first machine" aria-label="Route 2, first machine" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span></span><span class="midbox" data-field="t2m"><small>Middle number</small><input autocomplete="off" spellcheck="false" inputmode="decimal" placeholder="number only" data-k="t2m" data-label="3.2 Route: middle number" aria-label="Route 2, middle number" class="hw-field"></span><span class="grp"><span class="arr">&rarr;</span><select data-k="t2b" data-label="3.2 Route: second machine" aria-label="Route 2, second machine" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="end">60</span></span></div>
+    </div>
+    <div class="route q" data-field="t3" data-route="t3">
+      <div class="path"><span class="lead"><span class="qnum">3</span> <span class="end">0.6</span> <span class="arr">&rarr;</span></span><span class="grp"><select data-k="t3a" data-label="3.3 Route: first machine" aria-label="Route 3, first machine" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span></span><span class="midbox" data-field="t3m"><small>Middle number</small><input autocomplete="off" spellcheck="false" inputmode="decimal" placeholder="number only" data-k="t3m" data-label="3.3 Route: middle number" aria-label="Route 3, middle number" class="hw-field"></span><span class="grp"><span class="arr">&rarr;</span><select data-k="t3b" data-label="3.3 Route: second machine" aria-label="Route 3, second machine" class="hw-field"><option value="">Choose</option><option value="× 10">× 10</option><option value="× 100">× 100</option><option value="× 1000">× 1000</option><option value="÷ 10">÷ 10</option><option value="÷ 100">÷ 100</option><option value="÷ 1000">÷ 1000</option></select><span class="pbox"></span><span class="arr">&rarr;</span><span class="end">60</span></span></div>
+    </div>
+  </div>
+  <div class="stores" hidden>
+    <input data-k="t1" data-label="3.1 Whole route (any order of rows)" class="hw-field">
+    <input data-k="t2" data-label="3.2 Whole route (any order of rows)" class="hw-field">
+    <input data-k="t3" data-label="3.3 Whole route (any order of rows)" class="hw-field">
+  </div>
+</section>
+
+<script>
+/* Same number, written another way (.45, 0.300, 39.0): the hidden copy keeps the leading 0 and drops
+   trailing zeros after the point, so only a different number is marked wrong (3.90 for 3.9 x 10 still is). */
+function hwNum(s) {
+  var v = String(s || "").replace(/[\s,]/g, "");
+  if (/^\./.test(v)) v = "0" + v;
+  if (v.indexOf(".") >= 0) v = v.replace(/0+$/, "").replace(/\.$/, "");
+  return v;
+}
+(function () {
+  function initCalc() {
+    document.querySelectorAll(".calc[data-field]").forEach(function (card) {
+      var k = card.dataset.field;
+      var store = document.querySelector('.stores [data-k=' + k + ']'), box = card.querySelector('[data-k=' + k + 'v]');
+      if (!store || !box) return;
+      function copy() {
+        var v = hwNum(box.value);
+        if (store.value !== v) { store.value = v; store.dispatchEvent(new Event("change", { bubbles: true })); }
+      }
+      box.addEventListener("input", copy); box.addEventListener("change", copy); copy();
+    });
+  }
+  if (document.readyState === "complete") initCalc(); else window.addEventListener("load", initCalc);
+})();
+
+/* Each route row is checked as a whole: its three visible boxes are joined into one hidden field
+   ("× 10 → 6 → × 10"), keyed in a group so the three rows can come in any order. */
+(function () {
+  function initRoutes() {
+    document.querySelectorAll(".route[data-route]").forEach(function (row) {
+      var k = row.dataset.route;
+      var store = document.querySelector('.stores [data-k=' + k + ']');
+      var a = row.querySelector('[data-k=' + k + 'a]'), m = row.querySelector('[data-k=' + k + 'm]'), b = row.querySelector('[data-k=' + k + 'b]');
+      if (!store || !a || !m || !b) return;
+      function mid() { return hwNum(m.value); }
+      function compose() {
+        var v = (a.value && mid() && b.value) ? a.value + " → " + mid() + " → " + b.value : "";
+        if (store.value !== v) { store.value = v; store.dispatchEvent(new Event("change", { bubbles: true })); }
+      }
+      [a, m, b].forEach(function (el) { el.addEventListener("input", compose); el.addEventListener("change", compose); });
+      compose();
+    });
+  }
+  if (document.readyState === "complete") initRoutes(); else window.addEventListener("load", initRoutes);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtMSI6IHsidCI6ICJleGFjdCIsICJhIjogIsO3IDEwMDAifSwgIm0yIjogeyJ0IjogImV4YWN0IiwgImEiOiAiw5cgMTAwMCJ9LCAibTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLDlyAxMDAifSwgIm00IjogeyJ0IjogImV4YWN0IiwgImEiOiAiw7cgMTAwMCJ9LCAibTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLDtyAxMCJ9LCAibTYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLDlyAxMDAifSwgImMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMC40NSJ9LCAiYzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIwLjAwNyJ9LCAiYzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMDUifSwgImM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMC40In0sICJjNSI6IHsidCI6ICJleGFjdCIsICJhIjogIjM5In0sICJjNiI6IHsidCI6ICJleGFjdCIsICJhIjogIjM4MCJ9LCAiYzciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIwLjMifSwgImM4IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMS42In0sICJ0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIsOXIDEwIOKGkiA2IOKGkiDDlyAxMCIsICJnIjogInJvdXRlcyJ9LCAidDFhIjogeyJ0IjogIm9wZW4ifSwgInQxYiI6IHsidCI6ICJvcGVuIn0sICJ0MW0iOiB7InQiOiAib3BlbiJ9LCAidDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLDlyAxMDAwIOKGkiA2MDAg4oaSIMO3IDEwIiwgImciOiAicm91dGVzIn0sICJ0MmEiOiB7InQiOiAib3BlbiJ9LCAidDJiIjogeyJ0IjogIm9wZW4ifSwgInQybSI6IHsidCI6ICJvcGVuIn0sICJ0MyI6IHsidCI6ICJleGFjdCIsICJhIjogIsO3IDEwIOKGkiAwLjA2IOKGkiDDlyAxMDAwIiwgImciOiAicm91dGVzIn0sICJ0M2EiOiB7InQiOiAib3BlbiJ9LCAidDNiIjogeyJ0IjogIm9wZW4ifSwgInQzbSI6IHsidCI6ICJvcGVuIn0sICJjMXYiOiB7InQiOiAib3BlbiJ9LCAiYzJ2IjogeyJ0IjogIm9wZW4ifSwgImMzdiI6IHsidCI6ICJvcGVuIn0sICJjNHYiOiB7InQiOiAib3BlbiJ9LCAiYzV2IjogeyJ0IjogIm9wZW4ifSwgImM2diI6IHsidCI6ICJvcGVuIn0sICJjN3YiOiB7InQiOiAib3BlbiJ9LCAiYzh2IjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

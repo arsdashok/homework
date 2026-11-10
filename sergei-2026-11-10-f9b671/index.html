@@ -1,0 +1,189 @@
+<!doctype html>
+<!-- hw-mode: online. Answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Sergei_Homework_2026-11-10.key.json -->
+<!-- Lesson 10 Nov 2026. ONE shelf: short answers to HAVE questions. Dasha's rule in the lesson: «Do you have a dog?» → «Yes, I do»;
+     «Have you got a dog?» → «Yes, I have». Practice planned in class was cut short by the garden tour. Standing error 28 Oct: «Yes, he has» to a Does-question.
+     01 a1..a8 dropdown inside the short answer. Correct option positions 2,4,1,3,1,4,3,2; yes/no YYNNYNNY; question helpers Do Has Have Does Does Do Have Has.
+        Model (Has Leila got a laptop? No, she hasn't) and the rule example (they + yes) match no item's answer. Option values use a straight apostrophe (fixed, not typed).
+     02 o1..o6 his own life, typed. Both yes and no are true answers, so each item is a key group (o1 + o1_alt1..) with yes / no,
+        curly-apostrophe and full forms. Facts from the lesson: garden yes; no hot water until the 13 Nov appointment; waiting for curtains;
+        bank accounts in Kazakhstan (BCC, Freedom). Model (Does your neighbour have a car? No, he doesn't) uses a subject (he) that no item takes, and makes no claim about Sergei.
+     Look: Sergei's standing design (28 Oct sheet), with the 1 Nov 2026 whole-screen rules. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergei · English · 10 November 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.6; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction, .note { text-wrap:pretty; }
+.wrap { max-width:1120px; margin:0 auto; padding:48px 36px 24px; }
+.page-header { padding:0 0 28px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:18px 0 22px; }
+h1 { font-size:clamp(30px,4.5vw,44px); line-height:1.14; letter-spacing:-.04em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:18px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:30px 40px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; }
+/* Section name = small label; the instruction = the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.instruction { font-size:24px; font-weight:650; line-height:1.3; letter-spacing:-.01em; margin:0 0 14px; break-after:avoid; page-break-after:avoid; }
+.note { font-size:15px; color:var(--muted); margin:-6px 0 14px; }
+.qn { display:inline-block; min-width:32px; font-size:16px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+.question { page-break-inside:avoid; break-inside:avoid; }
+.model-tag { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-right:10px; }
+.like { font-size:19px; color:var(--muted); margin:0 0 14px; padding:10px 16px; border-radius:12px; background:#f6f9fa; }
+.like b { color:var(--ink); }
+.nw { white-space:nowrap; }
+
+/* Reminder: one line, one example, bright key chips */
+.rule { margin:0 0 16px; padding:14px 18px; border-radius:14px; background:#f1f5f7; font-size:17px; line-height:1.45; }
+.rule .what { margin:0 0 4px; }
+.rule .ex { margin:0 0 10px; }
+.rule .ex i { font-style:normal; font-weight:700; color:var(--accent); }
+.keys { display:flex; flex-wrap:wrap; gap:8px 10px; }
+.key { display:inline-block; background:var(--accent); color:white; font-weight:700; border-radius:999px; padding:5px 16px; font-size:17px; white-space:nowrap; }
+
+/* 01: short answers, menu inside the answer */
+.items { display:grid; gap:0; }
+.q { display:flex; gap:6px; padding:12px 0; border-bottom:1px solid #edf1f3; }
+.qbody { flex:1; min-width:0; }
+.ask { margin:0 0 4px; font-size:20px; }
+.reply { margin:0; font-size:20px; font-weight:600; }
+.pgap { display:none; }
+.print-opts { display:none; }
+select.pick { font:inherit; font-weight:600; vertical-align:middle; }
+
+/* 02: own answers */
+.owns { display:grid; gap:0; }
+.own { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; padding:12px 0; border-bottom:1px solid #edf1f3; align-items:center; }
+.own:last-child { border-bottom:0; }
+.own .ask { margin:0; }
+.own input.own-in { width:100%; max-width:460px; text-align:left; }
+
+/* Local preview only: the shared hw.css styles .hw-field on the live page. */
+input, select { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+select { min-height:44px; min-width:150px; }
+input { min-height:44px; }
+.prt { display:none; }
+
+/* Screens: whole width, big type (Dasha, 1 Nov 2026). */
+@media screen and (min-width:900px) {
+  body { font-size:24px; }
+  .wrap { max-width:1640px; padding:44px 48px 36px; }
+  .eyebrow { font-size:16px; }
+  h1 { font-size:52px; }
+  .edition { font-size:17px; }
+  .page-meta { font-size:19px; }
+  .exercise { padding:34px 48px 38px; margin-bottom:30px; }
+  .section-number, h2 { font-size:18px; }
+  .instruction { font-size:38px; margin:4px 0 18px; }
+  .note { font-size:21px; }
+  .like { font-size:26px; padding:14px 22px; margin-bottom:20px; }
+  .model-tag { font-size:16px; }
+  .rule { font-size:24px; padding:18px 24px; margin-bottom:22px; }
+  .key { font-size:23px; padding:6px 20px; }
+  .qn { font-size:22px; min-width:44px; padding-top:4px; }
+  .items { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-auto-flow:column; grid-template-rows:repeat(4,auto); column-gap:56px; }
+  .q { padding:18px 0; }
+  .ask { font-size:30px; margin-bottom:8px; }
+  .reply { font-size:30px; }
+  select.pick { font-size:26px; height:56px; min-width:200px; padding:2px 12px; }
+  .own { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 40px; padding:18px 0; }
+  .own .ask { font-size:30px; }
+  .own input.own-in { font-size:26px; height:58px; max-width:620px; padding:6px 16px; }
+  .own > .hw-mark { grid-column:1 / -1; }
+}
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:28px 14px 16px; } .exercise { padding:22px 16px; border-radius:14px; }
+  .instruction { font-size:21px; } .edition { font-size:12px; }
+  .rule { font-size:16px; padding:12px 14px; } .key { font-size:15.5px; padding:4px 12px; }
+  .like { font-size:17px; }
+  .ask, .reply { font-size:19px; }
+  .own input.own-in { max-width:none; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  .prt { display:block !important; } .scr { display:none !important; }
+  body { background:white; font-size:11pt; line-height:1.35; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:6px; } .heading-row { margin:2px 0 6px; } .page-meta { padding-top:6px; font-size:12px; }
+  h1 { font-size:26px; }
+  .exercise { box-shadow:none; padding:10px 18px; margin-bottom:8px; border-radius:14px; }
+  .section-heading { margin-bottom:2px; } h2, .section-number { font-size:10px; }
+  .instruction { font-size:15px; margin-bottom:6px; } .note { font-size:11px; margin:-4px 0 5px; } .like { font-size:12px; padding:4px 10px; margin-bottom:6px; } .model-tag { font-size:10px; }
+  .rule { font-size:11.5px; padding:6px 10px; margin-bottom:6px; } .rule .ex { margin-bottom:4px; } .key { font-size:11px; padding:1px 10px; }
+  .qn { font-size:11px; min-width:20px; }
+  .items { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-auto-flow:column; grid-template-rows:repeat(4,auto); column-gap:28px; }
+  .q { padding:5px 0; } .ask, .reply { font-size:13px; } .ask { margin-bottom:1px; }
+  select.pick { display:none !important; }
+  .pgap { display:inline-block; width:70px; border-bottom:1px solid #536672; height:12px; vertical-align:baseline; }
+  .print-opts { display:block; margin:1px 0 0; font-size:10.5px; font-weight:500; color:var(--muted); white-space:nowrap; }
+  .own { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:4px 18px; padding:5px 0; } .own .ask { font-size:13px; }
+  .own input.own-in { min-height:26px; padding:2px 8px; max-width:none; }
+  input::placeholder { color:transparent; }
+}
+body.hw-pdf-mode { background:white; }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Sergei" data-sheet="English 2026-11-10" data-sheet-id="sergei-2026-11-10-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>Yes, I do or Yes, I&nbsp;have?</h1><span class="edition">10 NOV 2026</span></div>
+  <div class="page-meta"><span>Sergei</span><span>About 10&nbsp;minutes</span></div>
+</header>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">01</span><h2>Short answers</h2></div>
+  <p class="instruction">Choose the word for each short&nbsp;answer.</p>
+  <div class="rule">
+    <p class="what">The helper word in the question goes into the&nbsp;answer.</p>
+    <p class="ex"><i>Do</i> they have a dog? Yes, they&nbsp;<i>do</i>. &nbsp;&nbsp; <i>Have</i> they got a dog? Yes, they&nbsp;<i>have</i>.</p>
+    <div class="keys"><span class="key">Do → do / don't</span><span class="key">Does → does / doesn't</span><span class="key">Have … got → have / haven't</span><span class="key">Has … got → has / hasn't</span></div>
+  </div>
+  <p class="like"><span class="model-tag">Like this</span>Has Leila got a laptop? &nbsp;→&nbsp; <b>No, she&nbsp;hasn't.</b></p>
+  <div class="items">
+    <div class="q question"><span class="qn">1.</span><div class="qbody"><p class="ask">Do you have a&nbsp;passport?</p><p class="reply"><span class="nw">Yes, I <span class="pgap"></span><select class="hw-field pick" data-k="a1" data-label="1. Do you have a passport? Yes, I ___" aria-label="Short answer 1"><option value="">Choose</option><option value="have">have</option><option value="do">do</option><option value="has">has</option><option value="does">does</option></select>.</span><span class="print-opts">have &nbsp;/&nbsp; do &nbsp;/&nbsp; has &nbsp;/&nbsp; does</span></p></div></div>
+    <div class="q question"><span class="qn">2.</span><div class="qbody"><p class="ask">Has the hotel got a&nbsp;gym?</p><p class="reply"><span class="nw">Yes, it <span class="pgap"></span><select class="hw-field pick" data-k="a2" data-label="2. Has the hotel got a gym? Yes, it ___" aria-label="Short answer 2"><option value="">Choose</option><option value="do">do</option><option value="does">does</option><option value="have">have</option><option value="has">has</option></select>.</span><span class="print-opts">do &nbsp;/&nbsp; does &nbsp;/&nbsp; have &nbsp;/&nbsp; has</span></p></div></div>
+    <div class="q question"><span class="qn">3.</span><div class="qbody"><p class="ask">Have your neighbours got a&nbsp;pet?</p><p class="reply"><span class="nw">No, they <span class="pgap"></span><select class="hw-field pick" data-k="a3" data-label="3. Have your neighbours got a pet? No, they ___" aria-label="Short answer 3"><option value="">Choose</option><option value="haven&#x27;t">haven&#x27;t</option><option value="don&#x27;t">don&#x27;t</option><option value="hasn&#x27;t">hasn&#x27;t</option><option value="doesn&#x27;t">doesn&#x27;t</option></select>.</span><span class="print-opts">haven&#x27;t &nbsp;/&nbsp; don&#x27;t &nbsp;/&nbsp; hasn&#x27;t &nbsp;/&nbsp; doesn&#x27;t</span></p></div></div>
+    <div class="q question"><span class="qn">4.</span><div class="qbody"><p class="ask">Does Anna have a&nbsp;balcony?</p><p class="reply"><span class="nw">No, she <span class="pgap"></span><select class="hw-field pick" data-k="a4" data-label="4. Does Anna have a balcony? No, she ___" aria-label="Short answer 4"><option value="">Choose</option><option value="hasn&#x27;t">hasn&#x27;t</option><option value="don&#x27;t">don&#x27;t</option><option value="doesn&#x27;t">doesn&#x27;t</option><option value="haven&#x27;t">haven&#x27;t</option></select>.</span><span class="print-opts">hasn&#x27;t &nbsp;/&nbsp; don&#x27;t &nbsp;/&nbsp; doesn&#x27;t &nbsp;/&nbsp; haven&#x27;t</span></p></div></div>
+    <div class="q question"><span class="qn">5.</span><div class="qbody"><p class="ask">Does Omar have a&nbsp;dishwasher?</p><p class="reply"><span class="nw">Yes, he <span class="pgap"></span><select class="hw-field pick" data-k="a5" data-label="5. Does Omar have a dishwasher? Yes, he ___" aria-label="Short answer 5"><option value="">Choose</option><option value="does">does</option><option value="has">has</option><option value="do">do</option><option value="have">have</option></select>.</span><span class="print-opts">does &nbsp;/&nbsp; has &nbsp;/&nbsp; do &nbsp;/&nbsp; have</span></p></div></div>
+    <div class="q question"><span class="qn">6.</span><div class="qbody"><p class="ask">Do the Smiths have a&nbsp;cat?</p><p class="reply"><span class="nw">No, they <span class="pgap"></span><select class="hw-field pick" data-k="a6" data-label="6. Do the Smiths have a cat? No, they ___" aria-label="Short answer 6"><option value="">Choose</option><option value="haven&#x27;t">haven&#x27;t</option><option value="doesn&#x27;t">doesn&#x27;t</option><option value="hasn&#x27;t">hasn&#x27;t</option><option value="don&#x27;t">don&#x27;t</option></select>.</span><span class="print-opts">haven&#x27;t &nbsp;/&nbsp; doesn&#x27;t &nbsp;/&nbsp; hasn&#x27;t &nbsp;/&nbsp; don&#x27;t</span></p></div></div>
+    <div class="q question"><span class="qn">7.</span><div class="qbody"><p class="ask">Have you got a spare&nbsp;key?</p><p class="reply"><span class="nw">No, I <span class="pgap"></span><select class="hw-field pick" data-k="a7" data-label="7. Have you got a spare key? No, I ___" aria-label="Short answer 7"><option value="">Choose</option><option value="doesn&#x27;t">doesn&#x27;t</option><option value="don&#x27;t">don&#x27;t</option><option value="haven&#x27;t">haven&#x27;t</option><option value="hasn&#x27;t">hasn&#x27;t</option></select>.</span><span class="print-opts">doesn&#x27;t &nbsp;/&nbsp; don&#x27;t &nbsp;/&nbsp; haven&#x27;t &nbsp;/&nbsp; hasn&#x27;t</span></p></div></div>
+    <div class="q question"><span class="qn">8.</span><div class="qbody"><p class="ask">Has Lena got a&nbsp;car?</p><p class="reply"><span class="nw">Yes, she <span class="pgap"></span><select class="hw-field pick" data-k="a8" data-label="8. Has Lena got a car? Yes, she ___" aria-label="Short answer 8"><option value="">Choose</option><option value="does">does</option><option value="has">has</option><option value="have">have</option><option value="do">do</option></select>.</span><span class="print-opts">does &nbsp;/&nbsp; has &nbsp;/&nbsp; have &nbsp;/&nbsp; do</span></p></div></div>  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">02</span><h2>About you</h2></div>
+  <p class="instruction">Answer with a short answer about&nbsp;you.</p>
+  <p class="note">Yes or No: write what is true for you. Use do / does or have / has, like in&nbsp;01.</p>
+  <p class="like"><span class="model-tag">Like this</span>Does your neighbour have a car? &nbsp;→&nbsp; <b>No, he&nbsp;doesn&#x27;t.</b></p>
+  <div class="owns">
+    <div class="own question"><p class="ask"><span class="qn">1.</span>Does your wife have a driving&nbsp;licence?</p><input class="hw-field own-in" type="text" data-k="o1" data-label="1. Does your wife have a driving licence?" aria-label="Your short answer 1" autocomplete="off" autocapitalize="sentences" spellcheck="false"></div>
+    <div class="own question"><p class="ask"><span class="qn">2.</span>Have you got hot water at home&nbsp;now?</p><input class="hw-field own-in" type="text" data-k="o2" data-label="2. Have you got hot water at home now?" aria-label="Your short answer 2" autocomplete="off" autocapitalize="sentences" spellcheck="false"></div>
+    <div class="own question"><p class="ask"><span class="qn">3.</span>Has your wife got any plants in the&nbsp;garden?</p><input class="hw-field own-in" type="text" data-k="o3" data-label="3. Has your wife got any plants in the garden?" aria-label="Your short answer 3" autocomplete="off" autocapitalize="sentences" spellcheck="false"></div>
+    <div class="own question"><p class="ask"><span class="qn">4.</span>Do you have a home&nbsp;office?</p><input class="hw-field own-in" type="text" data-k="o4" data-label="4. Do you have a home office?" aria-label="Your short answer 4" autocomplete="off" autocapitalize="sentences" spellcheck="false"></div>
+    <div class="own question"><p class="ask"><span class="qn">5.</span>Has your house got curtains&nbsp;now?</p><input class="hw-field own-in" type="text" data-k="o5" data-label="5. Has your house got curtains now?" aria-label="Your short answer 5" autocomplete="off" autocapitalize="sentences" spellcheck="false"></div>
+    <div class="own question"><p class="ask"><span class="qn">6.</span>Do you have a bank card from&nbsp;Kazakhstan?</p><input class="hw-field own-in" type="text" data-k="o6" data-label="6. Do you have a bank card from Kazakhstan?" aria-label="Your short answer 6" autocomplete="off" autocapitalize="sentences" spellcheck="false"></div>  </div>
+</section>
+
+</main>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJhMSI6IHsidCI6ICJleGFjdCIsICJhIjogImRvIn0sICJhMiI6IHsidCI6ICJleGFjdCIsICJhIjogImhhcyJ9LCAiYTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoYXZlbid0In0sICJhNCI6IHsidCI6ICJleGFjdCIsICJhIjogImRvZXNuJ3QifSwgImE1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiZG9lcyJ9LCAiYTYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJkb24ndCJ9LCAiYTciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoYXZlbid0In0sICJhOCI6IHsidCI6ICJleGFjdCIsICJhIjogImhhcyJ9LCAibzEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJZZXMsIHNoZSBkb2VzIiwgImciOiAibzEtb2sifSwgIm8xX2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJObywgc2hlIGRvZXNuJ3QiLCAiZyI6ICJvMS1vayJ9LCAibzFfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCBzaGUgZG9lc27igJl0IiwgImciOiAibzEtb2sifSwgIm8xX2FsdDMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJObywgc2hlIGRvZXMgbm90IiwgImciOiAibzEtb2sifSwgIm8yIjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIEkgaGF2ZW4ndCIsICJnIjogIm8yLW9rIn0sICJvMl9hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiWWVzLCBJIGhhdmUiLCAiZyI6ICJvMi1vayJ9LCAibzJfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCBJIGhhdmVu4oCZdCIsICJnIjogIm8yLW9rIn0sICJvMl9hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIEkgaGF2ZSBub3QiLCAiZyI6ICJvMi1vayJ9LCAibzJfYWx0NCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlllcywgd2UgaGF2ZSIsICJnIjogIm8yLW9rIn0sICJvMl9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIHdlIGhhdmVuJ3QiLCAiZyI6ICJvMi1vayJ9LCAibzJfYWx0NiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCB3ZSBoYXZlbuKAmXQiLCAiZyI6ICJvMi1vayJ9LCAibzJfYWx0NyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCB3ZSBoYXZlIG5vdCIsICJnIjogIm8yLW9rIn0sICJvMyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlllcywgc2hlIGhhcyIsICJnIjogIm8zLW9rIn0sICJvM19hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIHNoZSBoYXNuJ3QiLCAiZyI6ICJvMy1vayJ9LCAibzNfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCBzaGUgaGFzbuKAmXQiLCAiZyI6ICJvMy1vayJ9LCAibzNfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCBzaGUgaGFzIG5vdCIsICJnIjogIm8zLW9rIn0sICJvNCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlllcywgSSBkbyIsICJnIjogIm80LW9rIn0sICJvNF9hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIEkgZG9uJ3QiLCAiZyI6ICJvNC1vayJ9LCAibzRfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCBJIGRvbuKAmXQiLCAiZyI6ICJvNC1vayJ9LCAibzRfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCBJIGRvIG5vdCIsICJnIjogIm80LW9rIn0sICJvNF9hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiWWVzLCB3ZSBkbyIsICJnIjogIm80LW9rIn0sICJvNF9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIHdlIGRvbid0IiwgImciOiAibzQtb2sifSwgIm80X2FsdDYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJObywgd2UgZG9u4oCZdCIsICJnIjogIm80LW9rIn0sICJvNF9hbHQ3IjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIHdlIGRvIG5vdCIsICJnIjogIm80LW9rIn0sICJvNSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCBpdCBoYXNuJ3QiLCAiZyI6ICJvNS1vayJ9LCAibzVfYWx0MSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlllcywgaXQgaGFzIiwgImciOiAibzUtb2sifSwgIm81X2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJObywgaXQgaGFzbuKAmXQiLCAiZyI6ICJvNS1vayJ9LCAibzVfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIk5vLCBpdCBoYXMgbm90IiwgImciOiAibzUtb2sifSwgIm82IjogeyJ0IjogIndvcmRzIiwgImEiOiAiWWVzLCBJIGRvIiwgImciOiAibzYtb2sifSwgIm82X2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJObywgSSBkb24ndCIsICJnIjogIm82LW9rIn0sICJvNl9hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIEkgZG9u4oCZdCIsICJnIjogIm82LW9rIn0sICJvNl9hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiTm8sIEkgZG8gbm90IiwgImciOiAibzYtb2sifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

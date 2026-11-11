@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arina: Practice 11 November 2026</title>
+<style>
+  :root {
+    --ink: #1f2340; --muted: #6b7088; --violet: #6c63ff; --lilac: #a78bfa;
+    --soft: #f4f2ff; --line: #d9d5f5; --paper: #ffffff;
+  }
+  @page { size: A4; margin: 11mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5;
+    color: var(--ink); background: #faf9ff; max-width: 900px; margin: 0 auto; padding: 32px 22px 48px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  header.top {
+    background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%); color: #fff; border-radius: 16px;
+    padding: 26px 30px; margin-bottom: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+  }
+  header.top .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .85; margin-bottom: 6px; }
+  header.top h1 { font-size: 32px; line-height: 1.1; font-weight: 700; }
+  header.top .meta { font-size: 15px; text-align: right; opacity: .95; }
+  .intro { font-size: 15px; color: var(--muted); margin: -12px 0 26px 4px; }
+
+  .part {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 28px 22px; margin-bottom: 26px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plabel { font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); margin-bottom: 6px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 4px; text-wrap: balance; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .model { background: var(--soft); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 16px; }
+  .model .lt { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--violet); margin-right: 8px; }
+  .model .fill { color: #2546c8; font-weight: 600; border-bottom: 1.5px solid #b3abf0; padding: 0 2px; }
+  .model .gr { color: var(--muted); }
+
+  .q {
+    display: flex; align-items: baseline; gap: 14px; padding: 11px 0; border-bottom: 1px solid #eeecfb;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plist .q:last-child, .ulist .q:last-child { border-bottom: 0; }
+  .qn { flex: none; width: 22px; font-size: 15px; color: var(--muted); }
+  .q p { font-size: 18px; line-height: 2.1; }
+  .q select { font: inherit; font-size: 17px; font-weight: 600; vertical-align: middle; margin: 0 2px; min-width: 150px; }
+  .cue { color: var(--muted); font-size: .92em; }
+  .hw-gap { width: 3.6em; font: inherit; text-align: left; }
+  .q input.hw-gap.g14 { width: 7.6em; }
+  .q input.hw-gap.g9 { width: 5.6em; }
+
+  .story { font-size: 18px; line-height: 2.35; }
+
+  .own { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 8px; }
+  .wlab { font-size: 18px; font-weight: 400; }
+  .wlab b { font-weight: 600; }
+  section div.sent { min-height: 78px !important; border: 1px solid var(--line); border-radius: 8px; margin-top: 6px; }
+
+  /* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, recoloured) ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; padding: 12px; border: 1.5px dashed var(--line); border-radius: 12px; background: var(--soft); min-height: 66px; margin: 10px 0 14px; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 600; color: var(--ink); background: #fff;
+    border: 1.5px solid var(--violet); border-radius: 999px; padding: 6px 18px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.35;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: var(--soft); border-color: var(--violet); box-shadow: 0 0 0 3px #d4ccfb; }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(108,99,255,.3); }
+  .tp-zone { border: 2px dashed #c9c2f4; border-radius: 12px; cursor: pointer; background: #fff; -webkit-tap-highlight-color: transparent; }
+  .tp-zone.ready { border-color: var(--violet); background: #fbfaff; }
+  .tp-zone.over { border-color: var(--violet); background: var(--soft); }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: flex-start; }
+  .tp-says { display: block; font-size: 14px; font-weight: 400; color: var(--ink); margin-top: 4px; }
+  .tp-bank .tp-says { display: none; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== end TAP-PLACE CSS ===== */
+  .tp-zone.gapz { display: inline-flex; align-items: center; vertical-align: middle; min-width: 6em; min-height: 44px; padding: 0 3px; margin: 2px 2px; }
+  .gapz .tp-slot { display: inline-flex; min-height: 38px; align-items: center; }
+  .tp-zone.gapz:has(.tp-tile) { min-width: 0; border-color: transparent; background: transparent; padding: 0; }
+  .gapz .tp-tile { padding: 3px 14px; min-height: 38px; }
+
+  @media (max-width: 620px) {
+    body { padding: 14px 10px 24px; }
+    header.top { flex-direction: column; align-items: flex-start; padding: 20px; }
+    header.top h1 { font-size: 26px; }
+    header.top .meta { text-align: left; }
+    .part { padding: 18px 14px; }
+    .instr { font-size: 19px; }
+    .q p, .story { font-size: 16.5px; }
+    .q select { min-width: 120px; }
+  }
+
+  /* Whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 36px 48px 56px; font-size: 26px; }
+    header.top { padding: 28px 40px; margin-bottom: 24px; }
+    header.top .kicker { font-size: 18px; }
+    header.top h1 { font-size: 46px; }
+    header.top .meta { font-size: 24px; }
+    .intro { font-size: 23px; margin: 0 0 28px 6px; }
+    .part { padding: 30px 44px 30px; margin-bottom: 32px; border-radius: 18px; }
+    .plabel { font-size: 19px; margin-bottom: 8px; }
+    .instr { font-size: 38px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 14px; }
+    .model { font-size: 27px; padding: 16px 24px; margin: 14px 0 18px; border-radius: 12px; }
+    .model .lt { font-size: 18px; margin-right: 14px; }
+    .qn { font-size: 24px; width: 34px; }
+    .q { gap: 18px; padding: 16px 0; }
+    .q p { font-size: 29px; line-height: 2; }
+    .q select { font-size: 27px; min-height: 56px; min-width: 210px; padding: 4px 14px; }
+    .q input.hw-gap.g14 { width: 7.6em; height: 1.75em; font-size: 28px; }
+    .q input.hw-gap.g9 { width: 5.6em; height: 1.75em; font-size: 28px; }
+    .plist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); grid-auto-flow: column; column-gap: 64px; }
+    .plist .q:nth-child(3) { border-bottom: 0; }
+    .story { font-size: 29px; line-height: 2.3; }
+    .tp-bank { gap: 16px 18px; padding: 20px 24px; margin: 14px 0 20px; border-radius: 16px; }
+    .tp-tile { font-size: 27px; min-height: 58px; padding: 6px 24px; }
+    .tp-zone.gapz { min-height: 58px; min-width: 6.5em; margin: 3px 4px; }
+    .gapz .tp-slot { min-height: 52px; }
+    .gapz .tp-tile { font-size: 27px; min-height: 52px; padding: 4px 20px; }
+    .own { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 48px; align-items: end; }
+    .wlab { font-size: 29px; }
+    section div.sent { min-height: 120px !important; font-size: 28px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 12px; padding: 0; max-width: none; }
+    header.top { padding: 10px 18px; margin-bottom: 8px; border-radius: 10px; }
+    header.top h1 { font-size: 21px; }
+    header.top .kicker { font-size: 9.5px; margin-bottom: 2px; }
+    header.top .meta { font-size: 11px; }
+    .intro { font-size: 10.5px; margin: 0 0 7px 2px; }
+    .part { padding: 8px 16px 7px; margin-bottom: 7px; border-radius: 10px; }
+    .plabel { font-size: 9.5px; margin-bottom: 1px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 2px; }
+    .model { font-size: 11.5px; padding: 5px 10px; margin: 4px 0; }
+    .model .lt { font-size: 9px; }
+    .q { padding: 3px 0; gap: 8px; }
+    .qn { font-size: 11px; width: 14px; }
+    .q p { font-size: 12.5px; line-height: 1.75; }
+    .q select { display: none !important; }
+    .prt { display: inline !important; }
+    .prt .pblank { display: inline-block; width: 64px; height: 17px; border: 1.2px solid #b3abf0; border-radius: 5px; vertical-align: middle; }
+    .q input.hw-gap.g14 { width: 104px; height: 19px; }
+    .q input.hw-gap.g9 { width: 78px; height: 19px; }
+    .story { font-size: 12.5px; line-height: 2.05; }
+    .tp-bank { margin: 4px 0 5px; padding: 5px; min-height: 0; gap: 5px 7px; }
+    .tp-tile { font-size: 11.5px; padding: 1px 11px; min-height: 0; border-width: 1.2px; }
+    .tp-zone.gapz { min-width: 11.5em; min-height: 0; height: 20px; border-width: 1.2px; border-radius: 6px; }
+    .gapz .tp-slot { min-height: 0; }
+    .wlab { font-size: 12.5px; }
+    .own { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; margin-top: 3px; align-items: end; }
+    section div.sent { min-height: 60px !important; margin-top: 2px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Arina" data-sheet="English 2026-11-11" data-sheet-id="arina-2026-11-11-english">
+<div id="sheet">
+<header class="top"><div><div class="kicker">Arina · English practice</div><h1>Have you ever&hellip;?, the hardest &amp; new&nbsp;words</h1></div><div class="meta">11 November 2026</div></header>
+<p class="intro">A little practice from our conversation. About 10&nbsp;minutes.</p>
+
+<section class="part">
+  <div class="plabel">1 · After have / has</div>
+  <p class="instr">Type the third form of the verb in the <span class="nw">gap.</span></p>
+  <div class="model"><span class="lt">Like this</span>I&rsquo;ve never <span class="fill">ridden</span> <span class="cue">(ride)</span> a <span class="nw">horse.</span> <span class="gr nw">(ride, rode, ridden)</span></div>
+  <div class="plist">
+    <div class="q"><span class="qn">1</span><p>Have you ever <span class="nw"><input class="hw-field hw-gap g9" maxlength="12" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="p1" data-label="1.1 Have you ever ___ (swim) the 50 metres butterfly in a competition?"> <span class="cue">(swim)</span></span> the 50 metres butterfly in a <span class="nw">competition?</span></p></div><div class="q"><span class="qn">2</span><p>Max has never <span class="nw"><input class="hw-field hw-gap g9" maxlength="12" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="p2" data-label="1.2 Max has never ___ (fly) on a plane."> <span class="cue">(fly)</span></span> on a plane: he gets nervous at <span class="nw">airports.</span></p></div><div class="q"><span class="qn">3</span><p>Have you ever <span class="nw"><input class="hw-field hw-gap g9" maxlength="12" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="p3" data-label="1.3 Have you ever ___ (see) a dolphin in the sea?"> <span class="cue">(see)</span></span> a dolphin in the <span class="nw">sea?</span></p></div><div class="q"><span class="qn">4</span><p>Our teacher has <span class="nw"><input class="hw-field hw-gap g9" maxlength="12" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="p4" data-label="1.4 Our teacher has ___ (write) the questions for the school olympiad."> <span class="cue">(write)</span></span> the questions for the school <span class="nw">olympiad.</span></p></div><div class="q"><span class="qn">5</span><p>We have already <span class="nw"><input class="hw-field hw-gap g9" maxlength="12" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="p5" data-label="1.5 We have already ___ (take) three tests this week."> <span class="cue">(take)</span></span> three tests this week, and it&rsquo;s only <span class="nw">Wednesday.</span></p></div>
+  </div>
+</section>
+
+<section class="part">
+  <div class="plabel">2 · The &hellip;-est or the most &hellip;</div>
+  <p class="instr">Type only the missing word: &ldquo;the&rdquo; is already <span class="nw">there.</span></p>
+  <div class="model"><span class="lt">Like this</span>cheap &rarr; the <span class="fill">cheapest</span> &nbsp;·&nbsp; expensive &rarr; the <span class="fill nw">most expensive</span></div>
+  <div class="ulist">
+    <div class="q"><span class="qn">1</span><p>The <span class="nw"><input class="hw-field hw-gap g14" maxlength="18" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="u1" data-label="2.1 The ___ (hard) part of the trip was on the second day."> <span class="cue">(hard)</span></span> part of the trip was on the second day: we got up at <span class="nw">five.</span></p></div><div class="q"><span class="qn">2</span><p>It was the <span class="nw"><input class="hw-field hw-gap g14" maxlength="18" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="u2" data-label="2.2 It was the ___ (difficult) task in the whole olympiad."> <span class="cue">(difficult)</span></span> task in the whole <span class="nw">olympiad.</span></p></div><div class="q"><span class="qn">3</span><p>Friday was the <span class="nw"><input class="hw-field hw-gap g14" maxlength="18" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="u3" data-label="2.3 Friday was the ___ (busy) day of my week."> <span class="cue">(busy)</span></span> day of my week: a colloquium and a long training <span class="nw">session.</span></p></div>
+  </div>
+</section>
+
+<section class="part tp">
+  <div class="plabel">3 · Words from our conversation</div>
+  <p class="instr">Tap a phrase, then tap its gap in the <span class="nw">story.</span></p>
+  <p class="note">Two phrases are extra. Tap a placed phrase to send it back. With a mouse you can also <span class="nw">drag.</span></p>
+  <div class="tp-bank" aria-label="Phrases"><button type="button" class="tp-tile" data-value="overdo it">overdo it</button><button type="button" class="tp-tile" data-value="waste">waste</button><button type="button" class="tp-tile" data-value="an internationally ranked athlete">an internationally ranked athlete</button><button type="button" class="tp-tile" data-value="each other">each other</button><button type="button" class="tp-tile" data-value="chilly">chilly</button><button type="button" class="tp-tile" data-value="look away">look away</button><button type="button" class="tp-tile" data-value="lose">lose</button><button type="button" class="tp-tile" data-value="wait for your turn">wait for your turn</button><button type="button" class="tp-tile" data-value="each">each</button><button type="button" class="tp-tile" data-value="catch a cold">catch a cold</button></div>
+  <p class="story">The pool was a bit <span class="tp-zone gapz" data-store="v1" data-field="v1" aria-label="Gap 1"><span class="tp-slot"></span></span> at seven in the morning, so the coach told us to keep our hoodies on between races, or we would <span class="tp-zone gapz" data-store="v2" data-field="v2" aria-label="Gap 2"><span class="tp-slot"></span></span>. In a relay you can&rsquo;t jump in early: you have to <span class="tp-zone gapz" data-store="v3" data-field="v3" aria-label="Gap 3"><span class="tp-slot"></span></span>. The girl in lane four is <span class="tp-zone gapz" data-store="v4" data-field="v4" aria-label="Gap 4"><span class="tp-slot"></span></span>, and when she swam her butterfly, I couldn&rsquo;t <span class="tp-zone gapz" data-store="v5" data-field="v5" aria-label="Gap 5"><span class="tp-slot"></span></span>. Before the final the coach said, &ldquo;Don&rsquo;t <span class="tp-zone gapz" data-store="v6" data-field="v6" aria-label="Gap 6"><span class="tp-slot"></span></span> in the warm-up: an easy 200 metres is enough.&rdquo; She also gave every team a short rules quiz, around ten questions <span class="tp-zone gapz" data-store="v7" data-field="v7" aria-label="Gap 7"><span class="tp-slot"></span></span>. One boy wanted to read the whole rulebook first, but I told him he would just <span class="tp-zone gapz" data-store="v8" data-field="v8" aria-label="Gap 8"><span class="tp-slot"></span></span> his <span class="nw">time.</span></p>
+  <div class="tp-stores" hidden><select data-k="v1" data-label="3.1 The pool was a bit ___ at seven in the morning" aria-label="Gap 1" class="hw-field"><option value=""></option><option value="overdo it">overdo it</option><option value="waste">waste</option><option value="an internationally ranked athlete">an internationally ranked athlete</option><option value="each other">each other</option><option value="chilly">chilly</option><option value="look away">look away</option><option value="lose">lose</option><option value="wait for your turn">wait for your turn</option><option value="each">each</option><option value="catch a cold">catch a cold</option></select><select data-k="v2" data-label="3.2 keep our hoodies on between races, or we would ___" aria-label="Gap 2" class="hw-field"><option value=""></option><option value="overdo it">overdo it</option><option value="waste">waste</option><option value="an internationally ranked athlete">an internationally ranked athlete</option><option value="each other">each other</option><option value="chilly">chilly</option><option value="look away">look away</option><option value="lose">lose</option><option value="wait for your turn">wait for your turn</option><option value="each">each</option><option value="catch a cold">catch a cold</option></select><select data-k="v3" data-label="3.3 In a relay you can&#x27;t jump in early: you have to ___" aria-label="Gap 3" class="hw-field"><option value=""></option><option value="overdo it">overdo it</option><option value="waste">waste</option><option value="an internationally ranked athlete">an internationally ranked athlete</option><option value="each other">each other</option><option value="chilly">chilly</option><option value="look away">look away</option><option value="lose">lose</option><option value="wait for your turn">wait for your turn</option><option value="each">each</option><option value="catch a cold">catch a cold</option></select><select data-k="v4" data-label="3.4 The girl in lane four is ___" aria-label="Gap 4" class="hw-field"><option value=""></option><option value="overdo it">overdo it</option><option value="waste">waste</option><option value="an internationally ranked athlete">an internationally ranked athlete</option><option value="each other">each other</option><option value="chilly">chilly</option><option value="look away">look away</option><option value="lose">lose</option><option value="wait for your turn">wait for your turn</option><option value="each">each</option><option value="catch a cold">catch a cold</option></select><select data-k="v5" data-label="3.5 when she swam her butterfly, I couldn&#x27;t ___" aria-label="Gap 5" class="hw-field"><option value=""></option><option value="overdo it">overdo it</option><option value="waste">waste</option><option value="an internationally ranked athlete">an internationally ranked athlete</option><option value="each other">each other</option><option value="chilly">chilly</option><option value="look away">look away</option><option value="lose">lose</option><option value="wait for your turn">wait for your turn</option><option value="each">each</option><option value="catch a cold">catch a cold</option></select><select data-k="v6" data-label="3.6 Don&#x27;t ___ in the warm-up" aria-label="Gap 6" class="hw-field"><option value=""></option><option value="overdo it">overdo it</option><option value="waste">waste</option><option value="an internationally ranked athlete">an internationally ranked athlete</option><option value="each other">each other</option><option value="chilly">chilly</option><option value="look away">look away</option><option value="lose">lose</option><option value="wait for your turn">wait for your turn</option><option value="each">each</option><option value="catch a cold">catch a cold</option></select><select data-k="v7" data-label="3.7 a short rules quiz, around ten questions ___" aria-label="Gap 7" class="hw-field"><option value=""></option><option value="overdo it">overdo it</option><option value="waste">waste</option><option value="an internationally ranked athlete">an internationally ranked athlete</option><option value="each other">each other</option><option value="chilly">chilly</option><option value="look away">look away</option><option value="lose">lose</option><option value="wait for your turn">wait for your turn</option><option value="each">each</option><option value="catch a cold">catch a cold</option></select><select data-k="v8" data-label="3.8 he would just ___ his time" aria-label="Gap 8" class="hw-field"><option value=""></option><option value="overdo it">overdo it</option><option value="waste">waste</option><option value="an internationally ranked athlete">an internationally ranked athlete</option><option value="each other">each other</option><option value="chilly">chilly</option><option value="look away">look away</option><option value="lose">lose</option><option value="wait for your turn">wait for your turn</option><option value="each">each</option><option value="catch a cold">catch a cold</option></select></div>
+</section>
+
+<section class="part">
+  <div class="plabel">4 · Your sentences</div>
+  <p class="instr">Write two sentences about sport or <span class="nw">travel.</span></p>
+  <p class="note">Use a verb with a special third form, like swim, swam, <span class="nw">swum.</span></p>
+  <div class="own">
+    <div><p class="wlab"><b>A question for me:</b> Have you ever <span class="nw">&hellip;?</span></p><div class="hw-field sent" contenteditable="true" data-k="w1" data-label="4.1 A question for me: Have you ever ...?" role="textbox" aria-label="Question for me" autocorrect="off" autocapitalize="sentences"></div></div>
+    <div><p class="wlab"><b>What have you never done?</b> I&rsquo;ve never <span class="nw">&hellip;</span></p><div class="hw-field sent" contenteditable="true" data-k="w2" data-label="4.2 What have you never done? I've never ..." role="textbox" aria-label="What I have never done" autocorrect="off" autocapitalize="sentences"></div></div>
+  </div>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (copied unchanged from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script></div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogInN3dW0ifSwgInAyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZmxvd24ifSwgInAzIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2VlbiJ9LCAicDQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3cml0dGVuIn0sICJwNSI6IHsidCI6ICJleGFjdCIsICJhIjogInRha2VuIn0sICJ1MSI6IHsidCI6ICJleGFjdCIsICJhIjogImhhcmRlc3QifSwgInUyIjogeyJ0IjogImV4YWN0IiwgImEiOiAibW9zdCBkaWZmaWN1bHQifSwgInUzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYnVzaWVzdCJ9LCAidjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjaGlsbHkifSwgInYyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY2F0Y2ggYSBjb2xkIn0sICJ2MyI6IHsidCI6ICJleGFjdCIsICJhIjogIndhaXQgZm9yIHlvdXIgdHVybiJ9LCAidjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhbiBpbnRlcm5hdGlvbmFsbHkgcmFua2VkIGF0aGxldGUifSwgInY1IjogeyJ0IjogImV4YWN0IiwgImEiOiAibG9vayBhd2F5In0sICJ2NiI6IHsidCI6ICJleGFjdCIsICJhIjogIm92ZXJkbyBpdCJ9LCAidjciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJlYWNoIn0sICJ2OCI6IHsidCI6ICJleGFjdCIsICJhIjogIndhc3RlIn0sICJ3MSI6IHsidCI6ICJvcGVuIn0sICJ3MiI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body></html>

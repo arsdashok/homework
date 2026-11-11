@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milana: Homework 11 November 2026</title>
+<!-- Lesson 11 Nov 2026: first lesson after two months at CISL San Diego, free conversation all hour (the trip, classmates, a horror quest, relationships). Targets: (1) want / won't (I/we/they/you only, wants dropped after the gates), NEW, her own question in the lesson («I won't sleep» meant «I want to sleep»; «want or w-o-n?»), dropdown in the gap; (2) phrases Dasha supplied, zero reps, tap-to-place tiles with Russian glosses, fresh contexts and generic names only; «If you don't want to …, you don't have to» rides in Ex 1 item 6, «really like it» in the Ex 2 model and the Ex 3 model; (3) a WRITTEN past narrative on a four-starter frame, one day in San Diego, so a finite past verb is unavoidable (Dasha 3 Sept). «hold a grudge» is the standard form; the tape has Dasha saying «have a grudge» / «keep the grudge». Second conditional NOT taught (recast only). Starlight design from the 9 Sept sheet. First online sheet for Milana. -->
+<style>
+  :root {
+    --ink:#2d2949; --accent:#60529c; --accent2:#8c72bf; --muted:#5d5870; --border:#d0c8e7;
+    --wash:#f2effa; --model:#f8f7fc; --night:#302744; --pink:#f6b5d6; --line:#aaa3c1; --lilac:#d5c9ff; --field:#1d4ed8;
+  }
+  @page { size: A4; margin: 10mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; line-height: 1.4; color: var(--ink);
+    background: #f7f5fc; max-width: 1080px; margin: auto; padding: 16px 16px 24px;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  /* header: Starlight */
+  header.top {
+    position: relative; overflow: hidden; border-radius: 10px; background: var(--night); color: #fff;
+    padding: 18px 24px 20px; margin-bottom: 18px; min-height: 120px;
+  }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: #e3c5f1; position: relative; z-index: 1; }
+  header.top h1 { font-family: Arial, sans-serif; font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -1px; position: relative; z-index: 1; margin-top: 2px; }
+  header.top .sub { font-size: 15px; color: #e2dcec; margin-top: 6px; position: relative; z-index: 1; }
+  .header-art { position: absolute; right: 0; top: 0; height: 100%; width: auto; }
+
+  /* cards */
+  .ex-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 18px; overflow: hidden; }
+  .ex-header {
+    background: var(--wash); border-bottom: 1px solid var(--border); border-left: 4px solid var(--accent2);
+    padding: 8px 16px; font-size: 13px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent);
+    break-after: avoid; page-break-after: avoid;
+  }
+  .ex-body { padding: 14px 18px 16px; }
+  .instr { font-size: 25px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
+  .note { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+  .example-box {
+    background: var(--model); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0;
+    padding: 8px 14px; margin-bottom: 14px; font-size: 18px; line-height: 1.5;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .example-box .label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+  .example-box b { color: var(--accent); }
+  .example-box .gl { color: var(--muted); font-size: .85em; }
+  .example-box .place { color: var(--muted); font-style: italic; }
+
+  .q { display: flex; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .q:last-child { border-bottom: 0; }
+  .n {
+    flex: 0 0 auto; display: inline-block; width: 28px; height: 28px; line-height: 26px; text-align: center;
+    border: 1.5px solid var(--accent); border-radius: 5px; color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+  .sent { font-size: 20px; line-height: 1.75; }
+
+  /* Exercise 1: choice in the gap */
+  select.pick {
+    font: inherit; font-weight: 700; color: var(--field); padding: 3px 8px; margin: 0 2px;
+    border: 2px solid var(--accent2); border-radius: 8px; background: #fbfaff; vertical-align: baseline;
+  }
+  .gap { display: none; }
+  .ex1-list { display: grid; grid-template-columns: 1fr; column-gap: 40px; }
+
+  /* Exercise 2: tap-to-place, restyled to the Starlight palette */
+  /* ===== TAP-PLACE CSS ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 2px dashed var(--border); border-radius: 12px; min-height: 64px; margin: 4px 0 14px; background: #fcfbff; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 700; color: var(--ink); background: #fff;
+    border: 2px solid var(--accent2); border-radius: 10px; padding: 6px 12px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.25;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile .gl { display: block; font-size: 13px; font-weight: 400; color: var(--muted); }
+  .tp-tile.picked { background: var(--wash); border-color: var(--accent); box-shadow: 0 0 0 3px var(--lilac); }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { border: 2px solid var(--border); border-radius: 10px; padding: 2px; min-height: 44px; cursor: pointer; }
+  .tp-zone.ready { border-color: var(--accent2); background: #fbfaff; }
+  .tp-zone.over { border-color: var(--accent); background: var(--wash); }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 36px; align-items: flex-start; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== TAP-PLACE CSS end ===== */
+  .sent .tp-zone { display: inline-flex; vertical-align: middle; min-width: 190px; margin: 2px 3px; }
+  .sent .tp-zone .tp-tile { border-width: 0; padding: 2px 8px; min-height: 36px; color: var(--field); background: transparent; }
+  .sent .tp-zone .tp-tile .gl { display: none; }
+
+  /* Exercise 3 */
+  .frame { border: 2px solid var(--accent2); border-radius: 10px; background: #fbfaff; padding: 6px 14px; }
+  .frow { padding: 8px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .frow:last-child { border-bottom: 0; }
+  .starter { display: block; font-size: 19px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+  textarea.fl {
+    display: block; width: 100%; font: inherit; font-size: 20px; line-height: 1.45; color: var(--field); resize: vertical;
+    padding: 6px 12px; border: 2px solid var(--border); border-radius: 8px; background: #fff; min-height: 64px;
+  }
+  section textarea.fl { min-height: 64px; }
+
+  /* Dasha's emailed PDF (hw.js renders in an 800px frame with body.hw-pdf-mode) */
+  body.hw-pdf-mode header.top { min-height: 0; padding: 10px 18px 12px; margin-bottom: 10px; }
+  body.hw-pdf-mode header.top h1 { font-size: 28px; }
+  body.hw-pdf-mode .instr { font-size: 19px; }
+  body.hw-pdf-mode .note { font-size: 12.5px; margin-bottom: 7px; }
+  body.hw-pdf-mode .example-box { font-size: 14px; padding: 5px 12px; margin-bottom: 8px; }
+  body.hw-pdf-mode .sent { font-size: 15px; line-height: 1.6; }
+  body.hw-pdf-mode .q { padding: 5px 0; }
+  body.hw-pdf-mode .ex1-list { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; }
+  body.hw-pdf-mode .ex1-list .q:nth-child(3n) { border-bottom: 0; }
+  body.hw-pdf-mode .tp-tile { font-size: 13px; min-height: 0; }
+  body.hw-pdf-mode .tp-tile .gl { font-size: 11px; }
+  body.hw-pdf-mode .starter { font-size: 14px; }
+  body.hw-pdf-mode textarea.fl, body.hw-pdf-mode section textarea.fl { font-size: 15px; min-height: 40px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 10px 18px; }
+    header.top { padding: 14px 16px 16px; }
+    header.top h1 { font-size: 32px; }
+    .header-art { opacity: .55; }
+    .ex-body { padding: 12px 12px 14px; }
+    .instr { font-size: 22px; }
+    .sent { font-size: 18px; }
+    .sent .tp-zone { min-width: 150px; }
+    .tp-tile { font-size: 16px; }
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 28px 48px 48px; font-size: 26px; }
+    header.top { min-height: 190px; padding: 30px 40px 30px; margin-bottom: 30px; border-radius: 14px; }
+    .eyebrow { font-size: 18px; }
+    header.top h1 { font-size: 62px; }
+    header.top .sub { font-size: 24px; margin-top: 10px; }
+    .ex-card { margin-bottom: 32px; border-radius: 14px; }
+    .ex-header { font-size: 20px; padding: 12px 28px; }
+    .ex-body { padding: 28px 40px 32px; }
+    .instr { font-size: 40px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 20px; }
+    .example-box { font-size: 28px; padding: 14px 24px; margin-bottom: 24px; }
+    .example-box .label { font-size: 17px; }
+    .n { width: 44px; height: 44px; line-height: 41px; font-size: 22px; }
+    .q { gap: 20px; padding: 16px 0; }
+    .sent { font-size: 30px; line-height: 1.8; }
+    select.pick { font-size: 28px; min-height: 54px; padding: 4px 14px; border-width: 3px; }
+    .hw-mark { font-size: 22px; }
+    .ex1-list { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); grid-auto-flow: column; column-gap: 64px; }
+    .ex1-list .q:nth-child(3n) { border-bottom: 0; }
+    .tp-bank { gap: 14px 16px; padding: 18px; margin-bottom: 20px; }
+    .tp-tile { font-size: 27px; padding: 8px 18px; min-height: 60px; border-width: 3px; }
+    .tp-tile .gl { font-size: 20px; }
+    .sent .tp-zone { min-width: 300px; min-height: 58px; border-width: 3px; }
+    .sent .tp-zone .tp-tile { font-size: 28px; min-height: 50px; }
+    .tp-slot { min-height: 50px; }
+    .frame { padding: 10px 28px; border-width: 3px; }
+    .frow { display: grid; grid-template-columns: 380px minmax(0, 1fr); align-items: center; gap: 12px 28px; padding: 16px 0; }
+    .starter { font-size: 28px; margin-bottom: 0; }
+    textarea.fl, section textarea.fl { font-size: 28px; padding: 10px 16px; min-height: 96px; border-width: 3px; }
+  }
+
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { font-size: 12.5px; padding: 0; max-width: none; background: #fff; }
+    header.top { min-height: 0; padding: 6px 16px 7px; margin-bottom: 6px; border-radius: 6px; }
+    .eyebrow { font-size: 8.5px; }
+    header.top h1 { font-size: 24px; }
+    header.top .sub { font-size: 10.5px; margin-top: 3px; }
+    .ex-card { margin-bottom: 6px; border-radius: 5px; page-break-inside: avoid; break-inside: avoid; }
+    .ex-header { font-size: 9.5px; padding: 4px 12px; }
+    .ex-body { padding: 6px 12px 7px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 5px; }
+    .example-box { font-size: 12px; padding: 3px 10px; margin-bottom: 5px; line-height: 1.35; }
+    .example-box .label { font-size: 8.5px; margin-bottom: 0; }
+    .n { width: 18px; height: 18px; line-height: 16px; font-size: 10px; border-radius: 4px; }
+    .q { padding: 2px 0; gap: 8px; }
+    .sent { font-size: 12.5px; line-height: 1.5; }
+    .ex1-list { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; column-gap: 22px; }
+    .ex1-list .q:nth-child(3n) { border-bottom: 0; }
+    select.pick { display: none !important; }
+    .gap { display: inline-block !important; min-width: 62px; border-bottom: 1.2px solid var(--ink); }
+    .tp-bank { gap: 5px; padding: 5px; min-height: 0; margin: 2px 0 4px; border-width: 1.2px; }
+    .tp-tile { font-size: 11.5px; padding: 2px 8px; min-height: 0; border-width: 1.2px; border-radius: 6px; }
+    .tp-tile .gl { font-size: 9px; }
+    .sent .tp-zone { min-width: 60mm; min-height: 18px; border: 0; border-bottom: 1.2px solid var(--ink); border-radius: 0; padding: 0; margin: 0 2px; vertical-align: baseline; }
+    .tp-slot { min-height: 16px; }
+    .frame { border-width: 1.2px; border-radius: 6px; padding: 1mm 4mm; background: #fff; height: 46mm; }
+    .frow { display: flex; align-items: flex-end; gap: 6px; padding: 0; height: 11mm; border-bottom: 0; }
+    .starter { flex: 0 0 auto; font-size: 11.5px; margin: 0 0 1mm; color: var(--ink); }
+    textarea.fl, section textarea.fl { flex: 1 1 auto; font-size: 12px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 0 4px; resize: none; min-height: 0; height: 7mm; background: #fff; }
+    textarea.fl::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Milana" data-sheet="English 2026-11-11" data-sheet-id="milana-2026-11-11-english">
+<div id="sheet">
+
+
+<header class="top">
+  <svg class="header-art" viewBox="0 0 192 100" fill="none" aria-hidden="true">
+    <path d="M105 -8L28 106M143 -8L66 106M181 -8L104 106M219 -8L142 106" stroke="#b0a1e9" stroke-opacity=".18" stroke-width="14"/>
+    <ellipse cx="141" cy="46" rx="61" ry="22" transform="rotate(-28 141 46)" stroke="#d1b8f8" stroke-width=".7"/>
+    <path d="M129 10L135 34L156 24L143 44L167 53L143 58L152 81L133 66L121 89L121 64L96 67L115 52L96 37L121 40Z" fill="#d5c9ff"/>
+    <path d="M129 26L134 43L149 47L134 53L129 70L124 54L109 48L124 43Z" fill="white"/>
+    <path d="M174 11L177 19L185 22L177 25L174 33L171 25L163 22L171 19Z" fill="#f6b5d6"/>
+    <path d="M74 70L77 78L85 81L77 84L74 92L71 84L63 81L71 78Z" fill="#f6b5d6"/>
+    <g fill="#fff"><circle cx="91" cy="23" r="1.4"/><circle cx="176" cy="77" r="1.5"/><circle cx="106" cy="84" r="1"/><circle cx="57" cy="44" r="1.2"/></g>
+  </svg>
+  <div class="eyebrow">English &middot; Homework</div>
+  <h1>Milana</h1>
+  <div class="sub">11 November 2026 &middot; want or won&rsquo;t &middot; words from the lesson &middot; San&nbsp;Diego</div>
+</header>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 1: want or won&rsquo;t</div>
+  <div class="ex-body">
+    <p class="instr">Choose want or&nbsp;won&rsquo;t.</p>
+    <p class="note"><span class="scr">Tap the box in the sentence and&nbsp;choose.</span><span class="prt">Write want or won&rsquo;t in the&nbsp;gap.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      I <b>want</b> <b>to</b> sleep. <span class="gl">(хочу)</span> &nbsp;&middot;&nbsp; I <b>won&rsquo;t</b> sleep. <span class="gl nw">(won&rsquo;t = will not, не&nbsp;буду)</span>
+    </div>
+    <div class="ex1-list">
+      <div class="q"><span class="n">1</span><p class="sent">It&rsquo;s Saturday! I <span class="gap"></span><select class="hw-field pick" data-k="a1" data-label="1.1 It's Saturday! I ___ to stay in bed until twelve." aria-label="Sentence 1"><option value="">Choose</option><option value="won't">won&rsquo;t</option><option value="want">want</option></select> to stay in bed until&nbsp;twelve.</p></div>
+      <div class="q"><span class="n">2</span><p class="sent">I have a test tomorrow, so I <span class="gap"></span><select class="hw-field pick" data-k="a2" data-label="1.2 I have a test tomorrow, so I ___ go out tonight." aria-label="Sentence 2"><option value="">Choose</option><option value="want">want</option><option value="won't">won&rsquo;t</option></select> go out&nbsp;tonight.</p></div>
+      <div class="q"><span class="n">3</span><p class="sent">Don&rsquo;t worry, I <span class="gap"></span><select class="hw-field pick" data-k="a3" data-label="1.3 Don't worry, I ___ tell anyone your secret." aria-label="Sentence 3"><option value="">Choose</option><option value="won't">won&rsquo;t</option><option value="want">want</option></select> tell anyone your&nbsp;secret.</p></div>
+      <div class="q"><span class="n">4</span><p class="sent">After the exams we <span class="gap"></span><select class="hw-field pick" data-k="a4" data-label="1.4 After the exams we ___ to have a big party." aria-label="Sentence 4"><option value="">Choose</option><option value="want">want</option><option value="won't">won&rsquo;t</option></select> to have a big&nbsp;party.</p></div>
+      <div class="q"><span class="n">5</span><p class="sent">If you don&rsquo;t <span class="gap"></span><select class="hw-field pick" data-k="a5" data-label="1.5 If you don't ___ to watch the horror film, you don't have to." aria-label="Sentence 5"><option value="">Choose</option><option value="won't">won&rsquo;t</option><option value="want">want</option></select> to watch the horror film, you don&rsquo;t have&nbsp;to.</p></div>
+      <div class="q"><span class="n">6</span><p class="sent">Our friends are ill, so they <span class="gap"></span><select class="hw-field pick" data-k="a6" data-label="1.6 Our friends are ill, so they ___ come to the party." aria-label="Sentence 6"><option value="">Choose</option><option value="won't">won&rsquo;t</option><option value="want">want</option></select> come to the&nbsp;party.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 2: words from the lesson</div>
+  <div class="ex-body">
+    <p class="instr">Complete each&nbsp;sentence.</p>
+    <p class="note"><span class="scr">Tap a card, then tap a&nbsp;gap.</span><span class="prt">Write one phrase in each&nbsp;gap.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      This song is great. I <b>really like it</b>.
+    </div>
+    <div class="tp" id="phrases">
+      <div class="tp-bank">
+        <button type="button" class="tp-tile" data-value="a long-distance relationship">a long-distance relationship<span class="gl">отношения на расстоянии</span></button>
+        <button type="button" class="tp-tile" data-value="ran after me">ran after me<span class="gl">побежал за мной</span></button>
+        <button type="button" class="tp-tile" data-value="hold a grudge">hold a grudge<span class="gl">таить обиду</span></button>
+        <button type="button" class="tp-tile" data-value="I want him to be happy">I want him to be happy<span class="gl">я хочу, чтобы он был счастлив</span></button>
+        <button type="button" class="tp-tile" data-value="couldn't bear it">couldn&rsquo;t bear it<span class="gl">не могла это вынести</span></button>
+        <button type="button" class="tp-tile" data-value="studious">studious<span class="gl">прилежный, любит учиться</span></button>
+        <button type="button" class="tp-tile" data-value="broke up with">broke up with<span class="gl">рассталась с</span></button>
+        <button type="button" class="tp-tile" data-value="gave her a discount">gave her a discount<span class="gl">сделал ей скидку</span></button>
+      </div>
+      <div class="q"><span class="n">1</span><p class="sent">The film was so scary that I <span class="tp-zone" data-store="p1" data-field="p1"><span class="tp-slot"></span></span> and left after twenty&nbsp;minutes.</p></div>
+      <div class="q"><span class="n">2</span><p class="sent">Tom works in a caf&eacute;. When Anna came in, he <span class="tp-zone" data-store="p2" data-field="p2"><span class="tp-slot"></span></span>: her coffee was half&nbsp;price.</p></div>
+      <div class="q"><span class="n">3</span><p class="sent">When I left the shop, the shop assistant <span class="tp-zone" data-store="p3" data-field="p3"><span class="tp-slot"></span></span> with my phone. I had left it on the&nbsp;counter.</p></div>
+      <div class="q"><span class="n">4</span><p class="sent">Ben is very <span class="tp-zone" data-store="p4" data-field="p4"><span class="tp-slot"></span></span>: he reads in the library every day after&nbsp;school.</p></div>
+      <div class="q"><span class="n">5</span><p class="sent">Sam lives in London and Kate lives in Sydney. They have <span class="tp-zone" data-store="p5" data-field="p5"><span class="tp-slot"></span></span>.</p></div>
+      <div class="q"><span class="n">6</span><p class="sent">Ella was angry with me yesterday, but today she&rsquo;s fine. She doesn&rsquo;t <span class="tp-zone" data-store="p6" data-field="p6"><span class="tp-slot"></span></span>.</p></div>
+      <div class="q"><span class="n">7</span><p class="sent">Lily <span class="tp-zone" data-store="p7" data-field="p7"><span class="tp-slot"></span></span> her boyfriend last week. Now she&rsquo;s&nbsp;single.</p></div>
+      <div class="tp-stores" hidden>
+        <select data-k="p1" data-label="2.1 The film was so scary that I ___ and left after twenty minutes." class="hw-field"><option value=""></option><option>a long-distance relationship</option><option>ran after me</option><option>hold a grudge</option><option>I want him to be happy</option><option>couldn't bear it</option><option>studious</option><option>broke up with</option><option>gave her a discount</option></select>
+        <select data-k="p2" data-label="2.2 Tom works in a café. When Anna came in, he ___: her coffee was half price." class="hw-field"><option value=""></option><option>a long-distance relationship</option><option>ran after me</option><option>hold a grudge</option><option>I want him to be happy</option><option>couldn't bear it</option><option>studious</option><option>broke up with</option><option>gave her a discount</option></select>
+        <select data-k="p3" data-label="2.3 When I left the shop, the shop assistant ___ with my phone. I had left it on the counter." class="hw-field"><option value=""></option><option>a long-distance relationship</option><option>ran after me</option><option>hold a grudge</option><option>I want him to be happy</option><option>couldn't bear it</option><option>studious</option><option>broke up with</option><option>gave her a discount</option></select>
+        <select data-k="p4" data-label="2.4 Ben is very ___: he reads in the library every day after school." class="hw-field"><option value=""></option><option>a long-distance relationship</option><option>ran after me</option><option>hold a grudge</option><option>I want him to be happy</option><option>couldn't bear it</option><option>studious</option><option>broke up with</option><option>gave her a discount</option></select>
+        <select data-k="p5" data-label="2.5 Sam lives in London and Kate lives in Sydney. They have ___." class="hw-field"><option value=""></option><option>a long-distance relationship</option><option>ran after me</option><option>hold a grudge</option><option>I want him to be happy</option><option>couldn't bear it</option><option>studious</option><option>broke up with</option><option>gave her a discount</option></select>
+        <select data-k="p6" data-label="2.6 Ella was angry with me yesterday, but today she's fine. She doesn't ___." class="hw-field"><option value=""></option><option>a long-distance relationship</option><option>ran after me</option><option>hold a grudge</option><option>I want him to be happy</option><option>couldn't bear it</option><option>studious</option><option>broke up with</option><option>gave her a discount</option></select>
+        <select data-k="p7" data-label="2.7 Lily ___ her boyfriend last week. Now she's single." class="hw-field"><option value=""></option><option>a long-distance relationship</option><option>ran after me</option><option>hold a grudge</option><option>I want him to be happy</option><option>couldn't bear it</option><option>studious</option><option>broke up with</option><option>gave her a discount</option></select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 3: one day in San&nbsp;Diego</div>
+  <div class="ex-body">
+    <p class="instr">What did you&nbsp;do?</p>
+    <p class="note">Write 3 or 4 sentences about one&nbsp;day.</p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="place">A day in London:</span> In the morning we took a boat down the river. Then we watched the guards at Buckingham Palace. In the evening it rained, so we hid in a bookshop. I&nbsp;really liked&nbsp;it.
+    </div>
+    <div class="frame">
+      <div class="frow"><span class="starter">In the morning&nbsp;I&nbsp;&hellip;</span><textarea class="hw-field fl" rows="2" data-k="w1" data-label="3.1 In the morning I ..." aria-label="In the morning I" placeholder="Type here"></textarea></div>
+      <div class="frow"><span class="starter">Then&nbsp;I&nbsp;&hellip;</span><textarea class="hw-field fl" rows="2" data-k="w2" data-label="3.2 Then I ..." aria-label="Then I" placeholder="Type here"></textarea></div>
+      <div class="frow"><span class="starter">In the evening&nbsp;I&nbsp;&hellip;</span><textarea class="hw-field fl" rows="2" data-k="w3" data-label="3.3 In the evening I ..." aria-label="In the evening I" placeholder="Type here"></textarea></div>
+      <div class="frow"><span class="starter">I really liked it / I didn&rsquo;t like it, because&nbsp;&hellip;</span><textarea class="hw-field fl" rows="2" data-k="w4" data-label="3.4 I really liked it / I didn't like it, because ..." aria-label="I really liked it or I didn't like it, because" placeholder="Type here"></textarea></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { if (!k) return null; var q = "[data-" + "k=" + JSON.stringify(k) + "]"; return root.querySelector(q) || document.querySelector(q); }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }
+          else { unpick(); home(t); }
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS end ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJhMSI6IHsidCI6ICJleGFjdCIsICJhIjogIndhbnQifSwgImEyIjogeyJ0IjogImV4YWN0IiwgImEiOiAid29uJ3QifSwgImEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAid29uJ3QifSwgImE0IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2FudCJ9LCAiYTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3YW50In0sICJhNiI6IHsidCI6ICJleGFjdCIsICJhIjogIndvbid0In0sICJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogImNvdWxkbid0IGJlYXIgaXQifSwgInAyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZ2F2ZSBoZXIgYSBkaXNjb3VudCJ9LCAicDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyYW4gYWZ0ZXIgbWUifSwgInA0IjogeyJ0IjogImV4YWN0IiwgImEiOiAic3R1ZGlvdXMifSwgInA1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBsb25nLWRpc3RhbmNlIHJlbGF0aW9uc2hpcCJ9LCAicDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJob2xkIGEgZ3J1ZGdlIn0sICJwNyI6IHsidCI6ICJleGFjdCIsICJhIjogImJyb2tlIHVwIHdpdGgifSwgIncxIjogeyJ0IjogIm9wZW4ifSwgIncyIjogeyJ0IjogIm9wZW4ifSwgInczIjogeyJ0IjogIm9wZW4ifSwgInc0IjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

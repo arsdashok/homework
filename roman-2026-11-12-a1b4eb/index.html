@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 12 November 2026</title>
+<!-- Lesson of 12 Nov 2026 (lesson 16, the quick strawberry ice cream video, cards 2-7). About 20 min.
+     Part 1 = six suggestions with instead of (1, 2, 4 start with Let's and 3 with I'd rather, so the verb after them is practised; 5 and 6 are free).
+     Part 2 = NEW mechanic: tap the fact that takes although; his choice is built into a sentence below (front in 1, 2, 4; middle in 3, 5).
+     Correct card positions 2, 1, 1, 2, 2. Part 3 = eight 12 Nov words in gap sentences with a Russian cue. Cards 8 and 9 (message, blender) NOT on the sheet.
+     Answers live only in the private key. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .prompt, li { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+  }
+  .task.keep { page-break-inside: avoid; break-inside: avoid; }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; }
+  .note a { color: #31594b; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .ln { display: block; }
+  .model .why { font-family: Arial, Helvetica, sans-serif; font-size: 13.5px; color: #626a62; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 7px; }
+  .prompt { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 2.1; margin-bottom: 0; }
+  .cue { color: #626a62; }
+  .gc { white-space: nowrap; }
+
+  /* Part 1: the situation on the left, his suggestion on the right (stacked on a phone) */
+  .pairq { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 28px; align-items: start; }
+  .sit { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; padding-top: 4px; }
+  .answers { display: flex; align-items: flex-start; gap: 10px; }
+  .starter { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 700; color: #31594b; padding-top: 7px; white-space: nowrap; }
+  .resp {
+    display: block; width: 100%; flex: 1 1 auto;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  textarea.resp { resize: vertical; min-height: 66px; }
+
+  /* Part 2: tap the fact that takes although */
+  .bpair { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .fact {
+    display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+    font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.35; color: #253a34;
+    background: #fff; border: 1.5px solid #b9c6bb; border-radius: 7px; padding: 8px 14px; min-height: 44px;
+    cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  .fact .tag { display: none; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #1d4ed8;
+    border: 1.5px solid #1d4ed8; border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
+  .fact.on { border-color: #1d4ed8; background: #eef2ff; box-shadow: 0 0 0 2px #c7d2fe; }
+  .fact.on .tag { display: inline-block; }
+  .built { font-family: Georgia, 'Times New Roman', serif; font-size: 16px; color: #1d4ed8; margin-top: 6px; min-height: 1.4em; }
+  .built .bl { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #626a62; margin-right: 6px; }
+  .built:empty { display: none; }
+  .mfacts { display: flex; flex-wrap: wrap; gap: 6px 10px; margin: 2px 0 4px; }
+  .mfact { font-family: Georgia, 'Times New Roman', serif; border: 1.5px solid #b9c6bb; border-radius: 7px; padding: 2px 10px; background: #fff; }
+  .mfact.on { border-color: #31594b; box-shadow: 0 0 0 2px #cfdccf; }
+  .mfact .mt { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; color: #31594b; margin-right: 6px; }
+  .stores { display: none !important; }
+  .prt { display: none; }
+
+  /* Part 3: the word is typed inside the sentence */
+  input.vgap { display: inline-block; font: inherit; font-size: 16px; margin: 0 4px; padding: 2px 8px; vertical-align: baseline;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa; }
+  input.vgap.s { width: 8em; }
+  input.vgap.m { width: 10.5em; }
+  input.vgap.l { width: 13em; }
+  input.vgap.xl { width: 16em; }
+
+  @media (min-width: 760px) {
+    .pairq { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); }
+    .bpair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  }
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+    .gc { white-space: normal; }
+  }
+
+  body.hw-pdf-mode .fact { box-shadow: none; min-height: 0; padding: 4px 10px; }
+
+  @media print {
+    body { font-size: 12px; line-height: 1.3; background: #f4f2ec; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab, .model .why { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 2px; }
+    .pairq { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 3px 16px; }
+    .sit, .starter { font-size: 12px; padding-top: 1px; }
+    .resp { font-size: 11.5px; padding: 3px 8px; border-width: 1px; }
+    textarea.resp { min-height: 40px; height: 40px; resize: none; }
+    textarea.resp::placeholder { color: transparent; }
+    .bpair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px; }
+    .fact { font-size: 12px; padding: 3px 9px; min-height: 0; border-width: 1px; box-shadow: none; }
+    .fact .tag { font-size: 9.5px; padding: 0 6px; border-width: 1px; }
+    .built { font-size: 11.5px; margin-top: 2px; }
+    .built .bl { font-size: 9.5px; }
+    .prompt { font-size: 12.5px; line-height: 1.75; }
+    input.vgap { font-size: 11.5px; height: 19px; padding: 0 4px; border-width: 1px; }
+    input.vgap.s { width: 6em; }
+    input.vgap.m { width: 9em; }
+    input.vgap.l { width: 11em; }
+    input.vgap.xl { width: 14em; }
+    input.vgap::placeholder { color: transparent; }
+    .scr { display: none; }
+    .prt { display: inline; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .model .why { font-size:20px; }
+  .mfacts { gap:10px 14px; margin:6px 0 8px; }
+  .mfact { padding:4px 14px; border-width:2px; }
+  .mfact .mt { font-size:16px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:18px 0; }
+  .qnum { font-size:22px; padding-top:10px; }
+  .pairq { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 40px; }
+  .sit { font-size:29px; line-height:1.45; padding-top:6px; }
+  .starter { font-size:28px; padding-top:10px; }
+  .answers { gap:14px; }
+  .resp { font-size:26px; padding:10px 16px; border-width:2px; }
+  textarea.resp { min-height:104px; }
+  .bpair { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px 24px; }
+  .fact { font-size:29px; padding:14px 22px; min-height:76px; border-width:2px; gap:14px; }
+  .fact .tag { font-size:20px; padding:2px 14px; border-width:2px; }
+  .built { font-size:27px; margin-top:12px; }
+  .built .bl { font-size:19px; }
+  .prompt { font-size:29px; line-height:2; }
+  input.vgap { font-size:26px; min-height:54px; padding:4px 12px; border-width:2px; }
+}
+/* hw.css sets div/textarea field heights; keep the sentence boxes two lines tall on the live page. */
+@media screen { .task textarea.resp.hw-field { min-height:66px !important; } }
+@media screen and (min-width:900px) { .task textarea.resp.hw-field { min-height:104px !important; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-11-12" data-sheet-id="roman-2026-11-12-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 20&nbsp;minutes</span></div>
+    <h1>A better plan</h1>
+  </header>
+
+  <div class="task">
+    <h2>1. Instead of</h2>
+    <div class="do">Write one suggestion with <i>instead of</i> for each&nbsp;situation.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">The printer is out of ink, and the bank needs one page from you. &rarr;</span>
+      <span class="ln">Send them a photo of the page <b>instead of</b> printing&nbsp;it.</span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="pairq">
+        <p class="sit">You and a colleague are visiting a client. Their lift is very slow, and the meeting room is one floor&nbsp;up.</p>
+        <div class="answers"><span class="starter">Let's</span>
+          <textarea class="hw-field resp" rows="2" data-k="i1" data-label="1. Visiting a client, their lift is very slow, the meeting room is one floor up. Let's ..." aria-label="Suggestion 1, starting with Let's" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="pairq">
+        <p class="sit">It's a sunny Saturday afternoon. Your friends want to stay at home and watch a&nbsp;film.</p>
+        <div class="answers"><span class="starter">Let's</span>
+          <textarea class="hw-field resp" rows="2" data-k="i2" data-label="2. Sunny Saturday afternoon, friends want to stay at home and watch a film. Let's ..." aria-label="Suggestion 2, starting with Let's" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div class="pairq">
+        <p class="sit">A taxi to the airport costs 60 euros. The airport bus costs 5 euros and is just as&nbsp;fast. Which would you&nbsp;take?</p>
+        <div class="answers"><span class="starter">I'd rather</span>
+          <textarea class="hw-field resp" rows="2" data-k="i3" data-label="3. Taxi to the airport 60 euros, airport bus 5 euros and just as fast. I'd rather ..." aria-label="Suggestion 3, starting with I'd rather" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <div class="pairq">
+        <p class="sit">You and a friend want to talk, but the café is very noisy inside. It's warm and quiet on the&nbsp;terrace.</p>
+        <div class="answers"><span class="starter">Let's</span>
+          <textarea class="hw-field resp" rows="2" data-k="i4" data-label="4. Noisy café inside, warm and quiet on the terrace. Let's ..." aria-label="Suggestion 4, starting with Let's" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <div class="pairq">
+        <p class="sit">Your team writes long emails about small questions, and the answers take&nbsp;days. Suggest a quicker&nbsp;way.</p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="i5" data-label="5. The team writes long emails about small questions, answers take days. A quicker way." aria-label="Suggestion 5" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <div class="pairq">
+        <p class="sit">A friend wants to get fit, but the gym is far from her home and very&nbsp;expensive. There's a big park next to her&nbsp;flat.</p>
+        <div class="answers">
+          <textarea class="hw-field resp" rows="2" data-k="i6" data-label="6. A friend wants to get fit, the gym is far and expensive, a big park next to her flat." aria-label="Suggestion 6" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="task">
+    <h2>2. Although</h2>
+    <div class="do"><span class="scr">Tap</span><span class="prt">Circle</span> the fact that takes <i>although</i>.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="mfacts"><span class="mfact on"><span class="mt">although</span>It was raining all morning</span><span class="mfact">The market was full</span></span>
+      <span class="ln">The market was full, <b>although</b> it was raining all&nbsp;morning.</span>
+      <span class="ln why">Rain: you expect very few people. A full market is the&nbsp;surprise.</span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div>
+        <div class="bpair" data-store="b1" data-field="b1" data-pos="front" role="group" aria-label="Item 1">
+          <button type="button" class="fact" data-v="I missed my train" data-low="I missed my train"><span class="tag">although</span><span>I missed my&nbsp;train</span></button>
+          <button type="button" class="fact" data-v="I left home an hour early" data-low="I left home an hour early"><span class="tag">although</span><span>I left home an hour&nbsp;early</span></button>
+        </div>
+        <p class="built" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div>
+        <div class="bpair" data-store="b2" data-field="b2" data-pos="front" role="group" aria-label="Item 2">
+          <button type="button" class="fact" data-v="The car is ten years old" data-low="the car is ten years old"><span class="tag">although</span><span>The car is ten years&nbsp;old</span></button>
+          <button type="button" class="fact" data-v="It has never broken down" data-low="it has never broken down"><span class="tag">although</span><span>It has never broken&nbsp;down</span></button>
+        </div>
+        <p class="built" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div>
+        <div class="bpair" data-store="b3" data-field="b3" data-pos="mid" role="group" aria-label="Item 3">
+          <button type="button" class="fact" data-v="I trained for six months" data-low="I trained for six months"><span class="tag">although</span><span>I trained for six&nbsp;months</span></button>
+          <button type="button" class="fact" data-v="I didn't finish the race" data-low="I didn't finish the race"><span class="tag">although</span><span>I didn't finish the&nbsp;race</span></button>
+        </div>
+        <p class="built" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <div>
+        <div class="bpair" data-store="b4" data-field="b4" data-pos="front" role="group" aria-label="Item 4">
+          <button type="button" class="fact" data-v="The client still hasn't paid" data-low="the client still hasn't paid"><span class="tag">although</span><span>The client still hasn't&nbsp;paid</span></button>
+          <button type="button" class="fact" data-v="Our company sent the invoice in March" data-low="our company sent the invoice in March"><span class="tag">although</span><span>Our company sent the invoice in&nbsp;March</span></button>
+        </div>
+        <p class="built" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <div>
+        <div class="bpair" data-store="b5" data-field="b5" data-pos="mid" role="group" aria-label="Item 5">
+          <button type="button" class="fact" data-v="We were an hour late" data-low="we were an hour late"><span class="tag">although</span><span>We were an hour&nbsp;late</span></button>
+          <button type="button" class="fact" data-v="There was no traffic at all" data-low="there was no traffic at all"><span class="tag">although</span><span>There was no traffic at&nbsp;all</span></button>
+        </div>
+        <p class="built" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="stores" hidden>
+      <select data-k="b1" data-label="1. I missed my train / I left home an hour early: which fact takes although?" class="hw-field"><option value=""></option><option value="I missed my train">I missed my train</option><option value="I left home an hour early">I left home an hour early</option></select>
+      <select data-k="b2" data-label="2. The car is ten years old / It has never broken down: which fact takes although?" class="hw-field"><option value=""></option><option value="The car is ten years old">The car is ten years old</option><option value="It has never broken down">It has never broken down</option></select>
+      <select data-k="b3" data-label="3. I trained for six months / I didn't finish the race: which fact takes although?" class="hw-field"><option value=""></option><option value="I trained for six months">I trained for six months</option><option value="I didn't finish the race">I didn't finish the race</option></select>
+      <select data-k="b4" data-label="4. The client still hasn't paid / Our company sent the invoice in March: which fact takes although?" class="hw-field"><option value=""></option><option value="The client still hasn't paid">The client still hasn't paid</option><option value="Our company sent the invoice in March">Our company sent the invoice in March</option></select>
+      <select data-k="b5" data-label="5. We were an hour late / There was no traffic at all: which fact takes although?" class="hw-field"><option value=""></option><option value="We were an hour late">We were an hour late</option><option value="There was no traffic at all">There was no traffic at all</option></select>
+    </div>
+  </div>
+
+  <div class="task keep">
+    <h2>3. Words from 12 November</h2>
+    <div class="do">Write the word or phrase in the right form for each&nbsp;gap.</div>
+    <p class="note">All these words are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 12&nbsp;November.</p>
+
+    <div class="q"><span class="qnum">1.</span>
+      <p class="prompt">Ready-made pizza dough is <span class="gc"><input class="hw-field vgap l" type="text" data-k="w1" data-label="1. Ready-made pizza dough is ___ (гениальная хитрость): fresh pizza is on the table in fifteen minutes." aria-label="Gap 1" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(гениальная хитрость):</span></span> fresh pizza is on the table in fifteen&nbsp;minutes.</p></div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <p class="prompt">I'd rather take the train than drive: <span class="gc"><input class="hw-field vgap l" type="text" data-k="w2" data-label="2. I'd rather take the train than drive: ___ (это надёжнее), and there are never any traffic jams." aria-label="Gap 2" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(это надёжнее),</span></span> and there are never any traffic&nbsp;jams.</p></div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <p class="prompt">Put the soft vegetables in the blender and <span class="gc"><input class="hw-field vgap l" type="text" data-k="w3" data-label="3. Put the soft vegetables in the blender and ___ (быстро взбить блендером) for a few seconds, and lunch is ready." aria-label="Gap 3" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(быстро взбить блендером)</span></span> for a few seconds, and lunch is&nbsp;ready.</p></div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <p class="prompt">The car we hired was <span class="gc"><input class="hw-field vgap m" type="text" data-k="w4" data-label="4. The car we hired was ___ (самый обычный): no navigation, no music, just four wheels and an engine." aria-label="Gap 4" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(самый обычный):</span></span> no navigation, no music, just four wheels and an&nbsp;engine.</p></div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <p class="prompt">The new laptop looked cheap, but it really <span class="gc"><input class="hw-field vgap m" type="text" data-k="w5" data-label="5. The new laptop looked cheap, but it really ___ (не подвёл по) speed and battery life." aria-label="Gap 5" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(не подвёл по)</span></span> speed and battery&nbsp;life.</p></div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <p class="prompt">Gazpacho from the supermarket is <span class="gc"><input class="hw-field vgap xl" type="text" data-k="w6" data-label="6. Gazpacho from the supermarket is ___ (можно подавать сразу): just pour it into a glass." aria-label="Gap 6" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(можно подавать сразу):</span></span> just pour it into a&nbsp;glass.</p></div>
+
+    <div class="q"><span class="qnum">7.</span>
+      <p class="prompt">Ice for the party? It's in <span class="gc"><input class="hw-field vgap l" type="text" data-k="w7" data-label="7. Ice for the party? It's in ___ (ряд с заморозкой), next to the frozen pizzas." aria-label="Gap 7" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(ряд с заморозкой),</span></span> next to the frozen&nbsp;pizzas.</p></div>
+
+    <div class="q"><span class="qnum">8.</span>
+      <p class="prompt">It was a <span class="gc"><input class="hw-field vgap s" type="text" data-k="w8" data-label="8. It was a ___ (небрежный) mistake: I sent the contract to the wrong client." aria-label="Gap 8" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(небрежный)</span></span> mistake: I sent the contract to the wrong&nbsp;client.</p></div>
+  </div>
+
+</div>
+<script>
+/* Tap the fact that takes although. The choice is kept in a hidden select (data-k), so saving,
+   the key, the marks and the emailed PDF work as with any other field. Click only: a finger
+   that scrolls across a card never chooses it. The pupil's choice is shown back as a sentence. */
+(function () {
+  function init() {
+    document.querySelectorAll(".bpair[data-store]").forEach(function (pair) {
+      var store = document.querySelector('[data-k="' + pair.dataset.store + '"]');
+      var opts = [].slice.call(pair.querySelectorAll(".fact"));
+      var built = pair.parentNode.querySelector(".built");
+      function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+      function show() {
+        var v = store ? store.value : "";
+        var chosen = null, other = null;
+        opts.forEach(function (o) {
+          var on = o.dataset.v === v;
+          o.classList.toggle("on", on);
+          o.setAttribute("aria-pressed", on ? "true" : "false");
+          if (on) chosen = o; else other = o;
+        });
+        if (!built) return;
+        built.textContent = "";
+        if (!chosen) return;
+        var text = pair.dataset.pos === "mid"
+          ? cap(other.dataset.low) + ", although " + chosen.dataset.low + "."
+          : "Although " + chosen.dataset.low + ", " + other.dataset.low + ".";
+        var lab = document.createElement("span");
+        lab.className = "bl"; lab.textContent = "Your sentence:";
+        built.appendChild(lab);
+        built.appendChild(document.createTextNode(text));
+      }
+      opts.forEach(function (o) {
+        o.addEventListener("click", function () {
+          if (!store) return;
+          store.value = store.value === o.dataset.v ? "" : o.dataset.v;
+          store.dispatchEvent(new Event("change", { bubbles: true }));
+          show();
+        });
+      });
+      if (store) store.addEventListener("change", show);
+      show();
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJpMSI6IHsidCI6ICJvcGVuIn0sICJpMiI6IHsidCI6ICJvcGVuIn0sICJpMyI6IHsidCI6ICJvcGVuIn0sICJpNCI6IHsidCI6ICJvcGVuIn0sICJpNSI6IHsidCI6ICJvcGVuIn0sICJpNiI6IHsidCI6ICJvcGVuIn0sICJiMSI6IHsidCI6ICJleGFjdCIsICJhIjogIkkgbGVmdCBob21lIGFuIGhvdXIgZWFybHkifSwgImIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiVGhlIGNhciBpcyB0ZW4geWVhcnMgb2xkIn0sICJiMyI6IHsidCI6ICJleGFjdCIsICJhIjogIkkgdHJhaW5lZCBmb3Igc2l4IG1vbnRocyJ9LCAiYjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJPdXIgY29tcGFueSBzZW50IHRoZSBpbnZvaWNlIGluIE1hcmNoIn0sICJiNSI6IHsidCI6ICJleGFjdCIsICJhIjogIlRoZXJlIHdhcyBubyB0cmFmZmljIGF0IGFsbCJ9LCAidzEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJhIGJyaWxsaWFudCBjaGVhdCIsICJnIjogIncxIn0sICJ3MV9hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiYSBncmVhdCBjaGVhdCIsICJnIjogIncxIn0sICJ3MV9hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiYSBjbGV2ZXIgY2hlYXQiLCAiZyI6ICJ3MSJ9LCAidzFfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogImEgYnJpbGxpYW50IHRyaWNrIiwgImciOiAidzEifSwgIncxX2FsdDQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJhIGNsZXZlciB0cmljayIsICJnIjogIncxIn0sICJ3MV9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiYSBncmVhdCB0cmljayIsICJnIjogIncxIn0sICJ3MV9hbHQ2IjogeyJ0IjogIndvcmRzIiwgImEiOiAiYSBicmlsbGlhbnQgaGFjayIsICJnIjogIncxIn0sICJ3MV9hbHQ3IjogeyJ0IjogIndvcmRzIiwgImEiOiAiYSBncmVhdCBoYWNrIiwgImciOiAidzEifSwgIncxX2FsdDgiOiB7InQiOiAid29yZHMiLCAiYSI6ICJhIGNsZXZlciBoYWNrIiwgImciOiAidzEifSwgIncxX2FsdDkiOiB7InQiOiAid29yZHMiLCAiYSI6ICJhIGJyaWxsaWFudCBzaG9ydGN1dCIsICJnIjogIncxIn0sICJ3MV9hbHQxMCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImEgZ3JlYXQgc2hvcnRjdXQiLCAiZyI6ICJ3MSJ9LCAidzFfYWx0MTEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJhIGNsZXZlciBzaG9ydGN1dCIsICJnIjogIncxIn0sICJ3MV9hbHQxMiI6IHsidCI6ICJ3b3JkcyIsICJhIjogImEgYnJpbGxpYW50IHNob3J0IGN1dCIsICJnIjogIncxIn0sICJ3MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIml0J3MgbW9yZSByZWxpYWJsZSIsICJnIjogIncyIn0sICJ3Ml9hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiaXQgaXMgbW9yZSByZWxpYWJsZSIsICJnIjogIncyIn0sICJ3Ml9hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiaXQncyBtdWNoIG1vcmUgcmVsaWFibGUiLCAiZyI6ICJ3MiJ9LCAidzJfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIml0IGlzIG11Y2ggbW9yZSByZWxpYWJsZSIsICJnIjogIncyIn0sICJ3Ml9hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiaXQncyBtb3JlIHJlbGlhYmxlIHRoYW4gZHJpdmluZyIsICJnIjogIncyIn0sICJ3Ml9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiaXTigJlzIG1vcmUgcmVsaWFibGUiLCAiZyI6ICJ3MiJ9LCAidzJfYWx0NiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIml04oCZcyBtdWNoIG1vcmUgcmVsaWFibGUiLCAiZyI6ICJ3MiJ9LCAidzJfYWx0NyI6IHsidCI6ICJ3b3JkcyIsICJhIjogInRoZSB0cmFpbiBpcyBtb3JlIHJlbGlhYmxlIiwgImciOiAidzIifSwgInczIjogeyJ0IjogIndvcmRzIiwgImEiOiAid2hpenogdGhlbSB1cCIsICJnIjogInczIn0sICJ3M19hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAid2hpeiB0aGVtIHVwIiwgImciOiAidzMifSwgInczX2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3aGl6eiBpdCB1cCIsICJnIjogInczIn0sICJ3M19hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAid2hpeiBpdCB1cCIsICJnIjogInczIn0sICJ3M19hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAid2hpenogZXZlcnl0aGluZyB1cCIsICJnIjogInczIn0sICJ3M19hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAid2hpeiBldmVyeXRoaW5nIHVwIiwgImciOiAidzMifSwgInczX2FsdDYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3aGl6eiBpdCBhbGwgdXAiLCAiZyI6ICJ3MyJ9LCAidzNfYWx0NyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndoaXp6IHVwIiwgImciOiAidzMifSwgInczX2FsdDgiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3aGl6IHVwIiwgImciOiAidzMifSwgInczX2FsdDkiOiB7InQiOiAid29yZHMiLCAiYSI6ICJibGVuZCB0aGVtIiwgImciOiAidzMifSwgInczX2FsdDEwIjogeyJ0IjogIndvcmRzIiwgImEiOiAiYmxlbmQgaXQiLCAiZyI6ICJ3MyJ9LCAidzNfYWx0MTEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJibGVuZCBldmVyeXRoaW5nIiwgImciOiAidzMifSwgInczX2FsdDEyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiYmxlbmQgdGhlbSB1cCIsICJnIjogInczIn0sICJ3M19hbHQxMyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndoaXp6IHRoZW0iLCAiZyI6ICJ3MyJ9LCAidzNfYWx0MTQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3aGl6IHRoZW0iLCAiZyI6ICJ3MyJ9LCAidzQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJib2ctc3RhbmRhcmQiLCAiZyI6ICJ3NCJ9LCAidzRfYWx0MSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImJvZyBzdGFuZGFyZCIsICJnIjogInc0In0sICJ3NF9hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAidG90YWxseSBib2ctc3RhbmRhcmQiLCAiZyI6ICJ3NCJ9LCAidzRfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogInByZXR0eSBib2ctc3RhbmRhcmQiLCAiZyI6ICJ3NCJ9LCAidzRfYWx0NCI6IHsidCI6ICJ3b3JkcyIsICJhIjogInJ1bi1vZi10aGUtbWlsbCIsICJnIjogInc0In0sICJ3NF9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAicnVuIG9mIHRoZSBtaWxsIiwgImciOiAidzQifSwgInc1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZGVsaXZlcmVkIG9uIiwgImciOiAidzUifSwgInc1X2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJkZWxpdmVycyBvbiIsICJnIjogInc1In0sICJ3NV9hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiZGlkIGRlbGl2ZXIgb24iLCAiZyI6ICJ3NSJ9LCAidzYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJyZWFkeSB0byBzZXJ2ZSBzdHJhaWdodCBhd2F5IiwgImciOiAidzYifSwgInc2X2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJyZWFkeSB0byBzZXJ2ZSByaWdodCBhd2F5IiwgImciOiAidzYifSwgInc2X2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJyZWFkeSB0byBzZXJ2ZSIsICJnIjogInc2In0sICJ3Nl9hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAicmVhZHkgdG8gc2VydmUgaW1tZWRpYXRlbHkiLCAiZyI6ICJ3NiJ9LCAidzZfYWx0NCI6IHsidCI6ICJ3b3JkcyIsICJhIjogInJlYWR5IHRvIHNlcnZlIGF0IG9uY2UiLCAiZyI6ICJ3NiJ9LCAidzciOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGUgZnJlZXplciBhaXNsZSIsICJnIjogInc3In0sICJ3N19hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlIGZyb3plbiBmb29kIGFpc2xlIiwgImciOiAidzcifSwgInc3X2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGUgZnJlZXplciBzZWN0aW9uIiwgImciOiAidzcifSwgInc3X2FsdDMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGUgZnJvemVuIGFpc2xlIiwgImciOiAidzcifSwgInc3X2FsdDQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGUgZnJvemVuIGZvb2Qgc2VjdGlvbiIsICJnIjogInc3In0sICJ3OCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNhcmVsZXNzIiwgImciOiAidzgifSwgInc4X2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJzaWxseSIsICJnIjogInc4In19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

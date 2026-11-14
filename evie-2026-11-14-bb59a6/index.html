@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evie · Maths homework · 14 November 2026</title>
+<style>
+@page {size:A4; margin:11mm 11mm;}
+* {box-sizing:border-box;}
+html {-webkit-text-size-adjust:100%;}
+body {font-family:'Segoe UI',Arial,sans-serif; color:#252333; margin:0; font-size:18px; background:#fbfaff;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+.wrap {max-width:1180px; margin:0 auto; padding:0 28px 48px;}
+header {background:linear-gradient(135deg,#6c63ff,#a78bfa); color:#fff; border-radius:18px; padding:18px 30px; margin:26px 0 36px;}
+h1 {font-size:25px; margin:0 0 4px;}
+.meta {font-size:15px; opacity:.95;}
+section {margin:0 0 48px;}
+.lbl {font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#6d4fc2; margin:0 0 8px;}
+.instr {font-size:30px; font-weight:800; color:#1f1b2e; line-height:1.25; margin:0 0 8px; text-wrap:balance;}
+.note {font-size:17px; color:#6b6280; margin:0 0 22px;}
+.note.pr {display:none;}
+.q {page-break-inside:avoid; break-inside:avoid;}
+.card {background:#fff; border:2px solid #e6e0fa; border-radius:20px; padding:18px 24px 20px; margin:0 0 16px; transition:border-color .15s, box-shadow .15s;}
+.card.current {border-color:#a78bfa; box-shadow:0 10px 30px rgba(108,99,255,.13);}
+.card.model {background:#f7f5ff; border-color:#d9cff7;}
+.mtag {display:inline-block; margin:0 0 10px; padding:4px 13px; border-radius:999px; background:#6c63ff; color:#fff; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;}
+.qn {color:#6b6280; font-weight:600;}
+.big {font-size:30px; font-weight:800; color:#5b32b5; white-space:nowrap;}
+.store {display:none;}
+.nw {white-space:nowrap;}
+
+/* one item: the sum, then the four boxes of the lesson */
+.crow {display:block;}
+.sum {margin:0 0 12px; white-space:nowrap;}
+.boxes {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px;}
+.bx {border:2px solid #e6e0fa; border-radius:14px; padding:8px 10px 10px; background:#fdfcff; display:flex; flex-direction:column; gap:8px; min-width:0;}
+.bx.last {border-color:#c4b5fd; background:#f6f3ff;}
+.bh {font-size:15px; font-weight:700; color:#6b6280; margin:0; white-space:nowrap;}
+.opts {display:flex; flex-direction:column; gap:8px;}
+.opts.row {flex-direction:row; flex-wrap:wrap;}
+.opt {font:inherit; font-size:21px; font-weight:700; color:#3f3752; background:#fff; border:2px solid #c9bdf0; border-radius:12px;
+  padding:8px 10px; min-height:52px; line-height:1.2; text-align:center; cursor:pointer; touch-action:manipulation;
+  display:inline-flex; align-items:center; justify-content:center; transition:background .12s, border-color .12s, box-shadow .12s;}
+button.opt:hover {background:#f3f0ff; border-color:#a78bfa;}
+button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
+.opts .opt.on, .opt.shown {background:#6c63ff; border-color:#6c63ff; color:#fff; box-shadow:0 0 0 4px #ddd6fe;}
+.opts > .hw-mark.hw-mark-blk {font-size:18px; margin:2px 0 0;}
+.bx input.hw-field {width:100%; min-width:0; height:56px; font-size:22px; text-align:center;}
+.shownbox {display:flex; align-items:center; justify-content:center; width:100%; height:56px; padding:0 8px; font-size:22px; font-weight:600;
+  color:#1d4ed8; background:#f6f5ff; border:2px solid #8072b2; border-radius:8px;}
+
+/* right or wrong */
+.claim {font-size:22px; margin:0 0 14px; color:#252333;}
+.claim .who {font-weight:800; color:#5b32b5;}
+.vrow {display:flex; flex-wrap:wrap; align-items:flex-start; gap:16px 36px;}
+.vpart {display:flex; flex-direction:column; gap:8px;}
+.vpart .bh {white-space:normal;}
+.vpart input.hw-field {width:220px; height:56px; font-size:22px; text-align:center;}
+
+@media (max-width:600px) {
+  body {font-size:17px;}
+  .wrap {padding:0 12px 40px;}
+  header {padding:14px 18px; margin:14px 0 26px; border-radius:14px;}
+  h1 {font-size:22px;}
+  .instr {font-size:24px;}
+  .card {padding:14px 12px 16px; border-radius:16px;}
+  .big {font-size:26px;}
+  .boxes {grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;}
+  .opt {font-size:19px; min-height:50px; padding:8px 4px;}
+  .claim {font-size:19px;}
+  .vpart input.hw-field {width:180px;}
+}
+
+@media print {
+  body {font-size:13px; background:#fff;}
+  .wrap {max-width:none; padding:0;}
+  header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+  h1 {font-size:19px; margin:0;}
+  .meta {font-size:11.5px;}
+  section {margin:0 0 12px;}
+  .lbl {font-size:10.5px; margin:0 0 3px;}
+  .instr {font-size:18px; margin:0 0 3px;}
+  .note {font-size:12px; margin:0 0 8px;}
+  .note.scr {display:none !important;}
+  .note.pr {display:block;}
+  .card {padding:5px 12px 6px; margin:0 0 4px; border-width:1.5px; border-radius:12px; box-shadow:none;}
+  .card.current {border-color:#e6e0fa; box-shadow:none;}
+  .mtag {font-size:10px; padding:2px 9px; margin:0 0 4px;}
+  .crow {display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; align-items:start;}
+  .sum {margin:4px 0 0;}
+  .big {font-size:16px;}
+  .boxes {gap:6px;}
+  .bx {padding:3px 6px 4px; gap:3px; border-width:1.5px; border-radius:8px;}
+  .bh {font-size:10px;}
+  .opts {flex-direction:row; flex-wrap:wrap; gap:3px;}
+  .opt {font-size:12px; padding:2px 5px; min-height:0; border-width:1.5px; border-radius:6px;}
+  .opts .opt.on, .opt.shown {box-shadow:none;}
+  .bx input.hw-field, .shownbox {height:28px; font-size:13px;}
+  .claim {font-size:13px; margin:0 0 5px;}
+  .vrow {gap:6px 20px;}
+  .vpart input.hw-field {width:120px; height:28px; font-size:13px;}
+}
+@media print { input::placeholder {color:transparent;} }
+body.hw-pdf-mode input::placeholder {color:transparent;}
+body.hw-pdf-mode {font-size:13px; background:#fff;}
+body.hw-pdf-mode .wrap {max-width:none; padding:0;}
+body.hw-pdf-mode header {margin:0 0 10px; padding:8px 16px; border-radius:10px;}
+body.hw-pdf-mode h1 {font-size:19px; margin:0;}
+body.hw-pdf-mode .meta {font-size:11.5px;}
+body.hw-pdf-mode section {margin:0 0 12px;}
+body.hw-pdf-mode .lbl {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .instr {font-size:18px; margin:0 0 3px;}
+body.hw-pdf-mode .note {font-size:12px; margin:0 0 8px;}
+body.hw-pdf-mode .note.scr {display:none !important;}
+body.hw-pdf-mode .card {padding:5px 12px 6px; margin:0 0 4px; border-width:1.5px; border-radius:12px; box-shadow:none;}
+body.hw-pdf-mode .card.current {border-color:#e6e0fa; box-shadow:none;}
+body.hw-pdf-mode .mtag {font-size:10px; padding:2px 9px; margin:0 0 4px;}
+body.hw-pdf-mode .crow {display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; align-items:start;}
+body.hw-pdf-mode .sum {margin:4px 0 0;}
+body.hw-pdf-mode .big {font-size:16px;}
+body.hw-pdf-mode .boxes {grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px;}
+body.hw-pdf-mode .bx {padding:3px 6px 4px; gap:3px; border-width:1.5px; border-radius:8px;}
+body.hw-pdf-mode .bh {font-size:10px;}
+body.hw-pdf-mode .opts {flex-direction:row; flex-wrap:wrap; gap:4px;}
+body.hw-pdf-mode .opt {font-size:12px; padding:2px 5px; min-height:0; border-width:1.5px; border-radius:6px; box-shadow:none;}
+body.hw-pdf-mode .bx input.hw-field, body.hw-pdf-mode .shownbox {height:28px; font-size:13px;}
+body.hw-pdf-mode .claim {font-size:13px; margin:0 0 5px;}
+body.hw-pdf-mode .vrow {gap:6px 20px;}
+body.hw-pdf-mode .vpart input.hw-field {width:120px; height:28px; font-size:13px;}
+body.hw-pdf-mode .hw-mark {font-size:11px;}
+
+/* Full page width and big type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body {font-size:26px;}
+  .wrap {max-width:1640px; padding:0 48px 56px;}
+  header {padding:24px 38px;}
+  h1 {font-size:36px;}
+  .meta {font-size:22px;}
+  .lbl {font-size:19px;}
+  .instr {font-size:40px;}
+  .note {font-size:26px;}
+  .mtag {font-size:17px;}
+  .card {padding:22px 30px 24px; margin:0 0 20px;}
+  .crow {display:grid; grid-template-columns:330px minmax(0,1fr); gap:28px; align-items:start;}
+  .sum {margin:14px 0 0;}
+  .big {font-size:36px;}
+  .boxes {gap:16px;}
+  .bx {padding:12px 14px 14px; gap:10px;}
+  .bh {font-size:21px;}
+  .opt {font-size:28px; min-height:62px; padding:8px 10px;}
+  .bx input.hw-field, .shownbox {height:66px; font-size:30px !important;}
+  .claim {font-size:30px; margin:0 0 18px;}
+  .vrow {gap:20px 56px;}
+  .vpart .bh {font-size:22px;}
+  .vrow {flex-wrap:nowrap;}
+  .vpart .opts.row {flex-wrap:nowrap;}
+  .vpart .opts.row .opt {min-width:158px;}
+  .vpart input.hw-field {width:260px; height:66px; font-size:30px !important;}
+  .opts > .hw-mark.hw-mark-blk {font-size:22px;}
+}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Evie" data-sheet="Homework 2026-11-14" data-sheet-id="evie-2026-11-14-homework">
+<div id="sheet">
+
+<div class="wrap">
+<header><h1>Evie &middot; Maths</h1><div class="meta">14 November 2026 &middot; Make a friendly number, add, take the 1&nbsp;back</div></header>
+<section><div class="q"><p class="lbl">A friendly number</p><p class="instr">Fill the four boxes. The last box is the&nbsp;answer.</p><p class="note scr">Tap one number in each box. Find the nearly round number first: it is <span class='nw'>not always the first one.</span></p><p class="note pr">Circle one number in each box. Find the nearly round number first: it is <span class='nw'>not always the first one.</span></p></div><div class="card model q"><p class="mtag">Like this</p><div class="crow"><p class="sum"><span class="big">37,999 + 21,300</span></p><div class="boxes"><div class="bx"><p class="bh">Nearly round</p><div class="opts"><span class="opt shown">37,999</span></div></div><div class="bx"><p class="bh">+1: friendly</p><div class="opts"><span class="opt shown">38,000</span></div></div><div class="bx"><p class="bh">Add</p><div class="opts"><span class="opt shown">59,300</span></div></div><div class="bx last"><p class="bh">Take the 1 back</p><div class="opts"><span class="opt shown">59,299</span></div></div></div></div></div>
+<div class="card q live"><div class="crow"><p class="sum"><span class="qn">1.</span> <span class="big">399 + 145</span></p><div class="boxes"><div class="bx"><p class="bh">Nearly round</p><div class="opts" data-field="e_1a"><button type="button" class="opt" data-v="399" aria-pressed="false">399</button><button type="button" class="opt" data-v="145" aria-pressed="false">145</button></div><div class="store"><select data-k="e_1a" data-label="1. 399 + 145: nearly round" class="hw-field"><option value="">Choose</option><option value="399">399</option><option value="145">145</option></select></div></div><div class="bx"><p class="bh">+1: friendly</p><div class="opts" data-field="e_1b"><button type="button" class="opt" data-v="400" aria-pressed="false">400</button><button type="button" class="opt" data-v="300" aria-pressed="false">300</button><button type="button" class="opt" data-v="499" aria-pressed="false">499</button></div><div class="store"><select data-k="e_1b" data-label="1. 399 + 145: +1 friendly" class="hw-field"><option value="">Choose</option><option value="400">400</option><option value="300">300</option><option value="499">499</option></select></div></div><div class="bx"><p class="bh">Add</p><div class="opts" data-field="e_1c"><button type="button" class="opt" data-v="445" aria-pressed="false">445</button><button type="button" class="opt" data-v="500" aria-pressed="false">500</button><button type="button" class="opt" data-v="545" aria-pressed="false">545</button></div><div class="store"><select data-k="e_1c" data-label="1. 399 + 145: add" class="hw-field"><option value="">Choose</option><option value="445">445</option><option value="500">500</option><option value="545">545</option></select></div></div><div class="bx last"><p class="bh">Take the 1 back</p><div class="opts" data-field="e_1d"><button type="button" class="opt" data-v="544" aria-pressed="false">544</button><button type="button" class="opt" data-v="545" aria-pressed="false">545</button><button type="button" class="opt" data-v="444" aria-pressed="false">444</button></div><div class="store"><select data-k="e_1d" data-label="1. 399 + 145: take the 1 back" class="hw-field"><option value="">Choose</option><option value="544">544</option><option value="545">545</option><option value="444">444</option></select></div></div></div></div></div>
+<div class="card q live"><div class="crow"><p class="sum"><span class="qn">2.</span> <span class="big">360 + 799</span></p><div class="boxes"><div class="bx"><p class="bh">Nearly round</p><div class="opts" data-field="e_2a"><button type="button" class="opt" data-v="360" aria-pressed="false">360</button><button type="button" class="opt" data-v="799" aria-pressed="false">799</button></div><div class="store"><select data-k="e_2a" data-label="2. 360 + 799: nearly round" class="hw-field"><option value="">Choose</option><option value="360">360</option><option value="799">799</option></select></div></div><div class="bx"><p class="bh">+1: friendly</p><div class="opts" data-field="e_2b"><button type="button" class="opt" data-v="899" aria-pressed="false">899</button><button type="button" class="opt" data-v="800" aria-pressed="false">800</button><button type="button" class="opt" data-v="700" aria-pressed="false">700</button></div><div class="store"><select data-k="e_2b" data-label="2. 360 + 799: +1 friendly" class="hw-field"><option value="">Choose</option><option value="899">899</option><option value="800">800</option><option value="700">700</option></select></div></div><div class="bx"><p class="bh">Add</p><div class="opts" data-field="e_2c"><button type="button" class="opt" data-v="1,160" aria-pressed="false">1,160</button><button type="button" class="opt" data-v="1,100" aria-pressed="false">1,100</button><button type="button" class="opt" data-v="1,060" aria-pressed="false">1,060</button></div><div class="store"><select data-k="e_2c" data-label="2. 360 + 799: add" class="hw-field"><option value="">Choose</option><option value="1,160">1,160</option><option value="1,100">1,100</option><option value="1,060">1,060</option></select></div></div><div class="bx last"><p class="bh">Take the 1 back</p><div class="opts" data-field="e_2d"><button type="button" class="opt" data-v="1,169" aria-pressed="false">1,169</button><button type="button" class="opt" data-v="1,159" aria-pressed="false">1,159</button><button type="button" class="opt" data-v="1,059" aria-pressed="false">1,059</button><button type="button" class="opt" data-v="1,160" aria-pressed="false">1,160</button></div><div class="store"><select data-k="e_2d" data-label="2. 360 + 799: take the 1 back" class="hw-field"><option value="">Choose</option><option value="1,169">1,169</option><option value="1,159">1,159</option><option value="1,059">1,059</option><option value="1,160">1,160</option></select></div></div></div></div></div>
+<div class="card q live"><div class="crow"><p class="sum"><span class="qn">3.</span> <span class="big">2,300 + 3,999</span></p><div class="boxes"><div class="bx"><p class="bh">Nearly round</p><div class="opts" data-field="e_3a"><button type="button" class="opt" data-v="2,300" aria-pressed="false">2,300</button><button type="button" class="opt" data-v="3,999" aria-pressed="false">3,999</button></div><div class="store"><select data-k="e_3a" data-label="3. 2,300 + 3,999: nearly round" class="hw-field"><option value="">Choose</option><option value="2,300">2,300</option><option value="3,999">3,999</option></select></div></div><div class="bx"><p class="bh">+1: friendly</p><div class="opts" data-field="e_3b"><button type="button" class="opt" data-v="3,000" aria-pressed="false">3,000</button><button type="button" class="opt" data-v="4,999" aria-pressed="false">4,999</button><button type="button" class="opt" data-v="5,000" aria-pressed="false">5,000</button><button type="button" class="opt" data-v="4,000" aria-pressed="false">4,000</button></div><div class="store"><select data-k="e_3b" data-label="3. 2,300 + 3,999: +1 friendly" class="hw-field"><option value="">Choose</option><option value="3,000">3,000</option><option value="4,999">4,999</option><option value="5,000">5,000</option><option value="4,000">4,000</option></select></div></div><div class="bx"><p class="bh">Add</p><div class="opts" data-field="e_3c"><button type="button" class="opt" data-v="6,000" aria-pressed="false">6,000</button><button type="button" class="opt" data-v="6,300" aria-pressed="false">6,300</button><button type="button" class="opt" data-v="5,300" aria-pressed="false">5,300</button></div><div class="store"><select data-k="e_3c" data-label="3. 2,300 + 3,999: add" class="hw-field"><option value="">Choose</option><option value="6,000">6,000</option><option value="6,300">6,300</option><option value="5,300">5,300</option></select></div></div><div class="bx last"><p class="bh">Take the 1 back</p><div class="opts" data-field="e_3d"><button type="button" class="opt" data-v="6,299" aria-pressed="false">6,299</button><button type="button" class="opt" data-v="6,199" aria-pressed="false">6,199</button><button type="button" class="opt" data-v="6,399" aria-pressed="false">6,399</button><button type="button" class="opt" data-v="6,300" aria-pressed="false">6,300</button></div><div class="store"><select data-k="e_3d" data-label="3. 2,300 + 3,999: take the 1 back" class="hw-field"><option value="">Choose</option><option value="6,299">6,299</option><option value="6,199">6,199</option><option value="6,399">6,399</option><option value="6,300">6,300</option></select></div></div></div></div></div>
+<div class="card q live"><div class="crow"><p class="sum"><span class="qn">4.</span> <span class="big">6,999 + 2,500</span></p><div class="boxes"><div class="bx"><p class="bh">Nearly round</p><div class="opts" data-field="e_4a"><button type="button" class="opt" data-v="6,999" aria-pressed="false">6,999</button><button type="button" class="opt" data-v="2,500" aria-pressed="false">2,500</button></div><div class="store"><select data-k="e_4a" data-label="4. 6,999 + 2,500: nearly round" class="hw-field"><option value="">Choose</option><option value="6,999">6,999</option><option value="2,500">2,500</option></select></div></div><div class="bx"><p class="bh">+1: friendly</p><div class="opts" data-field="e_4b"><button type="button" class="opt" data-v="6,000" aria-pressed="false">6,000</button><button type="button" class="opt" data-v="7,000" aria-pressed="false">7,000</button><button type="button" class="opt" data-v="8,000" aria-pressed="false">8,000</button><button type="button" class="opt" data-v="7,999" aria-pressed="false">7,999</button></div><div class="store"><select data-k="e_4b" data-label="4. 6,999 + 2,500: +1 friendly" class="hw-field"><option value="">Choose</option><option value="6,000">6,000</option><option value="7,000">7,000</option><option value="8,000">8,000</option><option value="7,999">7,999</option></select></div></div><div class="bx"><p class="bh">Add</p><div class="opts" data-field="e_4c"><button type="button" class="opt" data-v="9,500" aria-pressed="false">9,500</button><button type="button" class="opt" data-v="9,000" aria-pressed="false">9,000</button><button type="button" class="opt" data-v="8,500" aria-pressed="false">8,500</button></div><div class="store"><select data-k="e_4c" data-label="4. 6,999 + 2,500: add" class="hw-field"><option value="">Choose</option><option value="9,500">9,500</option><option value="9,000">9,000</option><option value="8,500">8,500</option></select></div></div><div class="bx last"><p class="bh">Take the 1 back</p><div class="opts" data-field="e_4d"><button type="button" class="opt" data-v="9,500" aria-pressed="false">9,500</button><button type="button" class="opt" data-v="9,399" aria-pressed="false">9,399</button><button type="button" class="opt" data-v="9,599" aria-pressed="false">9,599</button><button type="button" class="opt" data-v="9,499" aria-pressed="false">9,499</button></div><div class="store"><select data-k="e_4d" data-label="4. 6,999 + 2,500: take the 1 back" class="hw-field"><option value="">Choose</option><option value="9,500">9,500</option><option value="9,399">9,399</option><option value="9,599">9,599</option><option value="9,499">9,499</option></select></div></div></div></div></div>
+<div class="card q live"><div class="crow"><p class="sum"><span class="qn">5.</span> <span class="big">25,999 + 13,400</span></p><div class="boxes"><div class="bx"><p class="bh">Nearly round</p><div class="opts" data-field="e_5a"><button type="button" class="opt" data-v="25,999" aria-pressed="false">25,999</button><button type="button" class="opt" data-v="13,400" aria-pressed="false">13,400</button></div><div class="store"><select data-k="e_5a" data-label="5. 25,999 + 13,400: nearly round" class="hw-field"><option value="">Choose</option><option value="25,999">25,999</option><option value="13,400">13,400</option></select></div></div><div class="bx"><p class="bh">+1: friendly</p><div class="opts" data-field="e_5b"><button type="button" class="opt" data-v="30,000" aria-pressed="false">30,000</button><button type="button" class="opt" data-v="26,000" aria-pressed="false">26,000</button><button type="button" class="opt" data-v="25,000" aria-pressed="false">25,000</button><button type="button" class="opt" data-v="26,999" aria-pressed="false">26,999</button></div><div class="store"><select data-k="e_5b" data-label="5. 25,999 + 13,400: +1 friendly" class="hw-field"><option value="">Choose</option><option value="30,000">30,000</option><option value="26,000">26,000</option><option value="25,000">25,000</option><option value="26,999">26,999</option></select></div></div><div class="bx"><p class="bh">Add</p><div class="opts" data-field="e_5c"><button type="button" class="opt" data-v="36,000" aria-pressed="false">36,000</button><button type="button" class="opt" data-v="29,400" aria-pressed="false">29,400</button><button type="button" class="opt" data-v="39,400" aria-pressed="false">39,400</button></div><div class="store"><select data-k="e_5c" data-label="5. 25,999 + 13,400: add" class="hw-field"><option value="">Choose</option><option value="36,000">36,000</option><option value="29,400">29,400</option><option value="39,400">39,400</option></select></div></div><div class="bx last"><p class="bh">Take the 1 back</p><div class="opts" data-field="e_5d"><button type="button" class="opt" data-v="39,399" aria-pressed="false">39,399</button><button type="button" class="opt" data-v="39,400" aria-pressed="false">39,400</button><button type="button" class="opt" data-v="39,499" aria-pressed="false">39,499</button><button type="button" class="opt" data-v="38,399" aria-pressed="false">38,399</button></div><div class="store"><select data-k="e_5d" data-label="5. 25,999 + 13,400: take the 1 back" class="hw-field"><option value="">Choose</option><option value="39,399">39,399</option><option value="39,400">39,400</option><option value="39,499">39,499</option><option value="38,399">38,399</option></select></div></div></div></div></div>
+<div class="card q live"><div class="crow"><p class="sum"><span class="qn">6.</span> <span class="big">42,000 + 18,999</span></p><div class="boxes"><div class="bx"><p class="bh">Nearly round</p><div class="opts" data-field="e_6a"><button type="button" class="opt" data-v="42,000" aria-pressed="false">42,000</button><button type="button" class="opt" data-v="18,999" aria-pressed="false">18,999</button></div><div class="store"><select data-k="e_6a" data-label="6. 42,000 + 18,999: nearly round" class="hw-field"><option value="">Choose</option><option value="42,000">42,000</option><option value="18,999">18,999</option></select></div></div><div class="bx"><p class="bh">+1: friendly</p><div class="opts" data-field="e_6b"><button type="button" class="opt" data-v="19,000" aria-pressed="false">19,000</button><button type="button" class="opt" data-v="20,000" aria-pressed="false">20,000</button><button type="button" class="opt" data-v="18,000" aria-pressed="false">18,000</button><button type="button" class="opt" data-v="19,999" aria-pressed="false">19,999</button></div><div class="store"><select data-k="e_6b" data-label="6. 42,000 + 18,999: +1 friendly" class="hw-field"><option value="">Choose</option><option value="19,000">19,000</option><option value="20,000">20,000</option><option value="18,000">18,000</option><option value="19,999">19,999</option></select></div></div><div class="bx"><p class="bh">Add</p><div class="opts" data-field="e_6c"><button type="button" class="opt" data-v="51,000" aria-pressed="false">51,000</button><button type="button" class="opt" data-v="59,000" aria-pressed="false">59,000</button><button type="button" class="opt" data-v="61,000" aria-pressed="false">61,000</button></div><div class="store"><select data-k="e_6c" data-label="6. 42,000 + 18,999: add" class="hw-field"><option value="">Choose</option><option value="51,000">51,000</option><option value="59,000">59,000</option><option value="61,000">61,000</option></select></div></div><div class="bx last"><p class="bh">Take the 1 back</p><div class="opts" data-field="e_6d"><button type="button" class="opt" data-v="60,999" aria-pressed="false">60,999</button><button type="button" class="opt" data-v="59,999" aria-pressed="false">59,999</button><button type="button" class="opt" data-v="61,000" aria-pressed="false">61,000</button><button type="button" class="opt" data-v="60,099" aria-pressed="false">60,099</button></div><div class="store"><select data-k="e_6d" data-label="6. 42,000 + 18,999: take the 1 back" class="hw-field"><option value="">Choose</option><option value="60,999">60,999</option><option value="59,999">59,999</option><option value="61,000">61,000</option><option value="60,099">60,099</option></select></div></div></div></div></div>
+<div class="card q live"><div class="crow"><p class="sum"><span class="qn">7.</span> <span class="big">79,999 + 12,450</span></p><div class="boxes"><div class="bx"><p class="bh">Nearly round</p><div class="opts" data-field="e_7a"><button type="button" class="opt" data-v="79,999" aria-pressed="false">79,999</button><button type="button" class="opt" data-v="12,450" aria-pressed="false">12,450</button></div><div class="store"><select data-k="e_7a" data-label="7. 79,999 + 12,450: nearly round" class="hw-field"><option value="">Choose</option><option value="79,999">79,999</option><option value="12,450">12,450</option></select></div></div><div class="bx"><p class="bh">+1: friendly</p><div class="opts" data-field="e_7b"><button type="button" class="opt" data-v="70,000" aria-pressed="false">70,000</button><button type="button" class="opt" data-v="89,999" aria-pressed="false">89,999</button><button type="button" class="opt" data-v="80,000" aria-pressed="false">80,000</button><button type="button" class="opt" data-v="90,000" aria-pressed="false">90,000</button></div><div class="store"><select data-k="e_7b" data-label="7. 79,999 + 12,450: +1 friendly" class="hw-field"><option value="">Choose</option><option value="70,000">70,000</option><option value="89,999">89,999</option><option value="80,000">80,000</option><option value="90,000">90,000</option></select></div></div><div class="bx"><p class="bh">Add</p><div class="opts" data-field="e_7c"><button type="button" class="opt" data-v="92,450" aria-pressed="false">92,450</button><button type="button" class="opt" data-v="82,450" aria-pressed="false">82,450</button><button type="button" class="opt" data-v="90,000" aria-pressed="false">90,000</button></div><div class="store"><select data-k="e_7c" data-label="7. 79,999 + 12,450: add" class="hw-field"><option value="">Choose</option><option value="92,450">92,450</option><option value="82,450">82,450</option><option value="90,000">90,000</option></select></div></div><div class="bx last"><p class="bh">Take the 1 back</p><div class="opts" data-field="e_7d"><button type="button" class="opt" data-v="92,450" aria-pressed="false">92,450</button><button type="button" class="opt" data-v="92,449" aria-pressed="false">92,449</button><button type="button" class="opt" data-v="91,449" aria-pressed="false">91,449</button><button type="button" class="opt" data-v="92,459" aria-pressed="false">92,459</button></div><div class="store"><select data-k="e_7d" data-label="7. 79,999 + 12,450: take the 1 back" class="hw-field"><option value="">Choose</option><option value="92,450">92,450</option><option value="92,449">92,449</option><option value="91,449">91,449</option><option value="92,459">92,459</option></select></div></div></div></div></div></section>
+<section><div class="q"><p class="lbl">Right or wrong?</p><p class="instr">Is each answer right? Then choose the right&nbsp;answer.</p><p class="note scr">Tap Yes or No. Then tap the right&nbsp;answer.</p><p class="note pr">Circle Yes or No. Then circle the right&nbsp;answer.</p></div><div class="card q live"><p class="claim"><span class="qn">1.</span> <span class="who">Zara:</span> &ldquo;34,999 + 21,450 = 55,449. I used 35,000 and took the 1&nbsp;back.&rdquo;</p><div class="vrow"><div class="vpart"><p class="bh">Is she right?</p><div class="opts row" data-field="e_r1"><button type="button" class="opt" data-v="Yes, right" aria-pressed="false">Yes, right</button><button type="button" class="opt" data-v="No, wrong" aria-pressed="false">No, wrong</button></div><div class="store"><select data-k="e_r1" data-label="R1. Zara: right or wrong?" class="hw-field"><option value="">Choose</option><option value="Yes, right">Yes, right</option><option value="No, wrong">No, wrong</option></select></div></div><div class="vpart"><p class="bh">34,999 + 21,450 =</p><div class="opts row" data-field="e_r1ans"><button type="button" class="opt" data-v="56,450" aria-pressed="false">56,450</button><button type="button" class="opt" data-v="55,449" aria-pressed="false">55,449</button><button type="button" class="opt" data-v="56,459" aria-pressed="false">56,459</button><button type="button" class="opt" data-v="56,449" aria-pressed="false">56,449</button></div><div class="store"><select data-k="e_r1ans" data-label="R1. 34,999 + 21,450 =" class="hw-field"><option value="">Choose</option><option value="56,450">56,450</option><option value="55,449">55,449</option><option value="56,459">56,459</option><option value="56,449">56,449</option></select></div></div></div></div>
+<div class="card q live"><p class="claim"><span class="qn">2.</span> <span class="who">Leo:</span> &ldquo;14,999 + 6,800 = 21,799. I used 15,000 and took the 1&nbsp;back.&rdquo;</p><div class="vrow"><div class="vpart"><p class="bh">Is he right?</p><div class="opts row" data-field="e_r2"><button type="button" class="opt" data-v="Yes, right" aria-pressed="false">Yes, right</button><button type="button" class="opt" data-v="No, wrong" aria-pressed="false">No, wrong</button></div><div class="store"><select data-k="e_r2" data-label="R2. Leo: right or wrong?" class="hw-field"><option value="">Choose</option><option value="Yes, right">Yes, right</option><option value="No, wrong">No, wrong</option></select></div></div><div class="vpart"><p class="bh">14,999 + 6,800 =</p><div class="opts row" data-field="e_r2ans"><button type="button" class="opt" data-v="21,800" aria-pressed="false">21,800</button><button type="button" class="opt" data-v="20,799" aria-pressed="false">20,799</button><button type="button" class="opt" data-v="21,799" aria-pressed="false">21,799</button><button type="button" class="opt" data-v="21,899" aria-pressed="false">21,899</button></div><div class="store"><select data-k="e_r2ans" data-label="R2. 14,999 + 6,800 =" class="hw-field"><option value="">Choose</option><option value="21,800">21,800</option><option value="20,799">20,799</option><option value="21,799">21,799</option><option value="21,899">21,899</option></select></div></div></div></div></section>
+</div>
+
+<script>
+(function () {
+  function field(k) { return [].find.call(document.querySelectorAll("[data-k]"), function (e) { return e.dataset.k === k; }); }
+  var groups = [].slice.call(document.querySelectorAll(".opts[data-field]"));
+  function paint() {
+    groups.forEach(function (g) {
+      var s = field(g.dataset.field), v = s ? s.value : "";
+      [].forEach.call(g.querySelectorAll("button.opt"), function (b) {
+        var on = !!v && b.dataset.v === v;
+        b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    });
+  }
+  groups.forEach(function (g) {
+    [].forEach.call(g.querySelectorAll("button.opt"), function (b) {
+      b.addEventListener("click", function () {
+        var s = field(g.dataset.field); if (!s) return;
+        if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+        refresh();
+      });
+    });
+  });
+  function current() {
+    var first = null;
+    [].forEach.call(document.querySelectorAll(".card.live"), function (c) {
+      c.classList.remove("current");
+      if (first) return;
+      var empty = [].some.call(c.querySelectorAll("[data-k]"), function (f) { return !String(f.value || "").trim(); });
+      if (empty) first = c;
+    });
+    if (first) first.classList.add("current");
+  }
+  function refresh() { paint(); current(); }
+  document.addEventListener("input", refresh);
+  document.addEventListener("change", refresh);
+  function init() { refresh(); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+  setTimeout(init, 700);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJlXzFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzk5In0sICJlXzFiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDAwIn0sICJlXzFjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTQ1In0sICJlXzFkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNTQ0In0sICJlXzJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNzk5In0sICJlXzJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiODAwIn0sICJlXzJjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMSwxNjAifSwgImVfMmQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxLDE1OSJ9LCAiZV8zYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMsOTk5In0sICJlXzNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCwwMDAifSwgImVfM2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2LDMwMCJ9LCAiZV8zZCI6IHsidCI6ICJleGFjdCIsICJhIjogIjYsMjk5In0sICJlXzRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiw5OTkifSwgImVfNGIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3LDAwMCJ9LCAiZV80YyI6IHsidCI6ICJleGFjdCIsICJhIjogIjksNTAwIn0sICJlXzRkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSw0OTkifSwgImVfNWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNSw5OTkifSwgImVfNWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyNiwwMDAifSwgImVfNWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzOSw0MDAifSwgImVfNWQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzOSwzOTkifSwgImVfNmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxOCw5OTkifSwgImVfNmIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxOSwwMDAifSwgImVfNmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MSwwMDAifSwgImVfNmQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MCw5OTkifSwgImVfN2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3OSw5OTkifSwgImVfN2IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4MCwwMDAifSwgImVfN2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5Miw0NTAifSwgImVfN2QiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5Miw0NDkifSwgImVfcjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJObywgd3JvbmcifSwgImVfcjFhbnMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1Niw0NDkifSwgImVfcjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJZZXMsIHJpZ2h0In0sICJlX3IyYW5zIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjEsNzk5In19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body></html>

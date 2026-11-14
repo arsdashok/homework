@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clara Homework 14 November 2026</title>
+<!--
+Clara, lesson of 14 November 2026: first VERBAL REASONING (odd ones out, 10 slides) + Y5 W44 square and
+cube numbers, cards 00-06 (07 squared vs doubling and 08 exit not reached) + the 7 Nov tool-name review
+(she called two compensation additions «same difference»). Homework set aloud by Dasha:
+«odd ones out with verbal reasoning and some square numbers, some cubed numbers».
+Online sheet, block flow wrap by the Codex builder (three blocks = the three .section elements). Fields: 45.
+ANSWER POSITIONS (read back after placing):
+  VR odd pairs (positions 1-5): (2,4) (1,5) (3,4) (1,3) (4,5) (2,3) (1,4) (2,5). Every position used 3-4 times.
+  VR link menu, correct option 1-3: 2, 1, 3, 3, 1, 2, 1, 3 (no run of 3, no alternation, no cycle).
+  Squared or doubled, bigger button (8², 8 × 2, Same order): 8 squared = 1, 2 same = 3, 1 doubled = 2.
+  9² in words menu: nine squared at 2 of 3.
+  Tools (compensate, same difference): C, SD, SD, C. Subtractions also accept compensate (_alt1 in the key).
+WORDS she did not know in the lesson, brought back: spanner (1), trial (2), vulgar (3), murky (5), unruly + rowdy (6);
+  trapeze (4) was explained. Each set is 3 linked + 2 that share nothing with the three, so one pair only.
+MODELS: VR on days/months (no item); squares 5² and 3² (no item); squared vs doubled on 6; cube 2³ (deck's own
+  model, no item); tools 23,600 + 19,998 and 46,003 − 18,997 (no item). Square team: small times fact under every
+  member (she skipped 9 and said 61 for 64 in the lesson).
+-->
+<style>
+/* Clara mint system (17 Oct 2026 design): Remember = mint card, Worked example = pale dashed inset,
+   tasks on white with green number badges and green-outline fields. Sheet of 14 November 2026. */
+@page { size:A4; margin:13mm 14mm; }
+:root { --ink:#203e35; --muted:#536e64; --green:#286951; --mint:#dcefe5; --pale:#f0f7f3; --line:#bfd7ca; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next',Arial,sans-serif; color:var(--ink); background:#fff; font-size:17px; line-height:1.45;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:18px 18px 40px; }
+.sheet-head { padding:18px 22px; background:var(--mint); border-radius:16px; margin-bottom:20px; }
+.eyebrow,.task-label,.ex-title,.role-label { font-size:12px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--green); }
+.eyebrow { margin-bottom:4px; }
+h1 { font-size:28px; line-height:1.2; letter-spacing:-.6px; }
+.section { margin-bottom:26px; }
+.section + .section { margin-top:34px; }
+.sec-head { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--line); margin-bottom:14px; break-after:avoid; }
+.subj { font-size:12px; text-transform:uppercase; font-weight:700; letter-spacing:1.3px; background:var(--green); color:#fff; border-radius:6px; padding:4px 10px; }
+.note { color:var(--muted); font-size:15px; }
+.task { margin-bottom:6px; }
+.task.gapt { margin-top:22px; }
+.task-label { margin-bottom:6px; }
+.remember { background:var(--mint); border-radius:12px; padding:12px 16px; margin-bottom:12px; break-inside:avoid; }
+.remember p { font-size:18px; font-weight:400; line-height:1.4; }
+.remember p + p { margin-top:4px; }
+.remember b { color:var(--green); }
+.model { margin:10px 0 12px; padding:12px 16px; background:var(--pale); border:1.5px dashed #92b6a3; border-radius:6px; break-inside:avoid; }
+.ex-title { display:block; margin-bottom:8px; color:var(--muted); }
+.model b, .model strong { color:var(--green); }
+.model .mrow { display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; font-size:19px; }
+.model .mrow + .mrow { margin-top:8px; }
+.filled { display:inline-block; min-width:2.2em; padding:2px 8px; border:1.5px solid #9cc2ad; border-radius:8px; background:#fff; color:var(--green); font-weight:700; text-align:center; }
+.role-label { margin:14px 0 6px; }
+.lead { font-size:22px; line-height:1.3; font-weight:700; margin-bottom:8px; break-after:avoid; text-wrap:pretty; }
+.small { font-size:14px; color:var(--muted); margin-bottom:8px; }
+.screen-only { display:inline; } .print-only { display:none; }
+.store { display:none !important; }
+.nw { white-space:nowrap; }
+.given { font-weight:700; font-variant-numeric:tabular-nums; }
+.given-words { font-weight:700; }
+.arr { color:var(--green); font-weight:700; }
+
+.q { padding:12px 0; border-bottom:1px solid #dfebe4; break-inside:avoid; page-break-inside:avoid; }
+.q-top { display:flex; align-items:flex-start; gap:12px; }
+.q-num { display:flex; align-items:center; justify-content:center; flex:0 0 30px; height:30px; border-radius:50%; color:#fff; background:var(--green); font-size:14px; font-weight:700; }
+.prompt { font-size:19px; padding-top:2px; text-wrap:pretty; }
+.lab { font-size:15px; font-weight:700; color:var(--muted); }
+
+/* fields: mint outline; answer text keeps the shared blue */
+body input.hw-field, body select[data-k], body .hw-field { background:#fff !important; border:1.5px solid #739d87 !important; border-radius:8px !important; }
+body input.hw-field:focus, body select[data-k]:focus { border-color:var(--green) !important; box-shadow:0 0 0 3px var(--mint); outline:none; }
+body input.hw-field { min-height:40px; font-size:18px; padding:4px 6px; }
+.gapn { width:3.6em; min-width:0 !important; text-align:center; }
+.gapn.wide { width:6.2em; }
+body select[data-k] { font:inherit; font-size:17px; min-height:40px; padding:4px 8px; min-width:0; max-width:100%; }
+.circle-opt { display:none; font-size:14px; }
+.eqrow { display:inline-flex; align-items:center; flex-wrap:wrap; font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; }
+.pow { font-size:1.1em; font-weight:800; margin-left:2px; align-self:flex-start; }
+
+/* read-only mirrors of her own earlier entries */
+.mirror { display:inline-block; min-width:2.4em; min-height:1.6em; padding:1px 8px; border:1.5px dashed #9cc2ad; border-radius:8px;
+  background:var(--pale); color:#1d4ed8; text-align:center; font-weight:700; vertical-align:middle; }
+
+/* ---------- odd ones out ---------- */
+.vq-body { flex:1; min-width:0; }
+.word-pick { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
+.word-opt, .tool-opt { font:inherit; color:var(--ink); background:#fff; border:2px solid #8db89f; cursor:pointer;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; }
+.word-opt { font-size:18px; font-weight:600; border-radius:14px; padding:8px 6px; min-height:48px; display:flex; align-items:center; justify-content:center; text-align:center; }
+.word-opt.on, .tool-opt.on { background:var(--green); border-color:var(--green); color:#fff; }
+.word-opt.still { cursor:default; }
+.word-pick > .hw-mark { grid-column:1/-1; }
+.word-hint { font-size:15px; color:var(--muted); margin-top:6px; }
+.link-row { margin-top:10px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+body select.link { min-width:300px; }
+.model .word-pick { max-width:700px; }
+
+/* ---------- square team ---------- */
+.team { border-bottom:0; }
+.team-row { display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:8px; }
+.tm { display:flex; flex-direction:column; align-items:center; gap:4px; background:var(--mint); border-radius:12px; padding:8px 4px; }
+.tm.miss { background:#fff; border:1.5px dashed #9cc2ad; }
+.tm-n { font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; min-height:40px; display:flex; align-items:center; }
+.tm-fact { font-size:13px; color:var(--muted); white-space:nowrap; }
+.team-in { width:3em; }
+.team > .hw-mark, .team > .hw-mark-list { margin-top:8px; }
+
+/* ---------- both ways / squared or doubled / cubes ---------- */
+.bw { display:flex; align-items:center; flex-wrap:wrap; gap:10px 16px; font-size:20px; }
+.bw .given { font-size:22px; }
+body select.wsel { min-width:200px; }
+.model .sd-model { gap:10px 44px; }
+.sd-body { display:flex; align-items:center; flex-wrap:wrap; gap:12px 36px; }
+.sd-pair { display:flex; flex-wrap:wrap; gap:10px 30px; }
+.sd-pick { display:flex; align-items:center; flex-wrap:wrap; gap:10px; }
+.tool-pick { display:flex; flex-wrap:wrap; gap:8px; }
+.tool-opt { font-size:16px; font-weight:600; border-radius:22px; padding:6px 14px; min-height:42px; }
+.tool-pick > .hw-mark { flex-basis:100%; }
+.cube-body { display:flex; align-items:flex-start; gap:18px; flex-wrap:wrap; }
+.cube-n { min-width:3.4em; text-align:center; font-size:30px; font-weight:800; background:var(--mint); border-radius:14px; padding:4px 14px; font-variant-numeric:tabular-nums; }
+.steps { display:grid; gap:8px; }
+.step { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.step .lab { min-width:4.4em; }
+.step.so .eqrow { color:var(--green); }
+.step.help .lab { color:var(--green); }
+.c27 .prompt { font-size:20px; } .mir-line { margin-top:6px; font-weight:700; }
+.wsent { line-height:2; }
+
+/* ---------- tools ---------- */
+.method-summary { display:grid; }
+.remember.method-summary { padding:6px 18px; }
+.method-row { display:grid; grid-template-columns:1.1fr 1.2fr 24px 2.4fr; align-items:center; gap:12px; padding:10px 0; font-size:18px; line-height:1.3; }
+.method-row + .method-row { border-top:1px solid #c6dcd1; }
+.method-row b, .method-row strong, .method-arrow { color:var(--green); }
+.method-row small { display:block; font-size:14px; color:var(--muted); font-weight:400; }
+.method-original { white-space:nowrap; font-variant-numeric:tabular-nums; }
+.tool-list { display:grid; }
+.tool-row { display:grid; grid-template-columns:30px minmax(0,360px) minmax(0,1fr); gap:10px 18px; align-items:center; }
+.tool-row > .hw-mark, .tool-row > .hw-mark-list { grid-column:2/-1; }
+.calc { font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+
+/* shared bar in the mint palette */
+body .hw-bar { border:1px solid var(--line); background:var(--pale); border-radius:16px; box-shadow:none; }
+body .hw-send { color:#fff; background:var(--green); border:0; border-radius:10px; font-family:inherit; }
+body .hw-mark.hw-ok { color:var(--green); }
+
+/* ---------- big screens: whole width, big type (Dasha, 1 Nov 2026) ---------- */
+@media screen and (min-width:900px) {
+  body { max-width:1640px; margin:0 auto; padding:36px 48px 70px; background:#edf5f0; }
+  #sheet { background:#fff; padding:44px 52px; border-radius:24px; }
+  body:not(:has(#sheet)) { background:#fff; }
+  .sheet-head { padding:26px 32px; margin-bottom:34px; } h1 { font-size:40px; }
+  .eyebrow,.task-label,.ex-title,.role-label { font-size:16px; }
+  .subj { font-size:16px; padding:6px 14px; } .note { font-size:22px; }
+  .section + .section { margin-top:64px; }
+  .remember { padding:18px 24px; } .remember p { font-size:28px; }
+  .model { padding:20px 26px; } .model .mrow { font-size:28px; gap:10px 20px; }
+  .lead { font-size:36px; margin-bottom:14px; }
+  .small, .word-hint { font-size:20px; }
+  .q { padding:24px 0; } .q-num { flex-basis:42px; height:42px; font-size:20px; } .q-top { gap:18px; }
+  .prompt, .c27 .prompt { font-size:29px; }
+  .lab { font-size:22px; }
+  body input.hw-field { min-height:56px; font-size:27px; }
+  body select[data-k] { min-height:56px; font-size:26px; padding:6px 12px; }
+  .circle-opt { font-size:20px; }
+  .eqrow { font-size:30px; }
+  .mirror { min-height:1.5em; }
+  .word-pick { gap:18px; }
+  .word-opt { font-size:28px; min-height:72px; border-radius:18px; }
+  .link-row { margin-top:16px; gap:16px; }
+  body select.link { min-width:520px; }
+  .model .word-pick { max-width:1100px; }
+  .team-row { gap:14px; }
+  .tm { padding:12px 6px; border-radius:16px; }
+  .tm-n { font-size:34px; min-height:56px; }
+  .tm-fact { font-size:19px; }
+  .bw { font-size:30px; gap:12px 22px; } .bw .given { font-size:32px; }
+  body select.wsel { min-width:300px; }
+  .sd-body { gap:16px 60px; } .sd-pair { gap:14px 50px; }
+  .tool-opt { font-size:26px; padding:8px 22px; min-height:60px; border-radius:30px; }
+  .tool-pick { gap:12px; }
+  .cube-body { gap:30px; } .cube-n { font-size:44px; padding:6px 22px; border-radius:18px; }
+  .steps { gap:12px; }
+  .method-row { font-size:28px; gap:20px; padding:16px 0; } .method-row small { font-size:20px; }
+  .remember.method-summary { padding:10px 26px; }
+  .tool-row { grid-template-columns:42px minmax(0,600px) minmax(0,1fr); gap:14px 30px; }
+  .calc { font-size:30px; }
+}
+
+/* phones */
+@media screen and (max-width:620px) {
+  body { padding:10px 8px 30px; }
+  .lead { font-size:20px; } .prompt { font-size:18px; } .remember p { font-size:17px; }
+  .q-top { gap:8px; } .q-num { flex-basis:26px; height:26px; font-size:13px; }
+  .word-pick { grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+  .word-opt { font-size:16px; min-height:44px; padding:6px 2px; }
+  body select.link { min-width:0; width:100%; }
+  .team-row { grid-template-columns:repeat(5,minmax(0,1fr)); gap:6px; }
+  .method-row { grid-template-columns:1fr 24px 1.6fr; font-size:16px; } .method-row > b { grid-column:1/-1; }
+  .tool-row { grid-template-columns:26px 1fr; gap:6px 8px; } .tool-row .tool-pick { grid-column:2; }
+  .tool-opt { font-size:15px; padding:5px 11px; min-height:40px; }
+  .model .mrow { font-size:17px; }
+}
+
+/* PDF export (hw.js, 800px frame) and paper */
+@media print {
+  body { padding:0; font-size:14px; }
+  .screen-only, .hw-bar { display:none !important; } .print-only { display:inline !important; }
+  p.print-only { display:block !important; }
+  .choice-wrap.is-empty select { display:none !important; }
+  .choice-wrap.is-empty .circle-opt { display:inline-block; }
+  .word-hint { display:none !important; }
+  .sheet-head { padding:12px 16px; margin-bottom:12px; } h1 { font-size:22px; }
+  .lead { font-size:16px; } .remember p { font-size:14px; }
+  .model .mrow { font-size:14px; }
+  .prompt, .c27 .prompt { font-size:14px; }
+  .q { padding:7px 0; }
+  .remember { padding:8px 12px; margin-bottom:8px; } .model { padding:8px 12px; margin:6px 0 8px; }
+  .word-opt { font-size:13px; min-height:28px; padding:3px 4px; border-radius:8px; }
+  .word-pick { gap:6px; }
+  .link-row { margin-top:4px; }
+  .eqrow { font-size:14px; } .lab { font-size:12px; }
+  .tm-n { font-size:16px; min-height:30px; } .tm-fact { font-size:10px; }
+  .cube-n { font-size:18px; }
+  .tool-opt { font-size:12px; padding:2px 8px; min-height:26px; }
+  .tool-row { grid-template-columns:24px 250px 1fr; padding:5px 0; }
+  .method-row { font-size:14px; padding:6px 0; } .method-row small { font-size:11px; }
+  .calc { font-size:15px; } .bw { font-size:14px; } .bw .given { font-size:15px; }
+  .section + .section { margin-top:18px; }
+  .task { break-inside:avoid; page-break-inside:avoid; }
+  .sec-head, .task-label, .role-label, .lead, .task { break-after:avoid; page-break-after:avoid; }
+  .section.tools { break-inside:avoid; page-break-inside:avoid; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Clara" data-sheet="Maths 2026-11-14" data-sheet-id="clara-2026-11-14-maths">
+<div id="sheet">
+
+
+<div class="sheet-head"><div class="eyebrow">Verbal reasoning and maths</div><h1>Clara’s homework</h1></div>
+
+<div class="section vr">
+<div class="sec-head"><span class="subj">Verbal reasoning</span><span class="note">Odd ones out</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember"><p>Three of the five words are linked. Look at what they ARE, or what they&nbsp;MEAN.</p></div>
+<div class="model"><p class="ex-title">Worked example</p>
+<div class="word-pick"><span class="word-opt still">Monday</span><span class="word-opt still on">June</span><span class="word-opt still">Friday</span><span class="word-opt still on">July</span><span class="word-opt still">Sunday</span></div>
+<div class="mrow" style="margin-top:12px"><span class="lab">The three are</span><span class="filled">days of the week</span></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap the two words that do not belong. Then choose what links the other&nbsp;three.</span><span class="print-only">Circle the two words that do not belong. Then circle what links the other&nbsp;three.</span></p>
+</div>
+<div class="q vq"><div class="q-top"><div class="q-num">1</div><div class="vq-body"><div class="word-pick" data-store="o1" data-field="o1"><button type="button" class="word-opt" data-v="saw">saw</button><button type="button" class="word-opt" data-v="plumber">plumber</button><button type="button" class="word-opt" data-v="spanner">spanner</button><button type="button" class="word-opt" data-v="builder">builder</button><button type="button" class="word-opt" data-v="drill">drill</button></div><div class="store"><input data-k="o1" data-label="V1. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l1" data-label="V1. What links the other three" aria-label="V1. What links the other three"><option value="">Choose</option><option value="jobs">jobs</option><option value="tools">tools</option><option value="places">places</option></select><span class="circle-opt">jobs / tools / places</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">2</div><div class="vq-body"><div class="word-pick" data-store="o2" data-field="o2"><button type="button" class="word-opt" data-v="toast">toast</button><button type="button" class="word-opt" data-v="exam">exam</button><button type="button" class="word-opt" data-v="trial">trial</button><button type="button" class="word-opt" data-v="quiz">quiz</button><button type="button" class="word-opt" data-v="jam">jam</button></div><div class="store"><input data-k="o2" data-label="V2. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l2" data-label="V2. What links the other three" aria-label="V2. What links the other three"><option value="">Choose</option><option value="words that mean a test">words that mean a test</option><option value="breakfast foods">breakfast foods</option><option value="school subjects">school subjects</option></select><span class="circle-opt">words that mean a test / breakfast foods / school subjects</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">3</div><div class="vq-body"><div class="word-pick" data-store="o3" data-field="o3"><button type="button" class="word-opt" data-v="impolite">impolite</button><button type="button" class="word-opt" data-v="vulgar">vulgar</button><button type="button" class="word-opt" data-v="kind">kind</button><button type="button" class="word-opt" data-v="gentle">gentle</button><button type="button" class="word-opt" data-v="brash">brash</button></div><div class="store"><input data-k="o3" data-label="V3. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l3" data-label="V3. What links the other three" aria-label="V3. What links the other three"><option value="">Choose</option><option value="words that mean kind">words that mean kind</option><option value="words that mean shy">words that mean shy</option><option value="words that mean rude">words that mean rude</option></select><span class="circle-opt">words that mean kind / words that mean shy / words that mean rude</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">4</div><div class="vq-body"><div class="word-pick" data-store="o4" data-field="o4"><button type="button" class="word-opt" data-v="bakery">bakery</button><button type="button" class="word-opt" data-v="clown">clown</button><button type="button" class="word-opt" data-v="library">library</button><button type="button" class="word-opt" data-v="trapeze">trapeze</button><button type="button" class="word-opt" data-v="acrobat">acrobat</button></div><div class="store"><input data-k="o4" data-label="V4. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l4" data-label="V4. What links the other three" aria-label="V4. What links the other three"><option value="">Choose</option><option value="places in a town">places in a town</option><option value="things in a kitchen">things in a kitchen</option><option value="things at a circus">things at a circus</option></select><span class="circle-opt">places in a town / things in a kitchen / things at a circus</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">5</div><div class="vq-body"><div class="word-pick" data-store="o5" data-field="o5"><button type="button" class="word-opt" data-v="muddy">muddy</button><button type="button" class="word-opt" data-v="murky">murky</button><button type="button" class="word-opt" data-v="filthy">filthy</button><button type="button" class="word-opt" data-v="clear">clear</button><button type="button" class="word-opt" data-v="spotless">spotless</button></div><div class="store"><input data-k="o5" data-label="V5. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l5" data-label="V5. What links the other three" aria-label="V5. What links the other three"><option value="">Choose</option><option value="words that mean dirty">words that mean dirty</option><option value="words that mean clean">words that mean clean</option><option value="words for the weather">words for the weather</option></select><span class="circle-opt">words that mean dirty / words that mean clean / words for the weather</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">6</div><div class="vq-body"><div class="word-pick" data-store="o6" data-field="o6"><button type="button" class="word-opt" data-v="disorderly">disorderly</button><button type="button" class="word-opt" data-v="calm">calm</button><button type="button" class="word-opt" data-v="quiet">quiet</button><button type="button" class="word-opt" data-v="unruly">unruly</button><button type="button" class="word-opt" data-v="rowdy">rowdy</button></div><div class="store"><input data-k="o6" data-label="V6. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l6" data-label="V6. What links the other three" aria-label="V6. What links the other three"><option value="">Choose</option><option value="words that mean calm">words that mean calm</option><option value="words that mean out of control">words that mean out of control</option><option value="words that mean sleepy">words that mean sleepy</option></select><span class="circle-opt">words that mean calm / words that mean out of control / words that mean sleepy</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">7</div><div class="vq-body"><div class="word-pick" data-store="o7" data-field="o7"><button type="button" class="word-opt" data-v="nest">nest</button><button type="button" class="word-opt" data-v="robin">robin</button><button type="button" class="word-opt" data-v="owl">owl</button><button type="button" class="word-opt" data-v="feather">feather</button><button type="button" class="word-opt" data-v="parrot">parrot</button></div><div class="store"><input data-k="o7" data-label="V7. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l7" data-label="V7. What links the other three" aria-label="V7. What links the other three"><option value="">Choose</option><option value="kinds of bird">kinds of bird</option><option value="things a bird has or makes">things a bird has or makes</option><option value="kinds of tree">kinds of tree</option></select><span class="circle-opt">kinds of bird / things a bird has or makes / kinds of tree</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">8</div><div class="vq-body"><div class="word-pick" data-store="o8" data-field="o8"><button type="button" class="word-opt" data-v="carrot">carrot</button><button type="button" class="word-opt" data-v="soup">soup</button><button type="button" class="word-opt" data-v="pea">pea</button><button type="button" class="word-opt" data-v="onion">onion</button><button type="button" class="word-opt" data-v="salad">salad</button></div><div class="store"><input data-k="o8" data-label="V8. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l8" data-label="V8. What links the other three" aria-label="V8. What links the other three"><option value="">Choose</option><option value="meals you can make">meals you can make</option><option value="fruits">fruits</option><option value="vegetables">vegetables</option></select><span class="circle-opt">meals you can make / fruits / vegetables</span></span></div></div></div></div>
+</div>
+
+<div class="section maths squares">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Square and cube numbers</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember">
+<p>A <b>square</b> number: a number times itself. 6² = 6&nbsp;×&nbsp;6 = 36. Say it: six&nbsp;squared.</p>
+<p>A <b>cube</b> number: times itself, then times itself again. 2³ = 2&nbsp;×&nbsp;2&nbsp;×&nbsp;2&nbsp;=&nbsp;8.</p>
+<p>The little 2 never means ×&nbsp;2. The little 3 never means ×&nbsp;3.</p>
+</div>
+<p class="lead">Fill in the missing members of the square team to&nbsp;100.</p>
+</div>
+<div class="q team"><div class="team-row"><div class="tm"><span class="tm-n">1</span><span class="tm-fact">1&nbsp;×&nbsp;1</span></div><div class="tm"><span class="tm-n">4</span><span class="tm-fact">2&nbsp;×&nbsp;2</span></div><div class="tm miss"><input class="hw-field num gapn team-in" data-k="sq1" data-label="Square team: 3 × 3" aria-label="Square team: 3 × 3" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="tm-fact">3&nbsp;×&nbsp;3</span></div><div class="tm"><span class="tm-n">16</span><span class="tm-fact">4&nbsp;×&nbsp;4</span></div><div class="tm"><span class="tm-n">25</span><span class="tm-fact">5&nbsp;×&nbsp;5</span></div><div class="tm"><span class="tm-n">36</span><span class="tm-fact">6&nbsp;×&nbsp;6</span></div><div class="tm miss"><input class="hw-field num gapn team-in" data-k="sq2" data-label="Square team: 7 × 7" aria-label="Square team: 7 × 7" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="tm-fact">7&nbsp;×&nbsp;7</span></div><div class="tm miss"><input class="hw-field num gapn team-in" data-k="sq3" data-label="Square team: 8 × 8" aria-label="Square team: 8 × 8" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="tm-fact">8&nbsp;×&nbsp;8</span></div><div class="tm miss"><input class="hw-field num gapn team-in" data-k="sq4" data-label="Square team: 9 × 9" aria-label="Square team: 9 × 9" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="tm-fact">9&nbsp;×&nbsp;9</span></div><div class="tm"><span class="tm-n">100</span><span class="tm-fact">10&nbsp;×&nbsp;10</span></div></div></div>
+
+<div class="task gapt">
+<div class="model"><p class="ex-title">Worked example</p>
+<div class="mrow"><span class="given-words">“Five squared”</span><span class="arr">→</span><span class="nw"><span class="filled">5</span><span class="pow">²</span>&nbsp;=&nbsp;<span class="filled">25</span></span></div>
+<div class="mrow"><span class="given">3²</span><span class="arr">→</span><span class="nw"><span class="filled">three squared</span>&nbsp;=&nbsp;<span class="filled">9</span></span></div>
+</div>
+<p class="lead">Write it the other way. Then work it&nbsp;out.</p>
+</div>
+<div class="q"><div class="q-top"><div class="q-num">1</div><div class="bw"><span class="given-words">“Seven squared”</span><span class="arr">→</span><span class="eqrow"><input class="hw-field num gapn" data-k="bw1" data-label="B1. Seven squared: the short way" aria-label="B1. Seven squared: the short way" autocomplete="off" inputmode="numeric" spellcheck="false"><span class="pow">²</span>&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="bw2" data-label="B1. Seven squared: the answer" aria-label="B1. Seven squared: the answer" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div></div><div class="q"><div class="q-top"><div class="q-num">2</div><div class="bw"><span class="given">9²</span><span class="arr">→</span><span class="choice-wrap is-empty"><select class="hw-field wsel" data-k="bw3" data-label="B2. 9² in words" aria-label="B2. 9² in words"><option value="">Choose</option><option value="nine times two">nine times two</option><option value="nine squared">nine squared</option><option value="nine cubed">nine cubed</option></select><span class="circle-opt">nine times two / nine squared / nine cubed</span></span><span class="eqrow">&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="bw4" data-label="B2. 9²: the answer" aria-label="B2. 9²: the answer" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div></div>
+
+<div class="task gapt">
+<div class="model"><p class="ex-title">Worked example</p>
+<div class="mrow sd-model"><span class="nw"><span class="given">6²</span>&nbsp;=&nbsp;<span class="filled">36</span></span><span class="nw"><span class="given">6&nbsp;×&nbsp;2</span>&nbsp;=&nbsp;<span class="filled">12</span></span><span class="nw"><span class="lab">Bigger</span>&nbsp;<span class="filled">6²</span></span></div>
+</div>
+<p class="lead"><span class="screen-only">Work out both. Then tap the bigger one, or&nbsp;Same.</span><span class="print-only">Work out both. Then circle the bigger one, or&nbsp;Same.</span></p>
+</div>
+<div class="q sdq"><div class="q-top"><div class="q-num">1</div><div class="sd-body"><div class="sd-pair"><span class="eqrow"><span class="given">8²</span>&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="sd1a" data-label="D1. 8²" aria-label="D1. 8²" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="eqrow"><span class="given">8&nbsp;×&nbsp;2</span>&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="sd1b" data-label="D1. 8 × 2" aria-label="D1. 8 × 2" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="sd-pick"><span class="lab">Bigger</span><div class="tool-pick" data-store="sd1c" data-field="sd1c"><button type="button" class="tool-opt" data-v="squared">8²</button><button type="button" class="tool-opt" data-v="doubled">8&nbsp;×&nbsp;2</button><button type="button" class="tool-opt" data-v="same">Same</button></div><div class="store"><select data-k="sd1c" data-label="D1. Bigger: 8² or 8 × 2" tabindex="-1" class="hw-field"><option value=""></option><option value="squared">squared</option><option value="doubled">doubled</option><option value="same">same</option></select></div></div></div></div></div><div class="q sdq"><div class="q-top"><div class="q-num">2</div><div class="sd-body"><div class="sd-pair"><span class="eqrow"><span class="given">2²</span>&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="sd2a" data-label="D2. 2²" aria-label="D2. 2²" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="eqrow"><span class="given">2&nbsp;×&nbsp;2</span>&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="sd2b" data-label="D2. 2 × 2" aria-label="D2. 2 × 2" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="sd-pick"><span class="lab">Bigger</span><div class="tool-pick" data-store="sd2c" data-field="sd2c"><button type="button" class="tool-opt" data-v="squared">2²</button><button type="button" class="tool-opt" data-v="doubled">2&nbsp;×&nbsp;2</button><button type="button" class="tool-opt" data-v="same">Same</button></div><div class="store"><select data-k="sd2c" data-label="D2. Bigger: 2² or 2 × 2" tabindex="-1" class="hw-field"><option value=""></option><option value="squared">squared</option><option value="doubled">doubled</option><option value="same">same</option></select></div></div></div></div></div><div class="q sdq"><div class="q-top"><div class="q-num">3</div><div class="sd-body"><div class="sd-pair"><span class="eqrow"><span class="given">1²</span>&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="sd3a" data-label="D3. 1²" aria-label="D3. 1²" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="eqrow"><span class="given">1&nbsp;×&nbsp;2</span>&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="sd3b" data-label="D3. 1 × 2" aria-label="D3. 1 × 2" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="sd-pick"><span class="lab">Bigger</span><div class="tool-pick" data-store="sd3c" data-field="sd3c"><button type="button" class="tool-opt" data-v="squared">1²</button><button type="button" class="tool-opt" data-v="doubled">1&nbsp;×&nbsp;2</button><button type="button" class="tool-opt" data-v="same">Same</button></div><div class="store"><select data-k="sd3c" data-label="D3. Bigger: 1² or 1 × 2" tabindex="-1" class="hw-field"><option value=""></option><option value="squared">squared</option><option value="doubled">doubled</option><option value="same">same</option></select></div></div></div></div></div>
+
+<div class="task gapt">
+<div class="model"><p class="ex-title">Worked example</p>
+<div class="cube-body cube-model"><div class="cube-n">2³</div><div class="steps"><div class="step"><span class="lab">Step 1</span><span class="eqrow">2&nbsp;×&nbsp;2&nbsp;=&nbsp;<span class="filled">4</span></span></div><div class="step"><span class="lab">Step 2</span><span class="eqrow"><span class="filled">4</span>&nbsp;×&nbsp;2&nbsp;=&nbsp;<span class="filled">8</span></span></div><div class="step so"><span class="eqrow">So 2³&nbsp;=&nbsp;<span class="filled">8</span></span></div></div></div>
+</div>
+<p class="lead">Write both steps for 1 and 2. In 3 and 4, find the number that was&nbsp;cubed.</p>
+</div>
+<div class="q cq"><div class="q-top"><div class="q-num">1</div><div class="cube-body"><div class="cube-n">6³</div><div class="steps"><div class="step"><span class="lab">Step 1</span><span class="eqrow">6&nbsp;×&nbsp;6&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="c1a" data-label="C1. 6³ step 1: 6 × 6" aria-label="C1. 6³ step 1: 6 × 6" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step"><span class="lab">Step 2</span><span class="eqrow"><span class="mirror" data-from="c1a"></span>&nbsp;×&nbsp;6&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="c1b" data-label="C1. 6³ step 2: × 6 again" aria-label="C1. 6³ step 2: × 6 again" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step so"><span class="eqrow">So 6³&nbsp;=&nbsp;<span class="mirror" data-from="c1b"></span></span></div></div></div></div></div><div class="q cq"><div class="q-top"><div class="q-num">2</div><div class="cube-body"><div class="cube-n">5³</div><div class="steps"><div class="step"><span class="lab">Step 1</span><span class="eqrow">5&nbsp;×&nbsp;5&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="c2a" data-label="C2. 5³ step 1: 5 × 5" aria-label="C2. 5³ step 1: 5 × 5" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step help"><span class="lab">Help</span><span class="eqrow">25&nbsp;×&nbsp;4&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="c2h" data-label="C2. Help: 25 × 4" aria-label="C2. Help: 25 × 4" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step"><span class="lab">Step 2</span><span class="eqrow"><span class="mirror" data-from="c2a"></span>&nbsp;×&nbsp;5&nbsp;=&nbsp;<span class="mirror" data-from="c2h"></span>&nbsp;+&nbsp;25&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="c2b" data-label="C2. 5³ step 2: × 5 again" aria-label="C2. 5³ step 2: × 5 again" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step so"><span class="eqrow">So 5³&nbsp;=&nbsp;<span class="mirror" data-from="c2b"></span></span></div></div></div></div></div><div class="q cq"><div class="q-top"><div class="q-num">3</div><div class="c27"><p class="prompt wsent">64 is <input class="hw-field num gapn" data-k="c3" data-label="C3. 64 is ___ cubed" aria-label="C3. 64 is ___ cubed" autocomplete="off" inputmode="numeric" spellcheck="false"> cubed.</p><p class="prompt mir-line">So 64&nbsp;=&nbsp;<span class="mirror" data-from="c3"></span>&nbsp;×&nbsp;<span class="mirror" data-from="c3"></span>&nbsp;×&nbsp;<span class="mirror" data-from="c3"></span></p></div></div></div><div class="q cq"><div class="q-top"><div class="q-num">4</div><div class="c27"><p class="prompt wsent">1,000 is <input class="hw-field num gapn" data-k="c4" data-label="C4. 1,000 is ___ cubed" aria-label="C4. 1,000 is ___ cubed" autocomplete="off" inputmode="numeric" spellcheck="false"> cubed.</p><p class="prompt mir-line">So 1,000&nbsp;=&nbsp;<span class="mirror" data-from="c4"></span>&nbsp;×&nbsp;<span class="mirror" data-from="c4"></span>&nbsp;×&nbsp;<span class="mirror" data-from="c4"></span></p></div></div></div>
+</div>
+
+<div class="section maths tools">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Compensate or same difference?</span></div>
+<div class="task"><div class="task-label">Remember</div>
+<div class="remember method-summary">
+<div class="method-row"><b>Compensate<small>change ONE number, then give it back</small></b><span class="method-original">23,600 + 19,998</span><span class="method-arrow">→</span><span>23,600 + 20,000 − 2 = <strong>43,598</strong></span></div>
+<div class="method-row"><b>Same difference<small>change BOTH numbers by the same amount</small></b><span class="method-original">46,003 − 18,997</span><span class="method-arrow">→</span><span>46,006 − 19,000 = <strong>27,006</strong></span></div>
+</div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Work out the answer, then tap the tool you&nbsp;used.</span><span class="print-only">Work out the answer, then circle the tool you&nbsp;used.</span></p>
+</div>
+<div class="tool-list"><div class="q tool-row"><div class="q-num">1</div><span class="calc">31,500 + 28,997&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="t1n" data-label="T1. 31,500 + 28,997 =" aria-label="T1. 31,500 + 28,997 =" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="tool-pick" data-store="t1" data-field="t1"><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t1" data-label="T1. Tool for 31,500 + 28,997" tabindex="-1" class="hw-field"><option value=""></option><option value="compensate">compensate</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><div class="q-num">2</div><span class="calc">64,002 − 29,995&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="t2n" data-label="T2. 64,002 − 29,995 =" aria-label="T2. 64,002 − 29,995 =" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="tool-pick" data-store="t2" data-field="t2"><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t2" data-label="T2. Tool for 64,002 − 29,995" tabindex="-1" class="hw-field"><option value=""></option><option value="compensate">compensate</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><div class="q-num">3</div><span class="calc">83,004 − 47,998&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="t3n" data-label="T3. 83,004 − 47,998 =" aria-label="T3. 83,004 − 47,998 =" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="tool-pick" data-store="t3" data-field="t3"><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t3" data-label="T3. Tool for 83,004 − 47,998" tabindex="-1" class="hw-field"><option value=""></option><option value="compensate">compensate</option><option value="same difference">same difference</option></select></div></div><div class="q tool-row"><div class="q-num">4</div><span class="calc">17,300 + 45,999&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="t4n" data-label="T4. 17,300 + 45,999 =" aria-label="T4. 17,300 + 45,999 =" autocomplete="off" inputmode="numeric" spellcheck="false"></span><div class="tool-pick" data-store="t4" data-field="t4"><button type="button" class="tool-opt" data-v="compensate">compensate</button><button type="button" class="tool-opt" data-v="same difference">same difference</button></div><div class="store"><select data-k="t4" data-label="T4. Tool for 17,300 + 45,999" tabindex="-1" class="hw-field"><option value=""></option><option value="compensate">compensate</option><option value="same difference">same difference</option></select></div></div></div>
+</div>
+
+<script>
+/* An empty menu prints as words to circle; a chosen one prints as it is. */
+(function () {
+  function sync() {
+    document.querySelectorAll('.choice-wrap').forEach(function (w) {
+      var s = w.querySelector('select'); w.classList.toggle('is-empty', !(s && s.value));
+    });
+  }
+  document.addEventListener('change', sync, true);
+  window.addEventListener('beforeprint', sync);
+  window.addEventListener('load', function () { sync(); setTimeout(sync, 500); setTimeout(sync, 1500); });
+  sync();
+})();
+
+/* Number boxes: Clara may write k for thousand (Dasha, 24 Oct 2026). */
+(function () {
+  function tidy(el) {
+    var v = String(el.value || '').trim();
+    var m = v.match(/^(\d+(?:\.\d+)?)\s*k$/i);
+    if (m) v = Math.round(parseFloat(m[1]) * 1000).toLocaleString('en-GB');
+    if (v !== el.value) { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); }
+  }
+  document.addEventListener('change', function (e) { if (e.target.classList && e.target.classList.contains('num')) tidy(e.target); }, true);
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.hw-send')) [].forEach.call(document.querySelectorAll('input.num'), tidy);
+  }, true);
+})();
+
+function claraStore(k) { return document.querySelector(".store [data-k='" + k + "']"); }
+function claraSet(s, v) {
+  if (!s || s.value === v) return;
+  s.value = v;
+  s.dispatchEvent(new Event('input', { bubbles: true }));
+  s.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* One-choice buttons (bigger one, tool): tap to choose, tap again to clear. The answer lives in a
+   hidden select (data-k), so hw.js saves, restores, sends and marks it on the data-field twin. */
+(function () {
+  function init() {
+    document.querySelectorAll('.tool-pick[data-store]').forEach(function (g) {
+      var s = claraStore(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.tool-opt'));
+      function paint() { btns.forEach(function (b) { var on = s.value === b.dataset.v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }); }
+      paint(); s.addEventListener('change', paint);
+      btns.forEach(function (b) { b.addEventListener('click', function () { claraSet(s, s.value === b.dataset.v ? '' : b.dataset.v); paint(); }); });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* Odd ones out: tap exactly two words. Both are kept in a hidden input as «word, word»
+   (key type set, any order). A third tap does nothing and shows a short note. Buttons only:
+   nothing moves under a finger. */
+(function () {
+  function init() {
+    document.querySelectorAll('.word-pick[data-store]').forEach(function (g) {
+      var s = claraStore(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.word-opt'));
+      var hint = g.parentNode.querySelector('.word-hint');
+      function chosen() { return String(s.value || '').split(',').map(function (x) { return x.trim(); }).filter(String); }
+      function paint() {
+        var c = chosen();
+        btns.forEach(function (b) { var on = c.indexOf(b.dataset.v) >= 0; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      }
+      paint(); s.addEventListener('change', paint);
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var c = chosen(), i = c.indexOf(b.dataset.v);
+          if (i >= 0) c.splice(i, 1);
+          else if (c.length >= 2) { if (hint) { hint.hidden = false; setTimeout(function () { hint.hidden = true; }, 2600); } return; }
+          else c.push(b.dataset.v);
+          var order = btns.map(function (x) { return x.dataset.v; });
+          c.sort(function (a, z) { return order.indexOf(a) - order.indexOf(z); });
+          if (hint) hint.hidden = true;
+          claraSet(s, c.join(', ')); paint();
+        });
+      });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* Mirrors (Dasha, 1 Nov 2026): her own earlier entry appears, read-only, in the next step.
+   They follow edits and clearing, and never show the right answer. */
+(function () {
+  function upd() {
+    document.querySelectorAll('.mirror[data-from]').forEach(function (m) {
+      var src = document.querySelector("input[data-k='" + m.dataset.from + "']");
+      m.textContent = src ? String(src.value || '').trim() : '';
+    });
+  }
+  document.addEventListener('input', upd, true);
+  document.addEventListener('change', upd, true);
+  window.addEventListener('beforeprint', upd);
+  window.addEventListener('load', function () { upd(); setTimeout(upd, 500); setTimeout(upd, 1500); });
+  upd();
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJvMSI6IHsidCI6ICJzZXQiLCAiYSI6ICJwbHVtYmVyLCBidWlsZGVyIn0sICJsMSI6IHsidCI6ICJleGFjdCIsICJhIjogInRvb2xzIn0sICJvMiI6IHsidCI6ICJzZXQiLCAiYSI6ICJ0b2FzdCwgamFtIn0sICJsMiI6IHsidCI6ICJleGFjdCIsICJhIjogIndvcmRzIHRoYXQgbWVhbiBhIHRlc3QifSwgIm8zIjogeyJ0IjogInNldCIsICJhIjogImtpbmQsIGdlbnRsZSJ9LCAibDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3b3JkcyB0aGF0IG1lYW4gcnVkZSJ9LCAibzQiOiB7InQiOiAic2V0IiwgImEiOiAiYmFrZXJ5LCBsaWJyYXJ5In0sICJsNCI6IHsidCI6ICJleGFjdCIsICJhIjogInRoaW5ncyBhdCBhIGNpcmN1cyJ9LCAibzUiOiB7InQiOiAic2V0IiwgImEiOiAiY2xlYXIsIHNwb3RsZXNzIn0sICJsNSI6IHsidCI6ICJleGFjdCIsICJhIjogIndvcmRzIHRoYXQgbWVhbiBkaXJ0eSJ9LCAibzYiOiB7InQiOiAic2V0IiwgImEiOiAiY2FsbSwgcXVpZXQifSwgImw2IjogeyJ0IjogImV4YWN0IiwgImEiOiAid29yZHMgdGhhdCBtZWFuIG91dCBvZiBjb250cm9sIn0sICJvNyI6IHsidCI6ICJzZXQiLCAiYSI6ICJuZXN0LCBmZWF0aGVyIn0sICJsNyI6IHsidCI6ICJleGFjdCIsICJhIjogImtpbmRzIG9mIGJpcmQifSwgIm84IjogeyJ0IjogInNldCIsICJhIjogInNvdXAsIHNhbGFkIn0sICJsOCI6IHsidCI6ICJleGFjdCIsICJhIjogInZlZ2V0YWJsZXMifSwgInNxMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjkifSwgInNxMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQ5In0sICJzcTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NCJ9LCAic3E0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiODEifSwgImJ3MyI6IHsidCI6ICJleGFjdCIsICJhIjogIm5pbmUgc3F1YXJlZCJ9LCAiYncxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiYncyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDkifSwgImJ3NCI6IHsidCI6ICJleGFjdCIsICJhIjogIjgxIn0sICJzZDFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQifSwgInNkMWIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxNiJ9LCAic2QxYyI6IHsidCI6ICJleGFjdCIsICJhIjogInNxdWFyZWQifSwgInNkMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0In0sICJzZDJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAic2QyYyI6IHsidCI6ICJleGFjdCIsICJhIjogInNhbWUifSwgInNkM2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxIn0sICJzZDNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAic2QzYyI6IHsidCI6ICJleGFjdCIsICJhIjogImRvdWJsZWQifSwgImMyYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjI1In0sICJjMmgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMDAifSwgImMyYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjEyNSJ9LCAiYzFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzYifSwgImMxYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjIxNiJ9LCAiYzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0In0sICJjNCI6IHsidCI6ICJleGFjdCIsICJhIjogIjEwIn0sICJ0MW4iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MDQ5NyJ9LCAidDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wZW5zYXRlIn0sICJ0Mm4iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzNDAwNyJ9LCAidDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYW1lIGRpZmZlcmVuY2UiLCAiZyI6ICJ0Mi1vayJ9LCAidDJfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBlbnNhdGUiLCAiZyI6ICJ0Mi1vayJ9LCAidDNuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzUwMDYifSwgInQzIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBkaWZmZXJlbmNlIiwgImciOiAidDMtb2sifSwgInQzX2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb21wZW5zYXRlIiwgImciOiAidDMtb2sifSwgInQ0biI6IHsidCI6ICJleGFjdCIsICJhIjogIjYzMjk5In0sICJ0NCI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbXBlbnNhdGUifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

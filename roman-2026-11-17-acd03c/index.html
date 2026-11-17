@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 17 November 2026</title>
+<!-- Lesson of 17 Nov 2026 (lesson 17, «Is it worth the effort?», cards 1-4). About 20 min.
+     Part 1 = six situations, each naming ONE proposed action; he judges it: worth doing, or no point (+ -ing), with a reason
+       (expected W, N, N, W, N, N; open key, the decision is free).
+     Part 2 = tap-to-place tiles (met on the 4 Nov sheet): one shared bank of 14 verb forms (each verb twice: right form + his typical wrong form),
+       tap a form, then tap its gap. Grammar words: would you mind, let's, no point in, ended up, I'd rather, instead of, worth.
+       Correct tiles sit at bank positions 3, 2, 6, 13, 7, 12, 10 for items 1-7.
+     Part 3 = eight 17 Nov words in gap sentences with a Russian cue, form changed to fit (all under 17 November on his vocab page).
+     Answers live only in the private key. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .prompt, li { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+  }
+  .task.keep { page-break-inside: avoid; break-inside: avoid; }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; }
+  .note a { color: #31594b; }
+  .nb { white-space: nowrap; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .ln { display: block; }
+  .model .mtile { display: inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 0.9em; font-weight: 600; color: #1f3f35;
+    border: 1.5px solid #31594b; border-radius: 7px; padding: 0 8px; background: #fff; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 7px; }
+  .prompt { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 2.1; margin-bottom: 0; }
+  .cue { color: #626a62; }
+  .gc { white-space: nowrap; }
+
+  /* Part 1: the situation on the left, his sentence on the right (stacked on a phone) */
+  .pairq { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 28px; align-items: start; }
+  .sit { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; padding-top: 4px; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  textarea.resp { resize: vertical; min-height: 66px; }
+
+  /* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, restyled to his palette) ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 2px dashed #b9c6bb; border-radius: 10px; min-height: 64px; margin: 6px 0 12px; background: #fbfaf6; }
+  .tp-tile {
+    font: inherit; font-size: 16px; font-weight: 600; color: #1f3f35; background: #fff;
+    border: 2px solid #8fae9f; border-radius: 9px; padding: 6px 14px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.35;
+    touch-action: manipulation;            /* a touch scrolls the page; never "none" */
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: #e5efe8; border-color: #31594b; box-shadow: 0 0 0 3px #c9dccf; }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { border: 2px solid #b9c6bb; border-radius: 9px; padding: 3px; min-height: 48px; cursor: pointer; background: #fffefa; }
+  .tp-zone.ready { border-color: #6f9583; background: #f3f8f4; }
+  .tp-zone.over { border-color: #31594b; background: #e5efe8; }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; align-items: center; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== end TAP-PLACE CSS ===== */
+
+  /* the gap sits inside the sentence */
+  .prompt .tp-zone { display: inline-flex; vertical-align: middle; min-width: 7.5em; margin: 0 4px; }
+  .prompt .tp-zone .tp-slot { min-height: 38px; }
+  .prompt .tp-zone .tp-tile { min-height: 38px; padding: 3px 12px; }
+  .prompt .tp-zone .tp-tile { color: #1d4ed8; border-color: #1d4ed8; }
+  .prompt .tp-zone:has(.tp-tile) { min-width: 0; }
+  .tp-tile { white-space: nowrap; }
+  .prompt .tp-zone .tp-slot { flex-wrap: nowrap; }
+  .prompt .tp-zone.endz { margin-right: 1px; }
+  .tp-zone { -webkit-tap-highlight-color: transparent; }
+  .prt { display: none; }
+
+  /* Part 3: the word is typed inside the sentence */
+  input.vgap { display: inline-block; font: inherit; font-size: 16px; margin: 0 4px; padding: 2px 8px; vertical-align: baseline;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa; }
+  input.vgap.s { width: 8em; }
+  input.vgap.m { width: 10.5em; }
+  input.vgap.l { width: 13em; }
+  input.vgap.xl { width: 16em; }
+
+  @media (min-width: 760px) {
+    .pairq { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); }
+  }
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+    .gc { white-space: normal; }
+  }
+
+  body.hw-pdf-mode .tp-tile { box-shadow: none; min-height: 0; padding: 2px 10px; }
+  body.hw-pdf-mode .tp-zone, body.hw-pdf-mode .tp-slot { min-height: 0; }
+
+  @media print {
+    html, body { background: #fff; }
+    body { font-size: 12px; line-height: 1.3; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 2px; }
+    .pairq { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 3px 16px; }
+    .sit { font-size: 12px; padding-top: 1px; }
+    .resp { font-size: 11.5px; padding: 3px 8px; border-width: 1px; }
+    textarea.resp { min-height: 40px; height: 40px; resize: none; }
+    textarea.resp::placeholder { color: transparent; }
+    .tp-bank { padding: 5px 8px; gap: 5px; min-height: 0; margin: 3px 0 5px; border-width: 1px; }
+    .tp-tile { font-size: 11.5px; padding: 1px 8px; min-height: 0; border-width: 1px; }
+    .prompt .tp-zone { min-width: 6.5em; min-height: 20px; padding: 1px; border-width: 1px; }
+    .prompt .tp-zone .tp-slot, .prompt .tp-zone .tp-tile { min-height: 0; }
+    .prompt .tp-zone .tp-tile { padding: 0 6px; }
+    .prompt { font-size: 12.5px; line-height: 1.75; }
+    input.vgap { font-size: 11.5px; height: 19px; padding: 0 4px; border-width: 1px; }
+    input.vgap.s { width: 6em; }
+    input.vgap.m { width: 9em; }
+    input.vgap.l { width: 11em; }
+    input.vgap.xl { width: 14em; }
+    input.vgap::placeholder { color: transparent; }
+    .scr { display: none; }
+    .prt { display: inline; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .model .mtile { border-width:2px; padding:0 12px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:18px 0; }
+  .qnum { font-size:22px; padding-top:10px; }
+  .pairq { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 40px; }
+  .sit { font-size:29px; line-height:1.45; padding-top:6px; }
+  .resp { font-size:26px; padding:10px 16px; border-width:2px; }
+  textarea.resp { min-height:104px; }
+  .tp-bank { position: sticky; top: 0; z-index: 5; gap: 12px 14px; padding: 16px 18px; border-width: 2px; margin: 8px 0 16px; }
+  .tp-tile { font-size: 26px; padding: 8px 20px; min-height: 60px; }
+  .prompt .tp-zone { min-width: 7em; min-height: 60px; margin: 0 8px; }
+  .prompt .tp-zone .tp-slot { min-height: 52px; }
+  .prompt .tp-zone .tp-tile { min-height: 52px; padding: 4px 16px; }
+  .prompt { font-size:29px; line-height:2; }
+  input.vgap { font-size:26px; min-height:54px; padding:4px 12px; border-width:2px; }
+}
+/* hw.css sets div/textarea field heights; keep the sentence boxes two lines tall on the live page. */
+@media screen { .task textarea.resp.hw-field { min-height:66px !important; } }
+@media screen and (min-width:900px) { .task textarea.resp.hw-field { min-height:104px !important; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="Homework 2026-11-17" data-sheet-id="roman-2026-11-17-homework">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 20&nbsp;minutes</span></div>
+    <h1>Worth it, or no point?</h1>
+  </header>
+
+  <div class="task">
+    <h2>1. Your decision</h2>
+    <div class="do">Is it worth doing, or is there no point? Write one sentence and give a&nbsp;reason.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">Your friend wants to buy museum tickets online today. You're going on Sunday, and entry is free on Sundays. Should you buy them now? &rarr;</span>
+      <span class="ln"><b>There's no point in buying</b> tickets: entry is free on&nbsp;Sundays.</span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="pairq">
+        <p class="sit">You're driving to the station to catch a train to the airport. Parking at the station costs 12 euros a day. There's free parking 15 minutes' walk away, and your suitcase is heavy. Should you pay for parking at the&nbsp;station?</p>
+        <textarea class="hw-field resp" rows="2" data-k="d1" data-label="1. Driving to the station for the airport train: station parking 12 euros a day, free parking 15 minutes' walk away, heavy suitcase. Should you pay for parking at the station?" aria-label="Decision 1" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="pairq">
+        <p class="sit">Your flight has been delayed by three hours. Your friend wants to leave for the airport right now. Should you leave&nbsp;now?</p>
+        <textarea class="hw-field resp" rows="2" data-k="d2" data-label="2. Flight delayed by three hours; a friend wants to leave for the airport right now. Should you leave now?" aria-label="Decision 2" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div class="pairq">
+        <p class="sit">It's going to rain all weekend. Should you take the car to the car wash on&nbsp;Saturday?</p>
+        <textarea class="hw-field resp" rows="2" data-k="d3" data-label="3. Rain all weekend. Should you take the car to the car wash on Saturday?" aria-label="Decision 3" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <div class="pairq">
+        <p class="sit">You're trying out a new planning app. The free version works well, but the paid version, 6 euros a month, would save you about two hours every week. Should you pay for the paid&nbsp;version?</p>
+        <textarea class="hw-field resp" rows="2" data-k="d4" data-label="4. Trying a planning app: the free version works, the paid version (6 euros a month) would save about two hours a week. Should you pay for the paid version?" aria-label="Decision 4" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <div class="pairq">
+        <p class="sit">A colleague suggests a negotiation course for your next meetings with clients: two evenings a week from January, first lesson free. Should you sign up for the whole course&nbsp;now?</p>
+        <textarea class="hw-field resp" rows="2" data-k="d5" data-label="5. A colleague suggests a negotiation course: two evenings a week from January, first lesson free. Should you sign up for the whole course now?" aria-label="Decision 5" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <div class="pairq">
+        <p class="sit">You're at a two-day conference. Breakfast at the hotel costs 25 euros, and the café next door does a good breakfast for 8 euros. Your colleague suggests having breakfast at the hotel. Should&nbsp;you?</p>
+        <textarea class="hw-field resp" rows="2" data-k="d6" data-label="6. Two-day conference: hotel breakfast 25 euros, a good café next door 8 euros. A colleague suggests the hotel breakfast. Should you?" aria-label="Decision 6" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="task">
+    <h2>2. The verb after the grammar word</h2>
+    <div class="do">Put the right form of the verb in each&nbsp;gap.</div>
+    <p class="note"><span class="scr">Tap a word, then tap its gap. Tap a word in a gap to send it&nbsp;back.</span><span class="prt">Write it from the words&nbsp;above.</span></p>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">Could you <span class="mtile">send</span> me the address, please?</span>
+    </div>
+
+    <div class="tp" id="forms">
+      <div class="tp-bank" aria-label="Verb forms">
+        <button type="button" class="tp-tile" data-value="to sleep">to sleep</button>
+        <button type="button" class="tp-tile" data-value="take">take</button>
+        <button type="button" class="tp-tile" data-value="closing">closing</button>
+        <button type="button" class="tp-tile" data-value="to visit">to visit</button>
+        <button type="button" class="tp-tile" data-value="wait">wait</button>
+        <button type="button" class="tp-tile" data-value="calling">calling</button>
+        <button type="button" class="tp-tile" data-value="stay">stay</button>
+        <button type="button" class="tp-tile" data-value="close">close</button>
+        <button type="button" class="tp-tile" data-value="taking">taking</button>
+        <button type="button" class="tp-tile" data-value="visiting">visiting</button>
+        <button type="button" class="tp-tile" data-value="to call">to call</button>
+        <button type="button" class="tp-tile" data-value="waiting">waiting</button>
+        <button type="button" class="tp-tile" data-value="sleeping">sleeping</button>
+        <button type="button" class="tp-tile" data-value="to stay">to stay</button>
+      </div>
+
+      <div class="q"><span class="qnum">1.</span>
+        <p class="prompt">It's freezing in here. Would you mind <span class="tp-zone" data-store="g1" data-field="g1"><span class="tp-slot"></span></span> the&nbsp;window?</p></div>
+
+      <div class="q"><span class="qnum">2.</span>
+        <p class="prompt">It's too late for the bus. Let's <span class="tp-zone" data-store="g2" data-field="g2"><span class="tp-slot"></span></span> a&nbsp;taxi.</p></div>
+
+      <div class="q"><span class="qnum">3.</span>
+        <p class="prompt">His plane lands at ten, so there's no point in <span class="tp-zone" data-store="g3" data-field="g3"><span class="tp-slot"></span></span> him&nbsp;now.</p></div>
+
+      <div class="q"><span class="qnum">4.</span>
+        <p class="prompt">I planned to read on the train, but I ended up <span class="tp-zone" data-store="g4" data-field="g4"><span class="tp-slot"></span></span> all the&nbsp;way.</p></div>
+
+      <div class="q"><span class="qnum">5.</span>
+        <p class="prompt">I'm really tired tonight. I'd rather <span class="tp-zone" data-store="g5" data-field="g5"><span class="tp-slot"></span></span> at&nbsp;home.</p></div>
+
+      <div class="q"><span class="qnum">6.</span>
+        <p class="prompt">The bus was forty minutes late, so we walked home instead of <span class="gc"><span class="tp-zone endz" data-store="g6" data-field="g6"><span class="tp-slot"></span></span>.</span></p></div>
+
+      <div class="q"><span class="qnum">7.</span>
+        <p class="prompt">If you have a free afternoon in Porto, the old market is worth <span class="gc"><span class="tp-zone endz" data-store="g7" data-field="g7"><span class="tp-slot"></span></span>.</span></p></div>
+
+      <div class="tp-stores" hidden>
+        <select data-k="g1" data-label="1. It's freezing in here. Would you mind ___ the window?" class="hw-field"><option value=""></option><option>to sleep</option><option>take</option><option>closing</option><option>to visit</option><option>wait</option><option>calling</option><option>stay</option><option>close</option><option>taking</option><option>visiting</option><option>to call</option><option>waiting</option><option>sleeping</option><option>to stay</option></select>
+        <select data-k="g2" data-label="2. It's too late for the bus. Let's ___ a taxi." class="hw-field"><option value=""></option><option>to sleep</option><option>take</option><option>closing</option><option>to visit</option><option>wait</option><option>calling</option><option>stay</option><option>close</option><option>taking</option><option>visiting</option><option>to call</option><option>waiting</option><option>sleeping</option><option>to stay</option></select>
+        <select data-k="g3" data-label="3. His plane lands at ten, so there's no point in ___ him now." class="hw-field"><option value=""></option><option>to sleep</option><option>take</option><option>closing</option><option>to visit</option><option>wait</option><option>calling</option><option>stay</option><option>close</option><option>taking</option><option>visiting</option><option>to call</option><option>waiting</option><option>sleeping</option><option>to stay</option></select>
+        <select data-k="g4" data-label="4. I planned to read on the train, but I ended up ___ all the way." class="hw-field"><option value=""></option><option>to sleep</option><option>take</option><option>closing</option><option>to visit</option><option>wait</option><option>calling</option><option>stay</option><option>close</option><option>taking</option><option>visiting</option><option>to call</option><option>waiting</option><option>sleeping</option><option>to stay</option></select>
+        <select data-k="g5" data-label="5. I'm really tired tonight. I'd rather ___ at home." class="hw-field"><option value=""></option><option>to sleep</option><option>take</option><option>closing</option><option>to visit</option><option>wait</option><option>calling</option><option>stay</option><option>close</option><option>taking</option><option>visiting</option><option>to call</option><option>waiting</option><option>sleeping</option><option>to stay</option></select>
+        <select data-k="g6" data-label="6. The bus was forty minutes late, so we walked home instead of ___." class="hw-field"><option value=""></option><option>to sleep</option><option>take</option><option>closing</option><option>to visit</option><option>wait</option><option>calling</option><option>stay</option><option>close</option><option>taking</option><option>visiting</option><option>to call</option><option>waiting</option><option>sleeping</option><option>to stay</option></select>
+        <select data-k="g7" data-label="7. If you have a free afternoon in Porto, the old market is worth ___." class="hw-field"><option value=""></option><option>to sleep</option><option>take</option><option>closing</option><option>to visit</option><option>wait</option><option>calling</option><option>stay</option><option>close</option><option>taking</option><option>visiting</option><option>to call</option><option>waiting</option><option>sleeping</option><option>to stay</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="task keep">
+    <h2>3. Words from 17 November</h2>
+    <div class="do">Write the word or phrase in the right form for each&nbsp;gap.</div>
+    <p class="note">All these words are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 17&nbsp;November.</p>
+
+    <div class="q"><span class="qnum">1.</span>
+      <p class="prompt">My friend runs much faster than me, so on our Sunday runs I <span class="gc"><input class="hw-field vgap l" type="text" data-k="w1" data-label="1. My friend runs much faster than me, so on our Sunday runs I ___ (не поспеваю за ним)." aria-label="Gap 1" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(не поспеваю за&nbsp;ним).</span></span></p></div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <p class="prompt">My old phone <span class="gc"><input class="hw-field vgap m" type="text" data-k="w2" data-label="2. My old phone ___ (прослужил дольше) than any of the smartphones I've had since." aria-label="Gap 2" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(прослужил дольше)</span></span> than any of the smartphones I've had&nbsp;since.</p></div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <p class="prompt">On a video call I called a client by the wrong name, and I <span class="gc"><input class="hw-field vgap l" type="text" data-k="w3" data-label="3. On a video call I called a client by the wrong name, and I ___ (мне было очень неловко)." aria-label="Gap 3" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(мне было очень&nbsp;неловко).</span></span></p></div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <p class="prompt">They're building new flats on our street, so from seven in the morning the street is full of <span class="gc"><input class="hw-field vgap l" type="text" data-k="w4" data-label="4. They're building new flats on our street, so from seven in the morning the street is full of ___ (строительная техника)." aria-label="Gap 4" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(строительная&nbsp;техника).</span></span></p></div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <p class="prompt">Our hotel was next to <span class="gc"><input class="hw-field vgap l" type="text" data-k="w5" data-label="5. Our hotel was next to ___ (парк аттракционов), so we heard people screaming on the rides all evening." aria-label="Gap 5" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(парк аттракционов),</span></span> so we heard people screaming on the rides all&nbsp;evening.</p></div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <p class="prompt">The client has cancelled tomorrow's meeting, so <span class="gc"><input class="hw-field vgap xl" type="text" data-k="w6" data-label="6. The client has cancelled tomorrow's meeting, so ___ (нет смысла готовить) the slides tonight." aria-label="Gap 6" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(нет смысла готовить)</span></span> the slides&nbsp;tonight.</p></div>
+
+    <div class="q"><span class="qnum">7.</span>
+      <p class="prompt">The headphones cost 80 euros, but I'm on calls all day, so they were <span class="gc"><input class="hw-field vgap xl" type="text" data-k="w7" data-label="7. The headphones cost 80 euros, but I'm on calls all day, so they were ___ (стоили того, чтобы заплатить чуть больше)." aria-label="Gap 7" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(стоили того, чтобы заплатить чуть&nbsp;больше).</span></span></p></div>
+
+    <div class="q"><span class="qnum">8.</span>
+      <p class="prompt">The plumber can come tomorrow. Ask him: <span class="gc"><input class="hw-field vgap xl" type="text" data-k="w8" data-label="8. The plumber can come tomorrow. Ask him: ___ (во сколько вы сможете приехать) tomorrow?" aria-label="Gap 8" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(во сколько вы сможете приехать)</span> tomorrow?</span></p></div>
+  </div>
+
+</div>
+<script>
+/* ===== TAP-PLACE JS (copied verbatim from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJkMSI6IHsidCI6ICJvcGVuIn0sICJkMiI6IHsidCI6ICJvcGVuIn0sICJkMyI6IHsidCI6ICJvcGVuIn0sICJkNCI6IHsidCI6ICJvcGVuIn0sICJkNSI6IHsidCI6ICJvcGVuIn0sICJkNiI6IHsidCI6ICJvcGVuIn0sICJnMSI6IHsidCI6ICJleGFjdCIsICJhIjogImNsb3NpbmcifSwgImcyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGFrZSJ9LCAiZzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjYWxsaW5nIn0sICJnNCI6IHsidCI6ICJleGFjdCIsICJhIjogInNsZWVwaW5nIn0sICJnNSI6IHsidCI6ICJleGFjdCIsICJhIjogInN0YXkifSwgImc2IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2FpdGluZyJ9LCAiZzciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ2aXNpdGluZyJ9LCAidzEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjYW4ndCBrZWVwIHVwIHdpdGggaGltIiwgImciOiAidzEifSwgIncxX2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjYW7igJl0IGtlZXAgdXAgd2l0aCBoaW0iLCAiZyI6ICJ3MSJ9LCAidzFfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNhbm5vdCBrZWVwIHVwIHdpdGggaGltIiwgImciOiAidzEifSwgIncxX2FsdDMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjYW4gbm90IGtlZXAgdXAgd2l0aCBoaW0iLCAiZyI6ICJ3MSJ9LCAidzFfYWx0NCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNhbid0IGtlZXAgdXAiLCAiZyI6ICJ3MSJ9LCAidzFfYWx0NSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNhbuKAmXQga2VlcCB1cCIsICJnIjogIncxIn0sICJ3MV9hbHQ2IjogeyJ0IjogIndvcmRzIiwgImEiOiAiY2Fubm90IGtlZXAgdXAiLCAiZyI6ICJ3MSJ9LCAidzFfYWx0NyI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNhbiBuZXZlciBrZWVwIHVwIHdpdGggaGltIiwgImciOiAidzEifSwgIncxX2FsdDgiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjYW4ndCBrZWVwIHVwIHdpdGggbXkgZnJpZW5kIiwgImciOiAidzEifSwgIncxX2FsdDkiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjYW7igJl0IGtlZXAgdXAgd2l0aCBteSBmcmllbmQiLCAiZyI6ICJ3MSJ9LCAidzFfYWx0MTAiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjb3VsZG4ndCBrZWVwIHVwIHdpdGggaGltIiwgImciOiAidzEifSwgIncxX2FsdDExIjogeyJ0IjogIndvcmRzIiwgImEiOiAiY291bGRu4oCZdCBrZWVwIHVwIHdpdGggaGltIiwgImciOiAidzEifSwgIncyIjogeyJ0IjogIndvcmRzIiwgImEiOiAibGFzdGVkIGxvbmdlciIsICJnIjogIncyIn0sICJ3Ml9hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiaGFzIGxhc3RlZCBsb25nZXIiLCAiZyI6ICJ3MiJ9LCAidzJfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogImxhc3RlZCBtdWNoIGxvbmdlciIsICJnIjogIncyIn0sICJ3Ml9hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAibGFzdGVkIGEgbG90IGxvbmdlciIsICJnIjogIncyIn0sICJ3Ml9hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAibGFzdGVkIGZhciBsb25nZXIiLCAiZyI6ICJ3MiJ9LCAidzJfYWx0NSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImxhc3RlZCBsb25nZXIgdGhhbiIsICJnIjogIncyIn0sICJ3MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndhcyByZWFsbHkgZW1iYXJyYXNzZWQiLCAiZyI6ICJ3MyJ9LCAidzNfYWx0MSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndhcyB2ZXJ5IGVtYmFycmFzc2VkIiwgImciOiAidzMifSwgInczX2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3YXMgc28gZW1iYXJyYXNzZWQiLCAiZyI6ICJ3MyJ9LCAidzNfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogImZlbHQgcmVhbGx5IGVtYmFycmFzc2VkIiwgImciOiAidzMifSwgInczX2FsdDQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJmZWx0IHZlcnkgZW1iYXJyYXNzZWQiLCAiZyI6ICJ3MyJ9LCAidzNfYWx0NSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImZlbHQgc28gZW1iYXJyYXNzZWQiLCAiZyI6ICJ3MyJ9LCAidzNfYWx0NiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndhcyBlbWJhcnJhc3NlZCIsICJnIjogInczIn0sICJ3M19hbHQ3IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZmVsdCBlbWJhcnJhc3NlZCIsICJnIjogInczIn0sICJ3M19hbHQ4IjogeyJ0IjogIndvcmRzIiwgImEiOiAid2FzIHRlcnJpYmx5IGVtYmFycmFzc2VkIiwgImciOiAidzMifSwgInczX2FsdDkiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3YXMgcXVpdGUgZW1iYXJyYXNzZWQiLCAiZyI6ICJ3MyJ9LCAidzQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJjb25zdHJ1Y3Rpb24gdmVoaWNsZXMiLCAiZyI6ICJ3NCJ9LCAidzRfYWx0MSI6IHsidCI6ICJ3b3JkcyIsICJhIjogInRoZSBjb25zdHJ1Y3Rpb24gdmVoaWNsZXMiLCAiZyI6ICJ3NCJ9LCAidzRfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNvbnN0cnVjdGlvbiBtYWNoaW5lcyIsICJnIjogInc0In0sICJ3NF9hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiY29uc3RydWN0aW9uIG1hY2hpbmVyeSIsICJnIjogInc0In0sICJ3NF9hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiY29uc3RydWN0aW9uIGVxdWlwbWVudCIsICJnIjogInc0In0sICJ3NSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImFuIGFtdXNlbWVudCBwYXJrIiwgImciOiAidzUifSwgInc1X2FsdDEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGUgYW11c2VtZW50IHBhcmsiLCAiZyI6ICJ3NSJ9LCAidzVfYWx0MiI6IHsidCI6ICJ3b3JkcyIsICJhIjogImEgdGhlbWUgcGFyayIsICJnIjogInc1In0sICJ3NV9hbHQzIjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlIHRoZW1lIHBhcmsiLCAiZyI6ICJ3NSJ9LCAidzVfYWx0NCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImEgZnVuZmFpciIsICJnIjogInc1In0sICJ3NV9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiYW4gYW11c2VtZW50LXBhcmsiLCAiZyI6ICJ3NSJ9LCAidzYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGVyZSdzIG5vIHBvaW50IGluIHByZXBhcmluZyIsICJnIjogInc2In0sICJ3Nl9hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlcmXigJlzIG5vIHBvaW50IGluIHByZXBhcmluZyIsICJnIjogInc2In0sICJ3Nl9hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlcmUgaXMgbm8gcG9pbnQgaW4gcHJlcGFyaW5nIiwgImciOiAidzYifSwgInc2X2FsdDMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGVyZSdzIG5vIHBvaW50IHByZXBhcmluZyIsICJnIjogInc2In0sICJ3Nl9hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlcmXigJlzIG5vIHBvaW50IHByZXBhcmluZyIsICJnIjogInc2In0sICJ3Nl9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlcmUgaXMgbm8gcG9pbnQgcHJlcGFyaW5nIiwgImciOiAidzYifSwgInc2X2FsdDYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGVyZSdzIG5vIHBvaW50IGluIG1ha2luZyIsICJnIjogInc2In0sICJ3Nl9hbHQ3IjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlcmXigJlzIG5vIHBvaW50IGluIG1ha2luZyIsICJnIjogInc2In0sICJ3Nl9hbHQ4IjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlcmUgaXMgbm8gcG9pbnQgaW4gbWFraW5nIiwgImciOiAidzYifSwgInc2X2FsdDkiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGVyZSdzIG5vIHBvaW50IG1ha2luZyIsICJnIjogInc2In0sICJ3Nl9hbHQxMCI6IHsidCI6ICJ3b3JkcyIsICJhIjogInRoZXJl4oCZcyBubyBwb2ludCBtYWtpbmciLCAiZyI6ICJ3NiJ9LCAidzZfYWx0MTEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGVyZSBpcyBubyBwb2ludCBtYWtpbmciLCAiZyI6ICJ3NiJ9LCAidzZfYWx0MTIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJpdCdzIG5vdCB3b3J0aCBwcmVwYXJpbmciLCAiZyI6ICJ3NiJ9LCAidzZfYWx0MTMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJpdOKAmXMgbm90IHdvcnRoIHByZXBhcmluZyIsICJnIjogInc2In0sICJ3Nl9hbHQxNCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIml0IGlzbid0IHdvcnRoIHByZXBhcmluZyIsICJnIjogInc2In0sICJ3Nl9hbHQxNSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIml0IGlzbuKAmXQgd29ydGggcHJlcGFyaW5nIiwgImciOiAidzYifSwgInc2X2FsdDE2IjogeyJ0IjogIndvcmRzIiwgImEiOiAiaXQgaXMgbm90IHdvcnRoIHByZXBhcmluZyIsICJnIjogInc2In0sICJ3NyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndvcnRoIHBheWluZyBhIGxpdHRsZSBtb3JlIGZvciIsICJnIjogInc3In0sICJ3N19hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAid29ydGggcGF5aW5nIGEgYml0IG1vcmUgZm9yIiwgImciOiAidzcifSwgInc3X2FsdDIiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3b3J0aCBwYXlpbmcgYSBsaXR0bGUgZXh0cmEgZm9yIiwgImciOiAidzcifSwgInc3X2FsdDMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3b3J0aCBwYXlpbmcgYSBiaXQgZXh0cmEgZm9yIiwgImciOiAidzcifSwgInc3X2FsdDQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3b3J0aCBwYXlpbmcgbW9yZSBmb3IiLCAiZyI6ICJ3NyJ9LCAidzdfYWx0NSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndvcnRoIHBheWluZyBleHRyYSBmb3IiLCAiZyI6ICJ3NyJ9LCAidzdfYWx0NiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndlbGwgd29ydGggcGF5aW5nIGEgbGl0dGxlIG1vcmUgZm9yIiwgImciOiAidzcifSwgInc3X2FsdDciOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3b3J0aCB0aGUgZXh0cmEgbW9uZXkiLCAiZyI6ICJ3NyJ9LCAidzdfYWx0OCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndvcnRoIHRoZSBleHRyYSBjb3N0IiwgImciOiAidzcifSwgInc3X2FsdDkiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3b3J0aCBwYXlpbmcgYSBsaXR0bGUgYml0IG1vcmUgZm9yIiwgImciOiAidzcifSwgInc3X2FsdDEwIjogeyJ0IjogIndvcmRzIiwgImEiOiAid2VsbCB3b3J0aCBwYXlpbmcgYSBiaXQgbW9yZSBmb3IiLCAiZyI6ICJ3NyJ9LCAidzdfYWx0MTEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ3ZWxsIHdvcnRoIHBheWluZyBtb3JlIGZvciIsICJnIjogInc3In0sICJ3OCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjYW4geW91IGFycml2ZSIsICJnIjogInc4In0sICJ3OF9hbHQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hhdCB0aW1lIGNhbiB5b3UgY29tZSIsICJnIjogInc4In0sICJ3OF9hbHQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hhdCB0aW1lIGNvdWxkIHlvdSBhcnJpdmUiLCAiZyI6ICJ3OCJ9LCAidzhfYWx0MyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjb3VsZCB5b3UgY29tZSIsICJnIjogInc4In0sICJ3OF9hbHQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hhdCB0aW1lIHdpbGwgeW91IGFycml2ZSIsICJnIjogInc4In0sICJ3OF9hbHQ1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hlbiBjYW4geW91IGFycml2ZSIsICJnIjogInc4In0sICJ3OF9hbHQ2IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hlbiBjYW4geW91IGNvbWUiLCAiZyI6ICJ3OCJ9LCAidzhfYWx0NyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjYW4geW91IGdldCBoZXJlIiwgImciOiAidzgifSwgInc4X2FsdDgiOiB7InQiOiAid29yZHMiLCAiYSI6ICJXaGF0IHRpbWUgY2FuIHlvdSBiZSBoZXJlIiwgImciOiAidzgifSwgInc4X2FsdDkiOiB7InQiOiAid29yZHMiLCAiYSI6ICJBdCB3aGF0IHRpbWUgY2FuIHlvdSBhcnJpdmUiLCAiZyI6ICJ3OCJ9LCAidzhfYWx0MTAiOiB7InQiOiAid29yZHMiLCAiYSI6ICJXaGF0IHRpbWUgd2lsbCB5b3UgY29tZSIsICJnIjogInc4In0sICJ3OF9hbHQxMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjYW4geW91IGNvbWUgb3ZlciIsICJnIjogInc4In0sICJ3OF9hbHQxMiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjb3VsZCB5b3UgY29tZSBvdmVyIiwgImciOiAidzgifSwgInc4X2FsdDEzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hhdCB0aW1lIHdpbGwgeW91IGNvbWUgb3ZlciIsICJnIjogInc4In0sICJ3OF9hbHQxNCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoZW4gd2lsbCB5b3UgY29tZSIsICJnIjogInc4In0sICJ3OF9hbHQxNSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjYW4geW91IGFycml2ZT8iLCAiZyI6ICJ3OCJ9LCAidzhfYWx0MTYiOiB7InQiOiAid29yZHMiLCAiYSI6ICJXaGF0IHRpbWUgY2FuIHlvdSBjb21lPyIsICJnIjogInc4In0sICJ3OF9hbHQxNyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjb3VsZCB5b3UgYXJyaXZlPyIsICJnIjogInc4In0sICJ3OF9hbHQxOCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjb3VsZCB5b3UgY29tZT8iLCAiZyI6ICJ3OCJ9LCAidzhfYWx0MTkiOiB7InQiOiAid29yZHMiLCAiYSI6ICJXaGF0IHRpbWUgd2lsbCB5b3UgYXJyaXZlPyIsICJnIjogInc4In0sICJ3OF9hbHQyMCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoZW4gY2FuIHlvdSBhcnJpdmU/IiwgImciOiAidzgifSwgInc4X2FsdDIxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hlbiBjYW4geW91IGNvbWU/IiwgImciOiAidzgifSwgInc4X2FsdDIyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hhdCB0aW1lIGNhbiB5b3UgZ2V0IGhlcmU/IiwgImciOiAidzgifSwgInc4X2FsdDIzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hhdCB0aW1lIGNhbiB5b3UgYmUgaGVyZT8iLCAiZyI6ICJ3OCJ9LCAidzhfYWx0MjQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJBdCB3aGF0IHRpbWUgY2FuIHlvdSBhcnJpdmU/IiwgImciOiAidzgifSwgInc4X2FsdDI1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hhdCB0aW1lIHdpbGwgeW91IGNvbWU/IiwgImciOiAidzgifSwgInc4X2FsdDI2IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hhdCB0aW1lIGNhbiB5b3UgY29tZSBvdmVyPyIsICJnIjogInc4In0sICJ3OF9hbHQyNyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSBjb3VsZCB5b3UgY29tZSBvdmVyPyIsICJnIjogInc4In0sICJ3OF9hbHQyOCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoYXQgdGltZSB3aWxsIHlvdSBjb21lIG92ZXI/IiwgImciOiAidzgifSwgInc4X2FsdDI5IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hlbiB3aWxsIHlvdSBjb21lPyIsICJnIjogInc4In0sICJ3Nl9hbHQxNyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIml0IG1ha2VzIG5vIHNlbnNlIHRvIHByZXBhcmUiLCAiZyI6ICJ3NiJ9LCAidzZfYWx0MTgiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGVyZSdzIG5vIHNlbnNlIGluIHByZXBhcmluZyIsICJnIjogInc2In0sICJ3Nl9hbHQxOSI6IHsidCI6ICJ3b3JkcyIsICJhIjogInRoZXJl4oCZcyBubyBzZW5zZSBpbiBwcmVwYXJpbmciLCAiZyI6ICJ3NiJ9LCAidzZfYWx0MjAiOiB7InQiOiAid29yZHMiLCAiYSI6ICJ0aGVyZSBpc24ndCBhbnkgcG9pbnQgaW4gcHJlcGFyaW5nIiwgImciOiAidzYifSwgInc2X2FsdDIxIjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlcmUgaXNu4oCZdCBhbnkgcG9pbnQgaW4gcHJlcGFyaW5nIiwgImciOiAidzYifSwgInc2X2FsdDIyIjogeyJ0IjogIndvcmRzIiwgImEiOiAidGhlcmUgaXMgbm8gc2Vuc2UgaW4gcHJlcGFyaW5nIiwgImciOiAidzYifSwgInc4X2FsdDMwIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2hlbiBjb3VsZCB5b3UgY29tZSIsICJnIjogInc4In0sICJ3OF9hbHQzMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoZW4gY291bGQgeW91IGFycml2ZSIsICJnIjogInc4In0sICJ3OF9hbHQzMiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldoZW4gd2lsbCB5b3UgYXJyaXZlIiwgImciOiAidzgifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

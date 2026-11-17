@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milana: Homework 17 November 2026</title>
+<!-- Lesson 17 Nov 2026: free conversation (the trip to Baku with her mum, her birthday on 23 Nov, a birthday dress, cleaning her room). Target 1 (taught and SHAKY, her own slips: we was hungry, you was go, she don't told me, we late): the helper word in a past sentence. Ex 1 sorts subjects into was / were (traps: my mom and I, my friend and I, you); Ex 2 is «one past word» about Anna and Tom in Paris, right or wrong, with a typed correction only for a wrong one (4 of 7 wrong, order W R R W W R W; models: was buy → bought, don't liked → didn't like). Target 2 (NEW, Dasha supplied): got upset with me, look like your dad, on the 23rd of November, went on an excursion, had a work meeting, couldn't fly with us, it's valid; Ex 3 matches halves by tap in fresh contexts, generic names only. Ex 4: three typed sentences about her first day in Baku, one model from Rome. Formats differ from 11 Nov (dropdown in gap, phrase into gap, four starters). Starlight design as on 11 Nov. -->
+<style>
+  :root {
+    --ink:#2d2949; --accent:#60529c; --accent2:#8c72bf; --muted:#5d5870; --border:#d0c8e7;
+    --wash:#f2effa; --model:#f8f7fc; --night:#302744; --pink:#f6b5d6; --line:#aaa3c1; --lilac:#d5c9ff; --field:#1d4ed8;
+  }
+  @page { size: A4; margin: 10mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; line-height: 1.4; color: var(--ink);
+    background: #f7f5fc; max-width: 1080px; margin: auto; padding: 16px 16px 24px;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  /* header: Starlight */
+  header.top {
+    position: relative; overflow: hidden; border-radius: 10px; background: var(--night); color: #fff;
+    padding: 18px 24px 20px; margin-bottom: 18px; min-height: 120px;
+  }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: #e3c5f1; position: relative; z-index: 1; }
+  header.top h1 { font-family: Arial, sans-serif; font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -1px; position: relative; z-index: 1; margin-top: 2px; }
+  header.top .sub { font-size: 15px; color: #e2dcec; margin-top: 6px; position: relative; z-index: 1; }
+  .header-art { position: absolute; right: 0; top: 0; height: 100%; width: auto; }
+
+  /* cards */
+  .ex-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 18px; overflow: hidden; }
+  .ex-header {
+    background: var(--wash); border-bottom: 1px solid var(--border); border-left: 4px solid var(--accent2);
+    padding: 8px 16px; font-size: 13px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent);
+    break-after: avoid; page-break-after: avoid;
+  }
+  .ex-body { padding: 14px 18px 16px; }
+  .instr { font-size: 25px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
+  .note { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+  .example-box {
+    background: var(--model); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0;
+    padding: 8px 14px; margin-bottom: 14px; font-size: 18px; line-height: 1.5;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .example-box .label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+  .example-box b { color: var(--accent); }
+  .example-box .gl { color: var(--muted); font-size: .85em; }
+  .example-box .place { color: var(--muted); font-style: italic; }
+  .example-box .no { color: #b4235a; font-weight: 700; }
+  .example-box .ln { display: block; }
+
+  .q { display: flex; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .q:last-child { border-bottom: 0; }
+  .n {
+    flex: 0 0 auto; display: inline-block; width: 28px; height: 28px; line-height: 26px; text-align: center;
+    border: 1.5px solid var(--accent); border-radius: 5px; color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+  .sent { font-size: 20px; line-height: 1.6; }
+
+  /* ===== TAP-PLACE CSS (Tools/hw_snippets/tap_place.html), Starlight palette ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 2px dashed var(--border); border-radius: 12px; min-height: 64px; margin: 4px 0 14px; background: #fcfbff; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 700; color: var(--ink); background: #fff;
+    border: 2px solid var(--accent2); border-radius: 10px; padding: 6px 12px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.25;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile .gl { display: block; font-size: 13px; font-weight: 400; color: var(--muted); }
+  .tp-tile.picked { background: var(--wash); border-color: var(--accent); box-shadow: 0 0 0 3px var(--lilac); }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { border: 2px solid var(--border); border-radius: 10px; padding: 2px; min-height: 44px; cursor: pointer; }
+  .tp-zone.ready { border-color: var(--accent2); background: #fbfaff; }
+  .tp-zone.over { border-color: var(--accent); background: var(--wash); }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 36px; align-items: flex-start; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== TAP-PLACE CSS end ===== */
+
+  /* Exercise 1: two boxes */
+  .bins { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .bin { padding: 10px 12px 12px; min-height: 150px; }
+  .bin-head { display: block; margin-bottom: 8px; }
+  .bin-head b { font-size: 26px; color: var(--accent); }
+  .bin-head span { display: block; font-size: 14px; color: var(--muted); }
+  .bin .tp-slot { min-height: 80px; }
+  .bin .tp-tile { color: var(--field); }
+
+  /* Exercise 2: right or wrong */
+  .rw-item { padding: 10px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .rw-item:last-child { border-bottom: 0; }
+  .rw-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px; justify-content: flex-start; }
+  .rw-row .q { padding: 0; border: 0; }
+  .rw { display: inline-flex; gap: 8px; flex: 0 0 auto; }
+  .rwb {
+    font: inherit; font-size: 17px; font-weight: 700; color: var(--accent); background: #fff;
+    border: 2px solid var(--accent2); border-radius: 999px; padding: 4px 16px; min-height: 42px; cursor: pointer;
+    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  .rwb.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .fix { display: none; margin: 8px 0 2px 40px; }
+  .fix.show { display: block; }
+  .fix .lab { display: block; font-size: 14px; color: var(--muted); margin-bottom: 3px; }
+  textarea.fl {
+    display: block; width: 100%; font: inherit; font-size: 20px; line-height: 1.45; color: var(--field); resize: vertical;
+    padding: 6px 12px; border: 2px solid var(--border); border-radius: 8px; background: #fff; min-height: 56px;
+  }
+  section textarea.fl { min-height: 56px; }
+
+  /* Exercise 3: match the halves */
+  .mrow { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; align-items: center; padding: 9px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .mrow:last-child { border-bottom: 0; }
+  .mrow .first { font-size: 20px; line-height: 1.45; }
+  .mrow .tp-zone { grid-column: 2; }
+  .mrow .tp-zone .tp-tile { border-width: 0; padding: 2px 8px; min-height: 36px; color: var(--field); background: transparent; }
+  .mrow .tp-zone .tp-tile .gl { display: none; }
+
+  /* Exercise 4 */
+  .wrow { display: flex; align-items: flex-start; gap: 12px; padding: 7px 0; page-break-inside: avoid; break-inside: avoid; }
+  .wrow textarea.fl { flex: 1 1 auto; }
+
+  /* Dasha's emailed PDF (hw.js renders in an 800px frame with body.hw-pdf-mode) */
+  body.hw-pdf-mode header.top { min-height: 0; padding: 10px 18px 12px; margin-bottom: 10px; }
+  body.hw-pdf-mode header.top h1 { font-size: 28px; }
+  body.hw-pdf-mode .instr { font-size: 19px; }
+  body.hw-pdf-mode .note { font-size: 12.5px; margin-bottom: 7px; }
+  body.hw-pdf-mode .example-box { font-size: 14px; padding: 5px 12px; margin-bottom: 8px; }
+  body.hw-pdf-mode .sent, body.hw-pdf-mode .mrow .first { font-size: 15px; line-height: 1.5; }
+  body.hw-pdf-mode .q, body.hw-pdf-mode .mrow, body.hw-pdf-mode .rw-item { padding: 5px 0; }
+  body.hw-pdf-mode .tp-tile { font-size: 13px; min-height: 0; }
+  body.hw-pdf-mode .tp-tile .gl { font-size: 11px; }
+  body.hw-pdf-mode .bin { min-height: 0; }
+  body.hw-pdf-mode .bin-head b { font-size: 18px; }
+  body.hw-pdf-mode .rwb { font-size: 13px; min-height: 0; padding: 2px 10px; }
+  body.hw-pdf-mode textarea.fl, body.hw-pdf-mode section textarea.fl { font-size: 15px; min-height: 36px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 10px 18px; }
+    header.top { padding: 14px 16px 16px; }
+    header.top h1 { font-size: 32px; }
+    .header-art { opacity: .55; }
+    .ex-body { padding: 12px 12px 14px; }
+    .instr { font-size: 22px; }
+    .sent, .mrow .first { font-size: 18px; }
+    .tp-tile { font-size: 16px; }
+    .bins { grid-template-columns: 1fr; }
+    .fix { margin-left: 0; }
+    .mrow { grid-template-columns: auto minmax(0, 1fr); }
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 28px 48px 48px; font-size: 26px; }
+    header.top { min-height: 190px; padding: 30px 40px 30px; margin-bottom: 30px; border-radius: 14px; }
+    .eyebrow { font-size: 18px; }
+    header.top h1 { font-size: 62px; }
+    header.top .sub { font-size: 24px; margin-top: 10px; }
+    .ex-card { margin-bottom: 32px; border-radius: 14px; }
+    .ex-header { font-size: 20px; padding: 12px 28px; }
+    .ex-body { padding: 28px 40px 32px; }
+    .instr { font-size: 40px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 20px; }
+    .example-box { font-size: 28px; padding: 14px 24px; margin-bottom: 24px; }
+    .example-box .label { font-size: 17px; }
+    .n { width: 44px; height: 44px; line-height: 41px; font-size: 22px; }
+    .q { gap: 20px; padding: 16px 0; }
+    .sent { font-size: 30px; line-height: 1.5; }
+    .hw-mark { font-size: 22px; }
+    .tp-bank { gap: 14px 16px; padding: 18px; margin-bottom: 22px; }
+    .tp-tile { font-size: 27px; padding: 8px 18px; min-height: 60px; border-width: 3px; }
+    .tp-tile .gl { font-size: 20px; }
+    .tp-slot { min-height: 50px; }
+    .bins { gap: 28px; }
+    .bin { padding: 16px 20px 20px; min-height: 230px; border-width: 3px; }
+    .bin-head b { font-size: 40px; }
+    .bin-head span { font-size: 22px; }
+    .bin .tp-slot { gap: 12px; min-height: 120px; }
+    .rw-item { padding: 18px 0; }
+    .rw-row { gap: 14px 28px; flex-wrap: nowrap; }
+    .rw-row .q { flex: 0 1 auto; min-width: 0; }
+    .rw { flex: 0 0 auto; }
+    .rwb { font-size: 26px; min-height: 58px; padding: 6px 26px; border-width: 3px; }
+    .rw { gap: 14px; }
+    .fix { margin: 14px 0 4px 64px; max-width: 1180px; }
+    .fix .lab { font-size: 22px; margin-bottom: 6px; }
+    textarea.fl, section textarea.fl { font-size: 28px; padding: 10px 16px; min-height: 72px; border-width: 3px; }
+    .mrow { grid-template-columns: 44px minmax(0, 1fr) minmax(0, 1fr); gap: 12px 28px; padding: 16px 0; }
+    .mrow .first { font-size: 30px; }
+    .mrow .tp-zone { grid-column: 3; min-height: 62px; border-width: 3px; }
+    .mrow .tp-zone .tp-tile { font-size: 28px; min-height: 52px; }
+    .wrow { gap: 20px; padding: 12px 0; align-items: center; }
+  }
+
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { font-size: 12.5px; padding: 0; max-width: none; background: #fff; }
+    header.top { min-height: 0; padding: 6px 16px 7px; margin-bottom: 6px; border-radius: 6px; }
+    .eyebrow { font-size: 8.5px; }
+    header.top h1 { font-size: 24px; }
+    header.top .sub { font-size: 10.5px; margin-top: 3px; }
+    .ex-card { margin-bottom: 6px; border-radius: 5px; page-break-inside: avoid; break-inside: avoid; }
+    .ex-header { font-size: 9.5px; padding: 4px 12px; }
+    .ex-body { padding: 6px 12px 7px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 5px; }
+    .example-box { font-size: 12px; padding: 3px 10px; margin-bottom: 5px; line-height: 1.35; }
+    .example-box .label { font-size: 8.5px; margin-bottom: 0; }
+    .n { width: 18px; height: 18px; line-height: 16px; font-size: 10px; border-radius: 4px; }
+    .q { padding: 2px 0; gap: 8px; }
+    .sent, .mrow .first { font-size: 12.5px; line-height: 1.4; }
+    .tp-bank { gap: 5px; padding: 5px; min-height: 0; margin: 2px 0 4px; border-width: 1.2px; }
+    .tp-tile { font-size: 11.5px; padding: 2px 8px; min-height: 0; border-width: 1.2px; border-radius: 6px; }
+    .tp-tile .gl { font-size: 9px; }
+    .bins { gap: 8px; }
+    .bin { min-height: 26mm; padding: 3px 8px; border-width: 1.2px; }
+    .bin-head { margin-bottom: 2px; }
+    .bin-head b { font-size: 14px; }
+    .bin-head span { font-size: 9.5px; }
+    .bin .tp-slot { min-height: 0; }
+    .rw-item { padding: 3px 0; }
+    .rwb { font-size: 10.5px; min-height: 0; padding: 1px 8px; border-width: 1.2px; }
+    .fix { display: block !important; margin: 2px 0 0 26px; }
+    .fix .lab { font-size: 9.5px; margin-bottom: 0; }
+    textarea.fl, section textarea.fl { font-size: 12px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 0 4px; resize: none; min-height: 0; height: 7mm; background: #fff; }
+    textarea.fl::placeholder { color: transparent; }
+    .mrow { grid-template-columns: 18px minmax(0, 1fr) minmax(0, 1fr); gap: 2px 8px; padding: 2px 0; }
+    .mrow .tp-zone { grid-column: 3; min-height: 6mm; border: 0; border-bottom: 1.2px solid var(--ink); border-radius: 0; padding: 0; }
+    .tp-slot { min-height: 16px; }
+    .wrow { padding: 1px 0; align-items: flex-end; gap: 8px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Milana" data-sheet="English 2026-11-17" data-sheet-id="milana-2026-11-17-english">
+<div id="sheet">
+
+
+<header class="top">
+  <svg class="header-art" viewBox="0 0 192 100" fill="none" aria-hidden="true">
+    <path d="M105 -8L28 106M143 -8L66 106M181 -8L104 106M219 -8L142 106" stroke="#b0a1e9" stroke-opacity=".18" stroke-width="14"/>
+    <ellipse cx="141" cy="46" rx="61" ry="22" transform="rotate(-28 141 46)" stroke="#d1b8f8" stroke-width=".7"/>
+    <path d="M129 10L135 34L156 24L143 44L167 53L143 58L152 81L133 66L121 89L121 64L96 67L115 52L96 37L121 40Z" fill="#d5c9ff"/>
+    <path d="M129 26L134 43L149 47L134 53L129 70L124 54L109 48L124 43Z" fill="white"/>
+    <path d="M174 11L177 19L185 22L177 25L174 33L171 25L163 22L171 19Z" fill="#f6b5d6"/>
+    <path d="M74 70L77 78L85 81L77 84L74 92L71 84L63 81L71 78Z" fill="#f6b5d6"/>
+    <g fill="#fff"><circle cx="91" cy="23" r="1.4"/><circle cx="176" cy="77" r="1.5"/><circle cx="106" cy="84" r="1"/><circle cx="57" cy="44" r="1.2"/></g>
+  </svg>
+  <div class="eyebrow">English &middot; Homework</div>
+  <h1>Milana</h1>
+  <div class="sub">17 November 2026 &middot; was or were &middot; one past word &middot; new phrases &middot; Baku</div>
+</header>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 1: was or were</div>
+  <div class="ex-body">
+    <p class="instr">Was or were? Sort the&nbsp;cards.</p>
+    <p class="note"><span class="scr">Tap a card, then tap a&nbsp;box.</span><span class="prt">Write each card in the right&nbsp;box.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      the flight &rarr; <b>was</b> &nbsp;&middot;&nbsp; the shops &rarr; <b>were</b>
+    </div>
+    <div class="tp" id="sort">
+      <div class="tp-bank">
+        <button type="button" class="tp-tile" data-value="the beaches" data-store="b1" data-field="b1">the beaches</button>
+        <button type="button" class="tp-tile" data-value="my mom and I" data-store="b2" data-field="b2">my mom and I</button>
+        <button type="button" class="tp-tile" data-value="the guide" data-store="b3" data-field="b3">the guide</button>
+        <button type="button" class="tp-tile" data-value="the food" data-store="b4" data-field="b4">the food</button>
+        <button type="button" class="tp-tile" data-value="you" data-store="b5" data-field="b5">you</button>
+        <button type="button" class="tp-tile" data-value="my passport" data-store="b6" data-field="b6">my passport</button>
+        <button type="button" class="tp-tile" data-value="the old city" data-store="b7" data-field="b7">the old city</button>
+        <button type="button" class="tp-tile" data-value="my friend and I" data-store="b8" data-field="b8">my friend and I</button>
+        <button type="button" class="tp-tile" data-value="the excursions" data-store="b9" data-field="b9">the excursions</button>
+        <button type="button" class="tp-tile" data-value="the wind" data-store="b10" data-field="b10">the wind</button>
+      </div>
+      <div class="bins">
+        <div class="tp-zone tp-multi bin" data-value="was"><span class="bin-head"><b>was</b><span>I, he, she, it, one&nbsp;thing</span></span><div class="tp-slot"></div></div>
+        <div class="tp-zone tp-multi bin" data-value="were"><span class="bin-head"><b>were</b><span>we, you, they, two or&nbsp;more</span></span><div class="tp-slot"></div></div>
+      </div>
+      <div class="tp-stores" hidden>
+        <select data-k="b1" data-label="1. the beaches: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b2" data-label="1. my mom and I: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b3" data-label="1. the guide: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b4" data-label="1. the food: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b5" data-label="1. you: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b6" data-label="1. my passport: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b7" data-label="1. the old city: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b8" data-label="1. my friend and I: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b9" data-label="1. the excursions: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+        <select data-k="b10" data-label="1. the wind: was or were" class="hw-field"><option value=""></option><option>was</option><option>were</option></select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 2: one past word</div>
+  <div class="ex-body">
+    <p class="instr">Right or wrong? Correct the wrong&nbsp;sentences.</p>
+    <p class="note"><span class="scr">Tap Right or Wrong. If it&rsquo;s wrong, type the sentence&nbsp;correctly.</span><span class="prt">Circle Right or Wrong. If it&rsquo;s wrong, write the sentence&nbsp;correctly.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="ln">I was buy a new dress. <span class="no">Wrong</span> &rarr; I <b>bought</b> a new&nbsp;dress.</span>
+      <span class="ln">She don&rsquo;t liked it. <span class="no">Wrong</span> &rarr; She <b>didn&rsquo;t like</b>&nbsp;it.</span>
+    </div>
+    <div class="rw-item">
+      <div class="rw-row"><div class="q"><span class="n">1</span><p class="sent">We was go to the Eiffel Tower in <span class="nw">the evening.</span></p></div>
+        <span class="rw" data-field="j1"><button type="button" class="rwb" data-v="right" aria-pressed="false">Right</button><button type="button" class="rwb" data-v="wrong" aria-pressed="false">Wrong</button></span></div>
+      <div class="fix" id="fix-j1"><span class="lab">The correct sentence:</span><textarea class="hw-field fl" rows="2" data-k="c1" data-label="2.1 Correct sentence: We was go to the Eiffel Tower in the evening." aria-label="Correct sentence 1" placeholder="Type here"></textarea></div>
+    </div>
+    <div class="rw-item">
+      <div class="rw-row"><div class="q"><span class="n">2</span><p class="sent">The café was very expensive, so we went to <span class="nw">a supermarket.</span></p></div>
+        <span class="rw" data-field="j2"><button type="button" class="rwb" data-v="right" aria-pressed="false">Right</button><button type="button" class="rwb" data-v="wrong" aria-pressed="false">Wrong</button></span></div>
+      <div class="fix" id="fix-j2"><span class="lab">The correct sentence:</span><textarea class="hw-field fl" rows="2" data-k="c2" data-label="2.2 Correct sentence: The café was very expensive, so we went to a supermarket." aria-label="Correct sentence 2" placeholder="Type here"></textarea></div>
+    </div>
+    <div class="rw-item">
+      <div class="rw-row"><div class="q"><span class="n">3</span><p class="sent">It was very rainy, so we didn&rsquo;t stay in the park <span class="nw">for long.</span></p></div>
+        <span class="rw" data-field="j3"><button type="button" class="rwb" data-v="right" aria-pressed="false">Right</button><button type="button" class="rwb" data-v="wrong" aria-pressed="false">Wrong</button></span></div>
+      <div class="fix" id="fix-j3"><span class="lab">The correct sentence:</span><textarea class="hw-field fl" rows="2" data-k="c3" data-label="2.3 Correct sentence: It was very rainy, so we didn&#x27;t stay in the park for long." aria-label="Correct sentence 3" placeholder="Type here"></textarea></div>
+    </div>
+    <div class="rw-item">
+      <div class="rw-row"><div class="q"><span class="n">4</span><p class="sent">Anna and I was tired after the <span class="nw">long walk.</span></p></div>
+        <span class="rw" data-field="j4"><button type="button" class="rwb" data-v="right" aria-pressed="false">Right</button><button type="button" class="rwb" data-v="wrong" aria-pressed="false">Wrong</button></span></div>
+      <div class="fix" id="fix-j4"><span class="lab">The correct sentence:</span><textarea class="hw-field fl" rows="2" data-k="c4" data-label="2.4 Correct sentence: Anna and I was tired after the long walk." aria-label="Correct sentence 4" placeholder="Type here"></textarea></div>
+    </div>
+    <div class="rw-item">
+      <div class="rw-row"><div class="q"><span class="n">5</span><p class="sent">The guide don&rsquo;t told us about <span class="nw">the museum.</span></p></div>
+        <span class="rw" data-field="j5"><button type="button" class="rwb" data-v="right" aria-pressed="false">Right</button><button type="button" class="rwb" data-v="wrong" aria-pressed="false">Wrong</button></span></div>
+      <div class="fix" id="fix-j5"><span class="lab">The correct sentence:</span><textarea class="hw-field fl" rows="2" data-k="c5" data-label="2.5 Correct sentence: The guide don&#x27;t told us about the museum." aria-label="Correct sentence 5" placeholder="Type here"></textarea></div>
+    </div>
+    <div class="rw-item">
+      <div class="rw-row"><div class="q"><span class="n">6</span><p class="sent">Anna and Tom were an hour late for the <span class="nw">bus tour.</span></p></div>
+        <span class="rw" data-field="j6"><button type="button" class="rwb" data-v="right" aria-pressed="false">Right</button><button type="button" class="rwb" data-v="wrong" aria-pressed="false">Wrong</button></span></div>
+      <div class="fix" id="fix-j6"><span class="lab">The correct sentence:</span><textarea class="hw-field fl" rows="2" data-k="c6" data-label="2.6 Correct sentence: Anna and Tom were an hour late for the bus tour." aria-label="Correct sentence 6" placeholder="Type here"></textarea></div>
+    </div>
+    <div class="rw-item">
+      <div class="rw-row"><div class="q"><span class="n">7</span><p class="sent">Tom was eat <span class="nw">a big croissant.</span></p></div>
+        <span class="rw" data-field="j7"><button type="button" class="rwb" data-v="right" aria-pressed="false">Right</button><button type="button" class="rwb" data-v="wrong" aria-pressed="false">Wrong</button></span></div>
+      <div class="fix" id="fix-j7"><span class="lab">The correct sentence:</span><textarea class="hw-field fl" rows="2" data-k="c7" data-label="2.7 Correct sentence: Tom was eat a big croissant." aria-label="Correct sentence 7" placeholder="Type here"></textarea></div>
+    </div>
+    <div class="tp-stores" hidden>
+      <select data-k="j1" data-label="2.1 We was go to the Eiffel Tower in the evening. Right or wrong?" class="hw-field"><option value=""></option><option value="right">right</option><option value="wrong">wrong</option></select>
+      <select data-k="j2" data-label="2.2 The café was very expensive, so we went to a supermarket. Right or wrong?" class="hw-field"><option value=""></option><option value="right">right</option><option value="wrong">wrong</option></select>
+      <select data-k="j3" data-label="2.3 It was very rainy, so we didn&#x27;t stay in the park for long. Right or wrong?" class="hw-field"><option value=""></option><option value="right">right</option><option value="wrong">wrong</option></select>
+      <select data-k="j4" data-label="2.4 Anna and I was tired after the long walk. Right or wrong?" class="hw-field"><option value=""></option><option value="right">right</option><option value="wrong">wrong</option></select>
+      <select data-k="j5" data-label="2.5 The guide don&#x27;t told us about the museum. Right or wrong?" class="hw-field"><option value=""></option><option value="right">right</option><option value="wrong">wrong</option></select>
+      <select data-k="j6" data-label="2.6 Anna and Tom were an hour late for the bus tour. Right or wrong?" class="hw-field"><option value=""></option><option value="right">right</option><option value="wrong">wrong</option></select>
+      <select data-k="j7" data-label="2.7 Tom was eat a big croissant. Right or wrong?" class="hw-field"><option value=""></option><option value="right">right</option><option value="wrong">wrong</option></select>
+    </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 3: new phrases</div>
+  <div class="ex-body">
+    <p class="instr">Match the two&nbsp;halves.</p>
+    <p class="note"><span class="scr">Tap a card, then tap its&nbsp;place.</span><span class="prt">Write the end of each sentence on the&nbsp;line.</span></p>
+    <div class="tp" id="halves">
+      <div class="tp-bank">
+        <button type="button" class="tp-tile" data-value="he had a work meeting">he had a work meeting<span class="gl">у него была рабочая встреча</span></button>
+        <button type="button" class="tp-tile" data-value="my friend got upset with me">my friend got upset with me<span class="gl">подруга на меня обиделась</span></button>
+        <button type="button" class="tp-tile" data-value="it's valid until 2029">it&rsquo;s valid until 2029<span class="gl">он действителен до 2029 года</span></button>
+        <button type="button" class="tp-tile" data-value="I tidied up my room">I tidied up my room<span class="gl">я убралась в своей комнате</span></button>
+        <button type="button" class="tp-tile" data-value="You look like your dad">You look like your dad<span class="gl">ты похожа на папу</span></button>
+        <button type="button" class="tp-tile" data-value="we went on an excursion to the mountains">we went on an excursion to the mountains<span class="gl">мы поехали на экскурсию в горы</span></button>
+        <button type="button" class="tp-tile" data-value="he couldn't fly with us to Spain">he couldn&rsquo;t fly with us to Spain<span class="gl">он не смог полететь с нами в Испанию</span></button>
+        <button type="button" class="tp-tile" data-value="on the 23rd of November">on the 23rd of November<span class="gl">двадцать третьего ноября</span></button>
+      </div>
+      <div class="mrow"><span class="n">1</span><p class="first">Ben broke his leg, so</p><div class="tp-zone" data-store="m1" data-field="m1"><span class="tp-slot"></span></div></div>
+      <div class="mrow"><span class="n">2</span><p class="first">Can I travel with this old passport? Yes,</p><div class="tp-zone" data-store="m2" data-field="m2"><span class="tp-slot"></span></div></div>
+      <div class="mrow"><span class="n">3</span><p class="first">I forgot her birthday, so</p><div class="tp-zone" data-store="m3" data-field="m3"><span class="tp-slot"></span></div></div>
+      <div class="mrow"><span class="n">4</span><p class="first">The school concert is</p><div class="tp-zone" data-store="m4" data-field="m4"><span class="tp-slot"></span></div></div>
+      <div class="mrow"><span class="n">5</span><p class="first">On the second day of our holiday in Italy,</p><div class="tp-zone" data-store="m5" data-field="m5"><span class="tp-slot"></span></div></div>
+      <div class="mrow"><span class="n">6</span><p class="first">Tom came home late on Tuesday because</p><div class="tp-zone" data-store="m6" data-field="m6"><span class="tp-slot"></span></div></div>
+      <div class="mrow"><span class="n">7</span><p class="first">Ella, you have your dad&rsquo;s eyes and his smile.</p><div class="tp-zone" data-store="m7" data-field="m7"><span class="tp-slot"></span></div></div>
+      <div class="tp-stores" hidden>
+        <select data-k="m1" data-label="3.1 Ben broke his leg, so ___" class="hw-field"><option value=""></option><option value="he had a work meeting">he had a work meeting</option><option value="my friend got upset with me">my friend got upset with me</option><option value="it&#x27;s valid until 2029">it&#x27;s valid until 2029</option><option value="I tidied up my room">I tidied up my room</option><option value="You look like your dad">You look like your dad</option><option value="we went on an excursion to the mountains">we went on an excursion to the mountains</option><option value="he couldn&#x27;t fly with us to Spain">he couldn&#x27;t fly with us to Spain</option><option value="on the 23rd of November">on the 23rd of November</option></select>
+        <select data-k="m2" data-label="3.2 Can I travel with this old passport? Yes, ___" class="hw-field"><option value=""></option><option value="he had a work meeting">he had a work meeting</option><option value="my friend got upset with me">my friend got upset with me</option><option value="it&#x27;s valid until 2029">it&#x27;s valid until 2029</option><option value="I tidied up my room">I tidied up my room</option><option value="You look like your dad">You look like your dad</option><option value="we went on an excursion to the mountains">we went on an excursion to the mountains</option><option value="he couldn&#x27;t fly with us to Spain">he couldn&#x27;t fly with us to Spain</option><option value="on the 23rd of November">on the 23rd of November</option></select>
+        <select data-k="m3" data-label="3.3 I forgot her birthday, so ___" class="hw-field"><option value=""></option><option value="he had a work meeting">he had a work meeting</option><option value="my friend got upset with me">my friend got upset with me</option><option value="it&#x27;s valid until 2029">it&#x27;s valid until 2029</option><option value="I tidied up my room">I tidied up my room</option><option value="You look like your dad">You look like your dad</option><option value="we went on an excursion to the mountains">we went on an excursion to the mountains</option><option value="he couldn&#x27;t fly with us to Spain">he couldn&#x27;t fly with us to Spain</option><option value="on the 23rd of November">on the 23rd of November</option></select>
+        <select data-k="m4" data-label="3.4 The school concert is ___" class="hw-field"><option value=""></option><option value="he had a work meeting">he had a work meeting</option><option value="my friend got upset with me">my friend got upset with me</option><option value="it&#x27;s valid until 2029">it&#x27;s valid until 2029</option><option value="I tidied up my room">I tidied up my room</option><option value="You look like your dad">You look like your dad</option><option value="we went on an excursion to the mountains">we went on an excursion to the mountains</option><option value="he couldn&#x27;t fly with us to Spain">he couldn&#x27;t fly with us to Spain</option><option value="on the 23rd of November">on the 23rd of November</option></select>
+        <select data-k="m5" data-label="3.5 On the second day of our holiday in Italy, ___" class="hw-field"><option value=""></option><option value="he had a work meeting">he had a work meeting</option><option value="my friend got upset with me">my friend got upset with me</option><option value="it&#x27;s valid until 2029">it&#x27;s valid until 2029</option><option value="I tidied up my room">I tidied up my room</option><option value="You look like your dad">You look like your dad</option><option value="we went on an excursion to the mountains">we went on an excursion to the mountains</option><option value="he couldn&#x27;t fly with us to Spain">he couldn&#x27;t fly with us to Spain</option><option value="on the 23rd of November">on the 23rd of November</option></select>
+        <select data-k="m6" data-label="3.6 Tom came home late on Tuesday because ___" class="hw-field"><option value=""></option><option value="he had a work meeting">he had a work meeting</option><option value="my friend got upset with me">my friend got upset with me</option><option value="it&#x27;s valid until 2029">it&#x27;s valid until 2029</option><option value="I tidied up my room">I tidied up my room</option><option value="You look like your dad">You look like your dad</option><option value="we went on an excursion to the mountains">we went on an excursion to the mountains</option><option value="he couldn&#x27;t fly with us to Spain">he couldn&#x27;t fly with us to Spain</option><option value="on the 23rd of November">on the 23rd of November</option></select>
+        <select data-k="m7" data-label="3.7 Ella, you have your dad&#x27;s eyes and his smile. ___" class="hw-field"><option value=""></option><option value="he had a work meeting">he had a work meeting</option><option value="my friend got upset with me">my friend got upset with me</option><option value="it&#x27;s valid until 2029">it&#x27;s valid until 2029</option><option value="I tidied up my room">I tidied up my room</option><option value="You look like your dad">You look like your dad</option><option value="we went on an excursion to the mountains">we went on an excursion to the mountains</option><option value="he couldn&#x27;t fly with us to Spain">he couldn&#x27;t fly with us to Spain</option><option value="on the 23rd of November">on the 23rd of November</option></select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 4: your first day in Baku</div>
+  <div class="ex-body">
+    <p class="instr">What did you do on your first day in Baku? Write 3&nbsp;sentences.</p>
+    <p class="note">Use <b>we were</b> in one&nbsp;sentence.</p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="place">A first day in Rome:</span> We arrived at the hotel at six, and the streets were very&nbsp;busy.
+    </div>
+    <div class="wrow"><span class="n">1</span><textarea class="hw-field fl" rows="2" data-k="w1" data-label="4.1 First day in Baku: sentence 1" aria-label="Sentence 1" placeholder="Type here"></textarea></div>
+    <div class="wrow"><span class="n">2</span><textarea class="hw-field fl" rows="2" data-k="w2" data-label="4.2 First day in Baku: sentence 2" aria-label="Sentence 2" placeholder="Type here"></textarea></div>
+    <div class="wrow"><span class="n">3</span><textarea class="hw-field fl" rows="2" data-k="w3" data-label="4.3 First day in Baku: sentence 3" aria-label="Sentence 3" placeholder="Type here"></textarea></div>
+  </div>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { if (!k) return null; var q = "[data-" + "k=" + JSON.stringify(k) + "]"; return root.querySelector(q) || document.querySelector(q); }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }
+          else { unpick(); home(t); }
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS end ===== */
+</script>
+<script>
+/* Exercise 2: Right / Wrong buttons. The answer lives in a hidden select; the correction box shows only after Wrong. */
+(function () {
+  function init() {
+    document.querySelectorAll(".rw").forEach(function (g) {
+      var k = g.dataset.field;
+      var sel = document.querySelector("[data-" + "k=" + JSON.stringify(k) + "]");
+      var fix = document.getElementById("fix-" + k);
+      var ta = fix && fix.querySelector("textarea");
+      if (!sel) return;
+      function paint() {
+        var v = sel.value;
+        g.querySelectorAll(".rwb").forEach(function (b) {
+          var on = b.dataset.v === v;
+          b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        if (fix) fix.classList.toggle("show", v === "wrong" || !!(ta && ta.value));
+      }
+      g.querySelectorAll(".rwb").forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (sel.value !== b.dataset.v) { sel.value = b.dataset.v; sel.dispatchEvent(new Event("change", { bubbles: true })); }
+          if (b.dataset.v === "right" && ta && ta.value) { ta.value = ""; ta.dispatchEvent(new Event("input", { bubbles: true })); }
+          paint();
+        });
+      });
+      sel.addEventListener("change", paint);
+      paint();
+      setTimeout(paint, 400);
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJiMSI6IHsidCI6ICJleGFjdCIsICJhIjogIndlcmUifSwgImIyIjogeyJ0IjogImV4YWN0IiwgImEiOiAid2VyZSJ9LCAiYjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3YXMifSwgImI0IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2FzIn0sICJiNSI6IHsidCI6ICJleGFjdCIsICJhIjogIndlcmUifSwgImI2IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2FzIn0sICJiNyI6IHsidCI6ICJleGFjdCIsICJhIjogIndhcyJ9LCAiYjgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3ZXJlIn0sICJiOSI6IHsidCI6ICJleGFjdCIsICJhIjogIndlcmUifSwgImIxMCI6IHsidCI6ICJleGFjdCIsICJhIjogIndhcyJ9LCAiajEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3cm9uZyJ9LCAiYzEiOiB7InQiOiAib3BlbiJ9LCAiajIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyaWdodCJ9LCAiYzIiOiB7InQiOiAib3BlbiJ9LCAiajMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyaWdodCJ9LCAiYzMiOiB7InQiOiAib3BlbiJ9LCAiajQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3cm9uZyJ9LCAiYzQiOiB7InQiOiAib3BlbiJ9LCAiajUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3cm9uZyJ9LCAiYzUiOiB7InQiOiAib3BlbiJ9LCAiajYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyaWdodCJ9LCAiYzYiOiB7InQiOiAib3BlbiJ9LCAiajciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3cm9uZyJ9LCAiYzciOiB7InQiOiAib3BlbiJ9LCAibTEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoZSBjb3VsZG4ndCBmbHkgd2l0aCB1cyB0byBTcGFpbiJ9LCAibTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpdCdzIHZhbGlkIHVudGlsIDIwMjkifSwgIm0zIjogeyJ0IjogImV4YWN0IiwgImEiOiAibXkgZnJpZW5kIGdvdCB1cHNldCB3aXRoIG1lIn0sICJtNCI6IHsidCI6ICJleGFjdCIsICJhIjogIm9uIHRoZSAyM3JkIG9mIE5vdmVtYmVyIn0sICJtNSI6IHsidCI6ICJleGFjdCIsICJhIjogIndlIHdlbnQgb24gYW4gZXhjdXJzaW9uIHRvIHRoZSBtb3VudGFpbnMifSwgIm02IjogeyJ0IjogImV4YWN0IiwgImEiOiAiaGUgaGFkIGEgd29yayBtZWV0aW5nIn0sICJtNyI6IHsidCI6ICJleGFjdCIsICJhIjogIllvdSBsb29rIGxpa2UgeW91ciBkYWQifSwgIncxIjogeyJ0IjogIm9wZW4ifSwgIncyIjogeyJ0IjogIm9wZW4ifSwgInczIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

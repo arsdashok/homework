@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 17 November 2026 (verb forms)</title>
+<!-- Extra sheet, 17 Nov 2026: finishing sentences after taught phrases. Teacher notes are in the private key. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .sit, li { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model .ln { display: block; }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .typed { font-family: Arial, Helvetica, sans-serif; color: #1d4ed8; border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fff; padding: 0 8px; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 5px; }
+
+  /* the situation on the left, the frame and his ending on the right (stacked on a phone) */
+  .pairq { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 28px; align-items: start; }
+  .sit { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; padding-top: 3px; }
+  /* on a screen the frame sits on its own line and the box takes the full column under it */
+  .fin { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 4px 12px; }
+  .frame { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 700; color: #31594b; padding-top: 2px; flex: 1 1 100%; }
+  .resp {
+    display: block; flex: 1 1 100%; min-width: 0;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  textarea.resp { resize: vertical; min-height: 66px; }
+
+  @media (min-width: 760px) {
+    .pairq { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); }
+  }
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    body { font-size: 12px; line-height: 1.3; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .model { font-size: 12px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .model .typed { border-width: 1px; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 2px; }
+    .pairq { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3px 16px; }
+    .sit { font-size: 11.5px; padding-top: 1px; }
+    .fin { flex-wrap: nowrap; }
+    .frame { font-size: 11.5px; padding-top: 3px; flex: 0 1 auto; max-width: 46%; }
+    .resp { flex: 1 1 0; }
+    .resp { font-size: 11.5px; padding: 3px 8px; border-width: 1px; }
+    textarea.resp { min-height: 30px; height: 30px; resize: none; }
+    textarea.resp::placeholder { color: transparent; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .model .typed { border-width:2px; padding:0 12px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:20px 0; }
+  .qnum { font-size:22px; padding-top:8px; }
+  .pairq { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 44px; }
+  .sit { font-size:29px; line-height:1.45; padding-top:4px; }
+  .fin { gap:8px 16px; }
+  .frame { font-size:29px; padding-top:4px; }
+  .resp { font-size:26px; padding:10px 16px; border-width:2px; }
+  textarea.resp { min-height:104px; }
+}
+/* hw.css sets div/textarea field heights; keep the answer boxes two lines tall on the live page. */
+@media screen { .task textarea.resp.hw-field { min-height:66px !important; } }
+@media screen and (min-width:900px) { .task textarea.resp.hw-field { min-height:104px !important; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English verb forms 2026-11-17" data-sheet-id="roman-2026-11-17-english-verb-forms">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 20&nbsp;minutes</span></div>
+    <h1>The verb after the phrase</h1>
+  </header>
+
+  <div class="task">
+    <h2>Finish the sentence</h2>
+    <div class="do">Finish each sentence: the verb in the right form and your own&nbsp;ending.</div>
+    <div class="model">
+      <span class="lab">Like this</span>
+      <span class="ln">A friend helped you carry a new sofa up to your flat yesterday. Send him a short message.</span>
+      <span class="ln"><b>Thanks for</b> <span class="typed">helping me with the sofa yesterday!</span></span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="pairq">
+        <p class="sit">A colleague suggests a video call at seven this evening. You've been on calls all day and you're tired. Reply:</p>
+        <div class="fin"><span class="frame">I'd rather</span>
+          <textarea class="hw-field resp" rows="2" data-k="n1" data-label="1. A colleague suggests a video call at seven this evening; you've been on calls all day. I'd rather ___" aria-label="Sentence 1" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="pairq">
+        <p class="sit">Your train is coming into your station. A man with a big suitcase is standing in the doorway, and you need to get off. Ask him&nbsp;politely:</p>
+        <div class="fin"><span class="frame">Would you mind</span>
+          <textarea class="hw-field resp" rows="2" data-k="n2" data-label="2. Your station; a man with a big suitcase is standing in the train doorway and you need to get off. Ask politely: Would you mind ___" aria-label="Sentence 2" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div class="pairq">
+        <p class="sit">A friend asks how your English is going and what is still hard for&nbsp;you.</p>
+        <div class="fin"><span class="frame">I find it difficult to</span>
+          <textarea class="hw-field resp" rows="2" data-k="n3" data-label="3. A friend asks what is still hard in your English. I find it difficult to ___" aria-label="Sentence 3" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <div class="pairq">
+        <p class="sit">You've ordered a present online for a friend's birthday on Saturday. It arrives tomorrow. Another friend wants to go to the shopping centre today and buy one, just in&nbsp;case.</p>
+        <div class="fin"><span class="frame">There's no point in</span>
+          <textarea class="hw-field resp" rows="2" data-k="n4" data-label="4. A birthday present ordered online arrives tomorrow; the party is on Saturday; a friend suggests the shopping centre today. There's no point in ___" aria-label="Sentence 4" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <div class="pairq">
+        <p class="sit">You usually run outside in the evening, but it has rained every day this week. What do you do now&nbsp;instead?</p>
+        <div class="fin"><span class="frame">This week I've switched&nbsp;to</span>
+          <textarea class="hw-field resp" rows="2" data-k="n5" data-label="5. You usually run outside in the evening; rain every day this week. This week I've switched to ___" aria-label="Sentence 5" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <div class="pairq">
+        <p class="sit">You and a friend both have a free evening. A new photography exhibition has just opened near your home, and you both want to see it. Suggest a&nbsp;plan:</p>
+        <div class="fin"><span class="frame">Let's</span>
+          <textarea class="hw-field resp" rows="2" data-k="n6" data-label="6. A free evening with a friend; a new photography exhibition near your home. Suggest a plan: Let's ___" aria-label="Sentence 6" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">7.</span>
+      <div class="pairq">
+        <p class="sit">Last week someone dented your car door in a car park. The garage said the repair would cost 300 euros, and your insurance only pays if a repair costs more than 400 euros. What did you&nbsp;do?</p>
+        <div class="fin"><span class="frame">I decided to</span>
+          <textarea class="hw-field resp" rows="2" data-k="n7" data-label="7. A dent in your car door: repair 300 euros, insurance only pays above 400 euros. I decided to ___" aria-label="Sentence 7" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">8.</span>
+      <div class="pairq">
+        <p class="sit">A friend wants to start running and asks you for one piece of&nbsp;advice.</p>
+        <div class="fin"><span class="frame">It's worth</span>
+          <textarea class="hw-field resp" rows="2" data-k="n8" data-label="8. A friend wants to start running and asks for one piece of advice. It's worth ___" aria-label="Sentence 8" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">9.</span>
+      <div class="pairq">
+        <p class="sit">A new neighbour asks about your life in Moscow before you moved to Spain. What did you do at weekends in&nbsp;winter?</p>
+        <div class="fin"><span class="frame">In Moscow, I used to</span>
+          <textarea class="hw-field resp" rows="2" data-k="n9" data-label="9. A neighbour asks about winter weekends in Moscow before you moved. In Moscow, I used to ___" aria-label="Sentence 9" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">10.</span>
+      <div class="pairq">
+        <p class="sit">Your friend thinks the holiday flat you've booked is too far from the beach. It's a 20-minute walk, but it has a big balcony and it was half the price of the flats by the&nbsp;sea.</p>
+        <div class="fin"><span class="frame">It may</span>
+          <textarea class="hw-field resp" rows="2" data-k="n10" data-label="10. A friend says your holiday flat is too far from the beach (20-minute walk, big balcony, half the price). It may ___" aria-label="Sentence 10" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">11.</span>
+      <div class="pairq">
+        <p class="sit">A possible client from a bank in Romania asks what your app is used&nbsp;for.</p>
+        <div class="fin"><span class="frame">It's used for</span>
+          <textarea class="hw-field resp" rows="2" data-k="n11" data-label="11. A possible client from a bank in Romania asks what your app is used for. It's used for ___" aria-label="Sentence 11" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">12.</span>
+      <div class="pairq">
+        <p class="sit">Your colleague asks: when you have a big task, do you listen to music or work in&nbsp;silence?</p>
+        <div class="fin"><span class="frame">I prefer</span>
+          <textarea class="hw-field resp" rows="2" data-k="n12" data-label="12. A colleague asks: with a big task, do you listen to music or work in silence? I prefer ___" aria-label="Sentence 12" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">13.</span>
+      <div class="pairq">
+        <p class="sit">A friend is visiting and asks how far your children's school is from your&nbsp;home.</p>
+        <div class="fin"><span class="frame">It takes me about twenty&nbsp;minutes</span>
+          <textarea class="hw-field resp" rows="2" data-k="n13" data-label="13. A friend asks how far your children's school is from your home. It takes me about twenty minutes ___" aria-label="Sentence 13" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">14.</span>
+      <div class="pairq">
+        <p class="sit">A colleague has sent you a 40-page report. Your meeting about it starts in an hour. Ask&nbsp;politely:</p>
+        <div class="fin"><span class="frame">Could you</span>
+          <textarea class="hw-field resp" rows="2" data-k="n14" data-label="14. A colleague sent a 40-page report; the meeting is in an hour. Ask politely: Could you ___" aria-label="Sentence 14" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJuMSI6IHsidCI6ICJvcGVuIn0sICJuMiI6IHsidCI6ICJvcGVuIn0sICJuMyI6IHsidCI6ICJvcGVuIn0sICJuNCI6IHsidCI6ICJvcGVuIn0sICJuNSI6IHsidCI6ICJvcGVuIn0sICJuNiI6IHsidCI6ICJvcGVuIn0sICJuNyI6IHsidCI6ICJvcGVuIn0sICJuOCI6IHsidCI6ICJvcGVuIn0sICJuOSI6IHsidCI6ICJvcGVuIn0sICJuMTAiOiB7InQiOiAib3BlbiJ9LCAibjExIjogeyJ0IjogIm9wZW4ifSwgIm4xMiI6IHsidCI6ICJvcGVuIn0sICJuMTMiOiB7InQiOiAib3BlbiJ9LCAibjE0IjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

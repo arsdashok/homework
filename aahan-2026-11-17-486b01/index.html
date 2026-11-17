@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aahan &middot; Maths homework &middot; 17 November 2026</title>
+<!-- 17 Nov 2026, Y5 W46 Equivalent Fractions + W47 Compare & Order Fractions (both decks in full, both exit tickets).
+     Taught envelope: Materials/Maths/Year 5/Lessons/2026-W46 .../Whiteboard_Cards_2026_W46_... and 2026-W47 .../
+     Whiteboard_Cards_2026_W47_... : target bottom both bottoms fit into, x top and bottom (the machine), compare tops of
+     same-sized pieces, same bottoms / same tops / convert, order smallest to largest, simplify fully by / top and bottom.
+     SHAKY (verified by the evidence gate): with one bottom a multiple of the other he picks the SMALLER bottom as target.
+     Any common multiple is a valid target. Items v2 (gate round 1): signs and orders cannot be got by "bigger numbers win".
+     Block 1: 1 1/4 v 5/12 (12) < . 2 5/6 v 7/12 (12) > . 3 3/10 v 1/4 (20, neither) > . 4 2/9 v 1/3 (9) <
+       . 5 3/8 v 6/16 (16) = . 6 2/3 v 5/8 (24, neither) >. Signs < > > < = > (option positions 1,2,2,1,3,2).
+       Target store: "a number both X and Y fit into" when every bottom divides his number. New-top stores: "same as <name>"
+       when top over HIS target equals the printed fraction. Sign keyed on its own. Model 3/5 and 7/10, x 2 machine shown.
+     Block 2: 1 2/5 v 2/9 L B . 2 2/3 v 5/9 L C . 3 4/7 v 6/7 R A . 4 3/10 v 3/8 R B. Sides L L R R.
+       Reasons A same bottoms, B same tops, C converted: B C A B (positions 2,3,1,2).
+     Block 3: 1 bank 3/4 5/12 2/3, target any multiple of 12, order 5/12 2/3 3/4 (bank positions 2,3,1).
+       2 simplify 18/24 fully (store "three quarters" only for 3 over 4), target any common multiple of 4, 8, 16
+       (48 for the unsimplified 24 counts too), bank 18/24 13/16 5/8, order 5/8 18/24 13/16 (bank positions 3,1,2).
+       Tap-to-place per Tools/hw_snippets/tap_place.html. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --teal-soft: #e3f5f4; --muted: #6b5f4e; --dash: #e6d6b4;
+}
+@page { size: A4; margin: 9mm 11mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font: 17px/1.5 'Rubik', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--cream);
+  max-width: 1120px; margin: 0 auto; padding: 22px 18px 40px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.display { font-family: 'Luckiest Guy', 'Arial Black', 'Rubik', sans-serif; font-weight: 400; letter-spacing: .02em; }
+.nw { white-space: nowrap; }
+.prt, .prt-block { display: none; }
+.stores { display: none !important; }
+
+/* banner */
+.banner { position: relative; height: 150px; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px; background: var(--teal); }
+.banner .digits { position: absolute; inset: -14px -10px auto -10px; font-size: 118px; line-height: .9; color: rgba(255,255,255,.17); white-space: nowrap; letter-spacing: .14em; }
+.banner .digits.two { top: 76px; left: -50px; color: rgba(27,23,18,.12); }
+.banner .label { position: absolute; left: 18px; bottom: 16px; background: var(--paper); border: 3px solid var(--ink); border-radius: 12px; padding: 8px 16px 6px; box-shadow: 4px 4px 0 var(--ink); }
+.banner .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.banner h1 { font-size: 34px; line-height: 1.05; }
+.banner .date { position: absolute; right: 16px; top: 14px; background: var(--ink); color: var(--gold); font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+
+/* cards: three registers, items regular, instruction bold, notes small */
+section { background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 22px; margin-bottom: 28px; }
+h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 22px; line-height: 1.1; margin-bottom: 10px; break-after: avoid; page-break-after: avoid; }
+.badge { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 22px; padding-top: 3px; }
+.instruction { font-size: 23px; line-height: 1.35; font-weight: 700; margin-bottom: 4px; text-wrap: pretty; }
+.note { font-size: 14.5px; line-height: 1.4; color: var(--muted); margin-bottom: 14px; text-wrap: pretty; }
+.qnum { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
+.arr { color: var(--muted); font-weight: 700; }
+.and { font-size: .62em; color: var(--muted); font-weight: 500; }
+.pbox { display: none; }
+.q { break-inside: avoid; page-break-inside: avoid; }
+
+/* vertical fractions (standing notation: numerator over a bar over denominator) */
+.vfrac { display: inline-flex; flex-direction: column; align-items: stretch; justify-content: center; vertical-align: middle; text-align: center; line-height: 1.05; white-space: nowrap; margin: .12em .15em; min-width: 1.05em; font-weight: 700; font-variant-numeric: tabular-nums; }
+.vfrac > .vn { display: block; padding: 0 .14em .10em; border-bottom: .09em solid currentColor; min-height: 1em; line-height: 1.05; }
+.vfrac > .vd { display: block; padding: .10em .14em 0; min-height: 1em; line-height: 1.05; }
+.vfrac .cin { display: inline-block; }
+.vfrac input, .vfrac input.hw-field { width: 2.3em; min-width: 0 !important; height: 1.35em; min-height: 0 !important; padding: 0 2px !important; font: inherit; font-size: .9em; text-align: center; margin-bottom: .08em; }
+.mir { display: inline-block; min-width: 1.6em; min-height: 1.05em; color: var(--teal); }
+.mir:empty { color: transparent; }
+
+/* small step labels above each box, in reading order */
+.step { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; }
+.step > small { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+.grp { display: inline-flex; align-items: center; gap: 4px 8px; white-space: nowrap; }
+.step > .hw-mark.hw-mark-blk { text-align: center; }
+.conv { display: inline-flex; align-items: center; }
+.conv > .hw-mark.hw-mark-blk { display: inline; width: auto; flex-basis: auto; margin: 0 0 0 4px; font-size: 14px; white-space: normal; max-width: 9em; }
+
+/* ---------- block 1: choose the target ---------- */
+.cmps { display: flex; flex-direction: column; gap: 12px; }
+.cmp { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px 12px; font-size: 22px; }
+.cmp .tin { font: inherit; font-size: 20px; width: 92px; }
+.cmp select, .cmp select.hw-field { font: inherit; font-size: 20px; min-width: 0 !important; width: 124px; margin: 0 4px; }
+.model { margin: 6px 0 16px; background: var(--paper); border-left: 3px solid var(--teal); padding: 8px 14px 10px; color: var(--muted); break-inside: avoid; page-break-inside: avoid; }
+.model .mrow { background: transparent; border: 0; padding: 4px 0 0; color: var(--ink); }
+.done { font-weight: 700; color: var(--ink); font-size: 1em; min-width: 1.4em; text-align: center; }
+.done.sign { margin: 0 .2em; }
+
+/* ---------- block 2: same tops or same bottoms ---------- */
+.pks { display: flex; flex-direction: column; gap: 12px; }
+.pk { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px 12px; }
+.pick { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.pickb { font: inherit; font-size: 24px; color: var(--ink); background: #fff; border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: 3px 3px 0 var(--ink); padding: 4px 16px; min-width: 76px; min-height: 64px; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.pickb.on { background: var(--gold); box-shadow: 1px 1px 0 var(--ink); transform: translate(2px, 2px); }
+.why select, .why select.hw-field { font: inherit; font-size: 18px; min-width: 0 !important; width: 420px; max-width: 100%; }
+.why { display: inline-flex; align-items: center; flex-wrap: wrap; flex: 1 1 auto; min-width: 0; }
+.why > .hw-mark { flex-basis: 100%; margin: 3px 0 0; }
+
+/* ---------- block 3: put them in order (tap to place) ---------- */
+.sets { display: flex; flex-direction: column; gap: 16px; }
+.set { background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; }
+.sethead { display: flex; align-items: center; gap: 14px; }
+.sethead .step input { font: inherit; font-size: 20px; width: 92px; }
+.setnote { margin: 8px 0 0; }
+.places { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 10px; }
+.place { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; }
+.place > small { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+.lt { font-size: 26px; font-weight: 700; color: var(--muted); padding-bottom: 26px; }
+
+/* TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, comic colours) */
+.tp-bank { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 10px 12px; border: 2px dashed var(--dash); border-radius: 12px; min-height: 84px; background: var(--paper); margin: 10px 0 12px; }
+.tp-tile {
+  font: inherit; font-size: 24px; font-weight: 700; color: var(--ink); background: #fff;
+  border: 2.5px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink); padding: 2px 14px; min-height: 64px; min-width: 70px;
+  cursor: pointer; text-align: center; line-height: 1.2;
+  touch-action: manipulation;            /* a touch scrolls the page; never "none" */
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+}
+.tp-tile.picked { background: var(--gold-soft); outline: 3px solid var(--orange); outline-offset: 2px; }
+.tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 6px 6px 0 var(--ink); }
+.tp-zone { display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; min-width: 96px; min-height: 84px; padding: 4px 6px; border: 2.5px dashed #b9a98a; border-radius: 12px; background: #fff; cursor: pointer; }
+.tp-zone.ready { border-color: var(--teal); background: var(--teal-soft); }
+.tp-zone.over { border-color: var(--teal); background: var(--teal-soft); }
+.tp-slot { display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; min-height: 44px; }
+.tp-zone .tp-tile { box-shadow: none; }
+.tp-zone > .hw-mark.hw-mark-blk { display: block; width: 100%; flex-basis: 100%; margin: 2px 0 0; text-align: center; font-size: 13px; }
+.tp-stores { display: none !important; }
+@media print { .tp-tile.picked { outline: 0; } }
+
+
+/* layout fixes: an arrow always travels with the step after it; marks wrap inside their own box */
+.seg { display: inline-flex; align-items: center; gap: 8px 14px; white-space: nowrap; }
+.conv { flex-direction: column; }
+.conv > .hw-mark.hw-mark-blk { display: block; margin: 2px 0 0; font-size: 13px; max-width: 8.5em; text-align: center; white-space: normal; line-height: 1.2; }
+.tstep > .hw-mark.hw-mark-blk { max-width: 9em; white-space: normal; font-size: 13px; line-height: 1.2; }
+.tp-zone > .hw-mark.hw-short, .conv > .hw-mark.hw-short, .tstep > .hw-mark.hw-short { white-space: normal; }
+.tp-zone { flex-direction: column; }
+.tp-zone > .hw-mark.hw-mark-blk { width: auto; max-width: 7.5em; line-height: 1.2; }
+.simp > .hw-mark.hw-mark-blk { font-size: 13px; text-align: center; }
+.simp .vfrac input, .simp .vfrac input.hw-field { margin: .05em 0; }
+.sethead { flex-wrap: wrap; row-gap: 6px; }
+
+.mw { display: inline-flex; flex-direction: column; align-items: center; }
+.mach { font-size: 13px; font-weight: 800; color: var(--orange); line-height: 1; }
+.pick { flex: none; width: 172px; }
+.pick > .hw-mark.hw-mark-blk { display: block; width: 100%; flex-basis: 100%; margin: 2px 0 0; font-size: 13px; white-space: normal; text-align: center; }
+.pickb { width: 80px; min-width: 0; padding-left: 4px; padding-right: 4px; }
+
+/* Emailed PDF only (hw.js gives the export body the class hw-pdf-mode). */
+body.hw-pdf-mode .sets { display: block; }
+body.hw-pdf-mode .sets > .set { margin: 0 0 8px; }
+body.hw-pdf-mode .cmp, body.hw-pdf-mode .pk, body.hw-pdf-mode .set { padding: 5px 12px 6px; }
+body.hw-pdf-mode .cmps, body.hw-pdf-mode .pks { gap: 7px; }
+body.hw-pdf-mode section { padding: 12px 18px 14px; margin-bottom: 18px; }
+body.hw-pdf-mode .banner { height: 110px; margin-bottom: 16px; }
+body.hw-pdf-mode .note.scr-block { display: none; }
+
+/* Laptop and big screens: whole width, big type (Dasha, 1 Nov 2026). PDF export and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { max-width: 1640px; padding: 28px 48px 56px; font-size: 24px; }
+  .banner { height: 190px; }
+  .banner .digits { font-size: 150px; }
+  .banner .digits.two { top: 96px; }
+  .banner .kicker { font-size: 17px; }
+  .banner h1 { font-size: 44px; }
+  .banner .date { font-size: 18px; padding: 6px 14px; }
+  section { padding: 26px 34px 32px; margin-bottom: 36px; }
+  h2 { font-size: 28px; margin-bottom: 14px; }
+  .badge { width: 50px; height: 50px; font-size: 27px; }
+  .instruction { font-size: 38px; line-height: 1.25; margin-bottom: 8px; }
+  .note { font-size: 22px; margin-bottom: 20px; }
+  .qnum { width: 40px; height: 40px; font-size: 20px; }
+  .tag { font-size: 17px; }
+  .step > small, .place > small { font-size: 15px; }
+  .hw-mark { font-size: 20px; }
+  .conv > .hw-mark.hw-mark-blk, .tstep > .hw-mark.hw-mark-blk, .simp > .hw-mark.hw-mark-blk { font-size: 17px; }
+  .tp-zone > .hw-mark.hw-mark-blk { font-size: 16px; }
+  .seg { gap: 8px 18px; }
+  .conv > .hw-mark.hw-mark-blk { font-size: 18px; }
+  .cmps { gap: 18px; }
+  .cmp { font-size: 30px; padding: 14px 22px 16px; gap: 10px 18px; }
+  .cmp .tin { font-size: 30px; width: 130px; min-height: 58px; }
+  .cmp select, .cmp select.hw-field { font-size: 28px; width: 168px; min-height: 58px; }
+  .model { margin: 10px 0 24px; padding: 14px 22px 18px; }
+  .pks { gap: 18px; }
+  .pk { padding: 14px 22px 16px; gap: 14px 34px; flex-wrap: nowrap; }
+  .pick { gap: 18px; }
+  .pickb { font-size: 32px; width: 112px; min-height: 92px; }
+  .pick { width: 242px; }
+  .pick > .hw-mark.hw-mark-blk { font-size: 18px; }
+  .mach { font-size: 18px; }
+  .why select, .why select.hw-field { font-size: 27px; width: 640px; min-height: 58px; }
+  .sets { gap: 26px; }
+  .set { padding: 18px 22px 20px; }
+  .sethead .step input { font-size: 30px; width: 130px; min-height: 58px; }
+  .setnote { font-size: 21px; }
+  .tp-bank { gap: 18px; padding: 14px 16px; min-height: 120px; margin: 14px 0 16px; }
+  .tp-tile { font-size: 32px; min-height: 92px; min-width: 96px; padding: 2px 20px; }
+  .tp-zone { min-width: 130px; min-height: 120px; }
+  .places { gap: 10px 16px; }
+  .lt { font-size: 36px; padding-bottom: 38px; }
+}
+@media screen and (min-width:1500px) {
+  .sets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (min-width:900px) and (max-width:1279px) {
+  .why select, .why select.hw-field { width: 560px; }
+}
+@media screen and (max-width: 560px) {
+  body { padding: 16px 12px 36px; }
+  .banner { height: 140px; }
+  .banner .label { right: 16px; bottom: 14px; }
+  .banner h1 { font-size: 26px; }
+  .banner .date { top: 10px; font-size: 12px; }
+  section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 20px; }
+  .instruction { font-size: 20px; }
+  .cmp { font-size: 20px; padding: 10px 10px 12px; gap: 6px 10px; }
+  .cmp .arr, .sethead .arr { display: none; }
+  .seg { gap: 6px 10px; }
+  .cmp .tin { width: 76px; }
+  .cmp select, .cmp select.hw-field { width: 104px; font-size: 17px; }
+  .pk { padding: 10px 10px 12px; }
+  .pickb { font-size: 22px; width: 66px; }
+  .pick { width: 144px; }
+  .why { width: 100%; }
+  .why select, .why select.hw-field { width: 100%; font-size: 16px; }
+  .tp-tile { font-size: 22px; min-width: 58px; padding: 2px 10px; }
+  .tp-zone { min-width: 74px; min-height: 78px; }
+  .lt { font-size: 20px; padding-bottom: 24px; }
+}
+@media print {
+  html, body { background: #fff; }
+  body { padding: 0 8px 6px 0; max-width: none; font-size: 12px; line-height: 1.3; }
+  .scr, .scr-block { display: none !important; }
+  .prt { display: inline; }
+  .prt-block { display: block; }
+  select { display: none !important; }
+  .pbox { display: inline-block; width: 40px; height: 22px; border: 1.5px solid var(--ink); border-radius: 6px; background: #fff; vertical-align: middle; }
+  .banner { height: 58px; margin-bottom: 8px; box-shadow: 4px 4px 0 var(--ink); }
+  .banner .digits { font-size: 58px; }
+  .banner .digits.two { top: 30px; }
+  .banner .label { bottom: 6px; padding: 3px 12px 2px; }
+  .banner .kicker { font-size: 9px; }
+  .banner h1 { font-size: 19px; }
+  .banner .date { font-size: 10.5px; top: 8px; }
+  section { padding: 7px 12px 10px; margin-bottom: 10px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 15px; margin-bottom: 3px; gap: 8px; }
+  .badge { width: 24px; height: 24px; font-size: 13px; }
+  .instruction { font-size: 14px; margin-bottom: 1px; }
+  .note { font-size: 10px; margin-bottom: 5px; }
+  .tag { font-size: 8.5px; }
+  .qnum { width: 20px; height: 20px; font-size: 10.5px; }
+  .step > small, .place > small { font-size: 7.5px; }
+  input { border: 1.5px solid var(--ink) !important; border-radius: 6px !important; background: #fff !important; }
+  input::placeholder { color: transparent; }
+  .cmps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 5px 10px; }
+  .cmp { font-size: 13px; padding: 3px 6px; gap: 3px 6px; border-width: 1.5px; flex-wrap: nowrap; }
+  .cmps .cmp .arr { display: none; }
+  .cmps .cmp { font-size: 12px; }
+  .cmps .step .grp { gap: 3px 5px; }
+  .cmp .tin { width: 30px !important; }
+  .seg { gap: 3px 6px; }
+  .cmp .pbox { width: 26px; margin: 0 2px; }
+  section#order { break-inside: avoid; page-break-inside: avoid; }
+  .cmp .tin { font-size: 11px; width: 34px; height: 20px; min-height: 0; }
+  .model { padding: 3px 8px 5px; margin: 2px 0 6px; }
+  .model .mrow { font-size: 13px; flex-wrap: nowrap; }
+  .pks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, auto); grid-auto-flow: column; gap: 5px 10px; }
+  .pk { padding: 4px 8px; gap: 6px 12px; border-width: 1.5px; flex-wrap: nowrap; }
+  .pick { width: 90px; gap: 6px; }
+  .pickb { font-size: 13px; width: 40px; min-height: 0; padding: 1px 4px; box-shadow: none; border-width: 1.5px; }
+  .mir { min-width: 1.7em; height: 1.1em; border: 1px solid #b7ab95; border-radius: 3px; margin-top: 1px; }
+  .mach { font-size: 7.5px; }
+  .sets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .set { padding: 5px 8px 7px; border-width: 1.5px; }
+  .sethead .step input { font-size: 11px; width: 34px; height: 20px; min-height: 0; }
+  .setnote { font-size: 9.5px; margin-top: 3px; }
+  .tp-bank { min-height: 0; padding: 4px 6px; gap: 8px; margin: 5px 0; }
+  .tp-tile { font-size: 13px; min-height: 0; min-width: 0; padding: 1px 8px; box-shadow: none; border-width: 1.5px; }
+  .tp-zone { min-width: 40px; min-height: 36px; border-width: 1.2px; }
+  .lt { font-size: 13px; padding-bottom: 10px; }
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Aahan" data-sheet="Aahan - Maths 2026-11-17 2026-11-17" data-sheet-id="aahan-2026-11-17-aahan-maths-2026-11-17">
+<div id="sheet">
+
+<div class="banner">
+  <div class="digits display" aria-hidden="true">&lt; &gt; = &lt; &gt; = &lt; &gt;</div>
+  <div class="digits two display" aria-hidden="true">= &gt; &lt; = &gt; &lt; = &gt;</div>
+  <span class="date">17 November</span>
+  <div class="label">
+    <div class="kicker">Compare and order fractions</div>
+    <h1 class="display">Aahan's maths</h1>
+  </div>
+</div>
+
+<section id="target">
+  <header>
+  <h2><span class="badge">1</span> Choose the target first</h2>
+  <p class="instruction"><span class="scr">Type the target first. Then the new tops. Then choose <span class="nw">the sign.</span></span><span class="prt">Write the target first. Then the new tops. Then write <span class="nw">the sign.</span></span></p>
+  <p class="note">The target is a number both bottoms fit into. If one bottom fits into the other, the bigger bottom is already <span class="nw">a target.</span></p>
+  <div class="model" aria-label="Worked example">
+    <span class="tag">Like this</span>
+    <div class="cmp mrow">
+      <span class="step"><small>&nbsp;</small><span class="grp pair"><span class="vfrac"><span class="vn">3</span><span class="vd">5</span></span> <span class="and">and</span> <span class="vfrac"><span class="vn">7</span><span class="vd">10</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>Target</small><span class="done">10</span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>New tops</small><span class="grp"><span class="mw"><small class="mach">&times; 2</small><span class="vfrac"><span class="vn">6</span><span class="vd">10</span></span></span> <span class="and">and</span> <span class="mw"><small class="mach">&nbsp;</small><span class="vfrac"><span class="vn">7</span><span class="vd">10</span></span></span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>So</small><span class="grp"><span class="vfrac"><span class="vn">3</span><span class="vd">5</span></span><span class="done sign">&lt;</span><span class="vfrac"><span class="vn">7</span><span class="vd">10</span></span></span></span></span>
+    </div>
+  </div>
+  </header>
+
+  <div class="cmps">
+    <div class="cmp q">
+      <span class="qnum">1</span>
+      <span class="step"><small>&nbsp;</small><span class="grp pair"><span class="vfrac"><span class="vn">1</span><span class="vd">4</span></span> <span class="and">and</span> <span class="vfrac"><span class="vn">5</span><span class="vd">12</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step tstep" data-field="a1t" data-d1="4" data-d2="12" data-ok="a number both 4 and 12 fit into"><small>Target</small><span class="cin" data-field="a1tv"><input class="hw-field tin" autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a1tv" data-label="1.1 one quarter and five twelfths: target (as typed)" aria-label="Target for item 1"></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>New tops</small><span class="grp"><span class="conv" data-field="a1x" data-n="1" data-d="4" data-name="one quarter" data-t="a1tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a1xv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a1xv" data-label="1.1 one quarter and five twelfths: new top for one quarter (as typed)" aria-label="New top for one quarter" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a1tv"></span></span></span></span> <span class="and">and</span> <span class="conv" data-field="a1y" data-n="5" data-d="12" data-name="five twelfths" data-t="a1tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a1yv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a1yv" data-label="1.1 one quarter and five twelfths: new top for five twelfths (as typed)" aria-label="New top for five twelfths" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a1tv"></span></span></span></span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step" data-field="a1s"><small>So</small><span class="grp"><span class="vfrac"><span class="vn">1</span><span class="vd">4</span></span><select data-k="a1s" data-label="1.1 one quarter and five twelfths: sign" aria-label="Sign for item 1" class="hw-field"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="pbox"></span><span class="vfrac"><span class="vn">5</span><span class="vd">12</span></span></span></span></span>
+    </div>
+    <div class="cmp q">
+      <span class="qnum">2</span>
+      <span class="step"><small>&nbsp;</small><span class="grp pair"><span class="vfrac"><span class="vn">5</span><span class="vd">6</span></span> <span class="and">and</span> <span class="vfrac"><span class="vn">7</span><span class="vd">12</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step tstep" data-field="a2t" data-d1="6" data-d2="12" data-ok="a number both 6 and 12 fit into"><small>Target</small><span class="cin" data-field="a2tv"><input class="hw-field tin" autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a2tv" data-label="1.2 five sixths and seven twelfths: target (as typed)" aria-label="Target for item 2"></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>New tops</small><span class="grp"><span class="conv" data-field="a2x" data-n="5" data-d="6" data-name="five sixths" data-t="a2tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a2xv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a2xv" data-label="1.2 five sixths and seven twelfths: new top for five sixths (as typed)" aria-label="New top for five sixths" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a2tv"></span></span></span></span> <span class="and">and</span> <span class="conv" data-field="a2y" data-n="7" data-d="12" data-name="seven twelfths" data-t="a2tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a2yv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a2yv" data-label="1.2 five sixths and seven twelfths: new top for seven twelfths (as typed)" aria-label="New top for seven twelfths" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a2tv"></span></span></span></span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step" data-field="a2s"><small>So</small><span class="grp"><span class="vfrac"><span class="vn">5</span><span class="vd">6</span></span><select data-k="a2s" data-label="1.2 five sixths and seven twelfths: sign" aria-label="Sign for item 2" class="hw-field"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="pbox"></span><span class="vfrac"><span class="vn">7</span><span class="vd">12</span></span></span></span></span>
+    </div>
+    <div class="cmp q">
+      <span class="qnum">3</span>
+      <span class="step"><small>&nbsp;</small><span class="grp pair"><span class="vfrac"><span class="vn">3</span><span class="vd">10</span></span> <span class="and">and</span> <span class="vfrac"><span class="vn">1</span><span class="vd">4</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step tstep" data-field="a3t" data-d1="10" data-d2="4" data-ok="a number both 10 and 4 fit into"><small>Target</small><span class="cin" data-field="a3tv"><input class="hw-field tin" autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a3tv" data-label="1.3 three tenths and one quarter: target (as typed)" aria-label="Target for item 3"></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>New tops</small><span class="grp"><span class="conv" data-field="a3x" data-n="3" data-d="10" data-name="three tenths" data-t="a3tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a3xv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a3xv" data-label="1.3 three tenths and one quarter: new top for three tenths (as typed)" aria-label="New top for three tenths" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a3tv"></span></span></span></span> <span class="and">and</span> <span class="conv" data-field="a3y" data-n="1" data-d="4" data-name="one quarter" data-t="a3tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a3yv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a3yv" data-label="1.3 three tenths and one quarter: new top for one quarter (as typed)" aria-label="New top for one quarter" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a3tv"></span></span></span></span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step" data-field="a3s"><small>So</small><span class="grp"><span class="vfrac"><span class="vn">3</span><span class="vd">10</span></span><select data-k="a3s" data-label="1.3 three tenths and one quarter: sign" aria-label="Sign for item 3" class="hw-field"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="pbox"></span><span class="vfrac"><span class="vn">1</span><span class="vd">4</span></span></span></span></span>
+    </div>
+    <div class="cmp q">
+      <span class="qnum">4</span>
+      <span class="step"><small>&nbsp;</small><span class="grp pair"><span class="vfrac"><span class="vn">2</span><span class="vd">9</span></span> <span class="and">and</span> <span class="vfrac"><span class="vn">1</span><span class="vd">3</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step tstep" data-field="a4t" data-d1="9" data-d2="3" data-ok="a number both 9 and 3 fit into"><small>Target</small><span class="cin" data-field="a4tv"><input class="hw-field tin" autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a4tv" data-label="1.4 two ninths and one third: target (as typed)" aria-label="Target for item 4"></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>New tops</small><span class="grp"><span class="conv" data-field="a4x" data-n="2" data-d="9" data-name="two ninths" data-t="a4tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a4xv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a4xv" data-label="1.4 two ninths and one third: new top for two ninths (as typed)" aria-label="New top for two ninths" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a4tv"></span></span></span></span> <span class="and">and</span> <span class="conv" data-field="a4y" data-n="1" data-d="3" data-name="one third" data-t="a4tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a4yv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a4yv" data-label="1.4 two ninths and one third: new top for one third (as typed)" aria-label="New top for one third" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a4tv"></span></span></span></span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step" data-field="a4s"><small>So</small><span class="grp"><span class="vfrac"><span class="vn">2</span><span class="vd">9</span></span><select data-k="a4s" data-label="1.4 two ninths and one third: sign" aria-label="Sign for item 4" class="hw-field"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="pbox"></span><span class="vfrac"><span class="vn">1</span><span class="vd">3</span></span></span></span></span>
+    </div>
+    <div class="cmp q">
+      <span class="qnum">5</span>
+      <span class="step"><small>&nbsp;</small><span class="grp pair"><span class="vfrac"><span class="vn">3</span><span class="vd">8</span></span> <span class="and">and</span> <span class="vfrac"><span class="vn">6</span><span class="vd">16</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step tstep" data-field="a5t" data-d1="8" data-d2="16" data-ok="a number both 8 and 16 fit into"><small>Target</small><span class="cin" data-field="a5tv"><input class="hw-field tin" autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a5tv" data-label="1.5 three eighths and six sixteenths: target (as typed)" aria-label="Target for item 5"></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>New tops</small><span class="grp"><span class="conv" data-field="a5x" data-n="3" data-d="8" data-name="three eighths" data-t="a5tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a5xv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a5xv" data-label="1.5 three eighths and six sixteenths: new top for three eighths (as typed)" aria-label="New top for three eighths" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a5tv"></span></span></span></span> <span class="and">and</span> <span class="conv" data-field="a5y" data-n="6" data-d="16" data-name="six sixteenths" data-t="a5tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a5yv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a5yv" data-label="1.5 three eighths and six sixteenths: new top for six sixteenths (as typed)" aria-label="New top for six sixteenths" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a5tv"></span></span></span></span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step" data-field="a5s"><small>So</small><span class="grp"><span class="vfrac"><span class="vn">3</span><span class="vd">8</span></span><select data-k="a5s" data-label="1.5 three eighths and six sixteenths: sign" aria-label="Sign for item 5" class="hw-field"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="pbox"></span><span class="vfrac"><span class="vn">6</span><span class="vd">16</span></span></span></span></span>
+    </div>
+    <div class="cmp q">
+      <span class="qnum">6</span>
+      <span class="step"><small>&nbsp;</small><span class="grp pair"><span class="vfrac"><span class="vn">2</span><span class="vd">3</span></span> <span class="and">and</span> <span class="vfrac"><span class="vn">5</span><span class="vd">8</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step tstep" data-field="a6t" data-d1="3" data-d2="8" data-ok="a number both 3 and 8 fit into"><small>Target</small><span class="cin" data-field="a6tv"><input class="hw-field tin" autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a6tv" data-label="1.6 two thirds and five eighths: target (as typed)" aria-label="Target for item 6"></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>New tops</small><span class="grp"><span class="conv" data-field="a6x" data-n="2" data-d="3" data-name="two thirds" data-t="a6tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a6xv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a6xv" data-label="1.6 two thirds and five eighths: new top for two thirds (as typed)" aria-label="New top for two thirds" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a6tv"></span></span></span></span> <span class="and">and</span> <span class="conv" data-field="a6y" data-n="5" data-d="8" data-name="five eighths" data-t="a6tv"><span class="vfrac"><span class="vn"><span class="cin" data-field="a6yv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="a6yv" data-label="1.6 two thirds and five eighths: new top for five eighths (as typed)" aria-label="New top for five eighths" class="hw-field"></span></span><span class="vd"><span class="mir" data-mirror="a6tv"></span></span></span></span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step" data-field="a6s"><small>So</small><span class="grp"><span class="vfrac"><span class="vn">2</span><span class="vd">3</span></span><select data-k="a6s" data-label="1.6 two thirds and five eighths: sign" aria-label="Sign for item 6" class="hw-field"><option value="">Choose</option><option value="&lt;">&lt;</option><option value="&gt;">&gt;</option><option value="=">=</option></select><span class="pbox"></span><span class="vfrac"><span class="vn">5</span><span class="vd">8</span></span></span></span></span>
+    </div>
+  </div>
+  <div class="stores" hidden>
+    <input data-k="a1t" data-label="1.1 target (checked)" class="hw-field">
+    <input data-k="a1x" data-label="1.1 new top for one quarter (checked)" class="hw-field">
+    <input data-k="a1y" data-label="1.1 new top for five twelfths (checked)" class="hw-field">
+    <input data-k="a2t" data-label="1.2 target (checked)" class="hw-field">
+    <input data-k="a2x" data-label="1.2 new top for five sixths (checked)" class="hw-field">
+    <input data-k="a2y" data-label="1.2 new top for seven twelfths (checked)" class="hw-field">
+    <input data-k="a3t" data-label="1.3 target (checked)" class="hw-field">
+    <input data-k="a3x" data-label="1.3 new top for three tenths (checked)" class="hw-field">
+    <input data-k="a3y" data-label="1.3 new top for one quarter (checked)" class="hw-field">
+    <input data-k="a4t" data-label="1.4 target (checked)" class="hw-field">
+    <input data-k="a4x" data-label="1.4 new top for two ninths (checked)" class="hw-field">
+    <input data-k="a4y" data-label="1.4 new top for one third (checked)" class="hw-field">
+    <input data-k="a5t" data-label="1.5 target (checked)" class="hw-field">
+    <input data-k="a5x" data-label="1.5 new top for three eighths (checked)" class="hw-field">
+    <input data-k="a5y" data-label="1.5 new top for six sixteenths (checked)" class="hw-field">
+    <input data-k="a6t" data-label="1.6 target (checked)" class="hw-field">
+    <input data-k="a6x" data-label="1.6 new top for two thirds (checked)" class="hw-field">
+    <input data-k="a6y" data-label="1.6 new top for five eighths (checked)" class="hw-field">
+  </div>
+</section>
+
+<section id="tops">
+  <header>
+  <h2><span class="badge">2</span> Same tops or same bottoms?</h2>
+  <p class="instruction"><span class="scr">Tap the bigger fraction. Then choose how <span class="nw">you know.</span></span><span class="prt">Circle the bigger fraction. Then write the letter for how <span class="nw">you know.</span></span></p>
+  <p class="note prt-block"><b>A</b> Same bottoms: more pieces wins &nbsp; <b>B</b> Same tops: smaller bottom, bigger pieces &nbsp; <b>C</b> Nothing the same: I converted</p>
+  </header>
+  <div class="pks">
+    <div class="pk q">
+      <span class="qnum">1</span>
+      <span class="pick" data-field="b1p" data-store="b1p"><button type="button" class="pickb" data-v="the left one" aria-label="The left fraction"><span class="vfrac"><span class="vn">2</span><span class="vd">5</span></span></button><button type="button" class="pickb" data-v="the right one" aria-label="The right fraction"><span class="vfrac"><span class="vn">2</span><span class="vd">9</span></span></button></span>
+      <span class="why"><select data-k="b1r" data-label="2.1: how you know" aria-label="How you know, item 1" class="hw-field"><option value="">Choose</option><option value="Same bottoms: more pieces wins">Same bottoms: more pieces wins</option><option value="Same tops: smaller bottom, bigger pieces">Same tops: smaller bottom, bigger pieces</option><option value="Nothing the same: I converted">Nothing the same: I converted</option></select><span class="pbox wide"></span></span>
+    </div>
+    <div class="pk q">
+      <span class="qnum">2</span>
+      <span class="pick" data-field="b2p" data-store="b2p"><button type="button" class="pickb" data-v="the left one" aria-label="The left fraction"><span class="vfrac"><span class="vn">2</span><span class="vd">3</span></span></button><button type="button" class="pickb" data-v="the right one" aria-label="The right fraction"><span class="vfrac"><span class="vn">5</span><span class="vd">9</span></span></button></span>
+      <span class="why"><select data-k="b2r" data-label="2.2: how you know" aria-label="How you know, item 2" class="hw-field"><option value="">Choose</option><option value="Same bottoms: more pieces wins">Same bottoms: more pieces wins</option><option value="Same tops: smaller bottom, bigger pieces">Same tops: smaller bottom, bigger pieces</option><option value="Nothing the same: I converted">Nothing the same: I converted</option></select><span class="pbox wide"></span></span>
+    </div>
+    <div class="pk q">
+      <span class="qnum">3</span>
+      <span class="pick" data-field="b3p" data-store="b3p"><button type="button" class="pickb" data-v="the left one" aria-label="The left fraction"><span class="vfrac"><span class="vn">4</span><span class="vd">7</span></span></button><button type="button" class="pickb" data-v="the right one" aria-label="The right fraction"><span class="vfrac"><span class="vn">6</span><span class="vd">7</span></span></button></span>
+      <span class="why"><select data-k="b3r" data-label="2.3: how you know" aria-label="How you know, item 3" class="hw-field"><option value="">Choose</option><option value="Same bottoms: more pieces wins">Same bottoms: more pieces wins</option><option value="Same tops: smaller bottom, bigger pieces">Same tops: smaller bottom, bigger pieces</option><option value="Nothing the same: I converted">Nothing the same: I converted</option></select><span class="pbox wide"></span></span>
+    </div>
+    <div class="pk q">
+      <span class="qnum">4</span>
+      <span class="pick" data-field="b4p" data-store="b4p"><button type="button" class="pickb" data-v="the left one" aria-label="The left fraction"><span class="vfrac"><span class="vn">3</span><span class="vd">10</span></span></button><button type="button" class="pickb" data-v="the right one" aria-label="The right fraction"><span class="vfrac"><span class="vn">3</span><span class="vd">8</span></span></button></span>
+      <span class="why"><select data-k="b4r" data-label="2.4: how you know" aria-label="How you know, item 4" class="hw-field"><option value="">Choose</option><option value="Same bottoms: more pieces wins">Same bottoms: more pieces wins</option><option value="Same tops: smaller bottom, bigger pieces">Same tops: smaller bottom, bigger pieces</option><option value="Nothing the same: I converted">Nothing the same: I converted</option></select><span class="pbox wide"></span></span>
+    </div>
+  </div>
+  <div class="stores" hidden>
+    <select data-k="b1p" data-label="2.1: the bigger one" class="hw-field"><option value=""></option><option value="the left one">the left one</option><option value="the right one">the right one</option></select>
+    <select data-k="b2p" data-label="2.2: the bigger one" class="hw-field"><option value=""></option><option value="the left one">the left one</option><option value="the right one">the right one</option></select>
+    <select data-k="b3p" data-label="2.3: the bigger one" class="hw-field"><option value=""></option><option value="the left one">the left one</option><option value="the right one">the right one</option></select>
+    <select data-k="b4p" data-label="2.4: the bigger one" class="hw-field"><option value=""></option><option value="the left one">the left one</option><option value="the right one">the right one</option></select>
+  </div>
+</section>
+
+<section id="order">
+  <header>
+  <h2><span class="badge">3</span> Put them in order</h2>
+  <p class="instruction"><span class="scr">Type the target, then tap the cards into order, smallest first. In set 2, simplify the first card <span class="nw">fully first.</span></span><span class="prt">Write the target, then write the fractions in order, smallest first. In set 2, simplify the first card <span class="nw">fully first.</span></span></p>
+  <p class="note">Work out the new tops in your head or in <span class="nw">your book.</span></p>
+  <p class="note scr-block">Tap a card, then tap its place. Tap a placed card to send <span class="nw">it back.</span></p>
+  </header>
+  <div class="sets">
+    <div class="tp set q" id="set1">
+      <div class="sethead"><span class="qnum">1</span><span class="seg"><span class="step tstep" data-field="c1t" data-dens="3 4 12" data-ok="a number 3, 4 and 12 all fit into"><small>Target</small><span class="cin" data-field="c1tv"><input class="hw-field tin" autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c1tv" data-label="3.1: target (as typed)" aria-label="Target for set 1"></span></span></span></div>
+      <div class="tp-bank"><button type="button" class="tp-tile" data-value="three quarters" aria-label="three quarters"><span class="vfrac"><span class="vn">3</span><span class="vd">4</span></span></button><button type="button" class="tp-tile" data-value="five twelfths" aria-label="five twelfths"><span class="vfrac"><span class="vn">5</span><span class="vd">12</span></span></button><button type="button" class="tp-tile" data-value="two thirds" aria-label="two thirds"><span class="vfrac"><span class="vn">2</span><span class="vd">3</span></span></button></div>
+      <div class="places"><span class="place"><small>smallest</small><span class="tp-zone" data-store="c1p1" data-field="c1p1" aria-label="Place 1"><span class="tp-slot"></span></span></span><span class="lt">&lt;</span><span class="place"><small>&nbsp;</small><span class="tp-zone" data-store="c1p2" data-field="c1p2" aria-label="Place 2"><span class="tp-slot"></span></span></span><span class="lt">&lt;</span><span class="place"><small>largest</small><span class="tp-zone" data-store="c1p3" data-field="c1p3" aria-label="Place 3"><span class="tp-slot"></span></span></span></div>
+    </div>
+    <div class="tp set q" id="set2">
+      <div class="sethead"><span class="qnum">2</span><span class="step simp" data-field="c2s" data-store="c2s" data-rn="3" data-rd="4" data-ok="three quarters"><small>Simplify fully</small><span class="grp"><span class="vfrac"><span class="vn">18</span><span class="vd">24</span></span> = <span class="vfrac"><span class="vn"><span class="cin" data-field="c2snv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c2snv" data-label="3.2 18 over 24 simplified fully: top (as typed)" aria-label="Top" class="hw-field"></span></span><span class="vd"><span class="cin" data-field="c2sdv"><input autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c2sdv" data-label="3.2 18 over 24 simplified fully: bottom (as typed)" aria-label="Bottom" class="hw-field"></span></span></span></span></span><span class="seg"><span class="arr">&rarr;</span><span class="step tstep" data-field="c2t" data-dens="4 8 16" data-ok="a number 4, 8 and 16 all fit into"><small>Target</small><span class="cin" data-field="c2tv"><input class="hw-field tin" autocomplete="off" spellcheck="false" inputmode="numeric" data-k="c2tv" data-label="3.2: target (as typed)" aria-label="Target for set 2"></span></span></span></div>
+      <div class="tp-bank"><button type="button" class="tp-tile" data-value="eighteen twenty-fourths" aria-label="eighteen twenty-fourths"><span class="vfrac"><span class="vn">18</span><span class="vd">24</span></span></button><button type="button" class="tp-tile" data-value="thirteen sixteenths" aria-label="thirteen sixteenths"><span class="vfrac"><span class="vn">13</span><span class="vd">16</span></span></button><button type="button" class="tp-tile" data-value="five eighths" aria-label="five eighths"><span class="vfrac"><span class="vn">5</span><span class="vd">8</span></span></button></div>
+      <div class="places"><span class="place"><small>smallest</small><span class="tp-zone" data-store="c2p1" data-field="c2p1" aria-label="Place 1"><span class="tp-slot"></span></span></span><span class="lt">&lt;</span><span class="place"><small>&nbsp;</small><span class="tp-zone" data-store="c2p2" data-field="c2p2" aria-label="Place 2"><span class="tp-slot"></span></span></span><span class="lt">&lt;</span><span class="place"><small>largest</small><span class="tp-zone" data-store="c2p3" data-field="c2p3" aria-label="Place 3"><span class="tp-slot"></span></span></span></div>
+    </div>
+  </div>
+  <div class="tp-stores" hidden>
+    <select data-k="c1p1" data-label="3.1: place 1 (smallest)" class="hw-field"><option value=""></option><option value="three quarters">three quarters</option><option value="five twelfths">five twelfths</option><option value="two thirds">two thirds</option></select>
+    <select data-k="c1p2" data-label="3.1: place 2 (middle)" class="hw-field"><option value=""></option><option value="three quarters">three quarters</option><option value="five twelfths">five twelfths</option><option value="two thirds">two thirds</option></select>
+    <select data-k="c1p3" data-label="3.1: place 3 (largest)" class="hw-field"><option value=""></option><option value="three quarters">three quarters</option><option value="five twelfths">five twelfths</option><option value="two thirds">two thirds</option></select>
+    <select data-k="c2p1" data-label="3.2: place 1 (smallest)" class="hw-field"><option value=""></option><option value="eighteen twenty-fourths">eighteen twenty-fourths</option><option value="thirteen sixteenths">thirteen sixteenths</option><option value="five eighths">five eighths</option></select>
+    <select data-k="c2p2" data-label="3.2: place 2 (middle)" class="hw-field"><option value=""></option><option value="eighteen twenty-fourths">eighteen twenty-fourths</option><option value="thirteen sixteenths">thirteen sixteenths</option><option value="five eighths">five eighths</option></select>
+    <select data-k="c2p3" data-label="3.2: place 3 (largest)" class="hw-field"><option value=""></option><option value="eighteen twenty-fourths">eighteen twenty-fourths</option><option value="thirteen sixteenths">thirteen sixteenths</option><option value="five eighths">five eighths</option></select>
+  </div>
+  <div class="stores" hidden>
+    <input data-k="c1t" data-label="3.1 target (checked)" class="hw-field">
+    <input data-k="c2t" data-label="3.2 target (checked)" class="hw-field">
+    <input data-k="c2s" data-label="3.2 18 over 24 simplified fully (checked)" class="hw-field">
+  </div>
+</section>
+
+<script>
+/* Whole numbers only for the target and the new tops. */
+function hwInt(s) { var v = String(s || "").replace(/\s/g, ""); return /^\d+$/.test(v) ? parseInt(v, 10) : null; }
+
+/* Blocks 1 and 3. The bottom under each new-top box copies the target he typed (read-only mirror, cleared with it).
+   Each new top is checked on its own, whatever target he chose: the hidden copy says "same as <fraction>"
+   when top over HIS target is equal to the printed fraction, otherwise it keeps what he wrote ("10 over 24").
+   So a bigger target than needed costs only the target mark, never the tops or the sign. */
+(function () {
+  function init() {
+    function fire(el, v) { if (el && el.value !== v) { el.value = v; el.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function mirrors(k) {
+      var src = document.querySelector('[data-k=' + k + ']'), t = src ? hwInt(src.value) : null;
+      document.querySelectorAll('[data-mirror="' + k + '"]').forEach(function (m) { m.textContent = t ? String(t) : ""; });
+    }
+    /* A target is right when every bottom fits into it (any common multiple, not only the smallest). */
+    document.querySelectorAll(".tstep[data-field]").forEach(function (st) {
+      var k = st.dataset.field, store = document.querySelector('.stores [data-k=' + k + ']'), box = st.querySelector('[data-k=' + k + 'v]');
+      if (!store || !box) return;
+      var dens = (st.dataset.dens || (st.dataset.d1 + " " + st.dataset.d2)).split(" ").map(Number);
+      function copy() {
+        var raw = String(box.value || "").trim(), t = hwInt(raw), v = "";
+        if (raw) v = (t && dens.every(function (d) { return t % d === 0; })) ? st.dataset.ok : raw;
+        fire(store, v);
+      }
+      box.addEventListener("input", copy); box.addEventListener("change", copy); copy();
+    });
+    /* Simplify fully: top and bottom boxes are checked together as one answer ("three quarters" when fully simplified). */
+    document.querySelectorAll(".simp[data-store]").forEach(function (st) {
+      var k = st.dataset.store, store = document.querySelector('.stores [data-k=' + k + ']');
+      var a = st.querySelector('[data-k=' + k + 'nv]'), b = st.querySelector('[data-k=' + k + 'dv]');
+      if (!store || !a || !b) return;
+      function copy() {
+        var x = String(a.value || "").trim(), y = String(b.value || "").trim();
+        var v = "";
+        if (x || y) v = (hwInt(x) === +st.dataset.rn && hwInt(y) === +st.dataset.rd) ? st.dataset.ok : (x || "?") + " over " + (y || "?");
+        fire(store, v);
+      }
+      [a, b].forEach(function (el) { el.addEventListener("input", copy); el.addEventListener("change", copy); }); copy();
+    });
+    var targets = {};
+    document.querySelectorAll(".conv[data-field]").forEach(function (c) {
+      var k = c.dataset.field, store = document.querySelector('.stores [data-k=' + k + ']');
+      var box = c.querySelector('[data-k=' + k + 'v]'), tgt = document.querySelector('[data-k=' + c.dataset.t + ']');
+      if (!store || !box || !tgt) return;
+      function copy() {
+        var raw = String(box.value || "").trim(), top = hwInt(raw), t = hwInt(tgt.value), v = "";
+        if (raw) {
+          if (top !== null && t && top * (+c.dataset.d) === (+c.dataset.n) * t) v = "same as " + c.dataset.name;
+          else v = raw + " over " + (t ? t : "no target");
+        }
+        fire(store, v);
+      }
+      box.addEventListener("input", copy); box.addEventListener("change", copy);
+      tgt.addEventListener("input", copy); tgt.addEventListener("change", copy);
+      targets[c.dataset.t] = tgt; copy();
+    });
+    Object.keys(targets).forEach(function (k) {
+      var t = targets[k];
+      function m() { mirrors(k); }
+      t.addEventListener("input", m); t.addEventListener("change", m); m();
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+
+/* Block 2. Tap the bigger fraction: the choice is kept in a hidden field; tap it again to undo. */
+(function () {
+  function init() {
+    document.querySelectorAll(".pick[data-store]").forEach(function (g) {
+      var s = document.querySelector('.stores [data-k=' + g.dataset.store + ']'), bs = [].slice.call(g.querySelectorAll(".pickb"));
+      if (!s) return;
+      function show() { bs.forEach(function (b) { var on = b.dataset.v === s.value; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); }); }
+      bs.forEach(function (b) {
+        b.addEventListener("click", function () {
+          s.value = s.value === b.dataset.v ? "" : b.dataset.v;
+          s.dispatchEvent(new Event("change", { bubbles: true })); show();
+        });
+      });
+      s.addEventListener("change", show); show();
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+
+/* ===== TAP-PLACE JS (copy from here) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS (copy to here) ===== */
+
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJhMXR2IjogeyJ0IjogIm9wZW4ifSwgImExdCI6IHsidCI6ICJleGFjdCIsICJhIjogImEgbnVtYmVyIGJvdGggNCBhbmQgMTIgZml0IGludG8ifSwgImExeHYiOiB7InQiOiAib3BlbiJ9LCAiYTF4IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBhcyBvbmUgcXVhcnRlciJ9LCAiYTF5diI6IHsidCI6ICJvcGVuIn0sICJhMXkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYW1lIGFzIGZpdmUgdHdlbGZ0aHMifSwgImExcyI6IHsidCI6ICJleGFjdCIsICJhIjogIjwifSwgImEydHYiOiB7InQiOiAib3BlbiJ9LCAiYTJ0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBudW1iZXIgYm90aCA2IGFuZCAxMiBmaXQgaW50byJ9LCAiYTJ4diI6IHsidCI6ICJvcGVuIn0sICJhMngiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYW1lIGFzIGZpdmUgc2l4dGhzIn0sICJhMnl2IjogeyJ0IjogIm9wZW4ifSwgImEyeSI6IHsidCI6ICJleGFjdCIsICJhIjogInNhbWUgYXMgc2V2ZW4gdHdlbGZ0aHMifSwgImEycyI6IHsidCI6ICJleGFjdCIsICJhIjogIj4ifSwgImEzdHYiOiB7InQiOiAib3BlbiJ9LCAiYTN0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBudW1iZXIgYm90aCAxMCBhbmQgNCBmaXQgaW50byJ9LCAiYTN4diI6IHsidCI6ICJvcGVuIn0sICJhM3giOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYW1lIGFzIHRocmVlIHRlbnRocyJ9LCAiYTN5diI6IHsidCI6ICJvcGVuIn0sICJhM3kiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYW1lIGFzIG9uZSBxdWFydGVyIn0sICJhM3MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI+In0sICJhNHR2IjogeyJ0IjogIm9wZW4ifSwgImE0dCI6IHsidCI6ICJleGFjdCIsICJhIjogImEgbnVtYmVyIGJvdGggOSBhbmQgMyBmaXQgaW50byJ9LCAiYTR4diI6IHsidCI6ICJvcGVuIn0sICJhNHgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYW1lIGFzIHR3byBuaW50aHMifSwgImE0eXYiOiB7InQiOiAib3BlbiJ9LCAiYTR5IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBhcyBvbmUgdGhpcmQifSwgImE0cyI6IHsidCI6ICJleGFjdCIsICJhIjogIjwifSwgImE1dHYiOiB7InQiOiAib3BlbiJ9LCAiYTV0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBudW1iZXIgYm90aCA4IGFuZCAxNiBmaXQgaW50byJ9LCAiYTV4diI6IHsidCI6ICJvcGVuIn0sICJhNXgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzYW1lIGFzIHRocmVlIGVpZ2h0aHMifSwgImE1eXYiOiB7InQiOiAib3BlbiJ9LCAiYTV5IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBhcyBzaXggc2l4dGVlbnRocyJ9LCAiYTVzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiPSJ9LCAiYTZ0diI6IHsidCI6ICJvcGVuIn0sICJhNnQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIG51bWJlciBib3RoIDMgYW5kIDggZml0IGludG8ifSwgImE2eHYiOiB7InQiOiAib3BlbiJ9LCAiYTZ4IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2FtZSBhcyB0d28gdGhpcmRzIn0sICJhNnl2IjogeyJ0IjogIm9wZW4ifSwgImE2eSI6IHsidCI6ICJleGFjdCIsICJhIjogInNhbWUgYXMgZml2ZSBlaWdodGhzIn0sICJhNnMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI+In0sICJiMXAiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgbGVmdCBvbmUifSwgImIxciI6IHsidCI6ICJleGFjdCIsICJhIjogIlNhbWUgdG9wczogc21hbGxlciBib3R0b20sIGJpZ2dlciBwaWVjZXMifSwgImIycCI6IHsidCI6ICJleGFjdCIsICJhIjogInRoZSBsZWZ0IG9uZSJ9LCAiYjJyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiTm90aGluZyB0aGUgc2FtZTogSSBjb252ZXJ0ZWQifSwgImIzcCI6IHsidCI6ICJleGFjdCIsICJhIjogInRoZSByaWdodCBvbmUifSwgImIzciI6IHsidCI6ICJleGFjdCIsICJhIjogIlNhbWUgYm90dG9tczogbW9yZSBwaWVjZXMgd2lucyJ9LCAiYjRwIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIHJpZ2h0IG9uZSJ9LCAiYjRyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiU2FtZSB0b3BzOiBzbWFsbGVyIGJvdHRvbSwgYmlnZ2VyIHBpZWNlcyJ9LCAiYzF0diI6IHsidCI6ICJvcGVuIn0sICJjMXQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIG51bWJlciAzLCA0IGFuZCAxMiBhbGwgZml0IGludG8ifSwgImMxcDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmaXZlIHR3ZWxmdGhzIn0sICJjMXAyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHdvIHRoaXJkcyJ9LCAiYzFwMyI6IHsidCI6ICJleGFjdCIsICJhIjogInRocmVlIHF1YXJ0ZXJzIn0sICJjMnR2IjogeyJ0IjogIm9wZW4ifSwgImMydCI6IHsidCI6ICJleGFjdCIsICJhIjogImEgbnVtYmVyIDQsIDggYW5kIDE2IGFsbCBmaXQgaW50byJ9LCAiYzJwMSI6IHsidCI6ICJleGFjdCIsICJhIjogImZpdmUgZWlnaHRocyJ9LCAiYzJwMiI6IHsidCI6ICJleGFjdCIsICJhIjogImVpZ2h0ZWVuIHR3ZW50eS1mb3VydGhzIn0sICJjMnAzIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhpcnRlZW4gc2l4dGVlbnRocyJ9LCAiYzJzbnYiOiB7InQiOiAib3BlbiJ9LCAiYzJzZHYiOiB7InQiOiAib3BlbiJ9LCAiYzJzIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhyZWUgcXVhcnRlcnMifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

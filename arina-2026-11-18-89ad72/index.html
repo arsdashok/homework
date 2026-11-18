@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arina: Practice 18 November 2026</title>
+<style>
+  :root {
+    --ink: #1f2340; --muted: #6b7088; --violet: #6c63ff; --lilac: #a78bfa;
+    --soft: #f4f2ff; --line: #d9d5f5; --paper: #ffffff;
+  }
+  @page { size: A4; margin: 11mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5;
+    color: var(--ink); background: #faf9ff; max-width: 900px; margin: 0 auto; padding: 32px 22px 48px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  header.top {
+    background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%); color: #fff; border-radius: 16px;
+    padding: 26px 30px; margin-bottom: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+  }
+  header.top .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .85; margin-bottom: 6px; }
+  header.top h1 { font-size: 32px; line-height: 1.1; font-weight: 700; }
+  header.top .meta { font-size: 15px; text-align: right; opacity: .95; }
+  .intro { font-size: 15px; color: var(--muted); margin: -12px 0 26px 4px; }
+
+  .part {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 28px 22px; margin-bottom: 26px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plabel { font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); margin-bottom: 6px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 4px; text-wrap: balance; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .model { background: var(--soft); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 16px; }
+  .model .lt { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--violet); margin-right: 8px; }
+  .model .fill { color: #2546c8; font-weight: 600; border-bottom: 1.5px solid #b3abf0; padding: 0 2px; }
+  .model .gr { color: var(--muted); }
+
+  .q {
+    display: flex; align-items: baseline; gap: 14px; padding: 11px 0; border-bottom: 1px solid #eeecfb;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plist .q:last-child, .ulist .q:last-child { border-bottom: 0; }
+  .qn { flex: none; width: 22px; font-size: 15px; color: var(--muted); }
+  .q p { font-size: 18px; line-height: 2.1; }
+  .q select { font: inherit; font-size: 17px; font-weight: 600; vertical-align: middle; margin: 0 2px; min-width: 150px; }
+  .cue { color: var(--muted); font-size: .92em; }
+  .hw-gap { width: 3.6em; font: inherit; text-align: left; }
+  .q input.hw-gap.g14 { width: 7.6em; }
+  .q input.hw-gap.g9 { width: 5.6em; }
+
+  .story { font-size: 18px; line-height: 2.35; }
+
+  .own { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 8px; }
+  .wlab { font-size: 18px; font-weight: 400; }
+  .wlab b { font-weight: 600; }
+  section div.sent { min-height: 78px !important; border: 1px solid var(--line); border-radius: 8px; margin-top: 6px; }
+
+    @media (max-width: 620px) {
+    body { padding: 14px 10px 24px; }
+    header.top { flex-direction: column; align-items: flex-start; padding: 20px; }
+    header.top h1 { font-size: 26px; }
+    header.top .meta { text-align: left; }
+    .part { padding: 18px 14px; }
+    .instr { font-size: 19px; }
+    .q p, .story { font-size: 16.5px; }
+    .q select { min-width: 120px; }
+  }
+
+  /* Whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 36px 48px 56px; font-size: 26px; }
+    header.top { padding: 28px 40px; margin-bottom: 24px; }
+    header.top .kicker { font-size: 18px; }
+    header.top h1 { font-size: 46px; }
+    header.top .meta { font-size: 24px; }
+    .intro { font-size: 23px; margin: 0 0 28px 6px; }
+    .part { padding: 30px 44px 30px; margin-bottom: 32px; border-radius: 18px; }
+    .plabel { font-size: 19px; margin-bottom: 8px; }
+    .instr { font-size: 38px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 14px; }
+    .model { font-size: 27px; padding: 16px 24px; margin: 14px 0 18px; border-radius: 12px; }
+    .model .lt { font-size: 18px; margin-right: 14px; }
+    .qn { font-size: 24px; width: 34px; }
+    .q { gap: 18px; padding: 16px 0; }
+    .q p { font-size: 29px; line-height: 2; }
+    .q select { font-size: 27px; min-height: 56px; min-width: 210px; padding: 4px 14px; }
+    .q input.hw-gap.g14 { width: 7.6em; height: 1.75em; font-size: 28px; }
+    .q input.hw-gap.g9 { width: 5.6em; height: 1.75em; font-size: 28px; }
+    .plist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, auto); grid-auto-flow: column; column-gap: 64px; }
+    .plist .q:nth-child(3) { border-bottom: 0; }
+    .story { font-size: 29px; line-height: 2.3; }
+    .tp-bank { gap: 16px 18px; padding: 20px 24px; margin: 14px 0 20px; border-radius: 16px; }
+    .tp-tile { font-size: 27px; min-height: 58px; padding: 6px 24px; }
+    .tp-zone.gapz { min-height: 58px; min-width: 6.5em; margin: 3px 4px; }
+    .gapz .tp-slot { min-height: 52px; }
+    .gapz .tp-tile { font-size: 27px; min-height: 52px; padding: 4px 20px; }
+    .own { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 48px; align-items: end; }
+    .wlab { font-size: 29px; }
+    section div.sent { min-height: 120px !important; font-size: 28px; }
+  }
+
+  @media print {
+    .prt .pblank { display: inline-block; width: 64px; height: 17px; border: 1.2px solid #b3abf0; border-radius: 5px; vertical-align: middle; }
+    body { background: #fff; font-size: 12px; padding: 0; max-width: none; }
+    header.top { padding: 10px 18px; margin-bottom: 8px; border-radius: 10px; }
+    header.top h1 { font-size: 21px; }
+    header.top .kicker { font-size: 9.5px; margin-bottom: 2px; }
+    header.top .meta { font-size: 11px; }
+    .intro { font-size: 10.5px; margin: 0 0 7px 2px; }
+    .part { padding: 8px 16px 7px; margin-bottom: 7px; border-radius: 10px; }
+    .plabel { font-size: 9.5px; margin-bottom: 1px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 2px; }
+    .model { font-size: 11.5px; padding: 5px 10px; margin: 4px 0; }
+    .model .lt { font-size: 9px; }
+    .q { padding: 3px 0; gap: 8px; }
+    .qn { font-size: 11px; width: 14px; }
+    .q p { font-size: 12.5px; line-height: 1.75; }
+    .q select { display: none !important; }
+    .prt { display: inline !important; }
+    .prt .pblank { display: inline-block; width: 64px; height: 17px; border: 1.2px solid #b3abf0; border-radius: 5px; vertical-align: middle; }
+    .q input.hw-gap.g14 { width: 104px; height: 19px; }
+    .q input.hw-gap.g9 { width: 78px; height: 19px; }
+    .story { font-size: 12.5px; line-height: 2.05; }
+    .tp-bank { margin: 4px 0 5px; padding: 5px; min-height: 0; gap: 5px 7px; }
+    .tp-tile { font-size: 11.5px; padding: 1px 11px; min-height: 0; border-width: 1.2px; }
+    .tp-zone.gapz { min-width: 11.5em; min-height: 0; height: 20px; border-width: 1.2px; border-radius: 6px; }
+    .gapz .tp-slot { min-height: 0; }
+    .wlab { font-size: 12.5px; }
+    .own { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; margin-top: 3px; align-items: end; }
+    section div.sent { min-height: 60px !important; margin-top: 2px; }
+  }
+
+  .gsel { font: inherit; font-size: 17px; font-weight: 600; color: #2546c8; vertical-align: middle; margin: 0 3px; min-width: 9.5em; padding: 2px 6px; border: 1.5px solid #b3abf0; border-radius: 7px; background: #fff; }
+  .rowq { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 22px; }
+  .sentx { font-size: 18px; line-height: 1.5; }
+  select.verdict { font: inherit; font-size: 16px; font-weight: 600; padding: 4px 8px; min-height: 42px; border: 1.5px solid #b3abf0; border-radius: 7px; background: #fff; }
+  .fixwrap { display: none; margin-top: 8px; flex-basis: 100%; }
+  .pq.fixing .fixwrap { display: block; }
+  .fixlab { display: block; font-size: 13px; color: var(--muted); margin-bottom: 3px; }
+  textarea.resp { display: block; width: 100%; font: inherit; font-size: 17px; line-height: 1.5; padding: 7px 11px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; resize: vertical; min-height: 62px; }
+  .pq > div { flex: 1; }
+  .mchip { display: inline-block; font-size: .85em; font-weight: 600; color: var(--violet); border: 1.5px solid var(--violet); border-radius: 999px; padding: 0 10px; }
+  .scr { display: inline; }
+  @media screen and (min-width:900px) {
+    .gsel { font-size: 27px; min-height: 54px; min-width: 9.5em; }
+    .sentx { font-size: 29px; }
+    select.verdict { font-size: 26px; min-height: 58px; padding: 6px 14px; }
+    .fixlab { font-size: 20px; margin-bottom: 6px; }
+    textarea.resp { font-size: 27px; padding: 10px 16px; min-height: 100px; }
+    .rowq { gap: 12px 34px; }
+  }
+  @media print {
+    .gsel, select.verdict { display: none !important; }
+    .prt.opts { font-size: 10.5px; color: var(--muted); }
+    .sentx { font-size: 12.5px; }
+    .fixwrap { display: block; margin-top: 2px; }
+    .fixlab { font-size: 9.5px; margin-bottom: 1px; }
+    textarea.resp { font-size: 11.5px; min-height: 28px; height: 28px; padding: 2px 8px; resize: none; }
+    textarea.resp::placeholder { color: transparent; }
+    .scr { display: none !important; }
+    section div.sent { min-height: 84px !important; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<!-- Arina 18 Nov 2026 (lesson: NEF 5A past tenses article on Gafarov + read-and-retell, after a conversation about her relay and the physics-teacher vote).
+  Part 1: narrative tenses in her own relay story, select in the gap. Correct positions 3,1,2,1,3,2.
+  Part 2: Correct / Needs a fix on her own slips (W W R W R). Part 3: one short story. -->
+<body data-student="Arina" data-sheet="Arina - English 2026-11-18 2026-11-18" data-sheet-id="arina-2026-11-18-arina-english-2026-11-18">
+<div id="sheet">
+<header class="top"><div><div class="kicker">Arina · English practice</div><h1>Past tenses: your&nbsp;relay</h1></div><div class="meta">18 November 2026</div></header>
+<p class="intro">A little practice from our lesson. About 10&nbsp;minutes.</p>
+
+<section class="part">
+  <div class="plabel">1 · Your relay on Sunday</div>
+  <p class="instr">Choose the right past form for each <span class="nw">gap.</span></p>
+  <p class="note"><span class="scr">Tap a gap to see three forms.</span><span class="prt">Write one of the three forms in each <span class="nw">gap.</span></span></p>
+  <div class="model"><span class="lt">Like this</span>My phone <span class="fill">rang</span> <span class="gr">(rang / was ringing / had rung)</span> while I was in the <span class="nw">shower.</span></div>
+  <div class="ulist"><div class="q"><span class="qn">1</span><p>Our last swimmer <select class="hw-field gsel" data-k="s1" data-label="1.1 Our last swimmer ___ really well when he lost his goggles." aria-label="Gap 1"><option value="">Choose</option><option value="had swum">had swum</option><option value="swam">swam</option><option value="was swimming">was swimming</option></select><span class="prt"><span class="pblank"></span> <span class="opts">(had swum / swam / was swimming)</span></span> really well when he lost his <span class="nw">goggles.</span></p></div><div class="q"><span class="qn">2</span><p>He realised that his goggles <select class="hw-field gsel" data-k="s2" data-label="1.2 He realised that his goggles ___ off." aria-label="Gap 2"><option value="">Choose</option><option value="had fallen">had fallen</option><option value="fell">fell</option><option value="were falling">were falling</option></select><span class="prt"><span class="pblank"></span> <span class="opts">(had fallen / fell / were falling)</span></span> <span class="nw">off.</span></p></div><div class="q"><span class="qn">3</span><p>He stopped at the end of the pool and <select class="hw-field gsel" data-k="s3" data-label="1.3 He stopped at the end of the pool and ___ them back on." aria-label="Gap 3"><option value="">Choose</option><option value="was putting">was putting</option><option value="put">put</option><option value="had put">had put</option></select><span class="prt"><span class="pblank"></span> <span class="opts">(was putting / put / had put)</span></span> them back <span class="nw">on.</span></p></div><div class="q"><span class="qn">4</span><p>While he <select class="hw-field gsel" data-k="s4" data-label="1.4 While he ___ his goggles, a swimmer from the other team overtook him." aria-label="Gap 4"><option value="">Choose</option><option value="was fixing">was fixing</option><option value="had fixed">had fixed</option><option value="fixed">fixed</option></select><span class="prt"><span class="pblank"></span> <span class="opts">(was fixing / had fixed / fixed)</span></span> his goggles, a swimmer from the other team overtook <span class="nw">him.</span></p></div><div class="q"><span class="qn">5</span><p>When he got to the wall, their swimmer <select class="hw-field gsel" data-k="s5" data-label="1.5 When he got to the wall, their swimmer ___ already." aria-label="Gap 5"><option value="">Choose</option><option value="finished">finished</option><option value="was finishing">was finishing</option><option value="had finished">had finished</option></select><span class="prt"><span class="pblank"></span> <span class="opts">(finished / was finishing / had finished)</span></span> <span class="nw">already.</span></p></div><div class="q"><span class="qn">6</span><p>After the race he told us that he <select class="hw-field gsel" data-k="s6" data-label="1.6 After the race he told us that he ___ his goggles in a race before." aria-label="Gap 6"><option value="">Choose</option><option value="didn't lose">didn't lose</option><option value="hadn't lost">hadn't lost</option><option value="wasn't losing">wasn't losing</option></select><span class="prt"><span class="pblank"></span> <span class="opts">(didn't lose / hadn't lost / wasn't losing)</span></span> his goggles in a race <span class="nw">before.</span></p></div></div>
+</section>
+
+<section class="part">
+  <div class="plabel">2 · Correct, or needs a fix?</div>
+  <p class="instr">Is each sentence correct, or does it need a <span class="nw">fix?</span></p>
+  <p class="note"><span class="scr">Choose &laquo;Needs a fix&raquo;, and the sentence appears in a box. Change only what is&nbsp;wrong.</span><span class="prt">Circle Correct or Needs a fix. If it needs a fix, write it correctly in the box under&nbsp;it.</span></p>
+  <div class="model"><span class="lt">Like this</span>I listened music on the bus. &rarr; <span class="mchip">Needs a fix</span> &rarr; I listened <b>to</b> music on the&nbsp;bus.</div>
+  <div class="ulist"><div class="q pq"><span class="qn">1</span><div><div class="rowq"><p class="sentx" data-orig="I swam butterfly quite good on Sunday.">I swam butterfly quite good on&nbsp;Sunday.</p><select class="hw-field verdict" data-k="c1" data-label="2.1 I swam butterfly quite good on Sunday. (Correct or Needs a fix)" aria-label="Sentence 1"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select><span class="prt opts">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div><div class="fixwrap"><span class="fixlab">The sentence, fixed</span><textarea class="hw-field resp fix" rows="2" data-k="f1" data-label="2.1 Fixed: I swam butterfly quite good on Sunday." aria-label="Fixed sentence 1" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div></div></div><div class="q pq"><span class="qn">2</span><div><div class="rowq"><p class="sentx" data-orig="Our physics teacher made us to vote on whether he should stay.">Our physics teacher made us to vote on whether he should&nbsp;stay.</p><select class="hw-field verdict" data-k="c2" data-label="2.2 Our physics teacher made us to vote on whether he should stay. (Correct or Needs a fix)" aria-label="Sentence 2"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select><span class="prt opts">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div><div class="fixwrap"><span class="fixlab">The sentence, fixed</span><textarea class="hw-field resp fix" rows="2" data-k="f2" data-label="2.2 Fixed: Our physics teacher made us to vote on whether he should stay." aria-label="Fixed sentence 2" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div></div></div><div class="q pq"><span class="qn">3</span><div><div class="rowq"><p class="sentx" data-orig="I walked my dog in the slush on Wednesday afternoon.">I walked my dog in the slush on Wednesday&nbsp;afternoon.</p><select class="hw-field verdict" data-k="c3" data-label="2.3 I walked my dog in the slush on Wednesday afternoon. (Correct or Needs a fix)" aria-label="Sentence 3"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select><span class="prt opts">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div><div class="fixwrap"><span class="fixlab">The sentence, fixed</span><textarea class="hw-field resp fix" rows="2" data-k="f3" data-label="2.3 Fixed: I walked my dog in the slush on Wednesday afternoon." aria-label="Fixed sentence 3" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div></div></div><div class="q pq"><span class="qn">4</span><div><div class="rowq"><p class="sentx" data-orig="I have too much deadlines before the first of December.">I have too much deadlines before the first of&nbsp;December.</p><select class="hw-field verdict" data-k="c4" data-label="2.4 I have too much deadlines before the first of December. (Correct or Needs a fix)" aria-label="Sentence 4"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select><span class="prt opts">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div><div class="fixwrap"><span class="fixlab">The sentence, fixed</span><textarea class="hw-field resp fix" rows="2" data-k="f4" data-label="2.4 Fixed: I have too much deadlines before the first of December." aria-label="Fixed sentence 4" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div></div></div><div class="q pq"><span class="qn">5</span><div><div class="rowq"><p class="sentx" data-orig="Ten parents out of fifteen signed the letter.">Ten parents out of fifteen signed the&nbsp;letter.</p><select class="hw-field verdict" data-k="c5" data-label="2.5 Ten parents out of fifteen signed the letter. (Correct or Needs a fix)" aria-label="Sentence 5"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select><span class="prt opts">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div><div class="fixwrap"><span class="fixlab">The sentence, fixed</span><textarea class="hw-field resp fix" rows="2" data-k="f5" data-label="2.5 Fixed: Ten parents out of fifteen signed the letter." aria-label="Fixed sentence 5" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div></div></div></div>
+</section>
+
+<section class="part">
+  <div class="plabel">3 · Your story</div>
+  <p class="instr">Tell me about a time someone helped you, or you helped someone, in a race, a match or a <span class="nw">competition.</span></p>
+  <p class="note">3 or 4 sentences. What was happening, and what had gone <span class="nw">wrong?</span></p>
+  <div class="hw-field sent" contenteditable="true" data-k="w1" data-label="3. A time someone helped you, or you helped someone, in a race, a match or a competition" role="textbox" aria-label="Your story" autocorrect="off" autocapitalize="sentences"></div>
+</section>
+
+<script>
+(function () {
+  function setup() {
+    document.querySelectorAll(".pq").forEach(function (q) {
+      var sel = q.querySelector("select.verdict"), box = q.querySelector("textarea.fix"), orig = q.querySelector(".sentx").dataset.orig;
+      if (!sel || !box) return;
+      function show(fromUser) {
+        var fixing = sel.value === "Needs a fix";
+        q.classList.toggle("fixing", fixing);
+        if (!fromUser) return;
+        if (fixing && !box.value.trim()) { box.value = orig; box.dispatchEvent(new Event("input", { bubbles: true })); }
+        if (!fixing && box.value.trim() === orig) { box.value = ""; box.dispatchEvent(new Event("input", { bubbles: true })); }
+      }
+      sel.addEventListener("change", function () { show(true); });
+      show(false);
+    });
+  }
+  if (document.readyState === "complete") setup(); else window.addEventListener("load", setup);
+})();
+</script></div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJzMSI6IHsidCI6ICJleGFjdCIsICJhIjogIndhcyBzd2ltbWluZyJ9LCAiczIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoYWQgZmFsbGVuIn0sICJzMyI6IHsidCI6ICJleGFjdCIsICJhIjogInB1dCJ9LCAiczQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3YXMgZml4aW5nIn0sICJzNSI6IHsidCI6ICJleGFjdCIsICJhIjogImhhZCBmaW5pc2hlZCJ9LCAiczYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoYWRuJ3QgbG9zdCJ9LCAiYzEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJOZWVkcyBhIGZpeCJ9LCAiYzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJOZWVkcyBhIGZpeCJ9LCAiYzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJDb3JyZWN0In0sICJjNCI6IHsidCI6ICJleGFjdCIsICJhIjogIk5lZWRzIGEgZml4In0sICJjNSI6IHsidCI6ICJleGFjdCIsICJhIjogIkNvcnJlY3QifSwgImYxIjogeyJ0IjogIm9wZW4ifSwgImYyIjogeyJ0IjogIm9wZW4ifSwgImYzIjogeyJ0IjogIm9wZW4ifSwgImY0IjogeyJ0IjogIm9wZW4ifSwgImY1IjogeyJ0IjogIm9wZW4ifSwgIncxIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body></html>

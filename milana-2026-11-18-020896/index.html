@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milana: Homework 18 November 2026</title>
+<!-- Lesson 18 Nov 2026: was / were (deck Lessons/2026-11-18 Was Were) after going through the 17 Nov sheet, plus Baku and San Diego talk. Built on what was SHAKY: (1) a PLURAL noun subject takes were, above all in questions and negatives («Was the excursions long?», «not was» for wasn't, «Next two excursions was long» again after the correction); (2) food is uncountable, so «the food was» (she had put the food under were); (3) was + action verb in free speech («when we was go, no, we went»); (4) present for past in a story («Yesterday I make order in Amazon», «I check in my phone»). Pronoun subjects, the two-bin sort and the quick fire were SOLID and are not drilled. Formats differ from 17 Nov (no sort, no right/wrong, no halves match): Ex 1 a generic online-order story (a parcel at the wrong door, generic «I», not her own story) with a dropdown in each gap, distractors her own errors (was + verb, present, wrong number, didn't + adjective); correct positions 2,1,3,3,1,1,2,3,2,1. Ex 2 builds five holiday questions from tiles (one spare Was/Were per question, tap-to-place from Tools/hw_snippets/tap_place.html, per-slot stores use data-s so each question is marked once as q1..q5) and chooses the short answer from a fixed list of four; Was/Were Were,Was,Was,Were,Was; answer positions 4,1,1,3,2. Ex 3 two or three sentences on the last thing she ordered online, starter «Last time I ordered». New words as context: parcel, tracked it on my phone, kayaking. Starlight design as on 11 and 17 Nov. About 13 minutes (Dasha: about 15). -->
+<style>
+  :root {
+    --ink:#2d2949; --accent:#60529c; --accent2:#8c72bf; --muted:#5d5870; --border:#d0c8e7;
+    --wash:#f2effa; --model:#f8f7fc; --night:#302744; --pink:#f6b5d6; --line:#aaa3c1; --lilac:#d5c9ff; --field:#1d4ed8;
+  }
+  @page { size: A4; margin: 10mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; line-height: 1.4; color: var(--ink);
+    background: #f7f5fc; max-width: 1080px; margin: auto; padding: 16px 16px 24px;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  /* header: Starlight */
+  header.top {
+    position: relative; overflow: hidden; border-radius: 10px; background: var(--night); color: #fff;
+    padding: 18px 24px 20px; margin-bottom: 18px; min-height: 120px;
+  }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: #e3c5f1; position: relative; z-index: 1; }
+  header.top h1 { font-family: Arial, sans-serif; font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -1px; position: relative; z-index: 1; margin-top: 2px; }
+  header.top .sub { font-size: 15px; color: #e2dcec; margin-top: 6px; position: relative; z-index: 1; }
+  .header-art { position: absolute; right: 0; top: 0; height: 100%; width: auto; }
+
+  /* cards */
+  .ex-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 18px; overflow: hidden; }
+  .ex-header {
+    background: var(--wash); border-bottom: 1px solid var(--border); border-left: 4px solid var(--accent2);
+    padding: 8px 16px; font-size: 13px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent);
+    break-after: avoid; page-break-after: avoid;
+  }
+  .ex-body { padding: 14px 18px 16px; }
+  .instr { font-size: 25px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
+  .note { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+  .example-box {
+    background: var(--model); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0;
+    padding: 8px 14px; margin-bottom: 14px; font-size: 18px; line-height: 1.5;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .example-box .label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+  .example-box b { color: var(--accent); }
+  .example-box .place { color: var(--muted); font-style: italic; }
+  .example-box .ln { display: block; }
+
+  .q { display: flex; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .q:last-child { border-bottom: 0; }
+  .n {
+    flex: 0 0 auto; display: inline-block; width: 28px; height: 28px; line-height: 26px; text-align: center;
+    border: 1.5px solid var(--accent); border-radius: 5px; color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+  .sent { font-size: 20px; line-height: 1.75; }
+
+  /* dropdown in the gap (Ex 1, Ex 2 answers) */
+  select.pick {
+    font: inherit; font-weight: 700; color: var(--field); padding: 3px 8px; margin: 0 2px;
+    border: 2px solid var(--accent2); border-radius: 8px; background: #fbfaff; vertical-align: baseline;
+  }
+  .gap { display: none; }
+
+  /* ===== TAP-PLACE CSS (Tools/hw_snippets/tap_place.html), Starlight palette ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; border: 2px dashed var(--border); border-radius: 12px; min-height: 60px; margin: 0 0 10px; background: #fcfbff; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 700; color: var(--ink); background: #fff;
+    border: 2px solid var(--accent2); border-radius: 10px; padding: 6px 12px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.25;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: var(--wash); border-color: var(--accent); box-shadow: 0 0 0 3px var(--lilac); }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { border: 2px solid var(--border); border-radius: 10px; padding: 2px; min-height: 48px; cursor: pointer; }
+  .tp-zone.ready { border-color: var(--accent2); background: #fbfaff; }
+  .tp-zone.over { border-color: var(--accent); background: var(--wash); }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; align-items: center; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== TAP-PLACE CSS end ===== */
+
+  /* Exercise 2: build the question, then answer */
+  .qb { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 12px; align-items: start; padding: 12px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .qb:last-child { border-bottom: 0; }
+  .build { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
+  .slots { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .slots .tp-zone { min-width: 120px; }
+  .slots .tp-zone .tp-tile { color: var(--field); border-width: 0; background: transparent; padding: 2px 8px; min-height: 36px; }
+  .qm { font-size: 26px; font-weight: 700; color: var(--ink); }
+  .reply { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+  .cue { font-size: 15px; font-weight: 700; color: var(--accent); background: var(--wash); border-radius: 999px; padding: 3px 12px; white-space: nowrap; }
+
+  /* Exercise 3 */
+  .frame { border: 2px solid var(--border); border-radius: 10px; padding: 6px 14px; }
+  .frow { display: flex; flex-direction: column; gap: 6px; padding: 8px 0; page-break-inside: avoid; break-inside: avoid; }
+  .starter { font-size: 20px; font-weight: 700; color: var(--accent); }
+  textarea.fl {
+    display: block; width: 100%; font: inherit; font-size: 20px; line-height: 1.45; color: var(--field); resize: vertical;
+    padding: 6px 12px; border: 2px solid var(--border); border-radius: 8px; background: #fff; min-height: 56px;
+  }
+  section textarea.fl { min-height: 56px; }
+  section textarea.fl.tall { min-height: 110px; }
+
+  /* Dasha's emailed PDF (hw.js renders in an 800px frame with body.hw-pdf-mode) */
+  body.hw-pdf-mode header.top { min-height: 0; padding: 10px 18px 12px; margin-bottom: 10px; }
+  body.hw-pdf-mode header.top h1 { font-size: 28px; }
+  body.hw-pdf-mode .instr { font-size: 19px; }
+  body.hw-pdf-mode .note { font-size: 12.5px; margin-bottom: 7px; }
+  body.hw-pdf-mode .example-box { font-size: 14px; padding: 5px 12px; margin-bottom: 8px; }
+  body.hw-pdf-mode .sent, body.hw-pdf-mode .starter { font-size: 15px; line-height: 1.5; }
+  body.hw-pdf-mode .q, body.hw-pdf-mode .qb { padding: 5px 0; }
+  body.hw-pdf-mode select.pick { font-size: 14px; min-height: 0; }
+  body.hw-pdf-mode .tp-tile { font-size: 13px; min-height: 0; }
+  body.hw-pdf-mode .tp-zone { min-height: 0; }
+  body.hw-pdf-mode .tp-slot { min-height: 24px; }
+  body.hw-pdf-mode .qm { font-size: 16px; }
+  body.hw-pdf-mode .cue { font-size: 11.5px; }
+  body.hw-pdf-mode textarea.fl, body.hw-pdf-mode section textarea.fl { font-size: 15px; min-height: 36px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 10px 18px; }
+    header.top { padding: 14px 16px 16px; }
+    header.top h1 { font-size: 32px; }
+    .header-art { opacity: .55; }
+    .ex-body { padding: 12px 12px 14px; }
+    .instr { font-size: 22px; }
+    .sent, .starter { font-size: 18px; }
+    .tp-tile { font-size: 16px; }
+    .build { display: block; }
+    .slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; width: 100%; gap: 6px; margin-bottom: 8px; }
+    .slots .tp-zone { min-width: 0; }
+    .slots .tp-zone .tp-tile { font-size: 15px; padding: 2px 4px; }
+    .qm { font-size: 22px; }
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 28px 48px 48px; font-size: 26px; }
+    header.top { min-height: 190px; padding: 30px 40px 30px; margin-bottom: 30px; border-radius: 14px; }
+    .eyebrow { font-size: 18px; }
+    header.top h1 { font-size: 62px; }
+    header.top .sub { font-size: 24px; margin-top: 10px; }
+    .ex-card { margin-bottom: 32px; border-radius: 14px; }
+    .ex-header { font-size: 20px; padding: 12px 28px; }
+    .ex-body { padding: 28px 40px 32px; }
+    .instr { font-size: 40px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 20px; }
+    .example-box { font-size: 28px; padding: 14px 24px; margin-bottom: 24px; }
+    .example-box .label { font-size: 17px; }
+    .n { width: 44px; height: 44px; line-height: 41px; font-size: 22px; }
+    .q { gap: 20px; padding: 14px 0; }
+    .sent { font-size: 30px; line-height: 1.8; }
+    select.pick { font-size: 28px; min-height: 54px; padding: 4px 14px; border-width: 3px; }
+    .hw-mark { font-size: 22px; }
+    .qb { gap: 12px 20px; padding: 20px 0; }
+    .qb .n { margin-top: 10px; }
+    .tp-bank { gap: 14px 16px; padding: 14px 18px; margin-bottom: 14px; }
+    .tp-tile { font-size: 28px; padding: 6px 20px; min-height: 58px; border-width: 3px; }
+    .build { gap: 14px 36px; }
+    .slots { gap: 12px; }
+    .slots .tp-zone { min-width: 220px; min-height: 66px; border-width: 3px; }
+    .slots .tp-zone .tp-tile { font-size: 28px; min-height: 52px; }
+    .tp-slot { min-height: 54px; }
+    .qm { font-size: 40px; }
+    .reply { gap: 10px 18px; }
+    .cue { font-size: 24px; padding: 6px 18px; }
+    .frame { padding: 10px 28px; border-width: 3px; }
+    .frow { display: grid; grid-template-columns: 330px minmax(0, 1fr); align-items: center; gap: 12px 28px; padding: 14px 0; }
+    .starter { font-size: 28px; }
+    textarea.fl, section textarea.fl { font-size: 28px; padding: 10px 16px; min-height: 80px; border-width: 3px; }
+    section textarea.fl.tall { min-height: 150px; }
+  }
+
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { font-size: 12.5px; padding: 0; max-width: none; background: #fff; }
+    header.top { min-height: 0; padding: 6px 16px 7px; margin-bottom: 6px; border-radius: 6px; }
+    .eyebrow { font-size: 8.5px; }
+    header.top h1 { font-size: 24px; }
+    header.top .sub { font-size: 10.5px; margin-top: 3px; }
+    .ex-card { margin-bottom: 6px; border-radius: 5px; page-break-inside: avoid; break-inside: avoid; }
+    .ex-header { font-size: 9.5px; padding: 4px 12px; }
+    .ex-body { padding: 6px 12px 7px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 5px; }
+    .example-box { font-size: 12px; padding: 3px 10px; margin-bottom: 5px; line-height: 1.35; }
+    .example-box .label { font-size: 8.5px; margin-bottom: 0; }
+    .n { width: 18px; height: 18px; line-height: 16px; font-size: 10px; border-radius: 4px; }
+    .q { padding: 2px 0; gap: 8px; }
+    .sent { font-size: 12.5px; line-height: 1.6; }
+    .opts { color: var(--muted); font-size: 10.5px; margin: 0 3px; }
+    select.pick { display: none !important; }
+    .gap { display: inline-block !important; min-width: 58px; border-bottom: 1.2px solid var(--ink); }
+    .qb { padding: 1px 0; gap: 1px 8px; }
+    .tp-bank { gap: 5px; padding: 3px 5px; min-height: 0; margin: 0 0 3px; border-width: 1.2px; }
+    .tp-tile { font-size: 11.5px; padding: 1px 8px; min-height: 0; border-width: 1.2px; border-radius: 6px; }
+    .build { gap: 4px 14px; }
+    .slots .tp-zone { min-width: 26mm; min-height: 5mm; border: 0; border-bottom: 1.2px solid var(--ink); border-radius: 0; padding: 0; }
+    .tp-slot { min-height: 16px; }
+    .qm { font-size: 13px; }
+    .cue { font-size: 10px; padding: 1px 8px; }
+    .reply .gap { min-width: 32mm; }
+    .frame { border-width: 1.2px; border-radius: 6px; padding: 0.5mm 4mm 1mm; }
+    .frow { padding: 0; gap: 0; }
+    .starter { font-size: 11.5px; }
+    textarea.fl, section textarea.fl, section textarea.fl.tall { font-size: 12px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 0 4px; resize: none; min-height: 0; height: 7mm; background: #fff; }
+    section textarea.fl.tall { height: 10mm; }
+    textarea.fl::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Milana" data-sheet="English 2026-11-18" data-sheet-id="milana-2026-11-18-english">
+<div id="sheet">
+
+
+<header class="top">
+  <svg class="header-art" viewBox="0 0 192 100" fill="none" aria-hidden="true">
+    <path d="M105 -8L28 106M143 -8L66 106M181 -8L104 106M219 -8L142 106" stroke="#b0a1e9" stroke-opacity=".18" stroke-width="14"/>
+    <ellipse cx="141" cy="46" rx="61" ry="22" transform="rotate(-28 141 46)" stroke="#d1b8f8" stroke-width=".7"/>
+    <path d="M129 10L135 34L156 24L143 44L167 53L143 58L152 81L133 66L121 89L121 64L96 67L115 52L96 37L121 40Z" fill="#d5c9ff"/>
+    <path d="M129 26L134 43L149 47L134 53L129 70L124 54L109 48L124 43Z" fill="white"/>
+    <path d="M174 11L177 19L185 22L177 25L174 33L171 25L163 22L171 19Z" fill="#f6b5d6"/>
+    <path d="M74 70L77 78L85 81L77 84L74 92L71 84L63 81L71 78Z" fill="#f6b5d6"/>
+    <g fill="#fff"><circle cx="91" cy="23" r="1.4"/><circle cx="176" cy="77" r="1.5"/><circle cx="106" cy="84" r="1"/><circle cx="57" cy="44" r="1.2"/></g>
+  </svg>
+  <div class="eyebrow">English &middot; Homework</div>
+  <h1>Milana</h1>
+  <div class="sub">18 November 2026 &middot; was or were &middot; the wrong door &middot; holiday questions &middot; online&nbsp;shopping</div>
+</header>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 1: the wrong door</div>
+  <div class="ex-body">
+    <p class="instr">Choose the right&nbsp;word.</p>
+    <p class="note"><span class="scr">Tap the box in the sentence and&nbsp;choose.</span><span class="prt">Write one word from the brackets in each&nbsp;gap.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      The bus <b>was</b> late again, so I <b>walked</b>&nbsp;home.
+    </div>
+      <div class="q"><span class="n">1</span><p class="sent">Last week I <span class="gap"></span><span class="prt opts">(order / ordered / was order)</span><select class="hw-field pick" data-k="s1" data-label="1.1 Last week I ___ new headphones and two phone cases online." aria-label="Sentence 1"><option value="">Choose</option><option value="order">order</option><option value="ordered">ordered</option><option value="was order">was order</option></select> new headphones and two phone cases&nbsp;online.</p></div>
+      <div class="q"><span class="n">2</span><p class="sent">I <span class="gap"></span><span class="prt opts">(tracked / track / was track)</span><select class="hw-field pick" data-k="s2" data-label="1.2 I ___ the parcel on my phone every day that week." aria-label="Sentence 2"><option value="">Choose</option><option value="tracked">tracked</option><option value="track">track</option><option value="was track">was track</option></select> the parcel on my phone every day that&nbsp;week.</p></div>
+      <div class="q"><span class="n">3</span><p class="sent">On Friday the app said &ldquo;Delivered&rdquo;. But the parcel <span class="gap"></span><span class="prt opts">(didn&#x27;t / weren&#x27;t / wasn&#x27;t)</span><select class="hw-field pick" data-k="s3" data-label="1.3 On Friday the app said &quot;Delivered&quot;. But the parcel ___ at my door!" aria-label="Sentence 3"><option value="">Choose</option><option value="didn&#x27;t">didn&#x27;t</option><option value="weren&#x27;t">weren&#x27;t</option><option value="wasn&#x27;t">wasn&#x27;t</option></select> at my&nbsp;door!</p></div>
+      <div class="q"><span class="n">4</span><p class="sent">The photo in the app <span class="gap"></span><span class="prt opts">(show / was show / showed)</span><select class="hw-field pick" data-k="s4" data-label="1.4 The photo in the app ___ my neighbour&#x27;s door." aria-label="Sentence 4"><option value="">Choose</option><option value="show">show</option><option value="was show">was show</option><option value="showed">showed</option></select> my neighbour&rsquo;s&nbsp;door.</p></div>
+      <div class="q"><span class="n">5</span><p class="sent">Luckily, my neighbour <span class="gap"></span><span class="prt opts">(was / were / weren&#x27;t)</span><select class="hw-field pick" data-k="s5" data-label="1.5 Luckily, my neighbour ___ at home." aria-label="Sentence 5"><option value="">Choose</option><option value="was">was</option><option value="were">were</option><option value="weren&#x27;t">weren&#x27;t</option></select> at&nbsp;home.</p></div>
+      <div class="q"><span class="n">6</span><p class="sent">My parcel and two other boxes <span class="gap"></span><span class="prt opts">(were / was / wasn&#x27;t)</span><select class="hw-field pick" data-k="s6" data-label="1.6 My parcel and two other boxes ___ in his hall." aria-label="Sentence 6"><option value="">Choose</option><option value="were">were</option><option value="was">was</option><option value="wasn&#x27;t">wasn&#x27;t</option></select> in his&nbsp;hall.</p></div>
+      <div class="q"><span class="n">7</span><p class="sent">He <span class="gap"></span><span class="prt opts">(give / gave / was give)</span><select class="hw-field pick" data-k="s7" data-label="1.7 He ___ me my parcel." aria-label="Sentence 7"><option value="">Choose</option><option value="give">give</option><option value="gave">gave</option><option value="was give">was give</option></select> me my&nbsp;parcel.</p></div>
+      <div class="q"><span class="n">8</span><p class="sent">The headphones <span class="gap"></span><span class="prt opts">(wasn&#x27;t / not were / weren&#x27;t)</span><select class="hw-field pick" data-k="s8" data-label="1.8 The headphones ___ broken." aria-label="Sentence 8"><option value="">Choose</option><option value="wasn&#x27;t">wasn&#x27;t</option><option value="not were">not were</option><option value="weren&#x27;t">weren&#x27;t</option></select> broken.</p></div>
+      <div class="q"><span class="n">9</span><p class="sent">And the music on them <span class="gap"></span><span class="prt opts">(were / was / weren&#x27;t)</span><select class="hw-field pick" data-k="s9" data-label="1.9 And the music on them ___ amazing!" aria-label="Sentence 9"><option value="">Choose</option><option value="were">were</option><option value="was">was</option><option value="weren&#x27;t">weren&#x27;t</option></select> amazing!</p></div>
+      <div class="q"><span class="n">10</span><p class="sent">But the phone cases <span class="gap"></span><span class="prt opts">(were / wasn&#x27;t / was)</span><select class="hw-field pick" data-k="s10" data-label="1.10 But the phone cases ___ the wrong colour." aria-label="Sentence 10"><option value="">Choose</option><option value="were">were</option><option value="wasn&#x27;t">wasn&#x27;t</option><option value="was">was</option></select> the wrong&nbsp;colour.</p></div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 2: questions about a holiday</div>
+  <div class="ex-body">
+    <p class="instr">Make the question. Then&nbsp;answer.</p>
+    <p class="note"><span class="scr">Tap a card, then tap a place. One card is spare. Then choose the short&nbsp;answer.</span><span class="prt">Write the question on the lines. One card is spare. Then write a short reply (Yes, it was. / No, it wasn&rsquo;t. / Yes, they were. / No, they&nbsp;weren&rsquo;t.)</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="place">the guide &middot; late &middot; you say yes</span> &rarr; <b>Was</b> the guide late? &nbsp;Yes, she&nbsp;<b>was</b>.
+    </div>
+      <div class="qb" data-q="q1">
+        <span class="n">1</span>
+        <div class="tp">
+          <div class="tp-bank"><button type="button" class="tp-tile" data-value="open">open</button><button type="button" class="tp-tile" data-value="Was">Was</button><button type="button" class="tp-tile" data-value="the shops">the shops</button><button type="button" class="tp-tile" data-value="Were">Were</button></div>
+          <div class="build">
+            <div class="slots" data-field="q1"><div class="tp-zone" data-store="q1a"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q1b"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q1c"><span class="tp-slot"></span></div><span class="qm">?</span></div>
+            <div class="reply"><span class="cue">you say no</span><span class="gap"></span><select class="hw-field pick" data-k="r1" data-label="2.1 Short answer (no) to the question about open · the shops" aria-label="Short answer 1"><option value="">Choose</option><option value="Yes, it was.">Yes, it was.</option><option value="No, it wasn&#x27;t.">No, it wasn&#x27;t.</option><option value="Yes, they were.">Yes, they were.</option><option value="No, they weren&#x27;t.">No, they weren&#x27;t.</option></select></div>
+          </div>
+          <div class="tp-stores" hidden><select data-s="q1a"><option value=""></option><option value="open">open</option><option value="Was">Was</option><option value="the shops">the shops</option><option value="Were">Were</option></select><select data-s="q1b"><option value=""></option><option value="open">open</option><option value="Was">Was</option><option value="the shops">the shops</option><option value="Were">Were</option></select><select data-s="q1c"><option value=""></option><option value="open">open</option><option value="Was">Was</option><option value="the shops">the shops</option><option value="Were">Were</option></select><input type="text" data-k="q1" data-label="2.1 Question: open · the shops" class="hw-field"></div>
+        </div>
+      </div>
+      <div class="qb" data-q="q2">
+        <span class="n">2</span>
+        <div class="tp">
+          <div class="tp-bank"><button type="button" class="tp-tile" data-value="Was">Was</button><button type="button" class="tp-tile" data-value="fun">fun</button><button type="button" class="tp-tile" data-value="Were">Were</button><button type="button" class="tp-tile" data-value="the kayaking">the kayaking</button></div>
+          <div class="build">
+            <div class="slots" data-field="q2"><div class="tp-zone" data-store="q2a"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q2b"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q2c"><span class="tp-slot"></span></div><span class="qm">?</span></div>
+            <div class="reply"><span class="cue">you say yes</span><span class="gap"></span><select class="hw-field pick" data-k="r2" data-label="2.2 Short answer (yes) to the question about fun · the kayaking" aria-label="Short answer 2"><option value="">Choose</option><option value="Yes, it was.">Yes, it was.</option><option value="No, it wasn&#x27;t.">No, it wasn&#x27;t.</option><option value="Yes, they were.">Yes, they were.</option><option value="No, they weren&#x27;t.">No, they weren&#x27;t.</option></select></div>
+          </div>
+          <div class="tp-stores" hidden><select data-s="q2a"><option value=""></option><option value="Was">Was</option><option value="fun">fun</option><option value="Were">Were</option><option value="the kayaking">the kayaking</option></select><select data-s="q2b"><option value=""></option><option value="Was">Was</option><option value="fun">fun</option><option value="Were">Were</option><option value="the kayaking">the kayaking</option></select><select data-s="q2c"><option value=""></option><option value="Was">Was</option><option value="fun">fun</option><option value="Were">Were</option><option value="the kayaking">the kayaking</option></select><input type="text" data-k="q2" data-label="2.2 Question: fun · the kayaking" class="hw-field"></div>
+        </div>
+      </div>
+      <div class="qb" data-q="q3">
+        <span class="n">3</span>
+        <div class="tp">
+          <div class="tp-bank"><button type="button" class="tp-tile" data-value="spicy">spicy</button><button type="button" class="tp-tile" data-value="Were">Were</button><button type="button" class="tp-tile" data-value="the food">the food</button><button type="button" class="tp-tile" data-value="Was">Was</button></div>
+          <div class="build">
+            <div class="slots" data-field="q3"><div class="tp-zone" data-store="q3a"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q3b"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q3c"><span class="tp-slot"></span></div><span class="qm">?</span></div>
+            <div class="reply"><span class="cue">you say yes</span><span class="gap"></span><select class="hw-field pick" data-k="r3" data-label="2.3 Short answer (yes) to the question about spicy · the food" aria-label="Short answer 3"><option value="">Choose</option><option value="Yes, it was.">Yes, it was.</option><option value="No, it wasn&#x27;t.">No, it wasn&#x27;t.</option><option value="Yes, they were.">Yes, they were.</option><option value="No, they weren&#x27;t.">No, they weren&#x27;t.</option></select></div>
+          </div>
+          <div class="tp-stores" hidden><select data-s="q3a"><option value=""></option><option value="spicy">spicy</option><option value="Were">Were</option><option value="the food">the food</option><option value="Was">Was</option></select><select data-s="q3b"><option value=""></option><option value="spicy">spicy</option><option value="Were">Were</option><option value="the food">the food</option><option value="Was">Was</option></select><select data-s="q3c"><option value=""></option><option value="spicy">spicy</option><option value="Were">Were</option><option value="the food">the food</option><option value="Was">Was</option></select><input type="text" data-k="q3" data-label="2.3 Question: spicy · the food" class="hw-field"></div>
+        </div>
+      </div>
+      <div class="qb" data-q="q4">
+        <span class="n">4</span>
+        <div class="tp">
+          <div class="tp-bank"><button type="button" class="tp-tile" data-value="the beaches">the beaches</button><button type="button" class="tp-tile" data-value="Were">Were</button><button type="button" class="tp-tile" data-value="clean">clean</button><button type="button" class="tp-tile" data-value="Was">Was</button></div>
+          <div class="build">
+            <div class="slots" data-field="q4"><div class="tp-zone" data-store="q4a"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q4b"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q4c"><span class="tp-slot"></span></div><span class="qm">?</span></div>
+            <div class="reply"><span class="cue">you say yes</span><span class="gap"></span><select class="hw-field pick" data-k="r4" data-label="2.4 Short answer (yes) to the question about the beaches · clean" aria-label="Short answer 4"><option value="">Choose</option><option value="Yes, it was.">Yes, it was.</option><option value="No, it wasn&#x27;t.">No, it wasn&#x27;t.</option><option value="Yes, they were.">Yes, they were.</option><option value="No, they weren&#x27;t.">No, they weren&#x27;t.</option></select></div>
+          </div>
+          <div class="tp-stores" hidden><select data-s="q4a"><option value=""></option><option value="the beaches">the beaches</option><option value="Were">Were</option><option value="clean">clean</option><option value="Was">Was</option></select><select data-s="q4b"><option value=""></option><option value="the beaches">the beaches</option><option value="Were">Were</option><option value="clean">clean</option><option value="Was">Was</option></select><select data-s="q4c"><option value=""></option><option value="the beaches">the beaches</option><option value="Were">Were</option><option value="clean">clean</option><option value="Was">Was</option></select><input type="text" data-k="q4" data-label="2.4 Question: the beaches · clean" class="hw-field"></div>
+        </div>
+      </div>
+      <div class="qb" data-q="q5">
+        <span class="n">5</span>
+        <div class="tp">
+          <div class="tp-bank"><button type="button" class="tp-tile" data-value="Were">Were</button><button type="button" class="tp-tile" data-value="near the beach">near the beach</button><button type="button" class="tp-tile" data-value="Was">Was</button><button type="button" class="tp-tile" data-value="the hotel">the hotel</button></div>
+          <div class="build">
+            <div class="slots" data-field="q5"><div class="tp-zone" data-store="q5a"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q5b"><span class="tp-slot"></span></div><div class="tp-zone" data-store="q5c"><span class="tp-slot"></span></div><span class="qm">?</span></div>
+            <div class="reply"><span class="cue">you say no</span><span class="gap"></span><select class="hw-field pick" data-k="r5" data-label="2.5 Short answer (no) to the question about near the beach · the hotel" aria-label="Short answer 5"><option value="">Choose</option><option value="Yes, it was.">Yes, it was.</option><option value="No, it wasn&#x27;t.">No, it wasn&#x27;t.</option><option value="Yes, they were.">Yes, they were.</option><option value="No, they weren&#x27;t.">No, they weren&#x27;t.</option></select></div>
+          </div>
+          <div class="tp-stores" hidden><select data-s="q5a"><option value=""></option><option value="Were">Were</option><option value="near the beach">near the beach</option><option value="Was">Was</option><option value="the hotel">the hotel</option></select><select data-s="q5b"><option value=""></option><option value="Were">Were</option><option value="near the beach">near the beach</option><option value="Was">Was</option><option value="the hotel">the hotel</option></select><select data-s="q5c"><option value=""></option><option value="Were">Were</option><option value="near the beach">near the beach</option><option value="Was">Was</option><option value="the hotel">the hotel</option></select><input type="text" data-k="q5" data-label="2.5 Question: near the beach · the hotel" class="hw-field"></div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 3: your online order</div>
+  <div class="ex-body">
+    <p class="instr">What did you order online last time? Did it arrive on&nbsp;time?</p>
+    <p class="note">Write 3&nbsp;sentences.</p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      Last time I ordered a lamp for my room. It arrived two days late, and the parcel was&nbsp;wet.
+    </div>
+    <div class="frame">
+      <div class="frow"><span class="starter">1 &nbsp;Last time&nbsp;I&nbsp;&hellip;</span><textarea class="hw-field fl tall" rows="2" data-k="w1" data-label="3.1 Last time I ..." aria-label="Last time I" placeholder="Type here"></textarea></div>
+      <div class="frow"><span class="starter">2 &nbsp;Did it arrive on&nbsp;time?</span><textarea class="hw-field fl tall" rows="3" data-k="w2" data-label="3.2 Did it arrive on time?" aria-label="Did it arrive on time" placeholder="Type here"></textarea></div>
+      <div class="frow"><span class="starter">3 &nbsp;Was it OK? The&nbsp;&hellip;</span><textarea class="hw-field fl tall" rows="2" data-k="w3" data-label="3.3 Was it OK? The ..." aria-label="Was it OK" placeholder="Type here"></textarea></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Exercise 2: each question keeps its three places in data-s selects (saved under its own key)
+   and writes the whole question into one data-k field, so hw.js marks it once. */
+(function () {
+  var KEY = "tp-slots-" + (document.body.dataset.sheetId || "milana-2026-11-18");
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { return {}; } }
+  window.qbRestore = function () {
+    var saved = load();
+    document.querySelectorAll("[data-s]").forEach(function (s) { if (saved[s.dataset.s]) s.value = saved[s.dataset.s]; });
+  };
+  function compose(qb) {
+    var q = qb.dataset.q, out = qb.querySelector("[data-" + "k=" + JSON.stringify(q) + "]");
+    var vals = ["a", "b", "c"].map(function (x) { var s = qb.querySelector("[data-s=" + JSON.stringify(q + x) + "]"); return s ? s.value : ""; });
+    var v = vals.join("") ? vals.map(function (x) { return x || "___"; }).join(" ") : "";
+    var saved = load(); ["a", "b", "c"].forEach(function (x, i) { saved[q + x] = vals[i]; });
+    try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+    if (out && out.value !== v) { out.value = v; out.dispatchEvent(new Event("input", { bubbles: true })); out.dispatchEvent(new Event("change", { bubbles: true })); }
+  }
+  document.querySelectorAll(".qb").forEach(function (qb) {
+    qb.querySelectorAll("[data-s]").forEach(function (s) { s.addEventListener("change", function () { compose(qb); }); });
+  });
+})();
+</script>
+<script>
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { if (!k) return null; return root.querySelector("[data-s=" + JSON.stringify(k) + "]"); }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }
+          else { unpick(); home(t); }
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { if (window.qbRestore) window.qbRestore(); document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS end ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJzMSI6IHsidCI6ICJleGFjdCIsICJhIjogIm9yZGVyZWQifSwgInMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAidHJhY2tlZCJ9LCAiczMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3YXNuJ3QifSwgInM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAic2hvd2VkIn0sICJzNSI6IHsidCI6ICJleGFjdCIsICJhIjogIndhcyJ9LCAiczYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3ZXJlIn0sICJzNyI6IHsidCI6ICJleGFjdCIsICJhIjogImdhdmUifSwgInM4IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2VyZW4ndCJ9LCAiczkiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3YXMifSwgInMxMCI6IHsidCI6ICJleGFjdCIsICJhIjogIndlcmUifSwgInExIjogeyJ0IjogImV4YWN0IiwgImEiOiAiV2VyZSB0aGUgc2hvcHMgb3BlbiJ9LCAicjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJObywgdGhleSB3ZXJlbid0LiJ9LCAicTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXYXMgdGhlIGtheWFraW5nIGZ1biJ9LCAicjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJZZXMsIGl0IHdhcy4ifSwgInEzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiV2FzIHRoZSBmb29kIHNwaWN5In0sICJyMyI6IHsidCI6ICJleGFjdCIsICJhIjogIlllcywgaXQgd2FzLiJ9LCAicTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXZXJlIHRoZSBiZWFjaGVzIGNsZWFuIn0sICJyNCI6IHsidCI6ICJleGFjdCIsICJhIjogIlllcywgdGhleSB3ZXJlLiJ9LCAicTUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXYXMgdGhlIGhvdGVsIG5lYXIgdGhlIGJlYWNoIn0sICJyNSI6IHsidCI6ICJleGFjdCIsICJhIjogIk5vLCBpdCB3YXNuJ3QuIn0sICJ3MSI6IHsidCI6ICJvcGVuIn0sICJ3MiI6IHsidCI6ICJvcGVuIn0sICJ3MyI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

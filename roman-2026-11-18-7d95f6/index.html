@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 18 November 2026</title>
+<!-- Lesson of 18 Nov 2026. About 20 min. Target: the verb after a frame ending in TO (find it difficult to, decide to,
+     it takes me ... to) against frames followed by -ing (switched to, worth, would you mind, no point in); negated worth.
+     Part 1 = «Check Pablo's message» (new mechanic for him): six sentences, Correct / Needs a fix by dropdown.
+       Expected: 1 fix, 2 correct, 3 fix, 4 fix, 5 correct, 6 fix (W R W W R W: no alternation, no run of 3).
+       Choosing «Needs a fix» shows a box pre-filled with Pablo's sentence, so he changes only the broken part;
+       choosing «Correct» hides it (the box is keyed open, so nothing marks it).
+     Part 2 = tap-place tiles (one bank of 10: 8 words of 18 Nov + a shortcut, bog-standard from 12 Nov).
+       Correct tiles sit at bank positions 7, 5, 2, 10, 6, 4, 1, 8 for gaps 1-8.
+     Part 3 = three questions about his life, one sentence each, open key.
+     Answers live only in the private key. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .prompt, li { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+  }
+  .task.keep { page-break-inside: avoid; break-inside: avoid; }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; }
+  .note a { color: #31594b; }
+  .nb { white-space: nowrap; }
+  .ctx { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color: #253a34; margin: 2px 0 2px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .ln { display: block; }
+  .model .mtile, .model .mchip { display: inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 0.9em; font-weight: 600; color: #1f3f35;
+    border: 1.5px solid #31594b; border-radius: 7px; padding: 0 8px; background: #fff; }
+  .model .arr { color: #626a62; margin: 0 6px; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 7px; }
+  .prompt { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 2.1; margin-bottom: 0; }
+  .gc { white-space: nowrap; }
+
+  /* Part 1: Pablo's message */
+  .msg { border: 1px solid #d8ddd3; border-radius: 6px; background: #fff; padding: 10px 18px 12px; }
+  .msg .mhead { font-size: 13px; color: #626a62; border-bottom: 1px solid #e6e9e2; padding-bottom: 6px; margin-bottom: 4px; }
+  .msg .mhead b { color: #31594b; font-weight: 600; }
+  .msg .greet, .msg .sign { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; padding: 6px 0; }
+  .rowq { display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 8px 22px; }
+  .sent { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; flex: 0 1 auto; max-width: 100%; }
+  select.verdict { font: inherit; font-size: 16px; padding: 4px 8px; min-height: 40px; }
+  .fixwrap { display: none; margin-top: 8px; }
+  .q.fixing .fixwrap { display: block; }
+  .fixlab { display: block; font-size: 13px; color: #626a62; margin-bottom: 3px; }
+  .resp {
+    display: block; width: 100%;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  textarea.resp { resize: vertical; min-height: 66px; }
+
+  /* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, restyled to his palette) ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 2px dashed #b9c6bb; border-radius: 10px; min-height: 64px; margin: 6px 0 12px; background: #fbfaf6; }
+  .tp-tile {
+    font: inherit; font-size: 16px; font-weight: 600; color: #1f3f35; background: #fff;
+    border: 2px solid #8fae9f; border-radius: 9px; padding: 6px 14px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.35;
+    touch-action: manipulation;            /* a touch scrolls the page; never "none" */
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: #e5efe8; border-color: #31594b; box-shadow: 0 0 0 3px #c9dccf; }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { border: 2px solid #b9c6bb; border-radius: 9px; padding: 3px; min-height: 48px; cursor: pointer; background: #fffefa; }
+  .tp-zone.ready { border-color: #6f9583; background: #f3f8f4; }
+  .tp-zone.over { border-color: #31594b; background: #e5efe8; }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; align-items: center; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== end TAP-PLACE CSS ===== */
+
+  /* the gap sits inside the sentence */
+  .prompt .tp-zone { display: inline-flex; vertical-align: middle; min-width: 7.5em; margin: 0 4px; }
+  .prompt .tp-zone .tp-slot { min-height: 38px; }
+  .prompt .tp-zone .tp-tile { min-height: 38px; padding: 3px 12px; }
+  .prompt .tp-zone .tp-tile { color: #1d4ed8; border-color: #1d4ed8; }
+  .prompt .tp-zone:has(.tp-tile) { min-width: 0; }
+  .tp-tile { white-space: nowrap; }
+  .prompt .tp-zone .tp-slot { flex-wrap: nowrap; }
+  .prompt .tp-zone.endz { margin-right: 1px; }
+  .tp-zone { -webkit-tap-highlight-color: transparent; }
+  .prt { display: none; }
+
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .msg { padding: 8px 12px 10px; }
+    .do { font-size: 19px; }
+    .gc { white-space: normal; }
+  }
+
+  body.hw-pdf-mode .tp-tile { box-shadow: none; min-height: 0; padding: 2px 10px; }
+  body.hw-pdf-mode .tp-zone, body.hw-pdf-mode .tp-slot { min-height: 0; }
+
+  @media print {
+    html, body { background: #fff; }
+    body { font-size: 12px; line-height: 1.3; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .ctx { font-size: 12px; margin: 1px 0; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 2px; }
+    .msg { padding: 5px 12px 6px; border-width: 1px; }
+    .msg .mhead { font-size: 10px; padding-bottom: 3px; }
+    .msg .greet, .msg .sign { font-size: 12.5px; padding: 2px 0; }
+    .sent { font-size: 12.5px; }
+    select.verdict { display: none; }
+    .prt { display: inline; }
+    .prt.choice { font-size: 11px; color: #626a62; white-space: nowrap; }
+    .fixwrap { display: block; margin-top: 3px; }
+    .fixlab { font-size: 9.5px; margin-bottom: 1px; }
+    .resp { font-size: 11.5px; padding: 3px 8px; border-width: 1px; }
+    textarea.resp { min-height: 30px; height: 30px; resize: none; }
+    textarea.resp::placeholder { color: transparent; }
+    .p3 textarea.resp { min-height: 40px; height: 40px; }
+    .tp-bank { padding: 5px 8px; gap: 5px; min-height: 0; margin: 3px 0 5px; border-width: 1px; }
+    .tp-tile { font-size: 11.5px; padding: 1px 8px; min-height: 0; border-width: 1px; }
+    .prompt .tp-zone { min-width: 13em; min-height: 20px; padding: 1px; border-width: 1px; }
+    .prompt .tp-zone .tp-slot, .prompt .tp-zone .tp-tile { min-height: 0; }
+    .prompt .tp-zone .tp-tile { padding: 0 6px; }
+    .prompt { font-size: 12.5px; line-height: 1.75; }
+    .scr { display: none; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .ctx { font-size:28px; margin:4px 0 4px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .model .mtile, .model .mchip { border-width:2px; padding:0 12px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:18px 0; }
+  .qnum { font-size:22px; padding-top:10px; }
+  .msg { padding:18px 32px 20px; border-width:2px; }
+  .msg .mhead { font-size:20px; padding-bottom:10px; margin-bottom:6px; }
+  .msg .greet, .msg .sign { font-size:29px; padding:10px 0; }
+  .rowq { gap:12px 30px; }
+  .sent { font-size:29px; line-height:1.45; }
+  select.verdict { font-size:26px; min-height:58px; padding:6px 14px; }
+  .fixwrap { margin-top:14px; }
+  .fixlab { font-size:19px; margin-bottom:6px; }
+  .resp { font-size:26px; padding:10px 16px; border-width:2px; }
+  textarea.resp { min-height:104px; }
+  .tp-bank { position: sticky; top: 0; z-index: 5; gap: 12px 14px; padding: 16px 18px; border-width: 2px; margin: 8px 0 16px; }
+  .tp-tile { font-size: 26px; padding: 8px 20px; min-height: 60px; }
+  .prompt .tp-zone { min-width: 7em; min-height: 60px; margin: 0 8px; }
+  .prompt .tp-zone .tp-slot { min-height: 52px; }
+  .prompt .tp-zone .tp-tile { min-height: 52px; padding: 4px 16px; }
+  .prompt { font-size:29px; line-height:2; }
+  .p3 .pairq { display:grid; grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr); gap:10px 40px; align-items:start; }
+  .p3 .ques { font-size:29px; padding-top:8px; }
+}
+/* hw.css sets div/textarea field heights; keep the sentence boxes two lines tall on the live page. */
+@media screen { .task textarea.resp.hw-field { min-height:66px !important; } }
+@media screen and (min-width:900px) { .task textarea.resp.hw-field { min-height:104px !important; } }
+
+  /* Part 3 */
+  .pairq { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 28px; }
+  .ques { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; padding-top: 4px; }
+  @media print { .ques { font-size: 12.5px; padding-top: 0; } .p3 .pairq { gap: 2px; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-11-18" data-sheet-id="roman-2026-11-18-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 20&nbsp;minutes</span></div>
+    <h1>To do, or doing?</h1>
+  </header>
+
+  <div class="task">
+    <h2>1. Check Pablo's message</h2>
+    <p class="ctx">Your colleague Pablo wrote this message and asked you to check&nbsp;it.</p>
+    <div class="do">Is each sentence correct, or does it need a&nbsp;fix?</div>
+    <p class="note"><span class="scr">Choose «Needs a fix», and his sentence appears in a box. Change only what is&nbsp;wrong.</span><span class="prt">Circle Correct or Needs a fix. If it needs a fix, write it correctly in the box under&nbsp;it.</span></p>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">Let's going for a walk after lunch. <span class="arr">&rarr;</span> <span class="mchip">Needs a fix</span> <span class="arr">&rarr;</span> Let's <b>go</b> for a walk after&nbsp;lunch.</span>
+    </div>
+
+    <div class="msg">
+      <div class="mhead"><b>From:</b> Pablo &nbsp;&middot;&nbsp; <b>To:</b> the team &nbsp;&middot;&nbsp; <b>Subject:</b> Our trip to the client in&nbsp;Lisbon</div>
+      <p class="greet">Hi team,</p>
+
+      <div class="q pq"><span class="qnum">1.</span>
+        <div>
+          <div class="rowq"><p class="sent" data-orig="We decided going to Lisbon by train on Monday.">We decided going to Lisbon by train on&nbsp;Monday.</p>
+            <select class="hw-field verdict" data-k="c1" data-label="1. We decided going to Lisbon by train on Monday. (Correct or Needs a fix)" aria-label="Sentence 1"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select>
+            <span class="prt choice">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div>
+          <div class="fixwrap"><span class="fixlab">Pablo's sentence, fixed</span>
+            <textarea class="hw-field resp fix" rows="2" data-k="f1" data-label="1. Fixed: We decided going to Lisbon by train on Monday." aria-label="Fixed sentence 1" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div>
+        </div>
+      </div>
+
+      <div class="q pq"><span class="qnum">2.</span>
+        <div>
+          <div class="rowq"><p class="sent" data-orig="I've switched to using a new booking app, and all our tickets are in it now.">I've switched to using a new booking app, and all our tickets are in it&nbsp;now.</p>
+            <select class="hw-field verdict" data-k="c2" data-label="2. I've switched to using a new booking app, and all our tickets are in it now. (Correct or Needs a fix)" aria-label="Sentence 2"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select>
+            <span class="prt choice">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div>
+          <div class="fixwrap"><span class="fixlab">Pablo's sentence, fixed</span>
+            <textarea class="hw-field resp fix" rows="2" data-k="f2" data-label="2. Fixed: I've switched to using a new booking app, and all our tickets are in it now." aria-label="Fixed sentence 2" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div>
+        </div>
+      </div>
+
+      <div class="q pq"><span class="qnum">3.</span>
+        <div>
+          <div class="rowq"><p class="sent" data-orig="It's worth no taking a taxi from the station: the hotel is five minutes away.">It's worth no taking a taxi from the station: the hotel is five minutes&nbsp;away.</p>
+            <select class="hw-field verdict" data-k="c3" data-label="3. It's worth no taking a taxi from the station: the hotel is five minutes away. (Correct or Needs a fix)" aria-label="Sentence 3"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select>
+            <span class="prt choice">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div>
+          <div class="fixwrap"><span class="fixlab">Pablo's sentence, fixed</span>
+            <textarea class="hw-field resp fix" rows="2" data-k="f3" data-label="3. Fixed: It's worth no taking a taxi from the station: the hotel is five minutes away." aria-label="Fixed sentence 3" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div>
+        </div>
+      </div>
+
+      <div class="q pq"><span class="qnum">4.</span>
+        <div>
+          <div class="rowq"><p class="sent" data-orig="Would you mind send me the slides for the client by Thursday?">Would you mind send me the slides for the client by&nbsp;Thursday?</p>
+            <select class="hw-field verdict" data-k="c4" data-label="4. Would you mind send me the slides for the client by Thursday? (Correct or Needs a fix)" aria-label="Sentence 4"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select>
+            <span class="prt choice">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div>
+          <div class="fixwrap"><span class="fixlab">Pablo's sentence, fixed</span>
+            <textarea class="hw-field resp fix" rows="2" data-k="f4" data-label="4. Fixed: Would you mind send me the slides for the client by Thursday?" aria-label="Fixed sentence 4" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div>
+        </div>
+      </div>
+
+      <div class="q pq"><span class="qnum">5.</span>
+        <div>
+          <div class="rowq"><p class="sent" data-orig="It takes me about an hour to check a presentation, so I'll look at the slides on Thursday evening.">It takes me about an hour to check a presentation, so I'll look at the slides on Thursday&nbsp;evening.</p>
+            <select class="hw-field verdict" data-k="c5" data-label="5. It takes me about an hour to check a presentation, so I'll look at the slides on Thursday evening. (Correct or Needs a fix)" aria-label="Sentence 5"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select>
+            <span class="prt choice">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div>
+          <div class="fixwrap"><span class="fixlab">Pablo's sentence, fixed</span>
+            <textarea class="hw-field resp fix" rows="2" data-k="f5" data-label="5. Fixed: It takes me about an hour to check a presentation, so I'll look at the slides on Thursday evening." aria-label="Fixed sentence 5" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div>
+        </div>
+      </div>
+
+      <div class="q pq"><span class="qnum">6.</span>
+        <div>
+          <div class="rowq"><p class="sent" data-orig="I find it difficult to speaking on the phone in English, so please send me a message if anything changes.">I find it difficult to speaking on the phone in English, so please send me a message if anything&nbsp;changes.</p>
+            <select class="hw-field verdict" data-k="c6" data-label="6. I find it difficult to speaking on the phone in English, so please send me a message if anything changes. (Correct or Needs a fix)" aria-label="Sentence 6"><option value="">Choose</option><option value="Correct">Correct</option><option value="Needs a fix">Needs a fix</option></select>
+            <span class="prt choice">Correct &nbsp;/&nbsp; Needs a&nbsp;fix</span></div>
+          <div class="fixwrap"><span class="fixlab">Pablo's sentence, fixed</span>
+            <textarea class="hw-field resp fix" rows="2" data-k="f6" data-label="6. Fixed: I find it difficult to speaking on the phone in English, so please send me a message if anything changes." aria-label="Fixed sentence 6" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea></div>
+        </div>
+      </div>
+
+      <p class="sign">Thanks, Pablo</p>
+    </div>
+  </div>
+
+  <div class="task keep">
+    <h2>2. Tom's week</h2>
+    <div class="do">Put a word or phrase in each&nbsp;gap.</div>
+    <p class="note">All these words are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 18&nbsp;November (two spare cards are from 12&nbsp;November). <span class="scr">Tap a card, then tap its gap. Tap a card in a gap to send it&nbsp;back.</span><span class="prt">Write each one from the cards&nbsp;above.</span></p>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">The café on the corner sells ten <span class="mtile">varieties</span> of&nbsp;tea.</span>
+    </div>
+
+    <div class="tp" id="week">
+      <div class="tp-bank" aria-label="Words">
+        <button type="button" class="tp-tile" data-value="on tap">on tap</button>
+        <button type="button" class="tp-tile" data-value="a handyman">a handyman</button>
+        <button type="button" class="tp-tile" data-value="bog-standard">bog-standard</button>
+        <button type="button" class="tp-tile" data-value="a short summary">a short summary</button>
+        <button type="button" class="tp-tile" data-value="dented">dented</button>
+        <button type="button" class="tp-tile" data-value="letting me through">letting me through</button>
+        <button type="button" class="tp-tile" data-value="a cooker hood">a cooker hood</button>
+        <button type="button" class="tp-tile" data-value="picky">picky</button>
+        <button type="button" class="tp-tile" data-value="a shortcut">a shortcut</button>
+        <button type="button" class="tp-tile" data-value="his commute">his commute</button>
+      </div>
+
+      <div class="q"><span class="qnum">1.</span>
+        <p class="prompt">On Monday, a courier finally brought <span class="tp-zone" data-store="t1" data-field="t1"><span class="tp-slot"></span></span> for Tom's kitchen, three weeks after he had ordered&nbsp;it.</p></div>
+
+      <div class="q"><span class="qnum">2.</span>
+        <p class="prompt">When Tom opened the box, the metal on one side was <span class="gc"><span class="tp-zone endz" data-store="t2" data-field="t2"><span class="tp-slot"></span></span>.</span> Luckily, that side goes against the wall, so he kept&nbsp;it.</p></div>
+
+      <div class="q"><span class="qnum">3.</span>
+        <p class="prompt">Tom is no good with a drill, so on Tuesday he paid <span class="gc"><span class="tp-zone endz" data-store="t3" data-field="t3"><span class="tp-slot"></span></span></span> to fix it to the&nbsp;wall.</p></div>
+
+      <div class="q"><span class="qnum">4.</span>
+        <p class="prompt">On Wednesday, <span class="tp-zone" data-store="t4" data-field="t4"><span class="tp-slot"></span></span> took an hour and a half because of a problem on the train&nbsp;line.</p></div>
+
+      <div class="q"><span class="qnum">5.</span>
+        <p class="prompt">At the office, a man with a bike was standing in the doorway of the lift, so Tom said: «Excuse me, would you mind <span class="gc"><span class="tp-zone endz" data-store="t5" data-field="t5"><span class="tp-slot"></span></span>?»</span></p></div>
+
+      <div class="q"><span class="qnum">6.</span>
+        <p class="prompt">On Thursday, after a long meeting, his manager asked him to write <span class="tp-zone" data-store="t6" data-field="t6"><span class="tp-slot"></span></span> of it for the&nbsp;team.</p></div>
+
+      <div class="q"><span class="qnum">7.</span>
+        <p class="prompt">On Friday, at a bar with two friends, he didn't want a bottle, so he asked what they had <span class="gc"><span class="tp-zone endz" data-store="t7" data-field="t7"><span class="tp-slot"></span></span>.</span></p></div>
+
+      <div class="q"><span class="qnum">8.</span>
+        <p class="prompt">His friends aren't <span class="tp-zone" data-store="t8" data-field="t8"><span class="tp-slot"></span></span>: they're happy with whatever the barman&nbsp;recommends.</p></div>
+
+      <div class="tp-stores" hidden>
+        <select data-k="t1" data-label="1. On Monday, a courier finally brought ___ for Tom's kitchen, three weeks after he had ordered it." class="hw-field"><option value=""></option><option>on tap</option><option>a handyman</option><option>bog-standard</option><option>a short summary</option><option>dented</option><option>letting me through</option><option>a cooker hood</option><option>picky</option><option>a shortcut</option><option>his commute</option></select>
+        <select data-k="t2" data-label="2. When Tom opened the box, the metal on one side was ___." class="hw-field"><option value=""></option><option>on tap</option><option>a handyman</option><option>bog-standard</option><option>a short summary</option><option>dented</option><option>letting me through</option><option>a cooker hood</option><option>picky</option><option>a shortcut</option><option>his commute</option></select>
+        <select data-k="t3" data-label="3. Tom is no good with a drill, so on Tuesday he paid ___ to fix it to the wall." class="hw-field"><option value=""></option><option>on tap</option><option>a handyman</option><option>bog-standard</option><option>a short summary</option><option>dented</option><option>letting me through</option><option>a cooker hood</option><option>picky</option><option>a shortcut</option><option>his commute</option></select>
+        <select data-k="t4" data-label="4. On Wednesday, ___ took an hour and a half because of a problem on the train line." class="hw-field"><option value=""></option><option>on tap</option><option>a handyman</option><option>bog-standard</option><option>a short summary</option><option>dented</option><option>letting me through</option><option>a cooker hood</option><option>picky</option><option>a shortcut</option><option>his commute</option></select>
+        <select data-k="t5" data-label="5. At the office, a man with a bike was standing in the doorway of the lift, so Tom said: «Excuse me, would you mind ___?»" class="hw-field"><option value=""></option><option>on tap</option><option>a handyman</option><option>bog-standard</option><option>a short summary</option><option>dented</option><option>letting me through</option><option>a cooker hood</option><option>picky</option><option>a shortcut</option><option>his commute</option></select>
+        <select data-k="t6" data-label="6. His manager asked him to write ___ of it for the team." class="hw-field"><option value=""></option><option>on tap</option><option>a handyman</option><option>bog-standard</option><option>a short summary</option><option>dented</option><option>letting me through</option><option>a cooker hood</option><option>picky</option><option>a shortcut</option><option>his commute</option></select>
+        <select data-k="t7" data-label="7. On Friday he didn't want a bottle, so he asked what they had ___." class="hw-field"><option value=""></option><option>on tap</option><option>a handyman</option><option>bog-standard</option><option>a short summary</option><option>dented</option><option>letting me through</option><option>a cooker hood</option><option>picky</option><option>a shortcut</option><option>his commute</option></select>
+        <select data-k="t8" data-label="8. His friends aren't ___: they're happy with whatever the barman recommends." class="hw-field"><option value=""></option><option>on tap</option><option>a handyman</option><option>bog-standard</option><option>a short summary</option><option>dented</option><option>letting me through</option><option>a cooker hood</option><option>picky</option><option>a shortcut</option><option>his commute</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="task keep p3">
+    <h2>3. About you</h2>
+    <div class="do">Answer each question with one full sentence about your&nbsp;life.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">What would you rather do on a rainy Sunday? <span class="arr">&rarr;</span> I'd rather stay at home and read a&nbsp;book.</span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="pairq">
+        <p class="ques">What do you still find difficult to do in&nbsp;Spanish?</p>
+        <textarea class="hw-field resp" rows="2" data-k="p1" data-label="1. What do you still find difficult to do in Spanish?" aria-label="Answer 1" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="pairq">
+        <p class="ques">What is something that isn't worth doing on a short city break, and&nbsp;why?</p>
+        <textarea class="hw-field resp" rows="2" data-k="p2" data-label="2. What is something that isn't worth doing on a short city break, and why?" aria-label="Answer 2" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div class="pairq">
+        <p class="ques">What have you decided to do differently this winter, and&nbsp;why?</p>
+        <textarea class="hw-field resp" rows="2" data-k="p3" data-label="3. What have you decided to do differently this winter, and why?" aria-label="Answer 3" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+/* Part 1: the fix box shows only for «Needs a fix». It opens with Pablo's sentence in it, so only the broken part is changed. */
+(function () {
+  function setup() {
+    document.querySelectorAll(".pq").forEach(function (q) {
+      var sel = q.querySelector("select.verdict"), box = q.querySelector("textarea.fix"), orig = q.querySelector(".sent").dataset.orig;
+      if (!sel || !box) return;
+      function show(fromUser) {
+        var fixing = sel.value === "Needs a fix";
+        q.classList.toggle("fixing", fixing);
+        if (!fromUser) return;
+        if (fixing && !box.value.trim()) { box.value = orig; box.dispatchEvent(new Event("input", { bubbles: true })); }
+        if (!fixing && box.value.trim() === orig) { box.value = ""; box.dispatchEvent(new Event("input", { bubbles: true })); }
+      }
+      sel.addEventListener("change", function () { show(true); });
+      show(false);
+    });
+  }
+  if (document.readyState === "complete") setup(); else window.addEventListener("load", setup);
+})();
+</script>
+<script>
+/* ===== TAP-PLACE JS (copied verbatim from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJjMSI6IHsidCI6ICJleGFjdCIsICJhIjogIk5lZWRzIGEgZml4In0sICJjMiI6IHsidCI6ICJleGFjdCIsICJhIjogIkNvcnJlY3QifSwgImMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiTmVlZHMgYSBmaXgifSwgImM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiTmVlZHMgYSBmaXgifSwgImM1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiQ29ycmVjdCJ9LCAiYzYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJOZWVkcyBhIGZpeCJ9LCAiZjEiOiB7InQiOiAib3BlbiJ9LCAiZjIiOiB7InQiOiAib3BlbiJ9LCAiZjMiOiB7InQiOiAib3BlbiJ9LCAiZjQiOiB7InQiOiAib3BlbiJ9LCAiZjUiOiB7InQiOiAib3BlbiJ9LCAiZjYiOiB7InQiOiAib3BlbiJ9LCAidDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIGNvb2tlciBob29kIn0sICJ0MiI6IHsidCI6ICJleGFjdCIsICJhIjogImRlbnRlZCJ9LCAidDMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIGhhbmR5bWFuIn0sICJ0NCI6IHsidCI6ICJleGFjdCIsICJhIjogImhpcyBjb21tdXRlIn0sICJ0NSI6IHsidCI6ICJleGFjdCIsICJhIjogImxldHRpbmcgbWUgdGhyb3VnaCJ9LCAidDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIHNob3J0IHN1bW1hcnkifSwgInQ3IjogeyJ0IjogImV4YWN0IiwgImEiOiAib24gdGFwIn0sICJ0OCI6IHsidCI6ICJleGFjdCIsICJhIjogInBpY2t5In0sICJwMSI6IHsidCI6ICJvcGVuIn0sICJwMiI6IHsidCI6ICJvcGVuIn0sICJwMyI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

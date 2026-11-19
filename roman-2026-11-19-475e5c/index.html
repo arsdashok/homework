@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 19 November 2026</title>
+<!-- Lesson of 19 Nov 2026 (lesson 18, reading, Three Men in a Boat ch. IV; cards 8 Q2 to 12 continue next lesson, so
+     no packing, shared bag, toothbrush, the book, or «have a go» on this sheet). About 20 min.
+     Part 1 = replies to a friend's six messages about a bookshelf at home, each with a printed starter that forces the
+       verb form after a grammar word (his PRIORITY 1: «let's packing», 12 Nov «let's cooking»; «He expected that he did
+       your work» -> expect someone to + verb). Starters: Would you mind / There's no point in / I expected you to /
+       Let's / It isn't worth / I didn't expect it to. Model on I'd rather (not an item). Key open.
+     Part 2 = Marta's coffee machine, 10 of today's words by a dropdown inside the gap, three options each (all from 19 Nov).
+       Correct option positions for gaps 1-10: 3, 1, 1, 2, 3, 3, 1, 2, 1, 3 (no alternation, no run of 3).
+     Part 3 = two questions about his life (take charge, match expectations). Key open.
+     Answers live only in the private key. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .prompt, .sit, .ques { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+  }
+  .task.keep { page-break-inside: avoid; break-inside: avoid; }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; }
+  .note a { color: #31594b; }
+  .note { page-break-after: avoid; break-after: avoid; }
+  .ctx { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color: #253a34; margin: 2px 0 6px; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .ln { display: block; }
+  .model .who { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em; color: #626a62; }
+  .model .arr { color: #626a62; margin: 0 6px; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 7px; }
+
+  /* Part 1: his friend's message on the left, his reply on the right (stacked on a phone) */
+  .pairq { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 28px; align-items: start; }
+  .sit { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; padding-top: 4px; }
+  .sit .when { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #626a62; }
+  .answers { display: block; }
+  .starter { display: block; font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 700; color: #31594b; padding-top: 4px; margin-bottom: 4px; }
+  .resp {
+    display: block; width: 100%; flex: 1 1 auto;
+    font: inherit; font-size: 16px; line-height: 1.55;
+    padding: 7px 11px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+  textarea.resp { resize: vertical; min-height: 66px; }
+
+  /* Part 2: the dropdown sits in the gap */
+  .prompt { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 2.1; margin-bottom: 0; }
+  select.pick { display: inline-block; width: auto; min-width: 150px; height: 36px; padding: 2px 8px; margin: 0 4px; font-size: 15.5px; vertical-align: baseline; }
+  .pgap { display: none; }
+  .print-opts { display: none; }
+  .nw { white-space: nowrap; }
+
+  /* Part 3 */
+  .ques { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; padding-top: 4px; }
+
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+    .nw { white-space: normal; }
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    body { font-size: 12px; line-height: 1.3; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .ctx { font-size: 12px; margin: 1px 0 3px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 2px; }
+    .pairq { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2px 16px; }
+    .sit, .ques { font-size: 12px; padding-top: 1px; }
+    .sit .when { font-size: 9.5px; }
+    .starter { font-size: 12px; padding-top: 1px; margin-bottom: 1px; }
+    .resp { font-size: 11.5px; padding: 3px 8px; border-width: 1px; }
+    textarea.resp { min-height: 34px; height: 34px; resize: none; }
+    textarea.resp::placeholder { color: transparent; }
+    .p3 textarea.resp { min-height: 46px; height: 46px; }
+    .prompt { font-size: 12.5px; line-height: 1.9; }
+    select.pick { display: none !important; }
+    .pgap { display: inline-block; width: 90px; border-bottom: 1px solid #626a62; height: 11px; margin: 0 3px; vertical-align: baseline; }
+    .print-opts { display: inline; margin-left: 6px; font-size: 10.5px; color: #626a62; white-space: nowrap; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .ctx { font-size:28px; margin:4px 0 12px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:18px 0; }
+  .qnum { font-size:22px; padding-top:10px; }
+  .pairq { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 40px; }
+  .sit { font-size:29px; line-height:1.45; padding-top:6px; }
+  .sit .when { font-size:19px; }
+  .starter { font-size:28px; padding-top:6px; margin-bottom:8px; }
+  .resp { font-size:26px; padding:10px 16px; border-width:2px; }
+  textarea.resp { min-height:104px; }
+  .prompt { font-size:29px; line-height:2.1; }
+  select.pick { height:58px; min-width:260px; font-size:26px; padding:2px 12px; }
+  .p3 .pairq { grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr); }
+  .ques { font-size:29px; padding-top:8px; }
+}
+/* hw.css sets div/textarea field heights; keep the sentence boxes two lines tall on the live page. */
+@media screen { .task textarea.resp.hw-field { min-height:66px !important; } }
+@media screen and (min-width:900px) { .task textarea.resp.hw-field { min-height:104px !important; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-11-19" data-sheet-id="roman-2026-11-19-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 20&nbsp;minutes</span></div>
+    <h1>A bookshelf and a coffee machine</h1>
+  </header>
+
+  <div class="task">
+    <h2>1. Messages from Marcos</h2>
+    <p class="ctx">Your friend Marcos is coming on Saturday to help you put together a new bookshelf. It comes in pieces in a big box, with all the&nbsp;screws.</p>
+    <div class="do">Reply to each message. Start with the words&nbsp;given.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln"><span class="who">Marcos:</span> Shall I bring some pizza for&nbsp;lunch?</span>
+      <span class="ln"><span class="arr">&rarr;</span> <b>I'd rather</b> cook pasta here: I've got everything for&nbsp;it.</span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="pairq">
+        <p class="sit"><span class="when">Thursday</span>What do I need to bring on&nbsp;Saturday?</p>
+        <div class="answers"><span class="starter">Would you mind</span>
+          <textarea class="hw-field resp" rows="2" data-k="m1" data-label="1. Marcos: What do I need to bring on Saturday? Would you mind ..." aria-label="Reply 1, starting with Would you mind" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="pairq">
+        <p class="sit"><span class="when">Friday</span>Shall I stop at the DIY shop and buy some&nbsp;screws?</p>
+        <div class="answers"><span class="starter">There's no point in</span>
+          <textarea class="hw-field resp" rows="2" data-k="m2" data-label="2. Marcos: Shall I stop at the DIY shop and buy some screws? There's no point in ..." aria-label="Reply 2, starting with There's no point in" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div class="pairq">
+        <p class="sit"><span class="when">Friday evening</span>Sorry, I have to leave at three on Saturday. It's my sister's&nbsp;birthday.</p>
+        <div class="answers"><span class="starter">Oh, OK. I expected</span>
+          <textarea class="hw-field resp" rows="2" data-k="m3" data-label="3. Marcos: Sorry, I have to leave at three on Saturday. It's my sister's birthday. Oh, OK. I expected ..." aria-label="Reply 3, starting with I expected" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <div class="pairq">
+        <p class="sit"><span class="when">Saturday morning</span>I'm on my way. Where do we start when I get&nbsp;there?</p>
+        <div class="answers"><span class="starter">Let's</span>
+          <textarea class="hw-field resp" rows="2" data-k="m4" data-label="4. Marcos: I'm on my way. Where do we start when I get there? Let's ..." aria-label="Reply 4, starting with Let's" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <div class="pairq">
+        <p class="sit"><span class="when">Saturday evening</span>I've just looked at your photo. The top shelf isn't quite straight! Shall I come back tomorrow so we can take it&nbsp;apart?</p>
+        <div class="answers"><span class="starter">It isn't worth</span>
+          <textarea class="hw-field resp" rows="2" data-k="m5" data-label="5. Marcos: The top shelf isn't quite straight! Shall I come back tomorrow so we can take it apart? It isn't worth ..." aria-label="Reply 5, starting with It isn't worth" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <div class="pairq">
+        <p class="sit"><span class="when">Sunday</span>So, is the bookshelf still standing with all your books on&nbsp;it?</p>
+        <div class="answers"><span class="starter">Yes! I didn't expect it to</span>
+          <textarea class="hw-field resp" rows="2" data-k="m6" data-label="6. Marcos: So, is the bookshelf still standing with all your books on it? Yes! I didn't expect it to ..." aria-label="Reply 6, starting with I didn't expect it to" autocomplete="off" autocapitalize="off" placeholder="Type your answer here"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="task">
+    <h2>2. Marta's new coffee machine</h2>
+    <div class="do">Choose the right word or phrase for each&nbsp;gap.</div>
+    <p class="note">The answers are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 19&nbsp;November.</p>
+
+    <div class="q"><span class="qnum">1.</span>
+      <p class="prompt">On Saturday morning, Marta was <span class="pgap"></span><select class="hw-field pick" data-k="g1" data-label="1. On Saturday morning, Marta was ___ in the kitchen when the courier rang the doorbell." aria-label="Gap 1"><option value="">Choose</option><option value="rummaging through">rummaging through</option><option value="an experienced traveller">an experienced traveller</option><option value="pottering about">pottering about</option></select><span class="print-opts">(rummaging through / an experienced traveller / pottering about)</span> in the kitchen when the courier rang the&nbsp;doorbell.</p></div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <p class="prompt">It was her new coffee machine, with four cups and a milk jug. But the jug wasn't there. She <span class="pgap"></span><select class="hw-field pick" data-k="g2" data-label="2. But the jug wasn't there. She ___ all the paper in the box twice, but she couldn't find it." aria-label="Gap 2"><option value="">Choose</option><option value="rummaged through">rummaged through</option><option value="pottered about">pottered about</option><option value="fastened">fastened</option></select><span class="print-opts">(rummaged through / pottered about / fastened)</span> all the paper in the box twice, but she couldn't find&nbsp;it.</p></div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <p class="prompt">Marta was <span class="pgap"></span><select class="hw-field pick" data-k="g3" data-label="3. Marta was ___: her guests were coming at twelve, and she wanted to make them cappuccinos." aria-label="Gap 3"><option value="">Choose</option><option value="irritated">irritated</option><option value="experienced">experienced</option><option value="missing">missing</option></select><span class="print-opts">(irritated / experienced / missing)</span>: her guests were coming at twelve, and she wanted to make them&nbsp;cappuccinos.</p></div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <p class="prompt">For a few minutes, one question <span class="pgap"></span><select class="hw-field pick" data-k="g4" data-label="4. For a few minutes, one question ___ her: had she ticked the wrong box when she ordered?" aria-label="Gap 4"><option value="">Choose</option><option value="revealed">revealed</option><option value="haunted">haunted</option><option value="rummaged through">rummaged through</option></select><span class="print-opts">(revealed / haunted / rummaged through)</span> her: had she ticked the wrong box when she&nbsp;ordered?</p></div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <p class="prompt">She phoned the shop to report <span class="nw"><span class="pgap"></span><select class="hw-field pick" data-k="g5" data-label="5. She phoned the shop to report ___." aria-label="Gap 5"><option value="">Choose</option><option value="luggage">luggage</option><option value="an experienced traveller">an experienced traveller</option><option value="a missing item">a missing item</option></select>.</span><span class="print-opts">(luggage / an experienced traveller / a missing item)</span></p></div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <p class="prompt">A quick check of her order <span class="pgap"></span><select class="hw-field pick" data-k="g6" data-label="6. A quick check of her order ___ the problem: the jug was still in the warehouse." aria-label="Gap 6"><option value="">Choose</option><option value="haunted">haunted</option><option value="rummaged through">rummaged through</option><option value="revealed">revealed</option></select><span class="print-opts">(haunted / rummaged through / revealed)</span> the problem: the jug was still in the&nbsp;warehouse.</p></div>
+
+    <div class="q"><span class="qnum">7.</span>
+      <p class="prompt">Her son Leo set up the machine, filled the water tank and said: «I've done the hard part, Mum. You <span class="nw">can <span class="pgap"></span><select class="hw-field pick" data-k="g7" data-label="7. «I've done the hard part, Mum. You can ___.»" aria-label="Gap 7"><option value="">Choose</option><option value="do the rest">do the rest</option><option value="fasten">fasten</option><option value="finish editing">finish editing</option></select>.»</span><span class="print-opts">(do the rest / fasten / finish editing)</span></p></div>
+
+    <div class="q"><span class="qnum">8.</span>
+      <p class="prompt">In the evening, Marta started a review for the shop's website, but she was tired, so she decided <span class="nw">to <span class="pgap"></span><select class="hw-field pick" data-k="g8" data-label="8. She was tired, so she decided to ___ it the next day." aria-label="Gap 8"><option value="">Choose</option><option value="correct mistakes">correct mistakes</option><option value="finish editing">finish editing</option><option value="do the rest">do the rest</option></select></span><span class="print-opts">(correct mistakes / finish editing / do the rest)</span> it the next&nbsp;day.</p></div>
+
+    <div class="q"><span class="qnum">9.</span>
+      <p class="prompt">The next day the jug arrived. It was warm and sunny, so Marta and Leo had their cappuccinos <span class="nw"><span class="pgap"></span><select class="hw-field pick" data-k="g9" data-label="9. It was warm and sunny, so Marta and Leo had their cappuccinos ___." aria-label="Gap 9"><option value="">Choose</option><option value="outside">outside</option><option value="on the street">on the street</option><option value="gradually">gradually</option></select>.</span><span class="print-opts">(outside / on the street / gradually)</span></p></div>
+
+    <div class="q"><span class="qnum">10.</span>
+      <p class="prompt">Marta asked Leo to read her review <span class="nw">and <span class="pgap"></span><select class="hw-field pick" data-k="g10" data-label="10. Marta asked Leo to read her review and ___ before she posted it." aria-label="Gap 10"><option value="">Choose</option><option value="change mistakes">change mistakes</option><option value="fasten">fasten</option><option value="correct mistakes">correct mistakes</option></select></span><span class="print-opts">(change mistakes / fasten / correct mistakes)</span> before she posted&nbsp;it.</p></div>
+  </div>
+
+  <div class="task keep p3">
+    <h2>3. About you</h2>
+    <div class="do">Answer each question in one or two sentences about your&nbsp;life.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">How often do you cook at home? <span class="arr">&rarr;</span> Almost every day: I usually make dinner, and at the weekend we cook&nbsp;together.</span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="pairq">
+        <p class="ques">In your family, who usually takes charge when you organise a birthday or a big family dinner? What do the others&nbsp;do?</p>
+        <textarea class="hw-field resp" rows="3" data-k="p1" data-label="1. In your family, who usually takes charge when you organise a birthday or a big family dinner? What do the others do?" aria-label="Answer 1" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="pairq">
+        <p class="ques">Think of a restaurant or a hotel that didn't match your expectations. What&nbsp;happened?</p>
+        <textarea class="hw-field resp" rows="3" data-k="p2" data-label="2. Think of a restaurant or a hotel that didn't match your expectations. What happened?" aria-label="Answer 2" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtMSI6IHsidCI6ICJvcGVuIn0sICJtMiI6IHsidCI6ICJvcGVuIn0sICJtMyI6IHsidCI6ICJvcGVuIn0sICJtNCI6IHsidCI6ICJvcGVuIn0sICJtNSI6IHsidCI6ICJvcGVuIn0sICJtNiI6IHsidCI6ICJvcGVuIn0sICJnMSI6IHsidCI6ICJleGFjdCIsICJhIjogInBvdHRlcmluZyBhYm91dCJ9LCAiZzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJydW1tYWdlZCB0aHJvdWdoIn0sICJnMyI6IHsidCI6ICJleGFjdCIsICJhIjogImlycml0YXRlZCJ9LCAiZzQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoYXVudGVkIn0sICJnNSI6IHsidCI6ICJleGFjdCIsICJhIjogImEgbWlzc2luZyBpdGVtIn0sICJnNiI6IHsidCI6ICJleGFjdCIsICJhIjogInJldmVhbGVkIn0sICJnNyI6IHsidCI6ICJleGFjdCIsICJhIjogImRvIHRoZSByZXN0In0sICJnOCI6IHsidCI6ICJleGFjdCIsICJhIjogImZpbmlzaCBlZGl0aW5nIn0sICJnOSI6IHsidCI6ICJleGFjdCIsICJhIjogIm91dHNpZGUifSwgImcxMCI6IHsidCI6ICJleGFjdCIsICJhIjogImNvcnJlY3QgbWlzdGFrZXMifSwgInAxIjogeyJ0IjogIm9wZW4ifSwgInAyIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

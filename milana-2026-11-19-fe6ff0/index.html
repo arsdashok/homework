@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milana: Homework 19 November 2026</title>
+<!-- Lesson 19 Nov 2026: the 18 Nov sheet done live, cards 6-7 of the was/were deck, then her retelling of the clay film Wildwood (Laika) she saw in a San Diego cinema, and my account of The Odyssey at the BFI IMAX; she is ill (stomach ache, feels sick, cannot book a clinic slot, no insurance). Built on what was SHAKY or NEW: (A) base form after a helper and didn't for an ACTION («You didn't saw this?», «can came», «No, it was» for «Did it arrive?»); (B) noun subjects with was/were («the phone cases was», «my neighbour were»); (C) word order in a was/were question with an adjective («Was fun the kayaking?»); (D) today's words. Pronoun was/were is solid and is not drilled. Formats differ from 17/18 Nov: Ex 1 TYPES the negative of seven wrong facts about Wildwood and her cinema trip (A; the was/were is printed in the state items, so noun-subject choice is Ex 2's job; kinds action/state/state/action/action/state/action; model on a bus and a pizza, in no item). Ex 2 TYPES the question for a cue + my printed reply about my IMAX trip (C + B; my replies carry no was/were so they do not give the verb away; cues 2 and 4 put the adjective first so the word order is her decision; Was/Were/Were/Was/Were; model on «the seats», in no item). Ex 3 a chat with Lily, seven gaps, tap-to-place (Tools/hw_snippets/tap_place.html), one spare tile «went for a walk» that fits no gap grammatically (every gap needs a base form, a noun or a whole clause); correct bank positions 7,1,8,3,5,4,2. A small script tidies curly apostrophes and a typed «?» so the check does not mark a right answer wrong. Starlight design as on 11/17/18 Nov. About 13-15 minutes. -->
+<style>
+  :root {
+    --ink:#2d2949; --accent:#60529c; --accent2:#8c72bf; --muted:#5d5870; --border:#d0c8e7;
+    --wash:#f2effa; --model:#f8f7fc; --night:#302744; --pink:#f6b5d6; --line:#aaa3c1; --lilac:#d5c9ff; --field:#1d4ed8;
+  }
+  @page { size: A4; margin: 10mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; line-height: 1.4; color: var(--ink);
+    background: #f7f5fc; max-width: 1080px; margin: auto; padding: 16px 16px 24px;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  /* header: Starlight */
+  header.top {
+    position: relative; overflow: hidden; border-radius: 10px; background: var(--night); color: #fff;
+    padding: 18px 24px 20px; margin-bottom: 18px; min-height: 120px;
+  }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: #e3c5f1; position: relative; z-index: 1; }
+  header.top h1 { font-family: Arial, sans-serif; font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -1px; position: relative; z-index: 1; margin-top: 2px; }
+  header.top .sub { font-size: 15px; color: #e2dcec; margin-top: 6px; position: relative; z-index: 1; }
+  .header-art { position: absolute; right: 0; top: 0; height: 100%; width: auto; }
+
+  /* cards */
+  .ex-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 18px; overflow: hidden; }
+  .ex-header {
+    background: var(--wash); border-bottom: 1px solid var(--border); border-left: 4px solid var(--accent2);
+    padding: 8px 16px; font-size: 13px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent);
+    break-after: avoid; page-break-after: avoid;
+  }
+  .ex-body { padding: 14px 18px 16px; }
+  .ctx { font-size: 17px; color: var(--ink); margin-bottom: 4px; }
+  .instr { font-size: 25px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
+  .note { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+  .example-box {
+    background: var(--model); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0;
+    padding: 8px 14px; margin-bottom: 14px; font-size: 18px; line-height: 1.5;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .example-box .label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+  .example-box b { color: var(--accent); }
+  .example-box .tag { color: var(--muted); font-size: .8em; font-style: italic; white-space: nowrap; }
+  .example-box .ln { display: block; }
+  .example-box .place { color: var(--muted); font-style: italic; }
+
+  .q { padding: 9px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .q:last-child { border-bottom: 0; }
+  .n {
+    flex: 0 0 auto; display: inline-block; width: 28px; height: 28px; line-height: 26px; text-align: center;
+    border: 1.5px solid var(--accent); border-radius: 5px; color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+  .sent { font-size: 20px; line-height: 1.5; }
+  .arr { color: var(--accent2); font-weight: 700; font-size: 22px; }
+
+  /* Ex 1 row: number, wrong sentence, arrow, her sentence */
+  .fx { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; align-items: center; }
+  .fx .arr { display: none; }
+  .fx textarea.fl { grid-column: 2; }
+
+  /* Ex 2 row: number, cue, her question + ?, my reply */
+  .ask { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; align-items: center; }
+  .ask .qline, .ask .mine { grid-column: 2; }
+  .cue { justify-self: start; font-size: 17px; font-weight: 700; color: var(--accent); background: var(--wash); border-radius: 999px; padding: 3px 14px; white-space: nowrap; }
+  .qline { display: flex; align-items: center; gap: 8px; }
+  .qm { font-size: 26px; font-weight: 700; color: var(--ink); }
+  .mine { font-size: 18px; color: var(--ink); }
+  .say { font-size: .8em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+  textarea.fl {
+    display: block; width: 100%; font: inherit; font-size: 20px; line-height: 1.45; color: var(--field); resize: vertical;
+    padding: 6px 12px; border: 2px solid var(--border); border-radius: 8px; background: #fff; min-height: 48px;
+  }
+  section textarea.fl { min-height: 48px; }
+
+  /* Ex 3: chat */
+  .chat { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: #fbfaff; border: 1px solid var(--border); border-radius: 12px; }
+  .msg { max-width: 88%; padding: 8px 14px 10px; border-radius: 16px; font-size: 19px; line-height: 2.1; page-break-inside: avoid; break-inside: avoid; }
+  .msg .who { display: block; font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); line-height: 1.4; }
+  .msg.them { align-self: flex-start; background: #fff; border: 1.5px solid var(--border); border-bottom-left-radius: 4px; }
+  .msg.me { align-self: flex-end; background: #ece6fb; border: 1.5px solid var(--lilac); border-bottom-right-radius: 4px; }
+  .gnum { display: inline-block; font-size: 12px; font-weight: 700; color: #fff; background: var(--accent); border-radius: 4px; padding: 0 5px; line-height: 18px; vertical-align: super; margin-right: 2px; }
+
+  /* ===== TAP-PLACE CSS (Tools/hw_snippets/tap_place.html), Starlight palette ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; border: 2px dashed var(--border); border-radius: 12px; min-height: 60px; margin: 0 0 12px; background: #fcfbff; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 700; color: var(--ink); background: #fff;
+    border: 2px solid var(--accent2); border-radius: 10px; padding: 6px 12px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.25;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: var(--wash); border-color: var(--accent); box-shadow: 0 0 0 3px var(--lilac); }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { display: inline-flex; vertical-align: middle; min-width: 130px; min-height: 40px; border: 2px solid var(--accent2); border-radius: 10px; padding: 1px; background: #fff; cursor: pointer; }
+  .tp-zone.ready { border-color: var(--accent); background: #fbfaff; box-shadow: 0 0 0 2px var(--lilac); }
+  .tp-zone.over { border-color: var(--accent); background: var(--wash); }
+  .tp-slot { display: inline-flex; flex-wrap: wrap; gap: 6px; min-height: 34px; align-items: center; }
+  .tp-zone .tp-tile { color: var(--field); border-width: 0; background: transparent; padding: 1px 8px; min-height: 32px; line-height: 1.3; }
+  .tp-says { display: block; }
+  .tp-bank .tp-says { display: none; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== TAP-PLACE CSS end ===== */
+
+  /* Dasha's emailed PDF (hw.js renders in an 800px frame with body.hw-pdf-mode) */
+  body.hw-pdf-mode header.top { min-height: 0; padding: 10px 18px 12px; margin-bottom: 10px; }
+  body.hw-pdf-mode header.top h1 { font-size: 28px; }
+  body.hw-pdf-mode .instr { font-size: 19px; }
+  body.hw-pdf-mode .ctx { font-size: 14px; }
+  body.hw-pdf-mode .note { font-size: 12.5px; margin-bottom: 7px; }
+  body.hw-pdf-mode .example-box { font-size: 14px; padding: 5px 12px; margin-bottom: 8px; }
+  body.hw-pdf-mode .sent, body.hw-pdf-mode .mine { font-size: 15px; line-height: 1.45; }
+  body.hw-pdf-mode .q { padding: 5px 0; }
+  body.hw-pdf-mode .cue { font-size: 12px; }
+  body.hw-pdf-mode .qm { font-size: 16px; }
+  body.hw-pdf-mode .msg { font-size: 14px; line-height: 1.9; }
+  body.hw-pdf-mode .tp-tile { font-size: 13px; min-height: 0; }
+  body.hw-pdf-mode .tp-zone { min-height: 0; min-width: 80px; }
+  body.hw-pdf-mode .tp-slot { min-height: 22px; }
+  body.hw-pdf-mode textarea.fl, body.hw-pdf-mode section textarea.fl { font-size: 15px; min-height: 34px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 10px 18px; }
+    header.top { padding: 14px 16px 16px; }
+    header.top h1 { font-size: 32px; }
+    .header-art { opacity: .55; }
+    .ex-body { padding: 12px 12px 14px; }
+    .instr { font-size: 22px; }
+    .sent, .mine { font-size: 18px; }
+    .msg { max-width: 96%; font-size: 18px; }
+    .tp-tile { font-size: 16px; }
+    .chat { padding: 8px; }
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 28px 48px 48px; font-size: 26px; }
+    header.top { min-height: 190px; padding: 30px 40px 30px; margin-bottom: 30px; border-radius: 14px; }
+    .eyebrow { font-size: 18px; }
+    header.top h1 { font-size: 62px; }
+    header.top .sub { font-size: 24px; margin-top: 10px; }
+    .ex-card { margin-bottom: 32px; border-radius: 14px; }
+    .ex-header { font-size: 20px; padding: 12px 28px; }
+    .ex-body { padding: 28px 40px 32px; }
+    .ctx { font-size: 27px; margin-bottom: 6px; }
+    .instr { font-size: 40px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 20px; }
+    .example-box { font-size: 28px; padding: 14px 24px; margin-bottom: 24px; }
+    .example-box .label { font-size: 17px; }
+    .n { width: 44px; height: 44px; line-height: 41px; font-size: 22px; }
+    .q { padding: 14px 0; }
+    .sent { font-size: 30px; line-height: 1.4; }
+    .hw-mark { font-size: 22px; }
+    .fx { grid-template-columns: 44px minmax(0, 620px) 40px minmax(0, 1fr); gap: 12px 20px; }
+    .fx .arr { display: block; font-size: 34px; text-align: center; }
+    .fx textarea.fl { grid-column: auto; }
+    .ask { grid-template-columns: 44px 380px minmax(0, 1fr) minmax(0, 0.85fr); gap: 12px 24px; }
+    .ask .qline, .ask .mine { grid-column: auto; }
+    .cue { font-size: 26px; padding: 6px 20px; }
+    .qm { font-size: 40px; }
+    .mine { font-size: 28px; }
+    textarea.fl, section textarea.fl { font-size: 28px; padding: 8px 16px; min-height: 64px; border-width: 3px; }
+    .tp-bank { gap: 14px 16px; padding: 14px 18px; margin-bottom: 18px; }
+    .tp-tile { font-size: 28px; padding: 6px 20px; min-height: 58px; border-width: 3px; }
+    .chat { gap: 16px; padding: 22px 28px; border-radius: 18px; }
+    .msg { max-width: 72%; font-size: 30px; line-height: 2.05; padding: 12px 24px 14px; border-radius: 22px; }
+    .msg .who { font-size: 17px; }
+    .gnum { font-size: 17px; line-height: 24px; padding: 0 7px; }
+    .tp-zone { min-width: 230px; min-height: 60px; border-width: 3px; }
+    .tp-slot { min-height: 52px; }
+    .tp-zone .tp-tile { font-size: 28px; min-height: 50px; }
+  }
+
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { font-size: 12.5px; padding: 0; max-width: none; background: #fff; }
+    header.top { min-height: 0; padding: 6px 16px 7px; margin-bottom: 6px; border-radius: 6px; }
+    .eyebrow { font-size: 8.5px; }
+    header.top h1 { font-size: 24px; }
+    header.top .sub { font-size: 10.5px; margin-top: 3px; }
+    .ex-card { margin-bottom: 6px; border-radius: 5px; page-break-inside: avoid; break-inside: avoid; }
+    .ex-header { font-size: 9.5px; padding: 4px 12px; }
+    .ex-body { padding: 6px 12px 7px; }
+    .ctx { font-size: 11.5px; margin-bottom: 0; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .example-box { font-size: 11.5px; padding: 3px 10px; margin-bottom: 4px; line-height: 1.35; }
+    .example-box .label { font-size: 8.5px; margin-bottom: 0; }
+    .n { width: 18px; height: 18px; line-height: 16px; font-size: 10px; border-radius: 4px; }
+    .q { padding: 1px 0; }
+    .sent, .mine { font-size: 12px; line-height: 1.4; }
+    .fx { grid-template-columns: 18px 62mm 12px minmax(0, 1fr); gap: 0 8px; }
+    .fx .arr { display: block; font-size: 12px; }
+    .fx textarea.fl { grid-column: auto; }
+    .ask { grid-template-columns: 18px 45mm minmax(0, 1fr) 63mm; gap: 0 8px; }
+    .ask .qline, .ask .mine { grid-column: auto; }
+    .cue { font-size: 10px; padding: 1px 8px; }
+    .qm { font-size: 13px; }
+    textarea.fl, section textarea.fl { font-size: 12px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 0 4px; resize: none; min-height: 0; height: 6mm; background: #fff; }
+    textarea.fl::placeholder { color: transparent; }
+    .tp-bank.scr-bank { display: none !important; }
+    .prt-bank { display: block !important; font-size: 11.5px; font-weight: 700; color: var(--accent); border: 1.2px dashed var(--border); border-radius: 6px; padding: 2px 8px; margin-bottom: 4px; }
+    .chat { gap: 2px; padding: 3px 6px; border-radius: 6px; }
+    .msg { max-width: 100%; font-size: 11.5px; line-height: 1.5; padding: 1px 8px 1px; border-radius: 8px; }
+    .msg .who { display: inline; font-size: 8.5px; margin-right: 6px; }
+    .msg p { display: inline; }
+    .gnum { font-size: 8px; line-height: 11px; padding: 0 3px; }
+    .tp-zone { min-width: 30mm; min-height: 0; border: 0; border-bottom: 1.2px solid var(--ink); border-radius: 0; padding: 0; background: none; }
+    .tp-slot { min-height: 14px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Milana" data-sheet="English 2026-11-19" data-sheet-id="milana-2026-11-19-english">
+<div id="sheet">
+
+
+<header class="top">
+  <svg class="header-art" viewBox="0 0 192 100" fill="none" aria-hidden="true">
+    <path d="M105 -8L28 106M143 -8L66 106M181 -8L104 106M219 -8L142 106" stroke="#b0a1e9" stroke-opacity=".18" stroke-width="14"/>
+    <ellipse cx="141" cy="46" rx="61" ry="22" transform="rotate(-28 141 46)" stroke="#d1b8f8" stroke-width=".7"/>
+    <path d="M129 10L135 34L156 24L143 44L167 53L143 58L152 81L133 66L121 89L121 64L96 67L115 52L96 37L121 40Z" fill="#d5c9ff"/>
+    <path d="M129 26L134 43L149 47L134 53L129 70L124 54L109 48L124 43Z" fill="white"/>
+    <path d="M174 11L177 19L185 22L177 25L174 33L171 25L163 22L171 19Z" fill="#f6b5d6"/>
+    <path d="M74 70L77 78L85 81L77 84L74 92L71 84L63 81L71 78Z" fill="#f6b5d6"/>
+    <g fill="#fff"><circle cx="91" cy="23" r="1.4"/><circle cx="176" cy="77" r="1.5"/><circle cx="106" cy="84" r="1"/><circle cx="57" cy="44" r="1.2"/></g>
+  </svg>
+  <div class="eyebrow">English &middot; Homework</div>
+  <h1>Milana</h1>
+  <div class="sub">19 November 2026 &middot; Wildwood &middot; my cinema trip &middot; a message from&nbsp;Lily</div>
+</header>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 1: Wildwood</div>
+  <div class="ex-body">
+    <p class="ctx">You told me about the film Wildwood and your trip to the cinema. These are not&nbsp;true.</p>
+    <p class="instr">Make each sentence&nbsp;negative.</p>
+    <p class="note">Write the whole sentence. Use wasn&rsquo;t, weren&rsquo;t or&nbsp;didn&rsquo;t.</p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="ln">The bus was late. &rarr; The bus <b>wasn&rsquo;t</b> late. <span class="tag">(no&nbsp;action)</span></span>
+      <span class="ln">I ate a pizza. &rarr; I <b>didn&rsquo;t eat</b> a pizza. <span class="tag">(action)</span></span>
+    </div>
+    <div class="q fx"><span class="n">1</span><p class="sent">The crows took the&nbsp;girl.</p><span class="arr" aria-hidden="true">&rarr;</span><textarea class="hw-field fl" rows="1" data-norm="s" data-k="n1" data-label="1.1 The crows took the girl. (make it negative)" aria-label="Sentence 1, negative" placeholder="Type the sentence" autocapitalize="sentences"></textarea></div><div class="q fx"><span class="n">2</span><p class="sent">The wolves were&nbsp;scary.</p><span class="arr" aria-hidden="true">&rarr;</span><textarea class="hw-field fl" rows="1" data-norm="s" data-k="n2" data-label="1.2 The wolves were scary. (make it negative)" aria-label="Sentence 2, negative" placeholder="Type the sentence" autocapitalize="sentences"></textarea></div><div class="q fx"><span class="n">3</span><p class="sent">The cinema was in Abu&nbsp;Dhabi.</p><span class="arr" aria-hidden="true">&rarr;</span><textarea class="hw-field fl" rows="1" data-norm="s" data-k="n3" data-label="1.3 The cinema was in Abu Dhabi. (make it negative)" aria-label="Sentence 3, negative" placeholder="Type the sentence" autocapitalize="sentences"></textarea></div><div class="q fx"><span class="n">4</span><p class="sent">The royal boy&rsquo;s horse ran&nbsp;slowly.</p><span class="arr" aria-hidden="true">&rarr;</span><textarea class="hw-field fl" rows="1" data-norm="s" data-k="n4" data-label="1.4 The royal boy&#x27;s horse ran slowly. (make it negative)" aria-label="Sentence 4, negative" placeholder="Type the sentence" autocapitalize="sentences"></textarea></div><div class="q fx"><span class="n">5</span><p class="sent">The girl went to the forest&nbsp;alone.</p><span class="arr" aria-hidden="true">&rarr;</span><textarea class="hw-field fl" rows="1" data-norm="s" data-k="n5" data-label="1.5 The girl went to the forest alone. (make it negative)" aria-label="Sentence 5, negative" placeholder="Type the sentence" autocapitalize="sentences"></textarea></div><div class="q fx"><span class="n">6</span><p class="sent">The girl&rsquo;s little brother was at&nbsp;home.</p><span class="arr" aria-hidden="true">&rarr;</span><textarea class="hw-field fl" rows="1" data-norm="s" data-k="n6" data-label="1.6 The girl&#x27;s little brother was at home. (make it negative)" aria-label="Sentence 6, negative" placeholder="Type the sentence" autocapitalize="sentences"></textarea></div><div class="q fx"><span class="n">7</span><p class="sent">We watched it in&nbsp;Russian.</p><span class="arr" aria-hidden="true">&rarr;</span><textarea class="hw-field fl" rows="1" data-norm="s" data-k="n7" data-label="1.7 We watched it in Russian. (make it negative)" aria-label="Sentence 7, negative" placeholder="Type the sentence" autocapitalize="sentences"></textarea></div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 2: my cinema trip</div>
+  <div class="ex-body">
+    <p class="ctx">I went to an IMAX cinema to see the film The&nbsp;Odyssey.</p>
+    <p class="instr">Ask me. Write the&nbsp;question.</p>
+    <p class="note">Use Was or Were. What I say is next to&nbsp;it.</p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="place">the seats &middot; comfortable</span> &rarr; <b>Were</b> the seats comfortable? &nbsp;&nbsp;<span class="tag">I say: Yes,&nbsp;very!</span>
+    </div>
+    <div class="q ask"><span class="n">1</span><span class="cue">the screen &middot; big</span><div class="qline"><textarea class="hw-field fl" rows="1" data-norm="q" data-k="q1" data-label="2.1 Question: the screen · big" aria-label="Question 1" placeholder="Type the question" autocapitalize="sentences"></textarea><span class="qm">?</span></div><p class="mine"><span class="say">I say:</span> Yes, huge! Like a six&#8209;floor&nbsp;house.</p></div><div class="q ask"><span class="n">2</span><span class="cue">expensive &middot; the tickets</span><div class="qline"><textarea class="hw-field fl" rows="1" data-norm="q" data-k="q2" data-label="2.2 Question: expensive · the tickets" aria-label="Question 2" placeholder="Type the question" autocapitalize="sentences"></textarea><span class="qm">?</span></div><p class="mine"><span class="say">I say:</span> Yes! &pound;30 each.</p></div><div class="q ask"><span class="n">3</span><span class="cue">the special effects &middot; beautiful</span><div class="qline"><textarea class="hw-field fl" rows="1" data-norm="q" data-k="q3" data-label="2.3 Question: the special effects · beautiful" aria-label="Question 3" placeholder="Type the question" autocapitalize="sentences"></textarea><span class="qm">?</span></div><p class="mine"><span class="say">I say:</span> Yes, really beautiful!</p></div><div class="q ask"><span class="n">4</span><span class="cue">in London &middot; the cinema</span><div class="qline"><textarea class="hw-field fl" rows="1" data-norm="q" data-k="q4" data-label="2.4 Question: in London · the cinema" aria-label="Question 4" placeholder="Type the question" autocapitalize="sentences"></textarea><span class="qm">?</span></div><p class="mine"><span class="say">I say:</span> Yes, the BFI IMAX.</p></div><div class="q ask"><span class="n">5</span><span class="cue">the actors &middot; good</span><div class="qline"><textarea class="hw-field fl" rows="1" data-norm="q" data-k="q5" data-label="2.5 Question: the actors · good" aria-label="Question 5" placeholder="Type the question" autocapitalize="sentences"></textarea><span class="qm">?</span></div><p class="mine"><span class="say">I say:</span> No. Not very&nbsp;good.</p></div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 3: a message from Lily</div>
+  <div class="ex-body">
+    <p class="ctx">Your friend Lily writes to&nbsp;you.</p>
+    <p class="instr">Finish the chat with the&nbsp;words.</p>
+    <p class="note"><span class="scr">Tap a card, then tap a gap. One card is&nbsp;spare.</span><span class="prt">Write one phrase from the box in each gap. One is&nbsp;spare.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      Last summer we <b>went on an excursion</b> to the&nbsp;mountains.
+    </div>
+    <div class="tp">
+      <div class="tp-bank scr-bank"><button type="button" class="tp-tile" data-value="feel sick">feel sick</button><button type="button" class="tp-tile" data-value="go for a walk">go for a walk</button><button type="button" class="tp-tile" data-value="insurance">insurance</button><button type="button" class="tp-tile" data-value="pulled out">pulled out</button><button type="button" class="tp-tile" data-value="it will be expensive">it will be expensive</button><button type="button" class="tp-tile" data-value="went for a walk">went for a walk</button><button type="button" class="tp-tile" data-value="a stomach ache">a stomach ache</button><button type="button" class="tp-tile" data-value="book a slot">book a slot</button></div>
+      <div class="prt-bank prt">feel sick &middot; go for a walk &middot; insurance &middot; pulled out &middot; it will be expensive &middot; went for a walk &middot; a stomach ache &middot; book a slot</div>
+      <div class="chat">
+        <div class="msg them"><span class="who">Lily</span><p>Hi! Are you OK? You weren&rsquo;t online&nbsp;yesterday.</p></div><div class="msg me"><span class="who">Me</span><p>Not really. I&rsquo;m ill. I have <span class="nw"><span class="gnum">1</span><span class="tp-zone" data-store="c1" data-field="c1" role="button" aria-label="Gap 1"><span class="tp-slot"></span></span></span>.</p></div><div class="msg them"><span class="who">Lily</span><p>Oh no! Can you&nbsp;eat?</p></div><div class="msg me"><span class="who">Me</span><p>Not much. When I eat, I&nbsp;<span class="nw"><span class="gnum">2</span><span class="tp-zone" data-store="c2" data-field="c2" role="button" aria-label="Gap 2"><span class="tp-slot"></span></span></span>.</p></div><div class="msg them"><span class="who">Lily</span><p>Go to the&nbsp;doctor!</p></div><div class="msg me"><span class="who">Me</span><p>I can&rsquo;t <span class="nw"><span class="gnum">3</span><span class="tp-zone" data-store="c3" data-field="c3" role="button" aria-label="Gap 3"><span class="tp-slot"></span></span></span> at the clinic. They&rsquo;re full. And I don&rsquo;t have health <span class="nw"><span class="gnum">4</span><span class="tp-zone" data-store="c4" data-field="c4" role="button" aria-label="Gap 4"><span class="tp-slot"></span></span></span>, <span class="nw">so&nbsp;<span class="gnum">5</span><span class="tp-zone" data-store="c5" data-field="c5" role="button" aria-label="Gap 5"><span class="tp-slot"></span></span></span>.</p></div><div class="msg them"><span class="who">Lily</span><p>Poor you! Last year I had my wisdom teeth <span class="nw"><span class="gnum">6</span><span class="tp-zone" data-store="c6" data-field="c6" role="button" aria-label="Gap 6"><span class="tp-slot"></span></span></span>. It was very expensive&nbsp;too!</p></div><div class="msg me"><span class="who">Me</span><p>When I&rsquo;m better, let&rsquo;s <span class="nw"><span class="gnum">7</span><span class="tp-zone" data-store="c7" data-field="c7" role="button" aria-label="Gap 7"><span class="tp-slot"></span></span></span> on the&nbsp;beach!</p></div>
+      </div>
+      <div class="tp-stores" hidden><select data-k="c1" data-label="3.1 Me: Not really. I&#x27;m ill. I have ___." class="hw-field"><option value=""></option><option value="feel sick">feel sick</option><option value="go for a walk">go for a walk</option><option value="insurance">insurance</option><option value="pulled out">pulled out</option><option value="it will be expensive">it will be expensive</option><option value="went for a walk">went for a walk</option><option value="a stomach ache">a stomach ache</option><option value="book a slot">book a slot</option></select><select data-k="c2" data-label="3.2 Me: When I eat, I ___." class="hw-field"><option value=""></option><option value="feel sick">feel sick</option><option value="go for a walk">go for a walk</option><option value="insurance">insurance</option><option value="pulled out">pulled out</option><option value="it will be expensive">it will be expensive</option><option value="went for a walk">went for a walk</option><option value="a stomach ache">a stomach ache</option><option value="book a slot">book a slot</option></select><select data-k="c3" data-label="3.3 Me: I can&#x27;t ___ at the clinic." class="hw-field"><option value=""></option><option value="feel sick">feel sick</option><option value="go for a walk">go for a walk</option><option value="insurance">insurance</option><option value="pulled out">pulled out</option><option value="it will be expensive">it will be expensive</option><option value="went for a walk">went for a walk</option><option value="a stomach ache">a stomach ache</option><option value="book a slot">book a slot</option></select><select data-k="c4" data-label="3.4 Me: And I don&#x27;t have health ___," class="hw-field"><option value=""></option><option value="feel sick">feel sick</option><option value="go for a walk">go for a walk</option><option value="insurance">insurance</option><option value="pulled out">pulled out</option><option value="it will be expensive">it will be expensive</option><option value="went for a walk">went for a walk</option><option value="a stomach ache">a stomach ache</option><option value="book a slot">book a slot</option></select><select data-k="c5" data-label="3.5 Me: so ___." class="hw-field"><option value=""></option><option value="feel sick">feel sick</option><option value="go for a walk">go for a walk</option><option value="insurance">insurance</option><option value="pulled out">pulled out</option><option value="it will be expensive">it will be expensive</option><option value="went for a walk">went for a walk</option><option value="a stomach ache">a stomach ache</option><option value="book a slot">book a slot</option></select><select data-k="c6" data-label="3.6 Lily: Last year I had my wisdom teeth ___." class="hw-field"><option value=""></option><option value="feel sick">feel sick</option><option value="go for a walk">go for a walk</option><option value="insurance">insurance</option><option value="pulled out">pulled out</option><option value="it will be expensive">it will be expensive</option><option value="went for a walk">went for a walk</option><option value="a stomach ache">a stomach ache</option><option value="book a slot">book a slot</option></select><select data-k="c7" data-label="3.7 Me: When I&#x27;m better, let&#x27;s ___ on the beach!" class="hw-field"><option value=""></option><option value="feel sick">feel sick</option><option value="go for a walk">go for a walk</option><option value="insurance">insurance</option><option value="pulled out">pulled out</option><option value="it will be expensive">it will be expensive</option><option value="went for a walk">went for a walk</option><option value="a stomach ache">a stomach ache</option><option value="book a slot">book a slot</option></select></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Smart apostrophes (iPhone types ’) and an extra typed "?" would make a right answer look wrong
+   to the check, so tidy them when the pupil leaves the box. Nothing else is changed. */
+(function () {
+  function tidy(t) {
+    var v = t.value.replace(/[‘’ʼ`´]/g, "'").replace(/\s+/g, " ").trim();
+    if (t.dataset.norm === "q") v = v.replace(/\s*\?+\s*$/, "");
+    if (v !== t.value) { t.value = v; t.dispatchEvent(new Event("input", { bubbles: true })); t.dispatchEvent(new Event("change", { bubbles: true })); }
+  }
+  document.querySelectorAll("textarea[data-norm]").forEach(function (t) {
+    t.addEventListener("blur", function () { tidy(t); });
+    t.addEventListener("keydown", function (ev) { if (ev.key === "Enter") { ev.preventDefault(); t.blur(); } });
+  });
+})();
+</script>
+<script>
+/* ===== TAP-PLACE JS (copy from here) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-' + 'k="' + k + '"]') || document.querySelector('[data-' + 'k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS (copy to here) ===== */
+
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJuMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlRoZSBjcm93cyBkaWRuJ3QgdGFrZSB0aGUgZ2lybC4ifSwgIm4yIjogeyJ0IjogIndvcmRzIiwgImEiOiAiVGhlIHdvbHZlcyB3ZXJlbid0IHNjYXJ5LiJ9LCAibjMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJUaGUgY2luZW1hIHdhc24ndCBpbiBBYnUgRGhhYmkuIn0sICJuNCI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlRoZSByb3lhbCBib3kncyBob3JzZSBkaWRuJ3QgcnVuIHNsb3dseS4ifSwgIm41IjogeyJ0IjogIndvcmRzIiwgImEiOiAiVGhlIGdpcmwgZGlkbid0IGdvIHRvIHRoZSBmb3Jlc3QgYWxvbmUuIn0sICJuNiI6IHsidCI6ICJ3b3JkcyIsICJhIjogIlRoZSBnaXJsJ3MgbGl0dGxlIGJyb3RoZXIgd2Fzbid0IGF0IGhvbWUuIn0sICJuNyI6IHsidCI6ICJ3b3JkcyIsICJhIjogIldlIGRpZG4ndCB3YXRjaCBpdCBpbiBSdXNzaWFuLiJ9LCAicTEiOiB7InQiOiAid29yZHMiLCAiYSI6ICJXYXMgdGhlIHNjcmVlbiBiaWcifSwgInEyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2VyZSB0aGUgdGlja2V0cyBleHBlbnNpdmUifSwgInEzIjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2VyZSB0aGUgc3BlY2lhbCBlZmZlY3RzIGJlYXV0aWZ1bCJ9LCAicTQiOiB7InQiOiAid29yZHMiLCAiYSI6ICJXYXMgdGhlIGNpbmVtYSBpbiBMb25kb24ifSwgInE1IjogeyJ0IjogIndvcmRzIiwgImEiOiAiV2VyZSB0aGUgYWN0b3JzIGdvb2QifSwgImMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBzdG9tYWNoIGFjaGUifSwgImMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZmVlbCBzaWNrIn0sICJjMyI6IHsidCI6ICJleGFjdCIsICJhIjogImJvb2sgYSBzbG90In0sICJjNCI6IHsidCI6ICJleGFjdCIsICJhIjogImluc3VyYW5jZSJ9LCAiYzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJpdCB3aWxsIGJlIGV4cGVuc2l2ZSJ9LCAiYzYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJwdWxsZWQgb3V0In0sICJjNyI6IHsidCI6ICJleGFjdCIsICJhIjogImdvIGZvciBhIHdhbGsifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

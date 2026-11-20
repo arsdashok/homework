@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milana: Homework 20 November 2026</title>
+<!-- Lesson 20 Nov 2026: the 19 Nov sheet done live (18/19), then bored vs boring taught, and medical words supplied (a prescription; Dasha promised homework on medical words: an ultrasound, a blood test, a prescription). Built on what was SHAKY or NEW: (A) the past negative helper: «Crows doesn't took» then «don't» (twice, also on «The royal boy's horse ran slowly»), «didn't» wanted for «The wolves were scary», «The girl wasn't…» started for an action; (B) bored vs boring («I felt boring», «he feel boring»); (C) new medical words. Was/were questions with noun subjects came out right and are NOT drilled. Privacy: no medical content about her; the medical words sit in a neutral story (Lily's grandad has his heart checked). Formats differ from 17/18/19 Nov: Ex 1 a mystery dialogue (who took Lily's birthday cake?): Tom guesses in the affirmative past, Lily says No and Milana TYPES only the helper + verb in an inline gap (subject and rest printed), so the didn't / wasn't / weren't decision and the base form are hers; kinds A,S,A,A,S,A,S,A; helpers didn't, wasn't, didn't, didn't, weren't, didn't, wasn't, didn't; subjects he, it, they, she, they, it, it, I; model on «Lily's friends danced» and «The music was loud», in no item; nothing near a gap prints doesn't/don't. Ex 2 bored / boring dropdown in the gap, decided by who feels it vs who causes it (subjects are people in 1-3, so position does not decide); answers boring, bored, bored, boring; correct option positions 2,1,1,2. Ex 3 a first-person story about my grandad at the clinic with four tap-to-place gaps (Tools/hw_snippets/tap_place.html): a blood test (needle), an ultrasound (heart on a screen), a prescription (tablets), went for a walk (the doctor said walk); spare «hung out»; correct bank positions 3,1,4,5. Round 1 fixes: item 2 now «The cake was in the fridge», helper list removed from Ex 1, «came out» removed. A small script tidies curly apostrophes, «didnt / wasnt / werent» and «did not / was not / were not» so a right answer is not marked wrong. Starlight design as on 11/17/18/19 Nov. About 12-15 minutes. -->
+<style>
+  :root {
+    --ink:#2d2949; --accent:#60529c; --accent2:#8c72bf; --muted:#5d5870; --border:#d0c8e7;
+    --wash:#f2effa; --model:#f8f7fc; --night:#302744; --pink:#f6b5d6; --line:#aaa3c1; --lilac:#d5c9ff; --field:#1d4ed8;
+  }
+  @page { size: A4; margin: 10mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; line-height: 1.4; color: var(--ink);
+    background: #f7f5fc; max-width: 1080px; margin: auto; padding: 16px 16px 24px;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  /* header: Starlight */
+  header.top {
+    position: relative; overflow: hidden; border-radius: 10px; background: var(--night); color: #fff;
+    padding: 18px 24px 20px; margin-bottom: 18px; min-height: 120px;
+  }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: #e3c5f1; position: relative; z-index: 1; }
+  header.top h1 { font-family: Arial, sans-serif; font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -1px; position: relative; z-index: 1; margin-top: 2px; }
+  header.top .sub { font-size: 15px; color: #e2dcec; margin-top: 6px; position: relative; z-index: 1; }
+  .header-art { position: absolute; right: 0; top: 0; height: 100%; width: auto; }
+
+  /* cards */
+  .ex-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 18px; overflow: hidden; }
+  .ex-header {
+    background: var(--wash); border-bottom: 1px solid var(--border); border-left: 4px solid var(--accent2);
+    padding: 8px 16px; font-size: 13px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent);
+    break-after: avoid; page-break-after: avoid;
+  }
+  .ex-body { padding: 14px 18px 16px; }
+  .ctx { font-size: 17px; color: var(--ink); margin-bottom: 4px; }
+  .instr { font-size: 25px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
+  .note { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+  .example-box {
+    background: var(--model); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0;
+    padding: 8px 14px; margin-bottom: 14px; font-size: 18px; line-height: 1.5;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .example-box .label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+  .example-box b { color: var(--accent); }
+  .example-box .tag { color: var(--muted); font-size: .8em; font-style: italic; white-space: nowrap; }
+  .example-box .ln { display: block; }
+  .example-box .who { font-size: .75em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+  .q { padding: 9px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .q:last-child { border-bottom: 0; }
+  .n {
+    flex: 0 0 auto; display: inline-block; width: 28px; height: 28px; line-height: 26px; text-align: center;
+    border: 1.5px solid var(--accent); border-radius: 5px; color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+  .sent { font-size: 20px; line-height: 1.75; }
+
+  /* Ex 1: Tom's guess, Lily's answer */
+  .dlg { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: center; }
+  .dlg .lily { grid-column: 2; }
+  .say { display: inline-block; min-width: 3.4em; font-size: .7em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .tom { font-size: 20px; line-height: 1.5; }
+  .lily { font-size: 20px; line-height: 1.75; }
+  .lily .no { font-weight: 700; color: var(--accent); }
+  input.gapin {
+    display: inline-block; width: 8.2em; font: inherit; font-weight: 700; color: var(--field); text-align: left;
+    padding: 2px 10px; margin: 0 3px; border: 2px solid var(--accent2); border-radius: 8px; background: #fbfaff; vertical-align: baseline;
+  }
+  .ending { margin-top: 10px; font-size: 18px; color: var(--muted); font-style: italic; }
+
+  /* dropdown in the gap (Ex 2) */
+  select.pick {
+    font: inherit; font-weight: 700; color: var(--field); padding: 3px 8px; margin: 0 2px; min-width: 7em;
+    border: 2px solid var(--accent2); border-radius: 8px; background: #fbfaff; vertical-align: baseline;
+  }
+  .gap { display: none; }
+  .bb { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .bb .q { display: flex; align-items: baseline; gap: 12px; }
+
+  /* Ex 3 story */
+  .story .q { display: flex; align-items: baseline; gap: 12px; }
+
+  /* ===== TAP-PLACE CSS (Tools/hw_snippets/tap_place.html), Starlight palette ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; border: 2px dashed var(--border); border-radius: 12px; min-height: 60px; margin: 0 0 12px; background: #fcfbff; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 700; color: var(--ink); background: #fff;
+    border: 2px solid var(--accent2); border-radius: 10px; padding: 6px 12px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.25;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: var(--wash); border-color: var(--accent); box-shadow: 0 0 0 3px var(--lilac); }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { display: inline-flex; vertical-align: middle; min-width: 150px; min-height: 40px; border: 2px solid var(--accent2); border-radius: 10px; padding: 1px; background: #fff; cursor: pointer; }
+  .tp-zone.ready { border-color: var(--accent); background: #fbfaff; box-shadow: 0 0 0 2px var(--lilac); }
+  .tp-zone.over { border-color: var(--accent); background: var(--wash); }
+  .tp-slot { display: inline-flex; flex-wrap: wrap; gap: 6px; min-height: 34px; align-items: center; }
+  .tp-zone .tp-tile { color: var(--field); border-width: 0; background: transparent; padding: 1px 8px; min-height: 32px; line-height: 1.3; }
+  .tp-says { display: block; }
+  .tp-bank .tp-says { display: none; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== TAP-PLACE CSS end ===== */
+
+  /* Dasha's emailed PDF (hw.js renders in an 800px frame with body.hw-pdf-mode) */
+  body.hw-pdf-mode header.top { min-height: 0; padding: 10px 18px 12px; margin-bottom: 10px; }
+  body.hw-pdf-mode header.top h1 { font-size: 28px; }
+  body.hw-pdf-mode .instr { font-size: 19px; }
+  body.hw-pdf-mode .ctx { font-size: 14px; }
+  body.hw-pdf-mode .note { font-size: 12.5px; margin-bottom: 7px; }
+  body.hw-pdf-mode .example-box { font-size: 14px; padding: 5px 12px; margin-bottom: 8px; }
+  body.hw-pdf-mode .sent, body.hw-pdf-mode .tom, body.hw-pdf-mode .lily { font-size: 15px; line-height: 1.6; }
+  body.hw-pdf-mode .ending { font-size: 13px; }
+  body.hw-pdf-mode .q { padding: 5px 0; }
+  body.hw-pdf-mode input.gapin { font-size: 15px; min-height: 0; }
+  body.hw-pdf-mode select.pick { font-size: 14px; min-height: 0; min-width: 0; }
+  body.hw-pdf-mode .tp-tile { font-size: 13px; min-height: 0; }
+  body.hw-pdf-mode .tp-zone { min-height: 0; min-width: 80px; }
+  body.hw-pdf-mode .tp-slot { min-height: 22px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 10px 18px; }
+    header.top { padding: 14px 16px 16px; }
+    header.top h1 { font-size: 32px; }
+    .header-art { opacity: .55; }
+    .ex-body { padding: 12px 12px 14px; }
+    .instr { font-size: 22px; }
+    .sent, .tom, .lily { font-size: 18px; }
+    .tp-tile { font-size: 16px; }
+    select.hw-field, select.pick { min-width: 0; }
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 28px 48px 48px; font-size: 26px; }
+    header.top { min-height: 190px; padding: 30px 40px 30px; margin-bottom: 30px; border-radius: 14px; }
+    .eyebrow { font-size: 18px; }
+    header.top h1 { font-size: 62px; }
+    header.top .sub { font-size: 24px; margin-top: 10px; }
+    .ex-card { margin-bottom: 32px; border-radius: 14px; }
+    .ex-header { font-size: 20px; padding: 12px 28px; }
+    .ex-body { padding: 28px 40px 32px; }
+    .ctx { font-size: 27px; margin-bottom: 6px; }
+    .instr { font-size: 40px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 20px; }
+    .example-box { font-size: 28px; padding: 14px 24px; margin-bottom: 24px; }
+    .example-box .label { font-size: 17px; }
+    .n { width: 44px; height: 44px; line-height: 41px; font-size: 22px; }
+    .q { padding: 14px 0; }
+    .sent { font-size: 30px; line-height: 1.6; }
+    .hw-mark { font-size: 22px; }
+    .dlg { grid-template-columns: 44px minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 10px 20px; }
+    .dlg .lily { grid-column: auto; }
+    .tom, .lily { font-size: 29px; line-height: 1.6; }
+    input.gapin { width: 6.8em; }
+    input.gapin { font-size: 28px; min-height: 54px; padding: 4px 14px; border-width: 3px; }
+    .ending { font-size: 27px; margin-top: 16px; }
+    select.pick { font-size: 28px; min-height: 54px; padding: 4px 14px; border-width: 3px; }
+    .bb { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; grid-auto-flow: column; gap: 0 48px; }
+    .bb .q:nth-child(2) { border-bottom: 0; }
+    .tp-bank { gap: 14px 16px; padding: 14px 18px; margin-bottom: 18px; }
+    .tp-tile { font-size: 28px; padding: 6px 20px; min-height: 58px; border-width: 3px; }
+    .tp-zone { min-width: 260px; min-height: 60px; border-width: 3px; }
+    .tp-slot { min-height: 52px; }
+    .tp-zone .tp-tile { font-size: 28px; min-height: 50px; }
+  }
+
+  @media screen and (min-width:900px) and (max-width:1499px) {
+    .dlg { grid-template-columns: 44px minmax(0, 1fr); gap: 2px 20px; }
+    .dlg .n { grid-row: 1 / span 2; align-self: start; margin-top: 6px; }
+    .dlg .tom, .dlg .lily { grid-column: 2; }
+  }
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { font-size: 12.5px; padding: 0; max-width: none; background: #fff; }
+    header.top { min-height: 0; padding: 6px 16px 7px; margin-bottom: 6px; border-radius: 6px; }
+    .eyebrow { font-size: 8.5px; }
+    header.top h1 { font-size: 24px; }
+    header.top .sub { font-size: 10.5px; margin-top: 3px; }
+    .ex-card { margin-bottom: 6px; border-radius: 5px; page-break-inside: avoid; break-inside: avoid; }
+    .ex-header { font-size: 9.5px; padding: 4px 12px; }
+    .ex-body { padding: 6px 12px 7px; }
+    .ctx { font-size: 11.5px; margin-bottom: 0; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .example-box { font-size: 11.5px; padding: 3px 10px; margin-bottom: 4px; line-height: 1.35; }
+    .example-box .label { font-size: 8.5px; margin-bottom: 0; }
+    .n { width: 18px; height: 18px; line-height: 16px; font-size: 10px; border-radius: 4px; }
+    .q { padding: 2px 0; }
+    .sent, .tom, .lily { font-size: 12px; line-height: 1.55; }
+    .dlg { grid-template-columns: 18px minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 0 10px; }
+    .dlg .lily { grid-column: auto; }
+    .ending { font-size: 11px; margin-top: 3px; }
+    input.gapin { font-size: 12px; border: 0; border-bottom: 1.2px solid var(--ink); border-radius: 0; padding: 0 4px; background: #fff; min-height: 0; height: 5mm; width: 26mm; }
+    input.gapin::placeholder { color: transparent; }
+    .opts { color: var(--muted); font-size: 10.5px; margin: 0 0 0 3px; }
+    select.pick { display: none !important; }
+    .gap { display: inline-block !important; min-width: 22mm; border-bottom: 1.2px solid var(--ink); }
+    .bb { grid-template-columns: 1fr 1fr; gap: 0 14px; }
+    .tp-bank.scr-bank { display: none !important; }
+    .prt-bank { display: block !important; font-size: 11.5px; font-weight: 700; color: var(--accent); border: 1.2px dashed var(--border); border-radius: 6px; padding: 2px 8px; margin-bottom: 4px; }
+    .tp-zone { min-width: 30mm; min-height: 0; border: 0; border-bottom: 1.2px solid var(--ink); border-radius: 0; padding: 0; background: none; }
+    .tp-slot { min-height: 14px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Milana" data-sheet="English 2026-11-20" data-sheet-id="milana-2026-11-20-english">
+<div id="sheet">
+
+
+<header class="top">
+  <svg class="header-art" viewBox="0 0 192 100" fill="none" aria-hidden="true">
+    <path d="M105 -8L28 106M143 -8L66 106M181 -8L104 106M219 -8L142 106" stroke="#b0a1e9" stroke-opacity=".18" stroke-width="14"/>
+    <ellipse cx="141" cy="46" rx="61" ry="22" transform="rotate(-28 141 46)" stroke="#d1b8f8" stroke-width=".7"/>
+    <path d="M129 10L135 34L156 24L143 44L167 53L143 58L152 81L133 66L121 89L121 64L96 67L115 52L96 37L121 40Z" fill="#d5c9ff"/>
+    <path d="M129 26L134 43L149 47L134 53L129 70L124 54L109 48L124 43Z" fill="white"/>
+    <path d="M174 11L177 19L185 22L177 25L174 33L171 25L163 22L171 19Z" fill="#f6b5d6"/>
+    <path d="M74 70L77 78L85 81L77 84L74 92L71 84L63 81L71 78Z" fill="#f6b5d6"/>
+    <g fill="#fff"><circle cx="91" cy="23" r="1.4"/><circle cx="176" cy="77" r="1.5"/><circle cx="106" cy="84" r="1"/><circle cx="57" cy="44" r="1.2"/></g>
+  </svg>
+  <div class="eyebrow">English &middot; Homework</div>
+  <h1>Milana</h1>
+  <div class="sub">20 November 2026 &middot; the missing cake &middot; bored or boring &middot; at the&nbsp;clinic</div>
+</header>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 1: the missing cake</div>
+  <div class="ex-body">
+    <p class="ctx">Lily had a birthday party on Saturday. At the end of the party, her cake was gone! Her brother Tom has ideas. He&rsquo;s wrong every&nbsp;time.</p>
+    <p class="instr">Lily says No to Tom. Type the missing&nbsp;words.</p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="ln"><span class="who">Tom:</span> The music was loud. &rarr; <span class="who">Lily:</span> No! The music <b>wasn&rsquo;t</b> loud. <span class="tag">(no&nbsp;action)</span></span>
+      <span class="ln"><span class="who">Tom:</span> My friends danced all night. &rarr; <span class="who">Lily:</span> No! They <b>didn&rsquo;t dance</b> all night. <span class="tag">(action)</span></span>
+    </div>
+    <div class="q dlg"><span class="n">1</span><p class="tom"><span class="say">Tom</span> Max ate the&nbsp;cake.</p><p class="lily"><span class="say">Lily</span> <span class="nw"><span class="no">No!</span> Max <input type="text" class="hw-field gapin" data-norm="neg" data-k="n1" data-label="1.1 Tom: Max ate the cake. Lily: No! Max ___ the cake." aria-label="Gap 1" autocomplete="off" autocapitalize="off" spellcheck="false"></span> the&nbsp;cake.</p></div>
+    <div class="q dlg"><span class="n">2</span><p class="tom"><span class="say">Tom</span> The cake was in the&nbsp;fridge.</p><p class="lily"><span class="say">Lily</span> <span class="nw"><span class="no">No!</span> It <input type="text" class="hw-field gapin" data-norm="neg" data-k="n2" data-label="1.2 Tom: The cake was in the fridge. Lily: No! It ___ in the fridge." aria-label="Gap 2" autocomplete="off" autocapitalize="off" spellcheck="false"></span> in the&nbsp;fridge.</p></div>
+    <div class="q dlg"><span class="n">3</span><p class="tom"><span class="say">Tom</span> Anna and Sofia took it&nbsp;home.</p><p class="lily"><span class="say">Lily</span> <span class="nw"><span class="no">No!</span> Anna and Sofia <input type="text" class="hw-field gapin" data-norm="neg" data-k="n3" data-label="1.3 Tom: Anna and Sofia took it home. Lily: No! Anna and Sofia ___ it home." aria-label="Gap 3" autocomplete="off" autocapitalize="off" spellcheck="false"></span> it&nbsp;home.</p></div>
+    <div class="q dlg"><span class="n">4</span><p class="tom"><span class="say">Tom</span> Grandma hid it in her&nbsp;bag.</p><p class="lily"><span class="say">Lily</span> <span class="nw"><span class="no">No!</span> Grandma <input type="text" class="hw-field gapin" data-norm="neg" data-k="n4" data-label="1.4 Tom: Grandma hid it in her bag. Lily: No! Grandma ___ it in her bag." aria-label="Gap 4" autocomplete="off" autocapitalize="off" spellcheck="false"></span> it in her&nbsp;bag.</p></div>
+    <div class="q dlg"><span class="n">5</span><p class="tom"><span class="say">Tom</span> The guests were&nbsp;hungry.</p><p class="lily"><span class="say">Lily</span> <span class="nw"><span class="no">No!</span> The guests <input type="text" class="hw-field gapin" data-norm="neg" data-k="n5" data-label="1.5 Tom: The guests were hungry. Lily: No! The guests ___ hungry." aria-label="Gap 5" autocomplete="off" autocapitalize="off" spellcheck="false"></span> hungry. We had lots of&nbsp;pizza.</p></div>
+    <div class="q dlg"><span class="n">6</span><p class="tom"><span class="say">Tom</span> The cake fell on the&nbsp;floor.</p><p class="lily"><span class="say">Lily</span> <span class="nw"><span class="no">No!</span> It <input type="text" class="hw-field gapin" data-norm="neg" data-k="n6" data-label="1.6 Tom: The cake fell on the floor. Lily: No! It ___ on the floor." aria-label="Gap 6" autocomplete="off" autocapitalize="off" spellcheck="false"></span> on the&nbsp;floor.</p></div>
+    <div class="q dlg"><span class="n">7</span><p class="tom"><span class="say">Tom</span> The dog was in the&nbsp;kitchen.</p><p class="lily"><span class="say">Lily</span> <span class="nw"><span class="no">No!</span> The dog <input type="text" class="hw-field gapin" data-norm="neg" data-k="n7" data-label="1.7 Tom: The dog was in the kitchen. Lily: No! The dog ___ in the kitchen." aria-label="Gap 7" autocomplete="off" autocapitalize="off" spellcheck="false"></span> in the&nbsp;kitchen.</p></div>
+    <div class="q dlg"><span class="n">8</span><p class="tom"><span class="say">Tom</span> You gave it to your&nbsp;friends.</p><p class="lily"><span class="say">Lily</span> <span class="nw"><span class="no">No!</span> I <input type="text" class="hw-field gapin" data-norm="neg" data-k="n8" data-label="1.8 Tom: You gave it to your friends. Lily: No! I ___ it to my friends." aria-label="Gap 8" autocomplete="off" autocapitalize="off" spellcheck="false"></span> it to my&nbsp;friends.</p></div>
+    <p class="ending">Lily: So where is my cake, Tom?<br>Tom: Erm&hellip; Sorry, Lily. I ate&nbsp;it.</p>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 2: bored or boring</div>
+  <div class="ex-body">
+    <p class="instr">Choose bored or boring for each&nbsp;sentence.</p>
+    <p class="note">bored = how a person feels &middot; boring = the person or thing that makes you feel&nbsp;it</p>
+    <div class="bb">
+      <div class="q"><span class="n">1</span><p class="sent">Tom talked about his new car for two hours. We wanted to go home. He was <span class="nw">so <span class="gap"></span><span class="prt opts">(bored / boring)</span><select class="hw-field pick" data-k="b1" data-label="2.1 Tom talked about his new car for two hours. We wanted to go home. He was so ___!" aria-label="Sentence 1"><option value="">Choose</option><option value="bored">bored</option><option value="boring">boring</option></select>!</span></p></div>
+      <div class="q"><span class="n">2</span><p class="sent">We waited at the airport to pick up my aunt. Her plane was three hours late. We were <span class="nw">so <span class="gap"></span><span class="prt opts">(bored / boring)</span><select class="hw-field pick" data-k="b2" data-label="2.2 We waited at the airport to pick up my aunt. Her plane was three hours late. We were so ___." aria-label="Sentence 2"><option value="">Choose</option><option value="bored">bored</option><option value="boring">boring</option></select>.</span></p></div>
+      <div class="q"><span class="n">3</span><p class="sent">The little boy next to me on the plane had nothing to do. He <span class="nw">felt <span class="gap"></span><span class="prt opts">(bored / boring)</span><select class="hw-field pick" data-k="b3" data-label="2.3 The little boy next to me on the plane had nothing to do. He felt ___." aria-label="Sentence 3"><option value="">Choose</option><option value="bored">bored</option><option value="boring">boring</option></select>.</span></p></div>
+      <div class="q"><span class="n">4</span><p class="sent">Nobody laughed at his jokes. His jokes were <span class="nw">really <span class="gap"></span><span class="prt opts">(bored / boring)</span><select class="hw-field pick" data-k="b4" data-label="2.4 Nobody laughed at his jokes. His jokes were really ___." aria-label="Sentence 4"><option value="">Choose</option><option value="bored">bored</option><option value="boring">boring</option></select>.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 3: at the clinic</div>
+  <div class="ex-body">
+    <p class="ctx">My grandad went to the clinic. The doctors wanted to check his&nbsp;heart.</p>
+    <p class="instr">Finish the story about my grandad at the&nbsp;clinic.</p>
+    <p class="note"><span class="scr">Tap a card, then tap a gap. One card is&nbsp;spare.</span><span class="prt">Write one phrase from the box in each gap. One is&nbsp;spare.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      At the airport, we <b>picked up</b> my&nbsp;cousin.
+    </div>
+    <div class="tp">
+      <div class="tp-bank scr-bank"><button type="button" class="tp-tile" data-value="an ultrasound">an ultrasound</button><button type="button" class="tp-tile" data-value="hung out">hung out</button><button type="button" class="tp-tile" data-value="a blood test">a blood test</button><button type="button" class="tp-tile" data-value="a prescription">a prescription</button><button type="button" class="tp-tile" data-value="went for a walk">went for a walk</button></div>
+      <div class="prt-bank prt">an ultrasound &middot; hung out &middot; a blood test &middot; a prescription &middot; went for a walk</div>
+      <div class="story">
+        <div class="q"><span class="n">1</span><p class="sent">First, a nurse put a small needle in his arm. It was for <span class="tp-zone" data-store="c1" data-field="c1" role="button" aria-label="Gap 1"><span class="tp-slot"></span></span>.</p></div>
+        <div class="q"><span class="n">2</span><p class="sent">Then the doctor did <span class="tp-zone" data-store="c2" data-field="c2" role="button" aria-label="Gap 2"><span class="tp-slot"></span></span> of his heart. Grandad saw his heart on a&nbsp;screen!</p></div>
+        <div class="q"><span class="n">3</span><p class="sent">At the end, the doctor gave him <span class="tp-zone" data-store="c3" data-field="c3" role="button" aria-label="Gap 3"><span class="tp-slot"></span></span> for some new&nbsp;tablets.</p></div>
+        <div class="q"><span class="n">4</span><p class="sent">The doctor said: &ldquo;Walk every day.&rdquo; So after the clinic, Grandad and I <span class="tp-zone" data-store="c4" data-field="c4" role="button" aria-label="Gap 4"><span class="tp-slot"></span></span> along the&nbsp;beach.</p></div>
+      </div>
+      <div class="tp-stores" hidden><select data-k="c1" data-label="3.1 First, a nurse put a small needle in his arm. It was for ___." class="hw-field"><option value=""></option><option value="an ultrasound">an ultrasound</option><option value="hung out">hung out</option><option value="a blood test">a blood test</option><option value="a prescription">a prescription</option><option value="went for a walk">went for a walk</option></select><select data-k="c2" data-label="3.2 Then the doctor did ___ of his heart." class="hw-field"><option value=""></option><option value="an ultrasound">an ultrasound</option><option value="hung out">hung out</option><option value="a blood test">a blood test</option><option value="a prescription">a prescription</option><option value="went for a walk">went for a walk</option></select><select data-k="c3" data-label="3.3 At the end, the doctor gave him ___ for some new tablets." class="hw-field"><option value=""></option><option value="an ultrasound">an ultrasound</option><option value="hung out">hung out</option><option value="a blood test">a blood test</option><option value="a prescription">a prescription</option><option value="went for a walk">went for a walk</option></select><select data-k="c4" data-label="3.4 The doctor said: Walk every day. So after the clinic, Grandad and I ___ along the beach." class="hw-field"><option value=""></option><option value="an ultrasound">an ultrasound</option><option value="hung out">hung out</option><option value="a blood test">a blood test</option><option value="a prescription">a prescription</option><option value="went for a walk">went for a walk</option></select></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Smart apostrophes (iPhone types ’), a full stop, extra spaces or the long form (did not) would make
+   a right answer look wrong to the check, so tidy them when the pupil leaves the box. */
+(function () {
+  function tidy(t) {
+    var v = t.value.replace(/[‘’ʼ`´]/g, "'").replace(/\s+/g, " ").trim().replace(/[.!]+$/, "");
+    v = v.replace(/\bdid not\b/gi, "didn't").replace(/\bwas not\b/gi, "wasn't").replace(/\bwere not\b/gi, "weren't");
+    v = v.replace(/\bdidnt\b/gi, "didn't").replace(/\bwasnt\b/gi, "wasn't").replace(/\bwerent\b/gi, "weren't");
+    if (v !== t.value) { t.value = v; t.dispatchEvent(new Event("input", { bubbles: true })); t.dispatchEvent(new Event("change", { bubbles: true })); }
+  }
+  document.querySelectorAll("input[data-norm]").forEach(function (t) {
+    t.addEventListener("blur", function () { tidy(t); });
+    t.addEventListener("keydown", function (ev) { if (ev.key === "Enter") { ev.preventDefault(); t.blur(); } });
+  });
+})();
+</script>
+<script>
+/* ===== TAP-PLACE JS (copy from here) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-' + 'k="' + k + '"]') || document.querySelector('[data-' + 'k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS (copy to here) ===== */
+
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJuMSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImRpZG4ndCBlYXQifSwgIm4yIjogeyJ0IjogIndvcmRzIiwgImEiOiAid2Fzbid0In0sICJuMyI6IHsidCI6ICJ3b3JkcyIsICJhIjogImRpZG4ndCB0YWtlIn0sICJuNCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImRpZG4ndCBoaWRlIn0sICJuNSI6IHsidCI6ICJ3b3JkcyIsICJhIjogIndlcmVuJ3QifSwgIm42IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZGlkbid0IGZhbGwifSwgIm43IjogeyJ0IjogIndvcmRzIiwgImEiOiAid2Fzbid0In0sICJuOCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImRpZG4ndCBnaXZlIn0sICJiMSI6IHsidCI6ICJleGFjdCIsICJhIjogImJvcmluZyJ9LCAiYjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJib3JlZCJ9LCAiYjMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJib3JlZCJ9LCAiYjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJib3JpbmcifSwgImMxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBibG9vZCB0ZXN0In0sICJjMiI6IHsidCI6ICJleGFjdCIsICJhIjogImFuIHVsdHJhc291bmQifSwgImMzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBwcmVzY3JpcHRpb24ifSwgImM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2VudCBmb3IgYSB3YWxrIn19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

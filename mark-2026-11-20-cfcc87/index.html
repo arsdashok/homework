@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mark: Homework 20 November 2026</title>
+<!-- Mark, Preply trial 20 Nov 2026: short interactive sheet (Iron Man look, original art). Notes for teachers are in Students/Preply/Mark/CLAUDE.md. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b1630; --navy2: #13234a; --navy3: #1c3266; --red: #b3121b; --red2: #d81f2a;
+    --gold: #f2b632; --gold2: #ffd56b; --cyan: #6fe3ff; --ink: #14203d; --paper: #f5f7ff; --line: #c9d3ee;
+    --blue: #1d4ed8;
+  }
+  @page { size: A4; margin: 9mm 11mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-size: 18px; color: var(--ink);
+    background-color: var(--navy);
+    background-image: linear-gradient(rgba(111,227,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(111,227,255,.06) 1px, transparent 1px);
+    background-size: 36px 36px;
+    max-width: 1080px; margin: auto; padding: 0 12px 20px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .prt { display: none; }
+  .nw { white-space: nowrap; }
+  .emo { font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; font-style: normal; }
+
+  /* suit power bar: progress only, never correctness */
+  .power {
+    position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 12px;
+    background: rgba(11,22,48,.96); border-bottom: 2px solid var(--gold); padding: 8px 4px 9px; margin-bottom: 12px;
+  }
+  .power .plab { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .12em; color: var(--gold); white-space: nowrap; }
+  .power .track { display: block; flex: 1; height: 16px; border-radius: 999px; background: #22325c; border: 1.5px solid #3b5390; overflow: hidden; }
+  .power .fill { display: block; height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, var(--red) 0%, var(--red2) 55%, var(--gold) 100%); transition: width .35s ease; }
+  .power .pct { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 800; font-size: 14px; color: #fff; min-width: 3.2em; text-align: right; }
+  .power.full .plab { color: var(--cyan); }
+  .power.full .track { box-shadow: 0 0 12px var(--cyan); }
+
+  /* header */
+  header.hud {
+    position: relative; overflow: hidden; border-radius: 22px; color: #fff;
+    background: linear-gradient(135deg, #7d0c13 0%, var(--red) 38%, #5e0a10 100%);
+    border: 3px solid var(--gold); padding: 18px 20px; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 18px;
+  }
+  header.hud .stripe { position: absolute; right: -40px; top: 0; bottom: 0; width: 46%; background: linear-gradient(115deg, transparent 0 18%, rgba(242,182,50,.9) 18% 24%, transparent 24% 30%, rgba(242,182,50,.55) 30% 33%, transparent 33%); pointer-events: none; }
+  .reactor { position: relative; z-index: 1; flex-shrink: 0; width: 112px; height: 112px; border-radius: 50%; box-shadow: 0 0 22px 4px rgba(111,227,255,.75); background: #0d2a4a; }
+  .reactor svg { display: block; width: 100%; height: 100%; }
+  header.hud .txt { position: relative; z-index: 1; }
+  .kicker { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: .14em; color: var(--gold2); text-transform: uppercase; margin-bottom: 6px; }
+  header.hud h1 { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 900; font-size: 30px; line-height: 1.05; letter-spacing: .02em; text-shadow: 0 3px 0 rgba(0,0,0,.35); }
+
+  /* mission cards: dark title strip, light work panel */
+  .ex-card { margin: 0 0 18px; border-radius: 20px; border: 2.5px solid var(--gold); background: var(--paper); }
+  .ex-head { display: flex; align-items: stretch; overflow: hidden; border-radius: 17.5px 17.5px 0 0; background: var(--navy2); border-bottom: 2.5px solid var(--gold); break-after: avoid; page-break-after: avoid; }
+  .ex-head .mno { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: var(--red); padding: 8px 14px; display: flex; align-items: center; }
+  .ex-head .mname { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); padding: 8px 14px; display: flex; align-items: center; }
+  .ex-body { padding: 16px 16px 18px; }
+  .instr { font-weight: 800; font-size: 24px; line-height: 1.2; color: var(--ink); margin-bottom: 4px; }
+  .ru { font-size: 15px; color: #5a6688; margin-bottom: 12px; }
+
+  .example-box {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px;
+    background: #fff8e2; border: 2.5px dashed var(--gold); border-radius: 14px; padding: 8px 14px; margin-bottom: 14px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .example-box .label { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; background: var(--gold); color: var(--ink); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .example-box .ex-pic { font-size: 40px; line-height: 1; }
+  .model { font-size: 20px; }
+  .model b { color: var(--red); }
+
+  /* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html) ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 2px dashed #9fb0dc; border-radius: 14px; min-height: 64px; margin: 10px 0 14px; background: #fff; }
+  .tp-tile {
+    font: inherit; font-size: 20px; font-weight: 800; color: #fff; background: var(--navy3);
+    border: 2.5px solid var(--gold); border-radius: 12px; padding: 8px 16px; min-height: 48px;
+    cursor: pointer; text-align: left; line-height: 1.25;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: var(--red); border-color: var(--gold2); box-shadow: 0 0 0 4px rgba(242,182,50,.55); }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+  .tp-zone { border: 2.5px solid var(--line); border-radius: 12px; padding: 4px; min-height: 52px; cursor: pointer; background: #fff; }
+  .tp-zone.ready { border-color: var(--gold); background: #fffbea; }
+  .tp-zone.over { border-color: var(--red); background: #fff1d2; }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; align-items: center; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== end TAP-PLACE CSS ===== */
+  .tp-zone .tp-tile { color: var(--blue); background: #eaf1ff; border-color: #9fb7f0; }
+  .tp-bank:not(:has(.tp-tile)) { display: none; }
+  .tp-zone .hw-mark.hw-mark-blk { display: inline-block; width: auto; flex-basis: auto; margin: 0 0 0 4px; }
+
+  /* Mission 1: picture cards */
+  .scan { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .scard { background: #fff; border: 2px solid var(--line); border-radius: 16px; padding: 10px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; page-break-inside: avoid; break-inside: avoid; }
+  .scard .pic { font-size: 64px; line-height: 1.15; }
+  .frame { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 6px; font-size: 21px; font-weight: 500; }
+  .frame .tp-zone { min-width: 6.4em; display: inline-flex; align-items: center; justify-content: center; }
+  .frame .tp-zone:has(.tp-tile) { min-width: 0; border-color: transparent; background: transparent; padding: 0; }
+
+  /* Mission 2: code breaker */
+  .keypad { background: var(--navy); border: 2px solid var(--cyan); border-radius: 16px; padding: 10px 12px 12px; margin-bottom: 14px; box-shadow: inset 0 0 18px rgba(111,227,255,.18); }
+  .keypad .klab { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: .14em; color: var(--cyan); margin-bottom: 8px; }
+  .keys { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .key { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--navy2); border: 1.5px solid #34508f; border-radius: 10px; padding: 6px 4px; }
+  .key b { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 900; font-size: 22px; color: #fff; min-width: .9em; text-align: center; }
+  .key .eq { color: #8ea4d6; font-size: 16px; }
+  .glyph { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; }
+  .glyph svg { width: 100%; height: 100%; display: block; }
+  .codes { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .code { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; background: #fff; border: 2px solid var(--line); border-radius: 16px; padding: 12px; page-break-inside: avoid; break-inside: avoid; }
+  .code .wn { font-family: 'Orbitron', 'Rubik', sans-serif; font-weight: 800; font-size: 13px; color: var(--red); letter-spacing: .08em; flex-basis: 100%; }
+  .cells { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .cell .glyph { width: 44px; height: 44px; background: var(--navy); border-radius: 10px; padding: 5px; border: 1.5px solid var(--cyan); }
+  input.cl {
+    width: 44px; height: 50px; text-align: center; font: inherit; font-size: 28px; font-weight: 800; color: var(--blue);
+    text-transform: uppercase; background: #f6f5ff; border: 2.5px solid #9fb7f0; border-radius: 10px; padding: 0;
+  }
+  input.cl:focus { outline: none; border-color: var(--red); background: #fff; box-shadow: 0 0 0 3px rgba(242,182,50,.55); }
+  .cell .done { display: flex; width: 44px; height: 50px; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: var(--ink); background: #fff; border: 2px solid var(--gold); border-radius: 10px; }
+  .reveal { font-size: 54px; line-height: 1; text-align: center; display: none; }
+  .code.solved .reveal { display: inline-block; }
+  .code.solved { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(111,227,255,.35); }
+  .arrow { font-size: 26px; color: var(--red); font-weight: 800; }
+
+  /* Mission 3: build sentences */
+  .builds { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .srow { background: #fff; border: 2px solid var(--line); border-radius: 16px; padding: 12px; page-break-inside: avoid; break-inside: avoid; }
+  .srow .work { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .srow .work .line { flex-basis: 100%; }
+  .cue { display: inline-flex; align-items: center; gap: 4px; font-size: 46px; line-height: 1; white-space: nowrap; }
+  .cue svg { display: block; height: 1em; width: auto; }
+  .cue svg.brick { height: .8em; }
+  .stop { font-size: 26px; font-weight: 800; align-self: flex-end; padding-bottom: 6px; margin-left: -4px; }
+  .pline { display: none; }
+  .gloss { font-size: 17px; color: #5a6688; margin-bottom: 6px; }
+  .gloss b { color: var(--ink); }
+  .srow .tp-bank { margin: 0; flex: 1 1 auto; }
+  .line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .line .tp-zone { min-width: 4.2em; display: inline-flex; align-items: center; justify-content: center; }
+  .line .tp-zone:has(.tp-tile) { min-width: 0; border-color: transparent; background: transparent; padding: 0; }
+
+  /* Dasha's emailed PDF (hw.js renders the page in an 800px frame with body.hw-pdf-mode) */
+  body.hw-pdf-mode { background: #fff; background-image: none; padding: 0 6px; }
+  body.hw-pdf-mode .power { display: none; }
+  body.hw-pdf-mode header.hud { padding: 10px 16px; margin-bottom: 10px; }
+  body.hw-pdf-mode .reactor { width: 70px; height: 70px; box-shadow: none; }
+  body.hw-pdf-mode header.hud h1 { font-size: 24px; }
+  body.hw-pdf-mode .ex-card { margin-bottom: 10px; }
+  body.hw-pdf-mode .ex-body { padding: 10px 12px 12px; }
+  body.hw-pdf-mode .instr { font-size: 18px; }
+  body.hw-pdf-mode .ru { font-size: 12px; margin-bottom: 6px; }
+  body.hw-pdf-mode .example-box { padding: 4px 10px; margin-bottom: 8px; }
+  body.hw-pdf-mode .example-box .ex-pic { font-size: 26px; }
+  body.hw-pdf-mode .model { font-size: 15px; }
+  body.hw-pdf-mode .tp-bank { display: none; }
+  body.hw-pdf-mode .scan { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  body.hw-pdf-mode .scard .pic { font-size: 40px; }
+  body.hw-pdf-mode .frame { font-size: 15px; }
+  body.hw-pdf-mode .tp-tile { font-size: 14px; padding: 2px 10px; min-height: 0; }
+  body.hw-pdf-mode .keys { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  body.hw-pdf-mode .key b { font-size: 16px; }
+  body.hw-pdf-mode .glyph { width: 24px; height: 24px; }
+  body.hw-pdf-mode .cell .glyph { width: 32px; height: 32px; }
+  body.hw-pdf-mode input.cl, body.hw-pdf-mode .cell .done { width: 32px; height: 36px; font-size: 20px; }
+  body.hw-pdf-mode .reveal { font-size: 34px; }
+  body.hw-pdf-mode .cue { font-size: 30px; }
+  body.hw-pdf-mode .gloss { font-size: 13px; }
+
+  @media (max-width: 620px) {
+    body { padding: 0 8px 16px; }
+    header.hud { padding: 14px; gap: 12px; }
+    .reactor { width: 78px; height: 78px; }
+    header.hud h1 { font-size: 24px; }
+    .kicker { font-size: 10.5px; }
+    .ex-body { padding: 14px 12px 16px; }
+    .instr { font-size: 22px; }
+    header.hud .stripe { display: none; }
+    .scan { grid-template-columns: 1fr; gap: 10px; }
+    .scard { flex-direction: row; justify-content: flex-start; gap: 12px; padding: 8px 12px; }
+    .scard .pic { font-size: 52px; }
+    .frame { font-size: 20px; flex-wrap: nowrap; justify-content: flex-start; }
+    .frame .tp-zone { min-width: 6.2em; }
+    .tp-tile { font-size: 19px; padding: 7px 13px; }
+    .keypad { position: sticky; top: 38px; z-index: 10; padding: 6px 8px 8px; box-shadow: 0 6px 14px rgba(11,22,48,.35); }
+    .keypad .klab { font-size: 10px; margin-bottom: 4px; }
+    .keys { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
+    .key { flex-direction: column; gap: 1px; padding: 3px 2px; }
+    .key .eq { display: none; }
+    .key b { font-size: 17px; }
+    .key .glyph { width: 24px; height: 24px; }
+    .cell .glyph { width: 40px; height: 40px; }
+    input.cl, .cell .done { width: 40px; height: 48px; font-size: 26px; }
+    .cells { gap: 6px; }
+    .reveal { font-size: 46px; }
+    .line { gap: 6px; }
+    .line .tp-zone { min-width: 3.4em; }
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 0 48px 48px; font-size: 26px; }
+    .power { padding: 12px 0 13px; gap: 20px; margin-bottom: 22px; }
+    .power .plab { font-size: 20px; }
+    .power .track { height: 24px; }
+    .power .pct { font-size: 22px; }
+    header.hud { padding: 28px 40px; gap: 36px; margin-bottom: 28px; border-radius: 28px; }
+    .reactor { width: 170px; height: 170px; box-shadow: 0 0 36px 8px rgba(111,227,255,.7); }
+    .kicker { font-size: 19px; margin-bottom: 12px; }
+    header.hud h1 { font-size: 64px; }
+    .ex-card { margin-bottom: 30px; border-radius: 26px; border-width: 3px; }
+    .ex-head { border-radius: 23px 23px 0 0; }
+    .ex-head .mno, .ex-head .mname { font-size: 21px; padding: 12px 24px; }
+    .ex-body { padding: 30px 40px 34px; }
+    .instr { font-size: 40px; margin-bottom: 8px; }
+    .ru { font-size: 24px; margin-bottom: 20px; }
+    .example-box { padding: 14px 24px; gap: 10px 24px; margin-bottom: 22px; }
+    .example-box .label { font-size: 17px; padding: 5px 14px; }
+    .example-box .ex-pic { font-size: 64px; }
+    .model { font-size: 30px; }
+    .tp-bank { gap: 16px; padding: 16px 18px; margin-bottom: 22px; }
+    .tp-tile { font-size: 30px; min-height: 64px; padding: 8px 26px; border-radius: 14px; }
+    .tp-zone { min-height: 72px; }
+    .tp-slot { min-height: 60px; }
+    .hw-mark { font-size: 24px; }
+    .scan { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .scard { padding: 18px 14px 20px; gap: 14px; border-radius: 20px; }
+    .scard .pic { font-size: 112px; }
+    .frame { font-size: 30px; gap: 6px 12px; }
+    .frame .tp-zone { min-width: 7.2em; }
+    .keypad { padding: 18px 24px 22px; margin-bottom: 26px; }
+    .keypad .klab { font-size: 19px; margin-bottom: 14px; }
+    .keys { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+    .key { padding: 10px 6px; gap: 14px; }
+    .key b { font-size: 36px; }
+    .key .eq { font-size: 26px; }
+    .glyph { width: 52px; height: 52px; }
+    .codes { grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+    .code { padding: 20px 24px; gap: 14px 26px; }
+    .code .wn { font-size: 20px; flex-basis: 100%; }
+    .cells { gap: 12px; }
+    .cell { gap: 10px; }
+    .cell .glyph { width: 70px; height: 70px; padding: 8px; }
+    input.cl, .cell .done { width: 70px; height: 78px; font-size: 44px; }
+    .reveal { font-size: 92px; }
+    .arrow { font-size: 40px; }
+    .builds { gap: 22px; }
+    .srow { padding: 20px 26px; border-radius: 20px; }
+    .srow .work { flex-wrap: wrap; gap: 14px 26px; }
+    .srow .work .line { flex: 0 1 auto; flex-basis: auto; flex-wrap: nowrap; }
+    .srow .tp-bank { flex: 0 0 auto; }
+    .srow .tp-tile { font-size: 27px; padding: 6px 18px; min-height: 58px; }
+    .cue { font-size: 70px; }
+    .gloss { font-size: 28px; margin-bottom: 10px; }
+    .stop { font-size: 40px; padding-bottom: 8px; }
+    .line { gap: 10px; }
+    .line .tp-zone { min-width: 3.6em; min-height: 68px; }
+  }
+
+  @media screen and (min-width:900px) and (max-width:1300px) {
+    #bank1 { gap: 10px; padding: 12px 12px; }
+    #bank1 .tp-tile { font-size: 26px; padding: 6px 13px; min-height: 56px; }
+    .srow .tp-bank { gap: 10px; padding: 12px; }
+    .srow .tp-tile { font-size: 26px; padding: 6px 13px; min-height: 56px; }
+    .line .tp-zone { min-width: 3em; min-height: 64px; }
+  }
+
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { font-size: 13px; padding: 0; max-width: none; background: #fff; background-image: none; }
+    .power { display: none; }
+    header.hud { padding: 8px 16px; margin-bottom: 8px; border-width: 2px; }
+    .reactor { width: 60px; height: 60px; box-shadow: none; }
+    .kicker { font-size: 9.5px; margin-bottom: 3px; }
+    header.hud h1 { font-size: 22px; }
+    .ex-card { margin-bottom: 8px; border-width: 2px; }
+    .ex-head .mno, .ex-head .mname { font-size: 10px; padding: 4px 10px; }
+    .ex-body { padding: 8px 12px 10px; }
+    .instr { font-size: 16px; }
+    .ru { font-size: 11px; margin-bottom: 5px; }
+    .example-box { padding: 3px 10px; margin-bottom: 6px; border-width: 1.5px; }
+    .example-box .label { font-size: 8.5px; }
+    .example-box .ex-pic { font-size: 22px; }
+    .model { font-size: 13px; }
+    .tp-bank { padding: 4px 6px; gap: 5px; min-height: 0; margin: 4px 0 6px; border-width: 1.2px; }
+    .tp-tile { font-size: 12px; padding: 2px 9px; min-height: 0; border-width: 1.5px; }
+    .tp-zone { min-height: 0; height: 22px; border-width: 1.3px; padding: 0 3px; }
+    .tp-slot { min-height: 0; }
+    .scan { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px 8px; }
+    .scard { flex-direction: row; justify-content: flex-start; padding: 3px 8px; gap: 8px; border-width: 1.2px; }
+    .scard .pic { font-size: 28px; }
+    .frame { font-size: 12px; flex-wrap: nowrap; }
+    .frame .tp-zone { min-width: 9em; height: 34px; }
+    .keypad { padding: 5px 8px 7px; margin-bottom: 6px; }
+    .keypad .klab { font-size: 9px; margin-bottom: 4px; }
+    .keys { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
+    .key { padding: 2px; gap: 4px; }
+    .key b { font-size: 13px; }
+    .key .eq { font-size: 11px; }
+    .glyph { width: 20px; height: 20px; }
+    .codes { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .code { padding: 5px 8px; gap: 4px 10px; border-width: 1.2px; }
+    .code .wn { font-size: 9px; flex-basis: 100%; }
+    .cell .glyph { width: 26px; height: 26px; padding: 3px; }
+    input.cl, .cell .done { width: 26px; height: 28px; font-size: 15px; border-width: 1.3px; }
+    .reveal { font-size: 22px; }
+    .builds { gap: 6px; }
+    .srow { padding: 4px 8px 6px; border-width: 1.2px; }
+    .srow .work { flex-wrap: wrap; gap: 4px 10px; }
+    .srow .tp-bank { margin: 0; flex: 0 1 auto; }
+    .cue { font-size: 22px; }
+    .gloss { font-size: 11px; margin-bottom: 2px; }
+    .line { display: none !important; }
+    .pline { display: block; flex-basis: 100%; height: 9mm; border-bottom: 1.3px solid #6b7aa6; }
+  }
+  @media screen and (min-width:900px) and (max-width:1150px) { .codes { grid-template-columns: 1fr !important; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Mark" data-sheet="Suit up 2026-11-20" data-sheet-id="mark-2026-11-20-suit-up">
+<div id="sheet">
+
+
+<div class="power" id="power" aria-live="polite">
+  <span class="plab">SUIT POWER</span>
+  <span class="track"><span class="fill" id="powerFill"></span></span>
+  <span class="pct" id="powerPct">0%</span>
+</div>
+
+<header class="hud">
+  <div class="stripe" aria-hidden="true"></div>
+  <!-- Original arc-reactor badge drawn in SVG (not copied film art) -->
+  <div class="reactor" aria-hidden="true">
+    <svg viewBox="0 0 100 100">
+      <defs>
+        <radialGradient id="core" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffffff"/><stop offset="35%" stop-color="#d8f8ff"/><stop offset="70%" stop-color="#6fe3ff"/><stop offset="100%" stop-color="#1b86b4"/>
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="#0d2a4a" stroke="#f2b632" stroke-width="3"/>
+      <circle cx="50" cy="50" r="40" fill="none" stroke="#6fe3ff" stroke-width="1.5" opacity=".7"/>
+      <g fill="#bff4ff" stroke="#6fe3ff" stroke-width="1">
+        <rect x="46" y="12" width="8" height="15" rx="2"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(36 50 50)"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(72 50 50)"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(108 50 50)"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(144 50 50)"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(180 50 50)"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(216 50 50)"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(252 50 50)"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(288 50 50)"/>
+        <rect x="46" y="12" width="8" height="15" rx="2" transform="rotate(324 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="20" fill="url(#core)" stroke="#f2b632" stroke-width="2.5"/>
+      <circle cx="50" cy="50" r="9" fill="#ffffff"/>
+    </svg>
+  </div>
+  <div class="txt">
+    <p class="kicker">Mark&rsquo;s mission &middot; 20&nbsp;November</p>
+    <h1>Suit up, Mark!</h1>
+  </div>
+</header>
+
+<!-- ============ MISSION 1 ============ -->
+<section class="ex-card">
+  <div class="ex-head"><span class="mno">Mission 1</span><span class="mname">Scan</span></div>
+  <div class="ex-body tp" id="tp1">
+    <p class="instr">What&rsquo;s this? Match the&nbsp;words.</p>
+    <p class="ru"><span class="scr">Нажми на слово, потом на&nbsp;картинку.</span><span class="prt">Впиши слово под каждой&nbsp;картинкой.</span></p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="ex-pic emo" aria-hidden="true">⚽</span>
+      <span class="model">It&rsquo;s <b>a&nbsp;football</b>.</span>
+    </div>
+    <div class="tp-bank" aria-label="Words for Mission 1" id="bank1"><button type="button" class="tp-tile" data-value="a planet">a planet</button><button type="button" class="tp-tile" data-value="a map">a map</button><button type="button" class="tp-tile" data-value="a volcano">a volcano</button><button type="button" class="tp-tile" data-value="a car">a car</button><button type="button" class="tp-tile" data-value="a rocket">a rocket</button><button type="button" class="tp-tile" data-value="a robot">a robot</button><button type="button" class="tp-tile" data-value="a castle">a castle</button></div>
+    <div class="scan">
+      <div class="scard"><span class="pic emo" role="img" aria-label="Picture 1">🌋</span><div class="frame"><span>It&rsquo;s</span><span class="tp-zone" data-store="m1" data-field="m1"><span class="tp-slot"></span></span><span>.</span></div></div>
+      <div class="scard"><span class="pic emo" role="img" aria-label="Picture 2">🤖</span><div class="frame"><span>It&rsquo;s</span><span class="tp-zone" data-store="m2" data-field="m2"><span class="tp-slot"></span></span><span>.</span></div></div>
+      <div class="scard"><span class="pic emo" role="img" aria-label="Picture 3">🗺️</span><div class="frame"><span>It&rsquo;s</span><span class="tp-zone" data-store="m3" data-field="m3"><span class="tp-slot"></span></span><span>.</span></div></div>
+      <div class="scard"><span class="pic emo" role="img" aria-label="Picture 4">🪐</span><div class="frame"><span>It&rsquo;s</span><span class="tp-zone" data-store="m4" data-field="m4"><span class="tp-slot"></span></span><span>.</span></div></div>
+      <div class="scard"><span class="pic emo" role="img" aria-label="Picture 5">🏰</span><div class="frame"><span>It&rsquo;s</span><span class="tp-zone" data-store="m5" data-field="m5"><span class="tp-slot"></span></span><span>.</span></div></div>
+      <div class="scard"><span class="pic emo" role="img" aria-label="Picture 6">🚀</span><div class="frame"><span>It&rsquo;s</span><span class="tp-zone" data-store="m6" data-field="m6"><span class="tp-slot"></span></span><span>.</span></div></div>
+    </div>
+    <div class="tp-stores" hidden>
+      <select data-k="m1" data-label="1.1 Picture 1 (volcano picture): It's ___" aria-label="Picture 1" class="hw-field"><option value=""></option><option value="a planet">a planet</option><option value="a map">a map</option><option value="a volcano">a volcano</option><option value="a car">a car</option><option value="a rocket">a rocket</option><option value="a robot">a robot</option><option value="a castle">a castle</option></select>
+      <select data-k="m2" data-label="1.2 Picture 2 (robot picture): It's ___" aria-label="Picture 2" class="hw-field"><option value=""></option><option value="a planet">a planet</option><option value="a map">a map</option><option value="a volcano">a volcano</option><option value="a car">a car</option><option value="a rocket">a rocket</option><option value="a robot">a robot</option><option value="a castle">a castle</option></select>
+      <select data-k="m3" data-label="1.3 Picture 3 (map picture): It's ___" aria-label="Picture 3" class="hw-field"><option value=""></option><option value="a planet">a planet</option><option value="a map">a map</option><option value="a volcano">a volcano</option><option value="a car">a car</option><option value="a rocket">a rocket</option><option value="a robot">a robot</option><option value="a castle">a castle</option></select>
+      <select data-k="m4" data-label="1.4 Picture 4 (planet picture): It's ___" aria-label="Picture 4" class="hw-field"><option value=""></option><option value="a planet">a planet</option><option value="a map">a map</option><option value="a volcano">a volcano</option><option value="a car">a car</option><option value="a rocket">a rocket</option><option value="a robot">a robot</option><option value="a castle">a castle</option></select>
+      <select data-k="m5" data-label="1.5 Picture 5 (castle picture): It's ___" aria-label="Picture 5" class="hw-field"><option value=""></option><option value="a planet">a planet</option><option value="a map">a map</option><option value="a volcano">a volcano</option><option value="a car">a car</option><option value="a rocket">a rocket</option><option value="a robot">a robot</option><option value="a castle">a castle</option></select>
+      <select data-k="m6" data-label="1.6 Picture 6 (rocket picture): It's ___" aria-label="Picture 6" class="hw-field"><option value=""></option><option value="a planet">a planet</option><option value="a map">a map</option><option value="a volcano">a volcano</option><option value="a car">a car</option><option value="a rocket">a rocket</option><option value="a robot">a robot</option><option value="a castle">a castle</option></select>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISSION 2 ============ -->
+<!-- Suit code: A=triangle C=bolt E=hexagon I=plus L=star M=diamond N=bars O=circle P=square R=chevron S=half circle T=double ring -->
+<section class="ex-card">
+  <div class="ex-head"><span class="mno">Mission 2</span><span class="mname">Suit code</span></div>
+  <div class="ex-body">
+    <p class="instr">Decode the secret&nbsp;words.</p>
+    <p class="ru">Найди каждый значок в коде и впиши его букву. Пиши английскими&nbsp;буквами.</p>
+    <div class="keypad">
+      <p class="klab">SUIT CODE</p>
+      <div class="keys" id="keys"></div>
+    </div>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <div class="cells" id="exCells"></div>
+    </div>
+    <div class="codes">
+      <div class="code" data-live data-store="d1" data-field="d1" data-h="193447833" data-glyphs="M A P">
+        <span class="wn">Secret word 1</span>
+        <div class="cells"></div>
+        <span class="reveal emo" aria-hidden="true">🗺️</span>
+      </div>
+      <div class="code" data-live data-store="d2" data-field="d2" data-h="2751155145" data-glyphs="C A S T L E">
+        <span class="wn">Secret word 2</span>
+        <div class="cells"></div>
+        <span class="reveal emo" aria-hidden="true">🏰</span>
+      </div>
+    </div>
+    <div class="tp-stores" hidden>
+      <input data-k="d1" data-label="2.1 Secret word 1 (3 letters)" aria-label="Secret word 1" class="hw-field">
+      <input data-k="d2" data-label="2.2 Secret word 2 (6 letters)" aria-label="Secret word 2" class="hw-field">
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISSION 3 ============ -->
+<section class="ex-card">
+  <div class="ex-head"><span class="mno">Mission 3</span><span class="mname">Build</span></div>
+  <div class="ex-body">
+    <p class="instr">Build the&nbsp;sentences.</p>
+    <p class="ru"><span class="scr">Нажимай на слова по порядку. Нажми на слово ещё раз, чтобы&nbsp;убрать.</span><span class="prt">Напиши предложения из&nbsp;слов.</span></p>
+    <div class="builds">
+      <div class="srow tp tp-auto">
+        <p class="gloss"><b>I&rsquo;ve&nbsp;got</b> = у меня&nbsp;есть</p>
+        <div class="work">
+          <span class="cue" role="img" aria-label="Lego"><svg class="brick" viewBox="0 0 64 44" aria-hidden="true"><rect x="7" y="2" width="12" height="9" rx="2" fill="#d81f2a" stroke="#7d0c13" stroke-width="2"/><rect x="26" y="2" width="12" height="9" rx="2" fill="#d81f2a" stroke="#7d0c13" stroke-width="2"/><rect x="45" y="2" width="12" height="9" rx="2" fill="#d81f2a" stroke="#7d0c13" stroke-width="2"/><rect x="2" y="10" width="60" height="32" rx="3" fill="#d81f2a" stroke="#7d0c13" stroke-width="2.5"/></svg></span>
+          <div class="tp-bank" aria-label="Words for sentence 1"><button type="button" class="tp-tile" data-value="got">got</button><button type="button" class="tp-tile" data-value="I've">I&rsquo;ve</button><button type="button" class="tp-tile" data-value="Lego">Lego</button></div>
+          <div class="line">
+          <span class="tp-zone" data-store="s1a" data-field="s1a"><span class="tp-slot"></span></span>
+          <span class="tp-zone" data-store="s1b" data-field="s1b"><span class="tp-slot"></span></span>
+          <span class="tp-zone" data-store="s1c" data-field="s1c"><span class="tp-slot"></span></span>
+            <span class="stop">.</span>
+          </div>
+          <div class="pline" aria-hidden="true"></div>
+        </div>
+        <div class="tp-stores" hidden>
+          <select data-k="s1a" data-label="3.1 Sentence 1 (Lego): word 1" class="hw-field"><option value=""></option><option>got</option><option>I've</option><option>Lego</option></select>
+          <select data-k="s1b" data-label="3.1 Sentence 1 (Lego): word 2" class="hw-field"><option value=""></option><option>got</option><option>I've</option><option>Lego</option></select>
+          <select data-k="s1c" data-label="3.1 Sentence 1 (Lego): word 3" class="hw-field"><option value=""></option><option>got</option><option>I've</option><option>Lego</option></select>
+        </div>
+      </div>
+
+      <div class="srow tp tp-auto">
+        <div class="work">
+          <span class="cue" role="img" aria-label="controller"><span class="emo">🎮</span></span>
+          <div class="tp-bank" aria-label="Words for sentence 2"><button type="button" class="tp-tile" data-value="a">a</button><button type="button" class="tp-tile" data-value="I've">I&rsquo;ve</button><button type="button" class="tp-tile" data-value="controller">controller</button><button type="button" class="tp-tile" data-value="got">got</button></div>
+          <div class="line">
+          <span class="tp-zone" data-store="s2a" data-field="s2a"><span class="tp-slot"></span></span>
+          <span class="tp-zone" data-store="s2b" data-field="s2b"><span class="tp-slot"></span></span>
+          <span class="tp-zone" data-store="s2c" data-field="s2c"><span class="tp-slot"></span></span>
+          <span class="tp-zone" data-store="s2d" data-field="s2d"><span class="tp-slot"></span></span>
+            <span class="stop">.</span>
+          </div>
+          <div class="pline" aria-hidden="true"></div>
+        </div>
+        <div class="tp-stores" hidden>
+          <select data-k="s2a" data-label="3.2 Sentence 2 (controller): word 1" class="hw-field"><option value=""></option><option>a</option><option>I've</option><option>controller</option><option>got</option></select>
+          <select data-k="s2b" data-label="3.2 Sentence 2 (controller): word 2" class="hw-field"><option value=""></option><option>a</option><option>I've</option><option>controller</option><option>got</option></select>
+          <select data-k="s2c" data-label="3.2 Sentence 2 (controller): word 3" class="hw-field"><option value=""></option><option>a</option><option>I've</option><option>controller</option><option>got</option></select>
+          <select data-k="s2d" data-label="3.2 Sentence 2 (controller): word 4" class="hw-field"><option value=""></option><option>a</option><option>I've</option><option>controller</option><option>got</option></select>
+        </div>
+      </div>
+
+      <div class="srow tp tp-auto">
+        <div class="work">
+          <span class="cue" role="img" aria-label="like, Marvel"><span class="emo">👍</span><svg class="star" viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,2 25,14.6 38.5,15.3 28,24 31.5,37.3 20,30 8.5,37.3 12,24 1.5,15.3 15,14.6" fill="#b3121b" stroke="#f2b632" stroke-width="3" stroke-linejoin="round"/></svg></span>
+          <div class="tp-bank" aria-label="Words for sentence 3"><button type="button" class="tp-tile" data-value="Marvel">Marvel</button><button type="button" class="tp-tile" data-value="like">like</button><button type="button" class="tp-tile" data-value="I">I</button></div>
+          <div class="line">
+          <span class="tp-zone" data-store="s3a" data-field="s3a"><span class="tp-slot"></span></span>
+          <span class="tp-zone" data-store="s3b" data-field="s3b"><span class="tp-slot"></span></span>
+          <span class="tp-zone" data-store="s3c" data-field="s3c"><span class="tp-slot"></span></span>
+            <span class="stop">.</span>
+          </div>
+          <div class="pline" aria-hidden="true"></div>
+        </div>
+        <div class="tp-stores" hidden>
+          <select data-k="s3a" data-label="3.3 Sentence 3 (like, Marvel): word 1" class="hw-field"><option value=""></option><option>Marvel</option><option>like</option><option>I</option></select>
+          <select data-k="s3b" data-label="3.3 Sentence 3 (like, Marvel): word 2" class="hw-field"><option value=""></option><option>Marvel</option><option>like</option><option>I</option></select>
+          <select data-k="s3c" data-label="3.3 Sentence 3 (like, Marvel): word 3" class="hw-field"><option value=""></option><option>Marvel</option><option>like</option><option>I</option></select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html; added: .tp-auto, a tap on a bank word fills the next empty place) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var auto = root.classList.contains("tp-auto");
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function sync() {
+      zones.forEach(function (z) {
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      document.dispatchEvent(new Event("hw-progress"));
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }
+          else { unpick(); home(t); }
+          return;
+        }
+        if (auto) {
+          var empty = zones.filter(function (x) { return !x.querySelector(".tp-tile"); })[0];
+          if (empty) { unpick(); place(t, empty); return; }
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+
+/* ===== Suit code (code breaker) + suit power ===== */
+(function () {
+  var S = 'stroke="#f2b632" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"';
+  var F = 'fill="#f2b632"';
+  var G = {
+    A: '<polygon points="20,5 35,33 5,33" ' + S + '/>',
+    C: '<polygon points="23,3 9,22 19,22 15,37 31,16 21,16" ' + F + '/>',
+    E: '<polygon points="20,4 34,12 34,28 20,36 6,28 6,12" ' + S + '/>',
+    I: '<path d="M20 6 V34 M6 20 H34" ' + S + '/>',
+    L: '<polygon points="20,3 24.7,14.6 37,15.5 27.5,23.5 30.5,35.5 20,29 9.5,35.5 12.5,23.5 3,15.5 15.3,14.6" ' + F + '/>',
+    M: '<polygon points="20,4 36,20 20,36 4,20" ' + S + '/>',
+    N: '<path d="M10 8 V32 M20 8 V32 M30 8 V32" ' + S + '/>',
+    O: '<circle cx="20" cy="20" r="14" ' + S + '/>',
+    P: '<rect x="7" y="7" width="26" height="26" ' + S + '/>',
+    R: '<polyline points="6,28 20,12 34,28" ' + S + '/>',
+    S: '<path d="M5 25 A15 15 0 0 1 35 25 Z" ' + F + '/>',
+    T: '<circle cx="20" cy="20" r="15" ' + S + '/><circle cx="20" cy="20" r="7" ' + S + '/>'
+  };
+  function glyph(L) { return '<span class="glyph" aria-hidden="true"><svg viewBox="0 0 40 40">' + G[L] + '</svg></span>'; }
+
+  // the key, letters in A-Z order
+  var keys = document.getElementById("keys");
+  Object.keys(G).sort().forEach(function (L) {
+    keys.insertAdjacentHTML("beforeend", '<div class="key">' + glyph(L) + '<span class="eq">=</span><b>' + L + '</b></div>');
+  });
+  // worked example: IRON (shares no letter with the secret words)
+  var ex = document.getElementById("exCells");
+  "IRON".split("").forEach(function (L) {
+    ex.insertAdjacentHTML("beforeend", '<div class="cell">' + glyph(L) + '<span class="done">' + L + '</span></div>');
+  });
+
+  function fire(s) { s.dispatchEvent(new Event("input", { bubbles: true })); s.dispatchEvent(new Event("change", { bubbles: true })); }
+  function hash(s) { var x = 5381; for (var i = 0; i < s.length; i++) x = ((x * 33) ^ s.charCodeAt(i)) >>> 0; return x; }
+  var CYR = {"А":"A","В":"B","С":"C","Е":"E","Н":"H","І":"I","К":"K","М":"M","О":"O","Р":"P","Т":"T","Х":"X","У":"Y"};
+
+  function setupCode(c) {
+    var cells = c.querySelector(".cells");
+    var gl = c.dataset.glyphs.split(" ");
+    gl.forEach(function (L, i) {
+      cells.insertAdjacentHTML("beforeend", '<div class="cell">' + glyph(L) + '<input class="cl" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" aria-label="Letter ' + (i + 1) + '"></div>');
+    });
+    var ins = [].slice.call(cells.querySelectorAll("input.cl"));
+    var st = document.querySelector('[data-k="' + c.dataset.store + '"]');
+    function word() { return ins.map(function (i) { return i.value || " "; }).join(""); }
+    function update() {
+      var w = word();
+      var v = w.trim() ? w.replace(/\s+$/, "") : "";
+      if (st && st.value !== v) { st.value = v; fire(st); }
+      var full = ins.every(function (i) { return i.value; });
+      c.classList.toggle("solved", full && hash(w) === +c.dataset.h);
+      c.classList.toggle("full", full);
+      document.dispatchEvent(new Event("hw-progress"));
+    }
+    function put(inp, i, v) {
+      inp.value = v; inp.setAttribute("value", v);   // the attribute keeps the letter in Dasha's PDF copy
+      if (v && ins[i + 1]) ins[i + 1].focus();
+      update();
+    }
+    // restore from the saved word (hw.js has already filled the store)
+    if (st && st.value) st.value.split("").forEach(function (ch, i) { if (ins[i] && /[A-Z]/.test(ch)) { ins[i].value = ch; ins[i].setAttribute("value", ch); } });
+    ins.forEach(function (inp, i) {
+      inp.addEventListener("focus", function () { inp.select(); });
+      // any keyboard layout: take the letter from the physical key
+      inp.addEventListener("keydown", function (e) {
+        if (e.key === "Backspace" && !inp.value && ins[i - 1]) { e.preventDefault(); ins[i - 1].focus(); put(ins[i - 1], i - 1, ""); ins[i - 1].focus(); return; }
+        var m = /^Key([A-Z])$/.exec(e.code || "");
+        if (!m || e.ctrlKey || e.metaKey || e.altKey) return;
+        e.preventDefault();
+        put(inp, i, m[1]);
+      });
+      // phones (no physical key code): map Cyrillic look-alikes, keep A-Z only
+      inp.addEventListener("input", function (e) {
+        e.stopPropagation();
+        var v = inp.value.toUpperCase().split("").map(function (ch) { return CYR[ch] || ch; }).join("").replace(/[^A-Z]/g, "").slice(-1);
+        put(inp, i, v);
+      });
+    });
+    update();
+  }
+
+  var TOTAL = 11;   // 6 pictures + 2 secret words + 3 sentences
+  function progress() {
+    var n = 0;
+    document.querySelectorAll("#tp1 .tp-zone").forEach(function (z) { if (z.querySelector(".tp-tile")) n++; });
+    document.querySelectorAll(".code.full").forEach(function () { n++; });
+    document.querySelectorAll(".srow").forEach(function (r) {
+      var zs = r.querySelectorAll(".tp-zone");
+      if ([].every.call(zs, function (z) { return z.querySelector(".tp-tile"); })) n++;
+    });
+    var p = Math.round(n / TOTAL * 100);
+    document.getElementById("powerFill").style.width = p + "%";
+    document.getElementById("powerPct").textContent = p + "%";
+    document.getElementById("power").classList.toggle("full", p === 100);
+  }
+  document.addEventListener("hw-progress", progress);
+
+  function init() {
+    document.querySelectorAll(".code[data-live]").forEach(setupCode);
+    progress();
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtMSI6IHsidCI6ICJleGFjdCIsICJhIjogImEgdm9sY2FubyJ9LCAibTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIHJvYm90In0sICJtMyI6IHsidCI6ICJleGFjdCIsICJhIjogImEgbWFwIn0sICJtNCI6IHsidCI6ICJleGFjdCIsICJhIjogImEgcGxhbmV0In0sICJtNSI6IHsidCI6ICJleGFjdCIsICJhIjogImEgY2FzdGxlIn0sICJtNiI6IHsidCI6ICJleGFjdCIsICJhIjogImEgcm9ja2V0In0sICJkMSI6IHsidCI6ICJleGFjdCIsICJhIjogIk1BUCJ9LCAiZDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJDQVNUTEUifSwgInMxYSI6IHsidCI6ICJleGFjdCIsICJhIjogIkkndmUifSwgInMxYiI6IHsidCI6ICJleGFjdCIsICJhIjogImdvdCJ9LCAiczFjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiTGVnbyJ9LCAiczJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiSSd2ZSJ9LCAiczJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiZ290In0sICJzMmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIn0sICJzMmQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJjb250cm9sbGVyIn0sICJzM2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJJIn0sICJzM2IiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsaWtlIn0sICJzM2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJNYXJ2ZWwifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

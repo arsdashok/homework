@@ -311,7 +311,7 @@ function matchHomeworkAnswers_(answers, keys) {
       if (type === 'set') return s.split(/[\s,]+/).filter(String).sort().join(',');
       return s.replace(/[\s,]/g, '');
     }
-    return normalize(value) === normalize(key.a);
+    return (key.alternatives || [key.a]).some(function(a) { return normalize(value) === normalize(a); });
   }
   answers.forEach(function(answer) {
     var key = keys[answer.k], type = typeOf(key);
@@ -319,6 +319,21 @@ function matchHomeworkAnswers_(answers, keys) {
       result: !String(answer.a || '').trim() ? 'blank' : !key || !key.a ? 'missing' : type === 'open' ? 'manual' : matches(answer.a, key) ? 'correct' : 'incorrect',
       expected: key ? key.a : ''
     };
+    if (key && key.when) {
+      var trigger = answers.filter(function(a) { return a.k === key.when.k; })[0];
+      if (!trigger || trigger.a !== key.when.a) {
+        result[answer.k] = {result: 'skipped', expected: ''};
+        return;
+      }
+    }
+    if (key && type === 'set' && key.feedback === 'missing-options' && String(answer.a || '').trim()) {
+      var chosen = String(answer.a).toLowerCase().split(/[\s,]+/).filter(String);
+      var expected = String(key.a).toLowerCase().split(/[\s,]+/).filter(String);
+      var extra = chosen.filter(function(v) { return expected.indexOf(v) < 0; });
+      var absent = expected.filter(function(v) { return chosen.indexOf(v) < 0; });
+      if (!extra.length && absent.length) result[answer.k] = {result: 'incomplete', expected: key.a, missing: absent};
+      else if (extra.length) result[answer.k].extra = extra;
+    }
     var group = key && (key.group || key.g);
     if (group && ['exact', 'words', 'set'].indexOf(type) >= 0) {
       if (!groups[group]) groups[group] = [];
@@ -357,11 +372,12 @@ function matchHomeworkAnswers_(answers, keys) {
     if (!CHECK) return "";
     checking = true;
     document.querySelectorAll(".hw-mark, .hw-mark-list").forEach(function (m) { m.remove(); });
-    var right = 0, marked = 0, open = 0, lists = [];
+    var right = 0, marked = 0, open = 0, partial = 0, lists = [];
     var answers = Array.from(document.querySelectorAll("#sheet [data-k]"), function(el) { return {k: el.dataset.k, a: answerOf(el)}; });
     var graded = matchHomeworkAnswers_(answers, CHECK);
     document.querySelectorAll("#sheet [data-k]").forEach(function (el) {
       var k = el.dataset.k, key = CHECK[k];
+      if (graded[k].result === "skipped") return;
       var vis = document.querySelector('[data-field="' + k + '"]');
       var anchor = seen(vis) ? vis : (seen(el) ? el : null);
       var node;
@@ -371,7 +387,13 @@ function matchHomeworkAnswers_(answers, keys) {
         node = document.createElement("span");
         node.className = "hw-mark " + (ok ? "hw-ok" : "hw-no");
         if (ok) node.textContent = "✓";
-        else { node.textContent = "✗ "; var r = document.createElement("span"); r.className = "hw-right"; r.textContent = graded[k].expected; node.appendChild(r); }
+        else if (graded[k].result === "incomplete") {
+          partial++;
+          node.className = "hw-mark hw-partial";
+          node.textContent = "Your choices fit. Also possible: " + graded[k].missing.join(", ") + ".";
+        } else if (graded[k].extra) {
+          node.textContent = "Doesn't fit: " + graded[k].extra.join(", ") + ". Correct options: " + graded[k].expected + ".";
+        } else { node.textContent = "✗ "; var r = document.createElement("span"); r.className = "hw-right"; r.textContent = graded[k].expected; node.appendChild(r); }
       } else {
         if (!anchor || anchor !== el || !writable(el)) return;   // hidden helpers and print-only boxes get nothing
         open++;
@@ -421,7 +443,7 @@ function matchHomeworkAnswers_(answers, keys) {
     });
     checking = false;
     if (!marked) return open ? "Dasha will read it. Your own writing: feedback in the lesson." : "";
-    return right + " of " + marked + " right. ✗ shows the right answer." + (open ? " Your own writing: feedback in the lesson." : "");
+    return right + " of " + marked + " right." + (partial ? " " + partial + " answer(s) need another option; your choices fit." : "") + " ✗ shows the right answer." + (open ? " Your own writing: feedback in the lesson." : "");
   }
   window.hwShowChecks = showChecks;
   function recheck() {
@@ -441,7 +463,8 @@ function matchHomeworkAnswers_(answers, keys) {
     document.querySelectorAll("[data-k]").forEach(function (el) {
       answers.push({ k: el.dataset.k, q: el.dataset.label || el.dataset.k, a: answerOf(el) });
     });
-    var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q); }).length;
+    var grades = CHECK ? matchHomeworkAnswers_(answers, CHECK) : {};
+    var empty = answers.filter(function (x) { return !x.a && !/working/i.test(x.q) && (!grades[x.k] || grades[x.k].result !== 'skipped'); }).length;
     if (empty && !confirm(empty + " answer(s) are still empty. Send anyway?")) return;
     btn.disabled = true; msg.textContent = "Sending… (this takes a few seconds)";
     // Mark FIRST, so the PDF Dasha receives shows the ticks, crosses and right answers too

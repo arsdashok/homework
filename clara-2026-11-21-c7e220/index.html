@@ -246,6 +246,24 @@ body .hw-mark.hw-ok { color:var(--green); }
   .task { break-inside:avoid; page-break-inside:avoid; }
   .sec-head, .task-label, .role-label, .lead, .task { break-after:avoid; page-break-after:avoid; }
 }
+
+/* worked-example animation (21 Nov 2026, Dasha: «анимашку на объяснялке»). Screen only; print and PDF keep the static example. */
+.model .pv { position:relative; }
+.wx-ghost { position:absolute; display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--green);
+  font-variant-numeric:tabular-nums; pointer-events:none; z-index:5; background:rgba(214,240,226,.9); border-radius:10px; box-shadow:0 4px 14px rgba(20,90,60,.25); }
+.wx-hide { color:transparent !important; }
+.wx-fade { opacity:0; }
+.wx-pop { animation:wxPop .55s ease-out; }
+@keyframes wxPop { 0% { transform:scale(.3); opacity:0; } 60% { transform:scale(1.25); opacity:1; } 100% { transform:scale(1); } }
+.wx-zero { animation:wxZero 1.2s ease-out; }
+@keyframes wxZero { 0% { background:#fff; } 30% { background:#fde7c7; } 100% { background:#fff; } }
+.wx-dot { animation:wxDot 1.1s ease-in-out 2; }
+@keyframes wxDot { 50% { transform:scale(1.9); } }
+.wx-play { margin-top:4px; align-self:flex-start; font:inherit; font-size:16px; font-weight:700; color:var(--green); background:var(--mint);
+  border:2px solid #8db89f; border-radius:22px; padding:6px 16px; cursor:pointer; }
+.wx-play:hover { background:#cfeadb; }
+@media screen and (min-width:900px) { .wx-play { font-size:24px; padding:8px 22px; border-radius:30px; } }
+@media print { .wx-play, .wx-ghost { display:none !important; } }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -1666,6 +1684,80 @@ if(finalChecked){window.hwShowChecks();renderResults();}
 if(sent)msg.textContent='Your answers have been submitted to Dasha.';
 show(current,false);
 window.addEventListener('load',()=>setTimeout(update,0));
+})();
+</script>
+<script>
+/* worked-example animation: the digits slide across the chart, the point stays, then the 0s and the answer appear */
+(function () {
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function txt(c) { var t = ''; c.childNodes.forEach(function (n) { if (n.nodeType === 3) t += n.textContent; }); return t.trim(); }
+  function setup(row) {
+    var pv = row.querySelector('.pv'); if (!pv) return;
+    var rows = pv.querySelectorAll('.pv-row:not(.pv-head)'); if (rows.length < 2) return;
+    var start = rows[0], ans = rows[1];
+    var grps = row.querySelectorAll('.pick-grp');
+    var dirOn = grps[0] && grps[0].querySelector('.tool-opt.on');
+    var colOn = grps[1] && grps[1].querySelector('.tool-opt.on');
+    if (!dirOn || !colOn) return;
+    var n = parseInt(colOn.textContent, 10) || 0;
+    var shift = /left/.test(dirOn.textContent) ? -n : n;
+    var sCells = start.querySelectorAll('.c'), aCells = ans.querySelectorAll('.c');
+    var moves = [], targets = {};
+    sCells.forEach(function (c, i) {
+      var d = txt(c); var j = i + shift;
+      if (d && aCells[j] && txt(aCells[j]) === d) { moves.push([c, aCells[j]]); targets[j] = 1; }
+    });
+    var zeros = []; aCells.forEach(function (c, j) { if (txt(c) && !targets[j]) zeros.push(c); });
+    var box = row.querySelector('.pv-ans .filled');
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'wx-play'; btn.setAttribute('data-html2canvas-ignore', 'true');
+    btn.textContent = '\u25B6 Watch it'; (row.querySelector('.pv-main') || row).appendChild(btn);
+    var busy = false;
+    async function play() {
+      if (busy) return; busy = true; btn.disabled = true;
+      aCells.forEach(function (c) { c.classList.add('wx-hide'); });
+      if (box) box.classList.add('wx-fade');
+      dirOn.classList.remove('on'); colOn.classList.remove('on');
+      await wait(500);
+      dirOn.classList.add('on', 'wx-pop'); await wait(700);
+      colOn.classList.add('on', 'wx-pop'); await wait(700);
+      pv.querySelectorAll('.pt').forEach(function (d) { d.classList.add('wx-dot'); });
+      await wait(900);
+      var pr = pv.getBoundingClientRect();
+      for (var k = 0; k < moves.length; k++) {
+        var from = moves[k][0].getBoundingClientRect(), to = moves[k][1].getBoundingClientRect();
+        var g = document.createElement('span'); g.className = 'wx-ghost'; g.textContent = txt(moves[k][0]);
+        g.style.left = (from.left - pr.left) + 'px'; g.style.top = (from.top - pr.top) + 'px';
+        g.style.width = from.width + 'px'; g.style.height = from.height + 'px';
+        g.style.fontSize = getComputedStyle(moves[k][0]).fontSize;
+        pv.appendChild(g);
+        var dx = to.left - from.left, dy = to.top - from.top;
+        var a = g.animate([{ transform: 'translate(0,0)' }, { transform: 'translate(0,' + dy * 0.5 + 'px)', offset: 0.25 },
+          { transform: 'translate(' + dx + 'px,' + dy * 0.5 + 'px)', offset: 0.8 }, { transform: 'translate(' + dx + 'px,' + dy + 'px)' }],
+          { duration: 1400, easing: 'ease-in-out', fill: 'forwards' });
+        await a.finished; moves[k][1].classList.remove('wx-hide'); g.remove(); await wait(250);
+      }
+      await wait(300);
+      for (var z = 0; z < zeros.length; z++) { zeros[z].classList.remove('wx-hide'); zeros[z].classList.add('wx-zero'); await wait(500); }
+      await wait(500);
+      if (box) { box.classList.remove('wx-fade'); box.classList.add('wx-pop'); }
+      await wait(700);
+      aCells.forEach(function (c) { c.classList.remove('wx-hide'); });
+      row.querySelectorAll('.wx-pop,.wx-zero,.wx-dot').forEach(function (e) { e.classList.remove('wx-pop', 'wx-zero', 'wx-dot'); });
+      btn.textContent = '\u21BB Watch again'; btn.disabled = false; busy = false;
+    }
+    btn.addEventListener('click', play);
+    window.addEventListener('beforeprint', function () {
+      aCells.forEach(function (c) { c.classList.remove('wx-hide'); }); if (box) box.classList.remove('wx-fade');
+      dirOn.classList.add('on'); colOn.classList.add('on'); pv.querySelectorAll('.wx-ghost').forEach(function (g) { g.remove(); });
+    });
+    if ('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); setTimeout(play, 400); } }, { threshold: 0.7 });
+      io.observe(pv);
+    }
+  }
+  function init() { document.querySelectorAll('.model .model-row').forEach(setup); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 </script>
 </body>

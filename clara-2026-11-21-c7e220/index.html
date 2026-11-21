@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clara Homework 21 November 2026</title>
+<!--
+Clara, lesson of 21 November 2026: Y5 W45 multiply and divide by 10, 100, 1000, cards 00-06 + card 07 items 1-2
+(8.3 ÷ 10, 0.07 × 100). NOT reached and kept for the next lesson: card 07 items 3-5, card 08, exit ticket 09; none of
+their numbers is used here. Plus mental compensate / same difference (Dasha modelled the mental route on her 14 Nov
+items: «we're going to practise it more»), 25 × 4 and 25 × 5 to know by heart, and VR odd ones out with the link of
+the three that STAY (on 14 Nov she wrote the link of the two odd words in 2 of 8 items).
+Online sheet, block flow wrap by the Codex builder (three blocks = the three .section elements). Fields: 58.
+ANSWER POSITIONS (read back after placing):
+  Direction (left/right) items 1-10: R L L R | R L R R L L  (runs max 2, no 4-long alternation).
+  Columns items 1-10: 1 2 1 3 | 1 1 2 1 2 2.
+  Ben: No.
+  VR odd pairs (positions 1-5): (2,5) (1,3) (4,5) (1,4). VR link menu, correct option: 2, 3, 1, 3.
+MODELS: 3.9 × 100 = 390 and 3 ÷ 100 = 0.03 (no item); compensate 52,400 + 18,996; same difference 71,003 − 38,996 (items 85,006 − 46,997 and 63,004 − 21,998);
+  VR on fruit and furniture (no item). Items avoid every number of the W45 deck.
+CHART: her typed answer is mirrored into the place-value chart under the start number, lined up on the point
+  (a read-only mirror; it never shows the right answer).
+k for thousand is expanded only for whole thousands (decimals untouched).
+-->
+<style>
+/* Clara mint system (17 Oct 2026 design): Remember = mint card, Worked example = pale dashed inset,
+   tasks on white with green number badges and green-outline fields. Sheet of 21 November 2026. */
+@page { size:A4; margin:13mm 14mm; }
+:root { --ink:#203e35; --muted:#536e64; --green:#286951; --mint:#dcefe5; --pale:#f0f7f3; --line:#bfd7ca; --pt:#c2410c; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next',Arial,sans-serif; color:var(--ink); background:#fff; font-size:17px; line-height:1.45;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:18px 18px 40px; }
+.sheet-head { padding:18px 22px; background:var(--mint); border-radius:16px; margin-bottom:20px; }
+.eyebrow,.task-label,.ex-title,.role-label { font-size:12px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--green); }
+.eyebrow { margin-bottom:4px; }
+h1 { font-size:28px; line-height:1.2; letter-spacing:-.6px; }
+.section { margin-bottom:26px; }
+.section + .section { margin-top:34px; }
+.sec-head { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--line); margin-bottom:14px; break-after:avoid; }
+.subj { font-size:12px; text-transform:uppercase; font-weight:700; letter-spacing:1.3px; background:var(--green); color:#fff; border-radius:6px; padding:4px 10px; }
+.note { color:var(--muted); font-size:15px; }
+.task { margin-bottom:6px; }
+.task.gapt { margin-top:22px; }
+.task-label { margin-bottom:6px; }
+.remember { background:var(--mint); border-radius:12px; padding:12px 16px; margin-bottom:12px; break-inside:avoid; }
+.remember p { font-size:18px; font-weight:400; line-height:1.4; }
+.remember b { color:var(--green); }
+.model { margin:10px 0 12px; padding:12px 16px; background:var(--pale); border:1.5px dashed #92b6a3; border-radius:6px; break-inside:avoid; }
+.ex-title { display:block; margin-bottom:8px; color:var(--muted); }
+.model b, .model strong { color:var(--green); }
+.filled { display:inline-block; min-width:2.2em; padding:2px 8px; border:1.5px solid #9cc2ad; border-radius:8px; background:#fff; color:var(--green); font-weight:700; text-align:center; }
+.model-note { font-size:16px; color:var(--muted); margin-top:4px; text-wrap:pretty; }
+.model-row + .model-row { margin-top:14px; padding-top:14px; border-top:1px dashed #b5d0c1; }
+.pv-key { display:none; font-size:13px; color:var(--muted); margin-top:10px; }
+.role-label { margin:14px 0 6px; }
+.lead { font-size:22px; line-height:1.3; font-weight:700; margin-bottom:8px; break-after:avoid; text-wrap:pretty; }
+.small { font-size:14px; color:var(--muted); margin-bottom:8px; text-wrap:pretty; }
+.screen-only { display:inline; } .print-only { display:none; }
+.store { display:none !important; }
+.given { font-weight:700; font-variant-numeric:tabular-nums; }
+
+.q { padding:12px 0; border-bottom:1px solid #dfebe4; break-inside:avoid; page-break-inside:avoid; }
+.q-top { display:flex; align-items:flex-start; gap:12px; }
+.q-num { display:flex; align-items:center; justify-content:center; flex:0 0 30px; height:30px; border-radius:50%; color:#fff; background:var(--green); font-size:14px; font-weight:700; }
+.prompt { font-size:19px; padding-top:2px; text-wrap:pretty; }
+.lab { font-size:15px; font-weight:700; color:var(--muted); }
+
+/* fields: mint outline; answer text keeps the shared blue */
+body input.hw-field, body select[data-k], body .hw-field { background:#fff !important; border:1.5px solid #739d87 !important; border-radius:8px !important; }
+body input.hw-field:focus, body select[data-k]:focus { border-color:var(--green) !important; box-shadow:0 0 0 3px var(--mint); outline:none; }
+body input.hw-field { min-height:40px; font-size:18px; padding:4px 6px; }
+.gapn { width:3.6em; min-width:0 !important; text-align:center; }
+.gapn.wide { width:6.2em; }
+body select[data-k] { font:inherit; font-size:17px; min-height:40px; padding:4px 8px; min-width:0; max-width:100%; }
+.circle-opt { display:none; font-size:14px; }
+.eqrow { display:inline-flex; align-items:center; flex-wrap:nowrap; white-space:nowrap; font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; }
+
+/* read-only mirrors of her own earlier entries */
+.mirror { display:inline-block; min-width:2.4em; min-height:1.6em; padding:1px 8px; border:1.5px dashed #9cc2ad; border-radius:8px;
+  background:var(--pale); color:#1d4ed8; text-align:center; font-weight:700; vertical-align:middle; }
+
+/* tap buttons */
+.word-opt, .tool-opt { font:inherit; color:var(--ink); background:#fff; border:2px solid #8db89f; cursor:pointer;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; }
+.word-opt.on, .tool-opt.on { background:var(--green); border-color:var(--green); color:#fff; }
+.tool-pick { display:flex; flex-wrap:wrap; gap:8px; }
+.tool-opt { font-size:16px; font-weight:600; border-radius:22px; padding:6px 14px; min-height:42px; display:inline-flex; align-items:center; justify-content:center; }
+.ncol .tool-opt { min-width:46px; }
+.tool-pick > .hw-mark { flex-basis:100%; }
+.model .tool-opt { cursor:default; }
+
+/* ---------- place-value items ---------- */
+.pv-body { flex:1; min-width:0; display:flex; flex-direction:column; gap:12px; }
+.pv-main { display:flex; flex-direction:column; gap:10px; }
+.pv-calc .given { font-size:26px; }
+.pv-picks { display:flex; flex-wrap:wrap; gap:10px 28px; }
+.pick-grp { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.pv-ans .eqrow { font-size:22px; }
+.ben-say { font-size:20px; }
+
+/* the chart: fixed columns, the point pinned between ones and tenths */
+.pv { display:inline-grid; gap:0; align-self:flex-start; max-width:100%; padding:0 2px 2px 0; }
+.pv-row { display:grid; grid-template-columns:96px repeat(8, 52px); }
+.pv-lab { font-size:13px; font-weight:700; color:var(--muted); display:flex; align-items:center; padding-right:8px; line-height:1.15; }
+.pv .c { position:relative; display:flex; align-items:center; justify-content:center; height:42px; border:1px solid #c6dcd1; margin:0 -1px -1px 0;
+  background:#fff; font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; }
+.pv .c.c5, .pv .c.c6, .pv .c.c7 { background:#f7fbf9; }
+.pv-head .c { height:auto; min-height:34px; background:var(--mint); font-size:11px; font-weight:700; color:var(--green); text-align:center; line-height:1.1; padding:3px 2px; hyphens:manual; -webkit-hyphens:manual; overflow-wrap:normal; word-break:normal; }
+.pv-head .c5, .pv-head .c6, .pv-head .c7 { background:#e8f4ee; }
+.abbr { display:none; }
+.pv .mine .c { color:#1d4ed8; }
+.pv .ben-row .c { color:#8a5a14; }
+.pv .done .c { color:var(--green); }
+.pv .pt { position:absolute; right:-5px; bottom:5px; width:9px; height:9px; border-radius:50%; background:var(--pt); z-index:2; }
+
+/* ---------- mental methods ---------- */
+.m-body { flex:1; min-width:0; display:flex; flex-wrap:wrap; gap:10px 36px; align-items:flex-start; }
+.m-calc { font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; padding-top:2px; }
+.steps { display:grid; gap:8px; }
+.step { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.step .lab { min-width:7.4em; }
+.step.so .lab { color:var(--green); }
+.fact-row { display:flex; flex-wrap:wrap; gap:14px 40px; }
+.fact { background:var(--pale); border-radius:12px; padding:10px 18px; }
+.facts { border-bottom:0; }
+
+/* ---------- odd ones out ---------- */
+.vq-body { flex:1; min-width:0; }
+.word-pick { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
+.word-opt { font-size:18px; font-weight:600; border-radius:14px; padding:8px 6px; min-height:48px; display:flex; align-items:center; justify-content:center; text-align:center; }
+.word-opt.still { cursor:default; }
+.word-pick > .hw-mark { grid-column:1/-1; }
+.word-hint { font-size:15px; color:var(--muted); margin-top:6px; }
+.link-row { margin-top:10px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+body select.link { min-width:300px; }
+.model .word-pick { max-width:700px; }
+.model .mrow { display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; font-size:19px; margin-top:12px; }
+
+/* shared bar in the mint palette */
+body .hw-bar { border:1px solid var(--line); background:var(--pale); border-radius:16px; box-shadow:none; }
+body .hw-send { color:#fff; background:var(--green); border:0; border-radius:10px; font-family:inherit; }
+body .hw-mark.hw-ok { color:var(--green); }
+
+/* ---------- big screens: whole width, big type (Dasha, 1 Nov 2026) ---------- */
+@media screen and (min-width:900px) {
+  body { max-width:1640px; margin:0 auto; padding:36px 48px 70px; background:#edf5f0; }
+  #sheet { background:#fff; padding:44px 52px; border-radius:24px; }
+  body:not(:has(#sheet)) { background:#fff; }
+  .sheet-head { padding:26px 32px; margin-bottom:34px; } h1 { font-size:40px; }
+  .eyebrow,.task-label,.ex-title,.role-label { font-size:16px; }
+  .subj { font-size:16px; padding:6px 14px; } .note { font-size:22px; }
+  .section + .section { margin-top:64px; }
+  .remember { padding:18px 24px; } .remember p { font-size:28px; }
+  .model { padding:20px 26px; }
+  .model-note { font-size:22px; }
+  .lead { font-size:36px; margin-bottom:14px; }
+  .small, .word-hint { font-size:20px; }
+  .q { padding:24px 0; } .q-num { flex-basis:42px; height:42px; font-size:20px; } .q-top { gap:18px; }
+  .prompt, .ben-say { font-size:29px; }
+  .lab { font-size:22px; }
+  body input.hw-field { min-height:56px; font-size:27px; }
+  body select[data-k] { min-height:56px; font-size:26px; padding:6px 12px; }
+  .circle-opt { font-size:20px; }
+  .eqrow, .pv-ans .eqrow { font-size:30px; }
+  .mirror { min-height:1.5em; }
+  .tool-opt { font-size:26px; padding:8px 22px; min-height:60px; border-radius:30px; }
+  .ncol .tool-opt { min-width:66px; }
+  .tool-pick { gap:12px; }
+  /* prompt and controls on the left, the chart on the right */
+  .pv-body { flex-direction:row; align-items:center; gap:24px 56px; flex-wrap:wrap; }
+  .pv-main { flex:1 1 420px; gap:18px; }
+  .pv-calc .given { font-size:40px; }
+  .pv-picks { gap:16px 40px; }
+  .pick-grp { gap:14px; }
+  .pv-row { grid-template-columns:136px repeat(8, 78px); }
+  .pv-lab { font-size:20px; }
+  .pv .c { height:60px; font-size:32px; }
+  .pv-head .c { min-height:52px; font-size:13px; padding:3px 3px; }
+  .pv .pt { width:13px; height:13px; right:-7px; bottom:8px; }
+  .m-calc { font-size:38px; } .m-body { gap:16px 64px; } .steps { gap:14px; }
+  .step .lab { min-width:7.2em; }
+  .fact { padding:16px 28px; border-radius:16px; } .fact-row { gap:20px 60px; }
+  .word-pick { gap:18px; }
+  .word-opt { font-size:28px; min-height:72px; border-radius:18px; }
+  .link-row { margin-top:16px; gap:16px; }
+  body select.link { min-width:520px; }
+  .model .word-pick { max-width:1100px; }
+  .model .mrow { font-size:28px; gap:10px 20px; }
+}
+
+/* phones */
+@media screen and (max-width:620px) {
+  body { padding:10px 8px 30px; }
+  .lead { font-size:20px; } .prompt, .ben-say { font-size:18px; } .remember p { font-size:17px; }
+  .q-top { gap:8px; } .q-num { flex-basis:26px; height:26px; font-size:13px; }
+  .pv-row { grid-template-columns:62px repeat(8, minmax(0, 34px)); }
+  .pv-lab { font-size:11px; }
+  .pv .c { height:34px; font-size:18px; }
+  .full { display:none; } .abbr { display:inline; } .pv-key { display:block; }
+  .pv-head .c { font-size:12px; min-height:26px; }
+  .pv .pt { width:7px; height:7px; right:-4px; bottom:4px; }
+  .tool-opt { font-size:15px; padding:5px 11px; min-height:40px; }
+  .m-calc { font-size:22px; }
+  .step .lab { min-width:0; flex-basis:100%; }
+  .eqrow { font-size:18px; }
+  .gapn.wide { width:5.4em; }
+  .word-pick { grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+  .word-opt { font-size:16px; min-height:44px; padding:6px 2px; }
+  body select.link { min-width:0; width:100%; }
+  .model .mrow { font-size:17px; }
+}
+
+/* PDF export (hw.js, 800px frame) and paper */
+@media print {
+  body { padding:0; font-size:14px; }
+  .screen-only, .hw-bar { display:none !important; } .print-only { display:inline !important; }
+  p.print-only { display:block !important; }
+  .choice-wrap.is-empty select { display:none !important; }
+  .choice-wrap.is-empty .circle-opt { display:inline-block; }
+  .word-hint { display:none !important; }
+  .sheet-head { padding:12px 16px; margin-bottom:12px; } h1 { font-size:22px; }
+  .lead { font-size:16px; } .remember p { font-size:14px; } .model-note { font-size:12px; }
+  .prompt, .ben-say { font-size:14px; }
+  .q { padding:7px 0; }
+  .remember { padding:8px 12px; margin-bottom:8px; } .model { padding:8px 12px; margin:6px 0 8px; }
+  .pv-body { flex-direction:row; align-items:center; gap:10px 24px; }
+  .pv-main { flex:1 1 260px; gap:6px; }
+  .pv-calc .given { font-size:18px; }
+  .pv-row { grid-template-columns:64px repeat(8, 36px); }
+  .pv-lab { font-size:10px; }
+  .pv .c { height:26px; font-size:14px; }
+  .full { display:none !important; } .abbr { display:inline !important; }
+  .pv-head .c { font-size:11px; min-height:20px; padding:1px; }
+  .pv-key { display:block; font-size:10px; margin-top:6px; }
+  .model-row + .model-row { margin-top:6px; padding-top:6px; }
+  .pv .pt { width:6px; height:6px; right:-3px; bottom:3px; }
+  .tool-opt { font-size:12px; padding:2px 8px; min-height:24px; }
+  .ncol .tool-opt { min-width:26px; }
+  .eqrow, .pv-ans .eqrow { font-size:14px; } .lab { font-size:12px; }
+  .m-calc { font-size:16px; } .steps { gap:4px; }
+  .word-opt { font-size:13px; min-height:28px; padding:3px 4px; border-radius:8px; }
+  .word-pick { gap:6px; }
+  .link-row { margin-top:4px; }
+  .model .mrow { font-size:14px; }
+  .section + .section { margin-top:18px; }
+  .task { break-inside:avoid; page-break-inside:avoid; }
+  .sec-head, .task-label, .role-label, .lead, .task { break-after:avoid; page-break-after:avoid; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Clara" data-sheet="Maths 2026-11-21" data-sheet-id="clara-2026-11-21-maths">
+<div id="sheet">
+
+
+<div class="sheet-head"><div class="eyebrow">Maths and verbal reasoning</div><h1>Clara’s homework</h1></div>
+
+<div class="section maths pvsec">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">×10, ÷10 and friends</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember"><p><b>×</b> slides every digit LEFT, <b>÷</b> slides it RIGHT: 1 column for 10, 2 for 100, 3 for 1,000. The point stays still, and a 0 holds an empty&nbsp;place.</p></div>
+<div class="model"><p class="ex-title">Worked example</p><div class="pv-body model-row"><div class="pv-main"><div class="pv-calc"><span class="given">3.9&nbsp;×&nbsp;100</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick"><span class="tool-opt on">←&nbsp;left</span><span class="tool-opt">right&nbsp;→</span></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol"><span class="tool-opt">1</span><span class="tool-opt on">2</span><span class="tool-opt">3</span></div></div></div><div class="pv-ans"><span class="eqrow">3.9&nbsp;×&nbsp;100&nbsp;=&nbsp;<span class="filled">390</span></span></div><p class="model-note">The 3 goes from ones to hundreds. The 9 goes from tenths to tens. A 0 holds the&nbsp;ones.</p></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">3<i class="pt"></i></span><span class="c c5">9</span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row done"><span class="pv-lab">Answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2">3</span><span class="c c3">9</span><span class="c c4">0<i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div><div class="pv-body model-row"><div class="pv-main"><div class="pv-calc"><span class="given">3&nbsp;÷&nbsp;100</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick"><span class="tool-opt">←&nbsp;left</span><span class="tool-opt on">right&nbsp;→</span></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol"><span class="tool-opt">1</span><span class="tool-opt on">2</span><span class="tool-opt">3</span></div></div></div><div class="pv-ans"><span class="eqrow">3&nbsp;÷&nbsp;100&nbsp;=&nbsp;<span class="filled">0.03</span></span></div><p class="model-note">The 3 slides from ones to hundredths. A 0 holds the ones and the&nbsp;tenths.</p></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">3<i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row done"><span class="pv-lab">Answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">0<i class="pt"></i></span><span class="c c5">0</span><span class="c c6">3</span><span class="c c7"></span></div></div></div><p class="pv-key">TTh ten thousands, Th thousands, H hundreds, T tens, O ones, t tenths, h hundredths, th&nbsp;thousandths</p></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap the direction and the number of columns. Then type the&nbsp;answer.</span><span class="print-only">Circle the direction and the number of columns. Then write the&nbsp;answer.</span></p>
+<p class="small screen-only">Your answer appears in the chart, so you can see where the digits&nbsp;went.</p>
+</div>
+<div class="q pvq"><div class="q-top"><div class="q-num">1</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">9,100&nbsp;÷&nbsp;10</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p1d" data-field="p1d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p1d" data-label="1. 9,100 ÷ 10: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p1c" data-field="p1c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p1c" data-label="1. 9,100 ÷ 10: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">9,100&nbsp;÷&nbsp;10&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p1a" data-label="1. 9,100 ÷ 10 =" aria-label="1. 9,100 ÷ 10 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1">9</span><span class="c c2">1</span><span class="c c3">0</span><span class="c c4">0<i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p1a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div><div class="q pvq"><div class="q-top"><div class="q-num">2</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">38&nbsp;×&nbsp;100</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p2d" data-field="p2d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p2d" data-label="2. 38 × 100: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p2c" data-field="p2c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p2c" data-label="2. 38 × 100: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">38&nbsp;×&nbsp;100&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p2a" data-label="2. 38 × 100 =" aria-label="2. 38 × 100 =" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3">3</span><span class="c c4">8<i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p2a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div><div class="q pvq"><div class="q-top"><div class="q-num">3</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">405&nbsp;×&nbsp;10</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p3d" data-field="p3d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p3d" data-label="3. 405 × 10: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p3c" data-field="p3c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p3c" data-label="3. 405 × 10: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">405&nbsp;×&nbsp;10&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p3a" data-label="3. 405 × 10 =" aria-label="3. 405 × 10 =" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2">4</span><span class="c c3">0</span><span class="c c4">5<i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p3a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div><div class="q pvq"><div class="q-top"><div class="q-num">4</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">64,000&nbsp;÷&nbsp;1,000</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p4d" data-field="p4d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p4d" data-label="4. 64,000 ÷ 1,000: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p4c" data-field="p4c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p4c" data-label="4. 64,000 ÷ 1,000: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">64,000&nbsp;÷&nbsp;1,000&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p4a" data-label="4. 64,000 ÷ 1,000 =" aria-label="4. 64,000 ÷ 1,000 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0">6</span><span class="c c1">4</span><span class="c c2">0</span><span class="c c3">0</span><span class="c c4">0<i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p4a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div>
+<div class="task gapt"><p class="lead">Now the same with&nbsp;decimals.</p></div>
+<div class="q pvq"><div class="q-top"><div class="q-num">5</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">4.6&nbsp;÷&nbsp;10</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p5d" data-field="p5d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p5d" data-label="5. 4.6 ÷ 10: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p5c" data-field="p5c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p5c" data-label="5. 4.6 ÷ 10: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">4.6&nbsp;÷&nbsp;10&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p5a" data-label="5. 4.6 ÷ 10 =" aria-label="5. 4.6 ÷ 10 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">4<i class="pt"></i></span><span class="c c5">6</span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p5a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div><div class="q pvq"><div class="q-top"><div class="q-num">6</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">2.7&nbsp;×&nbsp;10</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p6d" data-field="p6d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p6d" data-label="6. 2.7 × 10: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p6c" data-field="p6c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p6c" data-label="6. 2.7 × 10: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">2.7&nbsp;×&nbsp;10&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p6a" data-label="6. 2.7 × 10 =" aria-label="6. 2.7 × 10 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">2<i class="pt"></i></span><span class="c c5">7</span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p6a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div><div class="q pvq"><div class="q-top"><div class="q-num">7</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">75&nbsp;÷&nbsp;100</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p7d" data-field="p7d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p7d" data-label="7. 75 ÷ 100: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p7c" data-field="p7c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p7c" data-label="7. 75 ÷ 100: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">75&nbsp;÷&nbsp;100&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p7a" data-label="7. 75 ÷ 100 =" aria-label="7. 75 ÷ 100 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3">7</span><span class="c c4">5<i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p7a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div><div class="q pvq"><div class="q-top"><div class="q-num">8</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">9&nbsp;÷&nbsp;10</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p8d" data-field="p8d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p8d" data-label="8. 9 ÷ 10: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p8c" data-field="p8c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p8c" data-label="8. 9 ÷ 10: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">9&nbsp;÷&nbsp;10&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p8a" data-label="8. 9 ÷ 10 =" aria-label="8. 9 ÷ 10 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">9<i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p8a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div><div class="q pvq"><div class="q-top"><div class="q-num">9</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">0.3&nbsp;×&nbsp;100</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p9d" data-field="p9d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p9d" data-label="9. 0.3 × 100: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p9c" data-field="p9c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p9c" data-label="9. 0.3 × 100: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">0.3&nbsp;×&nbsp;100&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p9a" data-label="9. 0.3 × 100 =" aria-label="9. 0.3 × 100 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">0<i class="pt"></i></span><span class="c c5">3</span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row mine" data-from="p9a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div><div class="q pvq"><div class="q-top"><div class="q-num">10</div><div class="pv-body"><div class="pv-main"><div class="pv-calc"><span class="given">0.08&nbsp;×&nbsp;100</span></div><div class="pv-picks"><div class="pick-grp"><span class="lab">Direction</span><div class="tool-pick dir" data-store="p10d" data-field="p10d"><button type="button" class="tool-opt" data-v="left">←&nbsp;left</button><button type="button" class="tool-opt" data-v="right">right&nbsp;→</button></div><div class="store"><select data-k="p10d" data-label="10. 0.08 × 100: direction" tabindex="-1" class="hw-field"><option value=""></option><option value="left">left</option><option value="right">right</option></select></div></div><div class="pick-grp"><span class="lab">Columns</span><div class="tool-pick ncol" data-store="p10c" data-field="p10c"><button type="button" class="tool-opt" data-v="1">1</button><button type="button" class="tool-opt" data-v="2">2</button><button type="button" class="tool-opt" data-v="3">3</button></div><div class="store"><select data-k="p10c" data-label="10. 0.08 × 100: columns" tabindex="-1" class="hw-field"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></div></div><div class="pv-ans"><span class="eqrow">0.08&nbsp;×&nbsp;100&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="p10a" data-label="10. 0.08 × 100 =" aria-label="10. 0.08 × 100 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">0<i class="pt"></i></span><span class="c c5">0</span><span class="c c6">8</span><span class="c c7"></span></div><div class="pv-row mine" data-from="p10a"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div>
+<div class="task gapt"><p class="lead"><span class="screen-only">Is Ben right? Tap Yes or No. Then type the right&nbsp;answer.</span><span class="print-only">Is Ben right? Circle Yes or No. Then write the right&nbsp;answer.</span></p></div>
+<div class="q pvq ben"><div class="q-top"><div class="q-num">11</div><div class="pv-body"><div class="pv-main"><p class="prompt ben-say">Ben says: “<b>5.6&nbsp;×&nbsp;10&nbsp;=&nbsp;5.60.</b> I just added a&nbsp;zero.”</p><div class="pick-grp"><span class="lab">Is Ben right?</span><div class="tool-pick " data-store="bn1" data-field="bn1"><button type="button" class="tool-opt" data-v="yes">Yes</button><button type="button" class="tool-opt" data-v="no">No</button></div><div class="store"><select data-k="bn1" data-label="11. Is Ben right: 5.6 × 10 = 5.60?" tabindex="-1" class="hw-field"><option value=""></option><option value="yes">yes</option><option value="no">no</option></select></div></div><div class="pv-ans"><span class="eqrow">5.6&nbsp;×&nbsp;10&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="bn2" data-label="11. 5.6 × 10 =" aria-label="11. 5.6 × 10 =" autocomplete="off" inputmode="decimal" spellcheck="false"></span></div></div><div class="pv" aria-hidden="true"><div class="pv-row pv-head"><span class="pv-lab"></span><span class="c h c0"><span class="full">Ten thousands</span><span class="abbr">TTh</span></span><span class="c h c1"><span class="full">Thou&shy;sands</span><span class="abbr">Th</span></span><span class="c h c2"><span class="full">Hun&shy;dreds</span><span class="abbr">H</span></span><span class="c h c3"><span class="full">Tens</span><span class="abbr">T</span></span><span class="c h c4"><span class="full">Ones</span><span class="abbr">O</span></span><span class="c h c5"><span class="full">Tenths</span><span class="abbr">t</span></span><span class="c h c6"><span class="full">Hundred&shy;ths</span><span class="abbr">h</span></span><span class="c h c7"><span class="full">Thousand&shy;ths</span><span class="abbr">th</span></span></div><div class="pv-row "><span class="pv-lab">Start</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">5<i class="pt"></i></span><span class="c c5">6</span><span class="c c6"></span><span class="c c7"></span></div><div class="pv-row ben-row"><span class="pv-lab">Ben’s 5.60</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4">5<i class="pt"></i></span><span class="c c5">6</span><span class="c c6">0</span><span class="c c7"></span></div><div class="pv-row mine" data-from="bn2"><span class="pv-lab">Your answer</span><span class="c c0"></span><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"><i class="pt"></i></span><span class="c c5"></span><span class="c c6"></span><span class="c c7"></span></div></div></div></div></div>
+</div>
+
+<div class="section maths mental">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">In your head</span></div>
+<div class="task">
+<div class="model"><p class="ex-title">Worked example: compensate</p><div class="m-body"><div class="m-calc">52,400&nbsp;+&nbsp;18,996</div><div class="steps"><div class="step"><span class="lab">Round</span><span class="eqrow">18,996&nbsp;+&nbsp;<span class="filled">4</span>&nbsp;=&nbsp;<span class="filled">19,000</span></span></div><div class="step"><span class="lab">Add</span><span class="eqrow">52,400&nbsp;+&nbsp;<span class="filled">19,000</span>&nbsp;=&nbsp;<span class="filled">71,400</span></span></div><div class="step so"><span class="lab">Give it back</span><span class="eqrow"><span class="filled">71,400</span>&nbsp;−&nbsp;<span class="filled">4</span>&nbsp;=&nbsp;<span class="filled">71,396</span></span></div></div></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead">Do these in your head. <span class="screen-only">Type</span><span class="print-only">Write</span> each&nbsp;step.</p>
+</div>
+<div class="q mq"><div class="q-top"><div class="q-num">1</div><div class="m-body"><div class="m-calc">47,200&nbsp;+&nbsp;26,998</div><div class="steps"><div class="step"><span class="lab">Round</span><span class="eqrow">26,998&nbsp;+&nbsp;<input class="hw-field num gapn" data-k="m1d" data-label="M1. 47,200 + 26,998: round, add" aria-label="M1. 47,200 + 26,998: round, add" autocomplete="off" inputmode="numeric" spellcheck="false">&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m1r" data-label="M1. 47,200 + 26,998: the round number" aria-label="M1. 47,200 + 26,998: the round number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step"><span class="lab">Add</span><span class="eqrow">47,200&nbsp;+&nbsp;<span class="mirror" data-from="m1r"></span>&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m1s" data-label="M1. 47,200 + 26,998: new sum" aria-label="M1. 47,200 + 26,998: new sum" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step so"><span class="lab">Give it back</span><span class="eqrow"><span class="mirror" data-from="m1s"></span>&nbsp;−&nbsp;<span class="mirror" data-from="m1d"></span>&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m1a" data-label="M1. 47,200 + 26,998: answer" aria-label="M1. 47,200 + 26,998: answer" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div></div></div></div><div class="q mq"><div class="q-top"><div class="q-num">2</div><div class="m-body"><div class="m-calc">35,650&nbsp;+&nbsp;39,997</div><div class="steps"><div class="step"><span class="lab">Round</span><span class="eqrow">39,997&nbsp;+&nbsp;<input class="hw-field num gapn" data-k="m2d" data-label="M2. 35,650 + 39,997: round, add" aria-label="M2. 35,650 + 39,997: round, add" autocomplete="off" inputmode="numeric" spellcheck="false">&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m2r" data-label="M2. 35,650 + 39,997: the round number" aria-label="M2. 35,650 + 39,997: the round number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step"><span class="lab">Add</span><span class="eqrow">35,650&nbsp;+&nbsp;<span class="mirror" data-from="m2r"></span>&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m2s" data-label="M2. 35,650 + 39,997: new sum" aria-label="M2. 35,650 + 39,997: new sum" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step so"><span class="lab">Give it back</span><span class="eqrow"><span class="mirror" data-from="m2s"></span>&nbsp;−&nbsp;<span class="mirror" data-from="m2d"></span>&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m2a" data-label="M2. 35,650 + 39,997: answer" aria-label="M2. 35,650 + 39,997: answer" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div></div></div></div>
+<div class="task gapt">
+<div class="model"><p class="ex-title">Worked example: same difference</p><div class="m-body"><div class="m-calc">71,003&nbsp;−&nbsp;38,996</div><div class="steps"><div class="step"><span class="lab">Round</span><span class="eqrow">38,996&nbsp;+&nbsp;<span class="filled">4</span>&nbsp;=&nbsp;<span class="filled">39,000</span></span></div><div class="step"><span class="lab">Same to both</span><span class="eqrow">71,003&nbsp;+&nbsp;<span class="filled">4</span>&nbsp;=&nbsp;<span class="filled">71,007</span></span></div><div class="step so"><span class="lab">Take away</span><span class="eqrow"><span class="filled">71,007</span>&nbsp;−&nbsp;<span class="filled">39,000</span>&nbsp;=&nbsp;<span class="filled">32,007</span></span></div></div></div></div>
+<p class="lead">Now these in your head. <span class="screen-only">Type</span><span class="print-only">Write</span> each&nbsp;step.</p>
+</div>
+<div class="q mq"><div class="q-top"><div class="q-num">3</div><div class="m-body"><div class="m-calc">85,006&nbsp;−&nbsp;46,997</div><div class="steps"><div class="step"><span class="lab">Round</span><span class="eqrow">46,997&nbsp;+&nbsp;<input class="hw-field num gapn" data-k="m3d" data-label="M3. 85,006 − 46,997: round, add" aria-label="M3. 85,006 − 46,997: round, add" autocomplete="off" inputmode="numeric" spellcheck="false">&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m3r" data-label="M3. 85,006 − 46,997: the round number" aria-label="M3. 85,006 − 46,997: the round number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step"><span class="lab">Same to both</span><span class="eqrow">85,006&nbsp;+&nbsp;<span class="mirror" data-from="m3d"></span>&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m3s" data-label="M3. 85,006 − 46,997: new first number" aria-label="M3. 85,006 − 46,997: new first number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step so"><span class="lab">Take away</span><span class="eqrow"><span class="mirror" data-from="m3s"></span>&nbsp;−&nbsp;<span class="mirror" data-from="m3r"></span>&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m3a" data-label="M3. 85,006 − 46,997: answer" aria-label="M3. 85,006 − 46,997: answer" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div></div></div></div><div class="q mq"><div class="q-top"><div class="q-num">4</div><div class="m-body"><div class="m-calc">63,004&nbsp;−&nbsp;21,998</div><div class="steps"><div class="step"><span class="lab">Round</span><span class="eqrow">21,998&nbsp;+&nbsp;<input class="hw-field num gapn" data-k="m4d" data-label="M4. 63,004 − 21,998: round, add" aria-label="M4. 63,004 − 21,998: round, add" autocomplete="off" inputmode="numeric" spellcheck="false">&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m4r" data-label="M4. 63,004 − 21,998: the round number" aria-label="M4. 63,004 − 21,998: the round number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step"><span class="lab">Same to both</span><span class="eqrow">63,004&nbsp;+&nbsp;<span class="mirror" data-from="m4d"></span>&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m4s" data-label="M4. 63,004 − 21,998: new first number" aria-label="M4. 63,004 − 21,998: new first number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="step so"><span class="lab">Take away</span><span class="eqrow"><span class="mirror" data-from="m4s"></span>&nbsp;−&nbsp;<span class="mirror" data-from="m4r"></span>&nbsp;=&nbsp;<input class="hw-field num gapn wide" data-k="m4a" data-label="M4. 63,004 − 21,998: answer" aria-label="M4. 63,004 − 21,998: answer" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div></div></div></div>
+<div class="task gapt"><p class="lead">Two facts to know by heart. Fill them&nbsp;in.</p></div>
+<div class="q facts"><div class="fact-row"><div class="fact"><span class="eqrow">25&nbsp;×&nbsp;4&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="f1" data-label="F1. 25 × 4 =" aria-label="F1. 25 × 4 =" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div><div class="fact"><span class="eqrow">25&nbsp;×&nbsp;5&nbsp;=&nbsp;<input class="hw-field num gapn" data-k="f2" data-label="F2. 25 × 5 =" aria-label="F2. 25 × 5 =" autocomplete="off" inputmode="numeric" spellcheck="false"></span></div></div></div>
+</div>
+
+<div class="section vr">
+<div class="sec-head"><span class="subj">Verbal reasoning</span><span class="note">Odd ones out</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember"><p>Three of the five words are linked. The link is about the three that STAY, not the two odd&nbsp;ones.</p></div>
+<div class="model"><p class="ex-title">Worked example</p>
+<div class="word-pick"><span class="word-opt still">apple</span><span class="word-opt still on">chair</span><span class="word-opt still">plum</span><span class="word-opt still">banana</span><span class="word-opt still on">table</span></div>
+<div class="mrow"><span class="lab">The three that stay are</span><span class="filled">fruits</span></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap the two words that do not belong. Then choose what links the three that&nbsp;STAY.</span><span class="print-only">Circle the two words that do not belong. Then circle what links the three that&nbsp;STAY.</span></p>
+</div>
+<div class="q vq"><div class="q-top"><div class="q-num">1</div><div class="vq-body"><div class="word-pick" data-store="o1" data-field="o1"><button type="button" class="word-opt" data-v="enormous">enormous</button><button type="button" class="word-opt" data-v="gentle">gentle</button><button type="button" class="word-opt" data-v="vast">vast</button><button type="button" class="word-opt" data-v="huge">huge</button><button type="button" class="word-opt" data-v="timid">timid</button></div><div class="store"><input data-k="o1" data-label="V1. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three that stay are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l1" data-label="V1. What links the three that stay" aria-label="V1. What links the three that stay"><option value="">Choose</option><option value="words that mean kind">words that mean kind</option><option value="words that mean big">words that mean big</option><option value="words that mean scared">words that mean scared</option></select><span class="circle-opt">words that mean kind / words that mean big / words that mean scared</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">2</div><div class="vq-body"><div class="word-pick" data-store="o2" data-field="o2"><button type="button" class="word-opt" data-v="cushion">cushion</button><button type="button" class="word-opt" data-v="cello">cello</button><button type="button" class="word-opt" data-v="ladder">ladder</button><button type="button" class="word-opt" data-v="harp">harp</button><button type="button" class="word-opt" data-v="flute">flute</button></div><div class="store"><input data-k="o2" data-label="V2. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three that stay are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l2" data-label="V2. What links the three that stay" aria-label="V2. What links the three that stay"><option value="">Choose</option><option value="tools">tools</option><option value="things in a bedroom">things in a bedroom</option><option value="musical instruments">musical instruments</option></select><span class="circle-opt">tools / things in a bedroom / musical instruments</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">3</div><div class="vq-body"><div class="word-pick" data-store="o3" data-field="o3"><button type="button" class="word-opt" data-v="ancient">ancient</button><button type="button" class="word-opt" data-v="elderly">elderly</button><button type="button" class="word-opt" data-v="antique">antique</button><button type="button" class="word-opt" data-v="rapid">rapid</button><button type="button" class="word-opt" data-v="sturdy">sturdy</button></div><div class="store"><input data-k="o3" data-label="V3. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three that stay are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l3" data-label="V3. What links the three that stay" aria-label="V3. What links the three that stay"><option value="">Choose</option><option value="words that mean old">words that mean old</option><option value="words that mean fast">words that mean fast</option><option value="words that mean strong">words that mean strong</option></select><span class="circle-opt">words that mean old / words that mean fast / words that mean strong</span></span></div></div></div></div><div class="q vq"><div class="q-top"><div class="q-num">4</div><div class="vq-body"><div class="word-pick" data-store="o4" data-field="o4"><button type="button" class="word-opt" data-v="shout">shout</button><button type="button" class="word-opt" data-v="whisper">whisper</button><button type="button" class="word-opt" data-v="mutter">mutter</button><button type="button" class="word-opt" data-v="sprint">sprint</button><button type="button" class="word-opt" data-v="murmur">murmur</button></div><div class="store"><input data-k="o4" data-label="V4. The two odd words" tabindex="-1" autocomplete="off" class="hw-field"></div><p class="word-hint" hidden>Two words only. Tap a word again to take it&nbsp;back.</p><div class="link-row"><span class="lab">The three that stay are</span><span class="choice-wrap is-empty"><select class="hw-field link" data-k="l4" data-label="V4. What links the three that stay" aria-label="V4. What links the three that stay"><option value="">Choose</option><option value="ways of moving">ways of moving</option><option value="ways of speaking loudly">ways of speaking loudly</option><option value="ways of speaking quietly">ways of speaking quietly</option></select><span class="circle-opt">ways of moving / ways of speaking loudly / ways of speaking quietly</span></span></div></div></div></div>
+</div>
+
+<script>
+/* An empty menu prints as words to circle; a chosen one prints as it is. */
+(function () {
+  function sync() {
+    document.querySelectorAll('.choice-wrap').forEach(function (w) {
+      var s = w.querySelector('select'); w.classList.toggle('is-empty', !(s && s.value));
+    });
+  }
+  document.addEventListener('change', sync, true);
+  window.addEventListener('beforeprint', sync);
+  window.addEventListener('load', function () { sync(); setTimeout(sync, 500); setTimeout(sync, 1500); });
+  sync();
+})();
+
+/* Number boxes: Clara may write k for a whole number of thousands (Dasha, 24 Oct 2026).
+   Decimals are left exactly as typed. */
+(function () {
+  function tidy(el) {
+    var v = String(el.value || '').trim();
+    var m = v.match(/^(\d+)\s*k$/i);
+    if (m) v = (parseInt(m[1], 10) * 1000).toLocaleString('en-GB');
+    if (v !== el.value) { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); }
+  }
+  document.addEventListener('change', function (e) { if (e.target.classList && e.target.classList.contains('num')) tidy(e.target); }, true);
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.hw-send')) [].forEach.call(document.querySelectorAll('input.num'), tidy);
+  }, true);
+})();
+
+function claraStore(k) { return document.querySelector(".store [data-k='" + k + "']"); }
+function claraSet(s, v) {
+  if (!s || s.value === v) return;
+  s.value = v;
+  s.dispatchEvent(new Event('input', { bubbles: true }));
+  s.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* One-choice buttons (direction, columns, Ben): tap to choose, tap again to clear. The answer lives in a
+   hidden select (data-k), so hw.js saves, restores, sends and marks it on the data-field twin. */
+(function () {
+  function init() {
+    document.querySelectorAll('.tool-pick[data-store]').forEach(function (g) {
+      var s = claraStore(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.tool-opt'));
+      function paint() { btns.forEach(function (b) { var on = s.value === b.dataset.v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }); }
+      paint(); s.addEventListener('change', paint);
+      btns.forEach(function (b) { b.addEventListener('click', function () { claraSet(s, s.value === b.dataset.v ? '' : b.dataset.v); paint(); }); });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* Odd ones out: tap exactly two words. Both are kept in a hidden input as «word, word»
+   (key type set, any order). A third tap does nothing and shows a short note. */
+(function () {
+  function init() {
+    document.querySelectorAll('.word-pick[data-store]').forEach(function (g) {
+      var s = claraStore(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.word-opt'));
+      var hint = g.parentNode.querySelector('.word-hint');
+      function chosen() { return String(s.value || '').split(',').map(function (x) { return x.trim(); }).filter(String); }
+      function paint() {
+        var c = chosen();
+        btns.forEach(function (b) { var on = c.indexOf(b.dataset.v) >= 0; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      }
+      paint(); s.addEventListener('change', paint);
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var c = chosen(), i = c.indexOf(b.dataset.v);
+          if (i >= 0) c.splice(i, 1);
+          else if (c.length >= 2) { if (hint) { hint.hidden = false; setTimeout(function () { hint.hidden = true; }, 2600); } return; }
+          else c.push(b.dataset.v);
+          var order = btns.map(function (x) { return x.dataset.v; });
+          c.sort(function (a, z) { return order.indexOf(a) - order.indexOf(z); });
+          if (hint) hint.hidden = true;
+          claraSet(s, c.join(', ')); paint();
+        });
+      });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* Mirrors (Dasha, 1 Nov 2026): her own earlier entry appears, read-only, in the next step, and her typed
+   answer appears in the place-value chart lined up on the point. They follow edits and clearing, and
+   never show the right answer. */
+(function () {
+  function digits(v) {
+    v = String(v || '').replace(/[\s,]/g, '');
+    var m = v.match(/^(\d+)k$/i); if (m) v = String(parseInt(m[1], 10) * 1000);
+    if (!/^\d*\.?\d*$/.test(v) || !/\d/.test(v)) return null;
+    var p = v.split('.'), w = p[0] || '', f = p[1] || '';
+    if (w.length > 5 || f.length > 3) return null;
+    var cells = ['', '', '', '', '', '', '', ''];
+    for (var i = 0; i < w.length; i++) cells[4 - i] = w.charAt(w.length - 1 - i);
+    for (var j = 0; j < f.length; j++) cells[5 + j] = f.charAt(j);
+    return cells;
+  }
+  function upd() {
+    document.querySelectorAll('.mirror[data-from]').forEach(function (m) {
+      var src = document.querySelector("[data-k='" + m.dataset.from + "']");
+      m.textContent = src ? String(src.value || '').trim() : '';
+    });
+    document.querySelectorAll('.pv-row[data-from]').forEach(function (r) {
+      var src = document.querySelector("input[data-k='" + r.dataset.from + "']");
+      var d = src ? digits(src.value) : null;
+      r.querySelectorAll('.c').forEach(function (c, i) {
+        var dot = c.querySelector('.pt');
+        c.textContent = d ? d[i] : '';
+        if (dot) c.appendChild(dot);
+      });
+    });
+  }
+  document.addEventListener('input', upd, true);
+  document.addEventListener('change', upd, true);
+  window.addEventListener('beforeprint', upd);
+  window.addEventListener('load', function () { upd(); setTimeout(upd, 500); setTimeout(upd, 1500); });
+  upd();
+})();
+</script>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJwMWQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyaWdodCJ9LCAicDFjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMSJ9LCAicDFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOTEwIn0sICJwMmQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsZWZ0In0sICJwMmMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyIn0sICJwMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzODAwIn0sICJwM2QiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsZWZ0In0sICJwM2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxIn0sICJwM2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MDUwIn0sICJwNGQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJyaWdodCJ9LCAicDRjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAicDRhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNjQifSwgInA1ZCI6IHsidCI6ICJleGFjdCIsICJhIjogInJpZ2h0In0sICJwNWMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxIn0sICJwNWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIwLjQ2IiwgImciOiAicDVhLW9rIn0sICJwNWFfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIi40NiIsICJnIjogInA1YS1vayJ9LCAicDZkIjogeyJ0IjogImV4YWN0IiwgImEiOiAibGVmdCJ9LCAicDZjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMSJ9LCAicDZhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjcifSwgInA3ZCI6IHsidCI6ICJleGFjdCIsICJhIjogInJpZ2h0In0sICJwN2MiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyIn0sICJwN2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIwLjc1IiwgImciOiAicDdhLW9rIn0sICJwN2FfYWx0MSI6IHsidCI6ICJleGFjdCIsICJhIjogIi43NSIsICJnIjogInA3YS1vayJ9LCAicDhkIjogeyJ0IjogImV4YWN0IiwgImEiOiAicmlnaHQifSwgInA4YyI6IHsidCI6ICJleGFjdCIsICJhIjogIjEifSwgInA4YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjAuOSIsICJnIjogInA4YS1vayJ9LCAicDhhX2FsdDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIuOSIsICJnIjogInA4YS1vayJ9LCAicDlkIjogeyJ0IjogImV4YWN0IiwgImEiOiAibGVmdCJ9LCAicDljIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAicDlhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzAifSwgInAxMGQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsZWZ0In0sICJwMTBjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAicDEwYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjgifSwgImJuMSI6IHsidCI6ICJleGFjdCIsICJhIjogIm5vIn0sICJibjIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI1NiJ9LCAibTFkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAibTFyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjcwMDAifSwgIm0xcyI6IHsidCI6ICJleGFjdCIsICJhIjogIjc0MjAwIn0sICJtMWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3NDE5OCJ9LCAibTJkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAibTJyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDAwMDAifSwgIm0ycyI6IHsidCI6ICJleGFjdCIsICJhIjogIjc1NjUwIn0sICJtMmEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3NTY0NyJ9LCAibTNkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAibTNyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNDcwMDAifSwgIm0zcyI6IHsidCI6ICJleGFjdCIsICJhIjogIjg1MDA5In0sICJtM2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzODAwOSJ9LCAibTRkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAibTRyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjIwMDAifSwgIm00cyI6IHsidCI6ICJleGFjdCIsICJhIjogIjYzMDA2In0sICJtNGEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0MTAwNiJ9LCAiZjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMDAifSwgImYyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTI1In0sICJvMSI6IHsidCI6ICJzZXQiLCAiYSI6ICJnZW50bGUsIHRpbWlkIn0sICJsMSI6IHsidCI6ICJleGFjdCIsICJhIjogIndvcmRzIHRoYXQgbWVhbiBiaWcifSwgIm8yIjogeyJ0IjogInNldCIsICJhIjogImN1c2hpb24sIGxhZGRlciJ9LCAibDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtdXNpY2FsIGluc3RydW1lbnRzIn0sICJvMyI6IHsidCI6ICJzZXQiLCAiYSI6ICJyYXBpZCwgc3R1cmR5In0sICJsMyI6IHsidCI6ICJleGFjdCIsICJhIjogIndvcmRzIHRoYXQgbWVhbiBvbGQifSwgIm80IjogeyJ0IjogInNldCIsICJhIjogInNob3V0LCBzcHJpbnQifSwgImw0IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2F5cyBvZiBzcGVha2luZyBxdWlldGx5In19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

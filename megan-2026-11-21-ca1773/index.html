@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megan · Maths homework · 21 November 2026</title>
+<style>
+@page {size:A4; margin:11mm 11mm;}
+* {box-sizing:border-box;}
+html {-webkit-text-size-adjust:100%;}
+body {font-family:'Segoe UI',Arial,sans-serif; color:#252333; margin:0; font-size:18px; background:#fbfaff;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+.wrap {max-width:1180px; margin:0 auto; padding:0 16px 48px;}
+header {background:linear-gradient(135deg,#6c63ff,#a78bfa); color:#fff; border-radius:16px; padding:16px 22px; margin:18px 0 30px;}
+h1 {font-size:24px; margin:0 0 4px;}
+.meta {font-size:15px; opacity:.95;}
+section {margin:0 0 44px;}
+.lbl {font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#6d4fc2; margin:0 0 8px;}
+.instr {font-size:25px; font-weight:800; color:#1f1b2e; line-height:1.25; margin:0 0 8px; text-wrap:balance;}
+.note {font-size:17px; color:#6b6280; margin:0 0 20px; text-wrap:pretty;}
+.note.pr {display:none;}
+.q {page-break-inside:avoid; break-inside:avoid;}
+.card {background:#fff; border:2px solid #e6e0fa; border-radius:18px; padding:14px 14px 16px; margin:0 0 16px; transition:border-color .15s, box-shadow .15s;}
+.card.current {border-color:#a78bfa; box-shadow:0 10px 30px rgba(108,99,255,.13);}
+.card.model {background:#f7f5ff; border-color:#d9cff7;}
+.mtag {display:inline-block; margin:0 0 10px; padding:4px 13px; border-radius:999px; background:#6c63ff; color:#fff; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;}
+.qn {color:#6b6280; font-weight:600;}
+.big {font-size:28px; font-weight:800; color:#5b32b5; white-space:nowrap; margin:0 0 6px;}
+.store {display:none;}
+.nw {white-space:nowrap;}
+.remind {font-size:18px; color:#3f3752; margin:26px 0 12px; padding:6px 0 6px 14px; border-left:4px solid #a78bfa; text-wrap:pretty;}
+.remind b {color:#1f1b2e;}
+
+/* tap options */
+.opts {display:flex; flex-wrap:wrap; align-items:center; gap:10px;}
+.opt {font:inherit; font-size:22px; font-weight:700; color:#3f3752; background:#fff; border:2px solid #c9bdf0; border-radius:12px;
+  padding:6px 12px; min-height:52px; min-width:70px; line-height:1.2; text-align:center; cursor:pointer; touch-action:manipulation;
+  display:inline-flex; align-items:center; justify-content:center; transition:background .12s, border-color .12s, box-shadow .12s;}
+button.opt:hover {background:#f3f0ff; border-color:#a78bfa;}
+button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
+.opts .opt.on, .opt.shown {background:#6c63ff; border-color:#6c63ff; color:#fff; box-shadow:0 0 0 4px #ddd6fe;}
+.opts > .hw-mark {font-size:19px; margin:0 0 0 4px;}
+
+/* warm-up */
+.wgrid {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;}
+.wcard {margin:0; padding:12px 14px 14px;}
+.wq {font-size:26px; font-weight:800; color:#1f1b2e; margin:0 0 10px; white-space:nowrap;}
+.wrow {display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+.wrow .wq {margin:0;}
+.wrow input.hw-field {width:96px; height:54px; font-size:24px; text-align:center;}
+
+/* the bus stop */
+.bs {--dv:46px; --cw:70px; --ab:52px; --abf:32px; --dgf:40px; --lw:28px; --lh:30px; --lf:18px; --bw:4px; --pl:10px; --rw:78px;
+  display:inline-grid; grid-template-columns:var(--dv) auto; align-items:end; margin:8px 0 4px;}
+.bs-top {grid-column:2; grid-row:1; display:flex; align-items:flex-end; padding-left:calc(var(--bw) + var(--pl)); margin-bottom:6px;}
+.bs-dv {grid-column:1; grid-row:2; font-size:var(--dgf); font-weight:800; color:#1f2937; text-align:right; padding-right:8px; line-height:1.35;}
+.bs-body {grid-column:2; grid-row:2; display:flex; border-left:var(--bw) solid #1f2937; border-top:var(--bw) solid #1f2937; padding-left:var(--pl);}
+.bs-c {width:var(--cw); display:flex; justify-content:flex-end; padding-right:6px; position:relative;}
+.bs-dc {height:calc(var(--dgf) * 1.35); align-items:center;}
+.dg {font-size:var(--dgf); font-weight:800; color:#1f2937; line-height:1; width:calc(var(--dgf) * .72); text-align:center;}
+.bs-rsp {width:var(--rw);}
+.bs-r {width:var(--rw); display:flex; align-items:flex-end; gap:5px; padding-left:12px;}
+.bs-rl {font-size:calc(var(--dgf) * .8); font-weight:800; color:#1d4ed8; line-height:1;}
+.ab, .rb, .pd.ans, .pd.rem, input.dig.ans, input.dig.rem {width:var(--ab); height:var(--ab); border:2px dashed #b6a6cd; border-radius:10px; background:#fff;
+  font-size:var(--abf); font-weight:800; color:#1d4ed8; display:flex; align-items:center; justify-content:center; line-height:1;}
+.bs-c .ab, .bs-c input.dig.ans, .bs-c .pd.ans {margin-right:calc((var(--dgf) * .72 - var(--ab)) / 2);}
+.rb, input.dig.rem, .pd.rem {width:calc(var(--ab) * .82); height:calc(var(--ab) * .82); font-size:calc(var(--abf) * .85);}
+.lb, input.dig.car, .pd.car {position:absolute; left:2px; top:2px; width:var(--lw); height:var(--lh); border:2px dashed #fca5a5; border-radius:7px; background:#fff;
+  font-size:var(--lf); font-weight:800; color:#dc2626; display:flex; align-items:center; justify-content:center; line-height:1;}
+.ab.done, .rb.done, .lb.done {border-style:solid; border-color:#c4b5fd; background:#f6f3ff;}
+.lb.done {border-color:#fecaca; background:#fff7f7;}
+input.dig {padding:0; text-align:center; font-family:inherit; -moz-appearance:textfield;}
+input.dig:focus {outline:none; border-style:solid; border-color:#6c63ff; box-shadow:0 0 0 3px #ddd6fe;}
+input.dig.car:focus {border-color:#dc2626; box-shadow:0 0 0 3px #fecaca;}
+.bs .pd {display:none !important;}
+.ansmark {min-height:1px;}
+.ansmark .hw-mark {font-size:19px; margin:8px 0 0;}
+
+/* Evie: one item = the bus stop + its rows */
+.egrid {display:block;}
+.rows {margin-top:10px;}
+.srow {padding:10px 8px; border-top:1px dashed #e6e0fa; border-radius:12px;}
+.srow:first-child {border-top:none;}
+.srow.now {background:#f6f3ff; box-shadow:inset 0 0 0 2px #c4b5fd;}
+.sp {font-size:21px; font-weight:600; color:#252333; margin:0;}
+.cap {font-size:16px; color:#6b6280; margin:2px 0 8px;}
+.pm {display:inline-block; color:#1d4ed8; font-weight:800;}
+.pm:not(.done) {width:.8em; height:.95em; border:2px dashed #b6a6cd; border-radius:5px; vertical-align:-0.12em; margin-right:2px;}
+.pm.done:empty {display:none;}
+
+/* Megan */
+.mgrid {display:grid; grid-template-columns:minmax(0,1fr); gap:14px;}
+.mcard {margin:0;}
+.mmodel {display:flex; flex-wrap:wrap; gap:10px 36px; align-items:center;}
+.msteps {margin:0; padding:0 0 0 22px; font-size:18px; color:#3f3752;}
+.msteps li {margin:0 0 6px;}
+.claim {font-size:21px; margin:0 0 12px;}
+.claim .who {font-weight:800; color:#5b32b5;}
+.leo {display:grid; grid-template-columns:minmax(0,1fr); gap:16px;}
+.lpart .bh {font-size:16px; font-weight:700; color:#6b6280; margin:0 0 8px;}
+.card div.why {min-height:84px !important; font-size:20px;}
+
+@media (max-width:600px) {
+  .opt {font-size:20px; min-width:62px;}
+  .bs {--dv:40px; --cw:66px; --ab:46px; --abf:28px; --dgf:36px; --lw:26px; --lh:28px; --lf:17px; --rw:70px;}
+}
+
+@media print {
+  body {font-size:13px; background:#fff;}
+  .wrap {max-width:none; padding:0;}
+  header {margin:0 0 8px; padding:7px 14px; border-radius:10px;}
+  h1 {font-size:18px; margin:0;}
+  .meta {font-size:11px;}
+  section {margin:0 0 10px;}
+  .lbl {font-size:10px; margin:0 0 2px;}
+  .instr {font-size:16px; margin:0 0 2px;}
+  .note {font-size:11px; margin:0 0 6px;}
+  .note.scr {display:none !important;}
+  .note.pr {display:block;}
+  .card {padding:5px 10px 6px; margin:0 0 5px; border-width:1.5px; border-radius:10px; box-shadow:none;}
+  .card.current {border-color:#e6e0fa; box-shadow:none;}
+  .mtag {font-size:9px; padding:2px 8px; margin:0 0 3px;}
+  .big {font-size:14px; margin:0 0 2px;}
+  .remind {font-size:11.5px; margin:7px 0 4px; padding:2px 0 2px 8px; border-left-width:3px;}
+  .opts {gap:4px;}
+  .opt {font-size:11.5px; padding:1px 6px; min-height:0; min-width:24px; border-width:1.5px; border-radius:6px;}
+  .opts .opt.on, .opt.shown {box-shadow:none;}
+  .opts > .hw-mark, .ansmark .hw-mark {font-size:11px; margin:0 0 0 3px;}
+  .wgrid {grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px;}
+  .wgrid.five {grid-template-columns:repeat(5,minmax(0,1fr));}
+  .wcard {padding:4px 6px 5px;}
+  .wq {font-size:13px; margin:0 0 3px;}
+  .wrow {gap:5px;}
+  .wrow input.hw-field {width:42px; height:24px; font-size:13px;}
+  .bs {--dv:20px; --cw:32px; --ab:22px; --abf:14px; --dgf:18px; --lw:12px; --lh:13px; --lf:9px; --bw:2px; --pl:4px; --rw:36px; margin:2px 0 0;}
+  .bs-c {padding-right:3px;}
+  .bs .ab, .bs .rb, .bs .lb, .bs .pd, .bs input.dig {border-width:1.2px; border-radius:4px;}
+  .bs .lb, .bs input.dig.car, .bs .pd.car {left:1px; top:1px;}
+  .egrid {display:grid; grid-template-columns:172px minmax(0,1fr); gap:12px; align-items:start;}
+  .rows {margin-top:0; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:0 12px;}
+  .srow {display:flex; flex-wrap:wrap; align-items:center; gap:2px 6px; padding:2px 0; border-top:none; border-radius:0;}
+  .srow.now {background:none; box-shadow:none;}
+  .sp {font-size:11px;}
+  .cap {font-size:10px; margin:0;}
+  .pm:not(.done) {border-width:1.2px;}
+  .mgrid {grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px;}
+  .msteps {font-size:11px; padding-left:16px;}
+  .msteps li {margin:0 0 1px;}
+  .mmodel {gap:4px 18px;}
+  .claim {font-size:12.5px; margin:0 0 4px;}
+  .leo {grid-template-columns:auto 230px auto; gap:4px 18px; align-items:start; justify-content:start;}
+  .lpart .bh {font-size:10.5px; margin:0 0 3px;}
+  .card div.why {min-height:40px !important; font-size:12px;}
+  input::placeholder {color:transparent;}
+  .why {border:1.5px solid #8072b2; border-radius:6px;}
+}
+body.hw-pdf-mode {font-size:13px; background:#fff;}
+body.hw-pdf-mode .wrap {max-width:none; padding:0;}
+body.hw-pdf-mode header {margin:0 0 8px; padding:7px 14px; border-radius:10px;}
+body.hw-pdf-mode h1 {font-size:18px; margin:0;}
+body.hw-pdf-mode .meta {font-size:11px;}
+body.hw-pdf-mode section {margin:0 0 10px;}
+body.hw-pdf-mode .lbl {font-size:10px; margin:0 0 2px;}
+body.hw-pdf-mode .instr {font-size:16px; margin:0 0 2px;}
+body.hw-pdf-mode .note {font-size:11px; margin:0 0 6px;}
+body.hw-pdf-mode .note.scr {display:none !important;}
+body.hw-pdf-mode .note.pr {display:block;}
+body.hw-pdf-mode .card {padding:5px 10px 6px; margin:0 0 5px; border-width:1.5px; border-radius:10px; box-shadow:none;}
+body.hw-pdf-mode .card.current {border-color:#e6e0fa; box-shadow:none;}
+body.hw-pdf-mode .mtag {font-size:9px; padding:2px 8px; margin:0 0 3px;}
+body.hw-pdf-mode .big {font-size:14px; margin:0 0 2px;}
+body.hw-pdf-mode .remind {font-size:11.5px; margin:7px 0 4px; padding:2px 0 2px 8px; border-left-width:3px;}
+body.hw-pdf-mode .opts {gap:4px;}
+body.hw-pdf-mode .opt {font-size:11.5px; padding:1px 6px; min-height:0; min-width:24px; border-width:1.5px; border-radius:6px;}
+body.hw-pdf-mode .opts .opt.on, body.hw-pdf-mode .opt.shown {box-shadow:none;}
+body.hw-pdf-mode .opts > .hw-mark, body.hw-pdf-mode .ansmark .hw-mark {font-size:11px; margin:0 0 0 3px;}
+body.hw-pdf-mode .wgrid {grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px;}
+body.hw-pdf-mode .wgrid.five {grid-template-columns:repeat(5,minmax(0,1fr));}
+body.hw-pdf-mode .wcard {padding:4px 6px 5px;}
+body.hw-pdf-mode .wq {font-size:13px; margin:0 0 3px;}
+body.hw-pdf-mode .wrow {gap:5px;}
+body.hw-pdf-mode .wrow input.hw-field {width:42px; height:24px; font-size:13px;}
+body.hw-pdf-mode .bs {--dv:20px; --cw:32px; --ab:22px; --abf:14px; --dgf:18px; --lw:12px; --lh:13px; --lf:9px; --bw:2px; --pl:4px; --rw:36px; margin:2px 0 0;}
+body.hw-pdf-mode .bs-c {padding-right:3px;}
+body.hw-pdf-mode .bs .ab, body.hw-pdf-mode .bs .rb, body.hw-pdf-mode .bs .lb, body.hw-pdf-mode .bs .pd, body.hw-pdf-mode .bs input.dig {border-width:1.2px; border-radius:4px;}
+body.hw-pdf-mode .bs .lb, body.hw-pdf-mode .bs input.dig.car, body.hw-pdf-mode .bs .pd.car {left:1px; top:1px;}
+body.hw-pdf-mode .egrid {display:grid; grid-template-columns:172px minmax(0,1fr); gap:12px; align-items:start;}
+body.hw-pdf-mode .rows {margin-top:0; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:0 12px;}
+body.hw-pdf-mode .srow {display:flex; flex-wrap:wrap; align-items:center; gap:2px 6px; padding:2px 0; border-top:none; border-radius:0;}
+body.hw-pdf-mode .srow.now {background:none; box-shadow:none;}
+body.hw-pdf-mode .sp {font-size:11px;}
+body.hw-pdf-mode .cap {font-size:10px; margin:0;}
+body.hw-pdf-mode .pm:not(.done) {border-width:1.2px;}
+body.hw-pdf-mode .mgrid {grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px;}
+body.hw-pdf-mode .msteps {font-size:11px; padding-left:16px;}
+body.hw-pdf-mode .msteps li {margin:0 0 1px;}
+body.hw-pdf-mode .mmodel {gap:4px 18px;}
+body.hw-pdf-mode .claim {font-size:12.5px; margin:0 0 4px;}
+body.hw-pdf-mode .leo {grid-template-columns:auto 230px auto; gap:4px 18px; align-items:start; justify-content:start;}
+body.hw-pdf-mode .lpart .bh {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .card div.why {min-height:40px !important; font-size:12px;}
+body.hw-pdf-mode input::placeholder {color:transparent;}
+body.hw-pdf-mode .pd {display:flex !important;}
+body.hw-pdf-mode input.dig {display:none !important;}
+
+/* Full page width and big type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body {font-size:26px;}
+  .wrap {max-width:1640px; padding:0 48px 56px;}
+  header {padding:24px 38px; margin:26px 0 40px;}
+  h1 {font-size:36px;}
+  .meta {font-size:22px;}
+  .lbl {font-size:19px;}
+  .instr {font-size:40px;}
+  .note {font-size:26px;}
+  .mtag {font-size:17px;}
+  .card {padding:22px 30px 24px; margin:0 0 20px;}
+  .big {font-size:36px;}
+  .remind {font-size:28px; margin:34px 0 16px;}
+  .opt {font-size:30px; min-height:64px; min-width:104px; padding:8px 14px;}
+  .opts {gap:14px;}
+  .opts > .hw-mark {font-size:26px;}
+  .wgrid {grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;}
+  .wgrid.five {grid-template-columns:repeat(5,minmax(0,1fr));}
+  .wcard {padding:18px 22px 20px;}
+  .wq {font-size:36px;}
+  .wrow input.hw-field {width:120px; height:66px; font-size:32px !important;}
+  .bs {--dv:64px; --cw:88px; --ab:70px; --abf:44px; --dgf:56px; --lw:34px; --lh:38px; --lf:23px; --bw:5px; --pl:14px; --rw:96px;}
+  .egrid {display:grid; grid-template-columns:450px minmax(0,1fr); gap:36px; align-items:start;}
+  .rows {margin-top:0;}
+  .srow {display:grid; grid-template-columns:380px auto; justify-content:start; align-items:center; gap:10px 28px; padding:12px 14px;}
+  .srow .opts {flex-wrap:nowrap;}
+  .sp {font-size:30px;}
+  .cap {font-size:22px; margin:2px 0 0;}
+  .ansmark .hw-mark {font-size:26px;}
+  .mgrid {grid-template-columns:repeat(auto-fill,minmax(500px,1fr)); gap:20px;}
+  .mcard {padding:22px 24px 24px;}
+  .msteps {font-size:28px;}
+  .claim {font-size:30px; margin:0 0 18px;}
+  .leo {display:flex; flex-wrap:wrap; gap:30px 56px; align-items:flex-start;}
+  .leo .lpart.mid {width:420px;}
+  .lpart .bh {font-size:24px;}
+  .card div.why {min-height:140px !important; font-size:28px !important;}
+}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Megan" data-sheet="Maths 2026-11-21" data-sheet-id="megan-2026-11-21-maths">
+<div id="sheet">
+
+<div class="wrap">
+<header><h1>Megan &middot; Maths</h1><div class="meta">21 November 2026 &middot; The bus stop: short&nbsp;division</div></header>
+<section><div class="q"><p class="lbl">Warm-up: the 3 and 4 times tables</p><p class="instr">Fill in the answers.</p></div><div class="wgrid five"><div class="card wcard q live" data-step><div class="wrow"><p class="wq">3 × 8 =</p><input class="hw-field" data-k="m_t1" data-label="T1. 3 × 8 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="3 × 8"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">28 ÷ 4 =</p><input class="hw-field" data-k="m_t2" data-label="T2. 28 ÷ 4 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="28 ÷ 4"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">4 × 6 =</p><input class="hw-field" data-k="m_t3" data-label="T3. 4 × 6 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="4 × 6"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">18 ÷ 3 =</p><input class="hw-field" data-k="m_t4" data-label="T4. 18 ÷ 3 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="18 ÷ 3"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">4 × 8 =</p><input class="hw-field" data-k="m_t5" data-label="T5. 4 × 8 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="4 × 8"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">24 ÷ 3 =</p><input class="hw-field" data-k="m_t6" data-label="T6. 24 ÷ 3 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="24 ÷ 3"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">4 × 9 =</p><input class="hw-field" data-k="m_t7" data-label="T7. 4 × 9 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="4 × 9"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">32 ÷ 4 =</p><input class="hw-field" data-k="m_t8" data-label="T8. 32 ÷ 4 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="32 ÷ 4"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">4 × 7 =</p><input class="hw-field" data-k="m_t9" data-label="T9. 4 × 7 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="4 × 7"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">24 ÷ 4 =</p><input class="hw-field" data-k="m_t10" data-label="T10. 24 ÷ 4 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="24 ÷ 4"></div></div></div></section>
+<section><div class="q"><p class="lbl">The bus stop</p><p class="instr">Do each division with the bus&nbsp;stop.</p><p class="note scr">Type each digit of the answer in a box on top, and each leftover in the small box in front of the next digit. Something left at the very end? Type it after the&nbsp;r.</p><p class="note pr">Write each digit of the answer in a box on top, and each leftover in the small box in front of the next digit. Something left at the very end? Write it after the&nbsp;r.</p></div><div class="card model q"><p class="mtag">Like this</p><div class="mmodel"><div><p class="big">538 ÷ 2</p><div class="bs" role="img" aria-label="538 divided by 2, bus stop"><div class="bs-top"><span class="bs-c"><span class="ab done">2</span></span><span class="bs-c"><span class="ab done">6</span></span><span class="bs-c"><span class="ab done">9</span></span><span class="bs-r"><span class="bs-rl">r</span><span class="rb done"></span></span></div><span class="bs-dv">2</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">5</span></span><span class="bs-c bs-dc"><span class="lb done">1</span><span class="dg">3</span></span><span class="bs-c bs-dc"><span class="lb done">1</span><span class="dg">8</span></span><span class="bs-rsp"></span></div></div></div><ol class="msteps"><li>5 ÷ 2 = 2, 1 left over. The little 1 goes in front of the&nbsp;3.</li><li>13 ÷ 2 = 6, 1 left over. The little 1 goes in front of the&nbsp;8.</li><li>18 ÷ 2 = 9. Nothing is left at the end, so the r box stays&nbsp;empty.</li></ol></div></div><div class="mgrid"><div class="card mcard q live" data-step><p class="big"><span class="qn">1.</span> 552 ÷ 4</p><div class="bs" data-store="m_b1" data-tid="b1" role="img" aria-label="552 divided by 4, bus stop"><div class="bs-top"><span class="bs-c"><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="552 ÷ 4: above the 5"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="552 ÷ 4: above the 5"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="552 ÷ 4: above the 2"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-r"><span class="bs-rl">r</span><input class="dig rem" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="552 ÷ 4: after the r"><span class="pd rem" aria-hidden="true"></span></span></div><span class="bs-dv">4</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">5</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="552 ÷ 4: left over, in front of the 5"><span class="pd car" aria-hidden="true"></span><span class="dg">5</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="552 ÷ 4: left over, in front of the 2"><span class="pd car" aria-hidden="true"></span><span class="dg">2</span></span><span class="bs-rsp"></span></div></div><div class="store"><input type="hidden" data-k="m_b1" data-label="1. 552 ÷ 4 =" class="hw-field"></div><div class="ansmark" data-field="m_b1"></div></div><div class="card mcard q live" data-step><p class="big"><span class="qn">2.</span> 744 ÷ 3</p><div class="bs" data-store="m_b2" data-tid="b2" role="img" aria-label="744 divided by 3, bus stop"><div class="bs-top"><span class="bs-c"><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="744 ÷ 3: above the 7"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="744 ÷ 3: above the 4"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="744 ÷ 3: above the 4"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-r"><span class="bs-rl">r</span><input class="dig rem" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="744 ÷ 3: after the r"><span class="pd rem" aria-hidden="true"></span></span></div><span class="bs-dv">3</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">7</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="744 ÷ 3: left over, in front of the 4"><span class="pd car" aria-hidden="true"></span><span class="dg">4</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="744 ÷ 3: left over, in front of the 4"><span class="pd car" aria-hidden="true"></span><span class="dg">4</span></span><span class="bs-rsp"></span></div></div><div class="store"><input type="hidden" data-k="m_b2" data-label="2. 744 ÷ 3 =" class="hw-field"></div><div class="ansmark" data-field="m_b2"></div></div><div class="card mcard q live" data-step><p class="big"><span class="qn">3.</span> 586 ÷ 4</p><div class="bs" data-store="m_b3" data-tid="b3" role="img" aria-label="586 divided by 4, bus stop"><div class="bs-top"><span class="bs-c"><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="586 ÷ 4: above the 5"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="586 ÷ 4: above the 8"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="586 ÷ 4: above the 6"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-r"><span class="bs-rl">r</span><input class="dig rem" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="586 ÷ 4: after the r"><span class="pd rem" aria-hidden="true"></span></span></div><span class="bs-dv">4</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">5</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="586 ÷ 4: left over, in front of the 8"><span class="pd car" aria-hidden="true"></span><span class="dg">8</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="586 ÷ 4: left over, in front of the 6"><span class="pd car" aria-hidden="true"></span><span class="dg">6</span></span><span class="bs-rsp"></span></div></div><div class="store"><input type="hidden" data-k="m_b3" data-label="3. 586 ÷ 4 =" class="hw-field"></div><div class="ansmark" data-field="m_b3"></div></div><div class="card mcard q live" data-step><p class="big"><span class="qn">4.</span> 918 ÷ 3</p><div class="bs" data-store="m_b4" data-tid="b4" role="img" aria-label="918 divided by 3, bus stop"><div class="bs-top"><span class="bs-c"><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="918 ÷ 3: above the 9"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="918 ÷ 3: above the 1"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="918 ÷ 3: above the 8"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-r"><span class="bs-rl">r</span><input class="dig rem" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="918 ÷ 3: after the r"><span class="pd rem" aria-hidden="true"></span></span></div><span class="bs-dv">3</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">9</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="918 ÷ 3: left over, in front of the 1"><span class="pd car" aria-hidden="true"></span><span class="dg">1</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="918 ÷ 3: left over, in front of the 8"><span class="pd car" aria-hidden="true"></span><span class="dg">8</span></span><span class="bs-rsp"></span></div></div><div class="store"><input type="hidden" data-k="m_b4" data-label="4. 918 ÷ 3 =" class="hw-field"></div><div class="ansmark" data-field="m_b4"></div></div><div class="card mcard q live" data-step><p class="big"><span class="qn">5.</span> 264 ÷ 4</p><div class="bs" data-store="m_b5" data-tid="b5" role="img" aria-label="264 divided by 4, bus stop"><div class="bs-top"><span class="bs-c"><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="264 ÷ 4: above the 2"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="264 ÷ 4: above the 6"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="264 ÷ 4: above the 4"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-r"><span class="bs-rl">r</span><input class="dig rem" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="264 ÷ 4: after the r"><span class="pd rem" aria-hidden="true"></span></span></div><span class="bs-dv">4</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">2</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="264 ÷ 4: left over, in front of the 6"><span class="pd car" aria-hidden="true"></span><span class="dg">6</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="264 ÷ 4: left over, in front of the 4"><span class="pd car" aria-hidden="true"></span><span class="dg">4</span></span><span class="bs-rsp"></span></div></div><div class="store"><input type="hidden" data-k="m_b5" data-label="5. 264 ÷ 4 =" class="hw-field"></div><div class="ansmark" data-field="m_b5"></div></div><div class="card mcard q live" data-step><p class="big"><span class="qn">6.</span> 437 ÷ 5</p><div class="bs" data-store="m_b6" data-tid="b6" role="img" aria-label="437 divided by 5, bus stop"><div class="bs-top"><span class="bs-c"><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="437 ÷ 5: above the 4"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="437 ÷ 5: above the 3"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="437 ÷ 5: above the 7"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-r"><span class="bs-rl">r</span><input class="dig rem" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="437 ÷ 5: after the r"><span class="pd rem" aria-hidden="true"></span></span></div><span class="bs-dv">5</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">4</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="437 ÷ 5: left over, in front of the 3"><span class="pd car" aria-hidden="true"></span><span class="dg">3</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="437 ÷ 5: left over, in front of the 7"><span class="pd car" aria-hidden="true"></span><span class="dg">7</span></span><span class="bs-rsp"></span></div></div><div class="store"><input type="hidden" data-k="m_b6" data-label="6. 437 ÷ 5 =" class="hw-field"></div><div class="ansmark" data-field="m_b6"></div></div></div></section>
+<section><div class="q"><p class="lbl">Is Leo right?</p><p class="instr">Do it yourself. Then: is Leo right? How do you&nbsp;know?</p><p class="note scr">Do the bus stop yourself first. Then tap Yes or No and type how you&nbsp;know.</p><p class="note pr">Do the bus stop yourself first. Then circle Yes or No and write how you&nbsp;know.</p></div><div class="card q live" data-step><p class="claim"><span class="who">Leo:</span> &ldquo;716 ÷ 4 = 178 r 4.&rdquo;</p><div class="leo"><div class="lpart"><p class="bh">Leo&rsquo;s bus stop</p><div class="bs" role="img" aria-label="716 divided by 4, bus stop"><div class="bs-top"><span class="bs-c"><span class="ab done">1</span></span><span class="bs-c"><span class="ab done">7</span></span><span class="bs-c"><span class="ab done">8</span></span><span class="bs-r"><span class="bs-rl">r</span><span class="rb done">4</span></span></div><span class="bs-dv">4</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">7</span></span><span class="bs-c bs-dc"><span class="lb done">3</span><span class="dg">1</span></span><span class="bs-c bs-dc"><span class="lb done">3</span><span class="dg">6</span></span><span class="bs-rsp"></span></div></div></div><div class="lpart"><p class="bh">Your bus stop</p><div class="bs" data-store="m_l3" data-tid="leo" role="img" aria-label="716 divided by 4, bus stop"><div class="bs-top"><span class="bs-c"><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="716 ÷ 4: above the 7"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="716 ÷ 4: above the 1"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-c"><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="716 ÷ 4: above the 6"><span class="pd ans" aria-hidden="true"></span></span><span class="bs-r"><span class="bs-rl">r</span><input class="dig rem" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="716 ÷ 4: after the r"><span class="pd rem" aria-hidden="true"></span></span></div><span class="bs-dv">4</span><div class="bs-body"><span class="bs-c bs-dc"><span class="dg">7</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="716 ÷ 4: left over, in front of the 1"><span class="pd car" aria-hidden="true"></span><span class="dg">1</span></span><span class="bs-c bs-dc"><input class="dig car" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="716 ÷ 4: left over, in front of the 6"><span class="pd car" aria-hidden="true"></span><span class="dg">6</span></span><span class="bs-rsp"></span></div></div><div class="store"><input type="hidden" data-k="m_l3" data-label="Your bus stop: 716 ÷ 4 =" class="hw-field"></div><div class="ansmark" data-field="m_l3"></div></div><div class="lpart mid"><p class="bh">Is Leo right?</p><div class="opts" data-field="m_l1"><button type="button" class="opt" data-v="Yes, right" aria-pressed="false">Yes, right</button><button type="button" class="opt" data-v="No, wrong" aria-pressed="false">No, wrong</button></div><div class="store"><select data-k="m_l1" data-label="Leo: right or wrong?" class="hw-field"><option value="">Choose</option><option value="Yes, right">Yes, right</option><option value="No, wrong">No, wrong</option></select></div><p class="bh" style="margin-top:16px">How do you know?</p><div class="hw-field why" contenteditable="true" data-k="m_l2" data-label="Leo: how do you know?" data-response-kind="reasoning"></div></div></div></div></section>
+</div>
+
+<script>
+(function () {
+  function field(k) { return [].find.call(document.querySelectorAll("[data-k]"), function (e) { return e.dataset.k === k; }); }
+  function val(el) { return !el ? "" : (el.isContentEditable ? el.textContent : String(el.value || "")).trim(); }
+  function shown(kind, v) {
+    if (!v) return "";
+    if (kind === "a" && v === "nothing") return "";
+    if ((kind === "l" || kind === "r") && v === "0") return "";
+    return v;
+  }
+  var groups = [].slice.call(document.querySelectorAll(".opts[data-field]"));
+  function current() {
+    var first = null;
+    [].forEach.call(document.querySelectorAll("[data-step]"), function (s) {
+      s.classList.remove("now");
+      if (first) return;
+      var empty = [].some.call(s.querySelectorAll("[data-k]"), function (f) { return !val(f); });
+      if (empty) first = s;
+    });
+    [].forEach.call(document.querySelectorAll(".card.live"), function (c) { c.classList.toggle("current", !!first && c.contains(first)); });
+    if (first && first.classList.contains("srow")) first.classList.add("now");
+  }
+  function paint() {
+    groups.forEach(function (g) {
+      var v = val(field(g.dataset.field));
+      [].forEach.call(g.querySelectorAll("button.opt"), function (b) {
+        var on = !!v && b.dataset.v === v;
+        b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    });
+    [].forEach.call(document.querySelectorAll("[data-m]"), function (m) {
+      var v = val(field(m.dataset.m));
+      m.textContent = shown(m.dataset.kind, v);
+      m.classList.toggle("done", !!v);
+    });
+    current();
+  }
+  groups.forEach(function (g) {
+    [].forEach.call(g.querySelectorAll("button.opt"), function (b) {
+      b.addEventListener("click", function () {
+        var s = field(g.dataset.field); if (!s) return;
+        if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+        paint();
+      });
+    });
+  });
+
+  // ---- typed bus stops (Megan): digit boxes -> one hidden answer, e.g. "146 r 2" ----
+  var LEFT_STORE = "hwbs-" + (document.body.dataset.sheetId || location.pathname);
+  function loadLeft() { try { return JSON.parse(localStorage.getItem(LEFT_STORE) || "{}"); } catch (e) { return {}; } }
+  function saveLeft(o) { try { localStorage.setItem(LEFT_STORE, JSON.stringify(o)); } catch (e) {} }
+  function setBox(inp, v) {
+    inp.value = v; inp.setAttribute("value", v);
+    var m = inp.nextElementSibling; if (m && m.classList.contains("pd")) m.textContent = v;
+  }
+  function setupTyped(bs) {
+    var id = bs.dataset.tid, store = field(bs.dataset.store);
+    var ans = [].slice.call(bs.querySelectorAll("input.dig.ans"));
+    var car = [].slice.call(bs.querySelectorAll("input.dig.car"));
+    var rem = bs.querySelector("input.dig.rem");
+    function compose() {
+      var ds = ans.map(function (i) { return i.value; });
+      var first = ds.findIndex(function (d) { return d !== ""; });
+      var q = first < 0 ? "" : ds.slice(first).map(function (d) { return d || "_"; }).join("");
+      q = q.replace(/^0+(?=\d)/, "");   // a 0 typed in a front box is not marked wrong: 066 -> 66
+      var r = rem.value;
+      if (!q && !r) return "";
+      return (q + (r && r !== "0" ? " r " + r : "")).trim();
+    }
+    function push() {
+      var v = compose();
+      if (store && store.value !== v) {
+        store.value = v;
+        store.dispatchEvent(new Event("input", { bubbles: true }));
+        store.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      current();
+    }
+    function pushLeft() { var o = loadLeft(); o[id] = car.map(function (i) { return i.value; }); saveLeft(o); }
+    function carAt(i) { return car.filter(function (c) { return +c.dataset.i === i; })[0]; }
+    ans.concat(car, [rem]).forEach(function (inp) {
+      inp.addEventListener("input", function () {
+        var d = (inp.value.match(/\d/g) || []).pop() || "";
+        setBox(inp, d);
+        if (inp.classList.contains("car")) { pushLeft(); if (d) ans[+inp.dataset.i].focus(); return; }
+        push();
+        if (d && inp.classList.contains("ans")) {
+          var i = +inp.dataset.i, nx = carAt(i + 1);
+          if (nx) nx.focus(); else if (i + 1 < ans.length) ans[i + 1].focus(); else rem.focus();
+        }
+      });
+      inp.addEventListener("focus", function () { inp.select(); });
+    });
+    function restore() {
+      if (store && store.value && ans.every(function (i) { return !i.value; }) && !rem.value) {
+        var parts = store.value.split("r"), q = (parts[0] || "").replace(/[^0-9_]/g, ""), off = ans.length - q.length;
+        ans.forEach(function (inp, i) { var ch = i >= off ? q.charAt(i - off) : ""; setBox(inp, /\d/.test(ch) ? ch : ""); });
+        setBox(rem, ((parts[1] || "").match(/\d/) || [""])[0]);
+      }
+      var saved = loadLeft()[id];
+      if (saved) car.forEach(function (inp, i) { if (!inp.value) setBox(inp, saved[i] || ""); });
+    }
+    restore();
+    return restore;
+  }
+  var restorers = [].map.call(document.querySelectorAll(".bs[data-store]"), setupTyped);
+  document.addEventListener("input", function () { current(); });
+  document.addEventListener("change", paint);
+  function init() { restorers.forEach(function (f) { f(); }); paint(); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+  setTimeout(init, 700);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtX3QxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjQifSwgIm1fdDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3In0sICJtX3QzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjQifSwgIm1fdDQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2In0sICJtX3Q1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzIifSwgIm1fdDYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4In0sICJtX3Q3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMzYifSwgIm1fdDgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4In0sICJtX3Q5IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjgifSwgIm1fdDEwIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiJ9LCAibV9iMSI6IHsidCI6ICJleGFjdCIsICJhIjogIjEzOCJ9LCAibV9iMiI6IHsidCI6ICJleGFjdCIsICJhIjogIjI0OCJ9LCAibV9iMyI6IHsidCI6ICJleGFjdCIsICJhIjogIjE0NiByIDIifSwgIm1fYjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzMDYifSwgIm1fYjUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2NiJ9LCAibV9iNiI6IHsidCI6ICJleGFjdCIsICJhIjogIjg3IHIgMiJ9LCAibV9sMSI6IHsidCI6ICJleGFjdCIsICJhIjogIk5vLCB3cm9uZyJ9LCAibV9sMiI6IHsidCI6ICJvcGVuIn0sICJtX2wzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTc5In19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body></html>

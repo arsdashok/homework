@@ -26,6 +26,10 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+      # 24 Nov 2026: deploy-pages failed on its first try with «No artifacts named github-pages»
+      # right after a successful upload (same as vocab-deploy that day; a re-run passes).
+      - name: Wait for the artifact to register
+        run: sleep 30
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4

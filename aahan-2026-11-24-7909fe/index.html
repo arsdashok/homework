@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aahan &middot; Maths homework &middot; 24 November 2026</title>
+<!-- 24 Nov 2026, Y5 W48 Mixed & Improper Fractions + W49 Add & Subtract Fractions (both decks in full, both exit tickets).
+     Taught envelope (W49): decision (same denominator or convert one) -> convert x k -> renamed -> answer -> simplify; one
+     denominator a multiple of the other; every answer inside one whole. W48: improper -> mixed by division, keep the denominator.
+     Landed, not drilled: mixed -> improper, plain improper -> mixed, same-denominator adding.
+     Shaky, on the sheet: converting when one denominator is a multiple of the other (both + and -), simplify fully in one go,
+     why the denominator stays, an improper fraction not in lowest terms as a mixed number.
+     Block 1 Samples A-E (decision select, converted fraction shown only for Convert one, one answer simplified fully;
+       the flask mirrors his own typed answer). Decision positions in the dropdown: 2 2 1 2 2.
+     Block 2 Catch the mistake x2 (adds the denominators; subtracts without converting).
+     Block 3 Improper to mixed x2 + one open question on why the denominator stays.
+     Gate round 1 (24 Nov): adult names and proper terms, new items, one card layout, one A4 print page.
+     Stores are derived from his own typing by the inline script; nothing in the page prints a result.
+     No tap-to-place tiles on this sheet (Dasha's brief, 24 Nov). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1b1712; --cream: #fff4dc; --paper: #fffaf0; --gold: #f3b43d; --gold-soft: #fde3a7;
+  --orange: #e2562b; --night: #1e2438; --teal: #22a39f; --teal-soft: #e3f5f4; --muted: #6b5f4e; --dash: #e6d6b4;
+}
+@page { size: A4; margin: 9mm 11mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font: 17px/1.5 'Rubik', 'Segoe UI', Arial, sans-serif; color: var(--ink); background: var(--cream);
+  max-width: 1120px; margin: 0 auto; padding: 22px 18px 40px;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.display { font-family: 'Luckiest Guy', 'Arial Black', 'Rubik', sans-serif; font-weight: 400; letter-spacing: .02em; }
+.nw { white-space: nowrap; }
+.prt, .prt-block { display: none; }
+.stores { display: none !important; }
+[hidden] { display: none !important; }
+
+/* banner */
+.banner { position: relative; height: 150px; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 6px 6px 0 var(--ink); margin-bottom: 26px; background: var(--teal); }
+.banner .digits { position: absolute; inset: -14px -10px auto -10px; font-size: 118px; line-height: .9; color: rgba(255,255,255,.17); white-space: nowrap; letter-spacing: .14em; }
+.banner .digits.two { top: 76px; left: -50px; color: rgba(27,23,18,.12); }
+.banner .label { position: absolute; left: 18px; bottom: 16px; background: var(--paper); border: 3px solid var(--ink); border-radius: 12px; padding: 8px 16px 6px; box-shadow: 4px 4px 0 var(--ink); }
+.banner .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--orange); }
+.banner h1 { font-size: 34px; line-height: 1.05; }
+.banner .date { position: absolute; right: 16px; top: 14px; background: var(--ink); color: var(--gold); font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+
+/* cards: three registers, items regular, instruction bold, notes small */
+section { background: var(--paper); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 18px 22px 22px; margin-bottom: 28px; }
+h2 { display: flex; align-items: center; gap: 12px; font-family: 'Luckiest Guy', 'Arial Black', sans-serif; font-weight: 400; letter-spacing: .02em; font-size: 22px; line-height: 1.1; margin-bottom: 10px; break-after: avoid; page-break-after: avoid; }
+.badge { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 22px; padding-top: 3px; }
+.instruction { font-size: 23px; line-height: 1.35; font-weight: 700; margin-bottom: 4px; text-wrap: pretty; }
+.note { font-size: 14.5px; line-height: 1.4; color: var(--muted); margin-bottom: 14px; text-wrap: pretty; }
+.qnum { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
+.arr { color: var(--muted); font-weight: 700; }
+.pbox { display: none; }
+.q { break-inside: avoid; page-break-inside: avoid; }
+
+/* vertical fractions (standing notation: numerator over a bar over denominator) */
+.vfrac { display: inline-flex; flex-direction: column; align-items: stretch; justify-content: center; vertical-align: middle; text-align: center; line-height: 1.05; white-space: nowrap; margin: .12em .15em; min-width: 1.05em; font-weight: 700; font-variant-numeric: tabular-nums; }
+.vfrac > .vn { display: block; padding: 0 .14em .10em; border-bottom: .09em solid currentColor; min-height: 1em; line-height: 1.05; }
+.vfrac > .vd { display: block; padding: .10em .14em 0; min-height: 1em; line-height: 1.05; }
+.vfrac input, .vfrac input.hw-field { width: 2.3em; min-width: 0 !important; height: 1.35em; min-height: 0 !important; padding: 0 2px !important; font: inherit; font-size: .9em; text-align: center; margin: .05em 0; }
+.whole, .whole.hw-field { width: 2.1em; min-width: 0 !important; height: 1.5em; min-height: 0 !important; padding: 0 2px !important; font: inherit; font-weight: 700; text-align: center; vertical-align: middle; }
+.wnum { font-weight: 700; font-size: 1.05em; vertical-align: middle; }
+
+/* step labels above each box, in reading order */
+.step { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; }
+.step > small { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); text-align: center; line-height: 1.15; }
+.step > .hw-mark.hw-mark-blk { display: block; margin: 2px 0 0; font-size: 13px; max-width: 10em; text-align: center; white-space: normal; line-height: 1.2; }
+.seg { display: inline-flex; align-items: center; gap: 8px 14px; white-space: nowrap; }
+
+/* the worked example */
+.model { margin: 6px 0 16px; background: var(--paper); border-left: 3px solid var(--teal); padding: 8px 14px 10px; color: var(--muted); break-inside: avoid; page-break-inside: avoid; }
+.model .mrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; color: var(--ink); padding-top: 4px; font-size: 22px; }
+.done { font-weight: 700; color: var(--ink); }
+.chip { display: inline-block; border: 2px solid var(--ink); border-radius: 10px; background: #fff; padding: 1px 10px; font-size: .8em; font-weight: 700; }
+.mach { font-size: 13px; font-weight: 800; color: var(--orange); line-height: 1; }
+.mw { display: inline-flex; flex-direction: column; align-items: center; }
+.mline { display: inline-flex; align-items: center; gap: 4px; font-size: .9em; color: var(--ink); }
+
+/* ---------- block 1: samples ---------- */
+.pots { display: flex; flex-direction: column; gap: 14px; }
+.pot { display: grid; grid-template-columns: 34px minmax(150px, auto) minmax(300px, auto) auto; justify-content: start; align-items: center; gap: 8px 22px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px 12px; font-size: 22px; }
+.pot .sum { display: inline-flex; align-items: center; gap: 4px; font-size: 1.1em; white-space: nowrap; }
+.pot .steps { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.dline, .fline { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 6px 22px; }
+.pot select, .pot select.hw-field { font: inherit; font-size: 19px; min-width: 0 !important; width: 190px; }
+.pname { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); text-align: center; }
+.flask { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.flask svg { width: 64px; height: 88px; display: block; }
+.flask .spill { font-size: 12px; font-weight: 800; color: var(--orange); min-height: 1.2em; text-align: center; }
+
+/* ---------- block 2: catch the mistake ---------- */
+.claims { display: flex; flex-direction: column; gap: 14px; }
+.claim { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px 12px; font-size: 22px; }
+.said { display: inline-flex; flex-direction: column; gap: 2px; }
+.who { font-size: 14px; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: .06em; }
+.line { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; font-size: 1.05em; }
+.how { font-size: 15px; color: var(--muted); }
+.claim { align-items: flex-start; }
+.cbody { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.eqrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
+.hides .whyq { grid-column: 1 / -1; }
+.whyq { background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 12px 14px 14px; font-size: 22px; }
+.whyq .prompt { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-bottom: 8px; }
+section div.whybox { min-height: 96px !important; }
+
+/* ---------- block 3: wholes hiding ---------- */
+.hides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.hide { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 10px 14px 12px; font-size: 24px; }
+.mixed { display: inline-flex; align-items: center; gap: 4px; }
+
+/* Emailed PDF only (hw.js gives the export body the class hw-pdf-mode). */
+body.hw-pdf-mode section { padding: 12px 18px 14px; margin-bottom: 18px; }
+body.hw-pdf-mode .banner { height: 110px; margin-bottom: 16px; }
+body.hw-pdf-mode .pots, body.hw-pdf-mode .claims { gap: 8px; }
+body.hw-pdf-mode .pot, body.hw-pdf-mode .claim, body.hw-pdf-mode .hide, body.hw-pdf-mode .whyq { padding: 5px 12px 6px; }
+body.hw-pdf-mode .note.scr-block { display: none; }
+
+/* Laptop and big screens: whole width, big type (Dasha, 1 Nov 2026). PDF export and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { max-width: 1640px; padding: 28px 48px 56px; font-size: 24px; }
+  .banner { height: 190px; }
+  .banner .digits { font-size: 150px; }
+  .banner .digits.two { top: 96px; }
+  .banner .kicker { font-size: 17px; }
+  .banner h1 { font-size: 44px; }
+  .banner .date { font-size: 18px; padding: 6px 14px; }
+  section { padding: 26px 34px 32px; margin-bottom: 36px; }
+  h2 { font-size: 28px; margin-bottom: 14px; }
+  .badge { width: 50px; height: 50px; font-size: 27px; }
+  .instruction { font-size: 38px; line-height: 1.25; margin-bottom: 8px; }
+  .note { font-size: 22px; margin-bottom: 20px; }
+  .qnum { width: 40px; height: 40px; font-size: 20px; }
+  .tag { font-size: 17px; }
+  .step > small { font-size: 15px; }
+  .hw-mark { font-size: 20px; }
+  .step > .hw-mark.hw-mark-blk { font-size: 18px; }
+  .mach { font-size: 18px; }
+  .model { margin: 10px 0 24px; padding: 14px 22px 18px; }
+  .model .mrow { font-size: 30px; gap: 10px 22px; }
+  .pots { gap: 18px; }
+  .pot { font-size: 30px; padding: 14px 22px 16px; gap: 10px 40px; grid-template-columns: 48px 230px minmax(440px, auto) auto; }
+  .pot .steps { gap: 10px; }
+  .dline, .fline { gap: 10px 36px; }
+  .pot select, .pot select.hw-field { font-size: 27px; width: 270px; min-height: 58px; }
+  .pname { font-size: 16px; }
+  .flask svg { width: 92px; height: 126px; }
+  .flask .spill { font-size: 17px; }
+  .claims { gap: 18px; }
+  .claim { font-size: 30px; padding: 14px 22px 16px; gap: 12px 40px; }
+  .who { font-size: 18px; }
+  .how { font-size: 22px; }
+  .eqrow { gap: 10px 26px; }
+  .whyq { font-size: 29px; padding: 16px 22px 20px; }
+  section div.whybox { min-height: 140px !important; font-size: 27px; }
+  .hides { gap: 18px; }
+  .hide { font-size: 30px; padding: 14px 22px 16px; gap: 10px 26px; }
+}
+@media screen and (max-width: 760px) {
+  .pot { grid-template-columns: auto 1fr auto; justify-content: stretch; }
+  .pot .steps { grid-column: 1 / -1; grid-row: 2; }
+  .pot .flask { grid-column: 3; grid-row: 1; }
+  .flask svg { width: 52px; height: 72px; }
+  .hides { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 560px) {
+  body { padding: 16px 12px 36px; }
+  .banner { height: 140px; }
+  .banner .label { right: 16px; bottom: 14px; }
+  .banner h1 { font-size: 26px; }
+  .banner .date { top: 10px; font-size: 12px; }
+  section { padding: 16px 14px 18px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 20px; }
+  .instruction { font-size: 20px; }
+  .model .mrow { font-size: 19px; }
+  .pot, .claim, .hide { font-size: 20px; padding: 10px 10px 12px; }
+  .pot select, .pot select.hw-field { width: 170px; font-size: 17px; }
+  .whyq { font-size: 19px; }
+  .eqrow { flex-wrap: nowrap; gap: 6px 8px; }
+  .eqrow .step > small { font-size: 10px; }
+  .claim { gap: 8px; }
+}
+@media print {
+  html, body { background: #fff; }
+  body { padding: 0 8px 6px 0; max-width: none; font-size: 12px; line-height: 1.3; }
+  .scr, .scr-block { display: none !important; }
+  .prt { display: inline; }
+  .prt-block { display: block; }
+  select { display: none !important; }
+  .pbox { display: inline-block; width: 40px; height: 22px; border: 1.5px solid var(--ink); border-radius: 6px; background: #fff; vertical-align: middle; }
+  .convrow[hidden] { display: inline-flex !important; }
+  .flask { display: none; }
+  .banner { height: 58px; margin-bottom: 8px; box-shadow: 4px 4px 0 var(--ink); }
+  .banner .digits { font-size: 58px; }
+  .banner .digits.two { top: 30px; }
+  .banner .label { bottom: 6px; padding: 3px 12px 2px; }
+  .banner .kicker { font-size: 9px; }
+  .banner h1 { font-size: 19px; }
+  .banner .date { font-size: 10.5px; top: 8px; }
+  section { padding: 7px 12px 10px; margin-bottom: 10px; box-shadow: 4px 4px 0 var(--ink); }
+  h2 { font-size: 15px; margin-bottom: 3px; gap: 8px; }
+  .badge { width: 24px; height: 24px; font-size: 13px; }
+  .instruction { font-size: 14px; margin-bottom: 1px; }
+  .note { font-size: 10px; margin-bottom: 5px; }
+  .tag { font-size: 8.5px; }
+  .qnum { width: 20px; height: 20px; font-size: 10.5px; }
+  .step > small { font-size: 7.5px; letter-spacing: 0; }
+  input { border: 1.5px solid var(--ink) !important; border-radius: 6px !important; background: #fff !important; }
+  input::placeholder { color: transparent; }
+  .model { padding: 3px 8px 5px; margin: 2px 0 6px; }
+  .model .mrow { font-size: 13px; }
+  .pots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: row; gap: 5px 10px; }
+  .pot { grid-template-columns: 22px auto 1fr; justify-content: stretch; font-size: 13px; padding: 3px 8px; gap: 2px 10px; border-width: 1.5px; }
+  .pot .steps { gap: 2px; }
+  .dline, .fline { gap: 2px 14px; }
+  .claims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px 10px; }
+  .claim, .hide, .whyq { font-size: 13px; padding: 3px 8px; gap: 4px 10px; border-width: 1.5px; }
+  .eqrow { gap: 3px 8px; }
+  .how, .who { font-size: 9.5px; }
+  .hides { grid-template-columns: auto auto 1fr; }
+  .hides .whyq { grid-column: auto; }
+  .whyq .prompt { gap: 2px 4px; }
+  .whyq .prompt { margin-bottom: 3px; }
+  .dline .step > small { display: none; }
+  .dline .prt { font-weight: 600; white-space: nowrap; font-size: 12px; }
+  .banner { height: 46px; margin-bottom: 6px; }
+  .banner .digits { font-size: 46px; }
+  .banner .digits.two { top: 24px; }
+  .banner .label { bottom: 4px; }
+  section { margin-bottom: 8px; padding: 6px 12px 8px; }
+  .model { margin: 1px 0 4px; padding: 2px 8px 3px; }
+  .model .mrow { padding-top: 0; }
+  .note { margin-bottom: 3px; }
+  section div.whybox { min-height: 52px !important; }
+  .hides { gap: 8px; }
+  section { break-inside: avoid; page-break-inside: avoid; }
+  section div.whybox { min-height: 44px !important; }
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Aahan" data-sheet="Aahan - Maths 2026-11-24 2026-11-24" data-sheet-id="aahan-2026-11-24-aahan-maths-2026-11-24">
+<div id="sheet">
+
+<div class="banner">
+  <div class="digits display" aria-hidden="true">+ &minus; = + &minus; = + &minus; = +</div>
+  <div class="digits two display" aria-hidden="true">&minus; = + &minus; = + &minus; = + &minus;</div>
+  <span class="date">24 November</span>
+  <div class="label">
+    <div class="kicker">Add and subtract fractions</div>
+    <h1 class="display">Aahan's maths</h1>
+  </div>
+</div>
+
+<!-- ===================== BLOCK 1 ===================== -->
+<section id="lab">
+  <header>
+  <h2><span class="badge">1</span> Mix the samples</h2>
+  <p class="instruction"><span class="scr">Choose same denominator or convert one. Then type the answer, simplified <span class="nw">fully.</span></span><span class="prt">Circle same denominator or convert one. Then write the answer, simplified <span class="nw">fully.</span></span></p>
+  <p class="note scr-block">The flask fills to your answer. Every sample fits in <span class="nw">one flask.</span></p>
+  <div class="model" aria-label="Worked example">
+    <span class="tag">Like this</span>
+    <div class="mrow">
+      <span class="sum"><span class="vfrac"><span class="vn">2</span><span class="vd">3</span></span> + <span class="vfrac"><span class="vn">1</span><span class="vd">12</span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>Decision</small><span class="chip">Convert one</span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>Converted</small><span class="mw"><small class="mach">&times; 4</small><span class="vfrac"><span class="vn">8</span><span class="vd">12</span></span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="mline"><span class="vfrac"><span class="vn">8</span><span class="vd">12</span></span> + <span class="vfrac"><span class="vn">1</span><span class="vd">12</span></span> = <span class="vfrac"><span class="vn">9</span><span class="vd">12</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>Simplified<br>fully</small><span class="done"><span class="vfrac"><span class="vn">3</span><span class="vd">4</span></span></span></span></span>
+    </div>
+  </div>
+  </header>
+
+  <div class="pots">
+    <div class="pot q" data-x="1/4" data-y="5/8" data-op="+" data-ans="p1a" data-conv="p1c" data-col="#3bb54a">
+      <span class="qnum">1</span>
+      <span class="sum"><span class="vfrac"><span class="vn">1</span><span class="vd">4</span></span> + <span class="vfrac"><span class="vn">5</span><span class="vd">8</span></span></span>
+      <span class="steps">
+        <span class="dline"><span class="step"><small>Decision</small><select data-k="p1d" data-label="1.1 one quarter + five eighths: same denominator or convert one" aria-label="Decision for sample A" class="hw-field"><option value="">Choose</option><option value="Same denominator">Same denominator</option><option value="Convert one">Convert one</option></select><span class="prt">same denominator &middot; convert one</span></span></span>
+        <span class="fline"><span class="step convrow" data-field="p1c" hidden><small>Converted</small><span class="vfrac"><span class="vn"><input data-k="p1cn" data-label="1.1 one quarter + five eighths: converted numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted numerator" class="hw-field"></span><span class="vd"><input data-k="p1cd" data-label="1.1 one quarter + five eighths: converted denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted denominator" class="hw-field"></span></span></span><span class="step ansstep" data-field="p1a"><small>Answer,<br>simplified fully</small><span class="vfrac"><span class="vn"><input data-k="p1an" data-label="1.1 one quarter + five eighths: answer numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer numerator" class="hw-field"></span><span class="vd"><input data-k="p1ad" data-label="1.1 one quarter + five eighths: answer denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer denominator" class="hw-field"></span></span></span></span>
+      </span>
+      <span class="flask" aria-hidden="true"><span class="pname">Sample A</span><svg viewBox="0 0 80 110"></svg><span class="spill"></span></span>
+    </div>
+    <div class="pot q" data-x="5/6" data-y="1/3" data-op="-" data-ans="p2a" data-conv="p2c" data-col="#8a4fd8">
+      <span class="qnum">2</span>
+      <span class="sum"><span class="vfrac"><span class="vn">5</span><span class="vd">6</span></span> &minus; <span class="vfrac"><span class="vn">1</span><span class="vd">3</span></span></span>
+      <span class="steps">
+        <span class="dline"><span class="step"><small>Decision</small><select data-k="p2d" data-label="1.2 five sixths - one third: same denominator or convert one" aria-label="Decision for sample B" class="hw-field"><option value="">Choose</option><option value="Same denominator">Same denominator</option><option value="Convert one">Convert one</option></select><span class="prt">same denominator &middot; convert one</span></span></span>
+        <span class="fline"><span class="step convrow" data-field="p2c" hidden><small>Converted</small><span class="vfrac"><span class="vn"><input data-k="p2cn" data-label="1.2 five sixths - one third: converted numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted numerator" class="hw-field"></span><span class="vd"><input data-k="p2cd" data-label="1.2 five sixths - one third: converted denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted denominator" class="hw-field"></span></span></span><span class="step ansstep" data-field="p2a"><small>Answer,<br>simplified fully</small><span class="vfrac"><span class="vn"><input data-k="p2an" data-label="1.2 five sixths - one third: answer numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer numerator" class="hw-field"></span><span class="vd"><input data-k="p2ad" data-label="1.2 five sixths - one third: answer denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer denominator" class="hw-field"></span></span></span></span>
+      </span>
+      <span class="flask" aria-hidden="true"><span class="pname">Sample B</span><svg viewBox="0 0 80 110"></svg><span class="spill"></span></span>
+    </div>
+    <div class="pot q" data-x="11/12" data-y="3/12" data-op="-" data-ans="p3a" data-conv="p3c" data-col="#e2562b">
+      <span class="qnum">3</span>
+      <span class="sum"><span class="vfrac"><span class="vn">11</span><span class="vd">12</span></span> &minus; <span class="vfrac"><span class="vn">3</span><span class="vd">12</span></span></span>
+      <span class="steps">
+        <span class="dline"><span class="step"><small>Decision</small><select data-k="p3d" data-label="1.3 eleven twelfths - three twelfths: same denominator or convert one" aria-label="Decision for sample C" class="hw-field"><option value="">Choose</option><option value="Same denominator">Same denominator</option><option value="Convert one">Convert one</option></select><span class="prt">same denominator &middot; convert one</span></span></span>
+        <span class="fline"><span class="step convrow" data-field="p3c" hidden><small>Converted</small><span class="vfrac"><span class="vn"><input data-k="p3cn" data-label="1.3 eleven twelfths - three twelfths: converted numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted numerator" class="hw-field"></span><span class="vd"><input data-k="p3cd" data-label="1.3 eleven twelfths - three twelfths: converted denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted denominator" class="hw-field"></span></span></span><span class="step ansstep" data-field="p3a"><small>Answer,<br>simplified fully</small><span class="vfrac"><span class="vn"><input data-k="p3an" data-label="1.3 eleven twelfths - three twelfths: answer numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer numerator" class="hw-field"></span><span class="vd"><input data-k="p3ad" data-label="1.3 eleven twelfths - three twelfths: answer denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer denominator" class="hw-field"></span></span></span></span>
+      </span>
+      <span class="flask" aria-hidden="true"><span class="pname">Sample C</span><svg viewBox="0 0 80 110"></svg><span class="spill"></span></span>
+    </div>
+    <div class="pot q" data-x="1/4" data-y="1/12" data-op="+" data-ans="p4a" data-conv="p4c" data-col="#22a39f">
+      <span class="qnum">4</span>
+      <span class="sum"><span class="vfrac"><span class="vn">1</span><span class="vd">4</span></span> + <span class="vfrac"><span class="vn">1</span><span class="vd">12</span></span></span>
+      <span class="steps">
+        <span class="dline"><span class="step"><small>Decision</small><select data-k="p4d" data-label="1.4 one quarter + one twelfth: same denominator or convert one" aria-label="Decision for sample D" class="hw-field"><option value="">Choose</option><option value="Same denominator">Same denominator</option><option value="Convert one">Convert one</option></select><span class="prt">same denominator &middot; convert one</span></span></span>
+        <span class="fline"><span class="step convrow" data-field="p4c" hidden><small>Converted</small><span class="vfrac"><span class="vn"><input data-k="p4cn" data-label="1.4 one quarter + one twelfth: converted numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted numerator" class="hw-field"></span><span class="vd"><input data-k="p4cd" data-label="1.4 one quarter + one twelfth: converted denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted denominator" class="hw-field"></span></span></span><span class="step ansstep" data-field="p4a"><small>Answer,<br>simplified fully</small><span class="vfrac"><span class="vn"><input data-k="p4an" data-label="1.4 one quarter + one twelfth: answer numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer numerator" class="hw-field"></span><span class="vd"><input data-k="p4ad" data-label="1.4 one quarter + one twelfth: answer denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer denominator" class="hw-field"></span></span></span></span>
+      </span>
+      <span class="flask" aria-hidden="true"><span class="pname">Sample D</span><svg viewBox="0 0 80 110"></svg><span class="spill"></span></span>
+    </div>
+    <div class="pot q" data-x="3/4" data-y="5/8" data-op="-" data-ans="p5a" data-conv="p5c" data-col="#d94f8a">
+      <span class="qnum">5</span>
+      <span class="sum"><span class="vfrac"><span class="vn">3</span><span class="vd">4</span></span> &minus; <span class="vfrac"><span class="vn">5</span><span class="vd">8</span></span></span>
+      <span class="steps">
+        <span class="dline"><span class="step"><small>Decision</small><select data-k="p5d" data-label="1.5 three quarters - five eighths: same denominator or convert one" aria-label="Decision for sample E" class="hw-field"><option value="">Choose</option><option value="Same denominator">Same denominator</option><option value="Convert one">Convert one</option></select><span class="prt">same denominator &middot; convert one</span></span></span>
+        <span class="fline"><span class="step convrow" data-field="p5c" hidden><small>Converted</small><span class="vfrac"><span class="vn"><input data-k="p5cn" data-label="1.5 three quarters - five eighths: converted numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted numerator" class="hw-field"></span><span class="vd"><input data-k="p5cd" data-label="1.5 three quarters - five eighths: converted denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Converted denominator" class="hw-field"></span></span></span><span class="step ansstep" data-field="p5a"><small>Answer,<br>simplified fully</small><span class="vfrac"><span class="vn"><input data-k="p5an" data-label="1.5 three quarters - five eighths: answer numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer numerator" class="hw-field"></span><span class="vd"><input data-k="p5ad" data-label="1.5 three quarters - five eighths: answer denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer denominator" class="hw-field"></span></span></span></span>
+      </span>
+      <span class="flask" aria-hidden="true"><span class="pname">Sample E</span><svg viewBox="0 0 80 110"></svg><span class="spill"></span></span>
+    </div>
+  </div>
+  <div class="stores" hidden>
+    <input data-k="p1c" data-label="1.1 converted fraction (checked)" class="hw-field"><input data-k="p1a" data-label="1.1 answer simplified fully (checked)" class="hw-field">
+    <input data-k="p2c" data-label="1.2 converted fraction (checked)" class="hw-field"><input data-k="p2a" data-label="1.2 answer simplified fully (checked)" class="hw-field">
+    <input data-k="p3c" data-label="1.3 converted fraction (as typed)" class="hw-field"><input data-k="p3a" data-label="1.3 answer simplified fully (checked)" class="hw-field">
+    <input data-k="p4c" data-label="1.4 converted fraction (checked)" class="hw-field"><input data-k="p4a" data-label="1.4 answer simplified fully (checked)" class="hw-field">
+    <input data-k="p5c" data-label="1.5 converted fraction (checked)" class="hw-field"><input data-k="p5a" data-label="1.5 answer simplified fully (checked)" class="hw-field">
+  </div>
+</section>
+
+<!-- ===================== BLOCK 2 ===================== -->
+<section id="catch">
+  <header>
+  <h2><span class="badge">2</span> Catch the mistake</h2>
+  <p class="instruction"><span class="scr">Find the mistake. Type the right answer, simplified <span class="nw">fully.</span></span><span class="prt">Find the mistake. Write the right answer, simplified <span class="nw">fully.</span></span></p>
+  <div class="model" aria-label="Worked example">
+    <span class="tag">Like this</span>
+    <div class="mrow">
+      <span class="said"><span class="who">Zoe says:</span><span class="line"><span class="vfrac"><span class="vn">1</span><span class="vd">6</span></span> + <span class="vfrac"><span class="vn">1</span><span class="vd">12</span></span> = <span class="vfrac"><span class="vn">2</span><span class="vd">18</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="mline"><span class="vfrac"><span class="vn">2</span><span class="vd">12</span></span> + <span class="vfrac"><span class="vn">1</span><span class="vd">12</span></span> = <span class="vfrac"><span class="vn">3</span><span class="vd">12</span></span> = <span class="vfrac"><span class="vn">1</span><span class="vd">4</span></span></span></span>
+    </div>
+  </div>
+  </header>
+  <div class="claims">
+    <div class="claim q" data-x="1/3" data-y="2/9" data-op="+" data-ans="m1a">
+      <span class="qnum">1</span>
+      <div class="cbody">
+        <span class="who">Ada says:</span>
+        <span class="eqrow"><span class="line"><span class="vfrac"><span class="vn">1</span><span class="vd">3</span></span> + <span class="vfrac"><span class="vn">2</span><span class="vd">9</span></span> = <span class="vfrac"><span class="vn">3</span><span class="vd">12</span></span></span><span class="arr">&rarr;</span><span class="step ansstep" data-field="m1a"><small>Right answer,<br>simplified fully</small><span class="vfrac"><span class="vn"><input data-k="m1an" data-label="2.1 Ada, one third + two ninths fixed: right answer numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Right answer numerator" class="hw-field"></span><span class="vd"><input data-k="m1ad" data-label="2.1 Ada, one third + two ninths fixed: right answer denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Right answer denominator" class="hw-field"></span></span></span></span>
+      </div>
+    </div>
+    <div class="claim q" data-x="4/5" data-y="1/10" data-op="-" data-ans="m2a">
+      <span class="qnum">2</span>
+      <div class="cbody">
+        <span class="who">Leo says:</span>
+        <span class="eqrow"><span class="line"><span class="vfrac"><span class="vn">4</span><span class="vd">5</span></span> &minus; <span class="vfrac"><span class="vn">1</span><span class="vd">10</span></span> = <span class="vfrac"><span class="vn">3</span><span class="vd">5</span></span></span><span class="arr">&rarr;</span><span class="step ansstep" data-field="m2a"><small>Right answer,<br>simplified fully</small><span class="vfrac"><span class="vn"><input data-k="m2an" data-label="2.2 Leo, four fifths - one tenth fixed: right answer numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Right answer numerator" class="hw-field"></span><span class="vd"><input data-k="m2ad" data-label="2.2 Leo, four fifths - one tenth fixed: right answer denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Right answer denominator" class="hw-field"></span></span></span></span>
+        <span class="how">&ldquo;I took 1 away from 4.&rdquo;</span>
+      </div>
+    </div>
+  </div>
+  <div class="stores" hidden>
+    <input data-k="m1a" data-label="2.1 Ada fixed (checked)" class="hw-field">
+    <input data-k="m2a" data-label="2.2 Leo fixed (checked)" class="hw-field">
+  </div>
+</section>
+
+<!-- ===================== BLOCK 3 ===================== -->
+<section id="wholes">
+  <header>
+  <h2><span class="badge">3</span> Improper to mixed</h2>
+  <p class="instruction"><span class="scr">Type each one as a mixed number. Simplify the fraction <span class="nw">fully.</span></span><span class="prt">Write each one as a mixed number. Simplify the fraction <span class="nw">fully.</span></span></p>
+  <div class="model" aria-label="Worked example">
+    <span class="tag">Like this</span>
+    <div class="mrow">
+      <span class="vfrac"><span class="vn">22</span><span class="vd">8</span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="mline">22 &divide; 8 = 2 r 6</span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="mixed"><span class="wnum">2</span><span class="vfrac"><span class="vn">6</span><span class="vd">8</span></span></span></span>
+      <span class="seg"><span class="arr">&rarr;</span><span class="step"><small>Simplified<br>fully</small><span class="mixed done"><span class="wnum">2</span><span class="vfrac"><span class="vn">3</span><span class="vd">4</span></span></span></span></span>
+    </div>
+  </div>
+  </header>
+  <div class="hides">
+    <div class="hide q mixq" data-n="20" data-d="6" data-ans="h1">
+      <span class="qnum">1</span>
+      <span class="vfrac"><span class="vn">20</span><span class="vd">6</span></span>
+      <span class="arr">&rarr;</span><span class="step" data-field="h1"><small>Mixed number</small><span class="mixed"><input class="hw-field whole" data-k="h1w" data-label="3.1 twenty sixths: whole number (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Whole number"><span class="vfrac"><span class="vn"><input data-k="h1n" data-label="3.1 twenty sixths: numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Numerator" class="hw-field"></span><span class="vd"><input data-k="h1d" data-label="3.1 twenty sixths: denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Denominator" class="hw-field"></span></span></span></span>
+    </div>
+    <div class="hide q mixq" data-n="32" data-d="12" data-ans="h2">
+      <span class="qnum">2</span>
+      <span class="vfrac"><span class="vn">32</span><span class="vd">12</span></span>
+      <span class="arr">&rarr;</span><span class="step" data-field="h2"><small>Mixed number</small><span class="mixed"><input class="hw-field whole" data-k="h2w" data-label="3.2 thirty-two twelfths: whole number (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Whole number"><span class="vfrac"><span class="vn"><input data-k="h2n" data-label="3.2 thirty-two twelfths: numerator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Numerator" class="hw-field"></span><span class="vd"><input data-k="h2d" data-label="3.2 thirty-two twelfths: denominator (as typed)" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Denominator" class="hw-field"></span></span></span></span>
+    </div>
+  <div class="whyq q">
+    <div class="prompt"><span class="qnum">3</span> <span class="nw"><span class="vfrac"><span class="vn">17</span><span class="vd">5</span></span> becomes <span class="mixed"><span class="wnum">3</span><span class="vfrac"><span class="vn">2</span><span class="vd">5</span></span></span>.</span> Why does the denominator stay <span class="nw">5?</span></div>
+    <div class="hw-field whybox" contenteditable="true" data-k="w1" data-label="3.3 Seventeen fifths becomes 3 and two fifths. Why does the denominator stay 5?"></div>
+  </div>
+  </div>
+  <div class="stores" hidden>
+    <input data-k="h1" data-label="3.1 twenty sixths as a mixed number (checked)" class="hw-field">
+    <input data-k="h2" data-label="3.2 thirty-two twelfths as a mixed number (checked)" class="hw-field">
+  </div>
+</section>
+
+<script>
+/* Checked copies are built from what he typed: nothing on the page prints a result.
+   "n over d" = his own fraction; the fraction's name (e.g. "seven eighths") only when it is equal to the sum AND simplified fully. */
+(function () {
+  var NUM = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"];
+  var DEN = {2:["half","halves"],3:["third","thirds"],4:["quarter","quarters"],5:["fifth","fifths"],6:["sixth","sixths"],7:["seventh","sevenths"],8:["eighth","eighths"],9:["ninth","ninths"],10:["tenth","tenths"],11:["eleventh","elevenths"],12:["twelfth","twelfths"]};
+  function int(s) { var v = String(s || "").replace(/\s/g, ""); return /^\d+$/.test(v) ? parseInt(v, 10) : null; }
+  function gcd(a, b) { while (b) { var t = b; b = a % b; a = t; } return a; }
+  function name(n, d) { var w = DEN[d]; return (w && n <= 20) ? NUM[n] + " " + (n === 1 ? w[0] : w[1]) : n + " over " + d; }
+  function fr(s) { var p = s.split("/"); return [+p[0], +p[1]]; }
+  function fire(el, v) { if (el && el.value !== v) { el.value = v; el.dispatchEvent(new Event("change", { bubbles: true })); } }
+  function k(key) { return document.querySelector('[data-k="' + key + '"]'); }
+  function store(key) { return document.querySelector('.stores [data-k="' + key + '"]'); }
+  function listen(els, fn) { els.forEach(function (el) { if (el) { el.addEventListener("input", fn); el.addEventListener("change", fn); } }); }
+  function raw(a, b) { var x = String(a.value || "").trim(), y = String(b.value || "").trim(); return (x || y) ? (x || "?") + " over " + (y || "?") : ""; }
+
+  /* the sum of the two printed fractions, as numerator and denominator */
+  function sumOf(el) {
+    var x = fr(el.dataset.x), y = fr(el.dataset.y), d = x[1] * y[1];
+    var n = el.dataset.op === "+" ? x[0] * y[1] + y[0] * x[1] : x[0] * y[1] - y[0] * x[1];
+    return [n, d];
+  }
+  function checkAnswer(el, a, b) {
+    var n = int(a.value), d = int(b.value), s = sumOf(el);
+    if (n === null || !d) return raw(a, b);
+    if (n * s[1] !== s[0] * d) return n + " over " + d;
+    return gcd(n, d) === 1 ? name(n, d) : n + " over " + d + " (not simplified fully)";
+  }
+
+  /* flask: fills to the pupil's own typed answer, with one mark per piece of his denominator */
+  function drawFlask(svg, n, d, col, spill) {
+    var top = 24, bot = 100, h = bot - top, out = "";
+    out += '<path d="M30 6 h20 v14 l20 26 v50 a8 8 0 0 1 -8 8 h-44 a8 8 0 0 1 -8 -8 v-50 l20 -26 z" fill="#fff" stroke="#1b1712" stroke-width="3" stroke-linejoin="round"/>';
+    var ok = n !== null && d && d <= 24;
+    if (ok && n > 0) {
+      var v = Math.min(n / d, 1), y = bot - h * v;
+      out += '<clipPath id="c' + svg.dataset.i + '"><path d="M31.5 7.5 h17 v13 l20 26 v49 a6.5 6.5 0 0 1 -6.5 6.5 h-44 a6.5 6.5 0 0 1 -6.5 -6.5 v-49 l20 -26 z"/></clipPath>';
+      out += '<rect clip-path="url(#c' + svg.dataset.i + ')" x="0" y="' + y.toFixed(1) + '" width="80" height="' + (110 - y).toFixed(1) + '" fill="' + col + '" opacity=".85"/>';
+    }
+    if (ok) for (var i = 1; i < d; i++) { var ty = bot - h * i / d; out += '<line x1="62" x2="70" y1="' + ty.toFixed(1) + '" y2="' + ty.toFixed(1) + '" stroke="#1b1712" stroke-width="1.6"/>'; }
+    svg.innerHTML = out;
+    spill.textContent = (ok && n > d) ? "It spills!" : "";
+  }
+
+  function init() {
+    var idx = 0;
+    /* Block 1: decision, converted fraction (only for Convert one), answer, flask */
+    document.querySelectorAll(".pot").forEach(function (el) {
+      var ns = el.dataset.ans, cs = el.dataset.conv, num = ns.charAt(1);
+      var sel = k("p" + num + "d"), row = el.querySelector(".convrow");
+      var cn = k(cs + "n"), cd = k(cs + "d"), an = k(ns + "n"), ad = k(ns + "d");
+      var svg = el.querySelector(".flask svg"), spill = el.querySelector(".flask .spill");
+      svg.dataset.i = String(++idx);
+      var x = fr(el.dataset.x), y = fr(el.dataset.y);
+      var small = x[1] <= y[1] ? x : y, big = Math.max(x[1], y[1]), same = x[1] === y[1];
+      function conv() {
+        var v = "";
+        if (sel.value === "Convert one") {
+          var n = int(cn.value), d = int(cd.value);
+          if (n !== null && d) v = (!same && n * small[1] === small[0] * d && d % big === 0) ? "converted correctly" : n + " over " + d;
+          else v = raw(cn, cd);
+        }
+        fire(store(cs), v);
+      }
+      function toggle() { row.hidden = sel.value !== "Convert one"; conv(); }
+      function ans() { fire(store(ns), checkAnswer(el, an, ad)); drawFlask(svg, int(an.value), int(ad.value), el.dataset.col, spill); }
+      listen([sel], toggle); listen([cn, cd], conv); listen([an, ad], ans);
+      toggle(); ans();
+    });
+    /* Block 2: the right sum, simplified fully */
+    document.querySelectorAll(".claim").forEach(function (el) {
+      var ns = el.dataset.ans, an = k(ns + "n"), ad = k(ns + "d");
+      function ans() { fire(store(ns), checkAnswer(el, an, ad)); }
+      listen([an, ad], ans); ans();
+    });
+    /* Block 3: improper fraction as a mixed number, fraction part simplified fully */
+    document.querySelectorAll(".mixq").forEach(function (el) {
+      var ns = el.dataset.ans, N = +el.dataset.n, D = +el.dataset.d;
+      var w = k(ns + "w"), a = k(ns + "n"), b = k(ns + "d");
+      function ans() {
+        var W = int(w.value), n = int(a.value), d = int(b.value), v = "";
+        var tw = String(w.value || "").trim();
+        if (W !== null && n !== null && d) {
+          if ((W * d + n) * D !== N * d) v = W + " and " + n + " over " + d;
+          else if (n > 0 && n < d && gcd(n, d) === 1) v = (NUM[W] || W) + " and " + name(n, d);
+          else v = W + " and " + n + " over " + d + " (not simplified fully)";
+        } else if (tw || a.value || b.value) v = (tw || "?") + " and " + raw(a, b);
+        fire(store(ns), v);
+      }
+      listen([w, a, b], ans); ans();
+    });
+  }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJwMWQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJDb252ZXJ0IG9uZSJ9LCAicDFjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29udmVydGVkIGNvcnJlY3RseSJ9LCAicDFhIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2V2ZW4gZWlnaHRocyJ9LCAicDFjbiI6IHsidCI6ICJvcGVuIn0sICJwMWNkIjogeyJ0IjogIm9wZW4ifSwgInAxYW4iOiB7InQiOiAib3BlbiJ9LCAicDFhZCI6IHsidCI6ICJvcGVuIn0sICJwMmQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJDb252ZXJ0IG9uZSJ9LCAicDJjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29udmVydGVkIGNvcnJlY3RseSJ9LCAicDJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAib25lIGhhbGYifSwgInAyY24iOiB7InQiOiAib3BlbiJ9LCAicDJjZCI6IHsidCI6ICJvcGVuIn0sICJwMmFuIjogeyJ0IjogIm9wZW4ifSwgInAyYWQiOiB7InQiOiAib3BlbiJ9LCAicDNkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiU2FtZSBkZW5vbWluYXRvciJ9LCAicDNjIjogeyJ0IjogIm9wZW4ifSwgInAzYSI6IHsidCI6ICJleGFjdCIsICJhIjogInR3byB0aGlyZHMifSwgInAzY24iOiB7InQiOiAib3BlbiJ9LCAicDNjZCI6IHsidCI6ICJvcGVuIn0sICJwM2FuIjogeyJ0IjogIm9wZW4ifSwgInAzYWQiOiB7InQiOiAib3BlbiJ9LCAicDRkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiQ29udmVydCBvbmUifSwgInA0YyI6IHsidCI6ICJleGFjdCIsICJhIjogImNvbnZlcnRlZCBjb3JyZWN0bHkifSwgInA0YSI6IHsidCI6ICJleGFjdCIsICJhIjogIm9uZSB0aGlyZCJ9LCAicDRjbiI6IHsidCI6ICJvcGVuIn0sICJwNGNkIjogeyJ0IjogIm9wZW4ifSwgInA0YW4iOiB7InQiOiAib3BlbiJ9LCAicDRhZCI6IHsidCI6ICJvcGVuIn0sICJwNWQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJDb252ZXJ0IG9uZSJ9LCAicDVjIjogeyJ0IjogImV4YWN0IiwgImEiOiAiY29udmVydGVkIGNvcnJlY3RseSJ9LCAicDVhIjogeyJ0IjogImV4YWN0IiwgImEiOiAib25lIGVpZ2h0aCJ9LCAicDVjbiI6IHsidCI6ICJvcGVuIn0sICJwNWNkIjogeyJ0IjogIm9wZW4ifSwgInA1YW4iOiB7InQiOiAib3BlbiJ9LCAicDVhZCI6IHsidCI6ICJvcGVuIn0sICJtMWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJmaXZlIG5pbnRocyJ9LCAibTJhIjogeyJ0IjogImV4YWN0IiwgImEiOiAic2V2ZW4gdGVudGhzIn0sICJtMWFuIjogeyJ0IjogIm9wZW4ifSwgIm0xYWQiOiB7InQiOiAib3BlbiJ9LCAibTJhbiI6IHsidCI6ICJvcGVuIn0sICJtMmFkIjogeyJ0IjogIm9wZW4ifSwgImgxIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhyZWUgYW5kIG9uZSB0aGlyZCJ9LCAiaDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0d28gYW5kIHR3byB0aGlyZHMifSwgImgxdyI6IHsidCI6ICJvcGVuIn0sICJoMW4iOiB7InQiOiAib3BlbiJ9LCAiaDFkIjogeyJ0IjogIm9wZW4ifSwgImgydyI6IHsidCI6ICJvcGVuIn0sICJoMm4iOiB7InQiOiAib3BlbiJ9LCAiaDJkIjogeyJ0IjogIm9wZW4ifSwgIncxIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

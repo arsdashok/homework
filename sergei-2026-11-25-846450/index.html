@@ -1,0 +1,224 @@
+<!doctype html>
+<!-- hw-mode: online. Closed answers are revealed by the shared hw.js after «Check and send to Dasha». Private marking key: Sergei_Homework_2026-11-25.key.json -->
+<!-- Lesson 25 Nov 2026. ONE shelf: describing a person (coursebook: Charlotte writes a dating profile for her dad Clint; he described Maggie from a card, asked about Tessa).
+     Verified slips: «she look like… a woman» (Dasha: go straight to the details, looks like = resembles), «she has a red short hair» (short red hair),
+     «she has glasses» (wears), «a small business with cosmetics» (a cosmetics business), «likes traveling and listen music, classic music» (travelling and listening to classical music).
+     01 a1..a8, a menu inside the sentence (same three options, fixed order is / has / wears). Answer sequence: is, has, has, wears, is, wears, has, is
+        (no run of 3, no alternation). Model «Nadia is tall» uses height, which no item uses. Invented man (Daniel), not Maggie / Tessa / Clint, no family of Sergei's.
+        Ambiguity checks: «wears a smile / wears a beard» avoided (idiomatic); glasses item says «when he reads» so «has» is out; «usually» sits before the verb, nothing marks a front position wrong.
+     02 w1..w4 typed, key open. Invented woman (Sofia) given as notes on a card; base verbs (cook, listen to jazz, get up early) so he builds likes + -ing himself;
+        hair notes «dark, long» so he chooses the order (long dark hair). Model «swim → He likes swimming» uses a verb and a subject no item takes.
+     Look: Sergei's standing design (10 Nov sheet), with the 1 Nov 2026 whole-screen rules. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sergei · English · 25 November 2026</title>
+<style>
+:root { color-scheme:light; --ink:#162b37; --muted:#536672; --accent:#006b66; --line:#d9e2e7; }
+* { box-sizing:border-box; }
+body { margin:0; background:#f1f5f7; color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.6; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+p, .instruction, .note { text-wrap:pretty; }
+.wrap { max-width:1120px; margin:0 auto; padding:48px 36px 24px; }
+.page-header { padding:0 0 28px; }
+.eyebrow { font-size:12px; font-weight:750; letter-spacing:.16em; color:var(--accent); }
+.heading-row { display:flex; justify-content:space-between; gap:24px; align-items:center; margin:18px 0 22px; }
+h1 { font-size:clamp(30px,4.5vw,44px); line-height:1.14; letter-spacing:-.04em; margin:0; font-weight:700; }
+.edition { font-size:13px; text-align:right; line-height:1.7; white-space:nowrap; color:var(--muted); }
+.page-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); border-top:1px solid var(--line); padding-top:18px; }
+.exercise { background:white; border:1px solid var(--line); border-radius:20px; padding:30px 40px; margin-bottom:26px; box-shadow:0 4px 16px #162b3704; }
+/* Section name = small label; the instruction = the one bold, biggest line. */
+.section-heading { display:flex; gap:14px; align-items:baseline; margin-bottom:8px; break-after:avoid; page-break-after:avoid; }
+.section-number { font-size:13px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+h2 { margin:0; font-size:13px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.context { font-size:18px; font-weight:400; margin:0 0 6px; }
+.instruction { font-size:24px; font-weight:650; line-height:1.3; letter-spacing:-.01em; margin:0 0 14px; break-after:avoid; page-break-after:avoid; }
+.note { font-size:15px; color:var(--muted); margin:-6px 0 14px; }
+.qn { display:inline-block; min-width:32px; font-size:16px; font-weight:750; color:var(--accent); font-variant-numeric:tabular-nums; }
+.question { page-break-inside:avoid; break-inside:avoid; }
+.model-tag { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-right:10px; }
+.like { font-size:19px; color:var(--muted); margin:0 0 14px; padding:10px 16px; border-radius:12px; background:#f6f9fa; }
+.like b { color:var(--ink); }
+.nw { white-space:nowrap; }
+
+/* Reminder: one line + bright key chips */
+.rule { margin:0 0 16px; padding:14px 18px; border-radius:14px; background:#f1f5f7; font-size:17px; line-height:1.45; }
+.rule .what { margin:0 0 10px; }
+.keys { display:flex; flex-wrap:wrap; gap:8px 10px; }
+.key { display:inline-block; background:var(--accent); color:white; font-weight:700; border-radius:999px; padding:5px 16px; font-size:17px; white-space:nowrap; }
+
+/* 01: menu inside the sentence */
+.items { display:grid; gap:0; }
+.q { display:flex; gap:6px; padding:12px 0; border-bottom:1px solid #edf1f3; align-items:baseline; }
+.qbody { flex:1; min-width:0; }
+.sent { margin:0; font-size:20px; }
+.pgap { display:none; }
+select.pick { font:inherit; font-weight:600; vertical-align:middle; }
+
+/* 02: profile card + four questions */
+.two { display:grid; gap:18px; }
+.card { border:1.5px solid var(--line); border-radius:18px; padding:18px 20px; background:#f8fbfb; align-self:start; page-break-inside:avoid; break-inside:avoid; }
+.card-top { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+.avatar { width:56px; height:56px; border-radius:50%; background:var(--accent); color:white; font-weight:750; font-size:26px; display:flex; align-items:center; justify-content:center; flex:none; }
+.card-name { font-size:22px; font-weight:700; margin:0; line-height:1.2; }
+.card-sub { font-size:14px; color:var(--muted); margin:0; }
+.facts { margin:0; padding:0; list-style:none; }
+.facts li { display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; padding:7px 0; border-top:1px solid #e6edf0; font-size:18px; }
+.facts .k { color:var(--muted); font-size:15px; font-weight:650; letter-spacing:.04em; text-transform:uppercase; padding-top:2px; }
+.owns { display:grid; gap:0; }
+.own { padding:10px 0 14px; border-bottom:1px solid #edf1f3; }
+.own:last-child { border-bottom:0; }
+.own .ask { margin:0 0 6px; font-size:20px; font-weight:400; }
+.own .ask small { display:block; font-size:14px; color:var(--muted); margin-top:2px; }
+
+/* Local preview only: the shared hw.css styles .hw-field on the live page. */
+input, select, textarea { font:inherit; color:#1d4ed8; background:#f8fafb; border:1.5px solid #a4b5c0; border-radius:8px; padding:6px 10px; }
+select { min-height:44px; min-width:130px; }
+textarea { display:block; width:100%; line-height:1.5; resize:vertical; }
+section textarea.ans { min-height:96px !important; }
+.prt { display:none; }
+
+/* Screens: whole width, big type (Dasha, 1 Nov 2026). */
+@media screen and (min-width:900px) {
+  body { font-size:24px; }
+  .wrap { max-width:1640px; padding:44px 48px 36px; }
+  .eyebrow { font-size:16px; }
+  h1 { font-size:52px; }
+  .edition { font-size:17px; }
+  .page-meta { font-size:19px; }
+  .exercise { padding:34px 48px 38px; margin-bottom:30px; }
+  .section-number, h2 { font-size:18px; }
+  .context { font-size:26px; margin-bottom:8px; }
+  .instruction { font-size:38px; margin:4px 0 18px; }
+  .note { font-size:21px; }
+  .like { font-size:26px; padding:14px 22px; margin-bottom:20px; }
+  .model-tag { font-size:16px; }
+  .rule { font-size:24px; padding:18px 24px; margin-bottom:22px; }
+  .key { font-size:23px; padding:6px 20px; }
+  .qn { font-size:22px; min-width:44px; }
+  .items { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-auto-flow:column; grid-template-rows:repeat(4,auto); column-gap:56px; }
+  .q { padding:18px 0; }
+  .sent { font-size:30px; }
+  select.pick { font-size:26px; height:56px; min-width:170px; padding:2px 12px; }
+  .two { grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:48px; }
+  .card { padding:26px 30px; position:sticky; top:20px; }
+  .avatar { width:72px; height:72px; font-size:34px; }
+  .card-name { font-size:32px; }
+  .card-sub { font-size:20px; }
+  .facts li { grid-template-columns:190px minmax(0,1fr); font-size:28px; padding:11px 0; }
+  .facts .k { font-size:19px; padding-top:6px; }
+  .own { padding:14px 0 20px; }
+  .own .ask { font-size:30px; margin-bottom:10px; }
+  .own .ask small { font-size:20px; }
+  textarea { font-size:26px; padding:10px 16px; }
+  section textarea.ans { min-height:124px !important; }
+}
+@media (max-width:620px) {
+  body { font-size:17px; } .wrap { padding:28px 14px 16px; } .exercise { padding:22px 16px; border-radius:14px; }
+  .instruction { font-size:21px; } .edition { font-size:12px; }
+  .rule { font-size:16px; padding:12px 14px; } .key { font-size:15.5px; padding:4px 12px; }
+  .like { font-size:17px; }
+  .sent, .own .ask { font-size:19px; }
+  .facts li { grid-template-columns:118px minmax(0,1fr); font-size:17px; }
+  .facts .k { font-size:13px; }
+}
+@page { size:A4; margin:11mm; }
+@media print {
+  .prt { display:inline !important; } .scr { display:none !important; }
+  body { background:white; font-size:11pt; line-height:1.35; } .wrap { padding:0; max-width:none; }
+  .page-header { padding-bottom:6px; } .heading-row { margin:2px 0 6px; } .page-meta { padding-top:6px; font-size:12px; }
+  h1 { font-size:26px; }
+  .exercise { box-shadow:none; padding:10px 18px; margin-bottom:8px; border-radius:14px; }
+  .section-heading { margin-bottom:2px; } h2, .section-number { font-size:10px; }
+  .context { font-size:12px; margin-bottom:2px; }
+  .instruction { font-size:15px; margin-bottom:6px; } .note { font-size:11px; margin:-4px 0 5px; } .like { font-size:12px; padding:4px 10px; margin-bottom:6px; } .model-tag { font-size:10px; }
+  .rule { font-size:11.5px; padding:6px 10px; margin-bottom:6px; } .rule .what { margin-bottom:4px; } .key { font-size:11px; padding:1px 10px; }
+  .qn { font-size:11px; min-width:20px; }
+  .items { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-auto-flow:column; grid-template-rows:repeat(4,auto); column-gap:28px; }
+  .q { padding:5px 0; } .sent { font-size:13px; }
+  select.pick { display:none !important; }
+  .pgap { display:inline-block; width:70px; border-bottom:1px solid #536672; height:12px; vertical-align:baseline; }
+  .two { grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:16px; }
+  .card { padding:8px 12px; } .avatar { width:32px; height:32px; font-size:15px; } .card-name { font-size:14px; } .card-sub { font-size:10px; }
+  .card-top { margin-bottom:4px; gap:8px; }
+  .facts li { grid-template-columns:72px minmax(0,1fr); font-size:11.5px; padding:3px 0; gap:6px; } .facts .k { font-size:9px; }
+  .own { padding:4px 0 6px; } .own .ask { font-size:12.5px; margin-bottom:3px; } .own .ask small { font-size:10px; }
+  textarea { resize:none; }
+  section textarea.ans { min-height:58px !important; }
+  input::placeholder, textarea::placeholder { color:transparent; }
+}
+body.hw-pdf-mode { background:white; }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Sergei" data-sheet="English 2026-11-25" data-sheet-id="sergei-2026-11-25-english">
+<div id="sheet">
+
+<main class="wrap">
+<header class="page-header">
+  <div class="eyebrow">ENGLISH / PRACTICE NOTES</div>
+  <div class="heading-row"><h1>Describing a&nbsp;person</h1><span class="edition">25 NOV 2026</span></div>
+  <div class="page-meta"><span>Sergei</span><span>About 10&nbsp;minutes</span></div>
+</header>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">01</span><h2>Daniel's profile</h2></div>
+  <p class="context">A friend is writing a dating profile for&nbsp;Daniel.</p>
+  <p class="instruction">Choose <span class="nw">is, has or wears</span> for each&nbsp;gap.</p>
+  <div class="rule">
+    <p class="what">Each detail takes its own&nbsp;verb.</p>
+    <div class="keys"><span class="key">is → 30, shy</span><span class="key">has → a beard</span><span class="key">wears → a hat</span></div>
+  </div>
+  <p class="like"><span class="model-tag">Like this</span>Nadia <b>is</b>&nbsp;tall.</p>
+  <div class="items">
+    <div class="q question"><span class="qn">1.</span><div class="qbody"><p class="sent">Daniel <span class="pgap"></span><select class="hw-field pick" data-k="a1" data-label="1. Daniel ___ 54." aria-label="Gap 1"><option value="">Choose</option><option value="is">is</option><option value="has">has</option><option value="wears">wears</option></select> <span class="nw">54.</span></p></div></div>
+    <div class="q question"><span class="qn">2.</span><div class="qbody"><p class="sent">He <span class="pgap"></span><select class="hw-field pick" data-k="a2" data-label="2. He ___ short grey hair." aria-label="Gap 2"><option value="">Choose</option><option value="is">is</option><option value="has">has</option><option value="wears">wears</option></select> short grey&nbsp;hair.</p></div></div>
+    <div class="q question"><span class="qn">3.</span><div class="qbody"><p class="sent">He <span class="pgap"></span><select class="hw-field pick" data-k="a3" data-label="3. He ___ blue eyes." aria-label="Gap 3"><option value="">Choose</option><option value="is">is</option><option value="has">has</option><option value="wears">wears</option></select> blue&nbsp;eyes.</p></div></div>
+    <div class="q question"><span class="qn">4.</span><div class="qbody"><p class="sent">He <span class="pgap"></span><select class="hw-field pick" data-k="a4" data-label="4. He ___ glasses when he reads." aria-label="Gap 4"><option value="">Choose</option><option value="is">is</option><option value="has">has</option><option value="wears">wears</option></select> glasses when he&nbsp;reads.</p></div></div>
+    <div class="q question"><span class="qn">5.</span><div class="qbody"><p class="sent">He <span class="pgap"></span><select class="hw-field pick" data-k="a5" data-label="5. He ___ calm and very kind." aria-label="Gap 5"><option value="">Choose</option><option value="is">is</option><option value="has">has</option><option value="wears">wears</option></select> calm and very&nbsp;kind.</p></div></div>
+    <div class="q question"><span class="qn">6.</span><div class="qbody"><p class="sent">At work he usually <span class="pgap"></span><select class="hw-field pick" data-k="a6" data-label="6. At work he usually ___ a suit." aria-label="Gap 6"><option value="">Choose</option><option value="is">is</option><option value="has">has</option><option value="wears">wears</option></select> a&nbsp;suit.</p></div></div>
+    <div class="q question"><span class="qn">7.</span><div class="qbody"><p class="sent">He <span class="pgap"></span><select class="hw-field pick" data-k="a7" data-label="7. He ___ a deep voice." aria-label="Gap 7"><option value="">Choose</option><option value="is">is</option><option value="has">has</option><option value="wears">wears</option></select> a deep&nbsp;voice.</p></div></div>
+    <div class="q question"><span class="qn">8.</span><div class="qbody"><p class="sent">He <span class="pgap"></span><select class="hw-field pick" data-k="a8" data-label="8. He ___ friendly and funny." aria-label="Gap 8"><option value="">Choose</option><option value="is">is</option><option value="has">has</option><option value="wears">wears</option></select> friendly and&nbsp;funny.</p></div></div>
+  </div>
+</section>
+
+<section class="exercise">
+  <div class="section-heading"><span class="section-number">02</span><h2>Sofia's profile</h2></div>
+  <p class="instruction">Describe Sofia from her card. Answer the four&nbsp;questions.</p>
+  <p class="note">Start with the details: She&rsquo;s…, She has…, She wears…. One or two sentences&nbsp;each.</p>
+  <p class="like"><span class="model-tag">Like this</span>Likes: swim, read &nbsp;→&nbsp; <b>He likes swimming and&nbsp;reading.</b></p>
+  <div class="two">
+    <div class="card" aria-label="Sofia's profile card">
+      <div class="card-top"><div class="avatar">S</div><div><p class="card-name">Sofia</p><p class="card-sub">Dating profile</p></div></div>
+      <ul class="facts">
+        <li><span class="k">Age</span><span>41</span></li>
+        <li><span class="k">Hair</span><span>dark, long</span></li>
+        <li><span class="k">Glasses</span><span>yes</span></li>
+        <li><span class="k">Personality</span><span>friendly, independent</span></li>
+        <li><span class="k">Likes</span><span>cook, listen to jazz</span></li>
+        <li><span class="k">Doesn't like</span><span>get up early</span></li>
+      </ul>
+    </div>
+    <div class="owns">
+      <div class="own question"><p class="ask"><span class="qn">1.</span>What does she look&nbsp;like?<small>age, hair, glasses</small></p><textarea class="hw-field ans" data-k="w1" data-label="1. What does she look like?" aria-label="What does she look like?" rows="3" placeholder="Type your answer here" autocapitalize="sentences" spellcheck="false"></textarea></div>
+      <div class="own question"><p class="ask"><span class="qn">2.</span>What is she&nbsp;like?<small>personality</small></p><textarea class="hw-field ans" data-k="w2" data-label="2. What is she like?" aria-label="What is she like?" rows="2" placeholder="Type your answer here" autocapitalize="sentences" spellcheck="false"></textarea></div>
+      <div class="own question"><p class="ask"><span class="qn">3.</span>What does she like&nbsp;doing?</p><textarea class="hw-field ans" data-k="w3" data-label="3. What does she like doing?" aria-label="What does she like doing?" rows="2" placeholder="Type your answer here" autocapitalize="sentences" spellcheck="false"></textarea></div>
+      <div class="own question"><p class="ask"><span class="qn">4.</span>What doesn't she like&nbsp;doing?</p><textarea class="hw-field ans" data-k="w4" data-label="4. What doesn't she like doing?" aria-label="What doesn't she like doing?" rows="2" placeholder="Type your answer here" autocapitalize="sentences" spellcheck="false"></textarea></div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJhMSI6IHsidCI6ICJleGFjdCIsICJhIjogImlzIn0sICJhMiI6IHsidCI6ICJleGFjdCIsICJhIjogImhhcyJ9LCAiYTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJoYXMifSwgImE0IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2VhcnMifSwgImE1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiaXMifSwgImE2IjogeyJ0IjogImV4YWN0IiwgImEiOiAid2VhcnMifSwgImE3IjogeyJ0IjogImV4YWN0IiwgImEiOiAiaGFzIn0sICJhOCI6IHsidCI6ICJleGFjdCIsICJhIjogImlzIn0sICJ3MSI6IHsidCI6ICJvcGVuIn0sICJ3MiI6IHsidCI6ICJvcGVuIn0sICJ3MyI6IHsidCI6ICJvcGVuIn0sICJ3NCI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

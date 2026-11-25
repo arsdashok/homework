@@ -1,90 +1,118 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Clara · Mental maths, one step at a time</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Clara · Mental maths in motion</title>
 <style>
-:root{--ink:#273f37;--green:#276c55;--mint:#def0e7;--line:#b7d3c5;--paper:#fffefb;--amber:#a45c19;--peach:#fae7ce;--muted:#5f7269}
-*{box-sizing:border-box}body{margin:0;background:#f4f5ef;color:var(--ink);font-family:Arial,Helvetica,sans-serif}main{max-width:1640px;margin:auto;padding:22px 30px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px}.brand{font-size:18px;color:var(--muted)}nav{display:flex;gap:10px}button{font:700 26px Arial;cursor:pointer;min-height:50px;border:2px solid var(--line);border-radius:14px;background:white;color:var(--ink);padding:10px 22px}button:focus-visible{outline:3px solid #986221;outline-offset:4px}button:disabled{opacity:.4;cursor:default}nav button[aria-pressed=true],.next{background:var(--green);border-color:var(--green);color:white}.sheet{background:var(--paper);border:1px solid #d5dfd6;border-radius:26px;padding:26px 34px;box-shadow:0 6px 24px #233c3106}.topline{display:flex;justify-content:space-between;gap:15px;align-items:center;color:var(--muted);font-size:17px}.method{text-transform:uppercase;letter-spacing:.08em;font-weight:700}.progress{display:flex;gap:7px;align-items:center}.dot{width:10px;height:10px;border-radius:50%;background:#dde5de}.dot.on{background:var(--green)}#count{margin-left:8px;white-space:nowrap}h1{font-size:clamp(28px,3vw,42px);line-height:1.15;margin:20px 0 10px;letter-spacing:-.025em}#explain{font-size:clamp(26px,2vw,30px);line-height:1.35;margin:0;min-height:36px;color:var(--muted)}#equation{font-size:clamp(30px,4vw,55px);font-weight:700;letter-spacing:-.025em;margin:20px 0 8px;min-height:65px;font-variant-numeric:tabular-nums}.answer{color:var(--green)}.extra{color:var(--amber)}.diagram{min-height:280px;display:flex;align-items:center;justify-content:center;background:#f2f8f4;border-radius:20px;margin:14px 0 8px;overflow:hidden}svg{display:block;width:100%;height:auto;max-height:290px}svg text{font-family:Arial,Helvetica,sans-serif;fill:var(--ink)}.num{font-size:35px;font-weight:700;font-variant-numeric:tabular-nums}.label{font-size:25px}.small{font-size:20px;fill:var(--muted)}.green{fill:var(--green)}.orange{fill:var(--amber)}.track{stroke:#acc4b6;stroke-width:3}.caption{text-align:center;font-size:22px;color:var(--muted);min-height:20px;margin:8px 0 2px}.controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}.leftcontrols{display:flex;gap:10px}.hint{font-size:16px;color:var(--muted);text-align:center;margin:14px 0 0}.draw{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 2.8s ease-in-out forwards}.stepin{opacity:0;animation:appear .65s ease forwards;animation-delay:var(--delay,0s)}.shift{animation:shift 3s ease-in-out forwards}.after{opacity:0;animation:appear .4s 3s forwards}.before{animation:vanish .3s 2.7s forwards}.moving-dot{offset-rotate:0deg;animation:travel 3.2s ease-in-out forwards;offset-distance:0%}.fade{animation:appear .8s ease forwards}@keyframes draw{to{stroke-dashoffset:0}}@keyframes appear{to{opacity:1}}@keyframes shift{to{transform:translateX(var(--travel,70px))}}@keyframes vanish{to{opacity:0}}@keyframes travel{to{offset-distance:100%}}.footer-note{font-size:14px;color:var(--muted);margin-top:14px;text-align:center}
-@media(min-width:701px) and (max-height:850px){main{padding:12px 24px}header{margin-bottom:10px}.sheet{padding:18px 28px}.topline{font-size:16px}h1{margin:14px 0 8px;font-size:36px}#equation{margin:12px 0 4px;min-height:54px;font-size:46px}.diagram{min-height:230px;margin:8px 0 4px}svg{max-height:240px}.controls{margin-top:12px}.hint{margin:8px 0 0}.caption{margin:4px 0 0;font-size:20px;min-height:23px}}
-@media(min-width:1600px){main{padding-top:32px}.sheet{padding:34px 44px}.diagram{min-height:340px}svg{max-height:370px}h1{font-size:46px}}
-@media(max-width:700px){main{padding:12px}header{display:block;margin-bottom:12px}.brand{font-size:16px;margin:2px 0 12px}nav button{flex:1;font-size:17px;padding:9px}nav{gap:8px}.sheet{padding:20px 14px;border-radius:20px}.topline{font-size:14px}.method{letter-spacing:.025em}.progress{gap:4px}.dot{width:7px;height:7px}h1{margin-top:20px;font-size:29px}#equation{font-size:clamp(25px,6.6vw,42px);min-height:44px;margin-top:20px}#explain{font-size:20px;min-height:54px}.diagram{min-height:235px;margin-top:15px}svg{min-height:0;max-height:none}.diagram{padding:10px 0}.num{font-size:26px}.label{font-size:21px}.small{font-size:18px}.caption{font-size:14px;min-height:34px}.controls{flex-wrap:wrap;margin-top:14px}.leftcontrols{flex:1}button{font-size:17px;padding:10px 15px}.next{min-width:105px}.hint{font-size:14px}.num{font-size:32px}}
-@media(prefers-reduced-motion:reduce){.draw{animation:none;stroke-dashoffset:0}.stepin,.after{animation:none;opacity:1}.before{display:none}.shift{animation:none;transform:translateX(var(--travel,70px))}.moving-dot{animation:none;offset-distance:100%}}
-@media(min-width:900px){main{padding-left:48px;padding-right:48px}.brand,.topline,.caption,.hint{font-size:26px}#explain{font-size:28px}.label,.small{font-size:32px}.num{font-size:37px}}
-</style>
-</head>
-<body>
-<main>
-<header><div class="brand">Clara · One step at a time</div><nav aria-label="Choose an explanation"><button id="addition" aria-pressed="true">Addition</button><button id="subtraction" aria-pressed="false">Subtraction</button></nav></header>
-<section class="sheet" aria-label="Animated worked example">
-<div class="topline"><span class="method" id="method"></span><div class="progress"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span id="count"></span></div></div>
-<div id="words" aria-live="polite" aria-atomic="true"><h1 id="title"></h1><p id="explain"></p><div id="equation"></div></div>
-<div id="picture" class="diagram"></div><p id="caption" class="caption"></p>
-<div class="controls"><div class="leftcontrols"><button id="back">Back</button><button id="replay" aria-label="Replay this step">Replay step</button></div><button id="next" class="next">Next step →</button></div>
-<p class="hint">Press Next step when you are ready.</p>
-</section>
+:root{--ink:#284238;--green:#276c55;--mint:#dcefe4;--muted:#60776c;--line:#bad5c6;--amber:#965217;--peach:#fae8d0}*{box-sizing:border-box}body{margin:0;background:#f4f5ef;color:var(--ink);font-family:Arial,Helvetica,sans-serif}main{max-width:1640px;margin:auto;padding:18px 48px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:16px}.brand{font-size:26px}nav{display:flex;gap:12px}button{font:700 26px Arial;color:var(--green);background:white;border:2px solid var(--line);border-radius:14px;padding:11px 22px;min-height:54px;cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #a36c2c;outline-offset:4px}nav button[aria-pressed=true],#play{background:var(--green);color:white;border-color:var(--green)}.sheet{background:#fffefb;border:1px solid #d7e1d8;border-radius:26px;padding:24px 30px}.eyebrow{font-size:26px;color:var(--muted);margin:0 0 8px}h1{font-size:clamp(38px,3.3vw,58px);letter-spacing:-.02em;margin:0 0 16px;font-variant-numeric:tabular-nums}.layout{display:grid;grid-template-columns:minmax(340px,.8fr) minmax(0,1.7fr);gap:24px;align-items:stretch}.working{display:flex;flex-direction:column;justify-content:center;gap:12px}.row{border-left:5px solid transparent;border-radius:0 13px 13px 0;background:#f5f7f2;padding:16px 18px;opacity:.28;transition:background .2s,opacity .2s}.row.shown{opacity:1}.row.active{background:var(--mint);border-color:var(--green)}.row .lab{font-size:26px;color:var(--muted);margin-bottom:9px}.formula{font-size:clamp(28px,2vw,37px);font-weight:700;line-height:1.35;font-variant-numeric:tabular-nums}.formula div{white-space:nowrap}.result{color:var(--green)}.extra{color:var(--amber)}.diagram{background:#f0f7f2;border-radius:20px;position:relative;min-height:375px;display:flex;align-items:center}svg{width:100%;height:auto;display:block;overflow:visible}svg text{font-family:Arial,Helvetica,sans-serif;fill:var(--ink)}.num{font-size:44px;font-weight:700;font-variant-numeric:tabular-nums}.label{font-size:40px}.muted{fill:var(--muted)}.green{fill:var(--green)}.amber{fill:var(--amber)}.track{stroke:#b7cfc0;stroke-width:3}.caption{font-size:26px;line-height:1.3;min-height:68px;margin:20px 0 14px}.controls{display:flex;align-items:center;gap:14px}#play{min-width:250px}.scrub{flex:1;display:flex;align-items:center;gap:14px}input[type=range]{width:100%;min-height:44px;accent-color:var(--green);cursor:pointer}#time{font-size:22px;font-variant-numeric:tabular-nums;white-space:nowrap}.note{font-size:26px;color:var(--muted);margin:14px 0 0}.diagram-note{font-size:21px;color:var(--muted);margin:8px 0 0;text-align:center}.diagram-wrap{display:flex;flex-direction:column;justify-content:center}.quiet{opacity:.2}.visible{opacity:1}.currentresult{color:var(--green)}
+@media(min-width:900px) and (max-height:800px){main{padding-top:12px}header{margin-bottom:10px}.sheet{padding:20px 26px}.row{padding:11px 14px}.row .lab{margin-bottom:6px}.diagram{min-height:310px}.caption{margin-top:14px;min-height:66px}h1{font-size:44px;margin-bottom:12px}.note{margin-top:10px}.layout{gap:18px}}
+@media(max-width:899px){main{padding:14px}.brand{font-size:20px}button{font-size:20px;padding:10px 15px}.sheet{padding:22px 18px}.eyebrow{font-size:20px}h1{font-size:36px}.layout{grid-template-columns:1fr}.working{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;order:2}.row{padding:10px 8px}.row .lab{font-size:17px}.formula{font-size:19px}.diagram-wrap{order:1}.diagram{min-height:0}.diagram-note{font-size:16px}.caption{font-size:24px;min-height:90px}.note{font-size:18px}.controls{flex-wrap:wrap}#play{min-width:190px}.scrub{flex-basis:100%}#time{font-size:18px}}
+@media(max-width:520px){header{display:block}.brand{margin-bottom:12px}nav button{flex:1}.sheet{padding:18px 12px}.eyebrow{font-size:18px}h1{font-size:clamp(24px,6.5vw,34px);white-space:nowrap;min-height:66px}#finalAnswer{display:block}.layout{gap:14px}.working{grid-template-columns:1fr;gap:6px}.row{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:9px 10px;border-left-width:4px}.row .lab{font-size:18px;margin:0;max-width:100px}.formula{font-size:22px}.diagram-note{font-size:15px}.caption{font-size:22px;min-height:96px;margin:16px 0 12px}.controls{gap:8px}#play{min-width:0;flex:1}#restart{flex:1}.num{font-size:25px}.label{font-size:22px}.note{font-size:17px}#time{font-size:17px}.diagram{padding:5px 0}}
 
-</main>
-<script>
+main{padding-bottom:132px}.controls{position:fixed;z-index:5;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:1640px;background:#fffefb;border-top:2px solid var(--line);padding:16px 48px;box-shadow:0 -5px 22px #233c3110}.note{display:none}
+@media(min-width:900px){.layout{grid-template-columns:minmax(370px,.95fr) minmax(0,1.6fr)}.formula{font-size:28px;white-space:nowrap}.formula div{display:inline}.formula div+div{margin-left:5px}.row{padding:14px}.caption{min-height:68px}.diagram-note{font-size:22px}}
+@media(max-width:899px){main{padding-bottom:160px}.controls{padding:10px 16px}.controls button{min-height:48px}.scrub{gap:10px}input[type=range]{min-height:34px}}
+</style></head><body><main>
+<header><div class="brand">Clara · Maths in motion</div><nav aria-label="Choose a method"><button id="addition" aria-pressed="true">Addition</button><button id="subtraction" aria-pressed="false">Subtraction</button></nav></header>
+<section class="sheet"><p id="method" class="eyebrow"></p><h1 id="original"></h1><div class="layout"><div class="working" id="working"></div><div class="diagram-wrap"><div class="diagram" id="diagram"></div><p class="diagram-note" id="diagramNote"></p></div></div><p class="caption" id="caption" aria-live="polite"></p><div class="controls"><button id="play">Play animation</button><button id="restart">Start again</button><div class="scrub"><input id="progress" type="range" min="0" max="29000" step="100" value="0" aria-label="Animation position"><span id="time">0:00 / 0:29</span></div></div><p class="note">Pause whenever you like. Move the slider to look again.</p></section>
+</main><script>
 'use strict';
-let topic='add', step=0;
-const $=id=>document.getElementById(id);
-const t=(x,y,s,cls='num',anchor='middle')=>`<text x="${x}" y="${y}" text-anchor="${anchor}" class="${cls}">${s}</text>`;
-const line=(x1,y1,x2,y2,cls='track')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${cls}"/>`;
-const narrow=()=>window.innerWidth<=700;
-const svg=(body,label,box='0 0 1000 290')=>`<svg viewBox="${box}" role="img" aria-label="${label}"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#276c55"/></marker></defs>${body}</svg>`;
-function units(start,reverse=false){
- if(narrow()){
-   const ys=[38,104,170,236,302];let b=line(120,24,120,316);
-   ys.forEach((y,i)=>{b+=line(110,y,130,y)+t(215,y+9,(start+i).toLocaleString('en-GB'))});
-   (reverse?[4,3,2,1]:[0,1,2,3]).forEach((i,k)=>{const y2=ys[reverse?i-1:i+1];b+=`<g class="stepin" style="--delay:${.4+k*.85}s"><path d="M105 ${ys[i]} Q35 ${(ys[i]+y2)/2} 105 ${y2}" fill="none" stroke="#276c55" stroke-width="3" marker-end="url(#arrow)"/>${t(39,(ys[i]+y2)/2+7,reverse?'−1':'+1','label green')}</g>`});
-   return svg(b,reverse?'Four steps back, one at a time.':'Four steps forward, one at a time.','0 0 350 340');
- }
-
- let body=line(120,180,880,180);
- const xs=[160,330,500,670,840];
- xs.forEach((x,i)=>{body+=line(x,171,x,191)+t(x,232,(start+i).toLocaleString('en-GB'),'num')});
- const order=reverse?[4,3,2,1]:[0,1,2,3];
- order.forEach((i,k)=>{const end=reverse?xs[i-1]:xs[i+1];body+=`<g class="stepin" style="--delay:${.4+k*.85}s"><path d="M${xs[i]} 160 Q${(xs[i]+end)/2} 70 ${end} 160" fill="none" stroke="#276c55" stroke-width="5" marker-end="url(#arrow)"/>${t((xs[i]+end)/2,99,reverse?'−1':'+1','label green')}</g>`});
- body+=t(500,37,reverse?'Four small steps back':'Four small steps forward','label');
- return svg(body,reverse?`Start at ${(start+4).toLocaleString()}. Take away one four times, ending at ${start.toLocaleString()}.`:`Start at ${start.toLocaleString()}. Add one four times, ending at ${(start+4).toLocaleString()}.`);
+const $=id=>document.getElementById(id),fmt=n=>Math.round(n).toLocaleString('en-GB'),clamp=n=>Math.max(0,Math.min(1,n)),ease=n=>n*n*(3-2*n);
+let topic='add',elapsed=0,playing=false,last=0,raf=null,lastCaption='',layout=null;
+const total=29000;
+const tx=(x,y,v,cls='num',id='',anchor='middle')=>`<text x="${x}" y="${y}" text-anchor="${anchor}" class="${cls}" ${id?`id="${id}"`:''}>${v}</text>`;
+const ln=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="track"/>`;
+function svg(body,w,h,label){return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}"><defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#276c55"/></marker><marker id="amberArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#965217"/></marker></defs>${body}</svg>`}
+function path(d,id,color='#276c55',width=5){return `<path id="${id}" d="${d}" fill="none" stroke="${color}" stroke-width="${width}" marker-end="url(#${color==='#965217'?'amberArr':'arr'})"/>`}
+function buildAdd(){
+ const mobile=window.innerWidth<=520,w=mobile?350:1000,h=mobile?470:450;
+ const start=mobile?[80,145]:[110,285],end=mobile?[80,410]:[880,285];
+ const ctrl=mobile?[-65,275]:[495,35];
+ const ticks=mobile?[[80,230],[80,275],[80,320],[80,365],[80,410]]:[[560,285],[640,285],[720,285],[800,285],[880,285]];
+ layout={mobile,start,end,ctrl,ticks};
+ let b=`<rect x="${mobile?23:225}" y="14" width="${mobile?304:550}" height="84" rx="16" fill="#fffefb"/>`;
+ b+=tx(mobile?175:500,48,'Easier amount','label muted')+tx(mobile?152:458,84,'18,996','num','roundedAmount')+tx(mobile?270:655,84,'+4','label amber','plusFour');
+ if(mobile){b+=ln(80,130,80,425)+tx(175,153,'52,400')+tx(175,237,'71,396','num','targetLabel')+tx(175,418,'71,400');b+=`<path d="M70 179l20 -9m-20 22l20 -9" stroke="#60776c" stroke-width="3"/>`;}
+ else{b+=ln(75,285,935,285)+tx(110,340,'52,400')+tx(560,340,'71,396','num','targetLabel')+tx(880,340,'71,400');b+=`<path d="M300 295l15 -20m0 20l15 -20" stroke="#60776c" stroke-width="3"/>`;}
+ b+=path(`M${start}Q${ctrl} ${end}`,'bigJump');
+ b+=tx(mobile?248:500,mobile?181:140,'+19,000','num green','jumpLabel');
+ ticks.forEach(([x,y],i)=>{b+=mobile?ln(x-8,y,x+8,y):ln(x,y-9,x,y+9);if(i>0&&i<4&&mobile)b+=tx(175,y+8,fmt(71396+i),'label muted');});
+ for(let k=0;k<4;k++){let a=ticks[4-k],z=ticks[3-k],c=mobile?[a[0]+73,(a[1]+z[1])/2]:[(a[0]+z[0])/2,a[1]-100];b+=path(`M${a}Q${c} ${z}`,'back'+k,'#965217',4);}
+ b+=tx(mobile?254:720,mobile?307:226,'−4','num amber','backLabel');
+ b+=`<circle id="marker" cx="${start[0]}" cy="${start[1]}" r="${mobile?8:11}" fill="#276c55" stroke="#fffefb" stroke-width="3"/>`;
+ if(!mobile)b+=tx(720,399,'4 × one step back','label muted');
+ $('diagram').innerHTML=svg(b,w,h,'Add four to 18,996, add the easier 19,000, then move back four from 71,400 to 71,396.');
+ $('diagramNote').textContent=mobile?'The final four unit steps are enlarged.':'Sketch, not to scale. Each small jump takes away 1.';
+ for(const id of ['bigJump','back0','back1','back2','back3']){const el=$(id),len=el.getTotalLength();el.dataset.length=len;el.style.strokeDasharray=len;el.style.strokeDashoffset=len;}
 }
-function blocks(){if(narrow())return svg(`<rect x="30" y="25" width="290" height="75" rx="14" fill="#d3e9dc"/>${t(175,74,'52,400')}${t(175,143,'+')}<rect x="30" y="165" width="290" height="75" rx="14" fill="#e3eee7"/>${t(175,214,'18,996')}`,'Add 52,400 and 18,996.','0 0 350 265');return svg(`<rect x="90" y="90" width="480" height="110" rx="16" fill="#d3e9dc"/><rect x="590" y="90" width="320" height="110" rx="16" fill="#e3eee7"/>${t(330,156,'52,400')}${t(750,156,'18,996')}${t(580,158,'+','label')}${t(500,253,'Put the two amounts together.','label')}`,'Two amounts to add: 52,400 and 18,996.');}
-function additionJump(){if(narrow())return svg(`${line(25,175,325,175)}${t(65,214,'52,400')}${t(285,214,'71,400')}<path d="M65 155 Q175 10 285 155" fill="none" stroke="#276c55" stroke-width="4" marker-end="url(#arrow)" class="draw"/>${t(175,45,'+19,000','num green')}${t(175,264,'Includes 4 extra','label orange')}`,'Add 19,000, including four extra.','0 0 350 290');return svg(`${line(100,194,900,194)}${line(160,182,160,208)}${line(840,182,840,208)}${t(160,252,'52,400')}${t(840,252,'71,400')}<path d="M160 170 Q500 -30 840 170" fill="none" stroke="#276c55" stroke-width="7" marker-end="url(#arrow)" class="draw"/>${t(500,60,'+19,000','num green')}<rect x="365" y="115" width="270" height="48" rx="12" fill="#fae7ce"/>${t(500,148,'Includes 4 extra','label orange')}`,'Add 19,000 to 52,400 to reach 71,400. This includes four extra.');}
-function additionEnd(){if(narrow())return svg(`${t(175,50,'52,400 + 19,000','num')}${t(175,90,'= 71,400','num green')}${t(175,156,'Take away the extra 4','label orange')}${t(175,219,'71,400 − 4','num')}${t(175,259,'= 71,396','num green')}`,'Add the easier amount, then remove four.','0 0 350 290');return svg(`<rect x="75" y="55" width="850" height="78" rx="16" fill="#e0eee5"/>${t(500,106,'52,400 + 19,000 = 71,400')}${t(500,184,'4 too many → take away 4','label orange')}${t(500,252,'71,400 − 4 = 71,396','num green')}`,'Adding 19,000 gives 71,400. Remove the extra four to get 71,396.');}
-function gap(shift=false,answer=false){
- if(narrow()){
-  let b=line(20,181,330,181);
-  if(shift){
-   b+=`<g opacity=".28"><path d="M65 145 V120 H255 V145" fill="none" stroke="#6d8c7b" stroke-width="3" stroke-dasharray="5 5"/></g><g class="before">${t(65,226,'38,996')}${t(255,226,'71,003')}</g>`;
-   b+=`<g class="shift" style="--travel:25px"><path d="M65 145 V120 H255 V145" fill="none" stroke="#276c55" stroke-width="5"/>${line(65,172,65,192)}${line(255,172,255,192)}${t(160,98,'same gap','label green')}<g class="after">${t(65,226,'39,000')}${t(255,226,'71,007')}</g></g>`;
-   for(const x of [65,255])b+=`<path d="M${x} 52 h25" fill="none" stroke="#276c55" stroke-width="3" marker-end="url(#arrow)"/>${t(x+12,30,'+4','label green')}`;
-  }else{b+=`<path d="M65 145 V120 H255 V145" fill="none" stroke="#276c55" stroke-width="5"/>${line(65,172,65,192)}${line(255,172,255,192)}${t(160,91,answer?'32,007':'Find the gap','label green')}${t(65,226,answer?'39,000':'38,996')}${t(255,226,answer?'71,007':'71,003')}`;}
-  return svg(b,shift?'Add four to both numbers. The gap does not change.':'The distance between the two numbers.','0 0 350 260');
- }
-
- let body=line(60,205,940,205);
- if(shift){body+=`<g opacity=".28">${line(140,190,140,216)}${line(790,190,790,216)}<path d="M140 155 V125 H790 V155" fill="none" stroke="#6d8c7b" stroke-width="3" stroke-dasharray="7 7"/></g>`;
- body+=`<g class="before">${t(140,263,'38,996')}${t(790,263,'71,003')}</g><g class="shift"><path d="M140 155 V125 H790 V155" fill="none" stroke="#276c55" stroke-width="7"/>${line(140,186,140,219)}${line(790,186,790,219)}${t(465,95,answer?'32,007':'same gap','num green')}<g class="after">${t(140,263,'39,000')}${t(790,263,'71,007')}</g></g>`;
- body+=`<path d="M140 46 H210" fill="none" stroke="#276c55" stroke-width="4" marker-end="url(#arrow)"/><path d="M790 46 H860" fill="none" stroke="#276c55" stroke-width="4" marker-end="url(#arrow)"/>${t(175,30,'+4','label green')}${t(825,30,'+4','label green')}`;
- }else body+=`<path d="M140 155 V115 H790 V155" fill="none" stroke="#276c55" stroke-width="6"/>${line(140,186,140,219)}${line(790,186,790,219)}${t(465,82,answer?'32,007':'How big is the gap?','num green')}${t(140,263,answer?'39,000':'38,996')}${t(790,263,answer?'71,007':'71,003')}`;
- return svg(body,shift?'Both ends of the gap move four to the right. 38,996 becomes 39,000; 71,003 becomes 71,007. The gap stays the same.':answer?'The gap from 39,000 to 71,007 is 32,007.':'Find the gap from 38,996 to 71,003.');
+function buildSub(){
+ const mobile=window.innerWidth<=520,w=mobile?350:1000,h=mobile?330:450;
+ const x1=mobile?54:135,x2=mobile?250:780,shift=mobile?29:80,y=mobile?192:270,top=mobile?133:185;
+ layout={mobile,x1,x2,shift,y,top};
+ let b=ln(mobile?18:65,y,mobile?332:935,y);
+ b+=`<g opacity=".4"><path d="M${x1} ${top+25}V${top}H${x2}V${top+25}" fill="none" stroke="#6d8979" stroke-width="3" stroke-dasharray="6 6"/>${ln(x1,y-9,x1,y+9)}${ln(x2,y-9,x2,y+9)}</g>`;
+ b+=tx(x1,mobile?286:405,'38,996','label muted')+tx(x2,mobile?286:405,'71,003','label muted')+tx(mobile?175:500,mobile?316:438,'Original numbers','label muted');
+ b+=`<g id="movingGap"><path d="M${x1} ${top+25}V${top}H${x2}V${top+25}" fill="none" stroke="#276c55" stroke-width="6"/>${ln(x1,y-12,x1,y+12)}${ln(x2,y-12,x2,y+12)}${tx(x1,y+48,'38,996','num','leftValue')}${tx(x2,y+48,'71,003','num','rightValue')}${tx((x1+x2)/2,top-24,'same gap','num green','gapValue')}</g>`;
+ b+=path(`M${x1} ${mobile?60:90}h${shift}`,'leftArrow')+path(`M${x2} ${mobile?60:90}h${shift}`,'rightArrow');
+ b+=`<g id="shiftLabels">${tx(x1+shift/2,mobile?35:55,'+4','label green')}${tx(x2+shift/2,mobile?35:55,'+4','label green')}</g>`;
+ $('diagram').innerHTML=svg(b,w,h,'Both ends move four to the right together. The gap stays exactly the same size.');
+ $('diagramNote').textContent='The movement is enlarged so you can see it.';
 }
-function sameEnd(){if(narrow())return svg(`${t(18,27,'Before','small','start')}${t(65,69,'38,996')}${t(255,69,'71,003')}<path d="M65 81 V110 H255 V81" fill="none" stroke="#7c9989" stroke-width="4"/>${t(160,101,'32,007','label green')}${t(18,173,'After +4 to both','small','start')}${t(90,215,'39,000')}${t(280,215,'71,007')}<path d="M90 227 V257 H280 V227" fill="none" stroke="#276c55" stroke-width="4"/>${t(185,249,'32,007','label green')}`,'The gap is 32,007 before and after.','0 0 350 280');return svg(`${t(75,39,'Before','small','start')}${t(145,83,'38,996')}${t(795,83,'71,003')}<path d="M145 95 V115 H795 V95" fill="none" stroke="#7c9989" stroke-width="5"/>${t(470,105,'32,007','label green')}${t(75,182,'After +4 to both','small','start')}${t(215,225,'39,000')}${t(865,225,'71,007')}<path d="M215 237 V263 H865 V237" fill="none" stroke="#276c55" stroke-width="5"/>${t(540,253,'32,007','label green')}`,'Before: the gap from 38,996 to 71,003 is 32,007. After adding four to both: the gap from 39,000 to 71,007 is still 32,007.');}
-const lessons={add:[
- {title:'Make the addition easier.',explain:'19,000 is much easier to add than 18,996.',equation:'52,400 + 18,996',draw:blocks,caption:'The blocks show the two amounts. Sketch, not to scale.'},
- {title:'Add 4 to make 19,000.',explain:'Count the four small steps.',equation:'18,996 <span class="extra">+ 4</span> = 19,000',draw:()=>units(18996),caption:'A close-up: each small jump adds 1.'},
- {title:'Now add the easier number.',explain:'We are adding 4 more than we need.',equation:'52,400 + 19,000 = <span class="answer">71,400</span>',draw:additionJump,caption:'The large jump is a sketch, not to scale.'},
- {title:'Take the extra 4 back.',explain:'We added too much, so we subtract 4.',equation:'71,400 <span class="extra">− 4</span> = <span class="answer">71,396</span>',draw:()=>units(71396,true),caption:'A close-up at the end: four small steps back.'},
- {title:'That is compensation.',explain:'Add an easier amount. Then remove the extra.',equation:'52,400 + 18,996 = <span class="answer">71,396</span>',draw:additionEnd,caption:''}
-],sub:[
- {title:'Subtraction finds the gap.',explain:'How far is it from 38,996 to 71,003?',equation:'71,003 − 38,996',draw:()=>gap(),caption:'A sketch of the gap, not to scale.'},
- {title:'39,000 is only 4 away.',explain:'This will be an easier number to subtract.',equation:'38,996 <span class="extra">+ 4</span> = 39,000',draw:()=>units(38996),caption:'A close-up: each small jump adds 1.'},
- {title:'Add 4 to BOTH numbers.',explain:'Both ends move together. The gap stays the same.',equation:'<span class="answer">71,007 − 39,000</span>',draw:()=>gap(true),caption:'The movement is enlarged so you can see it.'},
- {title:'Now subtract 39,000.',explain:'71 thousand − 39 thousand = 32 thousand. Keep the 7.',equation:'71,007 − 39,000 = <span class="answer">32,007</span>',draw:()=>gap(false,true),caption:'The gap is 32,007.'},
- {title:'The same difference.',explain:'Both numbers increased by 4. The answer stayed the same.',equation:'71,003 − 38,996 = <span class="answer">32,007</span>',draw:sameEnd,caption:'Both gaps have exactly the same length. Sketch, not to scale.'}
-]};
-function render(){const d=lessons[topic][step];$('method').textContent=topic==='add'?'Compensate':'Same difference';$('title').textContent=d.title;$('explain').textContent=d.explain;$('equation').innerHTML=d.equation;$('picture').innerHTML=d.draw();$('caption').textContent=d.caption;$('count').textContent=`${step+1} / 5`;$('back').disabled=step===0;$('next').textContent=step===4?'Start again ↺':'Next step →';document.querySelectorAll('.dot').forEach((el,i)=>el.classList.toggle('on',i<=step));$('addition').setAttribute('aria-pressed',topic==='add');$('subtraction').setAttribute('aria-pressed',topic==='sub');}
-$('addition').onclick=()=>{topic='add';step=0;render()};$('subtraction').onclick=()=>{topic='sub';step=0;render()};$('back').onclick=()=>{if(step>0){step--;render()}};$('next').onclick=()=>{step=(step+1)%5;render()};window.matchMedia('(max-width:700px)').addEventListener('change',render);$('replay').onclick=()=>{$('picture').innerHTML=lessons[topic][step].draw()};render();
-</script>
-</body></html>
+const row=(lab,content)=>`<div class="row"><div class="lab">${lab}</div><div class="formula">${content}</div></div>`;
+function build(){
+ $('method').textContent=topic==='add'?'Compensate':'Same difference';
+ $('original').innerHTML=topic==='add'?'52,400 + 18,996 <span id="finalAnswer" class="currentresult"></span>':'71,003 − 38,996 <span id="finalAnswer" class="currentresult"></span>';
+ $('working').innerHTML=topic==='add'?
+ row('Make it easier','<div>18,996 <span class="extra">+ 4</span></div><div>= <span id="result0">19,000</span></div>')+row('Add','<div>52,400 + 19,000</div><div>= <span id="result1">71,400</span></div>')+row('Take back 4','<div>71,400 <span class="extra">− 4</span></div><div>= <span id="result2">71,396</span></div>'):
+ row('Add 4 here','<div>38,996 + 4</div><div>= <span id="result0">39,000</span></div>')+row('And here','<div>71,003 + 4</div><div>= <span id="result1">71,007</span></div>')+row('Same gap','<div>71,007 − 39,000</div><div>= <span id="result2">32,007</span></div>');
+ topic==='add'?buildAdd():buildSub();
+ $('addition').setAttribute('aria-pressed',topic==='add');$('subtraction').setAttribute('aria-pressed',topic==='sub');lastCaption='';update();
+}
+function opacity(id,value){$(id).style.opacity=value;}
+function revealPath(id,p){const el=$(id);el.style.opacity=p>0?1:0;el.style.strokeDashoffset=el.dataset.length*(1-clamp(p));}
+function quad(a,c,b,p){return[(1-p)*(1-p)*a[0]+2*(1-p)*p*c[0]+p*p*b[0],(1-p)*(1-p)*a[1]+2*(1-p)*p*c[1]+p*p*b[1]]}
+function setMarker(pt){$('marker').setAttribute('cx',pt[0]);$('marker').setAttribute('cy',pt[1]);}
+function caption(s){if(lastCaption!==s){$('caption').textContent=s;lastCaption=s;}}
+function rows(shown,active){document.querySelectorAll('.row').forEach((el,i)=>{el.classList.toggle('shown',shown.includes(i));el.classList.toggle('active',active.includes(i));});}
+function update(){
+ const t=elapsed/1000;
+ if(topic==='add'){
+  const round=clamp((t-3)/4),add=clamp((t-10)/4),back=clamp((t-18)/5);const n=Math.min(4,Math.floor(round*4));
+  $('roundedAmount').textContent=fmt(18996+n);$('plusFour').textContent='4 extra';opacity('plusFour',round>=1?1:0);opacity('jumpLabel',t>=10?1:.15);opacity('backLabel',t>=18?1:.15);opacity('targetLabel',back>=1?1:.35);
+  revealPath('bigJump',ease(add));for(let k=0;k<4;k++)revealPath('back'+k,clamp(back*4-k));
+  if(back>0){const k=Math.min(3,Math.floor(back*4)),p=clamp(back*4-k),a=layout.ticks[4-k],b=layout.ticks[3-k],c=layout.mobile?[a[0]+73,(a[1]+b[1])/2]:[(a[0]+b[0])/2,a[1]-100];setMarker(quad(a,c,b,p));$('marker').setAttribute('fill','#965217');}
+  else{setMarker(quad(layout.start,layout.ctrl,layout.end,ease(add)));$('marker').setAttribute('fill','#276c55');}
+  rows(t<3?[]:t<10?[0]:t<18?[0,1]:[0,1,2],t<3?[]:t<10?[0]:t<18?[1]:t<25?[2]:[]);
+  opacity('result0',round>=1?1:.12);opacity('result1',add>=1?1:.12);opacity('result2',back>=1?1:.12);
+  if(t<3)caption('Start with 52,400 + 18,996. Watch what happens to the extra 4.');
+  else if(t<10)caption('18,996 needs 4 more to make 19,000.');
+  else if(t<18)caption('Add 19,000. We reach 71,400, but that includes 4 extra.');
+  else if(t<25)caption('Take those 4 back: four small jumps to the correct total.');
+  else caption('71,396. We added 4 extra, then took the same 4 back.');
+  $('finalAnswer').textContent=t>=25?'= 71,396':'';
+ }else{
+  const p=clamp((t-7)/6),v=ease(p),n=Math.min(4,Math.floor(p*4));
+  $('movingGap').setAttribute('transform',`translate(${v*layout.shift},0)`);
+  $('leftValue').textContent=fmt(38996+n);$('rightValue').textContent=fmt(71003+n);
+  for(const id of ['leftArrow','rightArrow','shiftLabels'])opacity(id,t>=3?1:0);
+  $('gapValue').textContent=t>=19?'32,007':t>=3?'same gap':'Find the gap';
+  rows(t<3?[]:t<19?[0,1]:[0,1,2],t<3?[]:t<15?[0,1]:t<25?[2]:[]);
+  opacity('result0',p>=1?1:.12);opacity('result1',p>=1?1:.12);opacity('result2',t>=19?1:.12);
+  if(t<3)caption('Subtraction finds the distance between these two numbers.');
+  else if(t<7)caption('Make 38,996 easier by adding 4. Add 4 to the other number too.');
+  else if(t<15)caption('Both ends move together. Watch: the gap does not stretch or shrink.');
+  else if(t<19)caption('Now find 71,007 − 39,000.');
+  else if(t<25)caption('71 thousand − 39 thousand = 32 thousand. Keep the 7.');
+  else caption('32,007. The gap is unchanged, so there is nothing to take back.');
+  $('finalAnswer').textContent=t>=25?'= 32,007':'';
+ }
+ $('progress').value=elapsed;$('time').textContent=`0:${String(Math.floor(t)).padStart(2,'0')} / 0:29`;
+ $('play').textContent=playing?'Pause':elapsed>=total?'Replay animation':elapsed>0?'Continue':'Play animation';
+}
+function tick(now){if(!playing)return;if(last)elapsed=Math.min(total,elapsed+now-last);last=now;if(elapsed>=total)playing=false;update();if(playing)raf=requestAnimationFrame(tick);}
+function pause(){playing=false;last=0;if(raf)cancelAnimationFrame(raf);update();}
+$('play').onclick=()=>{if(playing){pause();return;}if(elapsed>=total)elapsed=0;playing=true;last=0;update();raf=requestAnimationFrame(tick);};
+$('restart').onclick=()=>{pause();elapsed=0;update();};
+$('progress').oninput=e=>{const value=Number(e.target.value);pause();elapsed=value;update();};
+function choose(value){pause();topic=value;elapsed=0;build();}
+$('addition').onclick=()=>choose('add');$('subtraction').onclick=()=>choose('sub');
+window.matchMedia('(max-width:520px)').addEventListener('change',()=>build());
+document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();});build();
+</script></body></html>

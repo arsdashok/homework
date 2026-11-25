@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arina: Practice 25 November 2026</title>
+<style>
+  :root {
+    --ink: #1f2340; --muted: #6b7088; --violet: #6c63ff; --lilac: #a78bfa;
+    --soft: #f4f2ff; --line: #d9d5f5; --paper: #ffffff;
+  }
+  @page { size: A4; margin: 11mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5;
+    color: var(--ink); background: #faf9ff; max-width: 900px; margin: 0 auto; padding: 32px 22px 48px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  header.top {
+    background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%); color: #fff; border-radius: 16px;
+    padding: 26px 30px; margin-bottom: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+  }
+  header.top .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .85; margin-bottom: 6px; }
+  header.top h1 { font-size: 32px; line-height: 1.1; font-weight: 700; }
+  header.top .meta { font-size: 15px; text-align: right; opacity: .95; }
+  .intro { font-size: 15px; color: var(--muted); margin: -12px 0 26px 4px; }
+
+  .part {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 28px 22px; margin-bottom: 26px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .plabel { font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); margin-bottom: 6px; }
+  .instr { font-size: 21px; font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 4px; text-wrap: balance; }
+  .note { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .model { background: var(--soft); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 16px; }
+  .model .lt { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--violet); margin-right: 8px; }
+  .model .fill { color: #2546c8; font-weight: 600; border-bottom: 1.5px solid #b3abf0; padding: 0 2px; }
+  .model .gr { color: var(--muted); }
+
+  .q {
+    display: flex; align-items: baseline; gap: 14px; padding: 11px 0; border-bottom: 1px solid #eeecfb;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .ulist .q:last-child { border-bottom: 0; }
+  .qn { flex: none; width: 22px; font-size: 15px; color: var(--muted); }
+
+  /* Part 1: matching rows (place, then the meaning beside it) */
+  .mrow { align-items: center; }
+  .mrow .tp-zone { flex: none; width: 11em; }
+  .mdef { font-size: 18px; line-height: 1.45; }
+
+  /* Part 2: key-word transformations */
+  .tf { flex: 1; display: grid; grid-template-columns: 1fr; gap: 6px; }
+  .src { font-size: 18px; line-height: 1.5; }
+  .tgt { font-size: 18px; line-height: 2.1; }
+  .kw { display: inline-block; font-size: .82em; font-weight: 700; letter-spacing: .08em; color: var(--violet); border: 1.5px solid var(--violet); border-radius: 6px; padding: 0 8px; margin-right: 10px; line-height: 1.5; vertical-align: middle; }
+  .cnt { color: var(--muted); font-size: .85em; }
+  .q input.tgap { display: inline-block; width: 9em; min-width: 0; height: 1.75em; min-height: 0; padding: 0 8px; margin: 0 3px; text-align: left; vertical-align: middle; font: inherit; }
+  .q input.tgap.w1 { width: 7em; }
+
+  /* Part 3 */
+  .own { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 8px; }
+  .wlab { font-size: 18px; font-weight: 400; }
+  .wnote { font-size: 14px; color: var(--muted); }
+  .wnote i { color: var(--ink); font-style: normal; font-weight: 600; }
+  section div.sent { min-height: 78px !important; border: 1px solid var(--line); border-radius: 8px; margin-top: 6px; }
+
+  /* ===== TAP-PLACE CSS (from Tools/hw_snippets/tap_place.html, recoloured) ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; padding: 12px; border: 1.5px dashed var(--line); border-radius: 12px; background: var(--soft); min-height: 66px; margin: 10px 0 14px; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 600; color: var(--ink); background: #fff;
+    border: 1.5px solid var(--violet); border-radius: 999px; padding: 6px 18px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.35;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: var(--soft); border-color: var(--violet); box-shadow: 0 0 0 3px #d4ccfb; }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(108,99,255,.3); }
+  .tp-zone { border: 2px dashed #c9c2f4; border-radius: 12px; cursor: pointer; background: #fff; padding: 3px; -webkit-tap-highlight-color: transparent; }
+  .tp-zone.ready { border-color: var(--violet); background: #fbfaff; }
+  .tp-zone.over { border-color: var(--violet); background: var(--soft); }
+  .tp-slot { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: center; }
+  .tp-says { display: block; font-size: 14px; font-weight: 400; color: var(--ink); margin-top: 4px; }
+  .tp-bank .tp-says { display: none; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== end TAP-PLACE CSS ===== */
+  .mrow .tp-zone:has(.tp-tile) { border-style: solid; border-color: #e4e0fa; }
+  .mrow .tp-slot .tp-tile { width: 100%; text-align: center; }
+
+  @media (max-width: 620px) {
+    body { padding: 14px 10px 24px; }
+    header.top { flex-direction: column; align-items: flex-start; padding: 20px; }
+    header.top h1 { font-size: 26px; }
+    header.top .meta { text-align: left; }
+    .part { padding: 18px 14px; }
+    .instr { font-size: 19px; }
+    .mrow { flex-wrap: wrap; }
+    .mrow .mdef { flex: 1 1 calc(100% - 40px); order: 2; }
+    .mrow .tp-zone { order: 3; width: calc(100% - 36px); margin-left: 36px; }
+    .mdef, .src, .tgt { font-size: 16.5px; }
+  }
+
+  /* Whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 36px 48px 56px; font-size: 26px; }
+    header.top { padding: 28px 40px; margin-bottom: 24px; }
+    header.top .kicker { font-size: 18px; }
+    header.top h1 { font-size: 46px; }
+    header.top .meta { font-size: 24px; }
+    .intro { font-size: 23px; margin: 0 0 28px 6px; }
+    .part { padding: 30px 44px 30px; margin-bottom: 32px; border-radius: 18px; }
+    .plabel { font-size: 19px; margin-bottom: 8px; }
+    .instr { font-size: 38px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 14px; }
+    .model { font-size: 27px; padding: 16px 24px; margin: 14px 0 18px; border-radius: 12px; }
+    .model .lt { font-size: 18px; margin-right: 14px; }
+    .qn { font-size: 24px; width: 34px; }
+    .q { gap: 22px; padding: 16px 0; }
+    .tp-bank { gap: 16px 18px; padding: 20px 24px; margin: 14px 0 20px; border-radius: 16px; }
+    .tp-tile { font-size: 27px; min-height: 58px; padding: 6px 26px; }
+    .tp-slot { min-height: 58px; }
+    .mrow .tp-zone { width: 330px; }
+    .mdef { font-size: 29px; }
+    .tf { gap: 4px; }
+    .src { font-size: 29px; }
+    .tgt { font-size: 29px; line-height: 1.9; }
+    .q input.tgap { font-size: 28px; height: 1.8em; }
+    .own { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 48px; align-items: end; }
+    .wlab { font-size: 29px; }
+    .wnote { font-size: 23px; }
+    section div.sent { min-height: 120px !important; font-size: 28px; }
+  }
+  @media screen and (min-width:1500px) {
+    .tf { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: 56px; align-items: baseline; }
+  }
+
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { background: #fff; font-size: 12px; padding: 0; max-width: none; }
+    header.top { padding: 10px 18px; margin-bottom: 8px; border-radius: 10px; }
+    header.top h1 { font-size: 21px; }
+    header.top .kicker { font-size: 9.5px; margin-bottom: 2px; }
+    header.top .meta { font-size: 11px; }
+    .intro { font-size: 10.5px; margin: 0 0 7px 2px; }
+    .part { padding: 8px 16px 7px; margin-bottom: 7px; border-radius: 10px; }
+    .plabel { font-size: 9.5px; margin-bottom: 1px; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 2px; }
+    .model { font-size: 11.5px; padding: 5px 10px; margin: 4px 0; }
+    .model .lt { font-size: 9px; }
+    .q { padding: 3px 0; gap: 8px; }
+    .qn { font-size: 11px; width: 14px; }
+    .tp-bank { margin: 4px 0 5px; padding: 5px; min-height: 0; gap: 5px 7px; }
+    .tp-tile { font-size: 11.5px; padding: 1px 11px; min-height: 0; border-width: 1.2px; }
+    .tp-slot { min-height: 0; }
+    .mrow .tp-zone { width: 120px; height: 20px; padding: 0; border-width: 1.2px; border-radius: 6px; }
+    .mrow .tp-slot .tp-tile { border: 0; padding: 0 4px; }
+    .mdef { font-size: 12px; line-height: 1.35; }
+    .tf { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 18px; gap: 0 18px; }
+    .src, .tgt { font-size: 12px; line-height: 1.6; }
+    .kw { font-size: 9.5px; padding: 0 5px; margin-right: 5px; border-width: 1.2px; }
+    .q input.tgap { width: 112px; height: 18px; }
+    .q input.tgap.w1 { width: 84px; }
+    .wlab { font-size: 12.5px; }
+    .wnote { font-size: 10.5px; }
+    .own { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; margin-top: 3px; align-items: end; }
+    section div.sent { min-height: 64px !important; margin-top: 2px; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<!-- Arina 25 Nov 2026 (conversation lesson: her HSE English olympiad on Saturday).
+  Part 1: tap-place matching, bank order show off, the glitterati, in a rush, wishy-washy (extra), lovey-dovey, a pied-a-terre, mushy;
+          correct bank position per definition row 3,7,1,6,2,5.
+  Part 2: key-word transformations; the key word never carries the slip. did + base three times (SENSE, BOTHER, ABOUT),
+          another + singular, explain to me, can't even. Short forms count as two words.
+  Part 3: two own sentences (leave ... unfinished, in a rush). -->
+<body data-student="Arina" data-sheet="Arina - English 2026-11-25 2026-11-25" data-sheet-id="arina-2026-11-25-arina-english-2026-11-25">
+<div id="sheet">
+<header class="top"><div><div class="kicker">Arina · English practice</div><h1>Olympiad training&nbsp;round</h1></div><div class="meta">25 November 2026</div></header>
+<p class="intro">Three short tasks in the olympiad style. About 10&nbsp;minutes.</p>
+
+<section class="part tp">
+  <div class="plabel">1 · Matching</div>
+  <p class="instr"><span class="scr">Tap a phrase, then tap its <span class="nw">meaning.</span></span><span class="prt">Write each phrase in the box next to its <span class="nw">meaning.</span></span></p>
+  <p class="note">One phrase is extra.</p>
+  <p class="note scr">Tap a placed phrase to send it back. With a mouse you can also <span class="nw">drag.</span></p>
+  <div class="tp-bank" aria-label="Phrases"><button type="button" class="tp-tile" data-value="to show off">to show off</button><button type="button" class="tp-tile" data-value="the glitterati">the glitterati</button><button type="button" class="tp-tile" data-value="in a rush">in a rush</button><button type="button" class="tp-tile" data-value="wishy-washy">wishy-washy</button><button type="button" class="tp-tile" data-value="lovey-dovey">lovey-dovey</button><button type="button" class="tp-tile" data-value="a pied-à-terre">a pied-à-terre</button><button type="button" class="tp-tile" data-value="mushy">mushy</button></div>
+  <div class="ulist">
+    <div class="q mrow"><span class="qn">1</span><div class="tp-zone" data-store="m1" data-field="m1" aria-label="Meaning 1"><span class="tp-slot"></span></div><p class="mdef">in a hurry, because you do not have enough&nbsp;time</p></div>
+    <div class="q mrow"><span class="qn">2</span><div class="tp-zone" data-store="m2" data-field="m2" aria-label="Meaning 2"><span class="tp-slot"></span></div><p class="mdef">too emotional and sentimental, like some love songs and&nbsp;films</p></div>
+    <div class="q mrow"><span class="qn">3</span><div class="tp-zone" data-store="m3" data-field="m3" aria-label="Meaning 3"><span class="tp-slot"></span></div><p class="mdef">to try to make people admire what you can do or what you have, often in an annoying&nbsp;way</p></div>
+    <div class="q mrow"><span class="qn">4</span><div class="tp-zone" data-store="m4" data-field="m4" aria-label="Meaning 4"><span class="tp-slot"></span></div><p class="mdef">a small flat in a city that you keep for short stays, while your main home is somewhere&nbsp;else</p></div>
+    <div class="q mrow"><span class="qn">5</span><div class="tp-zone" data-store="m5" data-field="m5" aria-label="Meaning 5"><span class="tp-slot"></span></div><p class="mdef">rich, famous and fashionable people, especially at big social&nbsp;events</p></div>
+    <div class="q mrow"><span class="qn">6</span><div class="tp-zone" data-store="m6" data-field="m6" aria-label="Meaning 6"><span class="tp-slot"></span></div><p class="mdef">showing romantic love openly in a silly way, like a couple who kiss and cuddle all the time in front of other&nbsp;people</p></div>
+  </div>
+  <div class="tp-stores" hidden><select data-k="m1" data-label="1.1 in a hurry, because you do not have enough time" aria-label="Meaning 1" class="hw-field"><option value=""></option><option value="to show off">to show off</option><option value="the glitterati">the glitterati</option><option value="in a rush">in a rush</option><option value="wishy-washy">wishy-washy</option><option value="lovey-dovey">lovey-dovey</option><option value="a pied-à-terre">a pied-à-terre</option><option value="mushy">mushy</option></select><select data-k="m2" data-label="1.2 too emotional and sentimental, like some love songs and films" aria-label="Meaning 2" class="hw-field"><option value=""></option><option value="to show off">to show off</option><option value="the glitterati">the glitterati</option><option value="in a rush">in a rush</option><option value="wishy-washy">wishy-washy</option><option value="lovey-dovey">lovey-dovey</option><option value="a pied-à-terre">a pied-à-terre</option><option value="mushy">mushy</option></select><select data-k="m3" data-label="1.3 to try to make people admire what you can do or what you have" aria-label="Meaning 3" class="hw-field"><option value=""></option><option value="to show off">to show off</option><option value="the glitterati">the glitterati</option><option value="in a rush">in a rush</option><option value="wishy-washy">wishy-washy</option><option value="lovey-dovey">lovey-dovey</option><option value="a pied-à-terre">a pied-à-terre</option><option value="mushy">mushy</option></select><select data-k="m4" data-label="1.4 a small flat in a city that you keep for short stays" aria-label="Meaning 4" class="hw-field"><option value=""></option><option value="to show off">to show off</option><option value="the glitterati">the glitterati</option><option value="in a rush">in a rush</option><option value="wishy-washy">wishy-washy</option><option value="lovey-dovey">lovey-dovey</option><option value="a pied-à-terre">a pied-à-terre</option><option value="mushy">mushy</option></select><select data-k="m5" data-label="1.5 rich, famous and fashionable people at big social events" aria-label="Meaning 5" class="hw-field"><option value=""></option><option value="to show off">to show off</option><option value="the glitterati">the glitterati</option><option value="in a rush">in a rush</option><option value="wishy-washy">wishy-washy</option><option value="lovey-dovey">lovey-dovey</option><option value="a pied-à-terre">a pied-à-terre</option><option value="mushy">mushy</option></select><select data-k="m6" data-label="1.6 showing romantic love openly in a silly way" aria-label="Meaning 6" class="hw-field"><option value=""></option><option value="to show off">to show off</option><option value="the glitterati">the glitterati</option><option value="in a rush">in a rush</option><option value="wishy-washy">wishy-washy</option><option value="lovey-dovey">lovey-dovey</option><option value="a pied-à-terre">a pied-à-terre</option><option value="mushy">mushy</option></select></div>
+</section>
+
+<section class="part">
+  <div class="plabel">2 · Key-word transformations</div>
+  <p class="instr">Finish the second sentence so it means the same as the first. Use the word in capitals and exactly the number of words <span class="nw">shown.</span></p>
+  <p class="note">Do not change the word in capitals. A short form counts as two words: <i>isn&rsquo;t</i> = is + <span class="nw">not.</span></p>
+  <div class="model"><span class="lt">Like this</span>Nobody told me that the room had changed. <span class="kw">ONE</span> No <span class="fill">one told</span> me that the room had changed. <span class="gr nw">(2 words)</span></div>
+  <div class="ulist">
+        <div class="q"><span class="qn">1</span><div class="tf"><p class="src">The last sentence of the olympiad task confused&nbsp;me.</p><p class="tgt"><span class="kw">SENSE</span>The last sentence of the olympiad task <input type="text" class="hw-field tgap" maxlength="30" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="t1" data-label="The last sentence of the olympiad task confused me. SENSE: The last sentence of the olympiad task ___ to me. (4 words)" aria-label="Gap 1"> to me. <span class="cnt nw">(4 words)</span></p></div></div>
+    <div class="q"><span class="qn">2</span><div class="tf"><p class="src">These two ideas for my bot don&rsquo;t work. I need to think of a third&nbsp;one.</p><p class="tgt"><span class="kw">ANOTHER</span>These two ideas don&rsquo;t work, so I need <input type="text" class="hw-field tgap" maxlength="30" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="t2" data-label="These two ideas for my bot don't work. I need to think of a third one. ANOTHER: These two ideas don't work, so I need ___ for my bot. (2 words)" aria-label="Gap 2"> for my bot. <span class="cnt nw">(2 words)</span></p></div></div>
+    <div class="q"><span class="qn">3</span><div class="tf"><p class="src">My friend never counted the words in her story, so it was too&nbsp;long.</p><p class="tgt"><span class="kw">BOTHER</span>My friend <input type="text" class="hw-field tgap" maxlength="30" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="t3" data-label="My friend never counted the words in her story, so it was too long. BOTHER: My friend ___ the words in her story, so it was too long. (5 words)" aria-label="Gap 3"> the words in her story, so it was too long. <span class="cnt nw">(5 words)</span></p></div></div>
+    <div class="q"><span class="qn">4</span><div class="tf"><p class="src">I typed into the chatbot: &ldquo;Tell me how the code of my bot&nbsp;works.&rdquo;</p><p class="tgt"><span class="kw">EXPLAIN</span>I asked the chatbot to <input type="text" class="hw-field tgap" maxlength="30" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="t4" data-label="I typed into the chatbot: Tell me how the code of my bot works. EXPLAIN: I asked the chatbot to ___ how the code of my bot works. (3 words)" aria-label="Gap 4"> how the code of my bot works. <span class="cnt nw">(3 words)</span></p></div></div>
+    <div class="q"><span class="qn">5</span><div class="tf"><p class="src">There were no questions on British history in the&nbsp;olympiad.</p><p class="tgt"><span class="kw">ABOUT</span>In the olympiad, they <input type="text" class="hw-field tgap" maxlength="30" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="t5" data-label="There were no questions on British history in the olympiad. ABOUT: In the olympiad, they ___ British history. (4 words)" aria-label="Gap 5"> British history. <span class="cnt nw">(4 words)</span></p></div></div>
+    <div class="q"><span class="qn">6</span><div class="tf"><p class="src">My Word licence has expired. Now I can&rsquo;t do the most basic thing: open a&nbsp;document.</p><p class="tgt"><span class="kw">EVEN</span>My licence has expired, so <span class="nw">I <input type="text" class="hw-field tgap" maxlength="30" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-k="t6" data-label="My Word licence has expired. Now I can't do the most basic thing: open a document. EVEN: My licence has expired, so I ___ open a document. (3 words)" aria-label="Gap 6"></span> open a document. <span class="cnt nw">(3 words)</span></p></div></div>
+  </div>
+</section>
+
+<section class="part">
+  <div class="plabel">3 · Your turn</div>
+  <p class="instr">Answer each question in one or two <span class="nw">sentences.</span></p>
+  <div class="model"><span class="lt">Like this</span>What do you need for this recipe? &rarr; You need three eggs, some flour and a little&nbsp;milk.</div>
+  <div class="own">
+    <div><p class="wlab">Your bot is only half done, and the presentation is on Friday. What can you leave <span class="nw">unfinished?</span></p><p class="wnote">Use <i>leave &hellip; unfinished</i>.</p><div class="hw-field sent" contenteditable="true" data-k="w1" data-label="3.1 Your bot is only half done, and the presentation is on Friday. What can you leave unfinished? (use leave ... unfinished)" role="textbox" aria-label="What can you leave unfinished" autocorrect="off" autocapitalize="sentences"></div></div>
+    <div><p class="wlab">What did you have to do in a rush this <span class="nw">week?</span></p><p class="wnote">Use <i>in a rush</i>.</p><div class="hw-field sent" contenteditable="true" data-k="w2" data-label="3.2 What did you have to do in a rush this week? (use in a rush)" role="textbox" aria-label="What did you do in a rush" autocorrect="off" autocapitalize="sentences"></div></div>
+  </div>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (from Tools/hw_snippets/tap_place.html) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-k="' + k + '"]') || document.querySelector('[data-k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }
+          else { unpick(); home(t); }
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== end TAP-PLACE JS ===== */
+</script></div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtMSI6IHsidCI6ICJleGFjdCIsICJhIjogImluIGEgcnVzaCJ9LCAibTIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtdXNoeSJ9LCAibTMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0byBzaG93IG9mZiJ9LCAibTQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhIHBpZWQtw6AtdGVycmUifSwgIm01IjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIGdsaXR0ZXJhdGkifSwgIm02IjogeyJ0IjogImV4YWN0IiwgImEiOiAibG92ZXktZG92ZXkifSwgInQxIjogeyJ0IjogIndvcmRzIiwgImEiOiAiZGlkbid0IG1ha2Ugc2Vuc2UiLCAiYWx0ZXJuYXRpdmVzIjogWyJkaWRuJ3QgbWFrZSBzZW5zZSIsICJkaWRu4oCZdCBtYWtlIHNlbnNlIiwgImRpZCBub3QgbWFrZSBzZW5zZSJdfSwgInQyIjogeyJ0IjogIndvcmRzIiwgImEiOiAiYW5vdGhlciBpZGVhIiwgImFsdGVybmF0aXZlcyI6IFsiYW5vdGhlciBpZGVhIiwgImFub3RoZXIgb25lIl19LCAidDMiOiB7InQiOiAid29yZHMiLCAiYSI6ICJkaWRuJ3QgYm90aGVyIHRvIGNvdW50IiwgImFsdGVybmF0aXZlcyI6IFsiZGlkbid0IGJvdGhlciB0byBjb3VudCIsICJkaWRu4oCZdCBib3RoZXIgdG8gY291bnQiLCAiZGlkIG5vdCBib3RoZXIgdG8gY291bnQiLCAiaGFkbid0IGJvdGhlcmVkIHRvIGNvdW50IiwgImhhZG7igJl0IGJvdGhlcmVkIHRvIGNvdW50IiwgImhhZCBub3QgYm90aGVyZWQgdG8gY291bnQiLCAibmV2ZXIgZXZlbiBib3RoZXJlZCB0byBjb3VudCJdfSwgInQ0IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZXhwbGFpbiB0byBtZSIsICJhbHRlcm5hdGl2ZXMiOiBbImV4cGxhaW4gdG8gbWUiXX0sICJ0NSI6IHsidCI6ICJ3b3JkcyIsICJhIjogImRpZG4ndCBhc2sgYWJvdXQiLCAiYWx0ZXJuYXRpdmVzIjogWyJkaWRuJ3QgYXNrIGFib3V0IiwgImRpZG7igJl0IGFzayBhYm91dCIsICJkaWQgbm90IGFzayBhYm91dCIsICJkaWRu4oCZdCB3cml0ZSBhYm91dCIsICJkaWRuJ3Qgd3JpdGUgYWJvdXQiLCAiZGlkIG5vdCB3cml0ZSBhYm91dCIsICJkaWRuJ3QgdGFsayBhYm91dCIsICJkaWRu4oCZdCB0YWxrIGFib3V0IiwgImRpZCBub3QgdGFsayBhYm91dCIsICJhc2tlZCBubyBxdWVzdGlvbnMgYWJvdXQiLCAic2V0IG5vIHF1ZXN0aW9ucyBhYm91dCJdfSwgInQ2IjogeyJ0IjogIndvcmRzIiwgImEiOiAiY2FuJ3QgZXZlbiIsICJhbHRlcm5hdGl2ZXMiOiBbImNhbuKAmXQgZXZlbiIsICJjYW4ndCBldmVuIiwgImNhbiBub3QgZXZlbiIsICJjYW5ub3QgZXZlbiJdfSwgIncxIjogeyJ0IjogIm9wZW4ifSwgIncyIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body></html>

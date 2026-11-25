@@ -9,6 +9,10 @@
 main{padding-bottom:132px}.controls{position:fixed;z-index:5;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:1640px;background:#fffefb;border-top:2px solid var(--line);padding:16px 48px;box-shadow:0 -5px 22px #233c3110}.note{display:none}
 @media(min-width:900px){.layout{grid-template-columns:minmax(370px,.95fr) minmax(0,1.6fr)}.formula{font-size:28px;white-space:nowrap}.formula div{display:inline}.formula div+div{margin-left:5px}.row{padding:14px}.caption{min-height:68px}.diagram-note{font-size:22px}}
 @media(max-width:899px){main{padding-bottom:160px}.controls{padding:10px 16px}.controls button{min-height:48px}.scrub{gap:10px}input[type=range]{min-height:34px}}
+
+.row{transition:none}.addition-mode .diagram{background:#f5f8f3}.addition-mode .diagram-note{display:none}.addition-mode .working{display:grid;grid-template-rows:repeat(3,1fr);gap:0}.addition-mode .row{align-self:center}.addition-mode .caption{min-height:40px}
+@media(min-width:900px){.addition-mode .row{margin:0}.addition-mode .layout{align-items:stretch}}
+@media(max-width:520px){.addition-mode .row .lab{max-width:110px}.addition-mode .working{gap:6px}}
 </style></head><body><main>
 <header><div class="brand">Clara · Maths in motion</div><nav aria-label="Choose a method"><button id="addition" aria-pressed="true">Addition</button><button id="subtraction" aria-pressed="false">Subtraction</button></nav></header>
 <section class="sheet"><p id="method" class="eyebrow"></p><h1 id="original"></h1><div class="layout"><div class="working" id="working"></div><div class="diagram-wrap"><div class="diagram" id="diagram"></div><p class="diagram-note" id="diagramNote"></p></div></div><p class="caption" id="caption" aria-live="polite"></p><div class="controls"><button id="play">Play animation</button><button id="restart">Start again</button><div class="scrub"><input id="progress" type="range" min="0" max="29000" step="100" value="0" aria-label="Animation position"><span id="time">0:00 / 0:29</span></div></div><p class="note">Pause whenever you like. Move the slider to look again.</p></section>
@@ -22,25 +26,27 @@ const ln=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class
 function svg(body,w,h,label){return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}"><defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#276c55"/></marker><marker id="amberArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#965217"/></marker></defs>${body}</svg>`}
 function path(d,id,color='#276c55',width=5){return `<path id="${id}" d="${d}" fill="none" stroke="${color}" stroke-width="${width}" marker-end="url(#${color==='#965217'?'amberArr':'arr'})"/>`}
 function buildAdd(){
- const mobile=window.innerWidth<=520,w=mobile?350:1000,h=mobile?470:450;
- const start=mobile?[80,145]:[110,285],end=mobile?[80,410]:[880,285];
- const ctrl=mobile?[-65,275]:[495,35];
- const ticks=mobile?[[80,230],[80,275],[80,320],[80,365],[80,410]]:[[560,285],[640,285],[720,285],[800,285],[880,285]];
- layout={mobile,start,end,ctrl,ticks};
- let b=`<rect x="${mobile?23:225}" y="14" width="${mobile?304:550}" height="84" rx="16" fill="#fffefb"/>`;
- b+=tx(mobile?175:500,48,'Easier amount','label muted')+tx(mobile?152:458,84,'18,996','num','roundedAmount')+tx(mobile?270:655,84,'+4','label amber','plusFour');
- if(mobile){b+=ln(80,130,80,425)+tx(175,153,'52,400')+tx(175,237,'71,396','num','targetLabel')+tx(175,418,'71,400');b+=`<path d="M70 179l20 -9m-20 22l20 -9" stroke="#60776c" stroke-width="3"/>`;}
- else{b+=ln(75,285,935,285)+tx(110,340,'52,400')+tx(560,340,'71,396','num','targetLabel')+tx(880,340,'71,400');b+=`<path d="M300 295l15 -20m0 20l15 -20" stroke="#60776c" stroke-width="3"/>`;}
- b+=path(`M${start}Q${ctrl} ${end}`,'bigJump');
- b+=tx(mobile?248:500,mobile?181:140,'+19,000','num green','jumpLabel');
- ticks.forEach(([x,y],i)=>{b+=mobile?ln(x-8,y,x+8,y):ln(x,y-9,x,y+9);if(i>0&&i<4&&mobile)b+=tx(175,y+8,fmt(71396+i),'label muted');});
- for(let k=0;k<4;k++){let a=ticks[4-k],z=ticks[3-k],c=mobile?[a[0]+73,(a[1]+z[1])/2]:[(a[0]+z[0])/2,a[1]-100];b+=path(`M${a}Q${c} ${z}`,'back'+k,'#965217',4);}
- b+=tx(mobile?254:720,mobile?307:226,'−4','num amber','backLabel');
- b+=`<circle id="marker" cx="${start[0]}" cy="${start[1]}" r="${mobile?8:11}" fill="#276c55" stroke="#fffefb" stroke-width="3"/>`;
- if(!mobile)b+=tx(720,399,'4 × one step back','label muted');
- $('diagram').innerHTML=svg(b,w,h,'Add four to 18,996, add the easier 19,000, then move back four from 71,400 to 71,396.');
- $('diagramNote').textContent=mobile?'The final four unit steps are enlarged.':'Sketch, not to scale. Each small jump takes away 1.';
- for(const id of ['bigJump','back0','back1','back2','back3']){const el=$(id),len=el.getTotalLength();el.dataset.length=len;el.style.strokeDasharray=len;el.style.strokeDashoffset=len;}
+ const mobile=window.innerWidth<=520,w=mobile?350:1000,h=mobile?390:480;
+ const left=mobile?70:150,right=mobile?280:850,mid=w/2,ys=mobile?[65,185,305]:[90,250,410];
+ const nodeWidth=mobile?118:240,nodeHeight=mobile?56:78,arrowLeft=left+nodeWidth/2+8,arrowRight=right-nodeWidth/2-8;
+ layout={mobile,w,h,left,right,mid,ys,arrowLeft,arrowRight};
+ let b='';
+ const node=(x,y,value,id)=>`<rect x="${x-nodeWidth/2}" y="${y-nodeHeight/2}" width="${nodeWidth}" height="${nodeHeight}" rx="${mobile?12:18}" fill="#fffefb"/>${tx(x,y+(mobile?9:15),value,'num',id)}`;
+ for(let i=0;i<3;i++){
+  const y=ys[i];
+  b+=`<rect id="lane${i}" x="4" y="${y-(mobile?51:69)}" width="${w-8}" height="${mobile?104:140}" rx="18" fill="#dcefe4"/>`;
+  b+=`<g id="diagramRow${i}">`;
+  b+=node(left,y,['18,996','52,400','71,396'][i],['startAmount','otherAmount','sumAnswer'][i]);
+  b+=node(right,y,['19,000','71,400','71,400'][i],['roundedAnswer','sumBeforeCorrection','correctionStart'][i]);
+  b+=path(i===2?`M${arrowRight} ${y}H${arrowLeft}`:`M${arrowLeft} ${y}H${arrowRight}`,'action'+i,i===2?'#965217':'#276c55',mobile?3:5);
+  b+=tx(mid,y-(mobile?20:28),['+4','+19,000','−4'][i],i===2?'label amber':'label green','operation'+i);
+  b+='</g>';
+ }
+ b+=`<circle id="marker" r="${mobile?7:10}" fill="#276c55" stroke="white" stroke-width="2"/>`;
+ b+=`<g id="carryNumber" transform="translate(${mid},${ys[0]})"><rect x="${mobile?-58:-118}" y="${mobile?-23:-34}" width="${mobile?116:236}" height="${mobile?46:68}" rx="12" fill="#def0e5" stroke="#276c55" stroke-width="2"/>${tx(0,mobile?9:15,'19,000','num green','carryText')}</g>`;
+ $('diagram').innerHTML=svg(b,w,h,'Three connected actions: 18,996 plus 4 is 19,000; 52,400 plus 19,000 is 71,400; take away 4 once to get 71,396.');
+ $('diagramNote').textContent='';
+ for(let i=0;i<3;i++){const el=$('action'+i),len=el.getTotalLength();el.dataset.length=len;el.style.strokeDasharray=len;el.style.strokeDashoffset=len;}
 }
 function buildSub(){
  const mobile=window.innerWidth<=520,w=mobile?350:1000,h=mobile?330:450;
@@ -57,10 +63,11 @@ function buildSub(){
 }
 const row=(lab,content)=>`<div class="row"><div class="lab">${lab}</div><div class="formula">${content}</div></div>`;
 function build(){
+ document.body.classList.toggle('addition-mode',topic==='add');
  $('method').textContent=topic==='add'?'Compensate':'Same difference';
- $('original').innerHTML=topic==='add'?'52,400 + 18,996 <span id="finalAnswer" class="currentresult"></span>':'71,003 − 38,996 <span id="finalAnswer" class="currentresult"></span>';
+ $('original').innerHTML=topic==='add'?'18,996 + 52,400 <span id="finalAnswer" class="currentresult"></span>':'71,003 − 38,996 <span id="finalAnswer" class="currentresult"></span>';
  $('working').innerHTML=topic==='add'?
- row('Make it easier','<div>18,996 <span class="extra">+ 4</span></div><div>= <span id="result0">19,000</span></div>')+row('Add','<div>52,400 + 19,000</div><div>= <span id="result1">71,400</span></div>')+row('Take back 4','<div>71,400 <span class="extra">− 4</span></div><div>= <span id="result2">71,396</span></div>'):
+ row('1. Add 4','<div>18,996 <span class="extra">+ 4</span></div><div>= <span id="result0">19,000</span></div>')+row('2. Add 19,000','<div>52,400 + 19,000</div><div>= <span id="result1">71,400</span></div>')+row('3. Take back 4','<div>71,400 <span class="extra">− 4</span></div><div>= <span id="result2">71,396</span></div>'):
  row('Add 4 here','<div>38,996 + 4</div><div>= <span id="result0">39,000</span></div>')+row('And here','<div>71,003 + 4</div><div>= <span id="result1">71,007</span></div>')+row('Same gap','<div>71,007 − 39,000</div><div>= <span id="result2">32,007</span></div>');
  topic==='add'?buildAdd():buildSub();
  $('addition').setAttribute('aria-pressed',topic==='add');$('subtraction').setAttribute('aria-pressed',topic==='sub');lastCaption='';update();
@@ -74,19 +81,29 @@ function rows(shown,active){document.querySelectorAll('.row').forEach((el,i)=>{e
 function update(){
  const t=elapsed/1000;
  if(topic==='add'){
-  const round=clamp((t-3)/4),add=clamp((t-10)/4),back=clamp((t-18)/5);const n=Math.min(4,Math.floor(round*4));
-  $('roundedAmount').textContent=fmt(18996+n);$('plusFour').textContent='4 extra';opacity('plusFour',round>=1?1:0);opacity('jumpLabel',t>=10?1:.15);opacity('backLabel',t>=18?1:.15);opacity('targetLabel',back>=1?1:.35);
-  revealPath('bigJump',ease(add));for(let k=0;k<4;k++)revealPath('back'+k,clamp(back*4-k));
-  if(back>0){const k=Math.min(3,Math.floor(back*4)),p=clamp(back*4-k),a=layout.ticks[4-k],b=layout.ticks[3-k],c=layout.mobile?[a[0]+73,(a[1]+b[1])/2]:[(a[0]+b[0])/2,a[1]-100];setMarker(quad(a,c,b,p));$('marker').setAttribute('fill','#965217');}
-  else{setMarker(quad(layout.start,layout.ctrl,layout.end,ease(add)));$('marker').setAttribute('fill','#276c55');}
-  rows(t<3?[]:t<10?[0]:t<18?[0,1]:[0,1,2],t<3?[]:t<10?[0]:t<18?[1]:t<25?[2]:[]);
-  opacity('result0',round>=1?1:.12);opacity('result1',add>=1?1:.12);opacity('result2',back>=1?1:.12);
-  if(t<3)caption('Start with 52,400 + 18,996. Watch what happens to the extra 4.');
-  else if(t<10)caption('18,996 needs 4 more to make 19,000.');
-  else if(t<18)caption('Add 19,000. We reach 71,400, but that includes 4 extra.');
-  else if(t<25)caption('Take those 4 back: four small jumps to the correct total.');
-  else caption('71,396. We added 4 extra, then took the same 4 back.');
-  $('finalAnswer').textContent=t>=25?'= 71,396':'';
+  const r=clamp((t-1.5)/3),a=clamp((t-9)/4),back=clamp((t-19)/4);
+  const stage=t<7?0:t<17?1:2;
+  const done=t>=23;
+  rows(Array.from({length:stage+1},(_,i)=>i),done?[]:[stage]);
+  for(let i=0;i<3;i++){
+   opacity('lane'+i,!done&&i===stage?1:0);
+   opacity('diagramRow'+i,i<=stage?1:.15);
+   revealPath('action'+i,[r,a,back][i]);
+  }
+  opacity('roundedAnswer',r===1?1:0);opacity('sumBeforeCorrection',a===1?1:0);opacity('correctionStart',t>=19?1:0);opacity('sumAnswer',back===1?1:0);
+  opacity('result0',r===1?1:0);opacity('result1',a===1?1:0);opacity('result2',back===1?1:0);
+  const transfer1=t>=7&&t<9,transfer2=t>=17&&t<19;
+  opacity('carryNumber',transfer1||transfer2?1:0);
+  if(transfer1){const q=ease(clamp((t-7)/2));$('carryNumber').setAttribute('transform',`translate(${layout.right+(layout.mid-layout.right)*q},${layout.ys[0]+(layout.ys[1]-(layout.mobile?20:28)-layout.ys[0])*q})`);$('carryText').textContent='19,000';}
+  if(transfer2){const q=ease(clamp((t-17)/2));$('carryNumber').setAttribute('transform',`translate(${layout.right},${layout.ys[1]+(layout.ys[2]-layout.ys[1])*q})`);$('carryText').textContent='71,400';}
+  opacity('operation1',t>=9?1:0);
+  const p=[r,a,back][stage],from=stage===2?layout.arrowRight:layout.arrowLeft,to=stage===2?layout.arrowLeft:layout.arrowRight;
+  setMarker([from+(to-from)*p,layout.ys[stage]]);$('marker').setAttribute('fill',stage===2?'#965217':'#276c55');opacity('marker',p>0&&p<1?1:0);
+  if(t<7)caption('Add 4 to 18,996 to make 19,000.');
+  else if(t<17)caption('Now add the easier 19,000 to 52,400.');
+  else if(t<23)caption('We added 4 extra. Take 4 back in one go.');
+  else caption('18,996 + 52,400 = 71,396.');
+  $('finalAnswer').textContent=done?'= 71,396':'';
  }else{
   const p=clamp((t-7)/6),v=ease(p),n=Math.min(4,Math.floor(p*4));
   $('movingGap').setAttribute('transform',`translate(${v*layout.shift},0)`);

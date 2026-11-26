@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roman - Homework 26 November 2026</title>
+<!-- Lesson of 26 Nov 2026 (lesson 19 finished, Kitchen Nightmares Café 36, cards 7-10: a message to the restaurant,
+     fact / opinion / not shown, customer-waiter role-play, a verdict; chat about Christmas). About 20 min.
+     Formats used recently and NOT repeated: tile sentence builder (25 Nov), typed although joins (25 Nov),
+     tap-to-place matching and find-and-fix a friend's message (18 and 24 Nov).
+     Part 1 = NEW mechanic: reverse questions. He sees a SHORT reply (a fragment + a context label) and builds the
+       polite question that produced it, so the statement-order clause is his own. Frame printed per item (his
+       question-frame rule). Do-trap in 1, 3, 4, 5 (4 has subject YOU, like his «what kind of fish do you use»);
+       yes/no items at 2 and 4 (whether / if). Model «where the pharmacy is» (be at the end, no do to drop). Keyed open.
+       Spain: none.
+     Part 2 = 10 gaps from 26 Nov with a Russian cue, fresh sentences (not the vocab-page quiz sentences), link to the page.
+       Item 1 holds the it takes ... to / you'll need to wait contrast (two gaps); item 9 isolates recommend + -ing.
+     Part 3 = 3-4 sentences to a friend about a café or restaurant he has eaten at, I really recommend + -ing + one more
+       phrase from today. Open. Answers live only in the private key. -->
+<style>
+  @page { size: A4; margin: 13mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f2ec;
+    color: #253a34;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { max-width: 900px; margin: auto; }
+  p, .do, .note, .ans, .prompt, .ctx { text-wrap: pretty; }
+  @media screen { body { padding: 28px 20px 36px; } }
+
+  header {
+    border-top: 4px solid #31594b;
+    border-bottom: 1px solid #d8ddd3;
+    padding: 12px 0 10px;
+    margin-bottom: 16px;
+  }
+  .masthead {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #626a62; display: flex; justify-content: space-between;
+  }
+  .masthead strong { color: #31594b; font-weight: 600; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 20px; letter-spacing: -0.2px;
+    margin: 6px 0 2px;
+  }
+
+  .task {
+    background: #fffefa;
+    border: 1px solid #d8ddd3;
+    border-radius: 5px;
+    padding: 16px 24px 20px;
+    margin-bottom: 16px;
+  }
+  .task.keep { page-break-inside: avoid; break-inside: avoid; }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 15px; color: #31594b;
+    margin-bottom: 4px;
+    page-break-after: avoid; break-after: avoid;
+  }
+  .do { font-size: 21px; line-height: 1.35; font-weight: 700; color: #1f2a24; margin: 2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note { font-size: 14px; color: #626a62; margin: -2px 0 10px; page-break-after: avoid; break-after: avoid; }
+  .note a { color: #31594b; }
+
+  .model {
+    border-left: 3px solid #31594b;
+    background: #eff2eb;
+    padding: 8px 14px;
+    margin: 4px 0 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .model .lab { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 12.5px; color: #626a62; margin-bottom: 2px; }
+  .model b { color: #31594b; font-weight: 600; }
+  .model .ln { display: block; }
+  .model .arr { color: #626a62; margin: 0 6px; }
+
+  .q {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #e6e9e2;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .q:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qnum { font-size: 13px; color: #797c72; padding-top: 7px; }
+  .nw { white-space: nowrap; }
+
+  /* Part 1: the answer on the left, the question to finish on the right (stacked on a phone) */
+  .rev { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 36px; align-items: center; }
+  .where { display: block; font-size: 13px; color: #626a62; letter-spacing: .4px; margin-bottom: 2px; }
+  .ans { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.45; font-style: italic; }
+  .ask { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 17px; }
+  .ask .frame { white-space: nowrap; font-weight: 600; color: #1f2a24; }
+  .ask .qm { font-weight: 700; color: #31594b; }
+  .ask .inrow { display: flex; align-items: center; gap: 6px; flex: 1 1 300px; min-width: 0; }
+  input.qin { display: block; flex: 1 1 auto; min-width: 0; width: 100%; font: inherit; font-size: 16px; padding: 4px 10px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa; }
+
+  /* Part 2: the word is typed inside the sentence */
+  .prompt { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 2.1; margin-bottom: 0; }
+  .gc { white-space: nowrap; }
+  .cue { color: #626a62; }
+  input.vgap { display: inline-block; font: inherit; font-size: 16px; margin: 0 4px; padding: 2px 8px; vertical-align: baseline;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa; }
+  input.vgap.s { width: 8em; }
+  input.vgap.m { width: 10.5em; }
+  input.vgap.l { width: 13em; }
+
+  /* Part 3: the message */
+  textarea.rep {
+    display: block; width: 100%; resize: vertical;
+    font: inherit; font-size: 16px; line-height: 1.45;
+    padding: 8px 12px; margin-top: 6px;
+    border: 1.5px solid #b9c6bb; border-radius: 5px; background: #fffefa;
+  }
+
+  @media (max-width: 620px) {
+    .task { padding: 14px 16px 16px; }
+    .do { font-size: 19px; }
+    .nw, .gc { white-space: normal; }
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    body { font-size: 12px; line-height: 1.3; }
+    .sheet { max-width: none; }
+    header { padding: 7px 0 6px; margin-bottom: 8px; }
+    .masthead { font-size: 9.5px; }
+    h1 { font-size: 14px; margin: 3px 0 0; }
+    .task { padding: 8px 16px 9px; margin-bottom: 8px; }
+    h2 { font-size: 11px; margin-bottom: 1px; }
+    .do { font-size: 14.5px; margin-bottom: 5px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .model { font-size: 12px; padding: 4px 11px; margin-bottom: 4px; }
+    .model .lab { font-size: 10px; margin-bottom: 0; }
+    .q { padding: 3px 0; gap: 8px; grid-template-columns: 18px minmax(0, 1fr); }
+    .qnum { font-size: 10.5px; padding-top: 2px; }
+    .rev { grid-template-columns: 250px minmax(0, 1fr); gap: 2px 14px; }
+    .where { font-size: 9.5px; }
+    .ans, .ask { font-size: 12px; }
+    .ask { flex-wrap: nowrap; }
+    .ask .inrow { flex: 1 1 auto; }
+    input.qin { font-size: 11.5px; height: 21px; padding: 0 5px; border-width: 1px; }
+    textarea.rep { min-height: 88px; height: 88px; resize: none; font-size: 11.5px; padding: 3px 8px; border-width: 1px; margin-top: 3px; }
+    textarea.rep::placeholder, input.vgap::placeholder, input.qin::placeholder { color: transparent; }
+    .prompt { font-size: 12.5px; line-height: 1.75; }
+    input.vgap { font-size: 11.5px; height: 19px; padding: 0 4px; border-width: 1px; }
+    input.vgap.s { width: 6em; }
+    input.vgap.m { width: 9em; }
+    input.vgap.l { width: 11em; }
+  }
+
+/* Full page width and bigger type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body { font-size:22px; padding:36px 48px 48px; }
+  .sheet { max-width:1640px; }
+  header { padding:16px 0 14px; margin-bottom:26px; }
+  .masthead { font-size:15px; }
+  h1 { font-size:34px; margin:8px 0 2px; }
+  .task { padding:28px 44px 34px; margin-bottom:28px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .do { font-size:36px; margin:4px 0 20px; }
+  .note { font-size:20px; margin:-6px 0 18px; }
+  .model { font-size:27px; padding:14px 24px; margin:6px 0 18px; }
+  .model .lab { font-size:17px; margin-bottom:4px; }
+  .q { grid-template-columns:42px minmax(0,1fr); gap:14px; padding:20px 0; }
+  .qnum { font-size:22px; padding-top:10px; }
+  .rev { grid-template-columns:minmax(340px,0.45fr) minmax(0,1fr); gap:10px 44px; }
+  .where { font-size:19px; margin-bottom:4px; }
+  .ans { font-size:29px; line-height:1.45; }
+  .ask { font-size:29px; gap:8px 14px; }
+  .ask .inrow { flex:1 1 420px; gap:10px; }
+  .sheet input.qin { font-size:26px; min-height:56px; padding:6px 14px; border-width:2px; }
+  .prompt { font-size:29px; line-height:2; }
+  .sheet input.vgap { font-size:26px; min-height:54px; padding:4px 12px; border-width:2px; text-align:left; }
+  textarea.rep { font-size:26px; padding:12px 18px; border-width:2px; margin-top:10px; }
+}
+/* hw.css sets field heights; keep the message box several lines tall on the live page. */
+@media screen { .task textarea.rep.hw-field { min-height:150px !important; } }
+@media screen and (min-width:900px) { .task textarea.rep.hw-field { min-height:230px !important; } }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Roman" data-sheet="English 2026-11-26" data-sheet-id="roman-2026-11-26-english">
+<div id="sheet">
+
+<div class="sheet">
+
+  <header>
+    <div class="masthead"><strong>English</strong><span>About 20&nbsp;minutes</span></div>
+    <h1>Polite questions, new words and a&nbsp;recommendation</h1>
+  </header>
+
+  <div class="task">
+    <h2>1. What did the customer ask?</h2>
+    <div class="do">Read each answer. Finish the polite question that the customer&nbsp;asked.</div>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln"><span class="where" style="display:inline">A street &middot; the pharmacy:</span> &ldquo;On the corner, next to the bank.&rdquo; <span class="arr">&larr;</span> <b>Could you tell me where the pharmacy&nbsp;is?</b></span>
+    </div>
+
+    <div class="q"><span class="qnum">1.</span>
+      <div class="rev">
+        <p class="ans"><span class="where">Hotel reception &middot; the airport shuttle</span>&ldquo;Every twenty&nbsp;minutes.&rdquo;</p>
+        <div class="ask"><span class="frame">Could you tell me</span><span class="inrow"><input class="hw-field qin" type="text" data-k="q1" data-label="1.1 Hotel reception, the airport shuttle: «Every twenty minutes.» Could you tell me ___?" aria-label="Question 1" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer here"><span class="qm">?</span></span></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <div class="rev">
+        <p class="ans"><span class="where">A boat tour &middot; lunch</span>&ldquo;No, but you can buy food on&nbsp;board.&rdquo;</p>
+        <div class="ask"><span class="frame">Would you mind clarifying</span><span class="inrow"><input class="hw-field qin" type="text" data-k="q2" data-label="1.2 A boat tour, lunch: «No, but you can buy food on board.» Would you mind clarifying ___?" aria-label="Question 2" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer here"><span class="qm">?</span></span></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <div class="rev">
+        <p class="ans"><span class="where">A garage &middot; your gearbox</span>&ldquo;Usually two&nbsp;days.&rdquo;</p>
+        <div class="ask"><span class="frame">Could you tell me</span><span class="inrow"><input class="hw-field qin" type="text" data-k="q3" data-label="1.3 A garage, your gearbox: «Usually two days.» Could you tell me ___?" aria-label="Question 3" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer here"><span class="qm">?</span></span></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <div class="rev">
+        <p class="ans"><span class="where">A shop &middot; deliveries on Sundays</span>&ldquo;Yes, we do, but only before&nbsp;two.&rdquo;</p>
+        <div class="ask"><span class="frame">Could you tell me</span><span class="inrow"><input class="hw-field qin" type="text" data-k="q4" data-label="1.4 A shop, deliveries on Sundays: «Yes, we do, but only before two.» Could you tell me ___?" aria-label="Question 4" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer here"><span class="qm">?</span></span></div>
+      </div>
+    </div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <div class="rev">
+        <p class="ans"><span class="where">A train station &middot; the next train to Oxford</span>&ldquo;Platform&nbsp;four.&rdquo;</p>
+        <div class="ask"><span class="frame">Could you tell me</span><span class="inrow"><input class="hw-field qin" type="text" data-k="q5" data-label="1.5 A train station, the next train to Oxford: «Platform four.» Could you tell me ___?" aria-label="Question 5" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer here"><span class="qm">?</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="task">
+    <h2>2. Words from 26 November</h2>
+    <div class="do">Write the word or phrase in the right form for each&nbsp;gap.</div>
+    <p class="note">All these words are on <a href="https://arsdashok.github.io/vocab/c58f796106fbd6b9/" target="_blank" rel="noopener">your vocabulary page</a>, under 26&nbsp;November.</p>
+
+    <div class="q"><span class="qnum">1.</span>
+      <p class="prompt">At the car wash: &ldquo;It takes us about ten minutes <span class="gc"><input class="hw-field vgap s" type="text" data-k="v1" data-label="2.1a At the car wash: It takes us about ten minutes ___ (помыть) a car" aria-label="Gap 1, first part" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(помыть)</span></span> a car, so <span class="gc"><input class="hw-field vgap l" type="text" data-k="v2" data-label="2.1b ... so ___ (вам нужно будет подождать) in the café." aria-label="Gap 1, second part" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(вам нужно будет подождать)</span></span> in the&nbsp;café.&rdquo;</p></div>
+
+    <div class="q"><span class="qnum">2.</span>
+      <p class="prompt">I think grilled fish is much <span class="gc"><input class="hw-field vgap s" type="text" data-k="v3" data-label="2.2 I think grilled fish is much ___ (вкуснее) than fried fish, and it's lighter too." aria-label="Gap 2" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(вкуснее)</span></span> than fried fish, and it's lighter&nbsp;too.</p></div>
+
+    <div class="q"><span class="qnum">3.</span>
+      <p class="prompt">Our old printer <span class="gc"><input class="hw-field vgap m" type="text" data-k="v4" data-label="2.3 Our old printer ___ (постоянно) jams, so we want to buy a new one." aria-label="Gap 3" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(постоянно)</span></span> jams, so we want to buy a new&nbsp;one.</p></div>
+
+    <div class="q"><span class="qnum">4.</span>
+      <p class="prompt">The young waiter dropped three plates, and the chef <span class="gc"><input class="hw-field vgap l" type="text" data-k="v5" data-label="2.4 The young waiter dropped three plates, and the chef ___ (отругал его) in front of everyone." aria-label="Gap 4" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(отругал&nbsp;его)</span></span> in front of&nbsp;everyone.</p></div>
+
+    <div class="q"><span class="qnum">5.</span>
+      <p class="prompt">The queue outside the restaurant was an hour long, so we decided to <span class="gc"><input class="hw-field vgap l" type="text" data-k="v6" data-label="2.5 The queue outside the restaurant was an hour long, so we decided to ___ (пойти в другое место)." aria-label="Gap 5" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(пойти в другое&nbsp;место).</span></span></p></div>
+
+    <div class="q"><span class="qnum">6.</span>
+      <p class="prompt">Their sandwiches are <span class="gc"><input class="hw-field vgap m" type="text" data-k="v7" data-label="2.6 Their sandwiches are ___ (готовятся под заказ), so you always get them warm and fresh." aria-label="Gap 6" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(готовятся под&nbsp;заказ),</span></span> so you always get them warm and&nbsp;fresh.</p></div>
+
+    <div class="q"><span class="qnum">7.</span>
+      <p class="prompt">The airline wanted sixty euros to change one letter in my name on the ticket. That's just <span class="gc"><input class="hw-field vgap m" type="text" data-k="v8" data-label="2.7 The airline wanted sixty euros to change one letter in my name on the ticket. That's just ___ (нелепо)!" aria-label="Gap 7" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(нелепо)!</span></span></p></div>
+
+    <div class="q"><span class="qnum">8.</span>
+      <p class="prompt">This running book has a completely different <span class="gc"><input class="hw-field vgap m" type="text" data-k="v9" data-label="2.8 This running book has a completely different ___ (подход к) training: fewer kilometres and more rest." aria-label="Gap 8" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(подход&nbsp;к)</span></span> training: fewer kilometres and more&nbsp;rest.</p></div>
+
+    <div class="q"><span class="qnum">9.</span>
+      <p class="prompt">Parking near the stadium is full by six, so I really recommend <span class="gc"><input class="hw-field vgap m" type="text" data-k="v10" data-label="2.9 Parking near the stadium is full by six, so I really recommend ___ (приехать) early." aria-label="Gap 9" autocomplete="off" autocapitalize="off" spellcheck="false"> <span class="cue">(приехать)</span></span>&nbsp;early.</p></div>
+  </div>
+
+  <div class="task keep">
+    <h2>3. A message to a friend</h2>
+    <div class="do">Tell a friend about a café or restaurant where you have eaten. Should your friend go&nbsp;there?</div>
+    <p class="note">3 or 4 sentences. Use I really recommend + -ing and one more phrase from 26&nbsp;November.</p>
+    <div class="model">
+      <span class="lab">Example</span>
+      <span class="ln">If you go to the zoo, I really recommend buying the tickets&nbsp;online.</span>
+    </div>
+    <textarea class="hw-field rep" rows="5" data-k="m1" data-label="3. A message to a friend about a café or restaurant (I really recommend + -ing)" aria-label="Your message" autocomplete="off" autocapitalize="sentences" placeholder="Type your answer here"></textarea>
+  </div>
+
+</div>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJxMSI6IHsidCI6ICJvcGVuIn0sICJxMiI6IHsidCI6ICJvcGVuIn0sICJxMyI6IHsidCI6ICJvcGVuIn0sICJxNCI6IHsidCI6ICJvcGVuIn0sICJxNSI6IHsidCI6ICJvcGVuIn0sICJ2MSI6IHsidCI6ICJ3b3JkcyIsICJhIjogInRvIHdhc2giLCAiYWx0ZXJuYXRpdmVzIjogWyJ0byB3YXNoIiwgInRvIGNsZWFuIiwgInRvIHdhc2ggYW5kIGRyeSIsICJ0byBkbyJdfSwgInYyIjogeyJ0IjogIndvcmRzIiwgImEiOiAieW91J2xsIG5lZWQgdG8gd2FpdCIsICJhbHRlcm5hdGl2ZXMiOiBbInlvdSdsbCBuZWVkIHRvIHdhaXQiLCAieW914oCZbGwgbmVlZCB0byB3YWl0IiwgInlvdSB3aWxsIG5lZWQgdG8gd2FpdCIsICJ5b3XigJlsbCBoYXZlIHRvIHdhaXQiLCAieW91J2xsIGhhdmUgdG8gd2FpdCIsICJ5b3Ugd2lsbCBoYXZlIHRvIHdhaXQiLCAieW91IG5lZWQgdG8gd2FpdCIsICJ5b3UgaGF2ZSB0byB3YWl0IiwgInlvdeKAmWxsIG5lZWQgdG8gd2FpdCBmb3IgdXMiLCAieW91J2xsIG5lZWQgdG8gd2FpdCBmb3IgdXMiLCAieW91IHdpbGwgbmVlZCB0byB3YWl0IGZvciB1cyIsICJ5b3UnbGwgaGF2ZSB0byB3YWl0IGZvciB1cyIsICJ5b3XigJlsbCBoYXZlIHRvIHdhaXQgZm9yIHVzIiwgInlvdSB3aWxsIGhhdmUgdG8gd2FpdCBmb3IgdXMiLCAieW914oCZbGwgbmVlZCB0byB3YWl0IGZvciBpdCIsICJ5b3UnbGwgbmVlZCB0byB3YWl0IGZvciBpdCIsICJ5b3Ugd2lsbCBuZWVkIHRvIHdhaXQgZm9yIGl0IiwgInlvdeKAmWxsIG5lZWQgdG8gd2FpdCBhIGJpdCIsICJ5b3UnbGwgbmVlZCB0byB3YWl0IGEgYml0IiwgInlvdSB3aWxsIG5lZWQgdG8gd2FpdCBhIGJpdCJdfSwgInYzIjogeyJ0IjogIndvcmRzIiwgImEiOiAidGFzdGllciIsICJhbHRlcm5hdGl2ZXMiOiBbInRhc3RpZXIiLCAibW9yZSBkZWxpY2lvdXMiLCAibmljZXIiXX0sICJ2NCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImNvbnN0YW50bHkiLCAiYWx0ZXJuYXRpdmVzIjogWyJjb25zdGFudGx5IiwgImFsd2F5cyJdfSwgInY1IjogeyJ0IjogIndvcmRzIiwgImEiOiAidG9sZCBoaW0gb2ZmIiwgImFsdGVybmF0aXZlcyI6IFsidG9sZCBoaW0gb2ZmIiwgInJlYWxseSB0b2xkIGhpbSBvZmYiLCAidG9sZCBoaW0gb2ZmIGxvdWRseSIsICJzY29sZGVkIGhpbSIsICJzaG91dGVkIGF0IGhpbSIsICJ5ZWxsZWQgYXQgaGltIiwgInJlYWxseSBzaG91dGVkIGF0IGhpbSJdfSwgInY2IjogeyJ0IjogIndvcmRzIiwgImEiOiAiZ28gZWxzZXdoZXJlIiwgImFsdGVybmF0aXZlcyI6IFsiZ28gZWxzZXdoZXJlIiwgImdvIHNvbWV3aGVyZSBlbHNlIiwgImdvIHRvIGFub3RoZXIgcGxhY2UiLCAiZ28gdG8gYSBkaWZmZXJlbnQgcGxhY2UiLCAidHJ5IHNvbWV3aGVyZSBlbHNlIiwgImdvIHRvIGFub3RoZXIgcmVzdGF1cmFudCIsICJnbyB0byBhIGRpZmZlcmVudCByZXN0YXVyYW50IiwgImVhdCBlbHNld2hlcmUiLCAiZWF0IHNvbWV3aGVyZSBlbHNlIl19LCAidjciOiB7InQiOiAid29yZHMiLCAiYSI6ICJtYWRlIHRvIG9yZGVyIiwgImFsdGVybmF0aXZlcyI6IFsibWFkZSB0byBvcmRlciIsICJtYWRlIGZyZXNoIHRvIG9yZGVyIiwgImNvb2tlZCB0byBvcmRlciIsICJmcmVzaGx5IG1hZGUgdG8gb3JkZXIiLCAiYWxsIG1hZGUgdG8gb3JkZXIiLCAicHJlcGFyZWQgdG8gb3JkZXIiXX0sICJ2OCI6IHsidCI6ICJ3b3JkcyIsICJhIjogInJpZGljdWxvdXMiLCAiYWx0ZXJuYXRpdmVzIjogWyJyaWRpY3Vsb3VzIiwgImFic3VyZCIsICJzbyByaWRpY3Vsb3VzIiwgImNvbXBsZXRlbHkgcmlkaWN1bG91cyIsICJhYnNvbHV0ZWx5IHJpZGljdWxvdXMiLCAibHVkaWNyb3VzIiwgInRvdGFsbHkgcmlkaWN1bG91cyIsICJyZWFsbHkgcmlkaWN1bG91cyJdfSwgInY5IjogeyJ0IjogIndvcmRzIiwgImEiOiAiYXBwcm9hY2ggdG8iLCAiYWx0ZXJuYXRpdmVzIjogWyJhcHByb2FjaCB0byIsICJhcHByb2FjaCB0b3dhcmRzIiwgImFwcHJvYWNoIHRvd2FyZCJdfSwgInYxMCI6IHsidCI6ICJ3b3JkcyIsICJhIjogImFycml2aW5nIiwgImFsdGVybmF0aXZlcyI6IFsiYXJyaXZpbmciLCAiZ2V0dGluZyB0aGVyZSIsICJjb21pbmciLCAiYXJyaXZpbmcgdGhlcmUiLCAiZ29pbmciLCAiZ29pbmcgdGhlcmUiLCAiZ2V0dGluZyB0byB0aGUgc3RhZGl1bSIsICJhcnJpdmluZyBhdCB0aGUgc3RhZGl1bSIsICJkcml2aW5nIHRoZXJlIiwgInRoYXQgeW91IGFycml2ZSIsICJ0aGF0IHlvdSBnZXQgdGhlcmUiLCAidGhhdCB5b3UgY29tZSIsICJiZWluZyB0aGVyZSJdfSwgIm0xIjogeyJ0IjogIm9wZW4ifX0=</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

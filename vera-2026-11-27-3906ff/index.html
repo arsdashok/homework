@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vera: Homework 27 November 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2a4a; --blue: #1d4e89; --line: #9db3cc; --bg: #eef3f9; --paper: #ffffff;
+    --accent: #ff7a1a; --accent-ink: #b9500a; --muted: #56677c; --ans: #1d4ed8;
+  }
+  @page { size: A4; margin: 9mm 11mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif; font-size: 17px; line-height: 1.45;
+    color: var(--navy); background: var(--bg); max-width: 1120px; margin: 0 auto; padding: 22px 18px 24px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  p { text-wrap: pretty; }
+
+  /* header = an engineering drawing title block */
+  header.tb {
+    position: relative; overflow: hidden; background: var(--navy); color: #fff; border-radius: 12px;
+    padding: 24px 28px; margin-bottom: 22px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  header.tb svg.grid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .tb-main, .tb-block { position: relative; z-index: 1; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  header.tb h1 { font-size: 38px; line-height: 1.08; font-weight: 800; letter-spacing: -.01em; }
+  .tb-block { flex: none; border: 1.5px solid rgba(255,255,255,.55); border-radius: 6px; min-width: 200px; }
+  .tb-block div { padding: 5px 12px; font-size: 15px; font-weight: 500; border-top: 1px solid rgba(255,255,255,.3); }
+  .tb-block div:first-child { border-top: 0; }
+  .tb-block span { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9fc0e6; }
+
+  /* part */
+  .part {
+    position: relative; background: var(--paper); border: 1.5px solid var(--navy); border-radius: 10px;
+    padding: 22px 28px 24px; margin-bottom: 22px; box-shadow: 4px 4px 0 rgba(11,42,74,.13);
+  }
+  .plabel { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 6px; }
+  .instr { font-size: 24px; font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: 4px; }
+  .note { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+  .q { page-break-inside: avoid; break-inside: avoid; }
+  .gn { flex: none; width: 30px; height: 30px; line-height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 14px; font-weight: 700; text-align: center; }
+  .mlabel { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
+  .filled {
+    display: inline-block; padding: 0 10px; border: 2px solid #8fa8c8; border-radius: 8px; background: #f7faff;
+    color: var(--ans); font-weight: 500; line-height: 1.6;
+  }
+
+  /* two-line reminder: one line per voice */
+  .remind { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 16px; align-items: baseline; margin: 10px 0 14px; padding: 10px 18px; border: 1.5px solid var(--line); border-radius: 8px; background: #f7faff; }
+  .remind .v { font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+  .remind .d { font-size: 17px; }
+  .remind .ex { color: var(--muted); white-space: nowrap; }
+
+  /* notes */
+  .nbox { background: var(--bg); border: 1.5px dashed var(--line); border-radius: 10px; padding: 8px 14px; font-size: 19px; line-height: 1.45; }
+  .nbox b { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .nbox .sep { color: var(--accent-ink); font-weight: 700; margin: 0 6px; }
+  .nbox .nw { white-space: nowrap; }
+  .model { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; background: #fff8f1; border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 18px; margin: 4px 0 16px; }
+  .model .nbox { background: #fff; }
+  .model .msent { font-size: 20px; line-height: 1.9; }
+  .arrow { color: var(--accent-ink); font-weight: 700; margin: 0 2px; }
+
+  /* one item = one row: note on the left, the sentence on the right */
+  .row { display: grid; grid-template-columns: 30px minmax(0, 5fr) minmax(0, 7fr); gap: 10px 18px; align-items: center; padding: 12px 0; border-top: 1px dashed var(--line); }
+  textarea.resp {
+    display: block; width: 100%; min-height: 58px; font: inherit; font-size: 18px; line-height: 1.5;
+    padding: 9px 12px; border-radius: 8px; resize: vertical;
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 28px 48px 36px; font-size: 26px; }
+    header.tb { padding: 30px 40px; }
+    header.tb h1 { font-size: 54px; }
+    .kicker { font-size: 18px; }
+    .tb-block { min-width: 260px; }
+    .tb-block div { font-size: 22px; padding: 7px 16px; }
+    .tb-block span { font-size: 14px; }
+    .part { padding: 30px 40px 34px; margin-bottom: 30px; }
+    .plabel { font-size: 18px; margin-bottom: 8px; }
+    .instr { font-size: 38px; margin-bottom: 6px; }
+    .note { font-size: 24px; margin-bottom: 18px; }
+    .gn { width: 42px; height: 42px; line-height: 42px; font-size: 21px; }
+    .mlabel { font-size: 18px; }
+    .remind { padding: 14px 24px; gap: 8px 22px; margin: 14px 0 20px; }
+    .remind .v { font-size: 19px; }
+    .remind .d { font-size: 26px; }
+    .nbox { font-size: 29px; padding: 10px 18px; }
+    .model { padding: 14px 24px; gap: 8px 22px; margin: 6px 0 22px; }
+    .model .msent { font-size: 28px; }
+    .row { grid-template-columns: 42px minmax(0, 5fr) minmax(0, 7fr); gap: 12px 28px; padding: 16px 0; }
+    textarea.resp { font-size: 27px; min-height: 76px; padding: 10px 16px; }
+    .hw-mark { font-size: 22px; }
+  }
+
+  @media (max-width: 760px) {
+    .row { grid-template-columns: 30px minmax(0, 1fr); }
+    .row .nbox { grid-column: 2; }
+    .row textarea.resp { grid-column: 2; }
+    .row .gn { grid-row: 1; align-self: start; margin-top: 8px; }
+  }
+  @media (max-width: 620px) {
+    body { padding: 10px 8px 16px; font-size: 16px; }
+    header.tb { flex-direction: column; align-items: flex-start; padding: 18px; }
+    header.tb h1 { font-size: 29px; }
+    .tb-block { width: 100%; display: flex; }
+    .tb-block div { flex: 1; border-top: 0; border-left: 1px solid rgba(255,255,255,.3); padding: 5px 8px; font-size: 13.5px; }
+    .tb-block div:first-child { border-left: 0; }
+    .part { padding: 16px 12px 18px; }
+    .instr { font-size: 20px; }
+    .gn { width: 24px; height: 24px; line-height: 24px; font-size: 12.5px; }
+    .row { grid-template-columns: 24px minmax(0, 1fr); gap: 6px 8px; }
+    .nbox { font-size: 17px; padding: 6px 10px; }
+    .remind { grid-template-columns: 1fr; gap: 0; padding: 8px 12px; }
+    .remind .v { margin-top: 4px; }
+    .remind .d { font-size: 16px; }
+    .remind .ex { white-space: normal; }
+    .model { padding: 8px 10px; }
+    .model .msent { font-size: 17px; }
+    textarea.resp { font-size: 16px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 13px; padding: 0; max-width: none; }
+    header.tb { padding: 9px 16px; margin-bottom: 8px; border-radius: 8px; }
+    header.tb h1 { font-size: 23px; }
+    .kicker { font-size: 10px; margin-bottom: 3px; }
+    .tb-block { min-width: 160px; }
+    .tb-block div { padding: 2px 10px; font-size: 12px; }
+    .tb-block span { font-size: 8.5px; }
+    .part { padding: 10px 16px 12px; margin-bottom: 9px; box-shadow: none; }
+    .plabel { font-size: 10px; margin-bottom: 2px; }
+    .instr { font-size: 16.5px; margin-bottom: 2px; }
+    .note { font-size: 11.5px; margin-bottom: 6px; }
+    .gn { width: 19px; height: 19px; line-height: 19px; font-size: 10px; }
+    .mlabel { font-size: 9.5px; }
+    .remind { padding: 4px 12px; margin: 4px 0 8px; gap: 1px 12px; }
+    .remind .v { font-size: 9.5px; }
+    .remind .d { font-size: 12.5px; }
+    .nbox { font-size: 13px; padding: 3px 10px; border-width: 1.2px; }
+    .model { padding: 4px 12px; margin: 3px 0 8px; gap: 3px 10px; }
+    .model .msent { font-size: 13.5px; line-height: 1.8; }
+    .filled { border-width: 1.5px; }
+    .row { grid-template-columns: 19px minmax(0, 5fr) minmax(0, 7fr); gap: 0 10px; padding: 5px 0; }
+    textarea.resp { min-height: 64px; height: 64px; resize: none; overflow: visible; border-width: 1.5px; font-size: 13px; }
+    textarea.resp::placeholder { color: transparent; }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Vera" data-sheet="Injection molding 2026-11-27" data-sheet-id="vera-2026-11-27-injection-molding">
+<div id="sheet">
+
+
+<header class="tb">
+  <svg class="grid" aria-hidden="true"><defs><pattern id="tbgrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity=".13" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#tbgrid)"/></svg>
+  <div class="tb-main">
+    <div class="kicker">Technical English &middot; Plastics</div>
+    <h1>Injection molding</h1>
+  </div>
+  <div class="tb-block">
+    <div><span>Name</span>Vera</div>
+    <div><span>Date</span>27 November 2026</div>
+    <div><span>Time</span>about 10&nbsp;minutes</div>
+  </div>
+</header>
+
+<section class="part p1">
+  <div class="plabel">Notes into sentences</div>
+  <p class="instr">Write each note as a full sentence. Is it active or&nbsp;passive?</p>
+  <p class="note">Start with the word in bold. Put &laquo;the&raquo; back in where it&rsquo;s needed: the notes leave it&nbsp;out.</p>
+
+  <div class="remind">
+    <span class="v">Active</span><span class="d">The part does it&nbsp;itself.</span>
+    <span class="v">Passive</span><span class="d">Something is done to&nbsp;it.</span>
+  </div>
+
+  <div class="model"><span class="mlabel">Like this</span><div class="nbox"><b>signal</b><span class="sep">&middot;</span>send<span class="sep">&middot;</span><span class="nw">to satellite</span></div><span class="arrow">&rarr;</span><span class="msent"><span class="filled">The signal is sent to the&nbsp;satellite.</span></span></div>
+
+  <div class="model"><span class="mlabel">Like this</span><div class="nbox"><b>knife</b><span class="sep">&middot;</span>cut<span class="sep">&middot;</span><span class="nw">rod</span></div><span class="arrow">&rarr;</span><span class="msent"><span class="filled">The knife cuts the&nbsp;rod.</span></span></div>
+
+  <div class="row q"><span class="gn">1</span><div class="nbox"><b>plastic pellets</b><span class="sep">&middot;</span>load<span class="sep">&middot;</span><span class="nw">into hopper</span></div><textarea class="hw-field resp" rows="2" data-k="s1" data-label="1. plastic pellets · load · into hopper" aria-label="Sentence 1" placeholder="Type your answer here" spellcheck="false"></textarea></div>
+
+  <div class="row q"><span class="gn">2</span><div class="nbox"><b>screw</b><span class="sep">&middot;</span>rotate<span class="sep">&middot;</span><span class="nw">inside cylinder</span></div><textarea class="hw-field resp" rows="2" data-k="s2" data-label="2. screw · rotate · inside cylinder" aria-label="Sentence 2" placeholder="Type your answer here" spellcheck="false"></textarea></div>
+
+  <div class="row q"><span class="gn">3</span><div class="nbox"><b>molten plastic</b><span class="sep">&middot;</span>inject<span class="sep">&middot;</span>into cavity <span class="nw">of mold</span></div><textarea class="hw-field resp" rows="2" data-k="s3" data-label="3. molten plastic · inject · into cavity of mold" aria-label="Sentence 3" placeholder="Type your answer here" spellcheck="false"></textarea></div>
+
+  <div class="row q"><span class="gn">4</span><div class="nbox"><b>ram</b><span class="sep">&middot;</span>force<span class="sep">&middot;</span>molten plastic <span class="nw">through nozzle</span></div><textarea class="hw-field resp" rows="2" data-k="s4" data-label="4. ram · force · molten plastic through nozzle" aria-label="Sentence 4" placeholder="Type your answer here" spellcheck="false"></textarea></div>
+
+  <div class="row q"><span class="gn">5</span><div class="nbox"><b>molten plastic</b><span class="sep">&middot;</span>flow<span class="sep">&middot;</span><span class="nw">along cylinder</span></div><textarea class="hw-field resp" rows="2" data-k="s5" data-label="5. molten plastic · flow · along cylinder" aria-label="Sentence 5" placeholder="Type your answer here" spellcheck="false"></textarea></div>
+
+  <div class="row q"><span class="gn">6</span><div class="nbox"><b>finished part</b><span class="sep">&middot;</span>remove<span class="sep">&middot;</span><span class="nw">from mold</span></div><textarea class="hw-field resp" rows="2" data-k="s6" data-label="6. finished part · remove · from mold" aria-label="Sentence 6" placeholder="Type your answer here" spellcheck="false"></textarea></div>
+</section>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJzMSI6IHsidCI6ICJvcGVuIn0sICJzMiI6IHsidCI6ICJvcGVuIn0sICJzMyI6IHsidCI6ICJvcGVuIn0sICJzNCI6IHsidCI6ICJvcGVuIn0sICJzNSI6IHsidCI6ICJvcGVuIn0sICJzNiI6IHsidCI6ICJvcGVuIn19</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

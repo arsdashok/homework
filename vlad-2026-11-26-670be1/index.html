@@ -201,6 +201,9 @@ body.hw-pdf-mode .item{padding:8px 0}
 body.hw-pdf-mode .wrap .hw-field{font-size:14px}
 body.hw-pdf-mode .model .done{font-size:14px;padding:8px 12px}
 body.hw-pdf-mode .hw-field::placeholder{color:transparent}
+.sent input.hw-field.mid{display:inline-block;width:11em;field-sizing:content;min-width:8em;max-width:100%;min-width:0;min-height:0;height:1.6em;padding:0 8px;margin:0 4px;text-align:left;font-size:inherit;vertical-align:baseline}
+.sent .cue{color:#5f5f58;font-size:.85em}
+@media print{.polite,.fill{width:100%;box-sizing:border-box}.fill>textarea{box-sizing:border-box;max-width:calc(100% - 4px)}}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../assets/hw.css">
@@ -212,7 +215,7 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
 <main class="wrap">
 <header class="page-header">
 <div class="masthead"><b>VLAD / ENGLISH</b><span>A working copy.</span></div>
-<div class="hero"><h1>Say it like<span>a Londoner.</span></h1><aside class="hero-aside">
+<div class="hero"><h1>Homework<span>26 November.</span></h1><aside class="hero-aside">
 <svg class="rel-art" viewBox="0 0 364 150" role="img" aria-label="After a noun: the agent, then that, then collects the news. The system, then that or nothing, then you need to maintain.">
 <g font-family="Arial, Helvetica, sans-serif" font-size="16" text-anchor="middle">
 <text x="0" y="14" text-anchor="start" font-family="Courier New, monospace" font-size="12" fill="#5f5f58">AFTER A NOUN</text>
@@ -226,12 +229,12 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
 </svg>
 <p>Two things from our conversation: it's called / what it looks like, and after everything or something: that, not&nbsp;what.</p></aside></div>
 <div class="deck"><p>From our conversation: AI forecasts, a report about 2030,<br>Claude in Telegram and leasehold in&nbsp;London.</p><p class="byline">26 NOVEMBER 2026<br>THREE PARTS / ~10 MIN</p></div>
-<nav class="jump" aria-label="Exercises"><a href="#t1">Say it like a colleague</a><a href="#t1b">Name it</a><a href="#t2">Ask a British colleague</a><a href="#t3">Explain it back</a></nav>
+<nav class="jump" aria-label="Exercises"><a href="#t1">Looks like, works, is called</a><a href="#t1b">Name it, show it</a><a href="#t2">Ask a British colleague</a><a href="#t3">Explain it back</a></nav>
 </header>
 
 <section class="exercise" aria-labelledby="t1">
 <div class="brief">
-  <div class="section-heading"><span class="section-number">01</span><h2 id="t1">Say it like a colleague in&nbsp;London</h2></div>
+  <div class="section-heading"><span class="section-number">01</span><h2 id="t1">Looks like, works, is&nbsp;called</h2></div>
   <p class="instruction">Choose what you would&nbsp;say.</p>
   <p class="mini">With look like: <b>what</b>, what the bike looks like. Without like: <b>how</b>, how the lease&nbsp;works.</p>
 </div>
@@ -283,8 +286,8 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
 
 <section class="exercise instr" aria-labelledby="t1b">
 <div class="brief">
-  <div class="section-heading"><span class="section-number">01b</span><h2 id="t1b">Name&nbsp;it</h2></div>
-  <p class="instruction">Write one sentence for&nbsp;each.</p>
+  <div class="section-heading"><span class="section-number">01b</span><h2 id="t1b">Name it, show&nbsp;it</h2></div>
+  <p class="instruction">Write or finish each&nbsp;one.</p>
 </div>
 <div class="work">
   <div class="item q">
@@ -297,8 +300,8 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
   <div class="item q">
     <span class="qlab">8.</span>
     <div>
-      <p class="sent">A friend in Russia asks about your new flat in Munich. Tell them you'll send photos, and why. One&nbsp;sentence.</p>
-      <textarea class="hw-field" rows="2" data-k="n2" data-label="8. Photos of your new flat for a friend in Russia" aria-label="8. Your sentence" placeholder="Type your sentence here"></textarea>
+      <p class="ctx">A friend asks about the Claude plugin you use with Telegram.</p>
+      <p class="sent">I'll send you a screenshot so you can&nbsp;see&nbsp;<input type="text" class="hw-field mid" data-k="n2" data-label="8. I'll send you a screenshot so you can see ___" aria-label="8. I'll send you a screenshot so you can see ___" placeholder="type the end" autocomplete="off" spellcheck="false"> <span class="cue">(look&nbsp;like)</span>.</p>
     </div>
   </div>
 </div>
@@ -307,8 +310,8 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
 <section class="exercise" aria-labelledby="t2">
 <div class="brief">
   <div class="section-heading"><span class="section-number">02</span><h2 id="t2">Ask a British&nbsp;colleague</h2></div>
-  <p class="instruction">Write three questions you'd ask a London colleague about leasehold.</p>
-  <p class="mini">Put <b>that</b> or <b>nothing</b> after the word, not&nbsp;<b>what</b>.</p>
+  <p class="instruction">Complete three questions you'd ask a London colleague about&nbsp;leasehold.</p>
+  <p class="mini">After <b>everything</b>, <b>anything</b> and <b>the only thing</b>, put <b>that</b> or <b>nothing</b>, not&nbsp;<b>what</b>.</p>
   <p class="mini">Nothing only when another subject follows: the flat I&nbsp;rent.</p>
 </div>
 <div class="work">
@@ -316,28 +319,25 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
     <span class="qlab"></span>
     <div>
       <p class="ctx"><b>Like this</b> · Munich in December</p>
-      <span class="done">Is there a Christmas market that isn't full of tourists?</span>
+      <span class="done">Is there a Christmas market <u>that isn't full of tourists</u>?</span>
     </div>
   </div>
   <div class="item q">
     <span class="qlab">9.</span>
     <div>
-      <p class="ctx">Use: everything &hellip;</p>
-      <textarea class="hw-field" rows="2" data-k="q1" data-label="9. A leasehold question with everything (that)" aria-label="9. Your question with everything" placeholder="Type your question here"></textarea>
+      <p class="sent">Does the management company decide everything <input type="text" class="hw-field mid" data-k="q1" data-label="9. Does the management company decide everything ___ in the building?" aria-label="9. Does the management company decide everything ___ in the building?" placeholder="your words" autocomplete="off" spellcheck="false"> <span class="cue">(happen)</span> in the&nbsp;building?</p>
     </div>
   </div>
   <div class="item q">
     <span class="qlab">10.</span>
     <div>
-      <p class="ctx">Use: anything &hellip;</p>
-      <textarea class="hw-field" rows="2" data-k="q2" data-label="10. A leasehold question with anything (that)" aria-label="10. Your question with anything" placeholder="Type your question here"></textarea>
+      <p class="sent">Is there anything <input type="text" class="hw-field mid" data-k="q2" data-label="10. Is there anything ___ without asking the freeholder?" aria-label="10. Is there anything ___ without asking the freeholder?" placeholder="your words" autocomplete="off" spellcheck="false"> without asking the&nbsp;freeholder?</p>
     </div>
   </div>
   <div class="item q">
     <span class="qlab">11.</span>
     <div>
-      <p class="ctx">Use: the only thing &hellip;</p>
-      <textarea class="hw-field" rows="2" data-k="q3" data-label="11. A leasehold question with the only thing (that)" aria-label="11. Your question with the only thing" placeholder="Type your question here"></textarea>
+      <p class="sent">Is the lease the only thing <input type="text" class="hw-field mid" data-k="q3" data-label="11. Is the lease the only thing ___?" aria-label="11. Is the lease the only thing ___?" placeholder="your words" autocomplete="off" spellcheck="false">?</p>
     </div>
   </div>
 </div>
@@ -367,6 +367,7 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
 
 <footer class="endnote"><span>END OF PRACTICE</span><span>English / Practice notes</span></footer>
 </main>
+<script id="vlad-gap-size">(function(){function fit(e){var n=Math.max(8,Math.min(40,(e.value||e.placeholder||"").length+2));e.style.width=n+"ch";}document.querySelectorAll(".sent input.hw-field.mid").forEach(function(e){fit(e);e.addEventListener("input",function(){fit(e);});});})();</script>
 </div><!-- /sheet -->
 <div class="hw-bar">
   <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
@@ -374,6 +375,6 @@ body.hw-pdf-mode .hw-field::placeholder{color:transparent}
   <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
 </div>
 <script type="application/json" id="hw-check">eyJjMSI6IHsidCI6ICJleGFjdCIsICJhIjogIml0J3MgY2FsbGVkIiwgImFsdGVybmF0aXZlcyI6IFsiSXQncyBjYWxsZWQiLCAiaXQgaXMgY2FsbGVkIl19LCAiYzIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGF0IGhpcyBuZXcgZmxhdCBsb29rcyBsaWtlIn0sICJjMyI6IHsidCI6ICJleGFjdCIsICJhIjogImhvdyB0aGlzIGFnZW50IHdvcmtzIn0sICJjNCI6IHsidCI6ICJleGFjdCIsICJhIjogIkl0J3MgY2FsbGVkIiwgImFsdGVybmF0aXZlcyI6IFsiaXQncyBjYWxsZWQiLCAiSXQgaXMgY2FsbGVkIl19LCAiYzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ3aGF0IHRoZSB3b3JsZCB3aWxsIGxvb2sgbGlrZSJ9LCAiYzYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJXaGF0J3MgaXQgY2FsbGVkIiwgImFsdGVybmF0aXZlcyI6IFsid2hhdCdzIGl0IGNhbGxlZCIsICJXaGF0IGlzIGl0IGNhbGxlZCIsICJ3aGF0IGlzIGl0IGNhbGxlZCJdfSwgIm4xIjogeyJ0IjogIm9wZW4ifSwgIm4yIjogeyJ0IjogIm9wZW4ifSwgInExIjogeyJ0IjogIm9wZW4ifSwgInEyIjogeyJ0IjogIm9wZW4ifSwgInEzIjogeyJ0IjogIm9wZW4ifSwgInAxIjogeyJ0IjogIm9wZW4ifSwgInAyIjogeyJ0IjogIm9wZW4ifX0=</script>
-<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+<script src="../assets/hw.js?v=20261127-open-gap-note"></script>
 </body>
 </html>

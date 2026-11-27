@@ -429,6 +429,9 @@ function matchHomeworkAnswers_(answers, keys) {
         }
         at.parentNode.insertBefore(node, at.nextSibling); return;
       }
+      if (anchor === el && node.classList.contains("hw-open") && el.tagName === "INPUT" && el.closest("p")) {   // own words typed into a gap mid-sentence: the note goes under the sentence, never inside it
+        var para = el.closest("p"); node.classList.add("hw-mark-blk"); para.parentNode.insertBefore(node, para.nextSibling); return;
+      }
       if (anchor === el && (/^(INPUT|SELECT)$/.test(el.tagName) || getComputedStyle(el).display.indexOf("inline") === 0)) {
         anchor.parentNode.insertBefore(node, anchor.nextSibling); return;   // inline: right after the box or menu
       }

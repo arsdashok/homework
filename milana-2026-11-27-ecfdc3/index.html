@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milana: Homework 27 November 2026</title>
+<!-- Lesson 27 Nov 2026 (free conversation). NEW: other / another / the other, taught after «they help another people» (other + plural = the others; another = one more / the next; the other = the second of exactly two). Dasha's own models (two soft drinks, two friends, another reason) are not items. Ex 1 sequence: A,O,T,T,A,O,O,A,T. Ex 2: typed correction, one wrong or extra word each: met (not met with) for meeting someone for the first time; go kiting / went kiting / go skiing (no to). texted / called left out on purpose (texted to was accepted in the lesson). Ex 3: chat with Lily (home after a holiday), seven of today's words by tap, spare «bruises»; correct bank positions 6,3,8,1,5,7,2. Privacy: no relatives, no injury details from her own stories. Starlight design as on 25 Nov. About 15 minutes. -->
+<style>
+  :root {
+    --ink:#2d2949; --accent:#60529c; --accent2:#8c72bf; --muted:#5d5870; --border:#d0c8e7;
+    --wash:#f2effa; --model:#f8f7fc; --night:#302744; --pink:#f6b5d6; --line:#aaa3c1; --lilac:#d5c9ff; --field:#1d4ed8;
+  }
+  @page { size: A4; margin: 10mm 13mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; line-height: 1.4; color: var(--ink);
+    background: #f7f5fc; max-width: 1080px; margin: auto; padding: 16px 16px 24px;
+  }
+  p { text-wrap: pretty; }
+  .nw { white-space: nowrap; }
+  .prt { display: none; }
+
+  /* header: Starlight */
+  header.top {
+    position: relative; overflow: hidden; border-radius: 10px; background: var(--night); color: #fff;
+    padding: 18px 24px 20px; margin-bottom: 18px; min-height: 120px;
+  }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: #e3c5f1; position: relative; z-index: 1; }
+  header.top h1 { font-family: Arial, sans-serif; font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -1px; position: relative; z-index: 1; margin-top: 2px; }
+  header.top .sub { font-size: 15px; color: #e2dcec; margin-top: 6px; position: relative; z-index: 1; }
+  .header-art { position: absolute; right: 0; top: 0; height: 100%; width: auto; }
+
+  /* cards */
+  .ex-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 18px; overflow: hidden; }
+  .ex-header {
+    background: var(--wash); border-bottom: 1px solid var(--border); border-left: 4px solid var(--accent2);
+    padding: 8px 16px; font-size: 13px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent);
+    break-after: avoid; page-break-after: avoid;
+  }
+  .ex-body { padding: 14px 18px 16px; }
+  .ctx { font-size: 17px; color: var(--ink); margin-bottom: 4px; }
+  .instr { font-size: 25px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
+  .note { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+  .example-box {
+    background: var(--model); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0;
+    padding: 8px 14px; margin-bottom: 14px; font-size: 18px; line-height: 1.5;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .example-box .label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+  .example-box b { color: var(--accent); }
+  .example-box .tag { color: var(--muted); font-size: .8em; font-style: italic; white-space: nowrap; }
+  .example-box .ln { display: block; }
+  .example-box .who { font-size: .75em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+  .q { padding: 9px 0; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .q:last-child { border-bottom: 0; }
+  .n {
+    flex: 0 0 auto; display: inline-block; width: 28px; height: 28px; line-height: 26px; text-align: center;
+    border: 1.5px solid var(--accent); border-radius: 5px; color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+  .sent { font-size: 20px; line-height: 1.75; }
+
+  .fix { font-size: 20px; }
+  /* (unused dialogue styles kept harmless) */
+  .dlg { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: center; }
+  .dlg .lily { grid-column: 2; }
+  .say { display: inline-block; min-width: 3.4em; font-size: .7em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .tom { font-size: 20px; line-height: 1.5; }
+  .lily { font-size: 20px; line-height: 1.75; }
+  .lily .no { font-weight: 700; color: var(--accent); }
+  input.gapin {
+    display: inline-block; width: 8.2em; font: inherit; font-weight: 700; color: var(--field); text-align: left;
+    padding: 2px 10px; margin: 0 3px; border: 2px solid var(--accent2); border-radius: 8px; background: #fbfaff; vertical-align: baseline;
+  }
+  .ending { margin-top: 10px; font-size: 18px; color: var(--muted); font-style: italic; }
+
+  /* dropdown in the gap (Ex 2) */
+  select.pick {
+    font: inherit; font-weight: 700; color: var(--field); padding: 3px 8px; margin: 0 2px; min-width: 7em;
+    border: 2px solid var(--accent2); border-radius: 8px; background: #fbfaff; vertical-align: baseline;
+  }
+  .gap { display: none; }
+  .bb { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .bb .q { display: flex; align-items: baseline; gap: 12px; }
+
+  /* Ex 3 story */
+  .story .q { display: flex; align-items: baseline; gap: 12px; }
+
+  /* ===== TAP-PLACE CSS (Tools/hw_snippets/tap_place.html), Starlight palette ===== */
+  .tp-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; border: 2px dashed var(--border); border-radius: 12px; min-height: 60px; margin: 0 0 12px; background: #fcfbff; }
+  .tp-tile {
+    font: inherit; font-size: 17px; font-weight: 700; color: var(--ink); background: #fff;
+    border: 2px solid var(--accent2); border-radius: 10px; padding: 6px 12px; min-height: 44px;
+    cursor: pointer; text-align: left; line-height: 1.25;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  }
+  .tp-tile.picked { background: var(--wash); border-color: var(--accent); box-shadow: 0 0 0 3px var(--lilac); }
+  .tp-tile.dragging { position: fixed; z-index: 1000; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  .tp-zone { display: inline-flex; vertical-align: middle; min-width: 150px; min-height: 40px; border: 2px solid var(--accent2); border-radius: 10px; padding: 1px; background: #fff; cursor: pointer; }
+  .tp-zone.ready { border-color: var(--accent); background: #fbfaff; box-shadow: 0 0 0 2px var(--lilac); }
+  .tp-zone.over { border-color: var(--accent); background: var(--wash); }
+  .tp-slot { display: inline-flex; flex-wrap: wrap; gap: 6px; min-height: 34px; align-items: center; }
+  .tp-zone .tp-tile { color: var(--field); border-width: 0; background: transparent; padding: 1px 8px; min-height: 32px; line-height: 1.3; }
+  .tp-says { display: block; }
+  .tp-bank .tp-says { display: none; }
+  .tp-stores { display: none !important; }
+  @media print { .tp-tile.picked { box-shadow: none; } }
+  /* ===== TAP-PLACE CSS end ===== */
+
+
+  /* Ex 1 two columns on a wide screen, read top to bottom */
+  .ts { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .ts .q { display: flex; align-items: baseline; gap: 12px; }
+  .rule { font-size: 17px; color: var(--ink); margin-bottom: 12px; }
+  .rule b { color: var(--accent); }
+  /* Ex 2 builds */
+  .build { padding: 10px 0 14px; border-bottom: 1px dashed var(--border); page-break-inside: avoid; break-inside: avoid; }
+  .build .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+  .build .sit { font-size: 20px; line-height: 1.4; }
+  .places { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+  .places .tp-zone { min-width: 110px; }
+  .places .dot { font-size: 22px; font-weight: 700; }
+  .build .tp-bank { margin: 0 0 10px; }
+  .own { padding-top: 14px; page-break-inside: avoid; break-inside: avoid; }
+  .own .qq { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  section div.ownbox { min-height: 70px !important; font-size: 20px; }
+  .fixq { display: flex; align-items: baseline; gap: 12px; }
+  .fixbody { flex: 1 1 auto; min-width: 0; }
+  .fixbody .sent { margin-bottom: 6px; }
+  section div.ownbox { min-height: 70px !important; }
+  /* Ex 3 chat */
+  .chat .q { display: flex; align-items: baseline; gap: 12px; }
+  .chat .q.nogap .n { visibility: hidden; }
+  .chat .who { display: inline-block; min-width: 3.6em; font-size: .7em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+  body.hw-pdf-mode .rule { font-size: 13px; margin-bottom: 6px; }
+  body.hw-pdf-mode .build .sit { font-size: 15px; }
+  body.hw-pdf-mode .places .tp-zone { min-width: 60px; }
+  body.hw-pdf-mode .fix { font-size: 15px; }
+  body.hw-pdf-mode .own .qq { font-size: 15px; }
+  body.hw-pdf-mode section div.ownbox { font-size: 15px; min-height: 50px !important; }
+
+  /* Dasha's emailed PDF (hw.js renders in an 800px frame with body.hw-pdf-mode) */
+  body.hw-pdf-mode header.top { min-height: 0; padding: 10px 18px 12px; margin-bottom: 10px; }
+  body.hw-pdf-mode header.top h1 { font-size: 28px; }
+  body.hw-pdf-mode .instr { font-size: 19px; }
+  body.hw-pdf-mode .ctx { font-size: 14px; }
+  body.hw-pdf-mode .note { font-size: 12.5px; margin-bottom: 7px; }
+  body.hw-pdf-mode .example-box { font-size: 14px; padding: 5px 12px; margin-bottom: 8px; }
+  body.hw-pdf-mode .sent, body.hw-pdf-mode .tom, body.hw-pdf-mode .lily { font-size: 15px; line-height: 1.6; }
+  body.hw-pdf-mode .ending { font-size: 13px; }
+  body.hw-pdf-mode .q { padding: 5px 0; }
+  body.hw-pdf-mode input.gapin { font-size: 15px; min-height: 0; }
+  body.hw-pdf-mode select.pick { font-size: 14px; min-height: 0; min-width: 0; }
+  body.hw-pdf-mode .tp-tile { font-size: 13px; min-height: 0; }
+  body.hw-pdf-mode .tp-zone { min-height: 0; min-width: 80px; }
+  body.hw-pdf-mode .tp-slot { min-height: 22px; }
+
+  @media (max-width: 620px) {
+    body { padding: 10px 10px 18px; }
+    header.top { padding: 14px 16px 16px; }
+    header.top h1 { font-size: 32px; }
+    .header-art { opacity: .55; }
+    .ex-body { padding: 12px 12px 14px; }
+    .instr { font-size: 22px; }
+    .sent, .tom, .lily { font-size: 18px; }
+    .tp-tile { font-size: 16px; }
+    select.hw-field, select.pick { min-width: 0; }
+  }
+
+  /* whole screen, big type (Dasha, 1 Nov 2026) */
+  @media screen and (min-width:900px) {
+    body { max-width: 1640px; padding: 28px 48px 48px; font-size: 26px; }
+    header.top { min-height: 190px; padding: 30px 40px 30px; margin-bottom: 30px; border-radius: 14px; }
+    .eyebrow { font-size: 18px; }
+    header.top h1 { font-size: 62px; }
+    header.top .sub { font-size: 24px; margin-top: 10px; }
+    .ex-card { margin-bottom: 32px; border-radius: 14px; }
+    .ex-header { font-size: 20px; padding: 12px 28px; }
+    .ex-body { padding: 28px 40px 32px; }
+    .ctx { font-size: 27px; margin-bottom: 6px; }
+    .instr { font-size: 40px; margin-bottom: 8px; }
+    .note { font-size: 23px; margin-bottom: 20px; }
+    .example-box { font-size: 28px; padding: 14px 24px; margin-bottom: 24px; }
+    .example-box .label { font-size: 17px; }
+    .n { width: 44px; height: 44px; line-height: 41px; font-size: 22px; }
+    .q { padding: 14px 0; }
+    .sent { font-size: 30px; line-height: 1.6; }
+    .hw-mark { font-size: 22px; }
+    .dlg { grid-template-columns: 44px minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 10px 20px; }
+    .dlg .lily { grid-column: auto; }
+    .tom, .lily { font-size: 29px; line-height: 1.6; }
+    input.gapin { width: 6.8em; }
+    input.gapin { font-size: 28px; min-height: 54px; padding: 4px 14px; border-width: 3px; }
+    .ending { font-size: 27px; margin-top: 16px; }
+    select.pick { font-size: 28px; min-height: 54px; padding: 4px 14px; border-width: 3px; }
+    .bb { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; grid-auto-flow: column; gap: 0 48px; }
+    .bb .q:nth-child(2) { border-bottom: 0; }
+    .tp-bank { gap: 14px 16px; padding: 14px 18px; margin-bottom: 18px; }
+    .tp-tile { font-size: 28px; padding: 6px 20px; min-height: 58px; border-width: 3px; }
+    .tp-zone { min-width: 260px; min-height: 60px; border-width: 3px; }
+    select.pick { min-width: 6.5em; }
+    .tp-slot { min-height: 52px; }
+    .tp-zone .tp-tile { font-size: 28px; min-height: 50px; }
+
+    .ts { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); grid-auto-flow: column; gap: 0 56px; }
+    .ts .q:nth-child(5) { border-bottom: 0; }
+    .rule { font-size: 26px; margin-bottom: 20px; }
+    .build { padding: 18px 0 24px; }
+    .build .sit { font-size: 30px; }
+    .places { gap: 12px 16px; }
+    .places .tp-zone { min-width: 170px; }
+    .places .dot { font-size: 34px; }
+    .fix { font-size: 30px; }
+    .own .qq { font-size: 32px; }
+    section div.ownbox { min-height: 96px !important; font-size: 28px; }
+  }
+
+  @media screen and (min-width:900px) and (max-width:1499px) {
+    .ts { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+    .ts .q:nth-child(5) { border-bottom: 1px dashed var(--border); }
+  }
+  @media print {
+    .scr { display: none !important; }
+    .prt { display: inline !important; }
+    body { font-size: 12.5px; padding: 0; max-width: none; background: #fff; }
+    header.top { min-height: 0; padding: 6px 16px 7px; margin-bottom: 6px; border-radius: 6px; }
+    .eyebrow { font-size: 8.5px; }
+    header.top h1 { font-size: 24px; }
+    header.top .sub { font-size: 10.5px; margin-top: 3px; }
+    .ex-card { margin-bottom: 6px; border-radius: 5px; page-break-inside: avoid; break-inside: avoid; }
+    .ex-header { font-size: 9.5px; padding: 4px 12px; }
+    .ex-body { padding: 6px 12px 7px; }
+    .ctx { font-size: 11.5px; margin-bottom: 0; }
+    .instr { font-size: 15px; margin-bottom: 1px; }
+    .note { font-size: 10.5px; margin-bottom: 4px; }
+    .example-box { font-size: 11.5px; padding: 3px 10px; margin-bottom: 4px; line-height: 1.35; }
+    .example-box .label { font-size: 8.5px; margin-bottom: 0; }
+    .n { width: 18px; height: 18px; line-height: 16px; font-size: 10px; border-radius: 4px; }
+    .q { padding: 2px 0; }
+    .sent, .tom, .lily { font-size: 12px; line-height: 1.55; }
+    .dlg { grid-template-columns: 18px minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 0 10px; }
+    .dlg .lily { grid-column: auto; }
+    .ending { font-size: 11px; margin-top: 3px; }
+    input.gapin { font-size: 12px; border: 0; border-bottom: 1.2px solid var(--ink); border-radius: 0; padding: 0 4px; background: #fff; min-height: 0; height: 5mm; width: 26mm; }
+    input.gapin::placeholder { color: transparent; }
+    .opts { color: var(--muted); font-size: 10.5px; margin: 0 0 0 3px; }
+    select.pick { display: none !important; }
+    .gap { display: inline-block !important; min-width: 22mm; border-bottom: 1.2px solid var(--ink); }
+    .bb { grid-template-columns: 1fr 1fr; gap: 0 14px; }
+    .tp-bank.scr-bank { display: none !important; }
+    .prt-bank { display: block !important; font-size: 11.5px; font-weight: 700; color: var(--accent); border: 1.2px dashed var(--border); border-radius: 6px; padding: 2px 8px; margin-bottom: 4px; }
+    .tp-zone { min-width: 30mm; min-height: 0; border: 0; border-bottom: 1.2px solid var(--ink); border-radius: 0; padding: 0; background: none; }
+    .tp-slot { min-height: 14px; }
+
+    .ts { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+    .rule { font-size: 11px; margin-bottom: 3px; }
+    .build { padding: 3px 0 4px; }
+    .build .head { margin-bottom: 2px; }
+    .build .sit { font-size: 12px; }
+    .places .tp-zone { min-width: 18mm; }
+    .places .dot { font-size: 12px; }
+    .fix { font-size: 12px; }
+    .own { padding-top: 4px; }
+    .own .qq { font-size: 12.5px; }
+    section div.ownbox { min-height: 12mm !important; font-size: 12px; border: 0; border-bottom: 1.2px solid var(--ink); }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Milana" data-sheet="English 2026-11-27" data-sheet-id="milana-2026-11-27-english">
+<div id="sheet">
+
+
+<header class="top">
+  <svg class="header-art" viewBox="0 0 192 100" fill="none" aria-hidden="true">
+    <path d="M105 -8L28 106M143 -8L66 106M181 -8L104 106M219 -8L142 106" stroke="#b0a1e9" stroke-opacity=".18" stroke-width="14"/>
+    <ellipse cx="141" cy="46" rx="61" ry="22" transform="rotate(-28 141 46)" stroke="#d1b8f8" stroke-width=".7"/>
+    <path d="M129 10L135 34L156 24L143 44L167 53L143 58L152 81L133 66L121 89L121 64L96 67L115 52L96 37L121 40Z" fill="#d5c9ff"/>
+    <path d="M129 26L134 43L149 47L134 53L129 70L124 54L109 48L124 43Z" fill="white"/>
+    <path d="M174 11L177 19L185 22L177 25L174 33L171 25L163 22L171 19Z" fill="#f6b5d6"/>
+    <path d="M74 70L77 78L85 81L77 84L74 92L71 84L63 81L71 78Z" fill="#f6b5d6"/>
+    <g fill="#fff"><circle cx="91" cy="23" r="1.4"/><circle cx="176" cy="77" r="1.5"/><circle cx="106" cy="84" r="1"/><circle cx="57" cy="44" r="1.2"/></g>
+  </svg>
+  <div class="eyebrow">English &middot; Homework</div>
+  <h1>Milana</h1>
+  <div class="sub">27 November 2026 &middot; other, another, the other &middot; go kiting &middot; a chat with&nbsp;Lily</div>
+</header>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 1: other, another or the other</div>
+  <div class="ex-body">
+    <p class="instr">Choose other, another or the&nbsp;other.</p>
+    <p class="rule"><b>other</b> + many: other colours &middot; <b>another</b> = one more &middot; <b>the other</b> = the second of&nbsp;two</p>
+    <div class="example-box">
+      <span class="label">Like this</span>
+      <span class="ln">I like pink, but I like <b>other</b> colours&nbsp;too.</span>
+      <span class="ln">This song is great! Play <b>another</b>&nbsp;one.</span>
+      <span class="ln">I&rsquo;ve got two hoodies. One is grey, and <b>the other</b> is&nbsp;pink.</span>
+    </div>
+    <div class="ts">
+      <div class="q"><span class="n">1</span><p class="sent">There’s a lot of pizza left. Can I <span class="nw">have <span class="gap"></span><select class="hw-field pick" data-k="o1" data-label="1.1 There’s a lot of pizza left. Can I have ___ slice, please?" aria-label="Sentence 1"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> slice,&nbsp;please?</span></p></div><div class="q"><span class="n">2</span><p class="sent">Volunteers don’t get money. They <span class="nw">help <span class="gap"></span><select class="hw-field pick" data-k="o2" data-label="1.2 Volunteers don’t get money. They help ___ people." aria-label="Sentence 2"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> people.</span></p></div><div class="q"><span class="n">3</span><p class="sent">I have two bags. One is for school, <span class="nw">and <span class="gap"></span><select class="hw-field pick" data-k="o3" data-label="1.3 I have two bags. One is for school, and ___ is for the gym." aria-label="Sentence 3"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> is</span> for the&nbsp;gym.</p></div><div class="q"><span class="n">4</span><p class="sent">I wore my two new earrings to the party. I lost one, but I still <span class="nw">have <span class="gap"></span><select class="hw-field pick" data-k="o4" data-label="1.4 I wore my two new earrings to the party. I lost one, but I still have ___ one." aria-label="Sentence 4"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> one.</span></p></div><div class="q"><span class="n">5</span><p class="sent">The series has twenty episodes. I watched one, and then I <span class="nw">watched <span class="gap"></span><select class="hw-field pick" data-k="o5" data-label="1.5 The series has twenty episodes. I watched one, and then I watched ___ one." aria-label="Sentence 5"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> one.</span></p></div><div class="q"><span class="n">6</span><p class="sent">At summer camp there were students from Spain, Italy <span class="nw">and <span class="gap"></span><select class="hw-field pick" data-k="o6" data-label="1.6 At summer camp there were students from Spain, Italy and ___ countries." aria-label="Sentence 6"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> countries.</span></p></div><div class="q"><span class="n">7</span><p class="sent">Lily speaks English, Spanish and <span class="nw">two <span class="gap"></span><select class="hw-field pick" data-k="o7" data-label="1.7 Lily speaks English, Spanish and two ___ languages." aria-label="Sentence 7"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> languages.</span></p></div><div class="q"><span class="n">8</span><p class="sent">We missed the bus, so we waited twenty minutes <span class="nw">for <span class="gap"></span><select class="hw-field pick" data-k="o8" data-label="1.8 We missed the bus, so we waited twenty minutes for ___ one." aria-label="Sentence 8"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> one.</span></p></div><div class="q"><span class="n">9</span><p class="sent">Lily and I watched two films last night. I loved the first one, <span class="nw">but <span class="gap"></span><select class="hw-field pick" data-k="o9" data-label="1.9 Lily and I watched two films last night. I loved the first one, but ___ one was boring." aria-label="Sentence 9"><option value="">Choose</option><option value="other">other</option><option value="another">another</option><option value="the other">the other</option></select> one</span> was&nbsp;boring.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 2: fix one word</div>
+  <div class="ex-body">
+    <p class="instr">Write the sentence&nbsp;correctly.</p>
+    <p class="note">One word in each sentence is wrong or&nbsp;extra.</p>
+    <div class="fixes">
+      <div class="q fixq"><span class="n">1</span><div class="fixbody"><p class="sent">Tom will go to kiting with his friend next week.</p><div class="hw-field ownbox" contenteditable="true" data-k="f1" data-label="2.1 Tom will go to kiting with his friend next week." role="textbox" aria-label="Sentence 1, written correctly" autocorrect="off" autocapitalize="sentences"></div></div></div><div class="q fixq"><span class="n">2</span><div class="fixbody"><p class="sent">At summer camp I met with Anna, and now we are friends.</p><div class="hw-field ownbox" contenteditable="true" data-k="f2" data-label="2.2 At summer camp I met with Anna, and now we are friends." role="textbox" aria-label="Sentence 2, written correctly" autocorrect="off" autocapitalize="sentences"></div></div></div><div class="q fixq"><span class="n">3</span><div class="fixbody"><p class="sent">Last Sunday Lily go kiting with her friend.</p><div class="hw-field ownbox" contenteditable="true" data-k="f3" data-label="2.3 Last Sunday Lily go kiting with her friend." role="textbox" aria-label="Sentence 3, written correctly" autocorrect="off" autocapitalize="sentences"></div></div></div><div class="q fixq"><span class="n">4</span><div class="fixbody"><p class="sent">Let’s go to skiing in January!</p><div class="hw-field ownbox" contenteditable="true" data-k="f4" data-label="2.4 Let’s go to skiing in January!" role="textbox" aria-label="Sentence 4, written correctly" autocorrect="off" autocapitalize="sentences"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ex-card">
+  <div class="ex-header">Exercise 3: a chat with Lily</div>
+  <div class="ex-body">
+    <p class="ctx">You&rsquo;re chatting with your friend&nbsp;Lily.</p>
+    <p class="instr">Finish the chat with&nbsp;Lily.</p>
+    <p class="note"><span class="scr">Tap a card, then tap a gap. One card is&nbsp;spare.</span><span class="prt">Write one phrase from the box in each gap. One is&nbsp;spare.</span></p>
+    <div class="tp">
+      <div class="tp-bank scr-bank"><button type="button" class="tp-tile" data-value="at least">at least</button><button type="button" class="tp-tile" data-value="the side of the pool">the side of the pool</button><button type="button" class="tp-tile" data-value="a Christmas tree">a Christmas tree</button><button type="button" class="tp-tile" data-value="bruises">bruises</button><button type="button" class="tp-tile" data-value="I freaked out">I freaked out</button><button type="button" class="tp-tile" data-value="paint by numbers">paint by numbers</button><button type="button" class="tp-tile" data-value="sea urchins">sea urchins</button><button type="button" class="tp-tile" data-value="got stung by a jellyfish">got stung by a jellyfish</button></div>
+      <div class="prt-bank prt">at&nbsp;least &middot; the&nbsp;side&nbsp;of&nbsp;the&nbsp;pool &middot; a&nbsp;Christmas&nbsp;tree &middot; bruises &middot; I&nbsp;freaked&nbsp;out &middot; paint&nbsp;by&nbsp;numbers &middot; sea&nbsp;urchins &middot; got&nbsp;stung&nbsp;by&nbsp;a&nbsp;jellyfish</div>
+      <div class="chat">
+        <div class="q nogap"><span class="n">0</span><p class="sent"><span class="who">Lily</span> Hi! What are you doing?</p></div><div class="q"><span class="n">1</span><p class="sent"><span class="who">Me</span> I’m doing <span class="nw"><span class="tp-zone" data-store="c1" data-field="c1" role="button" aria-label="Gap 1"><span class="tp-slot"></span></span>.</span> It’s a picture of&nbsp;London.</p></div><div class="q"><span class="n">2</span><p class="sent"><span class="who">Lily</span> Cool! We’re home now after our holiday. We bought <span class="tp-zone" data-store="c2" data-field="c2" role="button" aria-label="Gap 2"><span class="tp-slot"></span></span> today, and we’ll decorate it&nbsp;tomorrow.</p></div><div class="q nogap"><span class="n">0</span><p class="sent"><span class="who">Me</span> How was your holiday?</p></div><div class="q"><span class="n">3</span><p class="sent"><span class="who">Lily</span> Terrible! On the first day I <span class="nw"><span class="tp-zone" data-store="c3" data-field="c3" role="button" aria-label="Gap 3"><span class="tp-slot"></span></span>.</span></p></div><div class="q nogap"><span class="n">0</span><p class="sent"><span class="who">Me</span> Oh no! Did it hurt?</p></div><div class="q"><span class="n">4</span><p class="sent"><span class="who">Lily</span> Yes! It hurt for <span class="tp-zone" data-store="c4" data-field="c4" role="button" aria-label="Gap 4"><span class="tp-slot"></span></span> two&nbsp;days.</p></div><div class="q"><span class="n">5</span><p class="sent"><span class="who">Lily</span> And when I saw a big fin in the water, <span class="nw"><span class="tp-zone" data-store="c5" data-field="c5" role="button" aria-label="Gap 5"><span class="tp-slot"></span></span>!</span></p></div><div class="q"><span class="n">6</span><p class="sent"><span class="who">Me</span> That’s why I don’t like the sea. I’m scared of <span class="tp-zone" data-store="c6" data-field="c6" role="button" aria-label="Gap 6"><span class="tp-slot"></span></span> and other sea&nbsp;animals.</p></div><div class="q"><span class="n">7</span><p class="sent"><span class="who">Lily</span> Me too now! For the rest of the holiday I just sat on <span class="tp-zone" data-store="c7" data-field="c7" role="button" aria-label="Gap 7"><span class="tp-slot"></span></span> and put my feet in the&nbsp;water.</p></div>
+      </div>
+      <div class="tp-stores" hidden><select data-k="c1" data-label="3.1 I’m doing ___. It’s a picture of London." class="hw-field"><option value=""></option><option value="at least">at least</option><option value="the side of the pool">the side of the pool</option><option value="a Christmas tree">a Christmas tree</option><option value="bruises">bruises</option><option value="I freaked out">I freaked out</option><option value="paint by numbers">paint by numbers</option><option value="sea urchins">sea urchins</option><option value="got stung by a jellyfish">got stung by a jellyfish</option></select><select data-k="c2" data-label="3.2 Cool! We’re home now after our holiday. We bought ___ today, and we’ll decorate it tomorrow." class="hw-field"><option value=""></option><option value="at least">at least</option><option value="the side of the pool">the side of the pool</option><option value="a Christmas tree">a Christmas tree</option><option value="bruises">bruises</option><option value="I freaked out">I freaked out</option><option value="paint by numbers">paint by numbers</option><option value="sea urchins">sea urchins</option><option value="got stung by a jellyfish">got stung by a jellyfish</option></select><select data-k="c3" data-label="3.3 Terrible! On the first day I ___." class="hw-field"><option value=""></option><option value="at least">at least</option><option value="the side of the pool">the side of the pool</option><option value="a Christmas tree">a Christmas tree</option><option value="bruises">bruises</option><option value="I freaked out">I freaked out</option><option value="paint by numbers">paint by numbers</option><option value="sea urchins">sea urchins</option><option value="got stung by a jellyfish">got stung by a jellyfish</option></select><select data-k="c4" data-label="3.4 Yes! It hurt for ___ two days." class="hw-field"><option value=""></option><option value="at least">at least</option><option value="the side of the pool">the side of the pool</option><option value="a Christmas tree">a Christmas tree</option><option value="bruises">bruises</option><option value="I freaked out">I freaked out</option><option value="paint by numbers">paint by numbers</option><option value="sea urchins">sea urchins</option><option value="got stung by a jellyfish">got stung by a jellyfish</option></select><select data-k="c5" data-label="3.5 And when I saw a big fin in the water, ___!" class="hw-field"><option value=""></option><option value="at least">at least</option><option value="the side of the pool">the side of the pool</option><option value="a Christmas tree">a Christmas tree</option><option value="bruises">bruises</option><option value="I freaked out">I freaked out</option><option value="paint by numbers">paint by numbers</option><option value="sea urchins">sea urchins</option><option value="got stung by a jellyfish">got stung by a jellyfish</option></select><select data-k="c6" data-label="3.6 That’s why I don’t like the sea. I’m scared of ___ and other sea animals." class="hw-field"><option value=""></option><option value="at least">at least</option><option value="the side of the pool">the side of the pool</option><option value="a Christmas tree">a Christmas tree</option><option value="bruises">bruises</option><option value="I freaked out">I freaked out</option><option value="paint by numbers">paint by numbers</option><option value="sea urchins">sea urchins</option><option value="got stung by a jellyfish">got stung by a jellyfish</option></select><select data-k="c7" data-label="3.7 Me too now! For the rest of the holiday I just sat on ___ and put my feet in the water." class="hw-field"><option value=""></option><option value="at least">at least</option><option value="the side of the pool">the side of the pool</option><option value="a Christmas tree">a Christmas tree</option><option value="bruises">bruises</option><option value="I freaked out">I freaked out</option><option value="paint by numbers">paint by numbers</option><option value="sea urchins">sea urchins</option><option value="got stung by a jellyfish">got stung by a jellyfish</option></select></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ===== TAP-PLACE JS (copy from here) ===== */
+(function () {
+  function setup(root) {
+    var bank = root.querySelector(".tp-bank");
+    var zones = [].slice.call(root.querySelectorAll(".tp-zone"));
+    var tiles = [].slice.call(root.querySelectorAll(".tp-tile"));
+    if (!bank || !zones.length) return;
+    var picked = null, justDragged = false;
+    function store(k) { return k ? root.querySelector('[data-' + 'k="' + k + '"]') || document.querySelector('[data-' + 'k="' + k + '"]') : null; }
+    function set(sel, v) { if (sel && sel.value !== v) { sel.value = v; sel.dispatchEvent(new Event("change", { bubbles: true })); } }
+    function zoneOf(tile) { return tile.closest(".tp-zone"); }
+    function says(tile) {
+      var old = tile.querySelector(".tp-says"); if (old) old.remove();
+      var z = zoneOf(tile), tpl = z && z.dataset.says;
+      if (!tpl) return;
+      var s = document.createElement("span"); s.className = "tp-says";
+      s.textContent = tpl.replace("{d}", tile.dataset.d || ""); tile.appendChild(s);
+    }
+    function sync() {
+      zones.forEach(function (z) {
+        if (z.classList.contains("tp-multi")) return;
+        var t = z.querySelector(".tp-tile"); set(store(z.dataset.store), t ? t.dataset.value : "");
+      });
+      tiles.forEach(function (t) {
+        if (!t.dataset.store) return;
+        var z = zoneOf(t); set(store(t.dataset.store), z ? z.dataset.value : "");
+        says(t);
+      });
+    }
+    function unpick() {
+      if (picked) picked.classList.remove("picked");
+      picked = null; zones.forEach(function (z) { z.classList.remove("ready"); });
+    }
+    function pick(t) { unpick(); picked = t; t.classList.add("picked"); zones.forEach(function (z) { z.classList.add("ready"); }); }
+    function place(t, z) {
+      var slot = z.querySelector(".tp-slot");
+      if (!z.classList.contains("tp-multi")) {
+        var old = slot.querySelector(".tp-tile"); if (old && old !== t) bank.appendChild(old);
+      }
+      slot.appendChild(t); sync();
+    }
+    function home(t) { bank.appendChild(t); sync(); }
+
+    // restore saved answers (hw.js has already put them into the stores)
+    zones.forEach(function (z) {
+      if (z.classList.contains("tp-multi")) return;
+      var s = store(z.dataset.store); if (!s || !s.value) return;
+      var t = tiles.filter(function (x) { return x.dataset.value === s.value && !zoneOf(x); })[0];
+      if (t) z.querySelector(".tp-slot").appendChild(t);
+    });
+    tiles.forEach(function (t) {
+      var s = store(t.dataset.store); if (!s || !s.value) return;
+      var z = zones.filter(function (x) { return x.dataset.value === s.value; })[0];
+      if (z) z.querySelector(".tp-slot").appendChild(t);
+    });
+    sync();
+
+    // TAP (all devices). "click" never fires after a scroll, so a finger that scrolls
+    // across a tile cannot move it.
+    tiles.forEach(function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (justDragged) { justDragged = false; return; }
+        var z = zoneOf(t);
+        if (z) {
+          if (picked && picked !== t) { place(picked, z); unpick(); }   // tapping a filled place
+          else { unpick(); home(t); }                                     // send it back
+          return;
+        }
+        if (picked === t) unpick(); else pick(t);
+      });
+    });
+    zones.forEach(function (z) {
+      z.addEventListener("click", function () { if (picked) { place(picked, z); unpick(); } });
+    });
+
+    // DRAG for mouse and pen only. Touch never starts a drag.
+    function zoneAt(x, y) {
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (x >= r.left - 10 && x <= r.right + 10 && y >= r.top - 10 && y <= r.bottom + 10) return zones[i];
+      }
+      return null;
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        var r = t.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+        var sx = e.clientX, sy = e.clientY, moved = false, over = null, ph = null;
+        function move(ev) {
+          if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+          if (!moved) {
+            moved = true; unpick();
+            ph = document.createElement("span");
+            ph.style.cssText = "display:inline-block;width:" + r.width + "px;height:" + r.height + "px";
+            t.parentNode.insertBefore(ph, t);
+            t.style.width = r.width + "px"; t.classList.add("dragging");
+          }
+          t.style.left = (ev.clientX - dx) + "px"; t.style.top = (ev.clientY - dy) + "px";
+          var z = zoneAt(ev.clientX, ev.clientY);
+          if (z !== over) { if (over) over.classList.remove("over"); over = z; if (z) z.classList.add("over"); }
+        }
+        function up(ev) {
+          window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+          if (!moved) return;                     // a plain click: the click handler does the rest
+          justDragged = true; setTimeout(function () { justDragged = false; }, 0);
+          if (over) over.classList.remove("over");
+          t.classList.remove("dragging"); t.style.left = t.style.top = t.style.width = "";
+          if (ph) ph.remove();
+          var z = ev.type === "pointerup" ? zoneAt(ev.clientX, ev.clientY) : null;
+          if (z) place(t, z);
+          else if (zoneOf(t) && ev.type === "pointerup" && !root.contains(document.elementFromPoint(ev.clientX, ev.clientY))) home(t);
+        }
+        window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      });
+    });
+  }
+  function init() { document.querySelectorAll(".tp").forEach(setup); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+})();
+/* ===== TAP-PLACE JS (copy to here) ===== */
+
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJvMSI6IHsidCI6ICJleGFjdCIsICJhIjogImFub3RoZXIifSwgIm8yIjogeyJ0IjogImV4YWN0IiwgImEiOiAib3RoZXIifSwgIm8zIjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIG90aGVyIn0sICJvNCI6IHsidCI6ICJleGFjdCIsICJhIjogInRoZSBvdGhlciJ9LCAibzUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJhbm90aGVyIn0sICJvNiI6IHsidCI6ICJleGFjdCIsICJhIjogIm90aGVyIn0sICJvNyI6IHsidCI6ICJleGFjdCIsICJhIjogIm90aGVyIn0sICJvOCI6IHsidCI6ICJleGFjdCIsICJhIjogImFub3RoZXIifSwgIm85IjogeyJ0IjogImV4YWN0IiwgImEiOiAidGhlIG90aGVyIn0sICJmMSI6IHsidCI6ICJvcGVuIn0sICJmMiI6IHsidCI6ICJvcGVuIn0sICJmMyI6IHsidCI6ICJvcGVuIn0sICJmNCI6IHsidCI6ICJvcGVuIn0sICJjMSI6IHsidCI6ICJleGFjdCIsICJhIjogInBhaW50IGJ5IG51bWJlcnMifSwgImMyIjogeyJ0IjogImV4YWN0IiwgImEiOiAiYSBDaHJpc3RtYXMgdHJlZSJ9LCAiYzMiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJnb3Qgc3R1bmcgYnkgYSBqZWxseWZpc2gifSwgImM0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiYXQgbGVhc3QifSwgImM1IjogeyJ0IjogImV4YWN0IiwgImEiOiAiSSBmcmVha2VkIG91dCJ9LCAiYzYiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJzZWEgdXJjaGlucyJ9LCAiYzciOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJ0aGUgc2lkZSBvZiB0aGUgcG9vbCJ9fQ==</script>
+<script src="../assets/hw.js?v=20261029-answer-groups"></script>
+</body>
+</html>

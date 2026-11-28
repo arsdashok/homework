@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megan · Maths homework · 28 November 2026</title>
+<style>
+@page {size:A4; margin:11mm 11mm;}
+* {box-sizing:border-box;}
+html {-webkit-text-size-adjust:100%;}
+body {font-family:'Segoe UI',Arial,sans-serif; color:#252333; margin:0; font-size:18px; background:#fbfaff;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+.wrap {max-width:1180px; margin:0 auto; padding:0 16px 48px;}
+header {background:linear-gradient(135deg,#6c63ff,#a78bfa); color:#fff; border-radius:16px; padding:16px 22px; margin:18px 0 30px;}
+h1 {font-size:24px; margin:0 0 4px;}
+.meta {font-size:15px; opacity:.95;}
+section {margin:0 0 44px;}
+.lbl {font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#6d4fc2; margin:0 0 8px;}
+.instr {font-size:25px; font-weight:800; color:#1f1b2e; line-height:1.25; margin:0 0 8px; text-wrap:balance;}
+.note {font-size:17px; color:#6b6280; margin:0 0 20px; text-wrap:pretty;}
+.note.pr {display:none;}
+.q {page-break-inside:avoid; break-inside:avoid;}
+.card {background:#fff; border:2px solid #e6e0fa; border-radius:18px; padding:14px 14px 16px; margin:0 0 16px; transition:border-color .15s, box-shadow .15s;}
+.card.current {border-color:#a78bfa; box-shadow:0 10px 30px rgba(108,99,255,.13);}
+.card.model {background:#f7f5ff; border-color:#d9cff7;}
+.mtag {display:inline-block; margin:0 0 10px; padding:4px 13px; border-radius:999px; background:#6c63ff; color:#fff; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;}
+.qn {color:#6b6280; font-weight:600;}
+.big {font-size:28px; font-weight:800; color:#5b32b5; white-space:nowrap; margin:0 0 6px;}
+.store {display:none;}
+.nw {white-space:nowrap;}
+.remind {font-size:18px; color:#3f3752; margin:26px 0 12px; padding:6px 0 6px 14px; border-left:4px solid #a78bfa; text-wrap:pretty;}
+.remind b {color:#1f1b2e;}
+
+/* tap options */
+.opts {display:flex; flex-wrap:wrap; align-items:center; gap:10px;}
+.opt {font:inherit; font-size:22px; font-weight:700; color:#3f3752; background:#fff; border:2px solid #c9bdf0; border-radius:12px;
+  padding:6px 12px; min-height:52px; min-width:70px; line-height:1.2; text-align:center; cursor:pointer; touch-action:manipulation;
+  display:inline-flex; align-items:center; justify-content:center; transition:background .12s, border-color .12s, box-shadow .12s;}
+button.opt:hover {background:#f3f0ff; border-color:#a78bfa;}
+button.opt:focus-visible {outline:3px solid #f59e0b; outline-offset:2px;}
+.opts .opt.on, .opt.shown {background:#6c63ff; border-color:#6c63ff; color:#fff; box-shadow:0 0 0 4px #ddd6fe;}
+.opts > .hw-mark {font-size:19px; margin:0 0 0 4px;}
+
+/* warm-up */
+.wgrid {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;}
+.wcard {margin:0; padding:12px 14px 14px;}
+.wq {font-size:26px; font-weight:800; color:#1f1b2e; margin:0 0 10px; white-space:nowrap;}
+.wrow {display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+.wrow .wq {margin:0;}
+.wrow input.hw-field {width:96px; height:54px; font-size:24px; text-align:center;}
+
+/* the bus stop */
+.bs {--dv:46px; --cw:70px; --ab:52px; --abf:32px; --dgf:40px; --lw:28px; --lh:30px; --lf:18px; --bw:4px; --pl:10px; --rw:78px;
+  display:inline-grid; grid-template-columns:var(--dv) auto; align-items:end; margin:8px 0 4px;}
+.bs-top {grid-column:2; grid-row:1; display:flex; align-items:flex-end; padding-left:calc(var(--bw) + var(--pl)); margin-bottom:6px;}
+.bs-dv {grid-column:1; grid-row:2; font-size:var(--dgf); font-weight:800; color:#1f2937; text-align:right; padding-right:8px; line-height:1.35;}
+.bs-body {grid-column:2; grid-row:2; display:flex; border-left:var(--bw) solid #1f2937; border-top:var(--bw) solid #1f2937; padding-left:var(--pl);}
+.bs-c {width:var(--cw); display:flex; justify-content:flex-end; padding-right:6px; position:relative;}
+.bs-dc {height:calc(var(--dgf) * 1.35); align-items:center;}
+.dg {font-size:var(--dgf); font-weight:800; color:#1f2937; line-height:1; width:calc(var(--dgf) * .72); text-align:center;}
+.bs-rsp {width:var(--rw);}
+.bs-r {width:var(--rw); display:flex; align-items:flex-end; gap:5px; padding-left:12px;}
+.bs-rl {font-size:calc(var(--dgf) * .8); font-weight:800; color:#1d4ed8; line-height:1;}
+.ab, .rb, .pd.ans, .pd.rem, input.dig.ans, input.dig.rem {width:var(--ab); height:var(--ab); border:2px dashed #b6a6cd; border-radius:10px; background:#fff;
+  font-size:var(--abf); font-weight:800; color:#1d4ed8; display:flex; align-items:center; justify-content:center; line-height:1;}
+.bs-c .ab, .bs-c input.dig.ans, .bs-c .pd.ans {margin-right:calc((var(--dgf) * .72 - var(--ab)) / 2);}
+.rb, input.dig.rem, .pd.rem {width:calc(var(--ab) * .82); height:calc(var(--ab) * .82); font-size:calc(var(--abf) * .85);}
+.lb, input.dig.car, .pd.car {position:absolute; left:2px; top:2px; width:var(--lw); height:var(--lh); border:2px dashed #fca5a5; border-radius:7px; background:#fff;
+  font-size:var(--lf); font-weight:800; color:#dc2626; display:flex; align-items:center; justify-content:center; line-height:1;}
+.ab.done, .rb.done, .lb.done {border-style:solid; border-color:#c4b5fd; background:#f6f3ff;}
+.lb.done {border-color:#fecaca; background:#fff7f7;}
+input.dig {padding:0; text-align:center; font-family:inherit; -moz-appearance:textfield;}
+input.dig:focus {outline:none; border-style:solid; border-color:#6c63ff; box-shadow:0 0 0 3px #ddd6fe;}
+input.dig.car:focus {border-color:#dc2626; box-shadow:0 0 0 3px #fecaca;}
+.bs .pd {display:none !important;}
+.ansmark {min-height:1px;}
+.ansmark .hw-mark {font-size:19px; margin:8px 0 0;}
+
+/* Evie: one item = the bus stop + its rows */
+.egrid {display:block;}
+.rows {margin-top:10px;}
+.srow {padding:10px 8px; border-top:1px dashed #e6e0fa; border-radius:12px;}
+.srow:first-child {border-top:none;}
+.srow.now {background:#f6f3ff; box-shadow:inset 0 0 0 2px #c4b5fd;}
+.sp {font-size:21px; font-weight:600; color:#252333; margin:0;}
+.cap {font-size:16px; color:#6b6280; margin:2px 0 8px;}
+.pm {display:inline-block; color:#1d4ed8; font-weight:800;}
+.pm:not(.done) {width:.8em; height:.95em; border:2px dashed #b6a6cd; border-radius:5px; vertical-align:-0.12em; margin-right:2px;}
+.pm.done:empty {display:none;}
+
+/* Megan */
+.mgrid {display:grid; grid-template-columns:minmax(0,1fr); gap:14px;}
+.mcard {margin:0;}
+.mmodel {display:flex; flex-wrap:wrap; gap:10px 36px; align-items:center;}
+.msteps {margin:0; padding:0 0 0 22px; font-size:18px; color:#3f3752;}
+.msteps li {margin:0 0 6px;}
+.claim {font-size:21px; margin:0 0 12px;}
+.claim .who {font-weight:800; color:#5b32b5;}
+.leo {display:grid; grid-template-columns:minmax(0,1fr); gap:16px;}
+.lpart .bh {font-size:16px; font-weight:700; color:#6b6280; margin:0 0 8px;}
+.card div.why {min-height:84px !important; font-size:20px;}
+
+@media (max-width:600px) {
+  .opt {font-size:20px; min-width:62px;}
+  .bs {--dv:40px; --cw:66px; --ab:46px; --abf:28px; --dgf:36px; --lw:26px; --lh:28px; --lf:17px; --rw:70px;}
+}
+
+@media print {
+  body {font-size:13px; background:#fff;}
+  .wrap {max-width:none; padding:0;}
+  header {margin:0 0 8px; padding:7px 14px; border-radius:10px;}
+  h1 {font-size:18px; margin:0;}
+  .meta {font-size:11px;}
+  section {margin:0 0 10px;}
+  .lbl {font-size:10px; margin:0 0 2px;}
+  .instr {font-size:16px; margin:0 0 2px;}
+  .note {font-size:11px; margin:0 0 6px;}
+  .note.scr {display:none !important;}
+  .note.pr {display:block;}
+  .card {padding:5px 10px 6px; margin:0 0 5px; border-width:1.5px; border-radius:10px; box-shadow:none;}
+  .card.current {border-color:#e6e0fa; box-shadow:none;}
+  .mtag {font-size:9px; padding:2px 8px; margin:0 0 3px;}
+  .big {font-size:14px; margin:0 0 2px;}
+  .remind {font-size:11.5px; margin:7px 0 4px; padding:2px 0 2px 8px; border-left-width:3px;}
+  .opts {gap:4px;}
+  .opt {font-size:11.5px; padding:1px 6px; min-height:0; min-width:24px; border-width:1.5px; border-radius:6px;}
+  .opts .opt.on, .opt.shown {box-shadow:none;}
+  .opts > .hw-mark, .ansmark .hw-mark {font-size:11px; margin:0 0 0 3px;}
+  .wgrid {grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px;}
+  .wgrid.five {grid-template-columns:repeat(5,minmax(0,1fr));}
+  .wcard {padding:4px 6px 5px;}
+  .wq {font-size:13px; margin:0 0 3px;}
+  .wrow {gap:5px;}
+  .wrow input.hw-field {width:42px; height:24px; font-size:13px;}
+  .bs {--dv:20px; --cw:32px; --ab:22px; --abf:14px; --dgf:18px; --lw:12px; --lh:13px; --lf:9px; --bw:2px; --pl:4px; --rw:36px; margin:2px 0 0;}
+  .bs-c {padding-right:3px;}
+  .bs .ab, .bs .rb, .bs .lb, .bs .pd, .bs input.dig {border-width:1.2px; border-radius:4px;}
+  .bs .lb, .bs input.dig.car, .bs .pd.car {left:1px; top:1px;}
+  .egrid {display:grid; grid-template-columns:172px minmax(0,1fr); gap:12px; align-items:start;}
+  .rows {margin-top:0; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:0 12px;}
+  .srow {display:flex; flex-wrap:wrap; align-items:center; gap:2px 6px; padding:2px 0; border-top:none; border-radius:0;}
+  .srow.now {background:none; box-shadow:none;}
+  .sp {font-size:11px;}
+  .cap {font-size:10px; margin:0;}
+  .pm:not(.done) {border-width:1.2px;}
+  .mgrid {grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px;}
+  .msteps {font-size:11px; padding-left:16px;}
+  .msteps li {margin:0 0 1px;}
+  .mmodel {gap:4px 18px;}
+  .claim {font-size:12.5px; margin:0 0 4px;}
+  .leo {grid-template-columns:auto 230px auto; gap:4px 18px; align-items:start; justify-content:start;}
+  .lpart .bh {font-size:10.5px; margin:0 0 3px;}
+  .card div.why {min-height:40px !important; font-size:12px;}
+  input::placeholder {color:transparent;}
+  .why {border:1.5px solid #8072b2; border-radius:6px;}
+}
+body.hw-pdf-mode {font-size:13px; background:#fff;}
+body.hw-pdf-mode .wrap {max-width:none; padding:0;}
+body.hw-pdf-mode header {margin:0 0 8px; padding:7px 14px; border-radius:10px;}
+body.hw-pdf-mode h1 {font-size:18px; margin:0;}
+body.hw-pdf-mode .meta {font-size:11px;}
+body.hw-pdf-mode section {margin:0 0 10px;}
+body.hw-pdf-mode .lbl {font-size:10px; margin:0 0 2px;}
+body.hw-pdf-mode .instr {font-size:16px; margin:0 0 2px;}
+body.hw-pdf-mode .note {font-size:11px; margin:0 0 6px;}
+body.hw-pdf-mode .note.scr {display:none !important;}
+body.hw-pdf-mode .note.pr {display:block;}
+body.hw-pdf-mode .card {padding:5px 10px 6px; margin:0 0 5px; border-width:1.5px; border-radius:10px; box-shadow:none;}
+body.hw-pdf-mode .card.current {border-color:#e6e0fa; box-shadow:none;}
+body.hw-pdf-mode .mtag {font-size:9px; padding:2px 8px; margin:0 0 3px;}
+body.hw-pdf-mode .big {font-size:14px; margin:0 0 2px;}
+body.hw-pdf-mode .remind {font-size:11.5px; margin:7px 0 4px; padding:2px 0 2px 8px; border-left-width:3px;}
+body.hw-pdf-mode .opts {gap:4px;}
+body.hw-pdf-mode .opt {font-size:11.5px; padding:1px 6px; min-height:0; min-width:24px; border-width:1.5px; border-radius:6px;}
+body.hw-pdf-mode .opts .opt.on, body.hw-pdf-mode .opt.shown {box-shadow:none;}
+body.hw-pdf-mode .opts > .hw-mark, body.hw-pdf-mode .ansmark .hw-mark {font-size:11px; margin:0 0 0 3px;}
+body.hw-pdf-mode .wgrid {grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px;}
+body.hw-pdf-mode .wgrid.five {grid-template-columns:repeat(5,minmax(0,1fr));}
+body.hw-pdf-mode .wcard {padding:4px 6px 5px;}
+body.hw-pdf-mode .wq {font-size:13px; margin:0 0 3px;}
+body.hw-pdf-mode .wrow {gap:5px;}
+body.hw-pdf-mode .wrow input.hw-field {width:42px; height:24px; font-size:13px;}
+body.hw-pdf-mode .bs {--dv:20px; --cw:32px; --ab:22px; --abf:14px; --dgf:18px; --lw:12px; --lh:13px; --lf:9px; --bw:2px; --pl:4px; --rw:36px; margin:2px 0 0;}
+body.hw-pdf-mode .bs-c {padding-right:3px;}
+body.hw-pdf-mode .bs .ab, body.hw-pdf-mode .bs .rb, body.hw-pdf-mode .bs .lb, body.hw-pdf-mode .bs .pd, body.hw-pdf-mode .bs input.dig {border-width:1.2px; border-radius:4px;}
+body.hw-pdf-mode .bs .lb, body.hw-pdf-mode .bs input.dig.car, body.hw-pdf-mode .bs .pd.car {left:1px; top:1px;}
+body.hw-pdf-mode .egrid {display:grid; grid-template-columns:172px minmax(0,1fr); gap:12px; align-items:start;}
+body.hw-pdf-mode .rows {margin-top:0; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:0 12px;}
+body.hw-pdf-mode .srow {display:flex; flex-wrap:wrap; align-items:center; gap:2px 6px; padding:2px 0; border-top:none; border-radius:0;}
+body.hw-pdf-mode .srow.now {background:none; box-shadow:none;}
+body.hw-pdf-mode .sp {font-size:11px;}
+body.hw-pdf-mode .cap {font-size:10px; margin:0;}
+body.hw-pdf-mode .pm:not(.done) {border-width:1.2px;}
+body.hw-pdf-mode .mgrid {grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px;}
+body.hw-pdf-mode .msteps {font-size:11px; padding-left:16px;}
+body.hw-pdf-mode .msteps li {margin:0 0 1px;}
+body.hw-pdf-mode .mmodel {gap:4px 18px;}
+body.hw-pdf-mode .claim {font-size:12.5px; margin:0 0 4px;}
+body.hw-pdf-mode .leo {grid-template-columns:auto 230px auto; gap:4px 18px; align-items:start; justify-content:start;}
+body.hw-pdf-mode .lpart .bh {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .card div.why {min-height:40px !important; font-size:12px;}
+body.hw-pdf-mode input::placeholder {color:transparent;}
+body.hw-pdf-mode .pd {display:flex !important;}
+body.hw-pdf-mode input.dig {display:none !important;}
+
+/* Full page width and big type on a screen (Dasha, 1 Nov 2026). The PDF and phones keep their own sizes. */
+@media screen and (min-width:900px) {
+  body {font-size:26px;}
+  .wrap {max-width:1640px; padding:0 48px 56px;}
+  header {padding:24px 38px; margin:26px 0 40px;}
+  h1 {font-size:36px;}
+  .meta {font-size:22px;}
+  .lbl {font-size:19px;}
+  .instr {font-size:40px;}
+  .note {font-size:26px;}
+  .mtag {font-size:17px;}
+  .card {padding:22px 30px 24px; margin:0 0 20px;}
+  .big {font-size:36px;}
+  .remind {font-size:28px; margin:34px 0 16px;}
+  .opt {font-size:30px; min-height:64px; min-width:104px; padding:8px 14px;}
+  .opts {gap:14px;}
+  .opts > .hw-mark {font-size:26px;}
+  .wgrid {grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;}
+  .wgrid.five {grid-template-columns:repeat(5,minmax(0,1fr));}
+  .wcard {padding:18px 22px 20px;}
+  .wq {font-size:36px;}
+  .wrow input.hw-field {width:120px; height:66px; font-size:32px !important;}
+  .bs {--dv:64px; --cw:88px; --ab:70px; --abf:44px; --dgf:56px; --lw:34px; --lh:38px; --lf:23px; --bw:5px; --pl:14px; --rw:96px;}
+  .egrid {display:grid; grid-template-columns:450px minmax(0,1fr); gap:36px; align-items:start;}
+  .rows {margin-top:0;}
+  .srow {display:grid; grid-template-columns:380px auto; justify-content:start; align-items:center; gap:10px 28px; padding:12px 14px;}
+  .srow .opts {flex-wrap:nowrap;}
+  .sp {font-size:30px;}
+  .cap {font-size:22px; margin:2px 0 0;}
+  .ansmark .hw-mark {font-size:26px;}
+  .mgrid {grid-template-columns:repeat(auto-fill,minmax(500px,1fr)); gap:20px;}
+  .mcard {padding:22px 24px 24px;}
+  .msteps {font-size:28px;}
+  .claim {font-size:30px; margin:0 0 18px;}
+  .leo {display:flex; flex-wrap:wrap; gap:30px 56px; align-items:flex-start;}
+  .leo .lpart.mid {width:420px;}
+  .lpart .bh {font-size:24px;}
+  .card div.why {min-height:140px !important; font-size:28px !important;}
+}
+
+/* counting up on a number line */
+.cu {display:block;}
+.nl {display:inline-block; width:min(560px,100%); margin:6px 0 10px; padding:0 34px;}
+.nl-j {display:grid; grid-template-columns:1fr 1fr;}
+.jump {position:relative; height:66px; text-align:center;}
+.arc {position:absolute; left:0; right:0; bottom:0; height:46px; border:3px solid #6c63ff; border-bottom:none; border-radius:50% 50% 0 0 / 100% 100% 0 0;}
+.jl {position:relative; z-index:1; display:inline-flex; align-items:center; gap:2px; font-size:24px; font-weight:800; color:#5b32b5; background:#fbfaff; padding:0 6px;}
+.card .jl {background:#fff;}
+.card.model .jl {background:#f7f5ff;}
+.nl-l {position:relative; height:70px; border-top:4px solid #1f2937;}
+.tk {position:absolute; top:-13px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center;}
+.tk.a {left:0;} .tk.m {left:50%;} .tk.b {left:100%;}
+.tick {display:block; width:0; height:22px; border-left:4px solid #1f2937;}
+.tv {font-size:24px; font-weight:800; color:#1f2937; white-space:nowrap; margin-top:4px; display:inline-flex; align-items:center;}
+.tk.m .tv {color:#1d4ed8;}
+.tv .pm:not(.done) {width:2.2em;}
+.jl .pm:not(.done) {width:1em;}
+.cupair {display:flex; flex-wrap:wrap; gap:10px 28px; align-items:center;}
+.cupair label {font-size:19px; color:#3f3752; display:inline-flex; align-items:center; gap:8px;}
+.cupair input.hw-field {width:120px; height:50px; font-size:22px; text-align:center;}
+.cupair input.hw-field.sm {width:76px;}
+.money {font-size:22px; font-weight:800; color:#1f1b2e;}
+
+/* typed columns (Megan) */
+.fs {display:grid; grid-template-columns:minmax(0,1fr); gap:14px;}
+.fsq {font-size:21px; font-weight:600; margin:0 0 12px; text-wrap:pretty;}
+.fsteps {display:flex; flex-wrap:wrap; gap:18px 44px; align-items:flex-start;}
+.fstep .bh {font-size:17px; font-weight:700; color:#6b6280; margin:0 0 8px;}
+table.cols {border-collapse:collapse; font-variant-numeric:tabular-nums;}
+table.cols td {width:46px; height:50px; padding:3px; text-align:center; vertical-align:middle; font-size:30px; font-weight:800; color:#1f2937;}
+table.cols td.cm {width:12px; padding:0; font-size:26px;}
+table.cols td.sg {width:30px; color:#6b6280;}
+table.cols tr.car td {height:38px; padding:2px 4px;}
+table.cols tr.bot td {border-bottom:3px solid #374151;}
+table.cols tr.ans td {padding-top:9px;}
+table.cols input.dig, table.cols .fd {box-sizing:border-box; display:flex; align-items:center; justify-content:center; width:100%; height:46px; margin:0;
+  font:inherit; font-size:27px; font-weight:800; text-align:center; color:#1d4ed8; background:#fff; border:2px dashed #b6a6cd; border-radius:9px; padding:0;}
+table.cols input.dig.ans, table.cols input.dig.car {position:static; width:100%; left:auto; top:auto; margin:0;}
+table.cols input.dig.car, table.cols .fd.car {height:32px; font-size:18px; color:#dc2626; border-color:#fca5a5;}
+table.cols .fd {border-style:solid; border-color:#c4b5fd; background:#f6f3ff;}
+table.cols .fd.car {border-color:#fecaca; background:#fff7f7;}
+table.cols .fd.blank {visibility:hidden;}
+table.cols .mc {color:#1d4ed8;}
+table.cols .mc:not(.done) {display:inline-block; width:.7em; height:1em; border:2px dashed #d6cdee; border-radius:6px;}
+table.cols .pd {display:none !important;}
+table.cols input.dig:focus {outline:none; border-style:solid; border-color:#6c63ff; box-shadow:0 0 0 3px #ddd6fe;}
+@media (max-width:600px) {
+  table.cols td {width:38px; height:44px; font-size:25px;}
+  table.cols input.dig, table.cols .fd {height:40px; font-size:23px;}
+  .nl {padding:0 26px;} .tv, .jl {font-size:20px;}
+}
+@media screen and (min-width:900px) {
+  .nl {width:760px; padding:0 50px; margin:8px 0 14px;}
+  .jump {height:86px;} .arc {height:62px; border-width:4px;}
+  .jl, .tv {font-size:32px;}
+  .nl-l {height:90px; border-top-width:5px;}
+  .tick {height:28px; border-left-width:5px;} .tk {top:-16px;}
+  .cupair label {font-size:28px;} .cupair input.hw-field {width:170px; height:66px; font-size:32px !important;}
+  .cupair input.hw-field.sm {width:110px;}
+  .money {font-size:32px;}
+  .cuwrap {display:grid; grid-template-columns:780px minmax(0,1fr); gap:20px 40px; align-items:center;}
+  .cuwrap.stack {display:block;}
+  .egrid {grid-template-columns:400px minmax(0,1fr); gap:28px;}
+  .srow {grid-template-columns:290px auto; gap:10px 22px;}
+  .sp {font-size:28px;}
+  .fsq {font-size:30px;}
+  .fstep .bh {font-size:24px;}
+  table.cols td {width:62px; height:66px; font-size:42px;}
+  table.cols td.cm {width:16px; font-size:36px;}
+  table.cols td.sg {width:42px;}
+  table.cols tr.car td {height:50px;}
+  table.cols input.dig, table.cols .fd {height:62px; font-size:38px;}
+  table.cols input.dig.car, table.cols .fd.car {height:44px; font-size:25px;}
+}
+@media print {
+  .nl {width:330px; padding:0 22px; margin:0 0 2px;}
+  .jump {height:34px;} .arc {height:24px; border-width:2px;}
+  .jl, .tv {font-size:12px;} .nl-l {height:30px; border-top-width:2px;}
+  .tick {height:12px; border-left-width:2px;} .tk {top:-7px;}
+  .cupair {gap:3px 12px;} .cupair label {font-size:11px;} .cupair input.hw-field {width:56px; height:22px; font-size:12px;}
+  .money {font-size:12px;}
+  .fsq {font-size:12.5px; margin:0 0 4px;} .fstep .bh {font-size:10.5px; margin:0 0 3px;} .fsteps {gap:6px 26px;}
+  table.cols td {width:22px; height:24px; padding:1px; font-size:14px;} table.cols td.cm {width:6px; font-size:12px;}
+  table.cols td.sg {width:14px;} table.cols tr.car td {height:18px;} table.cols tr.bot td {border-bottom-width:2px;}
+  table.cols tr.ans td {padding-top:3px;}
+  table.cols .fd {height:21px; font-size:13px; border-width:1.2px; border-radius:4px;}
+  table.cols .fd.car {height:15px; font-size:10px;}
+}
+body.hw-pdf-mode .nl {width:330px; padding:0 22px; margin:0 0 2px;}
+body.hw-pdf-mode .jump {height:34px;} body.hw-pdf-mode .arc {height:24px; border-width:2px;}
+body.hw-pdf-mode .jl, body.hw-pdf-mode .tv {font-size:12px;} body.hw-pdf-mode .nl-l {height:30px; border-top-width:2px;}
+body.hw-pdf-mode .tick {height:12px; border-left-width:2px;} body.hw-pdf-mode .tk {top:-7px;}
+body.hw-pdf-mode .cuwrap {display:block;}
+body.hw-pdf-mode .cupair {gap:3px 12px;} body.hw-pdf-mode .cupair label {font-size:11px;}
+body.hw-pdf-mode .cupair input.hw-field {width:56px; height:22px; font-size:12px !important;}
+body.hw-pdf-mode .money {font-size:12px;}
+body.hw-pdf-mode .fsq {font-size:12.5px; margin:0 0 4px;} body.hw-pdf-mode .fstep .bh {font-size:10.5px; margin:0 0 3px;}
+body.hw-pdf-mode .fsteps {gap:6px 26px;}
+body.hw-pdf-mode table.cols td {width:22px; height:24px; padding:1px; font-size:14px;}
+body.hw-pdf-mode table.cols td.cm {width:6px; font-size:12px;} body.hw-pdf-mode table.cols td.sg {width:14px;}
+body.hw-pdf-mode table.cols tr.car td {height:18px;} body.hw-pdf-mode table.cols tr.bot td {border-bottom-width:2px;}
+body.hw-pdf-mode table.cols tr.ans td {padding-top:3px;}
+body.hw-pdf-mode table.cols .fd, body.hw-pdf-mode table.cols .pd {height:21px; font-size:13px; border-width:1.2px; border-radius:4px;}
+body.hw-pdf-mode table.cols .fd.car, body.hw-pdf-mode table.cols .pd.car {height:15px; font-size:10px;}
+body.hw-pdf-mode table.cols .pd {display:flex !important; align-items:center; justify-content:center; color:#1d4ed8; font-weight:800; border:1.2px solid #b6a6cd;}
+
+@media print {
+  section.cusec {break-inside:avoid; page-break-inside:avoid;}
+  table.cols input.dig, table.cols .pd {position:static; width:100%; height:21px; font-size:13px; border-width:1.2px; border-radius:4px; border-color:#8072b2;}
+  table.cols input.dig.car, table.cols .pd.car {height:15px; font-size:10px; border-color:#f87171;}
+  table.cols .mc:not(.done) {width:18px; height:20px; border:1.2px dashed #8072b2;}
+  .jl .pm:not(.done) {width:1.8em; height:1.3em;} .tv .pm:not(.done) {width:3.2em; height:1.3em;}
+}
+body.hw-pdf-mode section.cusec {break-inside:avoid; page-break-inside:avoid;}
+body.hw-pdf-mode table.cols .pd {position:static; width:100%; left:auto; top:auto;}
+body.hw-pdf-mode table.cols .pd.car {height:15px; font-size:10px; color:#dc2626; border-color:#f87171;}
+body.hw-pdf-mode table.cols .mc:not(.done) {width:18px; height:20px; border:1.2px dashed #8072b2;}
+body.hw-pdf-mode .jl .pm:not(.done) {width:1.8em; height:1.3em;} body.hw-pdf-mode .tv .pm:not(.done) {width:3.2em; height:1.3em;}
+</style><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head><body data-student="Megan" data-sheet="Maths 2026-11-28" data-sheet-id="megan-2026-11-28-maths">
+<div id="sheet">
+
+<div class="wrap">
+<header><h1>Megan &middot; Maths</h1><div class="meta">28 November 2026 &middot; Two-step problems and counting&nbsp;up</div></header>
+<section><div class="q"><p class="lbl">Warm-up: the 4 times table</p><p class="instr">Fill in the answers.</p></div><div class="wgrid five"><div class="card wcard q live" data-step><div class="wrow"><p class="wq">4 × 6 =</p><input class="hw-field" data-k="m_t1" data-label="T1. 4 × 6 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="4 × 6"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">4 × 9 =</p><input class="hw-field" data-k="m_t2" data-label="T2. 4 × 9 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="4 × 9"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">4 × 8 =</p><input class="hw-field" data-k="m_t3" data-label="T3. 4 × 8 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="4 × 8"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">4 × 7 =</p><input class="hw-field" data-k="m_t4" data-label="T4. 4 × 7 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="4 × 7"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">36 ÷ 4 =</p><input class="hw-field" data-k="m_t5" data-label="T5. 36 ÷ 4 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="36 ÷ 4"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">24 ÷ 4 =</p><input class="hw-field" data-k="m_t6" data-label="T6. 24 ÷ 4 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="24 ÷ 4"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">32 ÷ 4 =</p><input class="hw-field" data-k="m_t7" data-label="T7. 32 ÷ 4 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="32 ÷ 4"></div></div><div class="card wcard q live" data-step><div class="wrow"><p class="wq">28 ÷ 4 =</p><input class="hw-field" data-k="m_t8" data-label="T8. 28 ÷ 4 =" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="28 ÷ 4"></div></div></div></section>
+<section><div class="q"><p class="lbl">How far short?</p><p class="instr">Two steps: add, then take away from the&nbsp;target.</p><p class="note scr">Type the answer digits under the line, ones first. Type what you carry or exchange in the small boxes on&nbsp;top. Your Step 1 answer goes into Step 2 by&nbsp;itself.</p><p class="note pr">Write the answers under the line. Write what you carry or exchange in the small boxes on&nbsp;top.</p></div><div class="card model q"><p class="mtag">Like this</p><p class="fsq">Two shops sell 12,350 and 25,700 cards. The target is 50,000. How far short are&nbsp;they?</p><div class="fsteps"><div class="fstep"><p class="bh">Step 1. How many have they sold altogether?</p><table class="cols" aria-label="model, step 1"><tr class="car"><td class="sg"></td><td><span class="fd car blank"></span></td><td><span class="fd car">1</span></td><td class="cm"></td><td><span class="fd car blank"></span></td><td><span class="fd car blank"></span></td><td><span class="fd car blank"></span></td></tr><tr class=""><td class="sg"></td><td>1</td><td>2</td><td class="cm">,</td><td>3</td><td>5</td><td>0</td></tr><tr class="bot"><td class="sg">+</td><td>2</td><td>5</td><td class="cm">,</td><td>7</td><td>0</td><td>0</td></tr><tr class="ans"><td class="sg"></td><td><span class="fd">3</span></td><td><span class="fd">8</span></td><td class="cm">,</td><td><span class="fd">0</span></td><td><span class="fd">5</span></td><td><span class="fd">0</span></td></tr></table></div><div class="fstep"><p class="bh">Step 2. Take that away from the target.</p><table class="cols" aria-label="model, step 2"><tr class="car"><td class="sg"></td><td><span class="fd car">4</span></td><td><span class="fd car">9</span></td><td class="cm"></td><td><span class="fd car">9</span></td><td><span class="fd car">10</span></td><td><span class="fd car blank"></span></td></tr><tr class=""><td class="sg"></td><td>5</td><td>0</td><td class="cm">,</td><td>0</td><td>0</td><td>0</td></tr><tr class="bot"><td class="sg">−</td><td>3</td><td>8</td><td class="cm">,</td><td>0</td><td>5</td><td>0</td></tr><tr class="ans"><td class="sg"></td><td><span class="fd">1</span></td><td><span class="fd">1</span></td><td class="cm">,</td><td><span class="fd">9</span></td><td><span class="fd">5</span></td><td><span class="fd">0</span></td></tr></table><p class="bh" style="margin-top:8px">They are 11,950 short.</p></div></div></div>
+<div class="card live q" data-step><p class="fsq"><span class="qn">1.</span> Two schools collect bottle tops: 27,450 and 36,800. The target is 80,000. How far short are&nbsp;they?</p><div class="fsteps"><div class="fstep"><p class="bh">Step 1. Add the two numbers.</p><table class="cols" data-store="m_f1a" data-cid="f1a" aria-label="1. step 1"><tr class="car"><td class="sg"></td><td><input class="dig car" data-i="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 1: box on top, column 1"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 1: box on top, column 2"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-i="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 1: box on top, column 3"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 1: box on top, column 4"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 1: box on top, column 5"><span class="pd car" aria-hidden="true"></span></td></tr><tr class=""><td class="sg"></td><td>2</td><td>7</td><td class="cm">,</td><td>4</td><td>5</td><td>0</td></tr><tr class="bot"><td class="sg">+</td><td>3</td><td>6</td><td class="cm">,</td><td>8</td><td>0</td><td>0</td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 1: answer, column 1"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 1: answer, column 2"><span class="pd ans" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 1: answer, column 3"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 1: answer, column 4"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 1: answer, column 5"><span class="pd ans" aria-hidden="true"></span></td></tr></table><div class="store"><input type="hidden" data-k="m_f1a" data-label="1. Step 1: 27,450 + 36,800 =" class="hw-field"></div><div class="ansmark" data-field="m_f1a"></div></div><div class="fstep"><p class="bh">Step 2. Take your answer away from 80,000.</p><table class="cols" data-store="m_f1b" data-cid="f1b" aria-label="1. step 2"><tr class="car"><td class="sg"></td><td><input class="dig car" data-i="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 2: box on top, column 1"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 2: box on top, column 2"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-i="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 2: box on top, column 3"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 2: box on top, column 4"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="1. step 2: box on top, column 5"><span class="pd car" aria-hidden="true"></span></td></tr><tr class=""><td class="sg"></td><td>8</td><td>0</td><td class="cm">,</td><td>0</td><td>0</td><td>0</td></tr><tr class="bot"><td class="sg">−</td><td><span class="mc" data-mcol="m_f1a" data-n="5" data-pos="0"></span></td><td><span class="mc" data-mcol="m_f1a" data-n="5" data-pos="1"></span></td><td class="cm">,</td><td><span class="mc" data-mcol="m_f1a" data-n="5" data-pos="2"></span></td><td><span class="mc" data-mcol="m_f1a" data-n="5" data-pos="3"></span></td><td><span class="mc" data-mcol="m_f1a" data-n="5" data-pos="4"></span></td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 2: answer, column 1"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 2: answer, column 2"><span class="pd ans" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 2: answer, column 3"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 2: answer, column 4"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="1. step 2: answer, column 5"><span class="pd ans" aria-hidden="true"></span></td></tr></table><div class="store"><input type="hidden" data-k="m_f1b" data-label="1. Step 2: 80,000 − your total =" class="hw-field"></div><div class="ansmark" data-field="m_f1b"></div></div></div></div>
+<div class="card live q" data-step><p class="fsq"><span class="qn">2.</span> A museum wants 60,000 visitors. 18,750 come in May and 23,600 in June. How many more visitors does it&nbsp;need?</p><div class="fsteps"><div class="fstep"><p class="bh">Step 1. Add the two numbers.</p><table class="cols" data-store="m_f2a" data-cid="f2a" aria-label="2. step 1"><tr class="car"><td class="sg"></td><td><input class="dig car" data-i="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 1: box on top, column 1"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 1: box on top, column 2"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-i="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 1: box on top, column 3"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 1: box on top, column 4"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 1: box on top, column 5"><span class="pd car" aria-hidden="true"></span></td></tr><tr class=""><td class="sg"></td><td>1</td><td>8</td><td class="cm">,</td><td>7</td><td>5</td><td>0</td></tr><tr class="bot"><td class="sg">+</td><td>2</td><td>3</td><td class="cm">,</td><td>6</td><td>0</td><td>0</td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 1: answer, column 1"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 1: answer, column 2"><span class="pd ans" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 1: answer, column 3"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 1: answer, column 4"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 1: answer, column 5"><span class="pd ans" aria-hidden="true"></span></td></tr></table><div class="store"><input type="hidden" data-k="m_f2a" data-label="2. Step 1: 18,750 + 23,600 =" class="hw-field"></div><div class="ansmark" data-field="m_f2a"></div></div><div class="fstep"><p class="bh">Step 2. Take your answer away from 60,000.</p><table class="cols" data-store="m_f2b" data-cid="f2b" aria-label="2. step 2"><tr class="car"><td class="sg"></td><td><input class="dig car" data-i="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 2: box on top, column 1"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 2: box on top, column 2"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-i="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 2: box on top, column 3"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 2: box on top, column 4"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="2. step 2: box on top, column 5"><span class="pd car" aria-hidden="true"></span></td></tr><tr class=""><td class="sg"></td><td>6</td><td>0</td><td class="cm">,</td><td>0</td><td>0</td><td>0</td></tr><tr class="bot"><td class="sg">−</td><td><span class="mc" data-mcol="m_f2a" data-n="5" data-pos="0"></span></td><td><span class="mc" data-mcol="m_f2a" data-n="5" data-pos="1"></span></td><td class="cm">,</td><td><span class="mc" data-mcol="m_f2a" data-n="5" data-pos="2"></span></td><td><span class="mc" data-mcol="m_f2a" data-n="5" data-pos="3"></span></td><td><span class="mc" data-mcol="m_f2a" data-n="5" data-pos="4"></span></td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 2: answer, column 1"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 2: answer, column 2"><span class="pd ans" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 2: answer, column 3"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 2: answer, column 4"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="2. step 2: answer, column 5"><span class="pd ans" aria-hidden="true"></span></td></tr></table><div class="store"><input type="hidden" data-k="m_f2b" data-label="2. Step 2: 60,000 − your total =" class="hw-field"></div><div class="ansmark" data-field="m_f2b"></div></div></div></div>
+<div class="card live q" data-step><p class="fsq"><span class="qn">3.</span> A new game wants 100,000 players. 45,600 join on Monday and 38,250 on Tuesday. How many more players does it&nbsp;need?</p><div class="fsteps"><div class="fstep"><p class="bh">Step 1. Add the two numbers.</p><table class="cols" data-store="m_f3a" data-cid="f3a" aria-label="3. step 1"><tr class="car"><td class="sg"></td><td><input class="dig car" data-i="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 1: box on top, column 1"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 1: box on top, column 2"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-i="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 1: box on top, column 3"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 1: box on top, column 4"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 1: box on top, column 5"><span class="pd car" aria-hidden="true"></span></td></tr><tr class=""><td class="sg"></td><td>4</td><td>5</td><td class="cm">,</td><td>6</td><td>0</td><td>0</td></tr><tr class="bot"><td class="sg">+</td><td>3</td><td>8</td><td class="cm">,</td><td>2</td><td>5</td><td>0</td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 1: answer, column 1"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 1: answer, column 2"><span class="pd ans" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 1: answer, column 3"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 1: answer, column 4"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 1: answer, column 5"><span class="pd ans" aria-hidden="true"></span></td></tr></table><div class="store"><input type="hidden" data-k="m_f3a" data-label="3. Step 1: 45,600 + 38,250 =" class="hw-field"></div><div class="ansmark" data-field="m_f3a"></div></div><div class="fstep"><p class="bh">Step 2. Take your answer away from 100,000.</p><table class="cols" data-store="m_f3b" data-cid="f3b" aria-label="3. step 2"><tr class="car"><td class="sg"></td><td><input class="dig car" data-i="0" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 2: box on top, column 1"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="1" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 2: box on top, column 2"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="2" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 2: box on top, column 3"><span class="pd car" aria-hidden="true"></span></td><td class="cm"></td><td><input class="dig car" data-i="3" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 2: box on top, column 4"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="4" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 2: box on top, column 5"><span class="pd car" aria-hidden="true"></span></td><td><input class="dig car" data-i="5" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="3. step 2: box on top, column 6"><span class="pd car" aria-hidden="true"></span></td></tr><tr class=""><td class="sg"></td><td>1</td><td>0</td><td>0</td><td class="cm">,</td><td>0</td><td>0</td><td>0</td></tr><tr class="bot"><td class="sg">−</td><td><span class="mc" data-mcol="m_f3a" data-n="6" data-pos="0"></span></td><td><span class="mc" data-mcol="m_f3a" data-n="6" data-pos="1"></span></td><td><span class="mc" data-mcol="m_f3a" data-n="6" data-pos="2"></span></td><td class="cm">,</td><td><span class="mc" data-mcol="m_f3a" data-n="6" data-pos="3"></span></td><td><span class="mc" data-mcol="m_f3a" data-n="6" data-pos="4"></span></td><td><span class="mc" data-mcol="m_f3a" data-n="6" data-pos="5"></span></td></tr><tr class="ans"><td class="sg"></td><td><input class="dig ans" data-i="0" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 2: answer, column 1"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="1" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 2: answer, column 2"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="2" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 2: answer, column 3"><span class="pd ans" aria-hidden="true"></span></td><td class="cm">,</td><td><input class="dig ans" data-i="3" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 2: answer, column 4"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="4" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 2: answer, column 5"><span class="pd ans" aria-hidden="true"></span></td><td><input class="dig ans" data-i="5" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="3. step 2: answer, column 6"><span class="pd ans" aria-hidden="true"></span></td></tr></table><div class="store"><input type="hidden" data-k="m_f3b" data-label="3. Step 2: 100,000 − your total =" class="hw-field"></div><div class="ansmark" data-field="m_f3b"></div></div></div></div></section>
+<section class="cusec"><div class="q"><p class="lbl">Count up</p><p class="instr">The numbers are close: count up from the small one to the big&nbsp;one.</p><p class="note scr">Type the round number in the middle, the two jumps, and the&nbsp;difference.</p><p class="note pr">Write the round number in the middle, the two jumps, and the&nbsp;difference.</p></div><div class="card model q"><p class="mtag">Like this</p><p class="big">4,002 − 3,997</p><div class="cuwrap"><div><div class="nl" role="img" aria-label="number line"><div class="nl-j"><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;3</span></div><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;2</span></div></div><div class="nl-l"><span class="tk a"><span class="tick"></span><span class="tv">3,997</span></span><span class="tk m"><span class="tick"></span><span class="tv">4,000</span></span><span class="tk b"><span class="tick"></span><span class="tv">4,002</span></span></div></div></div><ol class="msteps"><li>Jump from 3,997 to the round number 4,000: 3.</li><li>Jump from 4,000 to 4,002: 2.</li><li>3 + 2 = 5, so 4,002 − 3,997 = 5.</li></ol></div></div>
+<div class="card live q" data-step><p class="big"><span class="qn">1.</span> 805 − 796</p><div class="cuwrap"><div><div class="nl" role="img" aria-label="number line"><div class="nl-j"><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;<span class="pm" data-m="m_c1x"></span></span></div><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;<span class="pm" data-m="m_c1y"></span></span></div></div><div class="nl-l"><span class="tk a"><span class="tick"></span><span class="tv">796</span></span><span class="tk m"><span class="tick"></span><span class="tv"><span class="pm" data-m="m_c1m"></span></span></span><span class="tk b"><span class="tick"></span><span class="tv">805</span></span></div></div></div><div class="cupair"><label>Round number <input class="hw-field" data-k="m_c1m" data-label="C1. 805 − 796: round number" inputmode="numeric" autocomplete="off"></label><label>Jump 1 <input class="hw-field sm" data-k="m_c1x" data-label="C1. 805 − 796: jump 1" inputmode="numeric" autocomplete="off"></label><label>Jump 2 <input class="hw-field sm" data-k="m_c1y" data-label="C1. 805 − 796: jump 2" inputmode="numeric" autocomplete="off"></label><label>Difference <input class="hw-field sm" data-k="m_c1d" data-label="C1. 805 − 796 =" inputmode="numeric" autocomplete="off"></label></div></div></div>
+<div class="card live q" data-step><p class="big"><span class="qn">2.</span> 6,003 − 5,995</p><div class="cuwrap"><div><div class="nl" role="img" aria-label="number line"><div class="nl-j"><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;<span class="pm" data-m="m_c2x"></span></span></div><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;<span class="pm" data-m="m_c2y"></span></span></div></div><div class="nl-l"><span class="tk a"><span class="tick"></span><span class="tv">5,995</span></span><span class="tk m"><span class="tick"></span><span class="tv"><span class="pm" data-m="m_c2m"></span></span></span><span class="tk b"><span class="tick"></span><span class="tv">6,003</span></span></div></div></div><div class="cupair"><label>Round number <input class="hw-field" data-k="m_c2m" data-label="C2. 6,003 − 5,995: round number" inputmode="numeric" autocomplete="off"></label><label>Jump 1 <input class="hw-field sm" data-k="m_c2x" data-label="C2. 6,003 − 5,995: jump 1" inputmode="numeric" autocomplete="off"></label><label>Jump 2 <input class="hw-field sm" data-k="m_c2y" data-label="C2. 6,003 − 5,995: jump 2" inputmode="numeric" autocomplete="off"></label><label>Difference <input class="hw-field sm" data-k="m_c2d" data-label="C2. 6,003 − 5,995 =" inputmode="numeric" autocomplete="off"></label></div></div></div>
+<div class="card live q" data-step><p class="big"><span class="qn">3.</span> 30,004 − 29,998</p><div class="cuwrap"><div><div class="nl" role="img" aria-label="number line"><div class="nl-j"><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;<span class="pm" data-m="m_c3x"></span></span></div><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;<span class="pm" data-m="m_c3y"></span></span></div></div><div class="nl-l"><span class="tk a"><span class="tick"></span><span class="tv">29,998</span></span><span class="tk m"><span class="tick"></span><span class="tv"><span class="pm" data-m="m_c3m"></span></span></span><span class="tk b"><span class="tick"></span><span class="tv">30,004</span></span></div></div></div><div class="cupair"><label>Round number <input class="hw-field" data-k="m_c3m" data-label="C3. 30,004 − 29,998: round number" inputmode="numeric" autocomplete="off"></label><label>Jump 1 <input class="hw-field sm" data-k="m_c3x" data-label="C3. 30,004 − 29,998: jump 1" inputmode="numeric" autocomplete="off"></label><label>Jump 2 <input class="hw-field sm" data-k="m_c3y" data-label="C3. 30,004 − 29,998: jump 2" inputmode="numeric" autocomplete="off"></label><label>Difference <input class="hw-field sm" data-k="m_c3d" data-label="C3. 30,004 − 29,998 =" inputmode="numeric" autocomplete="off"></label></div></div></div>
+<div class="card live q" data-step><p class="big"><span class="qn">4.</span> 100,007 − 99,996</p><div class="cuwrap"><div><div class="nl" role="img" aria-label="number line"><div class="nl-j"><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;<span class="pm" data-m="m_c4x"></span></span></div><div class="jump"><span class="arc"></span><span class="jl">+&thinsp;<span class="pm" data-m="m_c4y"></span></span></div></div><div class="nl-l"><span class="tk a"><span class="tick"></span><span class="tv">99,996</span></span><span class="tk m"><span class="tick"></span><span class="tv"><span class="pm" data-m="m_c4m"></span></span></span><span class="tk b"><span class="tick"></span><span class="tv">100,007</span></span></div></div></div><div class="cupair"><label>Round number <input class="hw-field" data-k="m_c4m" data-label="C4. 100,007 − 99,996: round number" inputmode="numeric" autocomplete="off"></label><label>Jump 1 <input class="hw-field sm" data-k="m_c4x" data-label="C4. 100,007 − 99,996: jump 1" inputmode="numeric" autocomplete="off"></label><label>Jump 2 <input class="hw-field sm" data-k="m_c4y" data-label="C4. 100,007 − 99,996: jump 2" inputmode="numeric" autocomplete="off"></label><label>Difference <input class="hw-field sm" data-k="m_c4d" data-label="C4. 100,007 − 99,996 =" inputmode="numeric" autocomplete="off"></label></div></div></div></section>
+<section><div class="q"><p class="lbl">Who is right?</p><p class="instr">Is each one right? Then type the right&nbsp;total.</p></div><div class="mgrid"><div class="card live q" data-step><p class="claim"><span class="who">Lily:</span> &ldquo;Four £3 cards and a £5 book cost £12, because 4 + 3 + 5.&rdquo;</p><div class="cupair"><span><div class="opts" data-field="m_p1"><button type="button" class="opt" data-v="Yes, right" aria-pressed="false">Yes, right</button><button type="button" class="opt" data-v="No, wrong" aria-pressed="false">No, wrong</button></div><div class="store"><select data-k="m_p1" data-label="Lily: right or wrong?" class="hw-field"><option value="">Choose</option><option value="Yes, right">Yes, right</option><option value="No, wrong">No, wrong</option></select></div></span><label>The right total: <span class="money">£</span><input class="hw-field sm" data-k="m_p1t" data-label="Lily: the right total (£)" inputmode="numeric" autocomplete="off"></label></div></div><div class="card live q" data-step><p class="claim"><span class="who">Tom:</span> &ldquo;Two £6 tickets and a £4 drink cost £16, because 2 × 6 + 4.&rdquo;</p><div class="cupair"><span><div class="opts" data-field="m_p2"><button type="button" class="opt" data-v="Yes, right" aria-pressed="false">Yes, right</button><button type="button" class="opt" data-v="No, wrong" aria-pressed="false">No, wrong</button></div><div class="store"><select data-k="m_p2" data-label="Tom: right or wrong?" class="hw-field"><option value="">Choose</option><option value="Yes, right">Yes, right</option><option value="No, wrong">No, wrong</option></select></div></span><label>The right total: <span class="money">£</span><input class="hw-field sm" data-k="m_p2t" data-label="Tom: the right total (£)" inputmode="numeric" autocomplete="off"></label></div></div></div></section>
+</div>
+
+<script>
+(function () {
+  function field(k) { return [].find.call(document.querySelectorAll("[data-k]"), function (e) { return e.dataset.k === k; }); }
+  function val(el) { return !el ? "" : (el.isContentEditable ? el.textContent : String(el.value || "")).trim(); }
+  function shown(kind, v) {
+    if (!v) return "";
+    if (kind === "a" && v === "nothing") return "";
+    if ((kind === "l" || kind === "r") && v === "0") return "";
+    return v;
+  }
+  var groups = [].slice.call(document.querySelectorAll(".opts[data-field]"));
+  function current() {
+    var first = null;
+    [].forEach.call(document.querySelectorAll("[data-step]"), function (s) {
+      s.classList.remove("now");
+      if (first) return;
+      var empty = [].some.call(s.querySelectorAll("[data-k]"), function (f) { return !val(f); });
+      if (empty) first = s;
+    });
+    [].forEach.call(document.querySelectorAll(".card.live"), function (c) { c.classList.toggle("current", !!first && c.contains(first)); });
+    if (first && first.classList.contains("srow")) first.classList.add("now");
+  }
+  function paint() {
+    groups.forEach(function (g) {
+      var v = val(field(g.dataset.field));
+      [].forEach.call(g.querySelectorAll("button.opt"), function (b) {
+        var on = !!v && b.dataset.v === v;
+        b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    });
+    [].forEach.call(document.querySelectorAll("[data-m]"), function (m) {
+      var v = val(field(m.dataset.m));
+      m.textContent = shown(m.dataset.kind, v);
+      m.classList.toggle("done", !!v);
+    });
+    current();
+  }
+  groups.forEach(function (g) {
+    [].forEach.call(g.querySelectorAll("button.opt"), function (b) {
+      b.addEventListener("click", function () {
+        var s = field(g.dataset.field); if (!s) return;
+        if (s.value !== b.dataset.v) { s.value = b.dataset.v; s.dispatchEvent(new Event("change", { bubbles: true })); }
+        paint();
+      });
+    });
+  });
+
+  // ---- typed bus stops (Megan): digit boxes -> one hidden answer, e.g. "146 r 2" ----
+  var LEFT_STORE = "hwbs-" + (document.body.dataset.sheetId || location.pathname);
+  function loadLeft() { try { return JSON.parse(localStorage.getItem(LEFT_STORE) || "{}"); } catch (e) { return {}; } }
+  function saveLeft(o) { try { localStorage.setItem(LEFT_STORE, JSON.stringify(o)); } catch (e) {} }
+  function setBox(inp, v) {
+    inp.value = v; inp.setAttribute("value", v);
+    var m = inp.nextElementSibling; if (m && m.classList.contains("pd")) m.textContent = v;
+  }
+  function setupTyped(bs) {
+    var id = bs.dataset.tid, store = field(bs.dataset.store);
+    var ans = [].slice.call(bs.querySelectorAll("input.dig.ans"));
+    var car = [].slice.call(bs.querySelectorAll("input.dig.car"));
+    var rem = bs.querySelector("input.dig.rem");
+    function compose() {
+      var ds = ans.map(function (i) { return i.value; });
+      var first = ds.findIndex(function (d) { return d !== ""; });
+      var q = first < 0 ? "" : ds.slice(first).map(function (d) { return d || "_"; }).join("");
+      q = q.replace(/^0+(?=\d)/, "");   // a 0 typed in a front box is not marked wrong: 066 -> 66
+      var r = rem.value;
+      if (!q && !r) return "";
+      return (q + (r && r !== "0" ? " r " + r : "")).trim();
+    }
+    function push() {
+      var v = compose();
+      if (store && store.value !== v) {
+        store.value = v;
+        store.dispatchEvent(new Event("input", { bubbles: true }));
+        store.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      current();
+    }
+    function pushLeft() { var o = loadLeft(); o[id] = car.map(function (i) { return i.value; }); saveLeft(o); }
+    function carAt(i) { return car.filter(function (c) { return +c.dataset.i === i; })[0]; }
+    ans.concat(car, [rem]).forEach(function (inp) {
+      inp.addEventListener("input", function () {
+        var d = (inp.value.match(/\d/g) || []).pop() || "";
+        setBox(inp, d);
+        if (inp.classList.contains("car")) { pushLeft(); if (d) ans[+inp.dataset.i].focus(); return; }
+        push();
+        if (d && inp.classList.contains("ans")) {
+          var i = +inp.dataset.i, nx = carAt(i + 1);
+          if (nx) nx.focus(); else if (i + 1 < ans.length) ans[i + 1].focus(); else rem.focus();
+        }
+      });
+      inp.addEventListener("focus", function () { inp.select(); });
+    });
+    function restore() {
+      if (store && store.value && ans.every(function (i) { return !i.value; }) && !rem.value) {
+        var parts = store.value.split("r"), q = (parts[0] || "").replace(/[^0-9_]/g, ""), off = ans.length - q.length;
+        ans.forEach(function (inp, i) { var ch = i >= off ? q.charAt(i - off) : ""; setBox(inp, /\d/.test(ch) ? ch : ""); });
+        setBox(rem, ((parts[1] || "").match(/\d/) || [""])[0]);
+      }
+      var saved = loadLeft()[id];
+      if (saved) car.forEach(function (inp, i) { if (!inp.value) setBox(inp, saved[i] || ""); });
+    }
+    restore();
+    return restore;
+  }
+  var restorers = [].map.call(document.querySelectorAll(".bs[data-store]"), setupTyped);
+  document.addEventListener("input", function () { current(); });
+  document.addEventListener("change", paint);
+  function init() { restorers.forEach(function (f) { f(); }); paint(); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+  setTimeout(init, 700);
+})();
+</script>
+
+<script>
+(function () {
+  function field(k) { return [].find.call(document.querySelectorAll("[data-k]"), function (e) { return e.dataset.k === k; }); }
+  function digitsOf(k) { var f = field(k); return f ? String(f.value || "").replace(/[^0-9]/g, "") : ""; }
+  function mirrors() {
+    [].forEach.call(document.querySelectorAll("[data-mcol]"), function (m) {
+      var d = digitsOf(m.dataset.mcol), n = +m.dataset.n, pos = +m.dataset.pos;
+      var s = d ? (Array(n + 1).join(" ") + d).slice(-n) : "";
+      var ch = s ? s.charAt(pos).trim() : "";
+      m.textContent = ch; m.classList.toggle("done", !!d);
+    });
+    [].forEach.call(document.querySelectorAll("[data-m]"), function (m) {
+      var f = field(m.dataset.m); if (!f || f.tagName === "SELECT") return;
+      var v = String(f.value || "").trim(); m.textContent = v; m.classList.toggle("done", !!v);
+    });
+  }
+  var STORE = "hwcol-" + (document.body.dataset.sheetId || location.pathname);
+  function load() { try { return JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { return {}; } }
+  function save(o) { try { localStorage.setItem(STORE, JSON.stringify(o)); } catch (e) {} }
+  function setBox(inp, v) { inp.value = v; inp.setAttribute("value", v); var p = inp.nextElementSibling; if (p && p.classList.contains("pd")) p.textContent = v; }
+  function setup(tb) {
+    var id = tb.dataset.cid, store = field(tb.dataset.store);
+    var ans = [].slice.call(tb.querySelectorAll("input.dig.ans"));
+    var car = [].slice.call(tb.querySelectorAll("input.dig.car"));
+    function push() {
+      var ds = ans.map(function (i) { return i.value; });
+      var first = ds.findIndex(function (d) { return d !== ""; });
+      var q = first < 0 ? "" : ds.slice(first).map(function (d) { return d || "_"; }).join("");
+      q = q.replace(/^0+(?=\d)/, "");
+      if (store && store.value !== q) {
+        store.value = q;
+        store.dispatchEvent(new Event("input", { bubbles: true }));
+        store.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      mirrors();
+    }
+    function pushCar() { var o = load(); o[id] = car.map(function (i) { return i.value; }); save(o); }
+    ans.forEach(function (inp, i) {
+      inp.addEventListener("input", function () {
+        var d = (inp.value.match(/\d/g) || []).pop() || ""; setBox(inp, d); push();
+        if (d && i > 0) ans[i - 1].focus();
+      });
+      inp.addEventListener("focus", function () { inp.select(); });
+    });
+    car.forEach(function (inp) {
+      inp.addEventListener("input", function () { var d = (inp.value.match(/\d+/g) || [""]).pop().slice(-2); setBox(inp, d); pushCar(); });
+      inp.addEventListener("focus", function () { inp.select(); });
+    });
+    function restore() {
+      if (store && store.value && ans.every(function (i) { return !i.value; })) {
+        var q = store.value.replace(/[^0-9_]/g, ""), off = ans.length - q.length;
+        ans.forEach(function (inp, i) { var ch = i >= off ? q.charAt(i - off) : ""; setBox(inp, /\d/.test(ch) ? ch : ""); });
+      }
+      var s = load()[id]; if (s) car.forEach(function (inp, i) { if (!inp.value) setBox(inp, s[i] || ""); });
+      mirrors();
+    }
+    restore(); return restore;
+  }
+  var rs = [].map.call(document.querySelectorAll("table.cols[data-store]"), setup);
+  document.addEventListener("input", mirrors);
+  document.addEventListener("change", mirrors);
+  function init() { rs.forEach(function (f) { f(); }); mirrors(); }
+  if (document.readyState === "complete") init(); else window.addEventListener("load", init);
+  setTimeout(init, 800);
+})();
+</script>
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJtX3QxIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjQifSwgIm1fdDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIzNiJ9LCAibV90MyI6IHsidCI6ICJleGFjdCIsICJhIjogIjMyIn0sICJtX3Q0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMjgifSwgIm1fdDUiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI5In0sICJtX3Q2IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiJ9LCAibV90NyI6IHsidCI6ICJleGFjdCIsICJhIjogIjgifSwgIm1fdDgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI3In0sICJtX2YxYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjY0MjUwIn0sICJtX2YxYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjE1NzUwIn0sICJtX2YyYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjQyMzUwIn0sICJtX2YyYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjE3NjUwIn0sICJtX2YzYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjgzODUwIn0sICJtX2YzYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjE2MTUwIn0sICJtX2MxbSI6IHsidCI6ICJleGFjdCIsICJhIjogIjgwMCJ9LCAibV9jMXgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0In0sICJtX2MxeSI6IHsidCI6ICJleGFjdCIsICJhIjogIjUifSwgIm1fYzFkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOSJ9LCAibV9jMm0iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2MDAwIn0sICJtX2MyeCI6IHsidCI6ICJleGFjdCIsICJhIjogIjUifSwgIm1fYzJ5IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAibV9jMmQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI4In0sICJtX2MzbSI6IHsidCI6ICJleGFjdCIsICJhIjogIjMwMDAwIn0sICJtX2MzeCI6IHsidCI6ICJleGFjdCIsICJhIjogIjIifSwgIm1fYzN5IjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAibV9jM2QiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI2In0sICJtX2M0bSI6IHsidCI6ICJleGFjdCIsICJhIjogIjEwMDAwMCJ9LCAibV9jNHgiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICI0In0sICJtX2M0eSI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgIm1fYzRkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTEifSwgIm1fcDEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJObywgd3JvbmcifSwgIm1fcDF0IjogeyJ0IjogImV4YWN0IiwgImEiOiAiMTcifSwgIm1fcDIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJZZXMsIHJpZ2h0In0sICJtX3AydCI6IHsidCI6ICJleGFjdCIsICJhIjogIjE2In19</script>
+<script src="../assets/hw.js?v=20261127-open-gap-note"></script>
+</body></html>

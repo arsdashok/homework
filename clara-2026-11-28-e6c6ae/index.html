@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clara Homework 28 November 2026</title>
+<!--
+Clara, lesson of 28 November 2026: CGP VR missing letters (9/10, first time), W45 recap (cards 07-08), Y5 W46
+equivalent fractions cards 00-08 items 1-3. NOT reached and kept for the next lesson: card 08 items 4-5 (10/15,
+12/16), card 09 tenths and hundredths, exit ticket 10; none of their numbers is used here.
+Shaky in the lesson: «You divide» on 5/6 = 10/? and «We divide» on 3/4 = ?/12 (the denominator grew), and the
+common factor on 9/12 (6, 9, 8, 12, 11 before 3). Block 1 drills the deck's own «write it FIRST × or ÷» step,
+block 2 its «÷ by ___ FIRST» step. Block 3 is the VR format of the day.
+Online sheet, block flow wrap by the Codex builder (three blocks = the three .section elements). Fields: 47.
+ANSWER POSITIONS (read back after placing):
+  Block 1 op: × ÷ × × ÷ × ÷ ×   gap: n d d n n d n d   by: 7 2 4 3 3 4 2 3   answers 21 6 12 15 3 16 7 15
+  Block 2 by: 3 5 3 4 6 2   answers 3/7 3/4 3/8 4/5 2/3 5/7 (12/18 is the «fully» trap: ÷2 and ÷3 both stop early)
+  Block 3 letters: l d k m h, correct button positions 2 4 1 5 3. Distractors that fit ONE pair: t (belt/tamp),
+    g (hang), s (pins/site), n (warn/noon), t (fist/tat).
+MODELS: 2/5 = ?/15 (× 3, denominators) and 6/8 = 3/? (÷ 2, numerators); simplify 24/40 (÷ 8, 3/5); missing letter r (four rain, star red). No item uses them.
+MIRRORS: her chosen × or ÷ and her «by» number appear, read-only, on the = between the two fractions
+  (top and bottom, so the machine is visibly done to BOTH numbers). They never show the right answer.
+-->
+<style>
+/* Clara mint system (17 Oct 2026 design): Remember = mint card, Worked example = pale dashed inset,
+   tasks on white with green number badges and green-outline fields. Sheet of 28 November 2026. */
+@page { size:A4; margin:13mm 14mm; }
+:root { --ink:#203e35; --muted:#536e64; --green:#286951; --mint:#dcefe5; --pale:#f0f7f3; --line:#bfd7ca; --pt:#c2410c; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Avenir Next',Arial,sans-serif; color:var(--ink); background:#fff; font-size:17px; line-height:1.45;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:18px 18px 40px; }
+.sheet-head { padding:18px 22px; background:var(--mint); border-radius:16px; margin-bottom:20px; }
+.eyebrow,.task-label,.ex-title,.role-label { font-size:12px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--green); }
+.eyebrow { margin-bottom:4px; }
+h1 { font-size:28px; line-height:1.2; letter-spacing:-.6px; }
+.section { margin-bottom:26px; }
+.section + .section { margin-top:34px; }
+.sec-head { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--line); margin-bottom:14px; break-after:avoid; }
+.subj { font-size:12px; text-transform:uppercase; font-weight:700; letter-spacing:1.3px; background:var(--green); color:#fff; border-radius:6px; padding:4px 10px; }
+.note { color:var(--muted); font-size:15px; }
+.task { margin-bottom:6px; }
+.task.gapt { margin-top:22px; }
+.task-label { margin-bottom:6px; }
+.remember { background:var(--mint); border-radius:12px; padding:12px 16px; margin-bottom:12px; break-inside:avoid; }
+.remember p { font-size:18px; font-weight:400; line-height:1.4; }
+.remember b { color:var(--green); }
+.model { margin:10px 0 12px; padding:12px 16px; background:var(--pale); border:1.5px dashed #92b6a3; border-radius:6px; break-inside:avoid; }
+.ex-title { display:block; margin-bottom:8px; color:var(--muted); }
+.model b, .model strong { color:var(--green); }
+.filled { display:inline-block; min-width:2.2em; padding:2px 8px; border:1.5px solid #9cc2ad; border-radius:8px; background:#fff; color:var(--green); font-weight:700; text-align:center; }
+.model-note { font-size:16px; color:var(--muted); margin-top:4px; text-wrap:pretty; }
+.model-row + .model-row { margin-top:14px; padding-top:14px; border-top:1px dashed #b5d0c1; }
+.pv-key { display:none; font-size:13px; color:var(--muted); margin-top:10px; }
+.role-label { margin:14px 0 6px; }
+.lead { font-size:22px; line-height:1.3; font-weight:700; margin-bottom:8px; break-after:avoid; text-wrap:pretty; }
+.small { font-size:14px; color:var(--muted); margin-bottom:8px; text-wrap:pretty; }
+.screen-only { display:inline; } .print-only { display:none; }
+.store { display:none !important; }
+.given { font-weight:700; font-variant-numeric:tabular-nums; }
+
+.q { padding:12px 0; border-bottom:1px solid #dfebe4; break-inside:avoid; page-break-inside:avoid; }
+.q-top { display:flex; align-items:flex-start; gap:12px; }
+.q-num { display:flex; align-items:center; justify-content:center; flex:0 0 30px; height:30px; border-radius:50%; color:#fff; background:var(--green); font-size:14px; font-weight:700; }
+.prompt { font-size:19px; padding-top:2px; text-wrap:pretty; }
+.lab { font-size:15px; font-weight:700; color:var(--muted); }
+
+/* fields: mint outline; answer text keeps the shared blue */
+body input.hw-field, body select[data-k], body .hw-field { background:#fff !important; border:1.5px solid #739d87 !important; border-radius:8px !important; }
+body input.hw-field:focus, body select[data-k]:focus { border-color:var(--green) !important; box-shadow:0 0 0 3px var(--mint); outline:none; }
+body input.hw-field { min-height:40px; font-size:18px; padding:4px 6px; }
+.gapn { width:3.6em; min-width:0 !important; text-align:center; }
+.gapn.wide { width:6.2em; }
+body select[data-k] { font:inherit; font-size:17px; min-height:40px; padding:4px 8px; min-width:0; max-width:100%; }
+.circle-opt { display:none; font-size:14px; }
+.eqrow { display:inline-flex; align-items:center; flex-wrap:nowrap; white-space:nowrap; font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; }
+
+/* read-only mirrors of her own earlier entries */
+.mirror { display:inline-block; min-width:2.4em; min-height:1.6em; padding:1px 8px; border:1.5px dashed #9cc2ad; border-radius:8px;
+  background:var(--pale); color:#1d4ed8; text-align:center; font-weight:700; vertical-align:middle; }
+
+/* tap buttons */
+.word-opt, .tool-opt { font:inherit; color:var(--ink); background:#fff; border:2px solid #8db89f; cursor:pointer;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; }
+.word-opt.on, .tool-opt.on { background:var(--green); border-color:var(--green); color:#fff; }
+.tool-pick { display:flex; flex-wrap:wrap; gap:8px; }
+.tool-opt { font-size:16px; font-weight:600; border-radius:22px; padding:6px 14px; min-height:42px; display:inline-flex; align-items:center; justify-content:center; }
+.ncol .tool-opt { min-width:46px; }
+.tool-pick > .hw-mark { flex-basis:100%; }
+.model .tool-opt { cursor:default; }
+
+/* ---------- place-value items ---------- */
+.pv-body { flex:1; min-width:0; display:flex; flex-direction:column; gap:12px; }
+.pv-main { display:flex; flex-direction:column; gap:10px; }
+.pv-calc .given { font-size:26px; }
+.pv-picks { display:flex; flex-wrap:wrap; gap:10px 28px; }
+.pick-grp { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.pv-ans .eqrow { font-size:22px; }
+.ben-say { font-size:20px; }
+
+/* the chart: fixed columns, the point pinned between ones and tenths */
+.pv { display:inline-grid; gap:0; align-self:flex-start; max-width:100%; padding:0 2px 2px 0; }
+.pv-row { display:grid; grid-template-columns:96px repeat(8, 52px); }
+.pv-lab { font-size:13px; font-weight:700; color:var(--muted); display:flex; align-items:center; padding-right:8px; line-height:1.15; }
+.pv .c { position:relative; display:flex; align-items:center; justify-content:center; height:42px; border:1px solid #c6dcd1; margin:0 -1px -1px 0;
+  background:#fff; font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; }
+.pv .c.c5, .pv .c.c6, .pv .c.c7 { background:#f7fbf9; }
+.pv-head .c { height:auto; min-height:34px; background:var(--mint); font-size:11px; font-weight:700; color:var(--green); text-align:center; line-height:1.1; padding:3px 2px; hyphens:manual; -webkit-hyphens:manual; overflow-wrap:normal; word-break:normal; }
+.pv-head .c5, .pv-head .c6, .pv-head .c7 { background:#e8f4ee; }
+.abbr { display:none; }
+.pv .mine .c { color:#1d4ed8; }
+.pv .ben-row .c { color:#8a5a14; }
+.pv .done .c { color:var(--green); }
+.pv .pt { position:absolute; right:-5px; bottom:5px; width:9px; height:9px; border-radius:50%; background:var(--pt); z-index:2; }
+
+/* ---------- mental methods ---------- */
+.m-body { flex:1; min-width:0; display:flex; flex-wrap:wrap; gap:10px 36px; align-items:flex-start; }
+.m-calc { font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; padding-top:2px; }
+.steps { display:grid; gap:8px; }
+.step { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.step .lab { min-width:7.4em; }
+.step.so .lab { color:var(--green); }
+.fact-row { display:flex; flex-wrap:wrap; gap:14px 40px; }
+.fact { background:var(--pale); border-radius:12px; padding:10px 18px; }
+.facts { border-bottom:0; }
+
+/* ---------- odd ones out ---------- */
+.vq-body { flex:1; min-width:0; }
+.word-pick { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
+.word-opt { font-size:18px; font-weight:600; border-radius:14px; padding:8px 6px; min-height:48px; display:flex; align-items:center; justify-content:center; text-align:center; }
+.word-opt.still { cursor:default; }
+.word-pick > .hw-mark { grid-column:1/-1; }
+.word-hint { font-size:15px; color:var(--muted); margin-top:6px; }
+.link-row { margin-top:10px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+body select.link { min-width:300px; }
+.model .word-pick { max-width:700px; }
+.model .mrow { display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; font-size:19px; margin-top:12px; }
+
+/* shared bar in the mint palette */
+body .hw-bar { border:1px solid var(--line); background:var(--pale); border-radius:16px; box-shadow:none; }
+body .hw-send { color:#fff; background:var(--green); border:0; border-radius:10px; font-family:inherit; }
+body .hw-mark.hw-ok { color:var(--green); }
+
+/* ---------- big screens: whole width, big type (Dasha, 1 Nov 2026) ---------- */
+@media screen and (min-width:900px) {
+  body { max-width:1640px; margin:0 auto; padding:36px 48px 70px; background:#edf5f0; }
+  #sheet { background:#fff; padding:44px 52px; border-radius:24px; }
+  body:not(:has(#sheet)) { background:#fff; }
+  .sheet-head { padding:26px 32px; margin-bottom:34px; } h1 { font-size:40px; }
+  .eyebrow,.task-label,.ex-title,.role-label { font-size:16px; }
+  .subj { font-size:16px; padding:6px 14px; } .note { font-size:22px; }
+  .section + .section { margin-top:64px; }
+  .remember { padding:18px 24px; } .remember p { font-size:28px; }
+  .model { padding:20px 26px; }
+  .model-note { font-size:22px; }
+  .lead { font-size:36px; margin-bottom:14px; }
+  .small, .word-hint { font-size:20px; }
+  .q { padding:24px 0; } .q-num { flex-basis:42px; height:42px; font-size:20px; } .q-top { gap:18px; }
+  .prompt, .ben-say { font-size:29px; }
+  .lab { font-size:22px; }
+  body input.hw-field { min-height:56px; font-size:27px; }
+  body select[data-k] { min-height:56px; font-size:26px; padding:6px 12px; }
+  .circle-opt { font-size:20px; }
+  .eqrow, .pv-ans .eqrow { font-size:30px; }
+  .mirror { min-height:1.5em; }
+  .tool-opt { font-size:26px; padding:8px 22px; min-height:60px; border-radius:30px; }
+  .ncol .tool-opt { min-width:66px; }
+  .tool-pick { gap:12px; }
+  /* prompt and controls on the left, the chart on the right */
+  .pv-body { flex-direction:row; align-items:center; gap:24px 56px; flex-wrap:wrap; }
+  .pv-main { flex:1 1 420px; gap:18px; }
+  .pv-calc .given { font-size:40px; }
+  .pv-picks { gap:16px 40px; }
+  .pick-grp { gap:14px; }
+  .pv-row { grid-template-columns:136px repeat(8, 78px); }
+  .pv-lab { font-size:20px; }
+  .pv .c { height:60px; font-size:32px; }
+  .pv-head .c { min-height:52px; font-size:13px; padding:3px 3px; }
+  .pv .pt { width:13px; height:13px; right:-7px; bottom:8px; }
+  .m-calc { font-size:38px; } .m-body { gap:16px 64px; } .steps { gap:14px; }
+  .step .lab { min-width:7.2em; }
+  .fact { padding:16px 28px; border-radius:16px; } .fact-row { gap:20px 60px; }
+  .word-pick { gap:18px; }
+  .word-opt { font-size:28px; min-height:72px; border-radius:18px; }
+  .link-row { margin-top:16px; gap:16px; }
+  body select.link { min-width:520px; }
+  .model .word-pick { max-width:1100px; }
+  .model .mrow { font-size:28px; gap:10px 20px; }
+}
+
+/* phones */
+@media screen and (max-width:620px) {
+  body { padding:10px 8px 30px; }
+  .lead { font-size:20px; } .prompt, .ben-say { font-size:18px; } .remember p { font-size:17px; }
+  .q-top { gap:8px; } .q-num { flex-basis:26px; height:26px; font-size:13px; }
+  .pv-row { grid-template-columns:62px repeat(8, minmax(0, 34px)); }
+  .pv-lab { font-size:11px; }
+  .pv .c { height:34px; font-size:18px; }
+  .full { display:none; } .abbr { display:inline; } .pv-key { display:block; }
+  .pv-head .c { font-size:12px; min-height:26px; }
+  .pv .pt { width:7px; height:7px; right:-4px; bottom:4px; }
+  .tool-opt { font-size:15px; padding:5px 11px; min-height:40px; }
+  .m-calc { font-size:22px; }
+  .step .lab { min-width:0; flex-basis:100%; }
+  .eqrow { font-size:18px; }
+  .gapn.wide { width:5.4em; }
+  .word-pick { grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+  .word-opt { font-size:16px; min-height:44px; padding:6px 2px; }
+  body select.link { min-width:0; width:100%; }
+  .model .mrow { font-size:17px; }
+}
+
+/* PDF export (hw.js, 800px frame) and paper */
+@media print {
+  body { padding:0; font-size:14px; }
+  .screen-only, .hw-bar { display:none !important; } .print-only { display:inline !important; }
+  p.print-only { display:block !important; }
+  .choice-wrap.is-empty select { display:none !important; }
+  .choice-wrap.is-empty .circle-opt { display:inline-block; }
+  .word-hint { display:none !important; }
+  .sheet-head { padding:12px 16px; margin-bottom:12px; } h1 { font-size:22px; }
+  .lead { font-size:16px; } .remember p { font-size:14px; } .model-note { font-size:12px; }
+  .prompt, .ben-say { font-size:14px; }
+  .q { padding:7px 0; }
+  .remember { padding:8px 12px; margin-bottom:8px; } .model { padding:8px 12px; margin:6px 0 8px; }
+  .pv-body { flex-direction:row; align-items:center; gap:10px 24px; }
+  .pv-main { flex:1 1 260px; gap:6px; }
+  .pv-calc .given { font-size:18px; }
+  .pv-row { grid-template-columns:64px repeat(8, 36px); }
+  .pv-lab { font-size:10px; }
+  .pv .c { height:26px; font-size:14px; }
+  .full { display:none !important; } .abbr { display:inline !important; }
+  .pv-head .c { font-size:11px; min-height:20px; padding:1px; }
+  .pv-key { display:block; font-size:10px; margin-top:6px; }
+  .model-row + .model-row { margin-top:6px; padding-top:6px; }
+  .pv .pt { width:6px; height:6px; right:-3px; bottom:3px; }
+  .tool-opt { font-size:12px; padding:2px 8px; min-height:24px; }
+  .ncol .tool-opt { min-width:26px; }
+  .eqrow, .pv-ans .eqrow { font-size:14px; } .lab { font-size:12px; }
+  .m-calc { font-size:16px; } .steps { gap:4px; }
+  .word-opt { font-size:13px; min-height:28px; padding:3px 4px; border-radius:8px; }
+  .word-pick { gap:6px; }
+  .link-row { margin-top:4px; }
+  .model .mrow { font-size:14px; }
+  .section + .section { margin-top:18px; }
+  .task { break-inside:avoid; page-break-inside:avoid; }
+  .sec-head, .task-label, .role-label, .lead, .task { break-after:avoid; page-break-after:avoid; }
+}
+
+/* ---------- fractions: numerator over denominator, always vertical ---------- */
+.vfrac { display:inline-flex; flex-direction:column; align-items:stretch; justify-content:center; vertical-align:middle; text-align:center;
+  line-height:1.05; white-space:nowrap; margin:0 .15em; min-width:1.2em; font-weight:800; font-variant-numeric:tabular-nums; }
+.vfrac > .vn { display:block; padding:0 .16em .1em; border-bottom:.09em solid currentColor; min-height:1em; }
+.vfrac > .vd { display:block; padding:.1em .16em 0; min-height:1em; }
+.vfrac.q-frac .vn, .vfrac.q-frac .vd { color:var(--green); }
+.vfrac input.hw-field.fr-in { width:2.6em; min-width:0 !important; min-height:0 !important; height:1.4em; padding:0 2px !important; font:inherit; font-size:.85em; text-align:center; margin:.06em 0; }
+.vfrac .filled { min-width:1.6em; padding:0 4px; font-size:.85em; }
+.f-body { flex:1; min-width:0; display:flex; flex-wrap:wrap; align-items:center; gap:14px 40px; }
+.f-given { display:flex; align-items:center; gap:10px; font-size:30px; }
+.f-given .eq, .frow .eq { font-weight:800; }
+.f-steps { display:grid; gap:10px; }
+.step { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.step .lab { min-width:6.6em; }
+.step .lab.by { min-width:0; }
+.step.so .lab { color:var(--green); }
+.lab.big { font-size:17px; min-width:0; }
+.frow { display:inline-flex; align-items:center; gap:4px; font-size:28px; }
+.mach { display:inline-flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; margin:0 6px; font-size:16px; font-weight:700; color:var(--green); }
+.mach .marr { font-size:24px; color:var(--ink); line-height:1; }
+.mach .mirror { min-width:1.4em; padding:0 4px; font-size:15px; min-height:1.3em; }
+.mach .mt, .mach .mb { display:inline-flex; align-items:center; gap:2px; }
+.mop { font-weight:800; }
+.mfill { display:inline-block; padding:0 6px; border:1.5px solid #9cc2ad; border-radius:8px; background:#fff; color:var(--green); font-weight:800; }
+.ops .tool-opt { min-width:52px; font-size:22px; font-weight:800; }
+.model .f-body + .f-body { margin-top:14px; padding-top:14px; border-top:1px dashed #b5d0c1; }
+
+/* ---------- missing letters ---------- */
+.ml-body { flex:1; min-width:0; display:flex; flex-direction:column; gap:12px; }
+.ml-pairs { display:flex; flex-wrap:wrap; gap:10px 54px; font-size:30px; font-weight:800; letter-spacing:.02em; }
+.ml-pair { white-space:nowrap; }
+.ml-br { color:var(--muted); font-weight:600; margin:0 2px; }
+.mgap { display:inline-block; min-width:1.2em; text-align:center; color:var(--muted); border-bottom:2px solid var(--line); }
+.mgap.on { color:var(--green); }
+.letters .tool-opt { min-width:52px; font-size:22px; font-weight:800; text-transform:lowercase; }
+
+@media screen and (min-width:900px) {
+  .f-given { font-size:52px; gap:16px; }
+  .frow { font-size:46px; gap:6px; }
+  .f-body { gap:22px 80px; }
+  .f-steps { gap:18px; }
+  .step .lab { min-width:7.4em; }
+  .lab.big { font-size:24px; }
+  .mach { font-size:22px; margin:0 10px; }
+  .mach .marr { font-size:36px; }
+  .mach .mirror { font-size:22px; }
+  .ops .tool-opt, .letters .tool-opt { min-width:76px; font-size:30px; }
+  .ml-pairs { font-size:52px; gap:14px 110px; }
+}
+@media screen and (max-width:620px) {
+  .f-given { font-size:26px; } .frow { font-size:24px; }
+  .step .lab { min-width:0; flex-basis:100%; }
+  .ml-pairs { font-size:24px; gap:8px 26px; }
+  .ops .tool-opt, .letters .tool-opt { min-width:42px; font-size:18px; }
+}
+@media print {
+  .f-given { font-size:18px; } .frow { font-size:17px; }
+  .f-body { gap:6px 24px; } .f-steps { gap:4px; }
+  .mach { font-size:11px; } .mach .marr { font-size:15px; }
+  .ops .tool-opt, .letters .tool-opt { min-width:24px; font-size:13px; }
+  .ml-pairs { font-size:18px; gap:6px 30px; }
+  .lab.big { font-size:12px; }
+  .vfrac input.hw-field.fr-in { font-size:13px; }
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/hw.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body data-student="Clara" data-sheet="Maths 2026-11-28" data-sheet-id="clara-2026-11-28-maths">
+<div id="sheet">
+
+
+<div class="sheet-head"><div class="eyebrow">Maths and verbal reasoning</div><h1>Clara’s homework</h1></div>
+
+<div class="section maths decide">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Decide first</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember"><p>Find the pair you know: both numerators or both denominators. Read it left to right. If it gets bigger, <b>×</b>. If it gets smaller, <b>÷</b>. Then do the SAME to the other&nbsp;pair.</p></div>
+<div class="model"><p class="ex-title">Worked example</p><div class="f-body model-row"><div class="f-given"><span class="vfrac "><span class="vn">2</span><span class="vd">5</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">?</span><span class="vd">15</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops"><span class="tool-opt on">×</span><span class="tool-opt">÷</span></div><span class="lab by">by</span><span class="filled">3</span></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">2</span><span class="vd">5</span></span><span class="mach"><span class="mt"><span class="mfill">×3</span></span><span class="marr">=</span><span class="mb"><span class="mfill">×3</span></span></span><span class="vfrac "><span class="vn"><span class="filled">6</span></span><span class="vd">15</span></span></span></div><p class="model-note">Here you know both denominators: 5 went to 15. It got bigger, so ×&nbsp;3. The numerator does the same: 2&nbsp;×&nbsp;3&nbsp;=&nbsp;6.</p></div></div><div class="f-body model-row"><div class="f-given"><span class="vfrac "><span class="vn">6</span><span class="vd">8</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">3</span><span class="vd">?</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops"><span class="tool-opt">×</span><span class="tool-opt on">÷</span></div><span class="lab by">by</span><span class="filled">2</span></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">6</span><span class="vd">8</span></span><span class="mach"><span class="mt"><span class="mfill">÷2</span></span><span class="marr">=</span><span class="mb"><span class="mfill">÷2</span></span></span><span class="vfrac "><span class="vn">3</span><span class="vd"><span class="filled">4</span></span></span></span></div><p class="model-note">Here you know both numerators: 6 went to 3. It got smaller, so ÷&nbsp;2. The denominator does the same: 8&nbsp;÷&nbsp;2&nbsp;=&nbsp;4.</p></div></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap × or ÷ and type the number. Then type the missing&nbsp;number.</span><span class="print-only">Circle × or ÷ and write the number. Then write the missing&nbsp;number.</span></p>
+</div>
+<div class="q fq"><div class="q-top"><div class="q-num">1</div><div class="f-body"><div class="f-given"><span class="vfrac "><span class="vn">3</span><span class="vd">4</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">?</span><span class="vd">28</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops" data-store="d1o" data-field="d1o"><button type="button" class="tool-opt" data-v="×">×</button><button type="button" class="tool-opt" data-v="÷">÷</button></div><div class="store"><select data-k="d1o" data-label="1. 3/4 = ?/28: × or ÷" tabindex="-1" class="hw-field"><option value=""></option><option value="×">×</option><option value="÷">÷</option></select></div><span class="lab by">by</span><input class="hw-field num gapn" data-k="d1b" data-label="1. 3/4 = ?/28: by" aria-label="1. 3/4 = ?/28: by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">3</span><span class="vd">4</span></span><span class="mach"><span class="mt"><span class="mirror" data-from="d1o"></span><span class="mirror" data-from="d1b"></span></span><span class="marr">=</span><span class="mb"><span class="mirror" data-from="d1o"></span><span class="mirror" data-from="d1b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="d1a" data-label="1. 3/4 = ?/28: missing number" aria-label="1. 3/4 = ?/28: missing number" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd">28</span></span></span></div></div></div></div></div><div class="q fq"><div class="q-top"><div class="q-num">2</div><div class="f-body"><div class="f-given"><span class="vfrac "><span class="vn">10</span><span class="vd">12</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">5</span><span class="vd">?</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops" data-store="d2o" data-field="d2o"><button type="button" class="tool-opt" data-v="×">×</button><button type="button" class="tool-opt" data-v="÷">÷</button></div><div class="store"><select data-k="d2o" data-label="2. 10/12 = 5/?: × or ÷" tabindex="-1" class="hw-field"><option value=""></option><option value="×">×</option><option value="÷">÷</option></select></div><span class="lab by">by</span><input class="hw-field num gapn" data-k="d2b" data-label="2. 10/12 = 5/?: by" aria-label="2. 10/12 = 5/?: by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">10</span><span class="vd">12</span></span><span class="mach"><span class="mt"><span class="mirror" data-from="d2o"></span><span class="mirror" data-from="d2b"></span></span><span class="marr">=</span><span class="mb"><span class="mirror" data-from="d2o"></span><span class="mirror" data-from="d2b"></span></span></span><span class="vfrac "><span class="vn">5</span><span class="vd"><input class="hw-field num gapn fr-in" data-k="d2a" data-label="2. 10/12 = 5/?: missing number" aria-label="2. 10/12 = 5/?: missing number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div><div class="q fq"><div class="q-top"><div class="q-num">3</div><div class="f-body"><div class="f-given"><span class="vfrac "><span class="vn">2</span><span class="vd">3</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">8</span><span class="vd">?</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops" data-store="d3o" data-field="d3o"><button type="button" class="tool-opt" data-v="×">×</button><button type="button" class="tool-opt" data-v="÷">÷</button></div><div class="store"><select data-k="d3o" data-label="3. 2/3 = 8/?: × or ÷" tabindex="-1" class="hw-field"><option value=""></option><option value="×">×</option><option value="÷">÷</option></select></div><span class="lab by">by</span><input class="hw-field num gapn" data-k="d3b" data-label="3. 2/3 = 8/?: by" aria-label="3. 2/3 = 8/?: by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">2</span><span class="vd">3</span></span><span class="mach"><span class="mt"><span class="mirror" data-from="d3o"></span><span class="mirror" data-from="d3b"></span></span><span class="marr">=</span><span class="mb"><span class="mirror" data-from="d3o"></span><span class="mirror" data-from="d3b"></span></span></span><span class="vfrac "><span class="vn">8</span><span class="vd"><input class="hw-field num gapn fr-in" data-k="d3a" data-label="3. 2/3 = 8/?: missing number" aria-label="3. 2/3 = 8/?: missing number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div><div class="q fq"><div class="q-top"><div class="q-num">4</div><div class="f-body"><div class="f-given"><span class="vfrac "><span class="vn">5</span><span class="vd">6</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">?</span><span class="vd">18</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops" data-store="d4o" data-field="d4o"><button type="button" class="tool-opt" data-v="×">×</button><button type="button" class="tool-opt" data-v="÷">÷</button></div><div class="store"><select data-k="d4o" data-label="4. 5/6 = ?/18: × or ÷" tabindex="-1" class="hw-field"><option value=""></option><option value="×">×</option><option value="÷">÷</option></select></div><span class="lab by">by</span><input class="hw-field num gapn" data-k="d4b" data-label="4. 5/6 = ?/18: by" aria-label="4. 5/6 = ?/18: by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">5</span><span class="vd">6</span></span><span class="mach"><span class="mt"><span class="mirror" data-from="d4o"></span><span class="mirror" data-from="d4b"></span></span><span class="marr">=</span><span class="mb"><span class="mirror" data-from="d4o"></span><span class="mirror" data-from="d4b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="d4a" data-label="4. 5/6 = ?/18: missing number" aria-label="4. 5/6 = ?/18: missing number" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd">18</span></span></span></div></div></div></div></div><div class="q fq"><div class="q-top"><div class="q-num">5</div><div class="f-body"><div class="f-given"><span class="vfrac "><span class="vn">9</span><span class="vd">15</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">?</span><span class="vd">5</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops" data-store="d5o" data-field="d5o"><button type="button" class="tool-opt" data-v="×">×</button><button type="button" class="tool-opt" data-v="÷">÷</button></div><div class="store"><select data-k="d5o" data-label="5. 9/15 = ?/5: × or ÷" tabindex="-1" class="hw-field"><option value=""></option><option value="×">×</option><option value="÷">÷</option></select></div><span class="lab by">by</span><input class="hw-field num gapn" data-k="d5b" data-label="5. 9/15 = ?/5: by" aria-label="5. 9/15 = ?/5: by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">9</span><span class="vd">15</span></span><span class="mach"><span class="mt"><span class="mirror" data-from="d5o"></span><span class="mirror" data-from="d5b"></span></span><span class="marr">=</span><span class="mb"><span class="mirror" data-from="d5o"></span><span class="mirror" data-from="d5b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="d5a" data-label="5. 9/15 = ?/5: missing number" aria-label="5. 9/15 = ?/5: missing number" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd">5</span></span></span></div></div></div></div></div><div class="q fq"><div class="q-top"><div class="q-num">6</div><div class="f-body"><div class="f-given"><span class="vfrac "><span class="vn">1</span><span class="vd">4</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">4</span><span class="vd">?</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops" data-store="d6o" data-field="d6o"><button type="button" class="tool-opt" data-v="×">×</button><button type="button" class="tool-opt" data-v="÷">÷</button></div><div class="store"><select data-k="d6o" data-label="6. 1/4 = 4/?: × or ÷" tabindex="-1" class="hw-field"><option value=""></option><option value="×">×</option><option value="÷">÷</option></select></div><span class="lab by">by</span><input class="hw-field num gapn" data-k="d6b" data-label="6. 1/4 = 4/?: by" aria-label="6. 1/4 = 4/?: by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">1</span><span class="vd">4</span></span><span class="mach"><span class="mt"><span class="mirror" data-from="d6o"></span><span class="mirror" data-from="d6b"></span></span><span class="marr">=</span><span class="mb"><span class="mirror" data-from="d6o"></span><span class="mirror" data-from="d6b"></span></span></span><span class="vfrac "><span class="vn">4</span><span class="vd"><input class="hw-field num gapn fr-in" data-k="d6a" data-label="6. 1/4 = 4/?: missing number" aria-label="6. 1/4 = 4/?: missing number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div><div class="q fq"><div class="q-top"><div class="q-num">7</div><div class="f-body"><div class="f-given"><span class="vfrac "><span class="vn">14</span><span class="vd">16</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">?</span><span class="vd">8</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops" data-store="d7o" data-field="d7o"><button type="button" class="tool-opt" data-v="×">×</button><button type="button" class="tool-opt" data-v="÷">÷</button></div><div class="store"><select data-k="d7o" data-label="7. 14/16 = ?/8: × or ÷" tabindex="-1" class="hw-field"><option value=""></option><option value="×">×</option><option value="÷">÷</option></select></div><span class="lab by">by</span><input class="hw-field num gapn" data-k="d7b" data-label="7. 14/16 = ?/8: by" aria-label="7. 14/16 = ?/8: by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">14</span><span class="vd">16</span></span><span class="mach"><span class="mt"><span class="mirror" data-from="d7o"></span><span class="mirror" data-from="d7b"></span></span><span class="marr">=</span><span class="mb"><span class="mirror" data-from="d7o"></span><span class="mirror" data-from="d7b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="d7a" data-label="7. 14/16 = ?/8: missing number" aria-label="7. 14/16 = ?/8: missing number" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd">8</span></span></span></div></div></div></div></div><div class="q fq"><div class="q-top"><div class="q-num">8</div><div class="f-body"><div class="f-given"><span class="vfrac "><span class="vn">4</span><span class="vd">5</span></span><span class="eq">=</span><span class="vfrac q-frac"><span class="vn">12</span><span class="vd">?</span></span></div><div class="f-steps"><div class="step"><span class="lab">Decide first</span><div class="tool-pick ops" data-store="d8o" data-field="d8o"><button type="button" class="tool-opt" data-v="×">×</button><button type="button" class="tool-opt" data-v="÷">÷</button></div><div class="store"><select data-k="d8o" data-label="8. 4/5 = 12/?: × or ÷" tabindex="-1" class="hw-field"><option value=""></option><option value="×">×</option><option value="÷">÷</option></select></div><span class="lab by">by</span><input class="hw-field num gapn" data-k="d8b" data-label="8. 4/5 = 12/?: by" aria-label="8. 4/5 = 12/?: by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">4</span><span class="vd">5</span></span><span class="mach"><span class="mt"><span class="mirror" data-from="d8o"></span><span class="mirror" data-from="d8b"></span></span><span class="marr">=</span><span class="mb"><span class="mirror" data-from="d8o"></span><span class="mirror" data-from="d8b"></span></span></span><span class="vfrac "><span class="vn">12</span><span class="vd"><input class="hw-field num gapn fr-in" data-k="d8a" data-label="8. 4/5 = 12/?: missing number" aria-label="8. 4/5 = 12/?: missing number" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div>
+</div>
+
+<div class="section maths simplify">
+<div class="sec-head"><span class="subj">Maths</span><span class="note">Simplify fully</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember"><p>Find the BIGGEST number that divides both the numerator and the denominator. <b>÷</b> both by it. Simplified fully means only 1 divides&nbsp;both.</p></div>
+<div class="model"><p class="ex-title">Worked example</p><div class="f-body model-row"><div class="f-given"><span class="lab big">Simplify fully</span><span class="vfrac "><span class="vn">24</span><span class="vd">40</span></span></div><div class="f-steps"><div class="step"><span class="lab">Both divide by</span><span class="filled">8</span></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">24</span><span class="vd">40</span></span><span class="mach"><span class="mt"><span class="mfill">÷8</span></span><span class="marr">=</span><span class="mb"><span class="mfill">÷8</span></span></span><span class="vfrac "><span class="vn"><span class="filled">3</span></span><span class="vd"><span class="filled">5</span></span></span></span></div><p class="model-note">2 and 4 divide both too, but <span class="vfrac "><span class="vn">12</span><span class="vd">20</span></span> and <span class="vfrac "><span class="vn">6</span><span class="vd">10</span></span> are not simplified fully. 8 is the biggest number that divides 24 and 40. After ÷&nbsp;8, only 1 divides both 3 and&nbsp;5.</p></div></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Type the number both divide by. Then type the simplified&nbsp;fraction.</span><span class="print-only">Write the number both divide by. Then write the simplified&nbsp;fraction.</span></p>
+</div>
+<div class="q fq sq"><div class="q-top"><div class="q-num">1</div><div class="f-body"><div class="f-given"><span class="lab big">Simplify fully</span><span class="vfrac "><span class="vn">9</span><span class="vd">21</span></span></div><div class="f-steps"><div class="step"><span class="lab">Both divide by</span><input class="hw-field num gapn" data-k="s1b" data-label="S1. simplify 9/21: both divide by" aria-label="S1. simplify 9/21: both divide by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">9</span><span class="vd">21</span></span><span class="mach"><span class="mt"><span class="mop">÷</span><span class="mirror" data-from="s1b"></span></span><span class="marr">=</span><span class="mb"><span class="mop">÷</span><span class="mirror" data-from="s1b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="s1n" data-label="S1. simplify 9/21: numerator" aria-label="S1. simplify 9/21: numerator" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd"><input class="hw-field num gapn fr-in" data-k="s1d" data-label="S1. simplify 9/21: denominator" aria-label="S1. simplify 9/21: denominator" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div><div class="q fq sq"><div class="q-top"><div class="q-num">2</div><div class="f-body"><div class="f-given"><span class="lab big">Simplify fully</span><span class="vfrac "><span class="vn">15</span><span class="vd">20</span></span></div><div class="f-steps"><div class="step"><span class="lab">Both divide by</span><input class="hw-field num gapn" data-k="s2b" data-label="S2. simplify 15/20: both divide by" aria-label="S2. simplify 15/20: both divide by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">15</span><span class="vd">20</span></span><span class="mach"><span class="mt"><span class="mop">÷</span><span class="mirror" data-from="s2b"></span></span><span class="marr">=</span><span class="mb"><span class="mop">÷</span><span class="mirror" data-from="s2b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="s2n" data-label="S2. simplify 15/20: numerator" aria-label="S2. simplify 15/20: numerator" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd"><input class="hw-field num gapn fr-in" data-k="s2d" data-label="S2. simplify 15/20: denominator" aria-label="S2. simplify 15/20: denominator" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div><div class="q fq sq"><div class="q-top"><div class="q-num">3</div><div class="f-body"><div class="f-given"><span class="lab big">Simplify fully</span><span class="vfrac "><span class="vn">9</span><span class="vd">24</span></span></div><div class="f-steps"><div class="step"><span class="lab">Both divide by</span><input class="hw-field num gapn" data-k="s3b" data-label="S3. simplify 9/24: both divide by" aria-label="S3. simplify 9/24: both divide by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">9</span><span class="vd">24</span></span><span class="mach"><span class="mt"><span class="mop">÷</span><span class="mirror" data-from="s3b"></span></span><span class="marr">=</span><span class="mb"><span class="mop">÷</span><span class="mirror" data-from="s3b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="s3n" data-label="S3. simplify 9/24: numerator" aria-label="S3. simplify 9/24: numerator" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd"><input class="hw-field num gapn fr-in" data-k="s3d" data-label="S3. simplify 9/24: denominator" aria-label="S3. simplify 9/24: denominator" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div><div class="q fq sq"><div class="q-top"><div class="q-num">4</div><div class="f-body"><div class="f-given"><span class="lab big">Simplify fully</span><span class="vfrac "><span class="vn">16</span><span class="vd">20</span></span></div><div class="f-steps"><div class="step"><span class="lab">Both divide by</span><input class="hw-field num gapn" data-k="s4b" data-label="S4. simplify 16/20: both divide by" aria-label="S4. simplify 16/20: both divide by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">16</span><span class="vd">20</span></span><span class="mach"><span class="mt"><span class="mop">÷</span><span class="mirror" data-from="s4b"></span></span><span class="marr">=</span><span class="mb"><span class="mop">÷</span><span class="mirror" data-from="s4b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="s4n" data-label="S4. simplify 16/20: numerator" aria-label="S4. simplify 16/20: numerator" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd"><input class="hw-field num gapn fr-in" data-k="s4d" data-label="S4. simplify 16/20: denominator" aria-label="S4. simplify 16/20: denominator" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div><div class="q fq sq"><div class="q-top"><div class="q-num">5</div><div class="f-body"><div class="f-given"><span class="lab big">Simplify fully</span><span class="vfrac "><span class="vn">12</span><span class="vd">18</span></span></div><div class="f-steps"><div class="step"><span class="lab">Both divide by</span><input class="hw-field num gapn" data-k="s5b" data-label="S5. simplify 12/18: both divide by" aria-label="S5. simplify 12/18: both divide by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">12</span><span class="vd">18</span></span><span class="mach"><span class="mt"><span class="mop">÷</span><span class="mirror" data-from="s5b"></span></span><span class="marr">=</span><span class="mb"><span class="mop">÷</span><span class="mirror" data-from="s5b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="s5n" data-label="S5. simplify 12/18: numerator" aria-label="S5. simplify 12/18: numerator" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd"><input class="hw-field num gapn fr-in" data-k="s5d" data-label="S5. simplify 12/18: denominator" aria-label="S5. simplify 12/18: denominator" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div><div class="q fq sq"><div class="q-top"><div class="q-num">6</div><div class="f-body"><div class="f-given"><span class="lab big">Simplify fully</span><span class="vfrac "><span class="vn">10</span><span class="vd">14</span></span></div><div class="f-steps"><div class="step"><span class="lab">Both divide by</span><input class="hw-field num gapn" data-k="s6b" data-label="S6. simplify 10/14: both divide by" aria-label="S6. simplify 10/14: both divide by" autocomplete="off" inputmode="numeric" spellcheck="false"></div><div class="step so"><span class="lab">So</span><span class="frow"><span class="vfrac "><span class="vn">10</span><span class="vd">14</span></span><span class="mach"><span class="mt"><span class="mop">÷</span><span class="mirror" data-from="s6b"></span></span><span class="marr">=</span><span class="mb"><span class="mop">÷</span><span class="mirror" data-from="s6b"></span></span></span><span class="vfrac "><span class="vn"><input class="hw-field num gapn fr-in" data-k="s6n" data-label="S6. simplify 10/14: numerator" aria-label="S6. simplify 10/14: numerator" autocomplete="off" inputmode="numeric" spellcheck="false"></span><span class="vd"><input class="hw-field num gapn fr-in" data-k="s6d" data-label="S6. simplify 10/14: denominator" aria-label="S6. simplify 10/14: denominator" autocomplete="off" inputmode="numeric" spellcheck="false"></span></span></span></div></div></div></div></div>
+</div>
+
+<div class="section vr">
+<div class="sec-head"><span class="subj">Verbal reasoning</span><span class="note">Missing letters</span></div>
+<div class="task">
+<div class="task-label">Remember</div>
+<div class="remember"><p>One letter ends the first word and starts the second. The SAME letter must work in BOTH pairs, so check all four&nbsp;words.</p></div>
+<div class="model"><p class="ex-title">Worked example</p><div class="ml-body"><div class="ml-pairs"><span class="ml-pair">fou<span class="ml-br">(</span><span class="mgap on">r</span><span class="ml-br">)</span>ain</span><span class="ml-pair">sta<span class="ml-br">(</span><span class="mgap on">r</span><span class="ml-br">)</span>ed</span></div><div class="step"><span class="lab">The letter</span><div class="tool-pick letters"><span class="tool-opt">s</span><span class="tool-opt">t</span><span class="tool-opt on">r</span><span class="tool-opt">n</span><span class="tool-opt">e</span></div></div><p class="model-note">Check all four words: four, rain, star, red. They all work, so the letter is r. With t you get ‘fout’: not a word, so t is&nbsp;out.</p></div></div>
+<div class="role-label">Your turn</div>
+<p class="lead"><span class="screen-only">Tap the letter that makes all four&nbsp;words.</span><span class="print-only">Circle the letter that makes all four&nbsp;words.</span></p>
+</div>
+<div class="q mlq"><div class="q-top"><div class="q-num">1</div><div class="ml-body"><div class="ml-pairs"><span class="ml-pair">bel<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>amp</span><span class="ml-pair">coo<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>eg</span></div><div class="step"><span class="lab">The letter</span><div class="tool-pick letters" data-store="v1" data-field="v1"><button type="button" class="tool-opt" data-v="t">t</button><button type="button" class="tool-opt" data-v="l">l</button><button type="button" class="tool-opt" data-v="k">k</button><button type="button" class="tool-opt" data-v="p">p</button><button type="button" class="tool-opt" data-v="s">s</button></div><div class="store"><select data-k="v1" data-label="V1. bel (?) amp  coo (?) eg" tabindex="-1" class="hw-field"><option value=""></option><option value="t">t</option><option value="l">l</option><option value="k">k</option><option value="p">p</option><option value="s">s</option></select></div></div></div></div></div><div class="q mlq"><div class="q-top"><div class="q-num">2</div><div class="ml-body"><div class="ml-pairs"><span class="ml-pair">han<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>oor</span><span class="ml-pair">fin<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>ust</span></div><div class="step"><span class="lab">The letter</span><div class="tool-pick letters" data-store="v2" data-field="v2"><button type="button" class="tool-opt" data-v="g">g</button><button type="button" class="tool-opt" data-v="k">k</button><button type="button" class="tool-opt" data-v="e">e</button><button type="button" class="tool-opt" data-v="d">d</button><button type="button" class="tool-opt" data-v="m">m</button></div><div class="store"><select data-k="v2" data-label="V2. han (?) oor  fin (?) ust" tabindex="-1" class="hw-field"><option value=""></option><option value="g">g</option><option value="k">k</option><option value="e">e</option><option value="d">d</option><option value="m">m</option></select></div></div></div></div></div><div class="q mlq"><div class="q-top"><div class="q-num">3</div><div class="ml-body"><div class="ml-pairs"><span class="ml-pair">pin<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>ite</span><span class="ml-pair">des<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>ing</span></div><div class="step"><span class="lab">The letter</span><div class="tool-pick letters" data-store="v3" data-field="v3"><button type="button" class="tool-opt" data-v="k">k</button><button type="button" class="tool-opt" data-v="t">t</button><button type="button" class="tool-opt" data-v="e">e</button><button type="button" class="tool-opt" data-v="s">s</button><button type="button" class="tool-opt" data-v="g">g</button></div><div class="store"><select data-k="v3" data-label="V3. pin (?) ite  des (?) ing" tabindex="-1" class="hw-field"><option value=""></option><option value="k">k</option><option value="t">t</option><option value="e">e</option><option value="s">s</option><option value="g">g</option></select></div></div></div></div></div><div class="q mlq"><div class="q-top"><div class="q-num">4</div><div class="ml-body"><div class="ml-pairs"><span class="ml-pair">swi<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>ice</span><span class="ml-pair">war<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>oon</span></div><div class="step"><span class="lab">The letter</span><div class="tool-pick letters" data-store="v4" data-field="v4"><button type="button" class="tool-opt" data-v="n">n</button><button type="button" class="tool-opt" data-v="t">t</button><button type="button" class="tool-opt" data-v="g">g</button><button type="button" class="tool-opt" data-v="p">p</button><button type="button" class="tool-opt" data-v="m">m</button></div><div class="store"><select data-k="v4" data-label="V4. swi (?) ice  war (?) oon" tabindex="-1" class="hw-field"><option value=""></option><option value="n">n</option><option value="t">t</option><option value="g">g</option><option value="p">p</option><option value="m">m</option></select></div></div></div></div></div><div class="q mlq"><div class="q-top"><div class="q-num">5</div><div class="ml-body"><div class="ml-pairs"><span class="ml-pair">fis<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>at</span><span class="ml-pair">wis<span class="ml-br">(</span><span class="mgap">?</span><span class="ml-br">)</span>ill</span></div><div class="step"><span class="lab">The letter</span><div class="tool-pick letters" data-store="v5" data-field="v5"><button type="button" class="tool-opt" data-v="t">t</button><button type="button" class="tool-opt" data-v="k">k</button><button type="button" class="tool-opt" data-v="h">h</button><button type="button" class="tool-opt" data-v="p">p</button><button type="button" class="tool-opt" data-v="s">s</button></div><div class="store"><select data-k="v5" data-label="V5. fis (?) at  wis (?) ill" tabindex="-1" class="hw-field"><option value=""></option><option value="t">t</option><option value="k">k</option><option value="h">h</option><option value="p">p</option><option value="s">s</option></select></div></div></div></div></div>
+</div>
+
+<script>
+/* An empty menu prints as words to circle; a chosen one prints as it is. */
+(function () {
+  function sync() {
+    document.querySelectorAll('.choice-wrap').forEach(function (w) {
+      var s = w.querySelector('select'); w.classList.toggle('is-empty', !(s && s.value));
+    });
+  }
+  document.addEventListener('change', sync, true);
+  window.addEventListener('beforeprint', sync);
+  window.addEventListener('load', function () { sync(); setTimeout(sync, 500); setTimeout(sync, 1500); });
+  sync();
+})();
+
+/* Number boxes: Clara may write k for a whole number of thousands (Dasha, 24 Oct 2026).
+   Decimals are left exactly as typed. */
+(function () {
+  function tidy(el) {
+    var v = String(el.value || '').trim();
+    var m = v.match(/^(\d+)\s*k$/i);
+    if (m) v = (parseInt(m[1], 10) * 1000).toLocaleString('en-GB');
+    if (v !== el.value) { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); }
+  }
+  document.addEventListener('change', function (e) { if (e.target.classList && e.target.classList.contains('num')) tidy(e.target); }, true);
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.hw-send')) [].forEach.call(document.querySelectorAll('input.num'), tidy);
+  }, true);
+})();
+
+function claraStore(k) { return document.querySelector(".store [data-k='" + k + "']"); }
+function claraSet(s, v) {
+  if (!s || s.value === v) return;
+  s.value = v;
+  s.dispatchEvent(new Event('input', { bubbles: true }));
+  s.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* One-choice buttons (direction, columns, Ben): tap to choose, tap again to clear. The answer lives in a
+   hidden select (data-k), so hw.js saves, restores, sends and marks it on the data-field twin. */
+(function () {
+  function init() {
+    document.querySelectorAll('.tool-pick[data-store]').forEach(function (g) {
+      var s = claraStore(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.tool-opt'));
+      function paint() { btns.forEach(function (b) { var on = s.value === b.dataset.v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }); }
+      paint(); s.addEventListener('change', paint);
+      btns.forEach(function (b) { b.addEventListener('click', function () { claraSet(s, s.value === b.dataset.v ? '' : b.dataset.v); paint(); }); });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* Odd ones out: tap exactly two words. Both are kept in a hidden input as «word, word»
+   (key type set, any order). A third tap does nothing and shows a short note. */
+(function () {
+  function init() {
+    document.querySelectorAll('.word-pick[data-store]').forEach(function (g) {
+      var s = claraStore(g.dataset.store); if (!s) return;
+      var btns = [].slice.call(g.querySelectorAll('.word-opt'));
+      var hint = g.parentNode.querySelector('.word-hint');
+      function chosen() { return String(s.value || '').split(',').map(function (x) { return x.trim(); }).filter(String); }
+      function paint() {
+        var c = chosen();
+        btns.forEach(function (b) { var on = c.indexOf(b.dataset.v) >= 0; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      }
+      paint(); s.addEventListener('change', paint);
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var c = chosen(), i = c.indexOf(b.dataset.v);
+          if (i >= 0) c.splice(i, 1);
+          else if (c.length >= 2) { if (hint) { hint.hidden = false; setTimeout(function () { hint.hidden = true; }, 2600); } return; }
+          else c.push(b.dataset.v);
+          var order = btns.map(function (x) { return x.dataset.v; });
+          c.sort(function (a, z) { return order.indexOf(a) - order.indexOf(z); });
+          if (hint) hint.hidden = true;
+          claraSet(s, c.join(', ')); paint();
+        });
+      });
+    });
+  }
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* Mirrors (Dasha, 1 Nov 2026): her own earlier entry appears, read-only, in the next step, and her typed
+   answer appears in the place-value chart lined up on the point. They follow edits and clearing, and
+   never show the right answer. */
+(function () {
+  function digits(v) {
+    v = String(v || '').replace(/[\s,]/g, '');
+    var m = v.match(/^(\d+)k$/i); if (m) v = String(parseInt(m[1], 10) * 1000);
+    if (!/^\d*\.?\d*$/.test(v) || !/\d/.test(v)) return null;
+    var p = v.split('.'), w = p[0] || '', f = p[1] || '';
+    if (w.length > 5 || f.length > 3) return null;
+    var cells = ['', '', '', '', '', '', '', ''];
+    for (var i = 0; i < w.length; i++) cells[4 - i] = w.charAt(w.length - 1 - i);
+    for (var j = 0; j < f.length; j++) cells[5 + j] = f.charAt(j);
+    return cells;
+  }
+  function upd() {
+    document.querySelectorAll('.mirror[data-from]').forEach(function (m) {
+      var src = document.querySelector("[data-k='" + m.dataset.from + "']");
+      m.textContent = src ? String(src.value || '').trim() : '';
+    });
+    document.querySelectorAll('.pv-row[data-from]').forEach(function (r) {
+      var src = document.querySelector("input[data-k='" + r.dataset.from + "']");
+      var d = src ? digits(src.value) : null;
+      r.querySelectorAll('.c').forEach(function (c, i) {
+        var dot = c.querySelector('.pt');
+        c.textContent = d ? d[i] : '';
+        if (dot) c.appendChild(dot);
+      });
+    });
+  }
+  document.addEventListener('input', upd, true);
+  document.addEventListener('change', upd, true);
+  window.addEventListener('beforeprint', upd);
+  window.addEventListener('load', function () { upd(); setTimeout(upd, 500); setTimeout(upd, 1500); });
+  upd();
+})();
+</script>
+
+</div><!-- /sheet -->
+<div class="hw-bar">
+  <button class="hw-send" id="hwSend" onclick="hwSend()">Check and send to Dasha</button>
+  <div class="hw-msg" id="hwMsg">Press the button when you have finished.</div>
+  <button class="hw-pdf" onclick="window.print()">Save a copy as a PDF</button>
+</div>
+<script type="application/json" id="hw-check">eyJkMWEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyMSJ9LCAiZDFvIjogeyJ0IjogImV4YWN0IiwgImEiOiAiw5cifSwgImQxYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjcifSwgImQyYSI6IHsidCI6ICJleGFjdCIsICJhIjogIjYifSwgImQybyI6IHsidCI6ICJleGFjdCIsICJhIjogIsO3In0sICJkMmIiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIyIn0sICJkM2EiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICIxMiJ9LCAiZDNvIjogeyJ0IjogImV4YWN0IiwgImEiOiAiw5cifSwgImQzYiI6IHsidCI6ICJleGFjdCIsICJhIjogIjQifSwgImQ0YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE1In0sICJkNG8iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLDlyJ9LCAiZDRiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiZDVhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiZDVvIjogeyJ0IjogImV4YWN0IiwgImEiOiAiw7cifSwgImQ1YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjMifSwgImQ2YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE2In0sICJkNm8iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLDlyJ9LCAiZDZiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAiZDdhIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiZDdvIjogeyJ0IjogImV4YWN0IiwgImEiOiAiw7cifSwgImQ3YiI6IHsidCI6ICJleGFjdCIsICJhIjogIjIifSwgImQ4YSI6IHsidCI6ICJleGFjdCIsICJhIjogIjE1In0sICJkOG8iOiB7InQiOiAiZXhhY3QiLCAiYSI6ICLDlyJ9LCAiZDhiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiczFuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiczFkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiczFiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiczJuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiczJkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAiczJiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiczNuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiczNkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiOCJ9LCAiczNiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiczRuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAiczRkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiczRiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNCJ9LCAiczVuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAiczVkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMyJ9LCAiczViIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNiJ9LCAiczZuIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNSJ9LCAiczZkIjogeyJ0IjogImV4YWN0IiwgImEiOiAiNyJ9LCAiczZiIjogeyJ0IjogImV4YWN0IiwgImEiOiAiMiJ9LCAidjEiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJsIn0sICJ2MiI6IHsidCI6ICJleGFjdCIsICJhIjogImQifSwgInYzIjogeyJ0IjogImV4YWN0IiwgImEiOiAiayJ9LCAidjQiOiB7InQiOiAiZXhhY3QiLCAiYSI6ICJtIn0sICJ2NSI6IHsidCI6ICJleGFjdCIsICJhIjogImgifX0=</script>
+<script src="../assets/hw.js?v=20261127-open-gap-note"></script>
+</body>
+</html>
